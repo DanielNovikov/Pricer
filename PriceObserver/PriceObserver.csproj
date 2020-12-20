@@ -4,4 +4,11 @@
         <TargetFramework>netcoreapp3.1</TargetFramework>
         <RootNamespace>PriceObserver</RootNamespace>
     </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\PriceObserver.BackgroundServices\PriceObserver.BackgroundServices.csproj" />
+      <ProjectReference Include="..\PriceObserver.Data\PriceObserver.Data.csproj" />
+      <ProjectReference Include="..\PriceObserver.Parser\PriceObserver.Parser.csproj" />
+      <ProjectReference Include="..\PriceObserver.Telegram\PriceObserver.Telegram.csproj" />
+    </ItemGroup>
 </Project>

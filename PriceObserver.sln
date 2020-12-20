@@ -15,8 +15,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PriceObserver.Model", "Pric
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PriceObserver.BackgroundServices", "PriceObserver.BackgroundServices\PriceObserver.BackgroundServices.csproj", "{BFA35F38-319F-4559-A9B5-D02FB14C6828}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PriceObserver.Web.Front", "PriceObserver.Web.Front\PriceObserver.Web.Front.csproj", "{1841011A-1B23-4C70-8672-ACA712B03DB1}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,10 +45,6 @@ Global
 		{BFA35F38-319F-4559-A9B5-D02FB14C6828}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BFA35F38-319F-4559-A9B5-D02FB14C6828}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BFA35F38-319F-4559-A9B5-D02FB14C6828}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1841011A-1B23-4C70-8672-ACA712B03DB1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1841011A-1B23-4C70-8672-ACA712B03DB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1841011A-1B23-4C70-8672-ACA712B03DB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1841011A-1B23-4C70-8672-ACA712B03DB1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
