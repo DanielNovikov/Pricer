@@ -27,9 +27,9 @@ namespace PriceObserver.Data.Repositories.Concrete
         public async Task Add(User user)
         {
             await _context.Users.AddAsync(user);
-            _context.Entry(user).State = EntityState.Detached;
-
             await _context.SaveChangesAsync();
+            
+            _context.Entry(user).State = EntityState.Detached;
         }
     }
 }
