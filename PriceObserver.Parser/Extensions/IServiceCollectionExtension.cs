@@ -2,8 +2,10 @@
 using Microsoft.Extensions.DependencyInjection;
 using PriceObserver.Parser.Abstract;
 using PriceObserver.Parser.Abstract.Intertop;
+using PriceObserver.Parser.Abstract.MdFashion;
 using PriceObserver.Parser.Concrete;
 using PriceObserver.Parser.Concrete.Intertop;
+using PriceObserver.Parser.Concrete.MdFashion;
 
 namespace PriceObserver.Parser.Extensions
 {
@@ -19,6 +21,10 @@ namespace PriceObserver.Parser.Extensions
             services.AddTransient<IParserProviderService, IntertopParserService>();
             services.AddTransient<IIntertopParserContentValidator, IntertopParserContentValidator>();
             services.AddTransient<IIntertopParser, IntertopParser>();
+            
+            services.AddTransient<IParserProviderService, MdFashionParserService>();
+            services.AddTransient<IMdFashionParserContentValidator, MdFashionParserContentValidator>();
+            services.AddTransient<IMdFashionParser, MdFashionParser>();
         }
     }
 }

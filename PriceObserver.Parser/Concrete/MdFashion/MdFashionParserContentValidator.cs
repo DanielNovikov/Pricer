@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using AngleSharp.Dom;
 using AngleSharp.Html.Dom;
-using PriceObserver.Parser.Abstract.Intertop;
+using PriceObserver.Parser.Abstract.MdFashion;
 
-namespace PriceObserver.Parser.Concrete.Intertop
+namespace PriceObserver.Parser.Concrete.MdFashion
 {
-    public class IntertopParserContentValidator : IIntertopParserContentValidator
+    public class MdFashionParserContentValidator : IMdFashionParserContentValidator
     {
         public void Validate(IHtmlDocument htmlDocument)
         {
@@ -21,9 +21,9 @@ namespace PriceObserver.Parser.Concrete.Intertop
         {
             return elements
                 .Any(e => 
-                    e.TagName.ToLower() == "span" && 
+                    e.TagName.ToLower() == "span" &&
                     !string.IsNullOrEmpty(e.ClassName) &&
-                    e.ClassName == "price-contain");
+                    e.ClassName.Contains("price_current"));
         }
     }
 }

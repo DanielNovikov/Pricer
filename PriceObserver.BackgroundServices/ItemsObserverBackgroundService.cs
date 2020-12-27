@@ -46,7 +46,7 @@ namespace PriceObserver.Jobs
                             {
                                 await _telegramBotService.SendMessage(
                                     item.UserId,
-                                    $"Price changed from {item.Price} to {parsedItem.Price}");
+                                    $"Price changed from {item.Price} to {parsedItem.Price}\n{item.Url}");
 
                                 item.Price = parsedItem.Price;
                                 await _itemRepository.Update(item);

@@ -2,6 +2,7 @@
 {
     public enum ShopEnum
     {
-        Intertop
+        Intertop,
+        MdFashion
     }
 }

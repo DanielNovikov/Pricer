@@ -3,11 +3,11 @@ using System.Linq;
 using AngleSharp.Dom;
 using AngleSharp.Html.Dom;
 using PriceObserver.Model.Parser;
-using PriceObserver.Parser.Abstract.Intertop;
+using PriceObserver.Parser.Abstract.MdFashion;
 
-namespace PriceObserver.Parser.Concrete.Intertop
+namespace PriceObserver.Parser.Concrete.MdFashion
 {
-    public class IntertopParser : IIntertopParser
+    public class MdFashionParser : IMdFashionParser
     {
         public ParsedItem Parse(IHtmlDocument htmlDocument)
         {
@@ -15,7 +15,7 @@ namespace PriceObserver.Parser.Concrete.Intertop
 
             return new ParsedItem
             {
-                Shop = ShopEnum.Intertop,
+                Shop = ShopEnum.MdFashion,
                 Price = GetPrice(elements)
             };
         }
@@ -24,9 +24,9 @@ namespace PriceObserver.Parser.Concrete.Intertop
         {
             var priceSpan = elements.First(e =>
                 !string.IsNullOrEmpty(e.ClassName) &&
-                e.ClassName == "price-contain");
-            
-            var price = priceSpan.InnerHtml.Replace(" ", string.Empty);
+                e.ClassName.Contains("price_current"));
+
+            var price = priceSpan.Attributes["data-price"].Value;
             
             return int.Parse(price);
         }
