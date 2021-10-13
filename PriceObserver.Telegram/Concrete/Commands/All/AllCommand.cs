@@ -22,10 +22,7 @@ namespace PriceObserver.Telegram.Concrete.Commands.All
         {
             await _allCommandService.Process(update, user);
 
-            return new CommandExecutionResult
-            {
-                Message = "All items listed below"
-            };
+            return CommandExecutionResult.Success();
         }
     }
 }

@@ -1,9 +1,10 @@
 ﻿using PriceObserver.Model.Telegram;
+using PriceObserver.Model.Telegram.Commands;
 
 namespace PriceObserver.Telegram.Abstract.Commands
 {
     public interface ICommandParameterParser
     {
-        object Parse(string parameter, MessageParameterType type);
+        CommandParameterParseResult Parse(string parameter, MessageParameterType type);
     }
 }

@@ -21,11 +21,8 @@ namespace PriceObserver.Telegram.Concrete.Commands.Remove
         public async Task<CommandExecutionResult> Process(Update update, User user)
         {
             await _removeCommandService.Process(update, user);
-            
-            return new CommandExecutionResult
-            {
-                Message = "Item has been deleted successfully"
-            };
+
+            return CommandExecutionResult.Success("Item has been deleted successfully");
         }
     }
 }

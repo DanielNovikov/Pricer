@@ -20,12 +20,7 @@ namespace PriceObserver.Telegram.Concrete.Commands.Add
         
         public async Task<CommandExecutionResult> Process(Update update, User user)
         {
-            await _addCommandService.Process(update, user);
-
-            return new CommandExecutionResult
-            {
-                Message = "Item added successfully" 
-            };
+            return await _addCommandService.Process(update, user);
         }
     }
 }

@@ -7,6 +7,6 @@ namespace PriceObserver.Parser.Abstract
     {
         public string Host { get; }
 
-        public ParsedItem Parse(IHtmlDocument htmlDocument);
+        public ParsedItemResult Parse(IHtmlDocument htmlDocument);
     }
 }

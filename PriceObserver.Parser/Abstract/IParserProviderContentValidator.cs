@@ -1,9 +1,10 @@
 ﻿using AngleSharp.Html.Dom;
+using PriceObserver.Model.Parser;
 
 namespace PriceObserver.Parser.Abstract
 {
     public interface IParserProviderContentValidator
     {
-        void Validate(IHtmlDocument htmlDocument);
+        ContentValidatorResult Validate(IHtmlDocument htmlDocument);
     }
 }

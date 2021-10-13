@@ -1,6 +1,6 @@
 ﻿namespace PriceObserver.Model.Telegram.Commands.All
 {
-    public class AllCommandItemDto
+    public class ItemDto
     {
         public string Identifier { get; set; }
         

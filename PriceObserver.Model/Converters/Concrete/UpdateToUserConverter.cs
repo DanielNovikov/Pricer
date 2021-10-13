@@ -6,16 +6,14 @@ namespace PriceObserver.Model.Converters.Concrete
 {
     public class UpdateToUserConverter : IUpdateToUserConverter
     {
-        public User Convert(Update source)
+        public User Convert(Chat source)
         {
-            var chat = source.Message.Chat;
-
             return new User
             {
-                Id = chat.Id,
-                Username = chat.Username,
-                FirstName = chat.FirstName,
-                LastName = chat.LastName
+                Id = source.Id,
+                Username = source.Username,
+                FirstName = source.FirstName,
+                LastName = source.LastName
             };
         }
     }

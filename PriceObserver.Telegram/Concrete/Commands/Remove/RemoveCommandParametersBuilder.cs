@@ -1,5 +1,5 @@
 ﻿using PriceObserver.Model.Telegram;
-using PriceObserver.Model.Telegram.Commands;
+using PriceObserver.Model.Telegram.Commands.Remove;
 using PriceObserver.Telegram.Abstract.Commands;
 using PriceObserver.Telegram.Abstract.Commands.Remove;
 using PriceObserver.Telegram.Extensions;
@@ -16,15 +16,18 @@ namespace PriceObserver.Telegram.Concrete.Commands.Remove
             _commandParametersParser = commandParametersParser;
         }
 
-        public RemoveCommandParameters Build(Update update)
+        public RemoveCommandParametersBuildResult Build(Update update)
         {
             var message = update.GetMessageText();
-            var parameters = _commandParametersParser.Parse(message, MessageParameterType.Number);
+            var parseResult = _commandParametersParser.Parse(message, MessageParameterType.Number);
 
-            return new RemoveCommandParameters
-            {
-                Id = (int) parameters[0]
-            };
+            if (!parseResult.IsSuccess)
+                return RemoveCommandParametersBuildResult.Fail(parseResult.Error);
+
+            var id = (int) parseResult.Result[0];
+            var parameters = new RemoveCommandParameters(id);
+
+            return RemoveCommandParametersBuildResult.Success(parameters);
         }
     }
 }

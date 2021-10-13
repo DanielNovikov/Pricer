@@ -1,20 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using AngleSharp.Dom;
 using AngleSharp.Html.Dom;
+using PriceObserver.Model.Parser;
 using PriceObserver.Parser.Abstract.MdFashion;
 
 namespace PriceObserver.Parser.Concrete.MdFashion
 {
     public class MdFashionParserContentValidator : IMdFashionParserContentValidator
     {
-        public void Validate(IHtmlDocument htmlDocument)
+        public ContentValidatorResult Validate(IHtmlDocument htmlDocument)
         {
             var elements = htmlDocument.All.ToList();
             
             if (!PriceExistsOnPage(elements))
-                throw new Exception("There is no price on page");
+                 ContentValidatorResult.Fail("There is no price on page");
+
+            return ContentValidatorResult.Success();
         }
 
         private bool PriceExistsOnPage(List<IElement> elements)

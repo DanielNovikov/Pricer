@@ -20,11 +20,15 @@ namespace PriceObserver.Parser.Concrete.Intertop
 
         public string Host => "intertop.ua";
         
-        public ParsedItem Parse(IHtmlDocument htmlDocument)
+        public ParsedItemResult Parse(IHtmlDocument htmlDocument)
         {
-            _intertopParserContentValidator.Validate(htmlDocument);
+            var validationResult = _intertopParserContentValidator.Validate(htmlDocument);
 
-            return _intertopParser.Parse(htmlDocument);
+            if (!validationResult.IsSuccess)
+                return ParsedItemResult.Fail(validationResult.Error);
+
+            var parsedItem = _intertopParser.Parse(htmlDocument);
+            return ParsedItemResult.Success(parsedItem);
         }
     }
 }

@@ -9,7 +9,7 @@ namespace PriceObserver.Model.Extensions
         public static void ConfigureConverters(this IServiceCollection services)
         {
             services.AddTransient<IUpdateToUserConverter, UpdateToUserConverter>();
-            services.AddTransient<IItemToAllCommandItemDtoConverter, ItemToAllCommandItemDtoConverter>();
+            services.AddTransient<IItemToItemDtoConverter, ItemToItemDtoConverter>();
         }
     }
 }

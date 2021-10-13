@@ -20,16 +20,19 @@ namespace PriceObserver.Parser.Concrete
             _htmlLoader = htmlLoader;
         }
 
-        public async Task<ParsedItem> Parse(Uri url)
+        public async Task<ParsedItemResult> Parse(Uri url)
         {
             var parserProxy = _parserProxies.FirstOrDefault(p => p.Host == url.Host);
             
             if (parserProxy == null)
-                throw new Exception("Shop is not available");
+                return ParsedItemResult.Fail("Shop is not available");
 
-            var htmlDocument = await _htmlLoader.Load(url);
+            var htmlLoadResult = await _htmlLoader.Load(url);
+
+            if (htmlLoadResult.IsSuccess)
+                return ParsedItemResult.Fail(htmlLoadResult.Error);
             
-            return parserProxy.Parse(htmlDocument);
+            return parserProxy.Parse(htmlLoadResult.Result);
         }
     }
 }

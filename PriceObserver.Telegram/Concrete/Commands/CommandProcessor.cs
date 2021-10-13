@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using PriceObserver.Data.Repositories.Abstract;
@@ -31,16 +30,17 @@ namespace PriceObserver.Telegram.Concrete.Commands
         {
             var message = update.GetMessageText();
             
-            var command = _commands.FirstOrDefault(command => message.StartsWith($"/{command.Name}"));
+            var command = _commands.FirstOrDefault(x => message.StartsWith($"/{x.Name}"));
             if (command == null)
-                throw new Exception("Wrong command");
+                return CommandExecutionResult.Fail("Wrong command");
 
             var userId = update.GetUserId();
             var user = await _userRepository.GetById(userId);
 
             if (user == null)
             {
-                user = _updateToUserConverter.Convert(update);
+                var chat = update.Message.Chat;
+                user = _updateToUserConverter.Convert(chat);
                 await _userRepository.Add(user);
             }
             

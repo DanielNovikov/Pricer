@@ -3,7 +3,7 @@ using PriceObserver.Model.Telegram.Commands.All;
 
 namespace PriceObserver.Model.Converters.Abstract
 {
-    public interface IItemToAllCommandItemDtoConverter : IConverter<Item, AllCommandItemDto>
+    public interface IItemToItemDtoConverter : IConverter<Item, ItemDto>
     {
         
     }

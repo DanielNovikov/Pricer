@@ -1,6 +1,6 @@
 ﻿using System;
 using PriceObserver.Model.Telegram;
-using PriceObserver.Model.Telegram.Commands;
+using PriceObserver.Model.Telegram.Commands.Add;
 using PriceObserver.Telegram.Abstract.Commands;
 using PriceObserver.Telegram.Abstract.Commands.Add;
 using PriceObserver.Telegram.Extensions;
@@ -17,15 +17,18 @@ namespace PriceObserver.Telegram.Concrete.Commands.Add
             _commandParametersParser = commandParametersParser;
         }
 
-        public AddCommandParameters Build(Update update)
+        public AddCommandParametersBuildResult Build(Update update)
         {
             var message = update.GetMessageText();
-            var parameters = _commandParametersParser.Parse(message, MessageParameterType.URL);
+            var parseResult = _commandParametersParser.Parse(message, MessageParameterType.URL);
 
-            return new AddCommandParameters
-            {
-                Url = (Uri) parameters[0] 
-            };
+            if (!parseResult.IsSuccess)
+                return AddCommandParametersBuildResult.Fail(parseResult.Error);
+
+            var url = (Uri) parseResult.Result[0];
+            var parameters = new AddCommandParameters(url);
+
+            return AddCommandParametersBuildResult.Success(parameters);
         }
     }
 }

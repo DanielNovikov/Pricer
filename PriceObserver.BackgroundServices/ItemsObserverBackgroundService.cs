@@ -13,12 +13,12 @@ namespace PriceObserver.Jobs
         private readonly IItemRepository _itemRepository;
         private readonly IParserService _parserService;
         private readonly ITelegramBotService _telegramBotService;
-        
+
         private CancellationTokenSource _tokenSource;
-        
+
         public ItemsObserverBackgroundService(
             IItemRepository itemRepository,
-            IParserService parserService, 
+            IParserService parserService,
             ITelegramBotService telegramBotService)
         {
             _itemRepository = itemRepository;
@@ -38,25 +38,26 @@ namespace PriceObserver.Jobs
 
                     foreach (var item in items)
                     {
-                        try
-                        {
-                            var parsedItem = await _parserService.Parse(item.Url);
+                        var parsedItemResult = await _parserService.Parse(item.Url);
 
-                            if (parsedItem.Price != item.Price)
-                            {
-                                await _telegramBotService.SendMessage(
-                                    item.UserId,
-                                    $"Price changed from {item.Price} to {parsedItem.Price}\n{item.Url}");
-
-                                item.Price = parsedItem.Price;
-                                await _itemRepository.Update(item);
-                            }
-                        }
-                        catch (Exception ex)
+                        if (!parsedItemResult.IsSuccess)
                         {
                             await _telegramBotService.SendMessage(
                                 item.UserId,
-                                $"Cannot parse item {item.Url} \r\n Reason: '{ex.Message}'");
+                                $"Cannot parse item {item.Url} \r\n Reason: '{parsedItemResult.Error}'");
+                            
+                            continue;
+                        }
+
+                        var parsedItem = parsedItemResult.Result;
+                        if (parsedItem.Price != item.Price)
+                        {
+                            await _telegramBotService.SendMessage(
+                                item.UserId,
+                                $"Price changed from {item.Price} to {parsedItem.Price}\n{item.Url}");
+
+                            item.Price = parsedItem.Price;
+                            await _itemRepository.Update(item);
                         }
                     }
 

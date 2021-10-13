@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Net.Http;
 using System.Threading.Tasks;
-using AngleSharp.Html.Dom;
 using AngleSharp.Html.Parser;
+using PriceObserver.Model.Parser;
 using PriceObserver.Parser.Abstract;
 
 namespace PriceObserver.Parser.Concrete
@@ -18,15 +18,17 @@ namespace PriceObserver.Parser.Concrete
             _htmlParser = htmlParser;
         }
         
-        public async Task<IHtmlDocument> Load(Uri url)
+        public async Task<HtmlLoadResult> Load(Uri url)
         {
             var response = await _httpClient.GetAsync(url);
             
             if (!response.IsSuccessStatusCode)
-                throw new Exception("Page was not found");
+                return HtmlLoadResult.Fail("Page was not found");
             
             var html = await response.Content.ReadAsStreamAsync();
-            return await _htmlParser.ParseDocumentAsync(html);
+            var htmlDocument =  await _htmlParser.ParseDocumentAsync(html);
+
+            return HtmlLoadResult.Success(htmlDocument);
         }
     }
 }

@@ -4,11 +4,11 @@ using PriceObserver.Model.Telegram.Commands.All;
 
 namespace PriceObserver.Model.Converters.Concrete
 {
-    public class ItemToAllCommandItemDtoConverter : IItemToAllCommandItemDtoConverter
+    public class ItemToItemDtoConverter : IItemToItemDtoConverter
     {
-        public AllCommandItemDto Convert(Item source)
+        public ItemDto Convert(Item source)
         {
-            return new AllCommandItemDto
+            return new ItemDto
             {
                 Identifier = $"Identifier: {source.Id}",
                 Price = $"Price: {source.Price}",

@@ -1,10 +1,10 @@
-﻿using PriceObserver.Model.Telegram.Commands;
+﻿using PriceObserver.Model.Telegram.Commands.Add;
 using Telegram.Bot.Types;
 
 namespace PriceObserver.Telegram.Abstract.Commands.Add
 {
     public interface IAddCommandParametersBuilder
     {
-        AddCommandParameters Build(Update update);
+        AddCommandParametersBuildResult Build(Update update);
     }
 }

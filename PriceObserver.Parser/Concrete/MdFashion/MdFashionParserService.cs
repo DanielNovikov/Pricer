@@ -20,11 +20,15 @@ namespace PriceObserver.Parser.Concrete.MdFashion
 
         public string Host => "md-fashion.com.ua";
         
-        public ParsedItem Parse(IHtmlDocument htmlDocument)
+        public ParsedItemResult Parse(IHtmlDocument htmlDocument)
         {
-            _mdFashionParserContentValidator.Validate(htmlDocument);
+            var validationResult = _mdFashionParserContentValidator.Validate(htmlDocument);
 
-            return _mdFashionParser.Parse(htmlDocument);
+            if (!validationResult.IsSuccess)
+                return ParsedItemResult.Fail(validationResult.Error);
+
+            var parsedItem = _mdFashionParser.Parse(htmlDocument);
+            return ParsedItemResult.Success(parsedItem);
         }
     }
 }

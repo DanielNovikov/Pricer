@@ -1,9 +1,14 @@
 ﻿using System;
 
-namespace PriceObserver.Model.Telegram.Commands
+namespace PriceObserver.Model.Telegram.Commands.Add
 {
     public struct AddCommandParameters
     {
-        public Uri Url;
+        public AddCommandParameters(Uri url)
+        {
+            Url = url;
+        }
+        
+        public Uri Url { get; }
     }
 }

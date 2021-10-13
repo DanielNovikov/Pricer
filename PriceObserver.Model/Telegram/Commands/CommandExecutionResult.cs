@@ -1,7 +1,12 @@
-﻿namespace PriceObserver.Model.Telegram.Commands
+﻿using PriceObserver.Model.Common;
+
+namespace PriceObserver.Model.Telegram.Commands
 {
-    public class CommandExecutionResult
+    public class CommandExecutionResult : ServiceResult<CommandExecutionResult, string, string>
     {
-        public string Message { get; set; }
+        public CommandExecutionResult()
+        {
+            
+        }
     }
 }
