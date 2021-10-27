@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.29926.136
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PriceObserver", "PriceObserver\PriceObserver.csproj", "{2810C97E-E067-4F4E-829F-735236D3F55C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PriceObserver.Telegram", "PriceObserver.Telegram\PriceObserver.Telegram.csproj", "{3D0A09AC-0D70-4C9A-AF8E-BA4484576C92}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PriceObserver.Telegram.Client", "PriceObserver.Telegram.Client\PriceObserver.Telegram.Client.csproj", "{3D0A09AC-0D70-4C9A-AF8E-BA4484576C92}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PriceObserver.Parser", "PriceObserver.Parser\PriceObserver.Parser.csproj", "{BD1D3C9F-390A-43EB-BC6D-EC0A1F12590E}"
 EndProject
@@ -14,6 +14,12 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PriceObserver.Model", "PriceObserver.Model\PriceObserver.Model.csproj", "{A4D57B83-27F0-43CA-92F0-76AF3D9F00E7}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PriceObserver.BackgroundServices", "PriceObserver.BackgroundServices\PriceObserver.BackgroundServices.csproj", "{BFA35F38-319F-4559-A9B5-D02FB14C6828}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PriceObserver.Telegram.Dialog", "PriceObserver.Telegram.Dialog\PriceObserver.Telegram.Dialog.csproj", "{BEAE268C-B46C-47EF-967B-95BC60681B59}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PriceObserver.Data.Service", "PriceObserver.Data.Service\PriceObserver.Data.Service.csproj", "{4E384CAE-7D5F-4639-9F4F-806B55F1EF03}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PriceObserver.Model.Converters", "PriceObserver.Model.Converters\PriceObserver.Model.Converters.csproj", "{F7872A9F-BB2A-4B64-A59E-05EC07C5B353}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +51,18 @@ Global
 		{BFA35F38-319F-4559-A9B5-D02FB14C6828}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BFA35F38-319F-4559-A9B5-D02FB14C6828}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BFA35F38-319F-4559-A9B5-D02FB14C6828}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BEAE268C-B46C-47EF-967B-95BC60681B59}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BEAE268C-B46C-47EF-967B-95BC60681B59}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BEAE268C-B46C-47EF-967B-95BC60681B59}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BEAE268C-B46C-47EF-967B-95BC60681B59}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4E384CAE-7D5F-4639-9F4F-806B55F1EF03}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E384CAE-7D5F-4639-9F4F-806B55F1EF03}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E384CAE-7D5F-4639-9F4F-806B55F1EF03}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E384CAE-7D5F-4639-9F4F-806B55F1EF03}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F7872A9F-BB2A-4B64-A59E-05EC07C5B353}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F7872A9F-BB2A-4B64-A59E-05EC07C5B353}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F7872A9F-BB2A-4B64-A59E-05EC07C5B353}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F7872A9F-BB2A-4B64-A59E-05EC07C5B353}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

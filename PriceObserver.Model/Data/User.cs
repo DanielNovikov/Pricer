@@ -12,6 +12,11 @@ namespace PriceObserver.Model.Data
         
         public string Username { get; set; }
         
-        public List<Item> Items { get; set; }
+        public bool CanAwaitInput { get; set; }
+        
+        public IList<Item> Items { get; set; }
+        
+        public int MenuId { get; set; }
+        public Menu Menu { get; set; }
     }
 }

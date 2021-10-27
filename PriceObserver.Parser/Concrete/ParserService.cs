@@ -25,7 +25,7 @@ namespace PriceObserver.Parser.Concrete
             var parserProxy = _parserProxies.FirstOrDefault(p => p.Host == url.Host);
             
             if (parserProxy == null)
-                return ParsedItemResult.Fail("Shop is not available");
+                return ParsedItemResult.Fail("Магазин недоступен");
 
             var htmlLoadResult = await _htmlLoader.Load(url);
 

@@ -3,11 +3,11 @@
     public abstract class ServiceResult<TImplementation, TResult, TError> 
         where TImplementation : ServiceResult<TImplementation, TResult, TError>, new()
     {
-        public bool IsSuccess { get; private set; }
+        public bool IsSuccess { get; protected set; }
 
-        public TError Error { get; private set; }
+        public TError Error { get; protected set; }
 
-        public TResult Result { get; private set; }
+        public TResult Result { get; protected set; }
 
         public static TImplementation Success(TResult result)
         {

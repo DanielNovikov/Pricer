@@ -8,5 +8,7 @@ namespace PriceObserver.Data.Repositories.Abstract
         Task<User> GetById(long id);
 
         Task Add(User user);
+
+        Task Update(User user);
     }
 }

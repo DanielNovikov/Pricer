@@ -11,6 +11,12 @@ namespace PriceObserver.Data
         
         public DbSet<User> Users { get; set; }
 
+        public DbSet<Menu> Menus { get; set; }
+        
+        public DbSet<MenuCommand> MenuCommands { get; set; }
+
+        public DbSet<Command> Commands { get; set; }
+        
         public ObserverContext(DbContextOptions<ObserverContext> options) : base(options)
         {
             try

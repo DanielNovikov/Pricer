@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netcoreapp3.1</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\PriceObserver.Data\PriceObserver.Data.csproj" />
+      <ProjectReference Include="..\PriceObserver.Model\PriceObserver.Model.csproj" />
+    </ItemGroup>
+
+</Project>

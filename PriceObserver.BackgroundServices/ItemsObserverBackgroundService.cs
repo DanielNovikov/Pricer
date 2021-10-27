@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Hosting;
 using PriceObserver.Data.Repositories.Abstract;
 using PriceObserver.Parser.Abstract;
-using PriceObserver.Telegram.Abstract.Client;
+using PriceObserver.Telegram.Client.Abstract;
 
 namespace PriceObserver.Jobs
 {

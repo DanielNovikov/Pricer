@@ -5,10 +5,10 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using PriceObserver.Data.Extensions;
 using PriceObserver.Jobs.Extensions;
-using PriceObserver.Model.Extensions;
+using PriceObserver.Model.Converters;
 using PriceObserver.Parser.Extensions;
-using PriceObserver.Telegram.Abstract.Client;
-using PriceObserver.Telegram.Extensions;
+using PriceObserver.Telegram.Client;
+using PriceObserver.Telegram.Client.Abstract;
 
 namespace PriceObserver
 {

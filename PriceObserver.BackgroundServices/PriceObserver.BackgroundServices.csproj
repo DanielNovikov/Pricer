@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFramework>netcoreapp3.0</TargetFramework>
+        <TargetFramework>netcoreapp3.1</TargetFramework>
         <RootNamespace>PriceObserver.Jobs</RootNamespace>
     </PropertyGroup>
 
@@ -13,7 +13,7 @@
     <ItemGroup>
       <ProjectReference Include="..\PriceObserver.Data\PriceObserver.Data.csproj" />
       <ProjectReference Include="..\PriceObserver.Parser\PriceObserver.Parser.csproj" />
-      <ProjectReference Include="..\PriceObserver.Telegram\PriceObserver.Telegram.csproj" />
+      <ProjectReference Include="..\PriceObserver.Telegram.Client\PriceObserver.Telegram.Client.csproj" />
     </ItemGroup>
 
 </Project>
