@@ -6,8 +6,6 @@ namespace PriceObserver.Data.Repositories.Abstract
 {
     public interface IMenuRepository
     {
-        Task<Menu> GetByType(MenuType type);
-
         Task<Menu> GetDefault();
     }
 }

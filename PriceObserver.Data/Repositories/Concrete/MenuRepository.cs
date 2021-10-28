@@ -15,13 +15,6 @@ namespace PriceObserver.Data.Repositories.Concrete
             _context = context;
         }
 
-        public Task<Menu> GetByType(MenuType type)
-        {
-            return _context.Menus
-                .AsNoTracking()
-                .SingleAsync(x => x.Type == type);
-        }
-
         public Task<Menu> GetDefault()
         {
             return _context.Menus

@@ -23,7 +23,7 @@ namespace PriceObserver.Parser.Concrete
             var response = await _httpClient.GetAsync(url);
             
             if (!response.IsSuccessStatusCode)
-                return HtmlLoadResult.Fail("Page was not found");
+                return HtmlLoadResult.Fail("Страница не найдена");
             
             var html = await response.Content.ReadAsStreamAsync();
             var htmlDocument =  await _htmlParser.ParseDocumentAsync(html);

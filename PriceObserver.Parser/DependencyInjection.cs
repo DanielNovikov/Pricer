@@ -7,9 +7,9 @@ using PriceObserver.Parser.Concrete;
 using PriceObserver.Parser.Concrete.Intertop;
 using PriceObserver.Parser.Concrete.MdFashion;
 
-namespace PriceObserver.Parser.Extensions
+namespace PriceObserver.Parser
 {
-    public static class IServiceCollectionExtension
+    public static class DependencyInjection
     {
         public static void ConfigureParser(this IServiceCollection services)
         {

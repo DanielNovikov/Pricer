@@ -6,7 +6,7 @@ using Microsoft.Extensions.Hosting;
 using PriceObserver.Data.Extensions;
 using PriceObserver.Jobs.Extensions;
 using PriceObserver.Model.Converters;
-using PriceObserver.Parser.Extensions;
+using PriceObserver.Parser;
 using PriceObserver.Telegram.Client;
 using PriceObserver.Telegram.Client.Abstract;
 
