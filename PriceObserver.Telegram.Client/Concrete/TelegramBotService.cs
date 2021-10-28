@@ -1,5 +1,7 @@
 ﻿using System.Threading.Tasks;
 using PriceObserver.Telegram.Client.Abstract;
+using Telegram.Bot.Types.Enums;
+using Telegram.Bot.Types.ReplyMarkups;
 
 namespace PriceObserver.Telegram.Client.Concrete
 {
@@ -14,7 +16,12 @@ namespace PriceObserver.Telegram.Client.Concrete
         
         public async Task SendMessage(long userId, string message)
         {
-            await _telegramBot.GetClient().SendTextMessageAsync(userId, message);
+            await _telegramBot.GetClient().SendTextMessageAsync(userId, message, ParseMode.Html);
+        }
+
+        public async Task SendKeyboard(long userId, string message, ReplyKeyboardMarkup keyboard)
+        {
+            await _telegramBot.GetClient().SendTextMessageAsync(userId, message, replyMarkup: keyboard);
         }
     }
 }

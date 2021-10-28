@@ -1,8 +1,6 @@
 ﻿using System.Threading.Tasks;
 using PriceObserver.Data.Repositories.Abstract;
-using PriceObserver.Data.Service.Abstract;
 using PriceObserver.Model.Telegram.Input;
-using PriceObserver.Model.Telegram.Menu;
 using PriceObserver.Telegram.Dialog.Commands.Abstract;
 using PriceObserver.Telegram.Dialog.Common.Abstract;
 using PriceObserver.Telegram.Dialog.Common.Extensions;
@@ -18,23 +16,17 @@ namespace PriceObserver.Telegram.Dialog.Input.Concrete
         private readonly IChatService _chatService;
         private readonly ICommandRepository _commandRepository;
         private readonly IMenuInputHandlerService _menuInputHandlerService;
-        private readonly IMenuCommandRepository _menuCommandRepository;
-        private readonly IUserService _userService;
         private readonly ICommandHandlerService _commandHandlerService;
         
         public InputHandler(
             IChatService chatService, 
             ICommandRepository commandRepository,
             IMenuInputHandlerService menuInputHandlerService,
-            IMenuCommandRepository menuCommandRepository,
-            IUserService userService,
             ICommandHandlerService commandHandlerService)
         {
             _chatService = chatService;
             _commandRepository = commandRepository;
             _menuInputHandlerService = menuInputHandlerService;
-            _menuCommandRepository = menuCommandRepository;
-            _userService = userService;
             _commandHandlerService = commandHandlerService;
         }
 

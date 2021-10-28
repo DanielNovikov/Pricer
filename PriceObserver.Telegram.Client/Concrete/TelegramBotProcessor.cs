@@ -36,10 +36,20 @@ namespace PriceObserver.Telegram.Client.Concrete
 
             var result = await _inputHandler.Handle(update);
 
-            var message = result.IsSuccess ? result.Result : result.Error;
-            
-            if (!string.IsNullOrEmpty(message))
-                await _telegramBotService.SendMessage(userId, message);
+            if (!result.IsSuccess)
+            {
+                await _telegramBotService.SendMessage(userId, result.Error);
+                return;
+            }
+
+            var hasKeyboard = result.Result.MenuKeyboard != null;
+            if (hasKeyboard)
+            {
+                await _telegramBotService.SendKeyboard(userId, result.Result.Message, result.Result.MenuKeyboard);
+                return;
+            }
+
+            await _telegramBotService.SendMessage(userId, result.Result.Message);
         }
     }
 }

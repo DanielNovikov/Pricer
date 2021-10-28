@@ -1,6 +1,9 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using PriceObserver.Data.Repositories.Abstract;
+using PriceObserver.Model.Data;
 
 namespace PriceObserver.Data.Repositories.Concrete
 {
@@ -18,6 +21,16 @@ namespace PriceObserver.Data.Repositories.Concrete
             return _context.MenuCommands
                 .AsNoTracking()
                 .AnyAsync(x => x.MenuId == menuId && x.CommandId == commandId);
+        }
+
+        public async Task<IList<Command>> GetMenuCommands(int menuId)
+        {
+            return await _context.MenuCommands
+                .AsNoTracking()
+                .Include(x => x.Command)
+                .Where(x => x.MenuId == menuId)
+                .Select(x => x.Command)
+                .ToListAsync();
         }
     }
 }

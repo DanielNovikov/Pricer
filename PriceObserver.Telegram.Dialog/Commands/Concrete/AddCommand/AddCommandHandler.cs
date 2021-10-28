@@ -4,6 +4,7 @@ using PriceObserver.Data.Repositories.Abstract;
 using PriceObserver.Model.Data;
 using PriceObserver.Model.Data.Enums;
 using PriceObserver.Model.Telegram.Commands;
+using PriceObserver.Model.Telegram.Common;
 using PriceObserver.Parser.Abstract;
 using PriceObserver.Telegram.Dialog.Commands.Abstract;
 using PriceObserver.Telegram.Dialog.Common.Extensions;
@@ -48,7 +49,8 @@ namespace PriceObserver.Telegram.Dialog.Commands.Concrete.AddCommand
 
             await _itemRepository.Add(item);
 
-            return CommandHandlingServiceResult.Success("Успешно добавлено!");
+            var result = ReplyResult.Reply("Успешно добавлено!");
+            return CommandHandlingServiceResult.Success(result);
         }
     }
 }

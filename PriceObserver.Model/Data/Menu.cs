@@ -7,6 +7,8 @@ namespace PriceObserver.Model.Data
     {
         public int Id { get; set; }
         
+        public string Text { get; set; }
+        
         public MenuType Type { get; set; }
         
         public bool CanExpectInput { get; set; }
