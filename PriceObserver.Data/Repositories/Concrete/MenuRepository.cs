@@ -2,7 +2,6 @@
 using Microsoft.EntityFrameworkCore;
 using PriceObserver.Data.Repositories.Abstract;
 using PriceObserver.Model.Data;
-using PriceObserver.Model.Data.Enums;
 
 namespace PriceObserver.Data.Repositories.Concrete
 {

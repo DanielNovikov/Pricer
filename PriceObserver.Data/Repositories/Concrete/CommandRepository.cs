@@ -20,6 +20,7 @@ namespace PriceObserver.Data.Repositories.Concrete
             return _context
                 .Commands
                 .AsNoTracking()
+                .Include(x => x.MenuToRedirect)
                 .SingleOrDefaultAsync(x => x.Title == title);
         }
 

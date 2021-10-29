@@ -1,24 +1,24 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
 using PriceObserver.Data.Repositories.Abstract;
-using PriceObserver.Model.Data;
-using PriceObserver.Telegram.Dialog.Menus.Abstract;
+using PriceObserver.Model.Telegram.Common;
+using PriceObserver.Telegram.Dialog.Menu.Abstract;
 using Telegram.Bot.Types.ReplyMarkups;
 
-namespace PriceObserver.Telegram.Dialog.Menus.Concrete
+namespace PriceObserver.Telegram.Dialog.Menu.Concrete
 {
-    public class MenuKeyboardBuilder : IMenuKeyboardBuilder
+    public class ReplyWithKeyboardBuilder : IReplyWithKeyboardBuilder
     {
         private readonly IMenuCommandRepository _menuCommandRepository;
 
         private const int ButtonsInRow = 2; 
         
-        public MenuKeyboardBuilder(IMenuCommandRepository menuCommandRepository)
+        public ReplyWithKeyboardBuilder(IMenuCommandRepository menuCommandRepository)
         {
             _menuCommandRepository = menuCommandRepository;
         }
 
-        public async Task<ReplyKeyboardMarkup> Build(Menu menu)
+        public async Task<ReplyResult> Build(Model.Data.Menu menu)
         {
             var commands = await _menuCommandRepository.GetMenuCommands(menu.Id);
 
@@ -31,7 +31,9 @@ namespace PriceObserver.Telegram.Dialog.Menus.Concrete
             var keyboardButtons = buttonRows
                 .Select(x => x.Select(y => new KeyboardButton(y)));
 
-            return new ReplyKeyboardMarkup(keyboardButtons);
+            var keyboardMarkup = new ReplyKeyboardMarkup(keyboardButtons, true);
+            
+            return ReplyResult.ReplyWithKeyboard(menu.Text, keyboardMarkup);
         }
     }
 }

@@ -2,11 +2,11 @@
 using PriceObserver.Model.Data.Enums;
 using PriceObserver.Model.Telegram.Commands;
 using PriceObserver.Model.Telegram.Common;
-using PriceObserver.Telegram.Dialog.Commands.Abstract;
+using PriceObserver.Telegram.Dialog.Command.Abstract;
 using Telegram.Bot.Types;
 using User = PriceObserver.Model.Data.User;
 
-namespace PriceObserver.Telegram.Dialog.Commands.Concrete.WebsiteCommand
+namespace PriceObserver.Telegram.Dialog.Command.Concrete.WebsiteCommand
 {
     public class WebsiteCommandHandler : ICommandHandler
     {

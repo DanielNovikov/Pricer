@@ -16,6 +16,10 @@ namespace PriceObserver.Data
         public DbSet<MenuCommand> MenuCommands { get; set; }
 
         public DbSet<Command> Commands { get; set; }
+
+        public ObserverContext()
+        {
+        }
         
         public ObserverContext(DbContextOptions<ObserverContext> options) : base(options)
         {
@@ -28,10 +32,24 @@ namespace PriceObserver.Data
                 
             }
         }
-        
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseSqlite("Data Source = ObserverDatabase.db");
+        }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+        }
+
+        public void DetachAll()
+        {
+            foreach (var entry in ChangeTracker.Entries())
+            {
+                if (entry.Entity != null)
+                    entry.State = EntityState.Detached;
+            }
         }
     }
 }

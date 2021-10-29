@@ -29,7 +29,7 @@ namespace PriceObserver.Parser.Concrete
 
             var htmlLoadResult = await _htmlLoader.Load(url);
 
-            if (htmlLoadResult.IsSuccess)
+            if (!htmlLoadResult.IsSuccess)
                 return ParsedItemResult.Fail(htmlLoadResult.Error);
             
             return parserProxy.Parse(htmlLoadResult.Result);

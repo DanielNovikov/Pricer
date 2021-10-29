@@ -6,13 +6,13 @@ using Microsoft.Extensions.DependencyInjection;
 using PriceObserver.Model.Telegram.Options;
 using PriceObserver.Telegram.Client.Abstract;
 using PriceObserver.Telegram.Client.Concrete;
-using PriceObserver.Telegram.Dialog.Commands.Abstract;
+using PriceObserver.Telegram.Dialog.Command.Abstract;
 
 namespace PriceObserver.Telegram.Client
 {
     public static class DependencyInjection
     {
-        public static void ConfigureTelegram(this IServiceCollection services, IConfiguration configuration)
+        public static void AddTelegramBot(this IServiceCollection services, IConfiguration configuration)
         {
             services
                 .AddOptions<TelegramClientOptions>()

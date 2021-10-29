@@ -1,40 +1,51 @@
 ﻿using System.Threading.Tasks;
 using PriceObserver.Data.Repositories.Abstract;
+using PriceObserver.Model.Telegram.Common;
 using PriceObserver.Model.Telegram.Input;
-using PriceObserver.Telegram.Dialog.Commands.Abstract;
+using PriceObserver.Telegram.Dialog.Command.Abstract;
 using PriceObserver.Telegram.Dialog.Common.Abstract;
 using PriceObserver.Telegram.Dialog.Common.Extensions;
 using PriceObserver.Telegram.Dialog.Input.Abstract;
-using PriceObserver.Telegram.Dialog.Menus.Abstract;
+using PriceObserver.Telegram.Dialog.Menu.Abstract;
 using Telegram.Bot.Types;
-using User = PriceObserver.Model.Data.User;
 
 namespace PriceObserver.Telegram.Dialog.Input.Concrete
 {
     public class InputHandler : IInputHandler
     {
-        private readonly IChatService _chatService;
+        private readonly IChatAuthorizationService _chatAuthorizationService;
         private readonly ICommandRepository _commandRepository;
         private readonly IMenuInputHandlerService _menuInputHandlerService;
         private readonly ICommandHandlerService _commandHandlerService;
+        private readonly IReplyWithKeyboardBuilder _replyWithKeyboardBuilder;
         
         public InputHandler(
-            IChatService chatService, 
+            IChatAuthorizationService chatAuthorizationService, 
             ICommandRepository commandRepository,
             IMenuInputHandlerService menuInputHandlerService,
-            ICommandHandlerService commandHandlerService)
+            ICommandHandlerService commandHandlerService, 
+            IReplyWithKeyboardBuilder replyWithKeyboardBuilder)
         {
-            _chatService = chatService;
+            _chatAuthorizationService = chatAuthorizationService;
             _commandRepository = commandRepository;
             _menuInputHandlerService = menuInputHandlerService;
             _commandHandlerService = commandHandlerService;
+            _replyWithKeyboardBuilder = replyWithKeyboardBuilder;
         }
 
         public async Task<InputHandlingServiceResult> Handle(Update update)
         {
-            var user = await GetUser(update);
-            var command = await _commandRepository.GetByTitle(update.GetMessageText());
+            var authorizationResult = await Authorize(update);
 
+            var user = authorizationResult.User;
+
+            if (authorizationResult.IsNew)
+            {
+                var replyWithKeyboardResult = await _replyWithKeyboardBuilder.Build(user.Menu);
+                return InputHandlingServiceResult.Success(replyWithKeyboardResult);
+            }
+            
+            var command = await _commandRepository.GetByTitle(update.GetMessageText());
             if (command == null)
             {
                 var menuInputHandlingServiceResult = await _menuInputHandlerService.Handle(update, user);
@@ -45,10 +56,10 @@ namespace PriceObserver.Telegram.Dialog.Input.Concrete
             return InputHandlingServiceResult.FromServiceResult(commandHandlingServiceResult);
         }
 
-        private async Task<User> GetUser(Update update)
+        private async Task<AuthorizationResult> Authorize(Update update)
         {
             var chat = update.Message.Chat;
-            return await _chatService.GetUser(chat);
+            return await _chatAuthorizationService.Authorize(chat);
         }
     }
 }

@@ -26,12 +26,10 @@ namespace PriceObserver.Data.Repositories.Concrete
 
         public async Task<Item> GetById(int id)
         {
-            var item = await _context.Items.FindAsync(id);
-
-            if (item != null)
-                _context.Entry(item).State = EntityState.Detached;
-
-            return item;
+            return await _context
+                .Items
+                .AsNoTracking()
+                .FirstOrDefaultAsync(x => x.Id == id);
         }
 
         public async Task<List<Item>> GetByUserId(long userId)
@@ -48,7 +46,7 @@ namespace PriceObserver.Data.Repositories.Concrete
             await _context.Items.AddAsync(item);
             await _context.SaveChangesAsync();
             
-            _context.Entry(item).State = EntityState.Detached;
+            _context.DetachAll();
         }
 
         public async Task Update(Item item)
@@ -56,7 +54,7 @@ namespace PriceObserver.Data.Repositories.Concrete
             _context.Items.Update(item);
             await _context.SaveChangesAsync();
             
-            _context.Entry(item).State = EntityState.Detached;
+            _context.DetachAll();
         }
 
         public async Task Delete(Item item)

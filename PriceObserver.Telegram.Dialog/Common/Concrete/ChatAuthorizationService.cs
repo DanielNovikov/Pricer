@@ -1,44 +1,43 @@
 ﻿using System.Threading.Tasks;
 using PriceObserver.Data.Repositories.Abstract;
+using PriceObserver.Data.Service.Abstract;
 using PriceObserver.Model.Converters.Abstract;
+using PriceObserver.Model.Telegram.Common;
 using PriceObserver.Telegram.Dialog.Common.Abstract;
 using Telegram.Bot.Types;
 using User = PriceObserver.Model.Data.User;
 
 namespace PriceObserver.Telegram.Dialog.Common.Concrete
 {
-    public class ChatService : IChatService
+    public class ChatAuthorizationService : IChatAuthorizationService
     {
         private readonly IUserRepository _userRepository;
+        private readonly IUserService _userService;
         private readonly IChatToUserConverter _chatToUserConverter;
-        private readonly IMenuRepository _menuRepository;
         
-        public ChatService(
+        public ChatAuthorizationService(
             IUserRepository userRepository,
-            IChatToUserConverter chatToUserConverter, 
-            IMenuRepository menuRepository)
+            IUserService userService,
+            IChatToUserConverter chatToUserConverter)
         {
             _userRepository = userRepository;
+            _userService = userService;
             _chatToUserConverter = chatToUserConverter;
-            _menuRepository = menuRepository;
         }
 
-        public async Task<User> GetUser(Chat chat)
+        public async Task<AuthorizationResult> Authorize(Chat chat)
         {
             var userId = chat.Id;
             var user = await _userRepository.GetById(userId);
             
-            if (user == null)
-            {
-                user = _chatToUserConverter.Convert(chat);
+            if (user != null)
+                return AuthorizationResult.LoggedIn(user);
+            
+            user = _chatToUserConverter.Convert(chat);
 
-                var defaultMenu = await _menuRepository.GetDefault();
-                user.MenuId = defaultMenu.Id;
-                
-                await _userRepository.Add(user);
-            }
-
-            return user;
+            var createdUser = await _userService.Create(user);
+            
+            return AuthorizationResult.Registered(createdUser);
         }
     }
 }

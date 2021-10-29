@@ -3,12 +3,14 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using PriceObserver.Data.Extensions;
+using PriceObserver.Data;
+using PriceObserver.Data.Service;
 using PriceObserver.Jobs.Extensions;
 using PriceObserver.Model.Converters;
 using PriceObserver.Parser;
 using PriceObserver.Telegram.Client;
 using PriceObserver.Telegram.Client.Abstract;
+using PriceObserver.Telegram.Dialog;
 
 namespace PriceObserver
 {
@@ -23,11 +25,13 @@ namespace PriceObserver
 
         public void ConfigureServices(IServiceCollection services)
         {   
-            services.ConfigureTelegram(_configuration);
-            services.ConfigureParser();
-            services.ConfigureData(_configuration);
-            services.ConfigureConverters();
-            services.ConfigureBackgroundServices();
+            services.AddTelegramBot(_configuration);
+            services.AddTelegramDialogServices();
+            services.AddParserServices();
+            services.AddData(_configuration);
+            services.AddDataServices();
+            services.AddConverters();
+            services.AddBackgroundServices();
         }
 
         public void Configure(

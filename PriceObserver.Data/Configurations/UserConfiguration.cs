@@ -28,6 +28,12 @@ namespace PriceObserver.Data.Configurations
                 .Property(u => u.Username)
                 .HasMaxLength(250)
                 .IsRequired();
+
+            builder
+                .HasOne(x => x.Menu)
+                .WithMany()
+                .HasForeignKey(x => x.MenuId)
+                .IsRequired();
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿{
   "profiles": {
-    "PriceAnnouncement": {
+    "PriceObserver": {
       "commandName": "Project",
       "launchBrowser": true,
       "applicationUrl": "http://localhost:5000",

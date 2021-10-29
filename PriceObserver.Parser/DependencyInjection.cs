@@ -11,7 +11,7 @@ namespace PriceObserver.Parser
 {
     public static class DependencyInjection
     {
-        public static void ConfigureParser(this IServiceCollection services)
+        public static void AddParserServices(this IServiceCollection services)
         {
             services.AddTransient<IHtmlParser, HtmlParser>();
             services.AddHttpClient<IHtmlLoader, HtmlLoader>();

@@ -1,0 +1,26 @@
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using PriceObserver.Data.Repositories.Abstract;
+using PriceObserver.Data.Repositories.Concrete;
+
+namespace PriceObserver.Data
+{
+    public static class DependencyInjection
+    {
+        public static void AddData(this IServiceCollection services, IConfiguration configuration)
+        {
+            services.AddDbContext<ObserverContext>(
+                context => context.UseSqlite(
+                    configuration.GetConnectionString("ObserverDatabase"),
+                    x => x.MigrationsAssembly("PriceObserver.Data")),
+                ServiceLifetime.Singleton);
+
+            services.AddTransient<ICommandRepository, CommandRepository>();
+            services.AddTransient<IItemRepository, ItemRepository>();
+            services.AddTransient<IMenuCommandRepository, MenuCommandRepository>();
+            services.AddTransient<IMenuRepository, MenuRepository>();
+            services.AddTransient<IUserRepository, UserRepository>();
+        }
+    }
+}
