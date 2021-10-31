@@ -6,7 +6,7 @@ namespace PriceObserver.Data.DataSeed
 {
     public class DataSeeder
     {
-        public static void SeedData(ObserverContext context)
+        public static void SeedData(ApplicationDbContext context)
         {
             if (context.Menus.Any())
                 return;

@@ -28,7 +28,7 @@ namespace PriceObserver
         {
             using var scope = host.Services.CreateScope();
             var services = scope.ServiceProvider;
-            var context = services.GetService<ObserverContext>();
+            var context = services.GetService<ApplicationDbContext>();
                 
             DataSeeder.SeedData(context);
         }

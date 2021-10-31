@@ -9,9 +9,9 @@ namespace PriceObserver.Data.Repositories.Concrete
 {
     public class MenuCommandRepository : IMenuCommandRepository
     {
-        private readonly ObserverContext _context;
+        private readonly ApplicationDbContext _context;
 
-        public MenuCommandRepository(ObserverContext context)
+        public MenuCommandRepository(ApplicationDbContext context)
         {
             _context = context;
         }

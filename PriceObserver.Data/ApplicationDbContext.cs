@@ -5,7 +5,7 @@ using PriceObserver.Model.Data;
 
 namespace PriceObserver.Data
 {
-    public class ObserverContext : DbContext
+    public class ApplicationDbContext : DbContext
     {
         public DbSet<Item> Items { get; set; }
         
@@ -17,25 +17,18 @@ namespace PriceObserver.Data
 
         public DbSet<Command> Commands { get; set; }
 
-        public ObserverContext()
+        public ApplicationDbContext()
         {
         }
         
-        public ObserverContext(DbContextOptions<ObserverContext> options) : base(options)
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
-            try
-            {
-                Database.EnsureCreated();
-            }
-            catch (Exception ex)
-            {
-                
-            }
+            Database?.EnsureCreated();
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlite("Data Source = ObserverDatabase.db");
+            optionsBuilder.UseNpgsql("Host=localhost;Port=1488;Database=PricerDB;Username=postgres;Password=postgres");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

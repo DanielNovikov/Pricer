@@ -9,9 +9,9 @@ namespace PriceObserver.Data.Repositories.Concrete
 {
     public class ItemRepository : IItemRepository
     {
-        private readonly ObserverContext _context;
+        private readonly ApplicationDbContext _context;
 
-        public ItemRepository(ObserverContext context)
+        public ItemRepository(ApplicationDbContext context)
         {
             _context = context;
         }

@@ -10,9 +10,9 @@ namespace PriceObserver.Data
     {
         public static void AddData(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddDbContext<ObserverContext>(
-                context => context.UseSqlite(
-                    configuration.GetConnectionString("ObserverDatabase"),
+            services.AddDbContext<ApplicationDbContext>(
+                context => context.UseNpgsql(
+                    configuration.GetConnectionString("PricerDB"),
                     x => x.MigrationsAssembly("PriceObserver.Data")),
                 ServiceLifetime.Singleton);
 

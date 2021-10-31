@@ -7,9 +7,9 @@ namespace PriceObserver.Data.Repositories.Concrete
 {
     public class UserRepository : IUserRepository
     {
-        private readonly ObserverContext _context;
+        private readonly ApplicationDbContext _context;
 
-        public UserRepository(ObserverContext context)
+        public UserRepository(ApplicationDbContext context)
         {
             _context = context;
         }
