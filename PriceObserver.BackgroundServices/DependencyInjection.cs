@@ -2,7 +2,7 @@
 
 namespace PriceObserver.Jobs.Extensions
 {
-    public static class IServiceCollectionExtension
+    public static class DependencyInjection
     {
         public static void AddBackgroundServices(this IServiceCollection services)
         {

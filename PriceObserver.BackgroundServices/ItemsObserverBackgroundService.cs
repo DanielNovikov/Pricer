@@ -14,8 +14,6 @@ namespace PriceObserver.Jobs
         private readonly IParserService _parserService;
         private readonly ITelegramBotService _telegramBotService;
 
-        private CancellationTokenSource _tokenSource;
-
         public ItemsObserverBackgroundService(
             IItemRepository itemRepository,
             IParserService parserService,
@@ -28,11 +26,9 @@ namespace PriceObserver.Jobs
 
         public async Task StartAsync(CancellationToken cancellationToken)
         {
-            _tokenSource = new CancellationTokenSource();
-
             Task.Run(async () =>
             {
-                while (!_tokenSource.IsCancellationRequested)
+                while (!cancellationToken.IsCancellationRequested)
                 {
                     var items = await _itemRepository.GetAll();
 
@@ -44,21 +40,27 @@ namespace PriceObserver.Jobs
                         {
                             await _telegramBotService.SendMessage(
                                 item.UserId,
-                                $"Cannot parse item {item.Url} \r\n Reason: '{parsedItemResult.Error}'");
+                                $"Не можем получить данные о <a href='{item.Url}'>товаре</a>.\r\nПричина: '{parsedItemResult.Error}'.");
                             
                             continue;
                         }
 
                         var parsedItem = parsedItemResult.Result;
-                        if (parsedItem.Price != item.Price)
-                        {
-                            await _telegramBotService.SendMessage(
-                                item.UserId,
-                                $"Price changed from {item.Price} to {parsedItem.Price}\n{item.Url}");
 
-                            item.Price = parsedItem.Price;
-                            await _itemRepository.Update(item);
-                        }
+                        var oldPrice = item.Price;
+                        var newPrice = parsedItem.Price;
+                        
+                        if (newPrice == oldPrice)
+                            continue;
+
+                        var message = newPrice < oldPrice
+                            ? $"📉 Цена на <a href='{item.Url}'>товар</a> уменьшилась с <b>{oldPrice}</b> до <b>{newPrice}</b>"
+                            : $"📈 Цена на <a href='{item.Url}'>товар</a> увеличилась с <b>{oldPrice}</b> до <b>{newPrice}</b>";
+                        
+                        await _telegramBotService.SendMessage(item.UserId, message);
+
+                        item.Price = newPrice;
+                        await _itemRepository.Update(item);
                     }
 
                     await Task.Delay(TimeSpan.FromMinutes(30), cancellationToken);
@@ -66,9 +68,9 @@ namespace PriceObserver.Jobs
             });
         }
 
-        public async Task StopAsync(CancellationToken cancellationToken)
+        public Task StopAsync(CancellationToken cancellationToken)
         {
-            _tokenSource?.Cancel();
+            return Task.CompletedTask;
         }
     }
 }
