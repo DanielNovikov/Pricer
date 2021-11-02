@@ -21,6 +21,7 @@ namespace PriceObserver.Data
             services.AddTransient<IMenuCommandRepository, MenuCommandRepository>();
             services.AddTransient<IMenuRepository, MenuRepository>();
             services.AddTransient<IUserRepository, UserRepository>();
+            services.AddTransient<IShopRepository, ShopRepository>();
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using AngleSharp.Html.Dom;
+using PriceObserver.Model.Data.Enums;
 using PriceObserver.Model.Parser;
 using PriceObserver.Parser.Abstract;
 using PriceObserver.Parser.Abstract.Intertop;
@@ -18,8 +19,8 @@ namespace PriceObserver.Parser.Concrete.Intertop
             _intertopParser = intertopParser;
         }
 
-        public string Host => "intertop.ua";
-        
+        public ShopType ProviderType => ShopType.Intertop;
+
         public ParsedItemResult Parse(IHtmlDocument htmlDocument)
         {
             var validationResult = _intertopParserContentValidator.Validate(htmlDocument);

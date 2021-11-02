@@ -14,7 +14,7 @@ namespace PriceObserver.Parser.Concrete.MdFashion
             var elements = htmlDocument.All.ToList();
             
             if (!PriceExistsOnPage(elements))
-                 ContentValidatorResult.Fail("На странице нет цены");
+                 return ContentValidatorResult.Fail("На странице нет цены");
 
             return ContentValidatorResult.Success();
         }

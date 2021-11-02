@@ -16,6 +16,8 @@ namespace PriceObserver.Data
         public DbSet<MenuCommand> MenuCommands { get; set; }
 
         public DbSet<Command> Commands { get; set; }
+        
+        public DbSet<Shop> Shops { get; set; }
 
         public ApplicationDbContext()
         {

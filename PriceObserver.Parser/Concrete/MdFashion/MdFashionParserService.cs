@@ -1,4 +1,5 @@
 ﻿using AngleSharp.Html.Dom;
+using PriceObserver.Model.Data.Enums;
 using PriceObserver.Model.Parser;
 using PriceObserver.Parser.Abstract;
 using PriceObserver.Parser.Abstract.MdFashion;
@@ -18,8 +19,8 @@ namespace PriceObserver.Parser.Concrete.MdFashion
             _mdFashionParser = mdFashionParser;
         }
 
-        public string Host => "md-fashion.com.ua";
-        
+        public ShopType ProviderType => ShopType.MdFashion;
+
         public ParsedItemResult Parse(IHtmlDocument htmlDocument)
         {
             var validationResult = _mdFashionParserContentValidator.Validate(htmlDocument);

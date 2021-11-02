@@ -4,7 +4,7 @@ using PriceObserver.Model.Data;
 
 namespace PriceObserver.Data.Configurations
 {
-    public class CommandConfiguration: IEntityTypeConfiguration<Command>
+    public class CommandConfiguration : IEntityTypeConfiguration<Command>
     {
         public void Configure(EntityTypeBuilder<Command> builder)
         {

@@ -83,6 +83,25 @@ namespace PriceObserver.Data.DataSeed
             
             context.MenuCommands.Add(newItemBackMenuCommand);
 
+            
+            var intertopShop = new Shop
+            {
+                Name = "Intertop",
+                Type = ShopType.Intertop,
+                Host = "intertop.ua"
+            };
+
+            context.Shops.Add(intertopShop);
+            
+            var mdFashionShop = new Shop
+            {
+                Name = "MdFashion",
+                Type = ShopType.MdFashion,
+                Host = "md-fashion.com.ua"
+            }; 
+            
+            context.Shops.Add(mdFashionShop);
+            
             context.SaveChanges();
             context.DetachAll();
         }

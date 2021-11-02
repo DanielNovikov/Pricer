@@ -2,6 +2,7 @@
 using System.Linq;
 using AngleSharp.Dom;
 using AngleSharp.Html.Dom;
+using PriceObserver.Model.Data.Enums;
 using PriceObserver.Model.Parser;
 using PriceObserver.Parser.Abstract.MdFashion;
 
@@ -15,7 +16,7 @@ namespace PriceObserver.Parser.Concrete.MdFashion
 
             return new ParsedItem
             {
-                Shop = ShopEnum.MdFashion,
+                ShopType = ShopType.MdFashion,
                 Price = GetPrice(elements)
             };
         }

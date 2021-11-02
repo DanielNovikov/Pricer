@@ -2,6 +2,7 @@
 using System.Linq;
 using AngleSharp.Dom;
 using AngleSharp.Html.Dom;
+using PriceObserver.Model.Data.Enums;
 using PriceObserver.Model.Parser;
 using PriceObserver.Parser.Abstract.Intertop;
 
@@ -15,7 +16,7 @@ namespace PriceObserver.Parser.Concrete.Intertop
 
             return new ParsedItem
             {
-                Shop = ShopEnum.Intertop,
+                ShopType = ShopType.Intertop,
                 Price = GetPrice(elements)
             };
         }
