@@ -9,5 +9,7 @@ namespace PriceObserver.Data.Repositories.Abstract
         Task<Command> GetByTitle(string title);
 
         Task<Command> GetByType(CommandType type);
+
+        Task<string> GetTitleByType(CommandType type);
     }
 }

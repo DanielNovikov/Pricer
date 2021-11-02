@@ -3,11 +3,11 @@ using System.Collections.Immutable;
 using System.Linq;
 using System.Threading.Tasks;
 using PriceObserver.Model.Telegram.Menu;
-using PriceObserver.Telegram.Dialog.Menu.Abstract;
+using PriceObserver.Telegram.Dialog.Menus.Abstract;
 using Telegram.Bot.Types;
 using User = PriceObserver.Model.Data.User;
 
-namespace PriceObserver.Telegram.Dialog.Menu.Concrete
+namespace PriceObserver.Telegram.Dialog.Menus.Concrete
 {
     public class MenuInputHandlerService : IMenuInputHandlerService
     {

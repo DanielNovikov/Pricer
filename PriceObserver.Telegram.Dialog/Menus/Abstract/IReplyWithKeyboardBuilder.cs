@@ -1,10 +1,11 @@
 ﻿using System.Threading.Tasks;
+using PriceObserver.Model.Data;
 using PriceObserver.Model.Telegram.Common;
 
-namespace PriceObserver.Telegram.Dialog.Menu.Abstract
+namespace PriceObserver.Telegram.Dialog.Menus.Abstract
 {
     public interface IReplyWithKeyboardBuilder
     {
-        Task<ReplyResult> Build(Model.Data.Menu menu);
+        Task<ReplyResult> Build(Menu menu);
     }
 }

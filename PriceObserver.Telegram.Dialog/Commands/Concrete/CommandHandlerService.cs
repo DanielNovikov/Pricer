@@ -4,12 +4,12 @@ using System.Threading.Tasks;
 using PriceObserver.Data.Repositories.Abstract;
 using PriceObserver.Data.Service.Abstract;
 using PriceObserver.Model.Telegram.Commands;
-using PriceObserver.Telegram.Dialog.Command.Abstract;
-using PriceObserver.Telegram.Dialog.Menu.Abstract;
+using PriceObserver.Telegram.Dialog.Commands.Abstract;
+using PriceObserver.Telegram.Dialog.Menus.Abstract;
 using Telegram.Bot.Types;
 using User = PriceObserver.Model.Data.User;
 
-namespace PriceObserver.Telegram.Dialog.Command.Concrete
+namespace PriceObserver.Telegram.Dialog.Commands.Concrete
 {
     public class CommandHandlerService : ICommandHandlerService
     {

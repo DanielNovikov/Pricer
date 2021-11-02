@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using PriceObserver.Data.Repositories.Abstract;
 using PriceObserver.Model.Data;
@@ -30,6 +31,16 @@ namespace PriceObserver.Data.Repositories.Concrete
                 .Commands
                 .AsNoTracking()
                 .SingleOrDefaultAsync(x => x.Type == type);
+        }
+
+        public Task<string> GetTitleByType(CommandType type)
+        {
+            return _context
+                .Commands
+                .AsNoTracking()
+                .Where(x => x.Type == type)
+                .Select(x => x.Title)
+                .SingleAsync();
         }
     }
 }

@@ -2,14 +2,14 @@
 using System.Linq;
 using System.Reflection;
 using Microsoft.Extensions.DependencyInjection;
-using PriceObserver.Telegram.Dialog.Command.Abstract;
-using PriceObserver.Telegram.Dialog.Command.Concrete;
+using PriceObserver.Telegram.Dialog.Commands.Abstract;
+using PriceObserver.Telegram.Dialog.Commands.Concrete;
 using PriceObserver.Telegram.Dialog.Common.Abstract;
 using PriceObserver.Telegram.Dialog.Common.Concrete;
 using PriceObserver.Telegram.Dialog.Input.Abstract;
 using PriceObserver.Telegram.Dialog.Input.Concrete;
-using PriceObserver.Telegram.Dialog.Menu.Abstract;
-using PriceObserver.Telegram.Dialog.Menu.Concrete;
+using PriceObserver.Telegram.Dialog.Menus.Abstract;
+using PriceObserver.Telegram.Dialog.Menus.Concrete;
 
 namespace PriceObserver.Telegram.Dialog
 {
@@ -20,10 +20,12 @@ namespace PriceObserver.Telegram.Dialog
             services.AddTransient<ICommandHandlerService, CommandHandlerService>();
             
             services.AddTransient<IChatAuthorizationService, ChatAuthorizationService>();
+            services.AddTransient<INewUserHandler, NewUserHandler>();
 
             services.AddTransient<IInputHandler, InputHandler>();
 
             services.AddTransient<IMenuInputHandlerService, MenuInputHandlerService>();
+            services.AddTransient<IMenuKeyboardBuilder, MenuKeyboardBuilder>();
             services.AddTransient<IReplyWithKeyboardBuilder, ReplyWithKeyboardBuilder>();
             
             services.AddCommandHandlers();

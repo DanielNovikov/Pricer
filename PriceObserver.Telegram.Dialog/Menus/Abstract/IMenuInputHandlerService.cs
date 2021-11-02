@@ -3,7 +3,7 @@ using PriceObserver.Model.Telegram.Menu;
 using Telegram.Bot.Types;
 using User = PriceObserver.Model.Data.User;
 
-namespace PriceObserver.Telegram.Dialog.Menu.Abstract
+namespace PriceObserver.Telegram.Dialog.Menus.Abstract
 {
     public interface IMenuInputHandlerService
     {

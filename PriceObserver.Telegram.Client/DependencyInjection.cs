@@ -6,7 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using PriceObserver.Model.Telegram.Options;
 using PriceObserver.Telegram.Client.Abstract;
 using PriceObserver.Telegram.Client.Concrete;
-using PriceObserver.Telegram.Dialog.Command.Abstract;
+using PriceObserver.Telegram.Dialog.Commands.Abstract;
 
 namespace PriceObserver.Telegram.Client
 {
