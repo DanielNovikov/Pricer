@@ -30,14 +30,13 @@ namespace PriceObserver.Parser.Concrete
             
             if (shop == null)
                 return ParsedItemResult.Fail("Магазин недоступен ❌");
-            
-            var parserProxy = _parserProxies.FirstOrDefault(p => p.ProviderType == shop.Type);
-            
+
             var htmlLoadResult = await _htmlLoader.Load(url);
 
             if (!htmlLoadResult.IsSuccess)
                 return ParsedItemResult.Fail(htmlLoadResult.Error);
             
+            var parserProxy = _parserProxies.First(p => p.ProviderType == shop.Type);
             return parserProxy.Parse(htmlLoadResult.Result);
         }
     }
