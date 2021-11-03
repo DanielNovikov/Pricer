@@ -5,7 +5,6 @@ using PriceObserver.Model.Converters.Abstract;
 using PriceObserver.Model.Telegram.Common;
 using PriceObserver.Telegram.Dialog.Common.Abstract;
 using Telegram.Bot.Types;
-using User = PriceObserver.Model.Data.User;
 
 namespace PriceObserver.Telegram.Dialog.Common.Concrete
 {

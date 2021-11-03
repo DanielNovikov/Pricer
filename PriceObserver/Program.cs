@@ -1,11 +1,8 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Options;
 using PriceObserver.Data;
-using PriceObserver.Data.DataSeed;
-using PriceObserver.Model.Telegram.Options;
-using Telegram.Bot;
+using PriceObserver.Data.Seed;
 
 namespace PriceObserver
 {
@@ -30,7 +27,7 @@ namespace PriceObserver
             var services = scope.ServiceProvider;
             var context = services.GetService<ApplicationDbContext>();
                 
-            DataSeeder.SeedData(context);
+            DbSeeder.Seed(context);
         }
     }
 }
