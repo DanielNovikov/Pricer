@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using PriceObserver.Data.Repositories.Abstract;
@@ -21,6 +22,13 @@ namespace PriceObserver.Data.Repositories.Concrete
             return _context.Shops
                 .AsNoTracking()
                 .SingleOrDefaultAsync(x => x.Host == host);
+        }
+
+        public async Task<IList<Shop>> GetAll()
+        {
+            return await _context.Shops
+                .AsNoTracking()
+                .ToListAsync();
         }
     }
 }

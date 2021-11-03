@@ -21,6 +21,7 @@ namespace PriceObserver.Telegram.Dialog
             
             services.AddTransient<IChatAuthorizationService, ChatAuthorizationService>();
             services.AddTransient<INewUserHandler, NewUserHandler>();
+            services.AddTransient<IShopsInfoMessageBuilder, ShopsInfoMessageBuilder>();
 
             services.AddTransient<IInputHandler, InputHandler>();
 

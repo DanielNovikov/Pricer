@@ -48,6 +48,14 @@ namespace PriceObserver.Data.DataSeed
             };
             
             context.Commands.Add(websiteCommand);
+
+            var shopsCommand = new Command
+            {
+                Title = "Магазины 🔍",
+                Type = CommandType.Shops
+            };
+            
+            context.Commands.Add(shopsCommand);
             
             var backToHomeCommand = new Command
             {
@@ -72,8 +80,16 @@ namespace PriceObserver.Data.DataSeed
                 Menu = homeMenu,
                 Command = websiteCommand
             };
-            
+
             context.MenuCommands.Add(homeWebsiteMenuCommand);
+            
+            var homeShopsMenuCommand = new MenuCommand
+            {
+                Menu = homeMenu,
+                Command = shopsCommand
+            };
+            
+            context.MenuCommands.Add(homeShopsMenuCommand);
 
             var newItemBackMenuCommand = new MenuCommand
             {

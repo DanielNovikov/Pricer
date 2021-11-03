@@ -13,7 +13,7 @@ namespace PriceObserver.Parser.Concrete
         private readonly IShopRepository _shopRepository;
         private readonly IEnumerable<IParserProviderService> _parserProxies;
         private readonly IHtmlLoader _htmlLoader;
-        
+
         public ParserService(
             IShopRepository shopRepository,
             IEnumerable<IParserProviderService> parserProxies, 
@@ -29,7 +29,7 @@ namespace PriceObserver.Parser.Concrete
             var shop = await _shopRepository.GetByHost(url.Host);
             
             if (shop == null)
-                return ParsedItemResult.Fail("Магазин недоступен");
+                return ParsedItemResult.Fail("Магазин недоступен ❌");
             
             var parserProxy = _parserProxies.FirstOrDefault(p => p.ProviderType == shop.Type);
             

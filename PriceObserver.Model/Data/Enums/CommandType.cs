@@ -5,6 +5,7 @@
         Add = 0,
         ShowAll = 1,
         Website = 2,
-        BackToHome = 3
+        Shops = 3,
+        BackToHome = 4
     }
 }
