@@ -2,25 +2,25 @@
 using PriceObserver.Model.Data.Enums;
 using PriceObserver.Model.Parser;
 using PriceObserver.Parser.Abstract;
-using PriceObserver.Parser.Abstract.MdFashion;
+using PriceObserver.Parser.Abstract.Answear;
 
-namespace PriceObserver.Parser.Concrete.MdFashion
+namespace PriceObserver.Parser.Concrete.Answear
 {
-    public class MdFashionParserService : IParserProviderService
+    public class AnswearParserService : IParserProviderService
     {
-        private readonly IMdFashionParserContentValidator _contentValidator;
-        private readonly IMdFashionParser _parser;
+        private readonly IAnswearParserContentValidator _contentValidator;
+        private readonly IAnswearParser _parser;
 
-        public MdFashionParserService(
-            IMdFashionParserContentValidator contentValidator,
-            IMdFashionParser parser)
+        public AnswearParserService(
+            IAnswearParserContentValidator contentValidator,
+            IAnswearParser parser)
         {
             _contentValidator = contentValidator;
             _parser = parser;
         }
 
-        public ShopType ProviderType => ShopType.MdFashion;
-
+        public ShopType ProviderType => ShopType.Answear;
+        
         public ParsedItemResult Parse(IHtmlDocument htmlDocument)
         {
             var validationResult = _contentValidator.Validate(htmlDocument);

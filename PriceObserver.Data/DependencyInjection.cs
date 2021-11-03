@@ -13,8 +13,7 @@ namespace PriceObserver.Data
             services.AddDbContext<ApplicationDbContext>(
                 context => context.UseNpgsql(
                     configuration.GetConnectionString("PricerDB"),
-                    x => x.MigrationsAssembly("PriceObserver.Data")),
-                ServiceLifetime.Singleton);
+                    x => x.MigrationsAssembly("PriceObserver.Data")));
 
             services.AddTransient<ICommandRepository, CommandRepository>();
             services.AddTransient<IItemRepository, ItemRepository>();

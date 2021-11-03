@@ -8,27 +8,27 @@ namespace PriceObserver.Parser.Concrete.Intertop
 {
     public class IntertopParserService : IParserProviderService
     {
-        private readonly IIntertopParserContentValidator _intertopParserContentValidator;
-        private readonly IIntertopParser _intertopParser;
+        private readonly IIntertopParserContentValidator _contentValidator;
+        private readonly IIntertopParser _parser;
 
         public IntertopParserService(
-            IIntertopParserContentValidator intertopParserContentValidator,
-            IIntertopParser intertopParser)
+            IIntertopParserContentValidator contentValidator,
+            IIntertopParser parser)
         {
-            _intertopParserContentValidator = intertopParserContentValidator;
-            _intertopParser = intertopParser;
+            _contentValidator = contentValidator;
+            _parser = parser;
         }
 
         public ShopType ProviderType => ShopType.Intertop;
 
         public ParsedItemResult Parse(IHtmlDocument htmlDocument)
         {
-            var validationResult = _intertopParserContentValidator.Validate(htmlDocument);
+            var validationResult = _contentValidator.Validate(htmlDocument);
 
             if (!validationResult.IsSuccess)
                 return ParsedItemResult.Fail(validationResult.Error);
 
-            var parsedItem = _intertopParser.Parse(htmlDocument);
+            var parsedItem = _parser.Parse(htmlDocument);
             return ParsedItemResult.Success(parsedItem);
         }
     }

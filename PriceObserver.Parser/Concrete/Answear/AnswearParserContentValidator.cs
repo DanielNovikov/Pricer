@@ -3,18 +3,18 @@ using System.Linq;
 using AngleSharp.Dom;
 using AngleSharp.Html.Dom;
 using PriceObserver.Model.Parser;
-using PriceObserver.Parser.Abstract.MdFashion;
+using PriceObserver.Parser.Abstract.Answear;
 
-namespace PriceObserver.Parser.Concrete.MdFashion
+namespace PriceObserver.Parser.Concrete.Answear
 {
-    public class MdFashionParserContentValidator : IMdFashionParserContentValidator
+    public class AnswearParserContentValidator : IAnswearParserContentValidator
     {
         public ContentValidatorResult Validate(IHtmlDocument htmlDocument)
         {
             var elements = htmlDocument.All.ToList();
             
             if (!PriceExistsOnPage(elements))
-                 return ContentValidatorResult.PriceDoesNotExist();
+                return ContentValidatorResult.PriceDoesNotExist();
 
             return ContentValidatorResult.Success();
         }
@@ -23,9 +23,9 @@ namespace PriceObserver.Parser.Concrete.MdFashion
         {
             return elements
                 .Any(e => 
-                    e.TagName.ToLower() == "span" &&
+                    e.TagName.ToLower() == "p" && 
                     !string.IsNullOrEmpty(e.ClassName) &&
-                    e.ClassName.Contains("price_current"));
+                    e.ClassName.Contains("Price__currentPrice"));
         }
     }
 }

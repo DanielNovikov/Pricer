@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using PriceObserver.Data.Repositories.Abstract;
 using PriceObserver.Parser.Abstract;
@@ -10,18 +11,11 @@ namespace PriceObserver.Jobs
 {
     public class ItemsObserverBackgroundService : IHostedService
     {
-        private readonly IItemRepository _itemRepository;
-        private readonly IParserService _parserService;
-        private readonly ITelegramBotService _telegramBotService;
-
-        public ItemsObserverBackgroundService(
-            IItemRepository itemRepository,
-            IParserService parserService,
-            ITelegramBotService telegramBotService)
+        private readonly IServiceProvider _serviceProvider;
+        
+        public ItemsObserverBackgroundService(IServiceProvider serviceProvider)
         {
-            _itemRepository = itemRepository;
-            _parserService = parserService;
-            _telegramBotService = telegramBotService;
+            _serviceProvider = serviceProvider;
         }
 
         public async Task StartAsync(CancellationToken cancellationToken)
@@ -30,15 +24,21 @@ namespace PriceObserver.Jobs
             {
                 while (!cancellationToken.IsCancellationRequested)
                 {
-                    var items = await _itemRepository.GetAll();
+                    using var scope = _serviceProvider.CreateScope();
+
+                    var itemRepository = scope.ServiceProvider.GetService<IItemRepository>();
+                    var parserService = scope.ServiceProvider.GetService<IParserService>();
+                    var telegramBotService = scope.ServiceProvider.GetService<ITelegramBotService>();
+                    
+                    var items = await itemRepository.GetAll();
 
                     foreach (var item in items)
                     {
-                        var parsedItemResult = await _parserService.Parse(item.Url);
+                        var parsedItemResult = await parserService.Parse(item.Url);
 
                         if (!parsedItemResult.IsSuccess)
                         {
-                            await _telegramBotService.SendMessage(
+                            await telegramBotService.SendMessage(
                                 item.UserId,
                                 $"Не можем получить данные о <a href='{item.Url}'>товаре</a>.\r\nПричина: '{parsedItemResult.Error}'.");
                             
@@ -57,10 +57,10 @@ namespace PriceObserver.Jobs
                             ? $"📉 Цена на <a href='{item.Url}'>товар</a> уменьшилась с <b>{oldPrice}</b> до <b>{newPrice}</b>"
                             : $"📈 Цена на <a href='{item.Url}'>товар</a> увеличилась с <b>{oldPrice}</b> до <b>{newPrice}</b>";
                         
-                        await _telegramBotService.SendMessage(item.UserId, message);
+                        await telegramBotService.SendMessage(item.UserId, message);
 
                         item.Price = newPrice;
-                        await _itemRepository.Update(item);
+                        await itemRepository.Update(item);
                     }
 
                     await Task.Delay(TimeSpan.FromMinutes(30), cancellationToken);

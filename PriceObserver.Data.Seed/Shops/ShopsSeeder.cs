@@ -18,6 +18,12 @@ namespace PriceObserver.Data.Seed.Shops
                 "MdFashion",
                 ShopType.MdFashion,
                 "md-fashion.com.ua");
+            
+            ShopInitializer.Initialize(
+                context,
+                "Answear",
+                ShopType.Answear,
+                "answear.ua");
         }
     }
 }

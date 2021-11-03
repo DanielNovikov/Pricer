@@ -14,7 +14,7 @@ namespace PriceObserver.Parser.Concrete.Intertop
             var elements = htmlDocument.All.ToList();
             
             if (!PriceExistsOnPage(elements))
-                return ContentValidatorResult.Fail("На странице нет цены");
+                return ContentValidatorResult.PriceDoesNotExist();
 
             return ContentValidatorResult.Success();
         }

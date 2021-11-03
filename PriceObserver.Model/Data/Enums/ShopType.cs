@@ -3,6 +3,7 @@
     public enum ShopType
     {
         Intertop,
-        MdFashion
+        MdFashion,
+        Answear
     }
 }

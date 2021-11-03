@@ -1,4 +1,6 @@
-﻿using PriceObserver.Telegram.Client.Abstract;
+﻿using System;
+using Microsoft.Extensions.DependencyInjection;
+using PriceObserver.Telegram.Client.Abstract;
 using PriceObserver.Telegram.Dialog.Common.Extensions;
 using PriceObserver.Telegram.Dialog.Input.Abstract;
 using Telegram.Bot.Args;
@@ -8,17 +10,14 @@ namespace PriceObserver.Telegram.Client.Concrete
     public class TelegramBotProcessor : ITelegramBotProcessor
     {
         private readonly ITelegramBot _telegramBot;
-        private readonly ITelegramBotService _telegramBotService;
-        private readonly IInputHandler _inputHandler;
+        private readonly IServiceProvider _serviceProvider;
 
         public TelegramBotProcessor(
             ITelegramBot telegramBot,
-            ITelegramBotService telegramBotService,
-            IInputHandler inputHandler)
+            IServiceProvider serviceProvider)
         {
             _telegramBot = telegramBot;
-            _telegramBotService = telegramBotService;
-            _inputHandler = inputHandler;
+            _serviceProvider = serviceProvider;
         }
 
         public void StartProcessing()
@@ -31,25 +30,30 @@ namespace PriceObserver.Telegram.Client.Concrete
 
         private async void OnUpdate(object sender, UpdateEventArgs updateEventArgs)
         {
+            using var scope = _serviceProvider.CreateScope();
+
+            var inputHandler = scope.ServiceProvider.GetService<IInputHandler>();
+            var telegramBotService = scope.ServiceProvider.GetService<ITelegramBotService>();
+            
             var update = updateEventArgs.Update;
             var userId = update.GetUserId();
 
-            var result = await _inputHandler.Handle(update);
+            var result = await inputHandler.Handle(update);
 
             if (!result.IsSuccess)
             {
-                await _telegramBotService.SendMessage(userId, result.Error);
+                await telegramBotService.SendMessage(userId, result.Error);
                 return;
             }
 
             var hasKeyboard = result.Result.MenuKeyboard != null;
             if (hasKeyboard)
             {
-                await _telegramBotService.SendKeyboard(userId, result.Result.Message, result.Result.MenuKeyboard);
+                await telegramBotService.SendKeyboard(userId, result.Result.Message, result.Result.MenuKeyboard);
                 return;
             }
 
-            await _telegramBotService.SendMessage(userId, result.Result.Message);
+            await telegramBotService.SendMessage(userId, result.Result.Message);
         }
     }
 }
