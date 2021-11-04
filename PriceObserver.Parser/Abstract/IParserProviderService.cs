@@ -6,8 +6,6 @@ namespace PriceObserver.Parser.Abstract
 {
     public interface IParserProviderService
     {
-        ShopType ProviderType { get; }
-
-        ParsedItemResult Parse(IHtmlDocument htmlDocument);
+        ParsedItemResult Parse(ShopType providerType, IHtmlDocument html);
     }
 }

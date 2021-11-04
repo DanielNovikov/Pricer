@@ -3,9 +3,6 @@ using System.Reflection;
 using AngleSharp.Html.Parser;
 using Microsoft.Extensions.DependencyInjection;
 using PriceObserver.Parser.Abstract;
-using PriceObserver.Parser.Abstract.Answear;
-using PriceObserver.Parser.Abstract.Intertop;
-using PriceObserver.Parser.Abstract.MdFashion;
 using PriceObserver.Parser.Concrete;
 using PriceObserver.Parser.Concrete.Answear;
 using PriceObserver.Parser.Concrete.Intertop;
@@ -21,32 +18,47 @@ namespace PriceObserver.Parser
             services.AddHttpClient<IHtmlLoader, HtmlLoader>();
 
             services.AddTransient<IParserService, ParserService>();
-
-            services.AddTransient<IIntertopParserContentValidator, IntertopParserContentValidator>();
-            services.AddTransient<IIntertopParser, IntertopParser>();
+            services.AddTransient<IParserProviderService, ParserProviderService>();
             
-            services.AddTransient<IMdFashionParserContentValidator, MdFashionParserContentValidator>();
-            services.AddTransient<IMdFashionParser, MdFashionParser>();
-
-            services.AddTransient<IAnswearParserContentValidator, AnswearParserContentValidator>();
-            services.AddTransient<IAnswearParser, AnswearParser>();
-            
-            services.AddParserProviderServices();
+            services.AddParsers();
+            services.AddParserContentValidators();
         }
         
-        private static void AddParserProviderServices(this IServiceCollection services)
+        private static void AddParsers(this IServiceCollection services)
         {
-            var parserProviderService = typeof(IParserProviderService);
+            var parserProvider = typeof(IParserProvider);
 
-            var commandImplementations = Assembly
+            var parserImplementations = Assembly
                 .GetExecutingAssembly()
                 .DefinedTypes
-                .Where(type => parserProviderService.IsAssignableFrom(type) && parserProviderService != type)
+                .Where(type => 
+                    parserProvider.IsAssignableFrom(type) && 
+                    parserProvider != type && 
+                    !type.IsAbstract)
                 .ToList();
 
-            commandImplementations.ForEach(commandImplementation =>
+            parserImplementations.ForEach(parser =>
             {
-                services.AddTransient(parserProviderService, commandImplementation);
+                services.AddTransient(parserProvider, parser);
+            });
+        }
+        
+        private static void AddParserContentValidators(this IServiceCollection services)
+        {
+            var parserProvider = typeof(IParserProviderContentValidator);
+
+            var parserImplementations = Assembly
+                .GetExecutingAssembly()
+                .DefinedTypes
+                .Where(type => 
+                    parserProvider.IsAssignableFrom(type) && 
+                    parserProvider != type && 
+                    !type.IsAbstract)
+                .ToList();
+
+            parserImplementations.ForEach(parser =>
+            {
+                services.AddTransient(parserProvider, parser);
             });
         }
     }

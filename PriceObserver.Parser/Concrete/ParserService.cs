@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using PriceObserver.Data.Repositories.Abstract;
+using PriceObserver.Model.Data;
 using PriceObserver.Model.Parser;
 using PriceObserver.Parser.Abstract;
 
@@ -11,17 +12,17 @@ namespace PriceObserver.Parser.Concrete
     public class ParserService : IParserService
     {
         private readonly IShopRepository _shopRepository;
-        private readonly IEnumerable<IParserProviderService> _parserServices;
         private readonly IHtmlLoader _htmlLoader;
+        private readonly IParserProviderService _parserProviderService;
 
         public ParserService(
-            IShopRepository shopRepository,
-            IEnumerable<IParserProviderService> parserServices, 
-            IHtmlLoader htmlLoader)
+            IShopRepository shopRepository, 
+            IHtmlLoader htmlLoader, 
+            IParserProviderService parserProviderService)
         {
             _shopRepository = shopRepository;
-            _parserServices = parserServices;
             _htmlLoader = htmlLoader;
+            _parserProviderService = parserProviderService;
         }
 
         public async Task<ParsedItemResult> Parse(Uri url)
@@ -35,9 +36,10 @@ namespace PriceObserver.Parser.Concrete
 
             if (!htmlLoadResult.IsSuccess)
                 return ParsedItemResult.Fail(htmlLoadResult.Error);
-            
-            var parserService = _parserServices.First(p => p.ProviderType == shop.Type);
-            return parserService.Parse(htmlLoadResult.Result);
+
+            var htmlDocument = htmlLoadResult.Result;
+
+            return _parserProviderService.Parse(shop.Type, htmlDocument);
         }
     }
 }

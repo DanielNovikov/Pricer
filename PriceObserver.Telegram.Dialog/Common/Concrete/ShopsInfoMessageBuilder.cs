@@ -20,7 +20,7 @@ namespace PriceObserver.Telegram.Dialog.Common.Concrete
             var shops = await _shopRepository.GetAll();
             
             var shopTitles = shops
-                .Select(x => $"- {x.Name}")
+                .Select(x => $"- {x.Name} ({x.Host})")
                 .Aggregate((x, y) => $"{x}{Environment.NewLine}{y}");
 
             return $"Доступные магазины 📋{Environment.NewLine}{shopTitles}";

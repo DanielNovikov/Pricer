@@ -1,25 +1,16 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using AngleSharp.Dom;
-using AngleSharp.Html.Dom;
-using PriceObserver.Model.Parser;
-using PriceObserver.Parser.Abstract.Answear;
+using PriceObserver.Model.Data.Enums;
+using PriceObserver.Parser.Base;
 
 namespace PriceObserver.Parser.Concrete.Answear
 {
-    public class AnswearParserContentValidator : IAnswearParserContentValidator
+    public class AnswearParserContentValidator : ParserProviderContentValidatorBase
     {
-        public ContentValidatorResult Validate(IHtmlDocument htmlDocument)
-        {
-            var elements = htmlDocument.All.ToList();
-            
-            if (!PriceExistsOnPage(elements))
-                return ContentValidatorResult.PriceDoesNotExist();
+        public override ShopType ProviderType => ShopType.Answear;
 
-            return ContentValidatorResult.Success();
-        }
-
-        private bool PriceExistsOnPage(List<IElement> elements)
+        protected override bool IsPriceExists(IList<IElement> elements)
         {
             return elements
                 .Any(e => 

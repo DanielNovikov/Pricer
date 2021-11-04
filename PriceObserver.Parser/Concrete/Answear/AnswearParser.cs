@@ -1,28 +1,16 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using AngleSharp.Dom;
-using AngleSharp.Html.Dom;
 using PriceObserver.Model.Data.Enums;
-using PriceObserver.Model.Parser;
-using PriceObserver.Parser.Abstract.Answear;
+using PriceObserver.Parser.Base;
 
 namespace PriceObserver.Parser.Concrete.Answear
 {
-    public class AnswearParser : IAnswearParser
+    public class AnswearParser : ParserProviderBase
     {
-        public ParsedItem Parse(IHtmlDocument htmlDocument)
-        {
-            var elements = htmlDocument.All.ToList();
+        public override ShopType ProviderType => ShopType.Answear;
 
-            return new ParsedItem
-            {
-                ShopType = ShopType.Answear,
-                Price = GetPrice(elements),
-                Title = GetTitle(elements)
-            };
-        }
-
-        private int GetPrice(IList<IElement> elements)
+        protected override int GetPrice(IList<IElement> elements)
         {
             var priceSpan = elements.First(e =>
                 !string.IsNullOrEmpty(e.ClassName) &&
@@ -36,7 +24,7 @@ namespace PriceObserver.Parser.Concrete.Answear
             return int.Parse(price);
         }
 
-        private string GetTitle(IList<IElement> elements)
+        protected override string GetTitle(IList<IElement> elements)
         {
             return elements
                 .First(x =>
