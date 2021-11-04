@@ -46,7 +46,7 @@ namespace PriceObserver.Telegram.Dialog.Commands.Concrete
             }
 
             var commandHandler = _commandHandlers.First(x => x.Type == command.Type);
-            return await commandHandler.Handle(update, user);
+            return await commandHandler.Handle(user);
         }
     }
 }

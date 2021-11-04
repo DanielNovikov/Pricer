@@ -13,6 +13,7 @@ namespace PriceObserver.Data.Seed.Dialog
             var newItemMenu = NewItemMenuInitializer.Initialize(context);
 
             AddCommandInitializer.Initialize(context, homeMenu, newItemMenu);
+            AllItemsCommandInitializer.Initialize(context, homeMenu);
             ShopsCommandInitializer.Initialize(context, homeMenu);
             WebsiteCommandInitializer.Initialize(context, homeMenu);
 

@@ -20,7 +20,7 @@ namespace PriceObserver.Telegram.Dialog.Commands.Concrete.ShopsCommand
 
         public CommandType Type => CommandType.Shops;
         
-        public async Task<CommandHandlingServiceResult> Handle(Update update, User user)
+        public async Task<CommandHandlingServiceResult> Handle(User user)
         {
             var shopsInfoMessage = await _shopsInfoMessageBuilder.Build();
 

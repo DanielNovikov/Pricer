@@ -12,7 +12,7 @@ namespace PriceObserver.Telegram.Dialog.Commands.Concrete.WebsiteCommand
     {
         public CommandType Type => CommandType.Website;
         
-        public Task<CommandHandlingServiceResult> Handle(Update update, User user)
+        public Task<CommandHandlingServiceResult> Handle(User user)
         {
             var url = "Нажмите на <a href='https://priceobserver.com'>ссылку</a> для перехода на сайт";
             

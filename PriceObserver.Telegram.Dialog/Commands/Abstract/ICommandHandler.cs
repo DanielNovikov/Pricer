@@ -10,6 +10,6 @@ namespace PriceObserver.Telegram.Dialog.Commands.Abstract
     {
         public CommandType Type { get; }
         
-        public Task<CommandHandlingServiceResult> Handle(Update update, User user);
+        public Task<CommandHandlingServiceResult> Handle(User user);
     }
 }
