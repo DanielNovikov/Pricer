@@ -11,16 +11,16 @@ namespace PriceObserver.Parser.Concrete
     public class ParserService : IParserService
     {
         private readonly IShopRepository _shopRepository;
-        private readonly IEnumerable<IParserProviderService> _parserProxies;
+        private readonly IEnumerable<IParserProviderService> _parserServices;
         private readonly IHtmlLoader _htmlLoader;
 
         public ParserService(
             IShopRepository shopRepository,
-            IEnumerable<IParserProviderService> parserProxies, 
+            IEnumerable<IParserProviderService> parserServices, 
             IHtmlLoader htmlLoader)
         {
             _shopRepository = shopRepository;
-            _parserProxies = parserProxies;
+            _parserServices = parserServices;
             _htmlLoader = htmlLoader;
         }
 
@@ -36,8 +36,8 @@ namespace PriceObserver.Parser.Concrete
             if (!htmlLoadResult.IsSuccess)
                 return ParsedItemResult.Fail(htmlLoadResult.Error);
             
-            var parserProxy = _parserProxies.First(p => p.ProviderType == shop.Type);
-            return parserProxy.Parse(htmlLoadResult.Result);
+            var parserService = _parserServices.First(p => p.ProviderType == shop.Type);
+            return parserService.Parse(htmlLoadResult.Result);
         }
     }
 }

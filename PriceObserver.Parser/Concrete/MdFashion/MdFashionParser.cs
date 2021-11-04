@@ -17,11 +17,12 @@ namespace PriceObserver.Parser.Concrete.MdFashion
             return new ParsedItem
             {
                 ShopType = ShopType.MdFashion,
-                Price = GetPrice(elements)
+                Price = GetPrice(elements),
+                Title = GetTitle(elements)
             };
         }
 
-        private int GetPrice(List<IElement> elements)
+        private int GetPrice(IList<IElement> elements)
         {
             var priceSpan = elements.First(e =>
                 !string.IsNullOrEmpty(e.ClassName) &&
@@ -30,6 +31,16 @@ namespace PriceObserver.Parser.Concrete.MdFashion
             var price = priceSpan.Attributes["data-price"].Value;
             
             return int.Parse(price);
+        }
+
+        private string GetTitle(IList<IElement> elements)
+        {
+            return elements
+                .First(x =>
+                    !string.IsNullOrEmpty(x.ClassName) &&
+                    x.ClassName == "h1 product_title enhanced-product-name")
+                .Text()
+                .TrimStart('\r', '\n');
         }
     }
 }

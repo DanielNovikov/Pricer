@@ -43,6 +43,7 @@ namespace PriceObserver.Telegram.Dialog.Menus.Concrete.NewItemMenuHandler
             {
                 Price = parsedItem.Result.Price,
                 Url = url,
+                Title = parsedItem.Result.Title,
                 UserId = user.Id
             };
 

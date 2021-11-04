@@ -6,7 +6,7 @@ namespace PriceObserver.Model.Parser
     {
         public static ContentValidatorResult PriceDoesNotExist()
         {
-            return ContentValidatorResult.Fail("На странице нет цены");
+            return Fail("На странице нет цены");
         }
     }
 }

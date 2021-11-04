@@ -17,11 +17,12 @@ namespace PriceObserver.Parser.Concrete.Intertop
             return new ParsedItem
             {
                 ShopType = ShopType.Intertop,
-                Price = GetPrice(elements)
+                Price = GetPrice(elements),
+                Title = GetTitle(elements)
             };
         }
 
-        private int GetPrice(List<IElement> elements)
+        private int GetPrice(IList<IElement> elements)
         {
             var priceSpan = elements.First(e =>
                 !string.IsNullOrEmpty(e.ClassName) &&
@@ -30,6 +31,20 @@ namespace PriceObserver.Parser.Concrete.Intertop
             var price = priceSpan.InnerHtml.Replace(" ", string.Empty);
             
             return int.Parse(price);
+        }
+
+        private string GetTitle(IList<IElement> elements)
+        {
+            var productName = elements
+                .First(e =>
+                    !string.IsNullOrEmpty(e.ClassName) &&
+                    e.ClassName == "user-product-name")
+                .Children;
+
+            var type = productName[1].Text();
+            var description = productName[0].Text(); 
+
+            return $"{type} {description}";
         }
     }
 }

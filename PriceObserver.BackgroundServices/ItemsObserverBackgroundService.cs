@@ -53,9 +53,11 @@ namespace PriceObserver.Jobs
                         if (newPrice == oldPrice)
                             continue;
 
-                        var message = newPrice < oldPrice
-                            ? $"📉 Цена на <a href='{item.Url}'>товар</a> уменьшилась с <b>{oldPrice}</b> до <b>{newPrice}</b>"
-                            : $"📈 Цена на <a href='{item.Url}'>товар</a> увеличилась с <b>{oldPrice}</b> до <b>{newPrice}</b>";
+                        var priceMessage = newPrice < oldPrice
+                            ? $"📉 Цена на <a href='{item.Url}'>товар</a> снизилась до <b>{newPrice}</b>"
+                            : $"📈 Цена на <a href='{item.Url}'>товар</a> повысилась до <b>{newPrice}</b>";
+
+                        var message = $"❗️{item.Title}{Environment.NewLine}{priceMessage}";
                         
                         await telegramBotService.SendMessage(item.UserId, message);
 

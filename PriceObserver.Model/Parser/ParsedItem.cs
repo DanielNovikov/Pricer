@@ -7,5 +7,7 @@ namespace PriceObserver.Model.Parser
         public ShopType ShopType { get; set; }
         
         public int Price { get; set; }
+        
+        public string Title { get; set; }
     }
 }

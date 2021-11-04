@@ -17,11 +17,12 @@ namespace PriceObserver.Parser.Concrete.Answear
             return new ParsedItem
             {
                 ShopType = ShopType.Answear,
-                Price = GetPrice(elements)
+                Price = GetPrice(elements),
+                Title = GetTitle(elements)
             };
         }
 
-        private int GetPrice(List<IElement> elements)
+        private int GetPrice(IList<IElement> elements)
         {
             var priceSpan = elements.First(e =>
                 !string.IsNullOrEmpty(e.ClassName) &&
@@ -33,6 +34,17 @@ namespace PriceObserver.Parser.Concrete.Answear
             var price = fullPrice.Substring(0, spaceIndex);
             
             return int.Parse(price);
+        }
+
+        private string GetTitle(IList<IElement> elements)
+        {
+            return elements
+                .First(x =>
+                    !string.IsNullOrEmpty(x.ClassName) &&
+                    x.ClassName.Contains("productNameAndLogo"))
+                .Children
+                .First(x => x.TagName.ToLower() == "h1")
+                .Text();
         }
     }
 }

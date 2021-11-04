@@ -21,6 +21,11 @@ namespace PriceObserver.Data.Configurations
                     v => v.ToString(),
                     v => new Uri(v))
                 .IsRequired();
+            
+            builder
+                .Property(i => i.Title)
+                .HasMaxLength(250)
+                .IsRequired();
 
             builder
                 .HasOne(i => i.User)
