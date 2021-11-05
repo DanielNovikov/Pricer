@@ -19,6 +19,7 @@ namespace PriceObserver.Data.Repositories.Concrete
             return await _context.Users
                 .AsNoTracking()
                 .Include(x => x.Menu)
+                    .ThenInclude(x => x.Parent)
                 .FirstOrDefaultAsync(x => x.Id == id);
         }
 

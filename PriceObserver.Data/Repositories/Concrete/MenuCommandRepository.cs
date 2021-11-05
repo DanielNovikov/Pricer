@@ -23,7 +23,7 @@ namespace PriceObserver.Data.Repositories.Concrete
                 .AnyAsync(x => x.MenuId == menuId && x.CommandId == commandId);
         }
 
-        public async Task<IList<Command>> GetMenuCommands(int menuId)
+        public async Task<IList<Command>> GetCommandsByMenuId(int menuId)
         {
             return await _context.MenuCommands
                 .AsNoTracking()

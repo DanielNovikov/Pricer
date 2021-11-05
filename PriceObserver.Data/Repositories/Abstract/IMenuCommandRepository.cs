@@ -8,6 +8,6 @@ namespace PriceObserver.Data.Repositories.Abstract
     {
         Task<bool> HasPair(int menuId, int commandId);
 
-        Task<IList<Command>> GetMenuCommands(int menuId);
+        Task<IList<Command>> GetCommandsByMenuId(int menuId);
     }
 }

@@ -11,13 +11,14 @@ namespace PriceObserver.Data.Seed.Dialog.Initializers.Common
             MenuType type,
             string text,
             bool canExpectInput,
-            bool isDefault = false)
+            bool isDefault = false,
+            Menu parent = null)
         {
             var menu = context.Menus.SingleOrDefault(x => x.Type == type);
 
             return menu != null
-                ? Update(context, text, canExpectInput, isDefault, menu)
-                : Add(context, type, text, canExpectInput, isDefault);
+                ? Update(context, menu, text, canExpectInput, isDefault, parent)
+                : Add(context, type, text, canExpectInput, isDefault, parent);
         }
 
         private static Menu Add(
@@ -25,14 +26,16 @@ namespace PriceObserver.Data.Seed.Dialog.Initializers.Common
             MenuType type,
             string text,
             bool canExpectInput,
-            bool isDefault)
+            bool isDefault,
+            Menu parent)
         {
             var menu = new Menu
             {
                 Type = type,
                 Text = text,
                 CanExpectInput = canExpectInput,
-                IsDefault = isDefault
+                IsDefault = isDefault,
+                Parent = parent
             };
 
             context.Menus.Add(menu);
@@ -43,14 +46,16 @@ namespace PriceObserver.Data.Seed.Dialog.Initializers.Common
 
         private static Menu Update(
             ApplicationDbContext context,
+            Menu menu,
             string text,
             bool canExpectInput,
             bool isDefault,
-            Menu menu)
+            Menu parent)
         {
             menu.Text = text;
             menu.CanExpectInput = canExpectInput;
             menu.IsDefault = isDefault;
+            menu.Parent = parent;
 
             context.Menus.Update(menu);
             context.SaveChanges();

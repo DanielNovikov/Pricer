@@ -3,6 +3,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using PriceObserver.Data.Repositories.Abstract;
 using PriceObserver.Data.Service.Abstract;
+using PriceObserver.Model.Data;
+using PriceObserver.Model.Data.Enums;
 using PriceObserver.Model.Telegram.Commands;
 using PriceObserver.Telegram.Dialog.Commands.Abstract;
 using PriceObserver.Telegram.Dialog.Menus.Abstract;
@@ -30,23 +32,30 @@ namespace PriceObserver.Telegram.Dialog.Commands.Concrete
             _replyWithKeyboardBuilder = replyWithKeyboardBuilder;
         }
 
-        public async Task<CommandHandlingServiceResult> Handle(Model.Data.Command command, Update update, User user)
+        public async Task<CommandHandlingServiceResult> Handle(Command command, Update update, User user)
         {
-            var commandAvailableInMenu = await _menuCommandRepository.HasPair(user.Menu.Id, command.Id);
+            var menu = user.Menu;
+
+            if (menu.ParentId.HasValue && command.Type == CommandType.Back)
+                return await RedirectUserToMenu(user, menu.Parent);
+            
+            var commandAvailableInMenu = await _menuCommandRepository.HasPair(menu.Id, command.Id);
             if (!commandAvailableInMenu)
                 return CommandHandlingServiceResult.Fail("Неверная комманда");
 
             if (command.MenuToRedirectId.HasValue)
-            {
-                var menuToRedirect = command.MenuToRedirect;
-                await _userService.RedirectToMenu(user, menuToRedirect);
-                
-                var replyWithKeyboardResult = await _replyWithKeyboardBuilder.Build(menuToRedirect);
-                return CommandHandlingServiceResult.Success(replyWithKeyboardResult);
-            }
+                return await RedirectUserToMenu(user, command.MenuToRedirect);
 
             var commandHandler = _commandHandlers.First(x => x.Type == command.Type);
             return await commandHandler.Handle(user);
+        }
+
+        private async Task<CommandHandlingServiceResult> RedirectUserToMenu(User user, Menu menuToRedirect)
+        {
+            await _userService.RedirectToMenu(user, menuToRedirect);
+
+            var replyWithKeyboardResult = await _replyWithKeyboardBuilder.Build(menuToRedirect);
+            return CommandHandlingServiceResult.Success(replyWithKeyboardResult);
         }
     }
 }

@@ -6,6 +6,6 @@
         AllItems = 1,
         Website = 2,
         Shops = 3,
-        BackToHome = 4
+        Back = 4
     }
 }

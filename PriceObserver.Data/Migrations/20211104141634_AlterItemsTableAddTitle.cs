@@ -2,7 +2,7 @@
 
 namespace PriceObserver.Data.Migrations
 {
-    public partial class AddedItemTitle : Migration
+    public partial class AlterItemsTableAddTitle : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

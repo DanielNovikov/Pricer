@@ -27,6 +27,11 @@ namespace PriceObserver.Data.Configurations
             builder
                 .Property(x => x.IsDefault)
                 .IsRequired();
+
+            builder
+                .HasOne(x => x.Parent)
+                .WithMany(x => x.Children)
+                .HasForeignKey(x => x.ParentId);
         }
     }
 }

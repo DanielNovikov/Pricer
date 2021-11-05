@@ -15,6 +15,11 @@ namespace PriceObserver.Model.Data
         
         public bool IsDefault { get; set; }
         
+        public int? ParentId { get; set; }
+        public Menu Parent { get; set; }
+        
+        public IList<Menu> Children { get; set; }
+        
         public IList<MenuCommand> MenuCommands { get; set; }
     }
 }
