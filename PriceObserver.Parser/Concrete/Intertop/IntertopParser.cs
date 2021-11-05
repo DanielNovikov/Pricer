@@ -29,7 +29,7 @@ namespace PriceObserver.Parser.Concrete.Intertop
                     e.ClassName == "user-product-name")
                 .Children;
 
-            var type = productName[1].Text().TrimStart(' ');
+            var type = productName[1].Text();
             var description = productName[0].Text(); 
 
             return $"{type} {description}";

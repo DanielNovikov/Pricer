@@ -2,7 +2,7 @@
 
     <PropertyGroup>
         <TargetFramework>netcoreapp3.1</TargetFramework>
-        <RootNamespace>PriceObserver.Jobs</RootNamespace>
+        <RootNamespace>PriceObserver.Background</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>

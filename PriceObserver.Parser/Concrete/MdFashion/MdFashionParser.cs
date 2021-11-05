@@ -27,8 +27,7 @@ namespace PriceObserver.Parser.Concrete.MdFashion
                 .First(x =>
                     !string.IsNullOrEmpty(x.ClassName) &&
                     x.ClassName == "h1 product_title enhanced-product-name")
-                .Text()
-                .TrimStart('\r', '\n');
+                .Text();
         }
     }
 }

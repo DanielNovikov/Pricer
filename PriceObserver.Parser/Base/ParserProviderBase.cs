@@ -20,7 +20,7 @@ namespace PriceObserver.Parser.Base
             {
                 ShopType = ProviderType,
                 Price = GetPrice(elements),
-                Title = GetTitle(elements)
+                Title = GetTitle(elements).Trim(' ', '\r', '\n')
             };
         }
         

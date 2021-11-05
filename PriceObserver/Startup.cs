@@ -3,9 +3,9 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using PriceObserver.Background;
 using PriceObserver.Data;
 using PriceObserver.Data.Service;
-using PriceObserver.Jobs.Extensions;
 using PriceObserver.Model.Converters;
 using PriceObserver.Parser;
 using PriceObserver.Telegram.Client;
@@ -31,7 +31,7 @@ namespace PriceObserver
             services.AddData(_configuration);
             services.AddDataServices();
             services.AddConverters();
-            services.AddBackgroundServices();
+            services.AddBackgroundJobs();
         }
 
         public void Configure(

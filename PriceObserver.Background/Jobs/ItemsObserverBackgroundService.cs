@@ -7,7 +7,7 @@ using PriceObserver.Data.Repositories.Abstract;
 using PriceObserver.Parser.Abstract;
 using PriceObserver.Telegram.Client.Abstract;
 
-namespace PriceObserver.Jobs
+namespace PriceObserver.Background.Jobs
 {
     public class ItemsObserverBackgroundService : IHostedService
     {
@@ -38,9 +38,11 @@ namespace PriceObserver.Jobs
 
                         if (!parsedItemResult.IsSuccess)
                         {
+                            await itemRepository.Delete(item);
+                            
                             await telegramBotService.SendMessage(
                                 item.UserId,
-                                $"Не можем получить данные о <a href='{item.Url}'>товаре</a>.\r\nПричина: '{parsedItemResult.Error}'.");
+                                $"❗️Товар <a href='{item.Url}'>{item.Title}</a> удалён\r\nℹ {parsedItemResult.Error}");
                             
                             continue;
                         }
@@ -67,7 +69,7 @@ namespace PriceObserver.Jobs
 
                     await Task.Delay(TimeSpan.FromMinutes(30), cancellationToken);
                 }
-            });
+            }, cancellationToken);
         }
 
         public Task StopAsync(CancellationToken cancellationToken)

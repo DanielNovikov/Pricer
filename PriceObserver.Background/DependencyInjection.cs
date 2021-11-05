@@ -1,10 +1,11 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using PriceObserver.Background.Jobs;
 
-namespace PriceObserver.Jobs.Extensions
+namespace PriceObserver.Background
 {
     public static class DependencyInjection
     {
-        public static void AddBackgroundServices(this IServiceCollection services)
+        public static void AddBackgroundJobs(this IServiceCollection services)
         {
             services.AddHostedService<ItemsObserverBackgroundService>();
         }
