@@ -36,15 +36,12 @@ namespace PriceObserver
 
         public void Configure(
             IApplicationBuilder app,
-            IWebHostEnvironment env,
-            ITelegramBotProcessor telegramBotProcessor)
+            IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
-
-            telegramBotProcessor.StartProcessing();
         }
     }
 }

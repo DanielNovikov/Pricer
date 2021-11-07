@@ -1,18 +1,22 @@
 ﻿using System;
+using System.Threading;
+using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using PriceObserver.Telegram.Client.Abstract;
 using PriceObserver.Telegram.Dialog.Common.Extensions;
 using PriceObserver.Telegram.Dialog.Input.Abstract;
 using Telegram.Bot.Args;
+using Telegram.Bot.Types.Enums;
 
-namespace PriceObserver.Telegram.Client.Concrete
+namespace PriceObserver.Background.Jobs
 {
-    public class TelegramBotProcessor : ITelegramBotProcessor
+    public class TelegramUpdateReceiverJob : IHostedService
     {
         private readonly ITelegramBot _telegramBot;
         private readonly IServiceProvider _serviceProvider;
 
-        public TelegramBotProcessor(
+        public TelegramUpdateReceiverJob(
             ITelegramBot telegramBot,
             IServiceProvider serviceProvider)
         {
@@ -20,12 +24,19 @@ namespace PriceObserver.Telegram.Client.Concrete
             _serviceProvider = serviceProvider;
         }
 
-        public void StartProcessing()
+        public async Task StartAsync(CancellationToken cancellationToken)
         {
             var client = _telegramBot.GetClient();
 
             client.OnUpdate += OnUpdate;
-            client.StartReceiving();
+
+            var allowedUpdateTypes = new[] { UpdateType.Message };
+            client.StartReceiving(allowedUpdateTypes, cancellationToken);
+        }
+
+        public Task StopAsync(CancellationToken cancellationToken)
+        {
+            return Task.CompletedTask;
         }
 
         private async void OnUpdate(object sender, UpdateEventArgs updateEventArgs)
@@ -34,7 +45,7 @@ namespace PriceObserver.Telegram.Client.Concrete
 
             var inputHandler = scope.ServiceProvider.GetService<IInputHandler>();
             var telegramBotService = scope.ServiceProvider.GetService<ITelegramBotService>();
-            
+
             var update = updateEventArgs.Update;
             var userId = update.GetUserId();
 

@@ -7,7 +7,8 @@ namespace PriceObserver.Background
     {
         public static void AddBackgroundJobs(this IServiceCollection services)
         {
-            services.AddHostedService<ItemsObserverBackgroundService>();
+            services.AddHostedService<ItemsObserverJob>();
+            services.AddHostedService<TelegramUpdateReceiverJob>();
         }
     }
 }
