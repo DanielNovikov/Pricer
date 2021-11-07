@@ -32,6 +32,8 @@ namespace PriceObserver
             services.AddDataServices();
             services.AddConverters();
             services.AddBackgroundJobs();
+
+            services.AddControllers();
         }
 
         public void Configure(
@@ -42,6 +44,15 @@ namespace PriceObserver
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseRouting();
+
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllerRoute(
+                    "default",
+                    "{controller}/{action}/{id?}");
+            });
         }
     }
 }
