@@ -4,7 +4,7 @@ using PriceObserver.Data.Repositories.Abstract;
 using PriceObserver.Model.Data;
 using PriceObserver.Model.Data.Enums;
 
-namespace PriceObserver.Data.Cache
+namespace PriceObserver.Data.Repositories.Cache
 {
     public class CommandRepositoryCache : ICommandRepository
     {

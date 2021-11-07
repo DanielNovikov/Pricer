@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using PriceObserver.Data.Repositories.Abstract;
 using PriceObserver.Model.Data;
+using PriceObserver.Model.Data.Enums;
 
 namespace PriceObserver.Data.Repositories.Concrete
 {
@@ -13,6 +14,13 @@ namespace PriceObserver.Data.Repositories.Concrete
         public ShopRepository(ApplicationDbContext context)
         {
             _context = context;
+        }
+
+        public Task<Shop> GetByType(ShopType type)
+        {
+            return _context.Shops
+                .AsNoTracking()
+                .SingleAsync(x => x.Type == type);
         }
 
         public Task<Shop> GetByHost(string host)

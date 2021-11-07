@@ -4,7 +4,7 @@ using Microsoft.Extensions.Caching.Memory;
 using PriceObserver.Data.Repositories.Abstract;
 using PriceObserver.Model.Data;
 
-namespace PriceObserver.Data.Cache
+namespace PriceObserver.Data.Repositories.Cache
 {
     public class MenuCommandRepositoryCache : IMenuCommandRepository
     {

@@ -32,6 +32,12 @@ namespace PriceObserver.Data.Configurations
                 .WithMany(i => i.Items)
                 .HasForeignKey(i => i.UserId)
                 .IsRequired();
+
+            builder
+                .HasOne(x => x.Shop)
+                .WithMany(x => x.Items)
+                .HasForeignKey(x => x.ShopId)
+                .IsRequired();
         }
     }
 }

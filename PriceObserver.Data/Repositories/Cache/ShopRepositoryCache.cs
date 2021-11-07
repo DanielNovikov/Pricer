@@ -3,8 +3,9 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Caching.Memory;
 using PriceObserver.Data.Repositories.Abstract;
 using PriceObserver.Model.Data;
+using PriceObserver.Model.Data.Enums;
 
-namespace PriceObserver.Data.Cache
+namespace PriceObserver.Data.Repositories.Cache
 {
     public class ShopRepositoryCache : IShopRepository
     {
@@ -17,6 +18,13 @@ namespace PriceObserver.Data.Cache
         {
             _cache = cache;
             _repository = repository;
+        }
+
+        public Task<Shop> GetByType(ShopType type)
+        {
+            return _cache.GetOrCreateAsync(
+                $"{nameof(Shop)}_by_type_{type}",
+                (entry) => _repository.GetByType(type));
         }
 
         public Task<Shop> GetByHost(string host)

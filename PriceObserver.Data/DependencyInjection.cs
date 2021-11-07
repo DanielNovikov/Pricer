@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using PriceObserver.Data.Cache;
 using PriceObserver.Data.Repositories.Abstract;
+using PriceObserver.Data.Repositories.Cache;
 using PriceObserver.Data.Repositories.Concrete;
 
 namespace PriceObserver.Data

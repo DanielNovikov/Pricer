@@ -16,13 +16,16 @@ namespace PriceObserver.Telegram.Dialog.Menus.Concrete.NewItemMenuHandler
     {
         private readonly IParserService _parserService;
         private readonly IItemRepository _itemRepository;
+        private readonly IShopRepository _shopRepository;
 
         public NewItemMenuHandler(
             IParserService parserService,
-            IItemRepository itemRepository)
+            IItemRepository itemRepository,
+            IShopRepository shopRepository)
         {
             _parserService = parserService;
             _itemRepository = itemRepository;
+            _shopRepository = shopRepository;
         }
 
         public MenuType Type => MenuType.NewItem;
@@ -34,17 +37,21 @@ namespace PriceObserver.Telegram.Dialog.Menus.Concrete.NewItemMenuHandler
             if (!Uri.TryCreate(message, UriKind.Absolute, out var url))
                 return MenuInputHandlingServiceResult.Fail("Ссылка в неверном формате ❌");
             
-            var parsedItem = await _parserService.Parse(url);
+            var parseResult = await _parserService.Parse(url);
 
-            if (!parsedItem.IsSuccess)
-                return MenuInputHandlingServiceResult.Fail(parsedItem.Error);
+            if (!parseResult.IsSuccess)
+                return MenuInputHandlingServiceResult.Fail(parseResult.Error);
+
+            var parsedItem = parseResult.Result;
+            var shop = await _shopRepository.GetByType(parsedItem.ShopType);
             
             var item = new Item
             {
-                Price = parsedItem.Result.Price,
+                Price = parsedItem.Price,
                 Url = url,
-                Title = parsedItem.Result.Title,
-                UserId = user.Id
+                Title = parsedItem.Title,
+                UserId = user.Id, 
+                ShopId = shop.Id
             };
 
             await _itemRepository.Add(item);

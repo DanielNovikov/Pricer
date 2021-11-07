@@ -14,5 +14,8 @@ namespace PriceObserver.Model.Data
         
         public long UserId { get; set; }
         public User User { get; set; }
+        
+        public int ShopId { get; set; }
+        public Shop Shop { get; set; }
     }
 }
