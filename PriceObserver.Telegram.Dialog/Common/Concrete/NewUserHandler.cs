@@ -29,8 +29,8 @@ namespace PriceObserver.Telegram.Dialog.Common.Concrete
 
         public async Task<ReplyResult> Handle(User user)
         {
-            var addCommandTitle = await _commandRepository.GetTitleByType(CommandType.Add);
-            var websiteCommandTitle = await _commandRepository.GetTitleByType(CommandType.Website);
+            var addCommandTitle = await GetCommandTitle(CommandType.Add);
+            var websiteCommandTitle = await GetCommandTitle(CommandType.Website);
 
             var shopsInfoMessage = await _shopsInfoMessageBuilder.Build();
             
@@ -47,6 +47,11 @@ namespace PriceObserver.Telegram.Dialog.Common.Concrete
             var menuKeyboard = await _menuKeyboardBuilder.Build(user.Menu);
 
             return ReplyResult.ReplyWithKeyboard(message, menuKeyboard);
+        }
+
+        private async Task<string> GetCommandTitle(CommandType type)
+        {
+            return (await _commandRepository.GetByType(type)).Title;
         }
     }
 }

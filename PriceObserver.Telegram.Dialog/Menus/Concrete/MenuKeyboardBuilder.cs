@@ -30,7 +30,7 @@ namespace PriceObserver.Telegram.Dialog.Menus.Concrete
             if (menu.ParentId.HasValue)
             {
                 var backCommand = await _commandRepository.GetByType(CommandType.Back);
-                commands.Add(backCommand);
+                commands = commands.Append(backCommand).ToList();
             }
             
             var buttonTitles = commands.Select((x, i) => new { Index = i, x.Title });

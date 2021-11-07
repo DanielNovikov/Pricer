@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using PriceObserver.Data.Cache;
 using PriceObserver.Data.Repositories.Abstract;
 using PriceObserver.Data.Repositories.Concrete;
 
@@ -15,12 +16,18 @@ namespace PriceObserver.Data
                     configuration.GetConnectionString("PricerDB"),
                     x => x.MigrationsAssembly("PriceObserver.Data")));
 
-            services.AddTransient<ICommandRepository, CommandRepository>();
-            services.AddTransient<IItemRepository, ItemRepository>();
-            services.AddTransient<IMenuCommandRepository, MenuCommandRepository>();
-            services.AddTransient<IMenuRepository, MenuRepository>();
-            services.AddTransient<IUserRepository, UserRepository>();
-            services.AddTransient<IShopRepository, ShopRepository>();
+            services.AddMemoryCache();
+            
+            services.AddScoped<ICommandRepository, CommandRepository>();
+            services.Decorate<ICommandRepository, CommandRepositoryCache>();
+            services.AddScoped<IItemRepository, ItemRepository>();
+            services.AddScoped<IMenuCommandRepository, MenuCommandRepository>();
+            services.Decorate<IMenuCommandRepository, MenuCommandRepositoryCache>();
+            services.AddScoped<IMenuRepository, MenuRepository>();
+            services.Decorate<IMenuRepository, MenuRepositoryCache>();
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IShopRepository, ShopRepository>();
+            services.Decorate<IShopRepository, ShopRepositoryCache>();
         }
     }
 }

@@ -32,15 +32,5 @@ namespace PriceObserver.Data.Repositories.Concrete
                 .AsNoTracking()
                 .SingleOrDefaultAsync(x => x.Type == type);
         }
-
-        public Task<string> GetTitleByType(CommandType type)
-        {
-            return _context
-                .Commands
-                .AsNoTracking()
-                .Where(x => x.Type == type)
-                .Select(x => x.Title)
-                .SingleAsync();
-        }
     }
 }
