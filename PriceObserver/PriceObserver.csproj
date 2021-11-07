@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
     <PropertyGroup>
-        <TargetFramework>netcoreapp3.1</TargetFramework>
+        <TargetFramework>netcoreapp5.0</TargetFramework>
         <RootNamespace>PriceObserver</RootNamespace>
     </PropertyGroup>
 
@@ -12,5 +12,13 @@
       <ProjectReference Include="..\PriceObserver.Model.Converters\PriceObserver.Model.Converters.csproj" />
       <ProjectReference Include="..\PriceObserver.Parser\PriceObserver.Parser.csproj" />
       <ProjectReference Include="..\PriceObserver.Telegram.Client\PriceObserver.Telegram.Client.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="App" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="3.1.20" />
     </ItemGroup>
 </Project>
