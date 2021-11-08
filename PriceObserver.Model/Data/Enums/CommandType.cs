@@ -6,6 +6,7 @@
         AllItems = 1,
         Website = 2,
         Shops = 3,
-        Back = 4
+        Back = 4,
+        WriteToSupport
     }
 }

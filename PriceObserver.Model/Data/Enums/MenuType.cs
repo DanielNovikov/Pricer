@@ -3,6 +3,7 @@
     public enum MenuType
     {
         Home,
-        NewItem
+        NewItem,
+        Support
     }
 }
