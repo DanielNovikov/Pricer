@@ -17,15 +17,18 @@ namespace PriceObserver.Telegram.Dialog.Menus.Concrete.NewItemMenuHandler
         private readonly IParserService _parserService;
         private readonly IItemRepository _itemRepository;
         private readonly IShopRepository _shopRepository;
+        private readonly IUrlExtractor _urlExtractor;
 
         public NewItemMenuHandler(
             IParserService parserService,
             IItemRepository itemRepository,
-            IShopRepository shopRepository)
+            IShopRepository shopRepository, 
+            IUrlExtractor urlExtractor)
         {
             _parserService = parserService;
             _itemRepository = itemRepository;
             _shopRepository = shopRepository;
+            _urlExtractor = urlExtractor;
         }
 
         public MenuType Type => MenuType.NewItem;
@@ -34,9 +37,12 @@ namespace PriceObserver.Telegram.Dialog.Menus.Concrete.NewItemMenuHandler
         {
             var message = update.GetMessageText();
 
-            if (!Uri.TryCreate(message, UriKind.Absolute, out var url))
-                return MenuInputHandlingServiceResult.Fail("Ссылка в неверном формате ❌");
-            
+            var urlExtractionResult = _urlExtractor.Extract(message);
+
+            if (!urlExtractionResult.IsSuccess)
+                return MenuInputHandlingServiceResult.Fail(urlExtractionResult.Error);
+
+            var url = urlExtractionResult.Result;
             var parseResult = await _parserService.Parse(url);
 
             if (!parseResult.IsSuccess)

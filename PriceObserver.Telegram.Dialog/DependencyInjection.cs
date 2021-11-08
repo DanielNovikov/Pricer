@@ -28,6 +28,7 @@ namespace PriceObserver.Telegram.Dialog
             services.AddTransient<IMenuInputHandlerService, MenuInputHandlerService>();
             services.AddTransient<IMenuKeyboardBuilder, MenuKeyboardBuilder>();
             services.AddTransient<IReplyWithKeyboardBuilder, ReplyWithKeyboardBuilder>();
+            services.AddTransient<IUrlExtractor, UrlExtractor>();
             
             services.AddCommandHandlers();
             services.AddMenuHandlers();
