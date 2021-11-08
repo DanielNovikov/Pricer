@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -10,7 +9,6 @@ using PriceObserver.Data.Service;
 using PriceObserver.Model.Converters;
 using PriceObserver.Parser;
 using PriceObserver.Telegram.Client;
-using PriceObserver.Telegram.Client.Abstract;
 using PriceObserver.Telegram.Dialog;
 
 namespace PriceObserver
@@ -27,7 +25,7 @@ namespace PriceObserver
         public void ConfigureServices(IServiceCollection services)
         {   
             services.AddControllersWithViews();
-            services.AddSpaStaticFiles(configuration => { configuration.RootPath = "ClientApp/dist"; });
+            services.AddSpaStaticFiles(configuration => { configuration.RootPath = "wwwroot"; });
             
             services.AddTelegramBot(_configuration);
             services.AddTelegramDialogServices();
@@ -48,10 +46,6 @@ namespace PriceObserver
             }
             
             app.UseStaticFiles();
-            if (!env.IsDevelopment())
-            {
-                app.UseSpaStaticFiles();
-            }
 
             app.UseRouting();
 
@@ -62,15 +56,7 @@ namespace PriceObserver
                     "{controller}/{action}/{id?}");
             });
             
-            app.UseSpa(spa =>
-            {
-                spa.Options.SourcePath = "ClientApp";
-
-                if (env.IsDevelopment())
-                {
-                    spa.UseAngularCliServer(npmScript: "start");
-                }
-            });
+            app.UseSpa(builder => builder.Options.SourcePath = "wwwroot");
         }
     }
 }
