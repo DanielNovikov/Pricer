@@ -20,7 +20,7 @@ namespace PriceObserver.Telegram.Dialog.Menus.Concrete.WriteToSupportMenuHandler
         
         public MenuType Type => MenuType.Support;
         
-        public async Task<MenuInputHandlingServiceResult> Handle(Update update, User user)
+        public Task<MenuInputHandlingServiceResult> Handle(Update update, User user)
         {
             var message = update.GetMessageText();
 
@@ -28,8 +28,11 @@ namespace PriceObserver.Telegram.Dialog.Menus.Concrete.WriteToSupportMenuHandler
 Логин: @{user.Username} - {user.FirstName} {user.LastName}";
             
             _logger.LogInformation(log);
+
+            var result =
+                MenuInputHandlingServiceResult.Success("Спасибо за Ваше сообщение, мы с вами скоро свяжемся! 🏃"); 
             
-            return MenuInputHandlingServiceResult.Success("Спасибо за Ваше сообщение, мы с вами скоро свяжемся! 🏃");
+            return Task.FromResult(result);
         }
     }
 }
