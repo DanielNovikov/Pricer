@@ -28,6 +28,13 @@ namespace PriceObserver.Data.Configurations
                 .IsRequired();
 
             builder
+                .Property(i => i.ImageUrl)
+                .HasConversion(
+                    v => v.ToString(),
+                    v => new Uri(v))
+                .IsRequired();
+            
+            builder
                 .HasOne(i => i.User)
                 .WithMany(i => i.Items)
                 .HasForeignKey(i => i.UserId)

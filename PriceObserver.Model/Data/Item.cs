@@ -12,6 +12,8 @@ namespace PriceObserver.Model.Data
         
         public string Title { get; set; }
         
+        public Uri ImageUrl { get; set; }
+        
         public long UserId { get; set; }
         public User User { get; set; }
         

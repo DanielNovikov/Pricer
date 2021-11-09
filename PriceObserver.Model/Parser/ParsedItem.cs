@@ -1,4 +1,5 @@
-﻿using PriceObserver.Model.Data.Enums;
+﻿using System;
+using PriceObserver.Model.Data.Enums;
 
 namespace PriceObserver.Model.Parser
 {
@@ -9,5 +10,7 @@ namespace PriceObserver.Model.Parser
         public int Price { get; set; }
         
         public string Title { get; set; }
+        
+        public Uri ImageUrl { get; set; }
     }
 }

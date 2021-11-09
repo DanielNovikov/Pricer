@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using AngleSharp.Dom;
+using AngleSharp.Html.Dom;
 using PriceObserver.Model.Data.Enums;
 using PriceObserver.Parser.Base;
 
@@ -33,6 +35,15 @@ namespace PriceObserver.Parser.Concrete.Answear
                 .Children
                 .First(x => x.TagName.ToLower() == "h1")
                 .Text();
+        }
+
+        protected override Uri GetImageUrl(IHtmlDocument document)
+        {
+            const string selector = ".slick-current > div> .cardMedia >div > picture > img";
+            var image = document.QuerySelector<IHtmlImageElement>(selector);
+            var imageUrl = image.Source;
+
+            return new Uri(imageUrl);
         }
     }
 }

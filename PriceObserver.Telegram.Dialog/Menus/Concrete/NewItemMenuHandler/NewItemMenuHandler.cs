@@ -56,6 +56,7 @@ namespace PriceObserver.Telegram.Dialog.Menus.Concrete.NewItemMenuHandler
                 Price = parsedItem.Price,
                 Url = url,
                 Title = parsedItem.Title,
+                ImageUrl = parsedItem.ImageUrl,
                 UserId = user.Id, 
                 ShopId = shop.Id
             };

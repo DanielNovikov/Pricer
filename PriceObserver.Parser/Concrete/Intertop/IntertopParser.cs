@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using AngleSharp.Dom;
+using AngleSharp.Html.Dom;
 using PriceObserver.Model.Data.Enums;
 using PriceObserver.Parser.Base;
 
@@ -33,6 +35,15 @@ namespace PriceObserver.Parser.Concrete.Intertop
             var description = productName[0].Text(); 
 
             return $"{type} {description}";
+        }
+
+        protected override Uri GetImageUrl(IHtmlDocument document)
+        {
+            const string selector = "meta[property='og:image']";
+            var meta = document.QuerySelector<IHtmlMetaElement>(selector);
+            var imageUrl = $"https://intertop.ua/{meta.Content}";
+
+            return new Uri(imageUrl);
         }
     }
 }

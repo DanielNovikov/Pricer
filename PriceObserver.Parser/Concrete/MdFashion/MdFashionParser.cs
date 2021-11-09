@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using AngleSharp.Dom;
+using AngleSharp.Html.Dom;
 using PriceObserver.Model.Data.Enums;
 using PriceObserver.Parser.Base;
 
@@ -28,6 +30,15 @@ namespace PriceObserver.Parser.Concrete.MdFashion
                     !string.IsNullOrEmpty(x.ClassName) &&
                     x.ClassName == "h1 product_title enhanced-product-name")
                 .Text();
+        }
+
+        protected override Uri GetImageUrl(IHtmlDocument document)
+        {
+            const string selector = ".product_image > div[id=product0] > span > img";
+            var image = document.QuerySelector<IHtmlImageElement>(selector);
+            var imageUrl = image.Source;
+
+            return new Uri(imageUrl);
         }
     }
 }
