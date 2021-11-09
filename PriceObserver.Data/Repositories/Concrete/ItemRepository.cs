@@ -37,6 +37,7 @@ namespace PriceObserver.Data.Repositories.Concrete
             return await _context
                 .Items
                 .AsNoTracking()
+                .Include(x => x.Shop)
                 .Where(i => i.UserId == userId)
                 .ToListAsync();
         }

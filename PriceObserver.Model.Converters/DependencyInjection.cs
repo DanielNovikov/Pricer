@@ -9,6 +9,8 @@ namespace PriceObserver.Model.Converters
         public static void AddConverters(this IServiceCollection services)
         {
             services.AddTransient<IChatToUserConverter, ChatToUserConverter>();
+            services.AddTransient<IItemToItemVMConverter, ItemToItemVMConverter>();
+            services.AddTransient<IShopToShopWithItemsVMConverter, ShopToShopWithItemsVmConverter>();
         }
     }
 }

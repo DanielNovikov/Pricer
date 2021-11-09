@@ -6,6 +6,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\PriceObserver.Data\PriceObserver.Data.csproj" />
+      <ProjectReference Include="..\PriceObserver.Model.Converters\PriceObserver.Model.Converters.csproj" />
       <ProjectReference Include="..\PriceObserver.Model\PriceObserver.Model.csproj" />
     </ItemGroup>
 

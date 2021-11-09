@@ -9,6 +9,7 @@ namespace PriceObserver.Data.Service
         public static void AddDataServices(this IServiceCollection services)
         {
             services.AddTransient<IUserService, UserService>();
+            services.AddTransient<IItemService, ItemService>();
         }
     }
 }
