@@ -10,8 +10,8 @@ namespace PriceObserver.Model.Service
         
         public int Price { get; set; }
         
-        public Uri Url { get; set; }
+        public string Url { get; set; }
         
-        public Uri ImageUrl { get; set; }
+        public string ImageUrl { get; set; }
     }
 }

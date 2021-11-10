@@ -20,7 +20,7 @@ namespace PriceObserver.Data.Seed.Shops
                 "MdFashion",
                 ShopType.MdFashion,
                 "md-fashion.com.ua",
-                new Uri("https://md-fashion.com.ua/assets/4aa76fa0/logo.svg"));
+                new Uri("https://media-exp1.licdn.com/dms/image/C4E1BAQHdYvrPFaAN-A/company-background_10000/0/1616762724843?e=2159024400&v=beta&t=N8-gqYABqVA8ZJ9R5T5Po3w2b2orNFNneL1x4kZ2ufM"));
             
             ShopInitializer.Initialize(
                 context,

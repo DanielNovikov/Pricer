@@ -10,8 +10,8 @@ namespace PriceObserver.Model.Converters.Concrete
         {
             return new ShopWithItemsVM
             {
-                Title = source.Name,
-                Host = source.Host
+                Address = $"https://{source.Host}",
+                LogoUrl = source.LogoUrl.ToString()
             };
         }
     }

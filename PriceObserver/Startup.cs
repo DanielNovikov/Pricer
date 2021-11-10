@@ -62,8 +62,11 @@ namespace PriceObserver
                     "default",
                     "{controller}/{action}/{id?}");
             });
-            
-            app.UseSpa(builder => builder.Options.SourcePath = "wwwroot");
+
+            if (!env.IsDevelopment())
+            {
+                app.UseSpa(builder => builder.Options.SourcePath = "wwwroot");
+            }
         }
     }
 }

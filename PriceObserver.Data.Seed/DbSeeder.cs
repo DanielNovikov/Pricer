@@ -18,7 +18,7 @@ namespace PriceObserver.Data.Seed
                 
                 transaction.Commit();
             }
-            catch (Exception ex)
+            catch
             {
                 transaction.Rollback();
             }

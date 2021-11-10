@@ -13,8 +13,8 @@ namespace PriceObserver.Model.Converters.Concrete
                 Id = source.Id,
                 Price = source.Price,
                 Title = source.Title,
-                Url = source.Url,
-                ImageUrl = source.ImageUrl
+                Url = source.Url.ToString(),
+                ImageUrl = source.ImageUrl.ToString()
             };
         }
     }

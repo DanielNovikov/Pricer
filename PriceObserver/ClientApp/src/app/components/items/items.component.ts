@@ -9,7 +9,7 @@ import {ShopWithItems} from "../../models/shop-with-items";
 })
 export class ItemsComponent implements OnInit {
 
-  shopWithItems: ShopWithItems[] | undefined;
+  shops: ShopWithItems[] | undefined;
 
   constructor(private itemHttpService: ItemHttpService) { }
 
@@ -17,7 +17,8 @@ export class ItemsComponent implements OnInit {
     this.itemHttpService
       .getGrouped(382190306)
       .subscribe(data => {
-        this.shopWithItems = data;
+        this.shops = data;
+        console.log(data);
       });
   }
 
