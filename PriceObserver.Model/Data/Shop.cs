@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using PriceObserver.Model.Data.Enums;
 
 namespace PriceObserver.Model.Data
@@ -12,6 +13,8 @@ namespace PriceObserver.Model.Data
         public ShopType Type { get; set; }
         
         public string Host { get; set; }
+        
+        public Uri LogoUrl { get; set; }
         
         public IList<Item> Items { get; set; }
     }

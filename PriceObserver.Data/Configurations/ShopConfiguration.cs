@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using PriceObserver.Model.Data;
 
@@ -23,6 +24,13 @@ namespace PriceObserver.Data.Configurations
             builder
                 .Property(x => x.Host)
                 .HasMaxLength(150)
+                .IsRequired();
+            
+            builder
+                .Property(i => i.LogoUrl)
+                .HasConversion(
+                    v => v.ToString(),
+                    v => new Uri(v))
                 .IsRequired();
         }
     }

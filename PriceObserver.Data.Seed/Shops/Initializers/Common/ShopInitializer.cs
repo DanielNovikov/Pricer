@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using PriceObserver.Model.Data;
 using PriceObserver.Model.Data.Enums;
 
@@ -10,22 +11,29 @@ namespace PriceObserver.Data.Seed.Shops.Initializers.Common
             ApplicationDbContext context,
             string name,
             ShopType type,
-            string host)
+            string host,
+            Uri logoUrl)
         {
             var shop = context.Shops.SingleOrDefault(x => x.Type == type);
 
             return shop != null 
-                ? Update(context, shop, name, host) 
-                : Add(context, name, type, host);
+                ? Update(context, shop, name, host, logoUrl) 
+                : Add(context, name, type, host, logoUrl);
         }
 
-        private static Shop Add(ApplicationDbContext context, string name, ShopType type, string host)
+        private static Shop Add(
+            ApplicationDbContext context,
+            string name,
+            ShopType type,
+            string host,
+            Uri logoUrl)
         {
             var shop = new Shop
             {
                 Type = type,
                 Name = name,
-                Host = host
+                Host = host,
+                LogoUrl = logoUrl
             };
 
             context.Shops.Update(shop);
@@ -34,10 +42,16 @@ namespace PriceObserver.Data.Seed.Shops.Initializers.Common
             return shop;
         }
 
-        private static Shop Update(ApplicationDbContext context, Shop shop, string name, string host)
+        private static Shop Update(
+            ApplicationDbContext context, 
+            Shop shop, 
+            string name,
+            string host,
+            Uri logoUrl)
         {
             shop.Name = name;
             shop.Host = host;
+            shop.LogoUrl = logoUrl;
 
             context.Shops.Update(shop);
             context.SaveChanges();

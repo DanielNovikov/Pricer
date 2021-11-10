@@ -1,4 +1,6 @@
-﻿using PriceObserver.Data.Seed.Dialog;
+﻿using System;
+using Microsoft.Extensions.Logging;
+using PriceObserver.Data.Seed.Dialog;
 using PriceObserver.Data.Seed.Shops;
 
 namespace PriceObserver.Data.Seed
@@ -16,7 +18,7 @@ namespace PriceObserver.Data.Seed
                 
                 transaction.Commit();
             }
-            catch
+            catch (Exception ex)
             {
                 transaction.Rollback();
             }

@@ -1,4 +1,5 @@
-﻿using PriceObserver.Data.Seed.Shops.Initializers.Common;
+﻿using System;
+using PriceObserver.Data.Seed.Shops.Initializers.Common;
 using PriceObserver.Model.Data.Enums;
 
 namespace PriceObserver.Data.Seed.Shops
@@ -11,19 +12,22 @@ namespace PriceObserver.Data.Seed.Shops
                 context,
                 "Intertop",
                 ShopType.Intertop,
-                "intertop.ua");
+                "intertop.ua",
+                new Uri("https://intertop.ua/upload/iblock/5e9/5e9af99fddb96796799d9a1523ce61ab.png", UriKind.Absolute));
             
             ShopInitializer.Initialize(
                 context,
                 "MdFashion",
                 ShopType.MdFashion,
-                "md-fashion.com.ua");
+                "md-fashion.com.ua",
+                new Uri("https://md-fashion.com.ua/assets/4aa76fa0/logo.svg"));
             
             ShopInitializer.Initialize(
                 context,
                 "Answear",
                 ShopType.Answear,
-                "answear.ua");
+                "answear.ua",
+                new Uri("https://i1.wp.com/expert.com.ua/wp-content/uploads/2015/11/logo-2.png?fit=605%2C225&ssl=1"));
         }
     }
 }
