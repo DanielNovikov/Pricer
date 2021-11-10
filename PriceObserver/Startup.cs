@@ -34,6 +34,8 @@ namespace PriceObserver
             services.AddDataServices();
             services.AddConverters();
             services.AddBackgroundJobs();
+
+            services.AddCors();
         }
 
         public void Configure(
@@ -46,9 +48,14 @@ namespace PriceObserver
             }
             
             app.UseStaticFiles();
-
+            
             app.UseRouting();
 
+            app.UseCors(builder => builder
+                .AllowAnyHeader()
+                .AllowAnyMethod()
+                .AllowAnyOrigin());
+            
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(

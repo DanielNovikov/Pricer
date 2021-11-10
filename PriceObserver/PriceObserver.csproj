@@ -20,6 +20,9 @@
     </ItemGroup>
 
     <ItemGroup>
+      <Folder Include="ClientApp\src\app\components" />
+      <Folder Include="ClientApp\src\app\models" />
+      <Folder Include="ClientApp\src\app\shared" />
       <Folder Include="wwwroot" />
     </ItemGroup>
 </Project>
