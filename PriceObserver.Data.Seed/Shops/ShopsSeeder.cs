@@ -13,7 +13,7 @@ namespace PriceObserver.Data.Seed.Shops
                 "Intertop",
                 ShopType.Intertop,
                 "intertop.ua",
-                new Uri("https://intertop.ua/upload/iblock/5e9/5e9af99fddb96796799d9a1523ce61ab.png", UriKind.Absolute));
+                new Uri("https://intertop.ua/upload/iblock/5e9/5e9af99fddb96796799d9a1523ce61ab.png"));
             
             ShopInitializer.Initialize(
                 context,
