@@ -31,6 +31,12 @@ export class ItemsComponent implements OnInit {
         if (!shop)
           return;
 
+        if (shop.items.length === 1)
+        {
+          this.shops = this.shops!.filter(x => x != shop);
+          return;
+        }
+
         shop.items = shop.items.filter(x => x.id !== id);
       });
   }

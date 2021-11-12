@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace PriceObserver.Model.Data
 {
@@ -19,5 +20,7 @@ namespace PriceObserver.Model.Data
         
         public int ShopId { get; set; }
         public Shop Shop { get; set; }
+        
+        public IList<ItemPriceChange> PriceChanges { get; set; } 
     }
 }

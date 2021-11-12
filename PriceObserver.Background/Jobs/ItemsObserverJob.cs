@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using PriceObserver.Data.Repositories.Abstract;
+using PriceObserver.Data.Service.Abstract;
 using PriceObserver.Parser.Abstract;
 using PriceObserver.Telegram.Client.Abstract;
 
@@ -29,6 +30,7 @@ namespace PriceObserver.Background.Jobs
                     var itemRepository = scope.ServiceProvider.GetService<IItemRepository>();
                     var parserService = scope.ServiceProvider.GetService<IParserService>();
                     var telegramBotService = scope.ServiceProvider.GetService<ITelegramBotService>();
+                    var itemService = scope.ServiceProvider.GetService<IItemService>();
                     
                     var items = await itemRepository.GetAll();
 
@@ -63,8 +65,7 @@ namespace PriceObserver.Background.Jobs
                         
                         await telegramBotService.SendMessage(item.UserId, message);
 
-                        item.Price = newPrice;
-                        await itemRepository.Update(item);
+                        await itemService.UpdatePrice(item, newPrice);
                     }
 
                     await Task.Delay(TimeSpan.FromMinutes(30), cancellationToken);

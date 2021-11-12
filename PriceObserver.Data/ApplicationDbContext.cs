@@ -8,6 +8,8 @@ namespace PriceObserver.Data
     {
         public DbSet<Item> Items { get; set; }
         
+        public DbSet<ItemPriceChange> ItemPriceChanges { get; set; }
+
         public DbSet<User> Users { get; set; }
 
         public DbSet<Menu> Menus { get; set; }

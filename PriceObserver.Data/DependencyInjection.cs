@@ -21,6 +21,7 @@ namespace PriceObserver.Data
             services.AddScoped<ICommandRepository, CommandRepository>();
             services.Decorate<ICommandRepository, CommandRepositoryCache>();
             services.AddScoped<IItemRepository, ItemRepository>();
+            services.AddScoped<IItemPriceChangeRepository, ItemPriceChangeRepository>();
             services.AddScoped<IMenuCommandRepository, MenuCommandRepository>();
             services.Decorate<IMenuCommandRepository, MenuCommandRepositoryCache>();
             services.AddScoped<IMenuRepository, MenuRepository>();
