@@ -56,5 +56,11 @@ namespace PriceObserver.Data.Service.Concrete
                 })
                 .ToList();
         }
+
+        public async Task Delete(int id)
+        {
+            var item = await _repository.GetById(id);
+            await _repository.Delete(item);
+        }
     }
 }

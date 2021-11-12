@@ -7,5 +7,7 @@ namespace PriceObserver.Data.Service.Abstract
     public interface IItemService
     {
         Task<IList<ShopWithItemsVM>> GetGroupedByUserId(long userId);
+
+        Task Delete(int id);
     }
 }

@@ -22,4 +22,16 @@ export class ItemsComponent implements OnInit {
       });
   }
 
+  remove(id: number): void {
+    this.itemHttpService
+      .delete(id)
+      .subscribe(response => {
+        let shop = this.shops?.find(x => x.items.some(y => y.id === id));
+
+        if (!shop)
+          return;
+
+        shop.items = shop.items.filter(x => x.id !== id);
+      });
+  }
 }

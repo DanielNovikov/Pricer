@@ -15,11 +15,18 @@ namespace PriceObserver.Controllers
             _itemService = itemService;
         }
 
-        [HttpGet("Grouped/{userId:long}")]
+        [HttpGet("grouped/{userId:long}")]
         public async Task<IActionResult> GetGroupedByUserId(long userId)
         {
             var result = await _itemService.GetGroupedByUserId(userId);
             return Ok(result);
+        }
+
+        [HttpDelete("{id:int}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            await _itemService.Delete(id);
+            return NoContent();
         }
     }
 }
