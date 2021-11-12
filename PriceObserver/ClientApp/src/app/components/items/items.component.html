@@ -10,18 +10,28 @@
 
     <div class="items-container">
       <div class="item-container" *ngFor="let item of shop.items">
-        <span class="delete-button" (click)="remove(item.id!)">
-          <img src="https://cdn4.iconfinder.com/data/icons/social-messaging-ui-coloricon-1/21/52-512.png">
-        </span>
-
-        <div class="price-container">
-          <span class="price">
-            {{item.price}}
-            <img src="https://d338t8kmirgyke.cloudfront.net/icons/icon_pngs/000/002/097/original/price.png" />
+        <div class="image-container">
+          <span class="delete-button" (click)="remove(item.id!)">
+            <img src="https://cdn4.iconfinder.com/data/icons/social-messaging-ui-coloricon-1/21/52-512.png">
           </span>
+
+          <div class="price-container">
+            <span class="price">
+              {{item.price}}
+              <img src="https://d338t8kmirgyke.cloudfront.net/icons/icon_pngs/000/002/097/original/price.png" />
+            </span>
+          </div>
+
+          <div class="redirect-container">
+            <a href="{{item.url}}" target="_blank">
+              Перейти
+              <img src="https://cdn2.iconfinder.com/data/icons/game-center-mixed-icons/512/arrow5.png" />
+            </a>
+          </div>
+
+          <img src="{{item.imageUrl}}">
         </div>
 
-        <img src="{{item.imageUrl}}">
         <p>{{item.title}}</p>
       </div>
     </div>
