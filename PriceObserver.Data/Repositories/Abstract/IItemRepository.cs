@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using PriceObserver.Model.Data;
 
@@ -10,7 +11,9 @@ namespace PriceObserver.Data.Repositories.Abstract
         
         Task<Item> GetById(int id);
 
-        Task<List<Item>> GetByUserId(long userId); 
+        Task<List<Item>> GetByUserId(long userId);
+
+        Task<bool> ExistsByUrl(Uri url);
         
         Task Add(Item item);
 

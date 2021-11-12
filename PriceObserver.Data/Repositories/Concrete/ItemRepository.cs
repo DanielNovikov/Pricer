@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
@@ -40,6 +41,14 @@ namespace PriceObserver.Data.Repositories.Concrete
                 .Include(x => x.Shop)
                 .Where(i => i.UserId == userId)
                 .ToListAsync();
+        }
+
+        public async Task<bool> ExistsByUrl(Uri url)
+        {
+            return await _context
+                .Items
+                .AsNoTracking()
+                .AnyAsync(x => x.Url == url);
         }
 
         public async Task Add(Item item)

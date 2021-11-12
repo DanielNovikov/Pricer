@@ -43,6 +43,11 @@ namespace PriceObserver.Telegram.Dialog.Menus.Concrete.NewItemMenuHandler
                 return MenuInputHandlingServiceResult.Fail(urlExtractionResult.Error);
 
             var url = urlExtractionResult.Result;
+
+            var itemExists = await _itemRepository.ExistsByUrl(url);
+            if (itemExists)
+                return MenuInputHandlingServiceResult.Fail("Такой товар уже есть в Вашем списке ☑");
+            
             var parseResult = await _parserService.Parse(url);
 
             if (!parseResult.IsSuccess)
