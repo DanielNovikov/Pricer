@@ -37,17 +37,10 @@ namespace PriceObserver.Background.Jobs
                 allowedUpdateTypes,
                 HandleError,
                 cancellationToken);
-            
+
             await foreach (var update in updateReceiver.YieldUpdatesAsync().WithCancellation(cancellationToken))
             {
-                try
-                {
-                    await HandleUpdate(update);
-                }
-                catch (Exception ex)
-                {
-                    await HandleError(ex, cancellationToken);
-                }
+                await HandleUpdate(update);
             }
         }
 
@@ -64,7 +57,7 @@ namespace PriceObserver.Background.Jobs
 
             await updateHandler!.Handle(update);
         }
-        
+
         private Task HandleError(
             Exception exception,
             CancellationToken cancellationToken)
@@ -72,10 +65,10 @@ namespace PriceObserver.Background.Jobs
             using var scope = _serviceProvider.CreateScope();
 
             var logger = scope.ServiceProvider.GetService<ILogger<TelegramUpdateReceiverJob>>();
-            
+
             logger.LogError($@"Message: {exception.Message}
 InnerException: {exception.InnerException}");
-            
+
             return Task.CompletedTask;
         }
     }
