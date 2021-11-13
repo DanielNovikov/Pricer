@@ -3,10 +3,12 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using PriceObserver.Model.Converters.Abstract;
 using PriceObserver.Telegram.Client.Abstract;
 using PriceObserver.Telegram.Dialog.Input.Abstract;
-using Telegram.Bot.Args;
+using Telegram.Bot.Extensions.Polling;
+using Telegram.Bot.Types;
 using Telegram.Bot.Types.Enums;
 
 namespace PriceObserver.Background.Jobs
@@ -28,10 +30,19 @@ namespace PriceObserver.Background.Jobs
         {
             var client = _telegramBot.GetClient();
 
-            client.OnUpdate += OnUpdate;
-
             var allowedUpdateTypes = new[] { UpdateType.Message };
-            client.StartReceiving(allowedUpdateTypes, cancellationToken);
+
+            var updateReceiver = new QueuedUpdateReceiver(client);
+
+            updateReceiver.StartReceiving(
+                allowedUpdateTypes,
+                HandleError,
+                cancellationToken);
+            
+            await foreach (var update in updateReceiver.YieldUpdatesAsync().WithCancellation(cancellationToken))
+            {
+                await HandleUpdate(update);
+            }
         }
 
         public Task StopAsync(CancellationToken cancellationToken)
@@ -39,7 +50,7 @@ namespace PriceObserver.Background.Jobs
             return Task.CompletedTask;
         }
 
-        private async void OnUpdate(object sender, UpdateEventArgs updateEventArgs)
+        private async Task HandleUpdate(Update update)
         {
             using var scope = _serviceProvider.CreateScope();
 
@@ -47,7 +58,6 @@ namespace PriceObserver.Background.Jobs
             var inputHandler = scope.ServiceProvider.GetService<IInputHandler>();
             var telegramBotService = scope.ServiceProvider.GetService<ITelegramBotService>();
             
-            var update = updateEventArgs.Update;
             var updateDto = updateConverter!.Convert(update);
             var userId = updateDto.UserId;
 
@@ -67,6 +77,20 @@ namespace PriceObserver.Background.Jobs
             }
 
             await telegramBotService!.SendMessage(userId, result.Result.Message);
+        }
+        
+        private Task HandleError(
+            Exception exception,
+            CancellationToken cancellationToken)
+        {
+            using var scope = _serviceProvider.CreateScope();
+
+            var logger = scope.ServiceProvider.GetService<ILogger<TelegramUpdateReceiverJob>>();
+            
+            logger.LogError($@"Message: {exception.Message}
+InnerException: {exception.InnerException}");
+            
+            return Task.CompletedTask;
         }
     }
 }

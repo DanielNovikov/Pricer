@@ -14,7 +14,7 @@ namespace PriceObserver.Telegram.Client.Concrete
             InitializeClient(telegramClientOptions);
         }
 
-        public TelegramBotClient GetClient()
+        public ITelegramBotClient GetClient()
         {
             return _client;
         }

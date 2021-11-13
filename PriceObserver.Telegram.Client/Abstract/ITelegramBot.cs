@@ -4,6 +4,6 @@ namespace PriceObserver.Telegram.Client.Abstract
 {
     public interface ITelegramBot
     {
-        TelegramBotClient GetClient();
+        ITelegramBotClient GetClient();
     }
 }
