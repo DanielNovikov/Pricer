@@ -3,36 +3,36 @@ using PriceObserver.Data.Repositories.Abstract;
 using PriceObserver.Data.Service.Abstract;
 using PriceObserver.Model.Converters.Abstract;
 using PriceObserver.Model.Telegram.Common;
+using PriceObserver.Model.Telegram.Input;
 using PriceObserver.Telegram.Dialog.Common.Abstract;
-using Telegram.Bot.Types;
 
 namespace PriceObserver.Telegram.Dialog.Common.Concrete
 {
-    public class ChatAuthorizationService : IChatAuthorizationService
+    public class AuthorizationService : IAuthorizationService
     {
         private readonly IUserRepository _userRepository;
         private readonly IUserService _userService;
-        private readonly IChatToUserConverter _chatToUserConverter;
+        private readonly IUpdateDtoToUserConverter _updateDtoConverter;
         
-        public ChatAuthorizationService(
+        public AuthorizationService(
             IUserRepository userRepository,
             IUserService userService,
-            IChatToUserConverter chatToUserConverter)
+            IUpdateDtoToUserConverter updateDtoConverter)
         {
             _userRepository = userRepository;
             _userService = userService;
-            _chatToUserConverter = chatToUserConverter;
+            _updateDtoConverter = updateDtoConverter;
         }
 
-        public async Task<AuthorizationResult> Authorize(Chat chat)
+        public async Task<AuthorizationResult> Authorize(UpdateDto update)
         {
-            var userId = chat.Id;
+            var userId = update.UserId;
             var user = await _userRepository.GetById(userId);
             
             if (user != null)
                 return AuthorizationResult.LoggedIn(user);
             
-            user = _chatToUserConverter.Convert(chat);
+            user = _updateDtoConverter.Convert(update);
 
             var createdUser = await _userService.Create(user);
             

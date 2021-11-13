@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace PriceObserver.Model.Service
+﻿namespace PriceObserver.Model.Service
 {
     public class ItemVM
     {

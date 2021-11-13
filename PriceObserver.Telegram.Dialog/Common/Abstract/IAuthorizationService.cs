@@ -1,11 +1,11 @@
 ﻿using System.Threading.Tasks;
 using PriceObserver.Model.Telegram.Common;
-using Telegram.Bot.Types;
+using PriceObserver.Model.Telegram.Input;
 
 namespace PriceObserver.Telegram.Dialog.Common.Abstract
 {
-    public interface IChatAuthorizationService
+    public interface IAuthorizationService
     {
-        Task<AuthorizationResult> Authorize(Chat chat);
+        Task<AuthorizationResult> Authorize(UpdateDto update);
     }
 }

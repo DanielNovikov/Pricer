@@ -1,14 +1,11 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using PriceObserver.Data.Repositories.Abstract;
 using PriceObserver.Model.Data;
 using PriceObserver.Model.Data.Enums;
+using PriceObserver.Model.Telegram.Input;
 using PriceObserver.Model.Telegram.Menu;
 using PriceObserver.Parser.Abstract;
-using PriceObserver.Telegram.Dialog.Common.Extensions;
 using PriceObserver.Telegram.Dialog.Menus.Abstract;
-using Telegram.Bot.Types;
-using User = PriceObserver.Model.Data.User;
 
 namespace PriceObserver.Telegram.Dialog.Menus.Concrete.NewItemMenuHandler
 {
@@ -33,11 +30,9 @@ namespace PriceObserver.Telegram.Dialog.Menus.Concrete.NewItemMenuHandler
 
         public MenuType Type => MenuType.NewItem;
         
-        public async Task<MenuInputHandlingServiceResult> Handle(Update update, User user)
+        public async Task<MenuInputHandlingServiceResult> Handle(MessageDto message)
         {
-            var message = update.GetMessageText();
-
-            var urlExtractionResult = _urlExtractor.Extract(message);
+            var urlExtractionResult = _urlExtractor.Extract(message.Text);
 
             if (!urlExtractionResult.IsSuccess)
                 return MenuInputHandlingServiceResult.Fail(urlExtractionResult.Error);
@@ -62,7 +57,7 @@ namespace PriceObserver.Telegram.Dialog.Menus.Concrete.NewItemMenuHandler
                 Url = url,
                 Title = parsedItem.Title,
                 ImageUrl = parsedItem.ImageUrl,
-                UserId = user.Id, 
+                UserId = message.User.Id, 
                 ShopId = shop.Id
             };
 

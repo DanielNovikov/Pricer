@@ -3,8 +3,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using PriceObserver.Model.Converters.Abstract;
 using PriceObserver.Telegram.Client.Abstract;
-using PriceObserver.Telegram.Dialog.Common.Extensions;
 using PriceObserver.Telegram.Dialog.Input.Abstract;
 using Telegram.Bot.Args;
 using Telegram.Bot.Types.Enums;
@@ -43,28 +43,30 @@ namespace PriceObserver.Background.Jobs
         {
             using var scope = _serviceProvider.CreateScope();
 
+            var updateConverter = scope.ServiceProvider.GetService<IUpdateToUpdateDtoConverter>();
             var inputHandler = scope.ServiceProvider.GetService<IInputHandler>();
             var telegramBotService = scope.ServiceProvider.GetService<ITelegramBotService>();
-
+            
             var update = updateEventArgs.Update;
-            var userId = update.GetUserId();
+            var updateDto = updateConverter!.Convert(update);
+            var userId = updateDto.UserId;
 
-            var result = await inputHandler.Handle(update);
+            var result = await inputHandler!.Handle(updateDto);
 
             if (!result.IsSuccess)
             {
-                await telegramBotService.SendMessage(userId, result.Error);
+                await telegramBotService!.SendMessage(userId, result.Error);
                 return;
             }
 
             var hasKeyboard = result.Result.MenuKeyboard != null;
             if (hasKeyboard)
             {
-                await telegramBotService.SendKeyboard(userId, result.Result.Message, result.Result.MenuKeyboard);
+                await telegramBotService!.SendKeyboard(userId, result.Result.Message, result.Result.MenuKeyboard);
                 return;
             }
 
-            await telegramBotService.SendMessage(userId, result.Result.Message);
+            await telegramBotService!.SendMessage(userId, result.Result.Message);
         }
     }
 }

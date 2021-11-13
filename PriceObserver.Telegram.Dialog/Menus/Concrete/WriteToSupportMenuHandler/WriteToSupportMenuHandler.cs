@@ -1,11 +1,9 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using PriceObserver.Model.Data.Enums;
+using PriceObserver.Model.Telegram.Input;
 using PriceObserver.Model.Telegram.Menu;
-using PriceObserver.Telegram.Dialog.Common.Extensions;
 using PriceObserver.Telegram.Dialog.Menus.Abstract;
-using Telegram.Bot.Types;
-using User = PriceObserver.Model.Data.User;
 
 namespace PriceObserver.Telegram.Dialog.Menus.Concrete.WriteToSupportMenuHandler
 {
@@ -20,11 +18,10 @@ namespace PriceObserver.Telegram.Dialog.Menus.Concrete.WriteToSupportMenuHandler
         
         public MenuType Type => MenuType.Support;
         
-        public Task<MenuInputHandlingServiceResult> Handle(Update update, User user)
+        public Task<MenuInputHandlingServiceResult> Handle(MessageDto message)
         {
-            var message = update.GetMessageText();
-
-            var log = $@"Сообщение: {message}
+            var user = message.User;
+            var log = $@"Сообщение: {message.Text}
 Логин: @{user.Username} - {user.FirstName} {user.LastName}";
             
             _logger.LogInformation(log);

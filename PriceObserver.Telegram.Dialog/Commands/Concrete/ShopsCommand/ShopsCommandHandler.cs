@@ -4,7 +4,6 @@ using PriceObserver.Model.Telegram.Commands;
 using PriceObserver.Model.Telegram.Common;
 using PriceObserver.Telegram.Dialog.Commands.Abstract;
 using PriceObserver.Telegram.Dialog.Common.Abstract;
-using Telegram.Bot.Types;
 using User = PriceObserver.Model.Data.User;
 
 namespace PriceObserver.Telegram.Dialog.Commands.Concrete.ShopsCommand

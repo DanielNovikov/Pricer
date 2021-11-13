@@ -1,6 +1,4 @@
-﻿using System;
-using Microsoft.Extensions.Logging;
-using PriceObserver.Data.Seed.Dialog;
+﻿using PriceObserver.Data.Seed.Dialog;
 using PriceObserver.Data.Seed.Shops;
 
 namespace PriceObserver.Data.Seed

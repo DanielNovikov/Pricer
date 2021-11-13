@@ -2,10 +2,9 @@
 using System.Collections.Immutable;
 using System.Linq;
 using System.Threading.Tasks;
+using PriceObserver.Model.Telegram.Input;
 using PriceObserver.Model.Telegram.Menu;
 using PriceObserver.Telegram.Dialog.Menus.Abstract;
-using Telegram.Bot.Types;
-using User = PriceObserver.Model.Data.User;
 
 namespace PriceObserver.Telegram.Dialog.Menus.Concrete
 {
@@ -18,14 +17,15 @@ namespace PriceObserver.Telegram.Dialog.Menus.Concrete
             _handlers = handlers.ToImmutableList();
         }
 
-        public async Task<MenuInputHandlingServiceResult> Handle(Update update, User user)
+        public async Task<MenuInputHandlingServiceResult> Handle(MessageDto message)
         {
-            if (!user.Menu.CanExpectInput)
+            var userMenu = message.User.Menu;
+            if (!userMenu.CanExpectInput)
                 return MenuInputHandlingServiceResult.Fail("Неверная комманда");
             
-            var handler = _handlers.Single(x => x.Type == user.Menu.Type);
+            var handler = _handlers.Single(x => x.Type == userMenu.Type);
 
-            return await handler.Handle(update, user);
+            return await handler.Handle(message);
         }
     }
 }

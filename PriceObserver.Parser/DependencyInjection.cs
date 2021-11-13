@@ -4,9 +4,6 @@ using AngleSharp.Html.Parser;
 using Microsoft.Extensions.DependencyInjection;
 using PriceObserver.Parser.Abstract;
 using PriceObserver.Parser.Concrete;
-using PriceObserver.Parser.Concrete.Answear;
-using PriceObserver.Parser.Concrete.Intertop;
-using PriceObserver.Parser.Concrete.MdFashion;
 
 namespace PriceObserver.Parser
 {

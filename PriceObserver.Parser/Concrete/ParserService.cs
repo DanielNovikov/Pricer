@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using PriceObserver.Data.Repositories.Abstract;
-using PriceObserver.Model.Data;
 using PriceObserver.Model.Parser;
 using PriceObserver.Parser.Abstract;
 

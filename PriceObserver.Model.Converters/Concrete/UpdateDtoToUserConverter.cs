@@ -1,16 +1,16 @@
 ﻿using PriceObserver.Model.Converters.Abstract;
-using Telegram.Bot.Types;
+using PriceObserver.Model.Telegram.Input;
 using User = PriceObserver.Model.Data.User;
 
 namespace PriceObserver.Model.Converters.Concrete
 {
-    public class ChatToUserConverter : IChatToUserConverter
+    public class UpdateDtoToUserConverter : IUpdateDtoToUserConverter
     {
-        public User Convert(Chat source)
+        public User Convert(UpdateDto source)
         {
             return new User
             {
-                Id = source.Id,
+                Id = source.UserId,
                 Username = source.Username,
                 FirstName = source.FirstName,
                 LastName = source.LastName
