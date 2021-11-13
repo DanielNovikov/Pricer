@@ -20,6 +20,7 @@ namespace PriceObserver.Telegram.Client
 
             services.AddSingleton<ITelegramBot, TelegramBot>();
             services.AddTransient<ITelegramBotService, TelegramBotService>();
+            services.AddTransient<IUpdateHandler, UpdateHandler>();
             
             services.ConfigureCommands();
         }

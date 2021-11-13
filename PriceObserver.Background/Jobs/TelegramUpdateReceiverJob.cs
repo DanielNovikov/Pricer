@@ -4,12 +4,11 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using PriceObserver.Model.Converters.Abstract;
 using PriceObserver.Telegram.Client.Abstract;
-using PriceObserver.Telegram.Dialog.Input.Abstract;
 using Telegram.Bot.Extensions.Polling;
 using Telegram.Bot.Types;
 using Telegram.Bot.Types.Enums;
+using IUpdateHandler = PriceObserver.Telegram.Client.Abstract.IUpdateHandler;
 
 namespace PriceObserver.Background.Jobs
 {
@@ -41,7 +40,14 @@ namespace PriceObserver.Background.Jobs
             
             await foreach (var update in updateReceiver.YieldUpdatesAsync().WithCancellation(cancellationToken))
             {
-                await HandleUpdate(update);
+                try
+                {
+                    await HandleUpdate(update);
+                }
+                catch (Exception ex)
+                {
+                    await HandleError(ex, cancellationToken);
+                }
             }
         }
 
@@ -54,29 +60,9 @@ namespace PriceObserver.Background.Jobs
         {
             using var scope = _serviceProvider.CreateScope();
 
-            var updateConverter = scope.ServiceProvider.GetService<IUpdateToUpdateDtoConverter>();
-            var inputHandler = scope.ServiceProvider.GetService<IInputHandler>();
-            var telegramBotService = scope.ServiceProvider.GetService<ITelegramBotService>();
-            
-            var updateDto = updateConverter!.Convert(update);
-            var userId = updateDto.UserId;
+            var updateHandler = scope.ServiceProvider.GetService<IUpdateHandler>();
 
-            var result = await inputHandler!.Handle(updateDto);
-
-            if (!result.IsSuccess)
-            {
-                await telegramBotService!.SendMessage(userId, result.Error);
-                return;
-            }
-
-            var hasKeyboard = result.Result.MenuKeyboard != null;
-            if (hasKeyboard)
-            {
-                await telegramBotService!.SendKeyboard(userId, result.Result.Message, result.Result.MenuKeyboard);
-                return;
-            }
-
-            await telegramBotService!.SendMessage(userId, result.Result.Message);
+            await updateHandler!.Handle(update);
         }
         
         private Task HandleError(
