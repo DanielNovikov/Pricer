@@ -38,10 +38,13 @@ namespace PriceObserver.Background.Jobs
                 HandleError,
                 cancellationToken);
 
-            await foreach (var update in updateReceiver.YieldUpdatesAsync().WithCancellation(cancellationToken))
+            Task.Run(async () =>
             {
-                await HandleUpdate(update);
-            }
+                await foreach (var update in updateReceiver.YieldUpdatesAsync().WithCancellation(cancellationToken))
+                {
+                    await HandleUpdate(update);
+                }
+            }, cancellationToken);
         }
 
         public Task StopAsync(CancellationToken cancellationToken)
