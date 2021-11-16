@@ -12,20 +12,20 @@
       <div class="item-container" *ngFor="let item of shop.items">
         <div class="image-container">
           <span class="delete-button" (click)="remove(item.id!)">
-            <img src="https://cdn4.iconfinder.com/data/icons/social-messaging-ui-coloricon-1/21/52-512.png">
+            <img src="assets/images/trash.png">
           </span>
 
           <div class="price-container">
             <span class="price">
               {{item.price}}
-              <img src="https://d338t8kmirgyke.cloudfront.net/icons/icon_pngs/000/002/097/original/price.png" />
+              <img src="assets/images/price.png" />
             </span>
           </div>
 
           <div class="redirect-container">
             <a href="{{item.url}}" target="_blank">
               Перейти
-              <img src="https://cdn2.iconfinder.com/data/icons/game-center-mixed-icons/512/arrow5.png" />
+              <img src="assets/images/arrow.png" />
             </a>
           </div>
 
