@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net5.0</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.12" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\PriceObserver.Data.Service\PriceObserver.Data.Service.csproj" />
+      <ProjectReference Include="..\PriceObserver.Data\PriceObserver.Data.csproj" />
+      <ProjectReference Include="..\PriceObserver.Model\PriceObserver.Model.csproj" />
+    </ItemGroup>
+
+</Project>

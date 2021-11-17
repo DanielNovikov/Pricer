@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using PriceObserver.Authentication;
 using PriceObserver.Background;
 using PriceObserver.Data;
 using PriceObserver.Data.Service;
@@ -26,6 +27,9 @@ namespace PriceObserver
         {   
             services.AddControllersWithViews();
             services.AddSpaStaticFiles(configuration => { configuration.RootPath = "wwwroot"; });
+            
+            services.AddJwtAuthentication();
+            services.AddAuthenticationServices();
             
             services.AddTelegramBot(_configuration);
             services.AddTelegramDialogServices();
@@ -51,6 +55,9 @@ namespace PriceObserver
             
             app.UseRouting();
 
+            app.UseAuthentication();
+            app.UseAuthorization();
+            
             app.UseCors(builder => builder
                 .AllowAnyHeader()
                 .AllowAnyMethod()

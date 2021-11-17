@@ -5,6 +5,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <ProjectReference Include="..\PriceObserver.Authentication\PriceObserver.Authentication.csproj" />
         <ProjectReference Include="..\PriceObserver.Background\PriceObserver.Background.csproj" />
         <ProjectReference Include="..\PriceObserver.Data.Seed\PriceObserver.Data.Seed.csproj" />
         <ProjectReference Include="..\PriceObserver.Data\PriceObserver.Data.csproj" />
@@ -21,8 +22,6 @@
 
     <ItemGroup>
       <Folder Include="ClientApp\src\app\components" />
-      <Folder Include="ClientApp\src\app\models" />
-      <Folder Include="ClientApp\src\app\shared" />
       <Folder Include="wwwroot" />
     </ItemGroup>
 </Project>

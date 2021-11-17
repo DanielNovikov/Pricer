@@ -18,5 +18,7 @@ namespace PriceObserver.Model.Data
         
         public int MenuId { get; set; }
         public Menu Menu { get; set; }
+        
+        public IList<UserToken> Tokens { get; set; }
     }
 }

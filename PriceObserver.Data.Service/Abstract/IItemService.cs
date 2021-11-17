@@ -11,6 +11,6 @@ namespace PriceObserver.Data.Service.Abstract
 
         Task UpdatePrice(Item item, int price);
         
-        Task Delete(int id);
+        Task Delete(int id, long userId);
     }
 }

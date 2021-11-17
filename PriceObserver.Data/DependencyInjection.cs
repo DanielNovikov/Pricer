@@ -27,6 +27,7 @@ namespace PriceObserver.Data
             services.AddScoped<IMenuRepository, MenuRepository>();
             services.Decorate<IMenuRepository, MenuRepositoryCache>();
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IUserTokenRepository, UserTokenRepository>();
             services.AddScoped<IShopRepository, ShopRepository>();
             services.Decorate<IShopRepository, ShopRepositoryCache>();
         }

@@ -78,9 +78,13 @@ namespace PriceObserver.Data.Service.Concrete
             await _repository.Update(item);
         }
 
-        public async Task Delete(int id)
+        public async Task Delete(int id, long userId)
         {
             var item = await _repository.GetById(id);
+
+            if (item.UserId != userId)
+                throw new InvalidOperationException();
+            
             await _repository.Delete(item);
         }
     }

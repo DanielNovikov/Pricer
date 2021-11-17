@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {ItemHttpService} from "../../shared/item-http.service";
-import {ShopWithItems} from "../../models/shop-with-items";
+import {ItemHttpService} from "../../shared/services/item-http.service";
+import {ShopWithItems} from "../../shared/models/shop-with-items";
 
 @Component({
   selector: 'app-items',
@@ -15,7 +15,7 @@ export class ItemsComponent implements OnInit {
 
   ngOnInit(): void {
     this.itemHttpService
-      .getGrouped(382190306)
+      .getGrouped()
       .subscribe(data => {
         this.shops = data;
         console.log(data);
@@ -26,10 +26,7 @@ export class ItemsComponent implements OnInit {
     this.itemHttpService
       .delete(id)
       .subscribe(response => {
-        let shop = this.shops?.find(x => x.items.some(y => y.id === id));
-
-        if (!shop)
-          return;
+        let shop = this.shops?.find(x => x.items.some(y => y.id === id))!;
 
         if (shop.items.length === 1)
         {

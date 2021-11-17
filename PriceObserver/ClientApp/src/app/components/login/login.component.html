@@ -1,0 +1,20 @@
+<div class="unauthorized-container">
+  <div class="error-container">
+    <img src="https://cdn.picpng.com/red/red-cross-error-crossed-wrong-112790.png" />
+  </div>
+
+  <div class="message-container">
+    <p *ngIf="invalidToken">
+      Токен не валидный ❗
+    </p>
+
+    <p *ngIf="tokenExpired">
+      Токен уже был использован ❗
+    </p>
+  </div>
+
+
+  <div class="go-to-website">
+    <span>Пожалуйста, перейдите на сайт используя комманду <b>'Сайт 🌍'</b> в чате</span>
+  </div>
+</div>

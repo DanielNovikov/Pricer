@@ -1,4 +1,6 @@
 ﻿using System.Threading.Tasks;
+using PriceObserver.Data.Repositories.Abstract;
+using PriceObserver.Data.Service.Abstract;
 using PriceObserver.Model.Data.Enums;
 using PriceObserver.Model.Telegram.Commands;
 using PriceObserver.Model.Telegram.Common;
@@ -9,16 +11,31 @@ namespace PriceObserver.Telegram.Dialog.Commands.Concrete.WebsiteCommand
 {
     public class WebsiteCommandHandler : ICommandHandler
     {
+        private readonly IUserTokenRepository _userTokenRepository;
+        private readonly IUserTokenService _userTokenService;
+        
+        public WebsiteCommandHandler(
+            IUserTokenRepository userTokenRepository,
+            IUserTokenService userTokenService)
+        {
+            _userTokenRepository = userTokenRepository;
+            _userTokenService = userTokenService;
+        }
+
         public CommandType Type => CommandType.Website;
         
-        public Task<CommandHandlingServiceResult> Handle(User user)
+        public async Task<CommandHandlingServiceResult> Handle(User user)
         {
-            var url = "Нажмите на <a href='https://priceobserver.com'>ссылку</a> для перехода на сайт";
-            
-            var result = ReplyResult.Reply(url);
-            var serviceResult = CommandHandlingServiceResult.Success(result);
+            var userToken = await _userTokenRepository.GetNotExpiredByUserId(user.Id);
 
-            return Task.FromResult(serviceResult);
+            if (userToken == null)
+                userToken = await _userTokenService.CreateForUser(user.Id);
+
+            var url = $"https://priceobserver.com/login/{userToken.Token}"; // TODO: place my domain
+            var message = $"Нажмите на <a href='{url}'>ссылку</a> для перехода на сайт";
+            
+            var result = ReplyResult.Reply(message);
+            return CommandHandlingServiceResult.Success(result);
         }
     }
 }

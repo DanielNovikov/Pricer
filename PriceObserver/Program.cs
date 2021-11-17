@@ -15,7 +15,7 @@ namespace PriceObserver
         public static void Main(string[] args)
         {
             var host = CreateHostBuilder(args).Build();
-
+            
             SeedData(host);
 
             InitializeLogger();
@@ -49,7 +49,7 @@ namespace PriceObserver
                 .Enrich.FromLogContext()
                 .MinimumLevel.Verbose()
                 .WriteTo.TeleSink(
-                    "1073477516:AAG7lyhYOzDvKBz8Rp1BUVBjYBbxl-uZbAQ",
+                    "1073477516:AAEbiCBoQhFQqCbQkwj7q5nIuXuR3aa6NlU",
                     "382190306")
                 .CreateLogger();
         }

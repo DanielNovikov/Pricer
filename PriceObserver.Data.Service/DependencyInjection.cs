@@ -10,6 +10,7 @@ namespace PriceObserver.Data.Service
         {
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<IItemService, ItemService>();
+            services.AddTransient<IUserTokenService, UserTokenService>();
         }
     }
 }
