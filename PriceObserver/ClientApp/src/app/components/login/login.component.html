@@ -1,4 +1,4 @@
-<div class="unauthorized-container">
+<div class="unauthorized-container" *ngIf="invalidToken || tokenExpired">
   <div class="error-container">
     <img src="https://cdn.picpng.com/red/red-cross-error-crossed-wrong-112790.png" />
   </div>
@@ -15,6 +15,6 @@
 
 
   <div class="go-to-website">
-    <span>Пожалуйста, перейдите на сайт используя комманду <b>'Сайт 🌍'</b> в чате</span>
+    <span>Пожалуйста, перейдите на сайт в <a href="https://t.me/pricer_official_bot" target="_blank">боте</a> используя комманду <b>'Сайт 🌍'</b>.</span>
   </div>
 </div>
