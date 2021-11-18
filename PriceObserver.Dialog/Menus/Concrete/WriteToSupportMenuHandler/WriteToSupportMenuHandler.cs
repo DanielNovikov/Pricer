@@ -24,7 +24,7 @@ namespace PriceObserver.Dialog.Menus.Concrete.WriteToSupportMenuHandler
         {
             var user = message.User;
             var log = $@"Сообщение: {message.Text}
-Имя: {user.GetFullName()}";
+Имя: {user.GetFullName()} (Id: {user.Id})";
 
             if (!string.IsNullOrEmpty(user.Username))
                 log += $"{Environment.NewLine}Логин: {user.Username}";
