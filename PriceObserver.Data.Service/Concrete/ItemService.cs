@@ -4,7 +4,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using PriceObserver.Data.Repositories.Abstract;
 using PriceObserver.Data.Service.Abstract;
-using PriceObserver.Model.Converters.Abstract;
 using PriceObserver.Model.Data;
 using PriceObserver.Model.Service;
 
@@ -14,21 +13,15 @@ namespace PriceObserver.Data.Service.Concrete
     {
         private readonly IItemRepository _repository;
         private readonly IShopRepository _shopRepository;
-        private readonly IShopToShopVMConverter _shopConverter;
-        private readonly IItemToItemVMConverter _itemConverter;
         private readonly IItemPriceChangeRepository _priceChangeRepository;
         
         public ItemService(
             IItemRepository repository, 
             IShopRepository shopRepository,
-            IShopToShopVMConverter shopConverter, 
-            IItemToItemVMConverter itemConverter, 
             IItemPriceChangeRepository priceChangeRepository)
         {
             _repository = repository;
             _shopRepository = shopRepository;
-            _shopConverter = shopConverter;
-            _itemConverter = itemConverter;
             _priceChangeRepository = priceChangeRepository;
         }
 
@@ -49,17 +42,20 @@ namespace PriceObserver.Data.Service.Concrete
                         Shop = shop,
                         Items = grouped.ToList()
                     })
-                .Select(x =>
-                {
-                    var shopVM = _shopConverter.Convert(x.Shop);
-
-                    shopVM.Items = x.Items
-                        .Select(y => _itemConverter.Convert(y))
-                        .ToList();
-                    
-                    return shopVM;
-                })
+                .Select(x => CreateShopVM(x.Shop, x.Items))
                 .ToList();
+        }
+
+        private static ShopVM CreateShopVM(Shop shop, IList<Item> items)
+        {
+            var address = $"https://{shop.Host}";
+            var logoUrl = shop.LogoUrl.ToString();
+
+            var itemVMs = items
+                .Select(y => y.ToVM())
+                .ToList();
+
+            return new ShopVM(address, logoUrl, itemVMs);
         }
 
         public async Task UpdatePrice(Item item, int price)

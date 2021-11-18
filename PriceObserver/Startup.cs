@@ -8,7 +8,6 @@ using PriceObserver.Background;
 using PriceObserver.Data;
 using PriceObserver.Data.Service;
 using PriceObserver.Dialog;
-using PriceObserver.Model.Converters;
 using PriceObserver.Parser;
 using PriceObserver.Telegram;
 
@@ -36,7 +35,6 @@ namespace PriceObserver
             services.AddParserServices();
             services.AddData(_configuration);
             services.AddDataServices();
-            services.AddConverters();
             services.AddBackgroundJobs();
 
             services.AddCors();

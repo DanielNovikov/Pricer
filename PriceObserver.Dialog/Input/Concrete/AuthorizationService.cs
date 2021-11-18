@@ -2,7 +2,6 @@
 using PriceObserver.Data.Repositories.Abstract;
 using PriceObserver.Data.Service.Abstract;
 using PriceObserver.Dialog.Input.Abstract;
-using PriceObserver.Model.Converters.Abstract;
 using PriceObserver.Model.Dialog.Common;
 using PriceObserver.Model.Dialog.Input;
 
@@ -12,16 +11,13 @@ namespace PriceObserver.Dialog.Input.Concrete
     {
         private readonly IUserRepository _userRepository;
         private readonly IUserService _userService;
-        private readonly IUpdateDtoToUserConverter _updateDtoConverter;
         
         public AuthorizationService(
             IUserRepository userRepository,
-            IUserService userService,
-            IUpdateDtoToUserConverter updateDtoConverter)
+            IUserService userService)
         {
             _userRepository = userRepository;
             _userService = userService;
-            _updateDtoConverter = updateDtoConverter;
         }
 
         public async Task<AuthorizationResult> Authorize(UpdateDto update)
@@ -31,8 +27,8 @@ namespace PriceObserver.Dialog.Input.Concrete
             
             if (user is not null)
                 return AuthorizationResult.LoggedIn(user);
-            
-            user = _updateDtoConverter.Convert(update);
+
+            user = update.ToUser();
 
             var createdUser = await _userService.Create(user);
             

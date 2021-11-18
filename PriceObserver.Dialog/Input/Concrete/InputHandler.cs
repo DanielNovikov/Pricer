@@ -1,7 +1,6 @@
 ﻿using System.Threading.Tasks;
 using PriceObserver.Data.Repositories.Abstract;
 using PriceObserver.Dialog.Commands.Abstract;
-using PriceObserver.Dialog.Common.Abstract;
 using PriceObserver.Dialog.Input.Abstract;
 using PriceObserver.Dialog.Menus.Abstract;
 using PriceObserver.Model.Dialog.Input;

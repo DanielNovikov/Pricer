@@ -1,9 +1,9 @@
 ﻿using System.Threading.Tasks;
 using PriceObserver.Data.Repositories.Abstract;
 using PriceObserver.Dialog.Common.Abstract;
+using PriceObserver.Dialog.Common.Extensions;
 using PriceObserver.Dialog.Input.Abstract;
 using PriceObserver.Dialog.Menus.Abstract;
-using PriceObserver.Model.Converters.Extensions;
 using PriceObserver.Model.Data;
 using PriceObserver.Model.Dialog.Common;
 using CommandType = PriceObserver.Model.Data.Enums.CommandType;

@@ -1,9 +1,6 @@
-﻿using System;
-using System.Threading.Tasks;
-using Microsoft.Extensions.Logging;
+﻿using System.Threading.Tasks;
 using PriceObserver.Dialog.Common.Abstract;
 using PriceObserver.Dialog.Menus.Abstract;
-using PriceObserver.Model.Converters.Extensions;
 using PriceObserver.Model.Data.Enums;
 using PriceObserver.Model.Dialog.Input;
 using PriceObserver.Model.Dialog.Menu;

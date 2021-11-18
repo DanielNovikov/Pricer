@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 using PriceObserver.Dialog.Input.Abstract;
-using PriceObserver.Model.Converters.Abstract;
+using PriceObserver.Model.Dialog.Input;
 using PriceObserver.Telegram.Abstract;
 using Telegram.Bot.Types;
 
@@ -8,18 +8,15 @@ namespace PriceObserver.Telegram.Concrete
 {
     public class UpdateHandler : IUpdateHandler
     {
-        private readonly IUpdateToUpdateDtoConverter _updateDtoConverter;
         private readonly IInputHandler _inputHandler;
         private readonly ITelegramBotService _telegramBotService;
         private readonly IReplyKeyboardMarkupBuilder _keyboardBuilder;
         
         public UpdateHandler(
-            IUpdateToUpdateDtoConverter updateDtoConverter,
             IInputHandler inputHandler, 
             ITelegramBotService telegramBotService,
             IReplyKeyboardMarkupBuilder keyboardBuilder)
         {
-            _updateDtoConverter = updateDtoConverter;
             _inputHandler = inputHandler;
             _telegramBotService = telegramBotService;
             _keyboardBuilder = keyboardBuilder;
@@ -27,7 +24,7 @@ namespace PriceObserver.Telegram.Concrete
 
         public async Task Handle(Update update)
         {
-            var updateDto = _updateDtoConverter.Convert(update);
+            var updateDto = update.ToDto();
             var userId = updateDto.UserId;
 
             var serviceResult = await _inputHandler.Handle(updateDto);

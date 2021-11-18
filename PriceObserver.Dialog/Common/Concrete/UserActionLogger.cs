@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using PriceObserver.Dialog.Common.Abstract;
-using PriceObserver.Model.Converters.Extensions;
+using PriceObserver.Dialog.Common.Extensions;
 using PriceObserver.Model.Data;
 
 namespace PriceObserver.Dialog.Common.Concrete

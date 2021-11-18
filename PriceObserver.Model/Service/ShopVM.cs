@@ -4,10 +4,20 @@ namespace PriceObserver.Model.Service
 {
     public class ShopVM
     {
-        public string Address { get; set; }
-     
-        public string LogoUrl { get; set; }
+        public ShopVM(
+            string address,
+            string logoUrl,
+            IList<ItemVM> items)
+        {
+            Address = address;
+            LogoUrl = logoUrl;
+            Items = items;
+        }
         
-        public IList<ItemVM> Items { get; set; }
+        public string Address { get; }
+     
+        public string LogoUrl { get; }
+
+        public IList<ItemVM> Items { get; }
     }
 }
