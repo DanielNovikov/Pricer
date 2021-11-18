@@ -45,7 +45,7 @@ namespace PriceObserver.Dialog.Input.Concrete
             }
             
             var command = await _commandRepository.GetByTitle(message.Text);
-            if (command == null)
+            if (command is null)
             {
                 var menuInputHandlingServiceResult = await _menuInputHandlerService.Handle(message);
                 return InputHandlingServiceResult.FromServiceResult(menuInputHandlingServiceResult);

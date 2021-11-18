@@ -14,7 +14,7 @@ namespace PriceObserver.Data.Seed.Dialog.Initializers.Common
         {
             var command = context.Commands.SingleOrDefault(x => x.Type == type);
 
-            return command != null
+            return command is not null
                 ? Update(context, command, title, menuToRedirect)
                 : Add(context, type, title, menuToRedirect);
         }

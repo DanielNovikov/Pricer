@@ -16,7 +16,7 @@ namespace PriceObserver.Data.Seed.Dialog.Initializers.Common
         {
             var menu = context.Menus.SingleOrDefault(x => x.Type == type);
 
-            return menu != null
+            return menu is not null
                 ? Update(context, menu, text, canExpectInput, isDefault, parent)
                 : Add(context, type, text, canExpectInput, isDefault, parent);
         }

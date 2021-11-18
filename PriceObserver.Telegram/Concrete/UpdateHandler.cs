@@ -39,7 +39,7 @@ namespace PriceObserver.Telegram.Concrete
             }
 
             var result = serviceResult.Result;
-            var hasKeyboard = result.MenuKeyboard != null;
+            var hasKeyboard = result.MenuKeyboard is not null;
             if (hasKeyboard)
             {
                 var keyboard = _keyboardBuilder.Build(result.MenuKeyboard);

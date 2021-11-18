@@ -26,7 +26,7 @@ namespace PriceObserver.Parser.Concrete
         {
             var shop = await _shopRepository.GetByHost(url.Host);
             
-            if (shop == null)
+            if (shop is null)
                 return ParsedItemResult.Fail("Магазин недоступен ❌");
 
             var htmlLoadResult = await _htmlLoader.Load(url);

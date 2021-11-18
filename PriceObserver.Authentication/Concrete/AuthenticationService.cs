@@ -29,7 +29,7 @@ namespace PriceObserver.Authentication.Concrete
         {
             var userToken = await _userTokenRepository.GetByToken(token);
 
-            if (userToken == null)
+            if (userToken is null)
                 return AuthenticationServiceResult.Fail(AuthenticationErrorStatus.TokenNotFound);
 
             if (userToken.Expired)
@@ -49,10 +49,8 @@ namespace PriceObserver.Authentication.Concrete
                 claims: claims,
                 signingCredentials: credentials);
 
-            var responseModel = new AuthenticationResponseModel
-            {
-                AccessToken = new JwtSecurityTokenHandler().WriteToken(jwtToken)
-            };
+            var accessToken = new JwtSecurityTokenHandler().WriteToken(jwtToken);
+            var responseModel = new AuthenticationResponseModel(accessToken);
 
             return AuthenticationServiceResult.Success(responseModel);
         }

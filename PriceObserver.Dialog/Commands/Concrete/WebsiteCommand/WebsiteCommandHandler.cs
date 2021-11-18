@@ -28,7 +28,7 @@ namespace PriceObserver.Dialog.Commands.Concrete.WebsiteCommand
         {
             var userToken = await _userTokenRepository.GetNotExpiredByUserId(user.Id);
 
-            if (userToken == null)
+            if (userToken is null)
                 userToken = await _userTokenService.CreateForUser(user.Id);
 
             var url = $"https://priceobserver.com/login/{userToken.Token}"; // TODO: place my domain

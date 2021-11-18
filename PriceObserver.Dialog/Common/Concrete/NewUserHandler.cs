@@ -2,6 +2,7 @@
 using PriceObserver.Data.Repositories.Abstract;
 using PriceObserver.Dialog.Common.Abstract;
 using PriceObserver.Dialog.Menus.Abstract;
+using PriceObserver.Model.Converters.Extensions;
 using PriceObserver.Model.Data;
 using PriceObserver.Model.Dialog.Common;
 using CommandType = PriceObserver.Model.Data.Enums.CommandType;
@@ -34,7 +35,7 @@ namespace PriceObserver.Dialog.Common.Concrete
 
             var shopsInfoMessage = await _shopsInfoMessageBuilder.Build();
             
-            var message = $@"Приветствую, {user.FirstName} {user.LastName}! 🎉
+            var message = $@"Приветствую, {user.GetFullName()}! 🎉
 
 Здесь Вы сможете добавить желаемые товары за которыми Вы хотели бы следить и мы оповестим Вас как только цена понизится. ({addCommandTitle})
 

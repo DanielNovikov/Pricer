@@ -16,7 +16,7 @@ namespace PriceObserver.Data.Seed.Shops.Initializers.Common
         {
             var shop = context.Shops.SingleOrDefault(x => x.Type == type);
 
-            return shop != null 
+            return shop is not null 
                 ? Update(context, shop, name, host, logoUrl) 
                 : Add(context, name, type, host, logoUrl);
         }

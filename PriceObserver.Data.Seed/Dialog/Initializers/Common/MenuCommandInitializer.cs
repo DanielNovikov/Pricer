@@ -15,7 +15,7 @@ namespace PriceObserver.Data.Seed.Dialog.Initializers.Common
                     x.MenuId == menu.Id && 
                     x.CommandId == command.Id);
 
-            if (menuCommand != null)
+            if (menuCommand is not null)
                 return menuCommand;
 
             menuCommand = new MenuCommand

@@ -1,6 +1,8 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using PriceObserver.Dialog.Menus.Abstract;
+using PriceObserver.Model.Converters.Extensions;
 using PriceObserver.Model.Data.Enums;
 using PriceObserver.Model.Dialog.Input;
 using PriceObserver.Model.Dialog.Menu;
@@ -22,12 +24,15 @@ namespace PriceObserver.Dialog.Menus.Concrete.WriteToSupportMenuHandler
         {
             var user = message.User;
             var log = $@"Сообщение: {message.Text}
-Логин: @{user.Username} - {user.FirstName} {user.LastName}";
+Имя: {user.GetFullName()}";
+
+            if (!string.IsNullOrEmpty(user.Username))
+                log += $"{Environment.NewLine}Логин: {user.Username}";
             
             _logger.LogInformation(log);
 
-            var result =
-                MenuInputHandlingServiceResult.Success("Спасибо за Ваше сообщение, мы с вами скоро свяжемся! 🏃"); 
+            const string responseMessage = "Спасибо за Ваше сообщение, мы с вами скоро свяжемся! 🏃";
+            var result = MenuInputHandlingServiceResult.Success(responseMessage); 
             
             return Task.FromResult(result);
         }

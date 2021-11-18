@@ -22,12 +22,12 @@ namespace PriceObserver.Data.Configurations
             builder
                 .Property(u => u.LastName)
                 .HasMaxLength(100)
-                .IsRequired();
+                .IsRequired(false);
 
             builder
                 .Property(u => u.Username)
                 .HasMaxLength(250)
-                .IsRequired();
+                .IsRequired(false);
 
             builder
                 .HasOne(x => x.Menu)

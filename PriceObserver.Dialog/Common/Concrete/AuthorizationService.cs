@@ -29,7 +29,7 @@ namespace PriceObserver.Dialog.Common.Concrete
             var userId = update.UserId;
             var user = await _userRepository.GetById(userId);
             
-            if (user != null)
+            if (user is not null)
                 return AuthorizationResult.LoggedIn(user);
             
             user = _updateDtoConverter.Convert(update);

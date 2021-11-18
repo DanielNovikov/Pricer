@@ -2,6 +2,11 @@
 {
     public class AuthenticationResponseModel
     {
-        public string AccessToken { get; set; }
+        public AuthenticationResponseModel(string accessToken)
+        {
+            AccessToken = accessToken;
+        }
+
+        public string AccessToken { get; }
     }
 }

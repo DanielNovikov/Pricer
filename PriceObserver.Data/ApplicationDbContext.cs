@@ -45,7 +45,7 @@ namespace PriceObserver.Data
         {
             foreach (var entry in ChangeTracker.Entries())
             {
-                if (entry.Entity != null)
+                if (entry.Entity is not null)
                     entry.State = EntityState.Detached;
             }
         }
