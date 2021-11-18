@@ -1,12 +1,12 @@
 ﻿using System.Threading.Tasks;
 using PriceObserver.Data.Repositories.Abstract;
 using PriceObserver.Data.Service.Abstract;
-using PriceObserver.Dialog.Common.Abstract;
+using PriceObserver.Dialog.Input.Abstract;
 using PriceObserver.Model.Converters.Abstract;
 using PriceObserver.Model.Dialog.Common;
 using PriceObserver.Model.Dialog.Input;
 
-namespace PriceObserver.Dialog.Common.Concrete
+namespace PriceObserver.Dialog.Input.Concrete
 {
     public class AuthorizationService : IAuthorizationService
     {

@@ -2,7 +2,7 @@
 using PriceObserver.Model.Data;
 using PriceObserver.Model.Dialog.Common;
 
-namespace PriceObserver.Dialog.Common.Abstract
+namespace PriceObserver.Dialog.Input.Abstract
 {
     public interface INewUserHandler
     {

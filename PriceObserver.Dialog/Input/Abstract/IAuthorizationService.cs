@@ -2,7 +2,7 @@
 using PriceObserver.Model.Dialog.Common;
 using PriceObserver.Model.Dialog.Input;
 
-namespace PriceObserver.Dialog.Common.Abstract
+namespace PriceObserver.Dialog.Input.Abstract
 {
     public interface IAuthorizationService
     {
