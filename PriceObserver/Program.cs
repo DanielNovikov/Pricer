@@ -1,4 +1,5 @@
 using System.IO;
+using System.Reflection;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -42,6 +43,7 @@ namespace PriceObserver
         {
             var configuration = new ConfigurationBuilder()
                 .AddJsonFile("appsettings.json")
+                .AddUserSecrets(Assembly.GetExecutingAssembly())
                 .Build();
             
             Log.Logger = new LoggerConfiguration()
@@ -49,8 +51,8 @@ namespace PriceObserver
                 .Enrich.FromLogContext()
                 .MinimumLevel.Verbose()
                 .WriteTo.TeleSink(
-                    "1073477516:AAEbiCBoQhFQqCbQkwj7q5nIuXuR3aa6NlU",
-                    "382190306")
+                    configuration.GetValue<string>("TelegramLogClient:AccessToken"),
+                    configuration.GetValue<string>("TelegramLogClient:UserId"))
                 .CreateLogger();
         }
     }
