@@ -14,20 +14,20 @@ namespace PriceObserver.Dialog.Input.Concrete
         private readonly ICommandRepository _commandRepository;
         private readonly IMenuInputHandlerService _menuInputHandlerService;
         private readonly ICommandHandlerService _commandHandlerService;
-        private readonly INewUserHandler _newUserHandler;
+        private readonly IUserRegistrationHandler _userRegistrationHandler;
         
         public InputHandler(
             IAuthorizationService authorizationService, 
             ICommandRepository commandRepository,
             IMenuInputHandlerService menuInputHandlerService,
             ICommandHandlerService commandHandlerService,
-            INewUserHandler newUserHandler)
+            IUserRegistrationHandler userRegistrationHandler)
         {
             _authorizationService = authorizationService;
             _commandRepository = commandRepository;
             _menuInputHandlerService = menuInputHandlerService;
             _commandHandlerService = commandHandlerService;
-            _newUserHandler = newUserHandler;
+            _userRegistrationHandler = userRegistrationHandler;
         }
 
         public async Task<InputHandlingServiceResult> Handle(UpdateDto update)
@@ -40,7 +40,7 @@ namespace PriceObserver.Dialog.Input.Concrete
 
             if (authorizationResult.IsNew)
             {
-                var replyWithKeyboardResult = await _newUserHandler.Handle(message.User);
+                var replyWithKeyboardResult = await _userRegistrationHandler.Handle(message.User);
                 return InputHandlingServiceResult.Success(replyWithKeyboardResult);
             }
             

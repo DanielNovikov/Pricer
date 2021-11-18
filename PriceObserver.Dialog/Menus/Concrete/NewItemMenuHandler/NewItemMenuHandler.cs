@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using PriceObserver.Data.Repositories.Abstract;
+using PriceObserver.Dialog.Common.Abstract;
 using PriceObserver.Dialog.Menus.Abstract;
 using PriceObserver.Model.Data;
 using PriceObserver.Model.Data.Enums;
@@ -15,17 +16,20 @@ namespace PriceObserver.Dialog.Menus.Concrete.NewItemMenuHandler
         private readonly IItemRepository _itemRepository;
         private readonly IShopRepository _shopRepository;
         private readonly IUrlExtractor _urlExtractor;
+        private readonly IUserActionLogger _userActionLogger;
 
         public NewItemMenuHandler(
             IParserService parserService,
             IItemRepository itemRepository,
             IShopRepository shopRepository, 
-            IUrlExtractor urlExtractor)
+            IUrlExtractor urlExtractor,
+            IUserActionLogger userActionLogger)
         {
             _parserService = parserService;
             _itemRepository = itemRepository;
             _shopRepository = shopRepository;
             _urlExtractor = urlExtractor;
+            _userActionLogger = userActionLogger;
         }
 
         public MenuType Type => MenuType.NewItem;
@@ -35,18 +39,27 @@ namespace PriceObserver.Dialog.Menus.Concrete.NewItemMenuHandler
             var urlExtractionResult = _urlExtractor.Extract(message.Text);
 
             if (!urlExtractionResult.IsSuccess)
+            {
+                _userActionLogger.LogWrongUrlPassed(message.User, message.Text, urlExtractionResult.Error);
                 return MenuInputHandlingServiceResult.Fail(urlExtractionResult.Error);
+            }
 
             var url = urlExtractionResult.Result;
 
             var itemExists = await _itemRepository.ExistsByUrl(url);
             if (itemExists)
+            {
+                _userActionLogger.LogDuplicateItem(message.User, url);
                 return MenuInputHandlingServiceResult.Fail("Такой товар уже есть в Вашем списке ☑");
-            
+            }
+
             var parseResult = await _parserService.Parse(url);
 
             if (!parseResult.IsSuccess)
+            {
+                _userActionLogger.LogParsingError(message.User, url, parseResult.Error);
                 return MenuInputHandlingServiceResult.Fail(parseResult.Error);
+            }
 
             var parsedItem = parseResult.Result;
             var shop = await _shopRepository.GetByType(parsedItem.ShopType);
@@ -63,6 +76,8 @@ namespace PriceObserver.Dialog.Menus.Concrete.NewItemMenuHandler
 
             await _itemRepository.Add(item);
 
+            _userActionLogger.LogItemAdded(message.User, item);
+            
             return MenuInputHandlingServiceResult.Success("Успешно добавлено! ✅");
         }
     }

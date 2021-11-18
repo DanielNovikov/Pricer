@@ -4,7 +4,7 @@ using PriceObserver.Model.Dialog.Common;
 
 namespace PriceObserver.Dialog.Input.Abstract
 {
-    public interface INewUserHandler
+    public interface IUserRegistrationHandler
     {
         Task<ReplyResult> Handle(User user);
     }

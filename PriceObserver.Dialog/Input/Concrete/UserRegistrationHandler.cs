@@ -10,24 +10,29 @@ using CommandType = PriceObserver.Model.Data.Enums.CommandType;
 
 namespace PriceObserver.Dialog.Input.Concrete
 {
-    public class NewUserHandler : INewUserHandler
+    public class UserRegistrationHandler : IUserRegistrationHandler
     {
         private readonly ICommandRepository _commandRepository;
         private readonly IMenuKeyboardBuilder _menuKeyboardBuilder;
         private readonly IShopsInfoMessageBuilder _shopsInfoMessageBuilder;
+        private readonly IUserActionLogger _userActionLogger;
         
-        public NewUserHandler(
+        public UserRegistrationHandler(
             ICommandRepository commandRepository,
             IMenuKeyboardBuilder menuKeyboardBuilder, 
-            IShopsInfoMessageBuilder shopsInfoMessageBuilder)
+            IShopsInfoMessageBuilder shopsInfoMessageBuilder, 
+            IUserActionLogger userActionLogger)
         {
             _commandRepository = commandRepository;
             _menuKeyboardBuilder = menuKeyboardBuilder;
             _shopsInfoMessageBuilder = shopsInfoMessageBuilder;
+            _userActionLogger = userActionLogger;
         }
 
         public async Task<ReplyResult> Handle(User user)
         {
+            _userActionLogger.LogUserRegistered(user);
+            
             var addCommandTitle = await GetCommandTitle(CommandType.Add);
             var websiteCommandTitle = await GetCommandTitle(CommandType.Website);
             var writeToSupportTitle = await GetCommandTitle(CommandType.WriteToSupport);

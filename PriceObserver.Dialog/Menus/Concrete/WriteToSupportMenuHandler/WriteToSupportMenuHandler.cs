@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
+using PriceObserver.Dialog.Common.Abstract;
 using PriceObserver.Dialog.Menus.Abstract;
 using PriceObserver.Model.Converters.Extensions;
 using PriceObserver.Model.Data.Enums;
@@ -11,27 +12,20 @@ namespace PriceObserver.Dialog.Menus.Concrete.WriteToSupportMenuHandler
 {
     public class WriteToSupportMenuHandler : IMenuInputHandler
     {
-        private readonly ILogger _logger;
+        private readonly IUserActionLogger _userActionLogger;
 
-        public WriteToSupportMenuHandler(ILogger<WriteToSupportMenuHandler> logger)
+        public WriteToSupportMenuHandler(IUserActionLogger userActionLogger)
         {
-            _logger = logger;
+            _userActionLogger = userActionLogger;
         }
-        
+
         public MenuType Type => MenuType.Support;
         
         public Task<MenuInputHandlingServiceResult> Handle(MessageDto message)
         {
-            var user = message.User;
-            var log = $@"Сообщение: {message.Text}
-Имя: {user.GetFullName()} (Id: {user.Id})";
+            _userActionLogger.LogWriteToSupport(message.User, message.Text);
 
-            if (!string.IsNullOrEmpty(user.Username))
-                log += $"{Environment.NewLine}Логин: {user.Username}";
-            
-            _logger.LogInformation(log);
-
-            const string responseMessage = "Спасибо за Ваше сообщение, мы с вами скоро свяжемся! 🏃";
+            const string responseMessage = "Спасибо за Ваше сообщение, мы с Вами скоро свяжемся! 🏃";
             var result = MenuInputHandlingServiceResult.Success(responseMessage); 
             
             return Task.FromResult(result);

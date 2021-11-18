@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using PriceObserver.Data.Repositories.Abstract;
 using PriceObserver.Data.Service.Abstract;
 using PriceObserver.Dialog.Commands.Abstract;
+using PriceObserver.Dialog.Common.Abstract;
 using PriceObserver.Dialog.Menus.Abstract;
 using PriceObserver.Model.Data;
 using PriceObserver.Model.Data.Enums;
@@ -19,17 +20,20 @@ namespace PriceObserver.Dialog.Commands.Concrete
         private readonly IMenuCommandRepository _menuCommandRepository;
         private readonly IUserService _userService;
         private readonly IReplyWithKeyboardBuilder _replyWithKeyboardBuilder;
+        private readonly IUserActionLogger _userActionLogger;
 
         public CommandHandlerService(
             IEnumerable<ICommandHandler> commandHandlers,
             IMenuCommandRepository menuCommandRepository, 
             IUserService userService,
-            IReplyWithKeyboardBuilder replyWithKeyboardBuilder)
+            IReplyWithKeyboardBuilder replyWithKeyboardBuilder, 
+            IUserActionLogger userActionLogger)
         {
             _commandHandlers = commandHandlers;
             _menuCommandRepository = menuCommandRepository;
             _userService = userService;
             _replyWithKeyboardBuilder = replyWithKeyboardBuilder;
+            _userActionLogger = userActionLogger;
         }
 
         public async Task<CommandHandlingServiceResult> Handle(Command command, MessageDto message)
@@ -38,14 +42,23 @@ namespace PriceObserver.Dialog.Commands.Concrete
             var menu = user.Menu;
 
             if (menu.ParentId.HasValue && command.Type == CommandType.Back)
+            {
+                _userActionLogger.LogRedirectToMenu(user, menu.Parent);
                 return await RedirectUserToMenu(user, menu.Parent);
-            
+            }
+
             var commandAvailableInMenu = await _menuCommandRepository.HasPair(menu.Id, command.Id);
             if (!commandAvailableInMenu)
+            {
+                _userActionLogger.LogWrongCommand(message.User, message.Text);
                 return CommandHandlingServiceResult.Fail("Неверная комманда");
+            }
 
             if (command.MenuToRedirectId.HasValue)
+            {
+                _userActionLogger.LogRedirectToMenu(user, command.MenuToRedirect);
                 return await RedirectUserToMenu(user, command.MenuToRedirect);
+            }
 
             var commandHandler = _commandHandlers.First(x => x.Type == command.Type);
             return await commandHandler.Handle(user);

@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using PriceObserver.Data.Repositories.Abstract;
 using PriceObserver.Dialog.Commands.Abstract;
+using PriceObserver.Dialog.Common.Abstract;
 using PriceObserver.Model.Data.Enums;
 using PriceObserver.Model.Dialog.Commands;
 using PriceObserver.Model.Dialog.Common;
@@ -13,16 +14,22 @@ namespace PriceObserver.Dialog.Commands.Concrete.AllItemsCommand
     public class AllItemsCommandHandler : ICommandHandler
     {
         private readonly IItemRepository _itemRepository;
-
-        public AllItemsCommandHandler(IItemRepository itemRepository)
+        private readonly IUserActionLogger _userActionLogger;
+        
+        public AllItemsCommandHandler(
+            IItemRepository itemRepository,
+            IUserActionLogger userActionLogger)
         {
             _itemRepository = itemRepository;
+            _userActionLogger = userActionLogger;
         }
 
         public CommandType Type => CommandType.AllItems; 
         
         public async Task<CommandHandlingServiceResult> Handle(User user)
         {
+            _userActionLogger.LogAllItemsCalled(user);
+            
             var items = await _itemRepository.GetByUserId(user.Id);
 
             if (!items.Any())

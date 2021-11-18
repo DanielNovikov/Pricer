@@ -2,6 +2,7 @@
 using PriceObserver.Data.Repositories.Abstract;
 using PriceObserver.Data.Service.Abstract;
 using PriceObserver.Dialog.Commands.Abstract;
+using PriceObserver.Dialog.Common.Abstract;
 using PriceObserver.Model.Data.Enums;
 using PriceObserver.Model.Dialog.Commands;
 using PriceObserver.Model.Dialog.Common;
@@ -13,19 +14,24 @@ namespace PriceObserver.Dialog.Commands.Concrete.WebsiteCommand
     {
         private readonly IUserTokenRepository _userTokenRepository;
         private readonly IUserTokenService _userTokenService;
+        private readonly IUserActionLogger _userActionLogger;
         
         public WebsiteCommandHandler(
             IUserTokenRepository userTokenRepository,
-            IUserTokenService userTokenService)
+            IUserTokenService userTokenService, 
+            IUserActionLogger userActionLogger)
         {
             _userTokenRepository = userTokenRepository;
             _userTokenService = userTokenService;
+            _userActionLogger = userActionLogger;
         }
 
         public CommandType Type => CommandType.Website;
         
         public async Task<CommandHandlingServiceResult> Handle(User user)
         {
+            _userActionLogger.LogWebsiteCalled(user);
+            
             var userToken = await _userTokenRepository.GetNotExpiredByUserId(user.Id);
 
             if (userToken is null)

@@ -11,16 +11,22 @@ namespace PriceObserver.Dialog.Commands.Concrete.ShopsCommand
     public class ShopsCommandHandler : ICommandHandler
     {
         private readonly IShopsInfoMessageBuilder _shopsInfoMessageBuilder;
-
-        public ShopsCommandHandler(IShopsInfoMessageBuilder shopsInfoMessageBuilder)
+        private readonly IUserActionLogger _userActionLogger;
+        
+        public ShopsCommandHandler(
+            IShopsInfoMessageBuilder shopsInfoMessageBuilder,
+            IUserActionLogger userActionLogger)
         {
             _shopsInfoMessageBuilder = shopsInfoMessageBuilder;
+            _userActionLogger = userActionLogger;
         }
 
         public CommandType Type => CommandType.Shops;
         
         public async Task<CommandHandlingServiceResult> Handle(User user)
         {
+            _userActionLogger.LogShopsCalled(user);
+            
             var shopsInfoMessage = await _shopsInfoMessageBuilder.Build();
 
             var result = ReplyResult.Reply(shopsInfoMessage);

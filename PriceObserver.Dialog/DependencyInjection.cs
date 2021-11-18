@@ -19,11 +19,12 @@ namespace PriceObserver.Dialog
         {
             services.AddTransient<ICommandHandlerService, CommandHandlerService>();
             
-            services.AddTransient<IAuthorizationService, AuthorizationService>();
-            services.AddTransient<INewUserHandler, NewUserHandler>();
             services.AddTransient<IShopsInfoMessageBuilder, ShopsInfoMessageBuilder>();
-
+            services.AddTransient<IUserActionLogger, UserActionLogger>();
+            
             services.AddTransient<IInputHandler, InputHandler>();
+            services.AddTransient<IAuthorizationService, AuthorizationService>();
+            services.AddTransient<IUserRegistrationHandler, UserRegistrationHandler>();
 
             services.AddTransient<IMenuInputHandlerService, MenuInputHandlerService>();
             services.AddTransient<IMenuKeyboardBuilder, MenuKeyboardBuilder>();
