@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
-using PriceObserver.Model.Dialog.Input;
-using PriceObserver.Model.Dialog.Menu;
+using PriceObserver.Dialog.Input.Models;
+using PriceObserver.Dialog.Menus.Models;
 
 namespace PriceObserver.Dialog.Menus.Abstract
 {

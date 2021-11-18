@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
-using PriceObserver.Model.Authentication;
+using PriceObserver.Authentication.Models;
 
 namespace PriceObserver.Authentication.Abstract
 {

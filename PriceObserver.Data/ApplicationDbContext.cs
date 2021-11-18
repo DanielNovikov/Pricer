@@ -1,6 +1,6 @@
 ﻿using System.Reflection;
 using Microsoft.EntityFrameworkCore;
-using PriceObserver.Model.Data;
+using PriceObserver.Data.Models;
 
 namespace PriceObserver.Data
 {

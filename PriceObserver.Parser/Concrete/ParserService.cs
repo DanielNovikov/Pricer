@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Threading.Tasks;
 using PriceObserver.Data.Repositories.Abstract;
-using PriceObserver.Model.Parser;
 using PriceObserver.Parser.Abstract;
+using ParsedItemResult = PriceObserver.Parser.Models.ParsedItemResult;
 
 namespace PriceObserver.Parser.Concrete
 {

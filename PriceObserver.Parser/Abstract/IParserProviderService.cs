@@ -1,6 +1,6 @@
 ﻿using AngleSharp.Html.Dom;
-using PriceObserver.Model.Data.Enums;
-using PriceObserver.Model.Parser;
+using PriceObserver.Data.Models.Enums;
+using PriceObserver.Parser.Models;
 
 namespace PriceObserver.Parser.Abstract
 {

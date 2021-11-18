@@ -1,9 +1,9 @@
 ﻿using System.Threading.Tasks;
+using PriceObserver.Data.Models.Enums;
 using PriceObserver.Dialog.Common.Abstract;
+using PriceObserver.Dialog.Input.Models;
 using PriceObserver.Dialog.Menus.Abstract;
-using PriceObserver.Model.Data.Enums;
-using PriceObserver.Model.Dialog.Input;
-using PriceObserver.Model.Dialog.Menu;
+using PriceObserver.Dialog.Menus.Models;
 
 namespace PriceObserver.Dialog.Menus.Concrete.WriteToSupportMenuHandler
 {

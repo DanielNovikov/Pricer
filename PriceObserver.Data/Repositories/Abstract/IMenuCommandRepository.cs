@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using PriceObserver.Model.Data;
+using PriceObserver.Data.Models;
 
 namespace PriceObserver.Data.Repositories.Abstract
 {

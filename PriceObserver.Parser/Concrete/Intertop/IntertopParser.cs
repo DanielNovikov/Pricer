@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using AngleSharp.Dom;
 using AngleSharp.Html.Dom;
-using PriceObserver.Model.Data.Enums;
+using PriceObserver.Data.Models.Enums;
 using PriceObserver.Parser.Base;
 
 namespace PriceObserver.Parser.Concrete.Intertop

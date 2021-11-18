@@ -1,10 +1,10 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
+using PriceObserver.Data.Models;
+using PriceObserver.Data.Models.Enums;
 using PriceObserver.Data.Repositories.Abstract;
+using PriceObserver.Dialog.Common.Models;
 using PriceObserver.Dialog.Menus.Abstract;
-using PriceObserver.Model.Data;
-using PriceObserver.Model.Data.Enums;
-using PriceObserver.Model.Dialog.Common;
 
 namespace PriceObserver.Dialog.Menus.Concrete
 {

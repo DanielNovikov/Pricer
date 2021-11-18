@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using PriceObserver.Model.Data;
+using PriceObserver.Data.Models;
 
 namespace PriceObserver.Data.Configurations
 {

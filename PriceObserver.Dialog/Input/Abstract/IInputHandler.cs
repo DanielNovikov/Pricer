@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using PriceObserver.Model.Dialog.Input;
+using PriceObserver.Dialog.Input.Models;
 
 namespace PriceObserver.Dialog.Input.Abstract
 {

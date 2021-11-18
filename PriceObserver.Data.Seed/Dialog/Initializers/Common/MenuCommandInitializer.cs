@@ -1,5 +1,5 @@
 ﻿using System.Linq;
-using PriceObserver.Model.Data;
+using PriceObserver.Data.Models;
 
 namespace PriceObserver.Data.Seed.Dialog.Initializers.Common
 {

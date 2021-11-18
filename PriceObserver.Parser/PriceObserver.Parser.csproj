@@ -5,14 +5,15 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <PackageReference Include="AngleSharp" Version="0.16.1" />
       <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="5.0.0" />
       <PackageReference Include="Microsoft.Extensions.Http" Version="5.0.0" />
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\PriceObserver.Common\PriceObserver.Common.csproj" />
       <ProjectReference Include="..\PriceObserver.Data.Service\PriceObserver.Data.Service.csproj" />
       <ProjectReference Include="..\PriceObserver.Data\PriceObserver.Data.csproj" />
-      <ProjectReference Include="..\PriceObserver.Model\PriceObserver.Model.csproj" />
     </ItemGroup>
 
 </Project>

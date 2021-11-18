@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
-using PriceObserver.Model.Data.Enums;
-using PriceObserver.Model.Dialog.Commands;
-using User = PriceObserver.Model.Data.User;
+using PriceObserver.Data.Models;
+using PriceObserver.Data.Models.Enums;
+using PriceObserver.Dialog.Commands.Models;
 
 namespace PriceObserver.Dialog.Commands.Abstract
 {

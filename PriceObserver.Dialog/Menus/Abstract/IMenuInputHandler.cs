@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
-using PriceObserver.Model.Data.Enums;
-using PriceObserver.Model.Dialog.Input;
-using PriceObserver.Model.Dialog.Menu;
+using PriceObserver.Data.Models.Enums;
+using PriceObserver.Dialog.Input.Models;
+using PriceObserver.Dialog.Menus.Models;
 
 namespace PriceObserver.Dialog.Menus.Abstract
 {

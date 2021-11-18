@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using PriceObserver.Model.Data;
-using PriceObserver.Model.Service;
+using PriceObserver.Data.Models;
+using PriceObserver.Data.Service.Models;
 
 namespace PriceObserver.Data.Service.Abstract
 {

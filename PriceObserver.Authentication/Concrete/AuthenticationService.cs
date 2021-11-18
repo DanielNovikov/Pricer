@@ -5,10 +5,10 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.IdentityModel.Tokens;
 using PriceObserver.Authentication.Abstract;
+using PriceObserver.Authentication.Models;
 using PriceObserver.Authentication.Options;
 using PriceObserver.Data.Repositories.Abstract;
 using PriceObserver.Data.Service.Abstract;
-using PriceObserver.Model.Authentication;
 
 namespace PriceObserver.Authentication.Concrete
 {

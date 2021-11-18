@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using AngleSharp.Dom;
-using PriceObserver.Model.Data.Enums;
+using PriceObserver.Data.Models.Enums;
 using PriceObserver.Parser.Base;
 
 namespace PriceObserver.Parser.Concrete.MdFashion

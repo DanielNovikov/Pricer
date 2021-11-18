@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Options;
-using PriceObserver.Model.Telegram.Options;
 using PriceObserver.Telegram.Abstract;
+using PriceObserver.Telegram.Options;
 using Telegram.Bot;
 
 namespace PriceObserver.Telegram.Concrete

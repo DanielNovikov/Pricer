@@ -2,9 +2,9 @@
 using System.Linq;
 using AngleSharp.Dom;
 using AngleSharp.Html.Dom;
-using PriceObserver.Model.Data.Enums;
-using PriceObserver.Model.Parser;
+using PriceObserver.Data.Models.Enums;
 using PriceObserver.Parser.Abstract;
+using PriceObserver.Parser.Models;
 
 namespace PriceObserver.Parser.Base
 {

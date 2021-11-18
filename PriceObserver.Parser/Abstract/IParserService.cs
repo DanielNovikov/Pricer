@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
-using PriceObserver.Model.Parser;
+using PriceObserver.Parser.Models;
 
 namespace PriceObserver.Parser.Abstract
 {

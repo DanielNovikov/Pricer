@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using PriceObserver.Data.Models;
 using PriceObserver.Data.Repositories.Abstract;
 using PriceObserver.Data.Service.Abstract;
-using PriceObserver.Model.Data;
-using PriceObserver.Model.Service;
+using PriceObserver.Data.Service.Models;
 
 namespace PriceObserver.Data.Service.Concrete
 {

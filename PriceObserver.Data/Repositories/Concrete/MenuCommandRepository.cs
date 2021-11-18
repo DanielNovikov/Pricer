@@ -2,8 +2,8 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using PriceObserver.Data.Models;
 using PriceObserver.Data.Repositories.Abstract;
-using PriceObserver.Model.Data;
 
 namespace PriceObserver.Data.Repositories.Concrete
 {

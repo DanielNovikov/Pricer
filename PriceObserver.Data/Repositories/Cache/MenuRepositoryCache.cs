@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.Extensions.Caching.Memory;
+using PriceObserver.Data.Models;
 using PriceObserver.Data.Repositories.Abstract;
-using PriceObserver.Model.Data;
 
 namespace PriceObserver.Data.Repositories.Cache
 {

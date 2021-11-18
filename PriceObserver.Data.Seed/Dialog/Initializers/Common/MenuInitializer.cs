@@ -1,6 +1,6 @@
 ﻿using System.Linq;
-using PriceObserver.Model.Data;
-using PriceObserver.Model.Data.Enums;
+using PriceObserver.Data.Models;
+using PriceObserver.Data.Models.Enums;
 
 namespace PriceObserver.Data.Seed.Dialog.Initializers.Common
 {

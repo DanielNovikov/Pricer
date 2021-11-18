@@ -1,4 +1,4 @@
-﻿using PriceObserver.Model.Dialog.Menu;
+﻿using PriceObserver.Dialog.Menus.Models;
 
 namespace PriceObserver.Dialog.Menus.Abstract
 {

@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Threading.Tasks;
+using PriceObserver.Data.Models;
 using PriceObserver.Data.Repositories.Abstract;
 using PriceObserver.Data.Service.Abstract;
-using PriceObserver.Model.Data;
 
 namespace PriceObserver.Data.Service.Concrete
 {

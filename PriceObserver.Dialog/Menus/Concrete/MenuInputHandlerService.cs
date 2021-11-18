@@ -3,9 +3,9 @@ using System.Collections.Immutable;
 using System.Linq;
 using System.Threading.Tasks;
 using PriceObserver.Dialog.Common.Abstract;
+using PriceObserver.Dialog.Input.Models;
 using PriceObserver.Dialog.Menus.Abstract;
-using PriceObserver.Model.Dialog.Input;
-using PriceObserver.Model.Dialog.Menu;
+using PriceObserver.Dialog.Menus.Models;
 
 namespace PriceObserver.Dialog.Menus.Concrete
 {

@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
+using PriceObserver.Data.Models;
+using PriceObserver.Dialog.Common.Models;
 using PriceObserver.Dialog.Menus.Abstract;
-using PriceObserver.Model.Data;
-using PriceObserver.Model.Dialog.Common;
 
 namespace PriceObserver.Dialog.Menus.Concrete
 {

@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PriceObserver.Authentication.Abstract;
-using PriceObserver.Model.Authentication;
+using PriceObserver.Authentication.Models;
 
 namespace PriceObserver.Controllers
 {

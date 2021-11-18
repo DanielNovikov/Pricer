@@ -1,4 +1,4 @@
-﻿using PriceObserver.Model.Dialog.Common;
+﻿using PriceObserver.Dialog.Common.Models;
 using Telegram.Bot.Types.ReplyMarkups;
 
 namespace PriceObserver.Telegram.Abstract

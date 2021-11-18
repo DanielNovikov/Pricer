@@ -2,8 +2,8 @@
 using System.Net.Http;
 using System.Threading.Tasks;
 using AngleSharp.Html.Parser;
-using PriceObserver.Model.Parser;
 using PriceObserver.Parser.Abstract;
+using HtmlLoadResult = PriceObserver.Parser.Models.HtmlLoadResult;
 
 namespace PriceObserver.Parser.Concrete
 {

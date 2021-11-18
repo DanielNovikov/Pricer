@@ -21,7 +21,7 @@ namespace PriceObserver.Data.Migrations
                 .HasAnnotation("ProductVersion", "5.0.10")
                 .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-            modelBuilder.Entity("PriceObserver.Model.Data.Command", b =>
+            modelBuilder.Entity("PriceObserver.Data.Models.Command", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -46,7 +46,7 @@ namespace PriceObserver.Data.Migrations
                     b.ToTable("Commands");
                 });
 
-            modelBuilder.Entity("PriceObserver.Model.Data.Item", b =>
+            modelBuilder.Entity("PriceObserver.Data.Models.Item", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -84,7 +84,7 @@ namespace PriceObserver.Data.Migrations
                     b.ToTable("Items");
                 });
 
-            modelBuilder.Entity("PriceObserver.Model.Data.ItemPriceChange", b =>
+            modelBuilder.Entity("PriceObserver.Data.Models.ItemPriceChange", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -110,7 +110,7 @@ namespace PriceObserver.Data.Migrations
                     b.ToTable("ItemPriceChanges");
                 });
 
-            modelBuilder.Entity("PriceObserver.Model.Data.Menu", b =>
+            modelBuilder.Entity("PriceObserver.Data.Models.Menu", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -141,7 +141,7 @@ namespace PriceObserver.Data.Migrations
                     b.ToTable("Menus");
                 });
 
-            modelBuilder.Entity("PriceObserver.Model.Data.MenuCommand", b =>
+            modelBuilder.Entity("PriceObserver.Data.Models.MenuCommand", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -163,7 +163,7 @@ namespace PriceObserver.Data.Migrations
                     b.ToTable("MenuCommands");
                 });
 
-            modelBuilder.Entity("PriceObserver.Model.Data.Shop", b =>
+            modelBuilder.Entity("PriceObserver.Data.Models.Shop", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -192,7 +192,7 @@ namespace PriceObserver.Data.Migrations
                     b.ToTable("Shops");
                 });
 
-            modelBuilder.Entity("PriceObserver.Model.Data.User", b =>
+            modelBuilder.Entity("PriceObserver.Data.Models.User", b =>
                 {
                     b.Property<long>("Id")
                         .HasColumnType("bigint");
@@ -225,7 +225,7 @@ namespace PriceObserver.Data.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("PriceObserver.Model.Data.UserToken", b =>
+            modelBuilder.Entity("PriceObserver.Data.Models.UserToken", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -248,24 +248,24 @@ namespace PriceObserver.Data.Migrations
                     b.ToTable("UserTokens");
                 });
 
-            modelBuilder.Entity("PriceObserver.Model.Data.Command", b =>
+            modelBuilder.Entity("PriceObserver.Data.Models.Command", b =>
                 {
-                    b.HasOne("PriceObserver.Model.Data.Menu", "MenuToRedirect")
+                    b.HasOne("PriceObserver.Data.Models.Menu", "MenuToRedirect")
                         .WithMany()
                         .HasForeignKey("MenuToRedirectId");
 
                     b.Navigation("MenuToRedirect");
                 });
 
-            modelBuilder.Entity("PriceObserver.Model.Data.Item", b =>
+            modelBuilder.Entity("PriceObserver.Data.Models.Item", b =>
                 {
-                    b.HasOne("PriceObserver.Model.Data.Shop", "Shop")
+                    b.HasOne("PriceObserver.Data.Models.Shop", "Shop")
                         .WithMany("Items")
                         .HasForeignKey("ShopId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("PriceObserver.Model.Data.User", "User")
+                    b.HasOne("PriceObserver.Data.Models.User", "User")
                         .WithMany("Items")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -276,9 +276,9 @@ namespace PriceObserver.Data.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("PriceObserver.Model.Data.ItemPriceChange", b =>
+            modelBuilder.Entity("PriceObserver.Data.Models.ItemPriceChange", b =>
                 {
-                    b.HasOne("PriceObserver.Model.Data.Item", "Item")
+                    b.HasOne("PriceObserver.Data.Models.Item", "Item")
                         .WithMany("PriceChanges")
                         .HasForeignKey("ItemId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -287,24 +287,24 @@ namespace PriceObserver.Data.Migrations
                     b.Navigation("Item");
                 });
 
-            modelBuilder.Entity("PriceObserver.Model.Data.Menu", b =>
+            modelBuilder.Entity("PriceObserver.Data.Models.Menu", b =>
                 {
-                    b.HasOne("PriceObserver.Model.Data.Menu", "Parent")
+                    b.HasOne("PriceObserver.Data.Models.Menu", "Parent")
                         .WithMany("Children")
                         .HasForeignKey("ParentId");
 
                     b.Navigation("Parent");
                 });
 
-            modelBuilder.Entity("PriceObserver.Model.Data.MenuCommand", b =>
+            modelBuilder.Entity("PriceObserver.Data.Models.MenuCommand", b =>
                 {
-                    b.HasOne("PriceObserver.Model.Data.Command", "Command")
+                    b.HasOne("PriceObserver.Data.Models.Command", "Command")
                         .WithMany("CommandMenus")
                         .HasForeignKey("CommandId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("PriceObserver.Model.Data.Menu", "Menu")
+                    b.HasOne("PriceObserver.Data.Models.Menu", "Menu")
                         .WithMany("MenuCommands")
                         .HasForeignKey("MenuId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -315,9 +315,9 @@ namespace PriceObserver.Data.Migrations
                     b.Navigation("Menu");
                 });
 
-            modelBuilder.Entity("PriceObserver.Model.Data.User", b =>
+            modelBuilder.Entity("PriceObserver.Data.Models.User", b =>
                 {
-                    b.HasOne("PriceObserver.Model.Data.Menu", "Menu")
+                    b.HasOne("PriceObserver.Data.Models.Menu", "Menu")
                         .WithMany()
                         .HasForeignKey("MenuId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -326,9 +326,9 @@ namespace PriceObserver.Data.Migrations
                     b.Navigation("Menu");
                 });
 
-            modelBuilder.Entity("PriceObserver.Model.Data.UserToken", b =>
+            modelBuilder.Entity("PriceObserver.Data.Models.UserToken", b =>
                 {
-                    b.HasOne("PriceObserver.Model.Data.User", "User")
+                    b.HasOne("PriceObserver.Data.Models.User", "User")
                         .WithMany("Tokens")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -337,29 +337,29 @@ namespace PriceObserver.Data.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("PriceObserver.Model.Data.Command", b =>
+            modelBuilder.Entity("PriceObserver.Data.Models.Command", b =>
                 {
                     b.Navigation("CommandMenus");
                 });
 
-            modelBuilder.Entity("PriceObserver.Model.Data.Item", b =>
+            modelBuilder.Entity("PriceObserver.Data.Models.Item", b =>
                 {
                     b.Navigation("PriceChanges");
                 });
 
-            modelBuilder.Entity("PriceObserver.Model.Data.Menu", b =>
+            modelBuilder.Entity("PriceObserver.Data.Models.Menu", b =>
                 {
                     b.Navigation("Children");
 
                     b.Navigation("MenuCommands");
                 });
 
-            modelBuilder.Entity("PriceObserver.Model.Data.Shop", b =>
+            modelBuilder.Entity("PriceObserver.Data.Models.Shop", b =>
                 {
                     b.Navigation("Items");
                 });
 
-            modelBuilder.Entity("PriceObserver.Model.Data.User", b =>
+            modelBuilder.Entity("PriceObserver.Data.Models.User", b =>
                 {
                     b.Navigation("Items");
 

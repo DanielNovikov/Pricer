@@ -1,5 +1,5 @@
 ﻿using System;
-using PriceObserver.Model.Data;
+using PriceObserver.Data.Models;
 
 namespace PriceObserver.Dialog.Common.Abstract
 {

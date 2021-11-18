@@ -1,12 +1,12 @@
 ﻿using System.Threading.Tasks;
+using PriceObserver.Common.Extensions;
+using PriceObserver.Data.Models;
+using PriceObserver.Data.Models.Enums;
 using PriceObserver.Data.Repositories.Abstract;
 using PriceObserver.Dialog.Common.Abstract;
-using PriceObserver.Dialog.Common.Extensions;
+using PriceObserver.Dialog.Common.Models;
 using PriceObserver.Dialog.Input.Abstract;
 using PriceObserver.Dialog.Menus.Abstract;
-using PriceObserver.Model.Data;
-using PriceObserver.Model.Dialog.Common;
-using CommandType = PriceObserver.Model.Data.Enums.CommandType;
 
 namespace PriceObserver.Dialog.Input.Concrete
 {

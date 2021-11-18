@@ -1,10 +1,10 @@
 ﻿using System.Threading.Tasks;
+using PriceObserver.Data.Models;
+using PriceObserver.Data.Models.Enums;
 using PriceObserver.Dialog.Commands.Abstract;
+using PriceObserver.Dialog.Commands.Models;
 using PriceObserver.Dialog.Common.Abstract;
-using PriceObserver.Model.Data.Enums;
-using PriceObserver.Model.Dialog.Commands;
-using PriceObserver.Model.Dialog.Common;
-using User = PriceObserver.Model.Data.User;
+using PriceObserver.Dialog.Common.Models;
 
 namespace PriceObserver.Dialog.Commands.Concrete.ShopsCommand
 {

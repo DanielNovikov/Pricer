@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
-using PriceObserver.Model.Data;
-using PriceObserver.Model.Dialog.Commands;
-using PriceObserver.Model.Dialog.Input;
+using PriceObserver.Data.Models;
+using PriceObserver.Dialog.Commands.Models;
+using PriceObserver.Dialog.Input.Models;
 
 namespace PriceObserver.Dialog.Commands.Abstract
 {

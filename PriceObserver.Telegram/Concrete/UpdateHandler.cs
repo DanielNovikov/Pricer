@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using PriceObserver.Dialog.Input.Abstract;
-using PriceObserver.Model.Dialog.Input;
 using PriceObserver.Telegram.Abstract;
+using PriceObserver.Telegram.Extensions;
 using Telegram.Bot.Types;
 
 namespace PriceObserver.Telegram.Concrete

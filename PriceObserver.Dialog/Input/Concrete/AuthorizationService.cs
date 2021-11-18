@@ -1,9 +1,9 @@
 ﻿using System.Threading.Tasks;
 using PriceObserver.Data.Repositories.Abstract;
 using PriceObserver.Data.Service.Abstract;
+using PriceObserver.Dialog.Common.Models;
 using PriceObserver.Dialog.Input.Abstract;
-using PriceObserver.Model.Dialog.Common;
-using PriceObserver.Model.Dialog.Input;
+using PriceObserver.Dialog.Input.Models;
 
 namespace PriceObserver.Dialog.Input.Concrete
 {

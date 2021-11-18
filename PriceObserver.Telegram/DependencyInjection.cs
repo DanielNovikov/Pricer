@@ -4,9 +4,9 @@ using System.Reflection;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using PriceObserver.Dialog.Commands.Abstract;
-using PriceObserver.Model.Telegram.Options;
 using PriceObserver.Telegram.Abstract;
 using PriceObserver.Telegram.Concrete;
+using PriceObserver.Telegram.Options;
 
 namespace PriceObserver.Telegram
 {

@@ -11,8 +11,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PriceObserver.Parser", "Pri
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PriceObserver.Data", "PriceObserver.Data\PriceObserver.Data.csproj", "{B85E3E09-5F05-4C8D-9BD9-DC82E27FF1D8}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PriceObserver.Model", "PriceObserver.Model\PriceObserver.Model.csproj", "{A4D57B83-27F0-43CA-92F0-76AF3D9F00E7}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PriceObserver.Background", "PriceObserver.Background\PriceObserver.Background.csproj", "{BFA35F38-319F-4559-A9B5-D02FB14C6828}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PriceObserver.Dialog", "PriceObserver.Dialog\PriceObserver.Dialog.csproj", "{BEAE268C-B46C-47EF-967B-95BC60681B59}"
@@ -22,6 +20,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PriceObserver.Data.Seed", "PriceObserver.Data.Seed\PriceObserver.Data.Seed.csproj", "{D87A2E46-7C13-49B8-B173-1E8AF7D96F65}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PriceObserver.Authentication", "PriceObserver.Authentication\PriceObserver.Authentication.csproj", "{E2721B78-4430-456F-A4D9-4FCE20B7F6A1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PriceObserver.Common", "PriceObserver.Common\PriceObserver.Common.csproj", "{94F25568-F5AA-414C-8D72-14959993B928}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,10 +45,6 @@ Global
 		{B85E3E09-5F05-4C8D-9BD9-DC82E27FF1D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B85E3E09-5F05-4C8D-9BD9-DC82E27FF1D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B85E3E09-5F05-4C8D-9BD9-DC82E27FF1D8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A4D57B83-27F0-43CA-92F0-76AF3D9F00E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A4D57B83-27F0-43CA-92F0-76AF3D9F00E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A4D57B83-27F0-43CA-92F0-76AF3D9F00E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A4D57B83-27F0-43CA-92F0-76AF3D9F00E7}.Release|Any CPU.Build.0 = Release|Any CPU
 		{BFA35F38-319F-4559-A9B5-D02FB14C6828}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{BFA35F38-319F-4559-A9B5-D02FB14C6828}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BFA35F38-319F-4559-A9B5-D02FB14C6828}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -69,6 +65,10 @@ Global
 		{E2721B78-4430-456F-A4D9-4FCE20B7F6A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E2721B78-4430-456F-A4D9-4FCE20B7F6A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E2721B78-4430-456F-A4D9-4FCE20B7F6A1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{94F25568-F5AA-414C-8D72-14959993B928}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{94F25568-F5AA-414C-8D72-14959993B928}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{94F25568-F5AA-414C-8D72-14959993B928}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{94F25568-F5AA-414C-8D72-14959993B928}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

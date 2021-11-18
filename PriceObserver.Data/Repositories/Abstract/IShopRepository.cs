@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using PriceObserver.Model.Data;
-using PriceObserver.Model.Data.Enums;
+using PriceObserver.Data.Models;
+using PriceObserver.Data.Models.Enums;
 
 namespace PriceObserver.Data.Repositories.Abstract
 {
