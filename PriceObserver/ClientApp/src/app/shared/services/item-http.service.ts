@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {ShopWithItems} from "../models/shop-with-items";
+import {Shop} from "../models/shop";
 import {Observable} from "rxjs";
 import {environment} from "../../../environments/environment";
 
@@ -14,8 +14,8 @@ export class ItemHttpService {
 
   constructor(private http: HttpClient) { }
 
-  public getGrouped() : Observable<ShopWithItems[]> {
-    return this.http.get<ShopWithItems[]>(this.groupedEndpoint);
+  public getGrouped() : Observable<Shop[]> {
+    return this.http.get<Shop[]>(this.groupedEndpoint);
   }
 
   public delete(id: number) : Observable<object> {

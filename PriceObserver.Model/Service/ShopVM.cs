@@ -2,7 +2,7 @@
 
 namespace PriceObserver.Model.Service
 {
-    public class ShopWithItemsVM
+    public class ShopVM
     {
         public string Address { get; set; }
      

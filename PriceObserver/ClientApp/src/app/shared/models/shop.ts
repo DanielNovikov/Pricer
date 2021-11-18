@@ -1,6 +1,6 @@
 import { Item } from "./item";
 
-export class ShopWithItems {
+export class Shop {
 
   public address: string | undefined;
   public logoUrl: string | undefined;

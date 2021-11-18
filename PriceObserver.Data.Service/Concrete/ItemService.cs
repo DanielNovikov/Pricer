@@ -14,14 +14,14 @@ namespace PriceObserver.Data.Service.Concrete
     {
         private readonly IItemRepository _repository;
         private readonly IShopRepository _shopRepository;
-        private readonly IShopToShopWithItemsVMConverter _shopConverter;
+        private readonly IShopToShopVMConverter _shopConverter;
         private readonly IItemToItemVMConverter _itemConverter;
         private readonly IItemPriceChangeRepository _priceChangeRepository;
         
         public ItemService(
             IItemRepository repository, 
             IShopRepository shopRepository,
-            IShopToShopWithItemsVMConverter shopConverter, 
+            IShopToShopVMConverter shopConverter, 
             IItemToItemVMConverter itemConverter, 
             IItemPriceChangeRepository priceChangeRepository)
         {
@@ -32,7 +32,7 @@ namespace PriceObserver.Data.Service.Concrete
             _priceChangeRepository = priceChangeRepository;
         }
 
-        public async Task<IList<ShopWithItemsVM>> GetGroupedByUserId(long userId)
+        public async Task<IList<ShopVM>> GetGroupedByUserId(long userId)
         {
             var items = await _repository.GetByUserId(userId);
             var shops = await _shopRepository.GetAll();

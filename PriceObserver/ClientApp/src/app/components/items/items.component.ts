@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ItemHttpService} from "../../shared/services/item-http.service";
-import {ShopWithItems} from "../../shared/models/shop-with-items";
+import {Shop} from "../../shared/models/shop";
 
 @Component({
   selector: 'app-items',
@@ -9,7 +9,7 @@ import {ShopWithItems} from "../../shared/models/shop-with-items";
 })
 export class ItemsComponent implements OnInit {
 
-  shops: ShopWithItems[] | undefined;
+  shops: Shop[] | undefined;
 
   constructor(private itemHttpService: ItemHttpService) { }
 

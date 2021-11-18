@@ -10,7 +10,7 @@ namespace PriceObserver.Model.Converters
         {
             services.AddTransient<IUpdateDtoToUserConverter, UpdateDtoToUserConverter>();
             services.AddTransient<IItemToItemVMConverter, ItemToItemVMConverter>();
-            services.AddTransient<IShopToShopWithItemsVMConverter, ShopToShopWithItemsVmConverter>();
+            services.AddTransient<IShopToShopVMConverter, ShopToShopVMConverter>();
             services.AddTransient<IUpdateToUpdateDtoConverter, UpdateToUpdateDtoConverter>();
         }
     }

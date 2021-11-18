@@ -4,11 +4,11 @@ using PriceObserver.Model.Service;
 
 namespace PriceObserver.Model.Converters.Concrete
 {
-    public class ShopToShopWithItemsVmConverter : IShopToShopWithItemsVMConverter
+    public class ShopToShopVMConverter : IShopToShopVMConverter
     {
-        public ShopWithItemsVM Convert(Shop source)
+        public ShopVM Convert(Shop source)
         {
-            return new ShopWithItemsVM
+            return new ShopVM
             {
                 Address = $"https://{source.Host}",
                 LogoUrl = source.LogoUrl.ToString()
