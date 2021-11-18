@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.29926.136
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PriceObserver", "PriceObserver\PriceObserver.csproj", "{2810C97E-E067-4F4E-829F-735236D3F55C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PriceObserver.Telegram.Client", "PriceObserver.Telegram.Client\PriceObserver.Telegram.Client.csproj", "{3D0A09AC-0D70-4C9A-AF8E-BA4484576C92}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PriceObserver.Telegram", "PriceObserver.Telegram\PriceObserver.Telegram.csproj", "{3D0A09AC-0D70-4C9A-AF8E-BA4484576C92}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PriceObserver.Parser", "PriceObserver.Parser\PriceObserver.Parser.csproj", "{BD1D3C9F-390A-43EB-BC6D-EC0A1F12590E}"
 EndProject
@@ -15,7 +15,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PriceObserver.Model", "Pric
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PriceObserver.Background", "PriceObserver.Background\PriceObserver.Background.csproj", "{BFA35F38-319F-4559-A9B5-D02FB14C6828}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PriceObserver.Telegram.Dialog", "PriceObserver.Telegram.Dialog\PriceObserver.Telegram.Dialog.csproj", "{BEAE268C-B46C-47EF-967B-95BC60681B59}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PriceObserver.Dialog", "PriceObserver.Dialog\PriceObserver.Dialog.csproj", "{BEAE268C-B46C-47EF-967B-95BC60681B59}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PriceObserver.Data.Service", "PriceObserver.Data.Service\PriceObserver.Data.Service.csproj", "{4E384CAE-7D5F-4639-9F4F-806B55F1EF03}"
 EndProject

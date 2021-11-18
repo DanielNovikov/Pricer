@@ -6,7 +6,7 @@ namespace PriceObserver.Model.Telegram.Common
     {
         public string Message { get; private set; }
         
-        public ReplyKeyboardMarkup MenuKeyboard { get; private set; }
+        public MenuKeyboard MenuKeyboard { get; private set; }
 
         private ReplyResult()
         {
@@ -20,12 +20,12 @@ namespace PriceObserver.Model.Telegram.Common
             };
         }
         
-        public static ReplyResult ReplyWithKeyboard(string message, ReplyKeyboardMarkup menuKeyBoard)
+        public static ReplyResult ReplyWithKeyboard(string message, MenuKeyboard menuKeyboard)
         {
             return new ReplyResult
             {
                 Message = message,
-                MenuKeyboard = menuKeyBoard
+                MenuKeyboard = menuKeyboard
             };
         }
     }

@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net5.0</TargetFramework>
+        <RootNamespace>PriceObserver.Dialog</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\PriceObserver.Data.Service\PriceObserver.Data.Service.csproj" />
+      <ProjectReference Include="..\PriceObserver.Data\PriceObserver.Data.csproj" />
+      <ProjectReference Include="..\PriceObserver.Model.Converters\PriceObserver.Model.Converters.csproj" />
+      <ProjectReference Include="..\PriceObserver.Model\PriceObserver.Model.csproj" />
+      <ProjectReference Include="..\PriceObserver.Parser\PriceObserver.Parser.csproj" />
+    </ItemGroup>
+
+</Project>

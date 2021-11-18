@@ -6,7 +6,7 @@ using Microsoft.Extensions.Hosting;
 using PriceObserver.Data.Repositories.Abstract;
 using PriceObserver.Data.Service.Abstract;
 using PriceObserver.Parser.Abstract;
-using PriceObserver.Telegram.Client.Abstract;
+using PriceObserver.Telegram.Abstract;
 
 namespace PriceObserver.Background.Jobs
 {

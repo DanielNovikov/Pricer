@@ -4,11 +4,11 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using PriceObserver.Telegram.Client.Abstract;
+using PriceObserver.Telegram.Abstract;
 using Telegram.Bot.Extensions.Polling;
 using Telegram.Bot.Types;
 using Telegram.Bot.Types.Enums;
-using IUpdateHandler = PriceObserver.Telegram.Client.Abstract.IUpdateHandler;
+using IUpdateHandler = PriceObserver.Telegram.Abstract.IUpdateHandler;
 
 namespace PriceObserver.Background.Jobs
 {
