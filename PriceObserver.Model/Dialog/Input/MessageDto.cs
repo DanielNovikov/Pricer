@@ -1,6 +1,6 @@
 ﻿using PriceObserver.Model.Data;
 
-namespace PriceObserver.Model.Telegram.Input
+namespace PriceObserver.Model.Dialog.Input
 {
     public class MessageDto
     {

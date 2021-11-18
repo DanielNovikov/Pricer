@@ -1,9 +1,9 @@
 ﻿using PriceObserver.Model.Common;
-using PriceObserver.Model.Telegram.Commands;
-using PriceObserver.Model.Telegram.Common;
-using PriceObserver.Model.Telegram.Menu;
+using PriceObserver.Model.Dialog.Commands;
+using PriceObserver.Model.Dialog.Common;
+using PriceObserver.Model.Dialog.Menu;
 
-namespace PriceObserver.Model.Telegram.Input
+namespace PriceObserver.Model.Dialog.Input
 {
     public class InputHandlingServiceResult : ServiceResult<InputHandlingServiceResult, ReplyResult, string>
     {

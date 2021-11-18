@@ -2,8 +2,8 @@
 using PriceObserver.Dialog.Commands.Abstract;
 using PriceObserver.Dialog.Common.Abstract;
 using PriceObserver.Model.Data.Enums;
-using PriceObserver.Model.Telegram.Commands;
-using PriceObserver.Model.Telegram.Common;
+using PriceObserver.Model.Dialog.Commands;
+using PriceObserver.Model.Dialog.Common;
 using User = PriceObserver.Model.Data.User;
 
 namespace PriceObserver.Dialog.Commands.Concrete.ShopsCommand

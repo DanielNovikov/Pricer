@@ -1,4 +1,4 @@
-﻿using PriceObserver.Model.Telegram.Menu;
+﻿using PriceObserver.Model.Dialog.Menu;
 
 namespace PriceObserver.Dialog.Menus.Abstract
 {

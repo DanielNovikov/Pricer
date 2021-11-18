@@ -1,4 +1,4 @@
-﻿namespace PriceObserver.Model.Telegram.Common
+﻿namespace PriceObserver.Model.Dialog.Common
 {
     public class MenuKeyboardButton
     {

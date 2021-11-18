@@ -4,7 +4,7 @@ using PriceObserver.Dialog.Commands.Abstract;
 using PriceObserver.Dialog.Common.Abstract;
 using PriceObserver.Dialog.Input.Abstract;
 using PriceObserver.Dialog.Menus.Abstract;
-using PriceObserver.Model.Telegram.Input;
+using PriceObserver.Model.Dialog.Input;
 
 namespace PriceObserver.Dialog.Input.Concrete
 {

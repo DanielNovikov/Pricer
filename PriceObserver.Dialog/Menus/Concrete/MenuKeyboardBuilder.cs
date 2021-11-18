@@ -4,7 +4,7 @@ using PriceObserver.Data.Repositories.Abstract;
 using PriceObserver.Dialog.Menus.Abstract;
 using PriceObserver.Model.Data;
 using PriceObserver.Model.Data.Enums;
-using PriceObserver.Model.Telegram.Common;
+using PriceObserver.Model.Dialog.Common;
 
 namespace PriceObserver.Dialog.Menus.Concrete
 {

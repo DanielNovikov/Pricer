@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using PriceObserver.Model.Telegram.Input;
+using PriceObserver.Model.Dialog.Input;
 
 namespace PriceObserver.Dialog.Input.Abstract
 {

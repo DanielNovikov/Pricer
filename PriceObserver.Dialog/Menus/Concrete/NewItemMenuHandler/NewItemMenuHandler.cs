@@ -3,8 +3,8 @@ using PriceObserver.Data.Repositories.Abstract;
 using PriceObserver.Dialog.Menus.Abstract;
 using PriceObserver.Model.Data;
 using PriceObserver.Model.Data.Enums;
-using PriceObserver.Model.Telegram.Input;
-using PriceObserver.Model.Telegram.Menu;
+using PriceObserver.Model.Dialog.Input;
+using PriceObserver.Model.Dialog.Menu;
 using PriceObserver.Parser.Abstract;
 
 namespace PriceObserver.Dialog.Menus.Concrete.NewItemMenuHandler

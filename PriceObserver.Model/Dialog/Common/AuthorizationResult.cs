@@ -1,6 +1,6 @@
 ﻿using PriceObserver.Model.Data;
 
-namespace PriceObserver.Model.Telegram.Common
+namespace PriceObserver.Model.Dialog.Common
 {
     public class AuthorizationResult
     {

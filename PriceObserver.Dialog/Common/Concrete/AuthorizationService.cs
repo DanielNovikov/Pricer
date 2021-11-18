@@ -3,8 +3,8 @@ using PriceObserver.Data.Repositories.Abstract;
 using PriceObserver.Data.Service.Abstract;
 using PriceObserver.Dialog.Common.Abstract;
 using PriceObserver.Model.Converters.Abstract;
-using PriceObserver.Model.Telegram.Common;
-using PriceObserver.Model.Telegram.Input;
+using PriceObserver.Model.Dialog.Common;
+using PriceObserver.Model.Dialog.Input;
 
 namespace PriceObserver.Dialog.Common.Concrete
 {

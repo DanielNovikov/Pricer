@@ -1,7 +1,7 @@
 ﻿using PriceObserver.Model.Common;
-using PriceObserver.Model.Telegram.Common;
+using PriceObserver.Model.Dialog.Common;
 
-namespace PriceObserver.Model.Telegram.Commands
+namespace PriceObserver.Model.Dialog.Commands
 {
     public class CommandHandlingServiceResult : 
         ServiceResult<

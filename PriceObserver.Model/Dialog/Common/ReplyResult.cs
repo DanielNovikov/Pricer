@@ -1,6 +1,4 @@
-﻿using Telegram.Bot.Types.ReplyMarkups;
-
-namespace PriceObserver.Model.Telegram.Common
+﻿namespace PriceObserver.Model.Dialog.Common
 {
     public class ReplyResult
     {

@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using PriceObserver.Model.Data;
-using PriceObserver.Model.Telegram.Commands;
-using PriceObserver.Model.Telegram.Input;
+using PriceObserver.Model.Dialog.Commands;
+using PriceObserver.Model.Dialog.Input;
 
 namespace PriceObserver.Dialog.Commands.Abstract
 {

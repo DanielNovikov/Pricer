@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text.RegularExpressions;
 using PriceObserver.Dialog.Menus.Abstract;
-using PriceObserver.Model.Telegram.Menu;
+using PriceObserver.Model.Dialog.Menu;
 
 namespace PriceObserver.Dialog.Menus.Concrete
 {

@@ -1,4 +1,4 @@
-﻿namespace PriceObserver.Model.Telegram.Input
+﻿namespace PriceObserver.Model.Dialog.Input
 {
     public class UpdateDto
     {

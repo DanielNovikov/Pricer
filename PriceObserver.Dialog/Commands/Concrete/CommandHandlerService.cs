@@ -7,8 +7,8 @@ using PriceObserver.Dialog.Commands.Abstract;
 using PriceObserver.Dialog.Menus.Abstract;
 using PriceObserver.Model.Data;
 using PriceObserver.Model.Data.Enums;
-using PriceObserver.Model.Telegram.Commands;
-using PriceObserver.Model.Telegram.Input;
+using PriceObserver.Model.Dialog.Commands;
+using PriceObserver.Model.Dialog.Input;
 using User = PriceObserver.Model.Data.User;
 
 namespace PriceObserver.Dialog.Commands.Concrete

@@ -1,5 +1,5 @@
 ﻿using PriceObserver.Model.Converters.Abstract;
-using PriceObserver.Model.Telegram.Input;
+using PriceObserver.Model.Dialog.Input;
 using User = PriceObserver.Model.Data.User;
 
 namespace PriceObserver.Model.Converters.Concrete
