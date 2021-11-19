@@ -5,4 +5,5 @@ export class Item {
   public price: number | undefined;
   public url: string | undefined;
   public imageUrl: string | undefined;
+  public priceChanges: string | undefined;
 }

@@ -52,7 +52,21 @@ namespace PriceObserver.Data.Service.Concrete
             var logoUrl = shop.LogoUrl.ToString();
 
             var itemVMs = items
-                .Select(y => y.ToVM())
+                .Select(y =>
+                {
+                    var priceChanges = y.PriceChanges.Any() 
+                        ? y.PriceChanges
+                            .Select(z =>
+                            {
+                                var sign = z.NewPrice > z.OldPrice ? "📈" : "📉" ; 
+                                
+                                return $"{z.NewPrice} {sign}";
+                            })
+                            .Aggregate((a, b) => $"{a} {b}")
+                        : "Нет истории";
+
+                    return y.ToVM(priceChanges);
+                })
                 .ToList();
 
             return new ShopVM(address, logoUrl, itemVMs);

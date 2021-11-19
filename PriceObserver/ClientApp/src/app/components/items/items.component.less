@@ -90,23 +90,49 @@
 }
 
 .price-container {
-  filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.1));
   position: absolute;
   left: 3px;
   top: 14px;
+  filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.15));
+}
 
-  & > span {
+.price {
+  background: #fafafa;
+  font-size: 15px;
+  font-family: 'Source Sans Pro', sans-serif;
+  padding: 9px 16px;
+  color: #4d4d4d;
+  position: relative;
+
+  &::before {
+    content: attr(id);
+    display: inline-block;
+    position: absolute;
+    top: 80%;
+    width: 100%;
+    left: 0;
     background: #fafafa;
-    font-size: 15px;
+    color: #262626;
+    padding: 6px 0;
+    border-radius: 3px;
+    opacity: 0;
+    transition: 0.3s;
     font-family: 'Source Sans Pro', sans-serif;
-    padding: 9px 16px;
-    clip-path: polygon(0 0, 100% 0, 100% 70%, 85% 100%, 0 100%);
-    color: #4d4d4d;
+    overflow: hidden;
+    pointer-events: none;
+    font-size: 14px;
+    text-align: center;
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.15);
+  }
 
-    & > img {
-      width: 11px;
-      height: 11px;
-    }
+  &:hover::before {
+    opacity: 0.9;
+    top: 110%;
+  }
+
+  & > img {
+    width: 11px;
+    height: 11px;
   }
 }
 
@@ -289,15 +315,19 @@
 
   .price-container {
     top: 12px;
+  }
 
-    & > span {
-      font-size: 14px;
-      padding: 8px 14px;
+  .price {
+    font-size: 14px;
+    padding: 8px 14px;
 
-      & > img {
-        width: 11px;
-        height: 11px;
-      }
+    &::before {
+      font-size: 13px;
+    }
+
+    & > img {
+      width: 11px;
+      height: 11px;
     }
   }
 
@@ -371,15 +401,19 @@
   .price-container {
     left: 2px;
     top: 10px;
+  }
 
-    & > span {
+  .price {
+    font-size: 12px;
+    padding: 7px 13px;
+
+    &::before {
       font-size: 12px;
-      padding: 7px 13px;
+    }
 
-      & > img {
-        width: 10px;
-        height: 10px;
-      }
+    & > img {
+      width: 10px;
+      height: 10px;
     }
   }
 
@@ -454,15 +488,19 @@
   .price-container {
     left: 2px;
     top: 6px;
+  }
 
-    & > span {
+  .price {
+    font-size: 11px;
+    padding: 5px 12px;
+
+    &::before {
       font-size: 11px;
-      padding: 5px 12px;
+    }
 
-      & > img {
-        width: 9px;
-        height: 9px;
-      }
+    & > img {
+      width: 9px;
+      height: 9px;
     }
   }
 
