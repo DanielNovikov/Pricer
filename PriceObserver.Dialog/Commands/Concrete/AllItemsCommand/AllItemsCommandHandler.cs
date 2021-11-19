@@ -33,7 +33,7 @@ namespace PriceObserver.Dialog.Commands.Concrete.AllItemsCommand
             var items = await _itemRepository.GetByUserId(user.Id);
 
             if (!items.Any())
-                return CommandHandlingServiceResult.Fail("В вашем списке ещё нет никаких товаров 🗑");
+                return CommandHandlingServiceResult.Fail("В Вашем списке ещё нет никаких товаров 🗑");
             
             var message = items
                 .Select(x => $"{x.Title}{Environment.NewLine}Цена на <a href='{x.Url}'>товар</a> <b>{x.Price}</b>")

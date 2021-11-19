@@ -6,22 +6,23 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\PriceObserver.Authentication\PriceObserver.Authentication.csproj"/>
-        <ProjectReference Include="..\PriceObserver.Background\PriceObserver.Background.csproj"/>
-        <ProjectReference Include="..\PriceObserver.Data.Seed\PriceObserver.Data.Seed.csproj"/>
-        <ProjectReference Include="..\PriceObserver.Data\PriceObserver.Data.csproj"/>
-        <ProjectReference Include="..\PriceObserver.Parser\PriceObserver.Parser.csproj"/>
-        <ProjectReference Include="..\PriceObserver.Telegram\PriceObserver.Telegram.csproj"/>
+        <ProjectReference Include="..\PriceObserver.Authentication\PriceObserver.Authentication.csproj" />
+        <ProjectReference Include="..\PriceObserver.Background\PriceObserver.Background.csproj" />
+        <ProjectReference Include="..\PriceObserver.Data.Seed\PriceObserver.Data.Seed.csproj" />
+        <ProjectReference Include="..\PriceObserver.Data\PriceObserver.Data.csproj" />
+        <ProjectReference Include="..\PriceObserver.Parser\PriceObserver.Parser.csproj" />
+        <ProjectReference Include="..\PriceObserver.Telegram\PriceObserver.Telegram.csproj" />
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="3.1.20"/>
-        <PackageReference Include="Serilog.AspNetCore" Version="4.1.0"/>
-        <PackageReference Include="Serilog.Sinks.Telegram" Version="0.2.1"/>
+        <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="3.1.20" />
+        <PackageReference Include="Serilog.AspNetCore" Version="4.1.0" />
+        <PackageReference Include="Serilog.Sinks.Telegram" Version="0.2.1" />
     </ItemGroup>
 
     <ItemGroup>
-        <Folder Include="ClientApp\src\app\components"/>
-        <Folder Include="wwwroot"/>
+        <Folder Include="ClientApp\src\app\components" />
+        <Folder Include="ClientApp\src\app\pages" />
+        <Folder Include="wwwroot" />
     </ItemGroup>
 </Project>

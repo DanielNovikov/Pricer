@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {ItemHttpService} from "../../shared/services/item-http.service";
 import {Shop} from "../../shared/models/shop";
 
@@ -9,17 +9,12 @@ import {Shop} from "../../shared/models/shop";
 })
 export class ItemsComponent implements OnInit {
 
-  shops: Shop[] | undefined;
+  @Input() shops: Shop[] | [];
+  @Output() shopsChange = new EventEmitter<Shop[]>();
 
   constructor(private itemHttpService: ItemHttpService) { }
 
   ngOnInit(): void {
-    this.itemHttpService
-      .getGrouped()
-      .subscribe(data => {
-        this.shops = data;
-        console.log(data);
-      });
   }
 
   remove(id: number): void {
@@ -28,9 +23,10 @@ export class ItemsComponent implements OnInit {
       .subscribe(response => {
         let shop = this.shops?.find(x => x.items.some(y => y.id === id))!;
 
-        if (shop.items.length === 1)
-        {
-          this.shops = this.shops!.filter(x => x != shop);
+        if (shop.items.length === 1) {
+
+          this.shops = this.shops!.filter(x => x != shop) || [];
+          this.shopsChange.emit(this.shops);
           return;
         }
 
