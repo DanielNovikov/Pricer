@@ -5,7 +5,8 @@ import { HomeComponent } from "./pages/home/home.component";
 
 const routes: Routes = [
   {path: '', component: HomeComponent, pathMatch: 'full' },
-  {path: 'login/:token', component: LoginComponent }
+  {path: 'login/:token', component: LoginComponent },
+  {path: 'login', component: LoginComponent }
 ];
 
 @NgModule({

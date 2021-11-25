@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit {
     let token = this.route.snapshot.paramMap.get('token');
 
     if (!token) {
-      alert('Token is not present');
+      this.invalidToken = true;
       return;
     }
 
@@ -32,11 +32,7 @@ export class LoginComponent implements OnInit {
 
           localStorage.setItem('access_token', result.accessToken!);
 
-          console.log(localStorage.getItem('access_token'));
-
           await this.router.navigate(['']);
-
-          console.log(result.accessToken!);
         },
         error: error => {
           if (error.status === 401)
