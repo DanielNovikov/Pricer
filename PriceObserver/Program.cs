@@ -29,7 +29,11 @@ namespace PriceObserver
             Host.CreateDefaultBuilder(args)
                 .UseContentRoot(Directory.GetCurrentDirectory())
                 .UseSerilog()
-                .ConfigureWebHostDefaults(webBuilder => { webBuilder.UseStartup<Startup>(); });
+                .ConfigureWebHostDefaults(webBuilder =>
+                {
+                    webBuilder.UseUrls("http://*", "https://*");
+                    webBuilder.UseStartup<Startup>();
+                });
 
         private static void SeedData(IHost host)
         {

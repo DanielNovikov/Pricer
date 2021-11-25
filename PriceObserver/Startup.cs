@@ -1,3 +1,7 @@
+using System;
+using Certes;
+using FluffySpoon.AspNet.EncryptWeMust;
+using FluffySpoon.AspNet.EncryptWeMust.Certes;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -37,6 +41,26 @@ namespace PriceObserver
             services.AddDataServices();
             services.AddBackgroundJobs();
 
+            services.AddFluffySpoonLetsEncrypt(new LetsEncryptOptions
+            {
+                Email = "danil.novikov.dev@gmail.com",
+                UseStaging = false,
+                Domains = new[] { "pricer.ink" },
+                TimeUntilExpiryBeforeRenewal = TimeSpan.FromDays(30),
+                TimeAfterIssueDateBeforeRenewal = TimeSpan.FromDays(7),
+                CertificateSigningRequest = new CsrInfo
+                {
+                    CountryName = "Ukraine",
+                    Locality = "DK",
+                    Organization = "Pricer",
+                    OrganizationUnit = "Development",
+                    State = "UA"
+                }
+            });
+            
+            services.AddFluffySpoonLetsEncryptFileCertificatePersistence();
+            services.AddFluffySpoonLetsEncryptMemoryChallengePersistence();
+
             services.AddCors();
         }
 
@@ -48,6 +72,8 @@ namespace PriceObserver
             {
                 app.UseDeveloperExceptionPage();
             }
+            
+            app.UseFluffySpoonLetsEncrypt();
             
             app.UseStaticFiles();
             
