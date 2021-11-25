@@ -4,7 +4,7 @@ using PriceObserver.Data.Models;
 
 namespace PriceObserver.Data
 {
-    public class ApplicationDbContext : DbContext
+    public sealed class ApplicationDbContext : DbContext
     {
         public DbSet<Item> Items { get; set; }
         
@@ -28,12 +28,6 @@ namespace PriceObserver.Data
         
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
-            Database?.EnsureCreated();
-        }
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseNpgsql("Host=localhost;Port=1488;Database=PricerDB;Username=postgres;Password=postgres");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

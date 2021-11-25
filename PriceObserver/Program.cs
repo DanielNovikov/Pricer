@@ -1,6 +1,7 @@
 using System.IO;
 using System.Reflection;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -35,6 +36,8 @@ namespace PriceObserver
             using var scope = host.Services.CreateScope();
             var services = scope.ServiceProvider;
             var context = services.GetService<ApplicationDbContext>();
+            
+            context!.Database.Migrate();
                 
             DbSeeder.Seed(context);
         }
