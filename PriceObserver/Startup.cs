@@ -12,6 +12,7 @@ using PriceObserver.Background;
 using PriceObserver.Data;
 using PriceObserver.Data.Service;
 using PriceObserver.Dialog;
+using PriceObserver.Extensions;
 using PriceObserver.Parser;
 using PriceObserver.Telegram;
 
@@ -41,6 +42,7 @@ namespace PriceObserver
             services.AddDataServices();
             services.AddBackgroundJobs();
 
+            services.AddSslSupport();
             services.AddCors();
         }
 
