@@ -38,7 +38,7 @@ namespace PriceObserver.Dialog.Commands.Concrete.WebsiteCommand
                 userToken = await _userTokenService.CreateForUser(user.Id);
 
             var url = $"https://pricer.ink/login/{userToken.Token}";
-            var message = $"Нажмите на <a href='{url}'>ссылку</a> для перехода на сайт";
+            var message = $"Нажмите <a href='{url}'>здесь</a> для перехода на сайт";
             
             var result = ReplyResult.Reply(message);
             return CommandHandlingServiceResult.Success(result);
