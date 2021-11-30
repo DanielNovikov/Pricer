@@ -6,14 +6,13 @@ networks:
 
 services:
   server:
-    image: danilnovikovdev/server:1.0.0
+    image: danilnovikovdev/server:1.0.1
     build: .
     restart: always
     depends_on:
       - "postgres"
     ports:
-      - "80:80"
-      - "443:443"
+      - "5000:5000"
     networks:
       - dockerapi-dev
 

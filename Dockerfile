@@ -1,6 +1,5 @@
 ﻿FROM mcr.microsoft.com/dotnet/sdk:5.0-alpine AS back-build
-EXPOSE 80
-EXPOSE 443
+EXPOSE 5000
 
 WORKDIR /app/backend
 

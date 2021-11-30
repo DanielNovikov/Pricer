@@ -1,9 +1,6 @@
-using System;
-using Certes;
-using FluffySpoon.AspNet.EncryptWeMust;
-using FluffySpoon.AspNet.EncryptWeMust.Certes;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -12,7 +9,6 @@ using PriceObserver.Background;
 using PriceObserver.Data;
 using PriceObserver.Data.Service;
 using PriceObserver.Dialog;
-using PriceObserver.Extensions;
 using PriceObserver.Parser;
 using PriceObserver.Telegram;
 
@@ -41,8 +37,7 @@ namespace PriceObserver
             services.AddData(_configuration);
             services.AddDataServices();
             services.AddBackgroundJobs();
-
-            services.AddSslSupport();
+            
             services.AddCors();
         }
 
@@ -54,11 +49,11 @@ namespace PriceObserver
             {
                 app.UseDeveloperExceptionPage();
             }
-
-            if (!env.IsDevelopment())
+            
+            app.UseForwardedHeaders(new ForwardedHeadersOptions
             {
-                app.UseFluffySpoonLetsEncrypt();
-            }
+                ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
+            });
             
             app.UseStaticFiles();
             

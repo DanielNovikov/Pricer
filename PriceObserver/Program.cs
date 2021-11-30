@@ -1,10 +1,10 @@
 using System.IO;
 using System.Reflection;
+using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using PriceObserver.Data;
 using PriceObserver.Data.Seed;
 using Serilog;
@@ -25,17 +25,15 @@ namespace PriceObserver
             host.Run();
         }
 
-        private static IHostBuilder CreateHostBuilder(string[] args) =>
-            Host.CreateDefaultBuilder(args)
+        private static IWebHostBuilder CreateHostBuilder(string[] args) =>
+            WebHost
+                .CreateDefaultBuilder(args)
                 .UseContentRoot(Directory.GetCurrentDirectory())
                 .UseSerilog()
-                .ConfigureWebHostDefaults(webBuilder =>
-                {
-                    webBuilder.UseUrls("http://*", "https://*");
-                    webBuilder.UseStartup<Startup>();
-                });
+                .UseUrls("http://*:5000")
+                .UseStartup<Startup>();
 
-        private static void SeedData(IHost host)
+        private static void SeedData(IWebHost host)
         {
             using var scope = host.Services.CreateScope();
             var services = scope.ServiceProvider;
