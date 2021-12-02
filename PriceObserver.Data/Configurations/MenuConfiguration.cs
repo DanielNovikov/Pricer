@@ -4,7 +4,7 @@ using PriceObserver.Data.Models;
 
 namespace PriceObserver.Data.Configurations
 {
-    public class MenuConfiguration: IEntityTypeConfiguration<Menu>
+    public class MenuConfiguration : IEntityTypeConfiguration<Menu>
     {
         public void Configure(EntityTypeBuilder<Menu> builder)
         {

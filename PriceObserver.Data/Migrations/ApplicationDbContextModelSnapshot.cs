@@ -161,6 +161,28 @@ namespace PriceObserver.Data.Migrations
                     b.ToTable("MenuCommands");
                 });
 
+            modelBuilder.Entity("PriceObserver.Data.Models.Notification", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<bool>("Executed")
+                        .HasColumnType("boolean");
+
+                    b.Property<DateTime>("Planned")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<string>("Text")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Notifications");
+                });
+
             modelBuilder.Entity("PriceObserver.Data.Models.Shop", b =>
                 {
                     b.Property<int>("Id")

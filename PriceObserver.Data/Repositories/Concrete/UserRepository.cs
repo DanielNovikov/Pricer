@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using PriceObserver.Data.Models;
 using PriceObserver.Data.Repositories.Abstract;
@@ -21,6 +22,13 @@ namespace PriceObserver.Data.Repositories.Concrete
                 .Include(x => x.Menu)
                     .ThenInclude(x => x.Parent)
                 .FirstOrDefaultAsync(x => x.Id == id);
+        }
+
+        public async Task<IList<User>> GetAll()
+        {
+            return await _context.Users
+                .AsNoTracking()
+                .ToListAsync();
         }
 
         public async Task Add(User user)

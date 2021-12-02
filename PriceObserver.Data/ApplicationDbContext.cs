@@ -22,6 +22,8 @@ namespace PriceObserver.Data
         
         public DbSet<Shop> Shops { get; set; }
 
+        public DbSet<Notification> Notifications { get; set; }
+        
         public ApplicationDbContext()
         {
         }
@@ -34,6 +36,12 @@ namespace PriceObserver.Data
         {
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
         }
+
+        // used to generate migrations
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //{
+        //   optionsBuilder.UseNpgsql("Host=localhost;Port=1488;Database=PricerDB;Username=postgres;Password=postgres");
+        //}
 
         public void DetachAll()
         {
