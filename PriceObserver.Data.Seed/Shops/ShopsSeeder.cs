@@ -34,7 +34,7 @@ namespace PriceObserver.Data.Seed.Shops
                 "Brocard",
                 ShopType.Brocard,
                 "www.brocard.ua",
-                new Uri("https://cdn.worldvectorlogo.com/logos/brocard-parfums.svg"));
+                new Uri("https://cosmo-multimall.com/wp-content/uploads/2021/03/078.jpg"));
         }
     }
 }
