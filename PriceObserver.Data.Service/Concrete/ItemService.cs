@@ -60,7 +60,7 @@ namespace PriceObserver.Data.Service.Concrete
                             {
                                 var sign = z.NewPrice > z.OldPrice ? "📈" : "📉" ; 
                                 
-                                return $"{z.NewPrice} {sign}";
+                                return $"{z.OldPrice} {sign}";
                             })
                             .Aggregate((a, b) => $"{a} {b}")
                         : "Нет истории";
