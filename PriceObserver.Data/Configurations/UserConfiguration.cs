@@ -30,6 +30,11 @@ namespace PriceObserver.Data.Configurations
                 .IsRequired(false);
 
             builder
+                .Property(x => x.IsActive)
+                .HasDefaultValueSql("true")
+                .IsRequired();
+            
+            builder
                 .HasOne(x => x.Menu)
                 .WithMany()
                 .HasForeignKey(x => x.MenuId)

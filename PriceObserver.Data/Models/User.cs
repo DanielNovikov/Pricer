@@ -12,6 +12,8 @@ namespace PriceObserver.Data.Models
         
         public string Username { get; set; }
         
+        public bool IsActive { get; set; }
+        
         public IList<Item> Items { get; set; }
         
         public int MenuId { get; set; }

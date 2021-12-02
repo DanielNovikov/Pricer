@@ -7,6 +7,8 @@ namespace PriceObserver.Data.Service.Abstract
     {
         Task RedirectToMenu(User user, Menu menu);
 
+        Task DeactivateUserById(long userId);
+        
         Task<User> Create(User user);
     }
 }

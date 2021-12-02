@@ -69,7 +69,8 @@ namespace PriceObserver.Background.Jobs
 
             var logger = scope.ServiceProvider.GetService<ILogger<TelegramUpdateReceiverJob>>();
 
-            logger.LogError($@"Message: {exception.Message}
+            logger.LogError($@"Unable to send changed price
+Message: {exception.Message}
 InnerException: {exception.InnerException}");
 
             return Task.CompletedTask;
