@@ -4,6 +4,7 @@
     {
         Intertop,
         MdFashion,
-        Answear
+        Answear,
+        Brocard
     }
 }

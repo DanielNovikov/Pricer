@@ -7,7 +7,11 @@ namespace PriceObserver.Data.Seed.Notifications
     {
         public static void Seed(ApplicationDbContext context)
         {
-            //NotificationInitializer.Initialize(context, "Test", DateTime.UtcNow);
+            NotificationInitializer.Initialize(
+                context,
+                @"🆕 Доступен новый магазин <b>Brocard</b>❕
+Нажми <a href='https://www.brocard.ua'>здесь</a> что-бы перейти и поделится желаемыми товарами ➕",
+                DateTime.Parse("2021-12-02 15:03:00").ToUniversalTime());
         }
     }
 }

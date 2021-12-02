@@ -8,6 +8,6 @@ namespace PriceObserver.Parser.Abstract
     {
         ShopType ProviderType { get; }
         
-        ContentValidatorResult Validate(IHtmlDocument htmlDocument);
+        ContentValidatorResult Validate(IHtmlDocument document);
     }
 }

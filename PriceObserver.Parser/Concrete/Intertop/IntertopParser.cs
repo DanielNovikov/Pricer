@@ -12,9 +12,9 @@ namespace PriceObserver.Parser.Concrete.Intertop
     {
         public override ShopType ProviderType => ShopType.Intertop;
 
-        protected override int GetPrice(IList<IElement> elements)
+        protected override int GetPrice(IHtmlDocument document)
         {
-            var priceSpan = elements.First(e =>
+            var priceSpan = document.All.First(e =>
                 !string.IsNullOrEmpty(e.ClassName) &&
                 e.ClassName == "price-contain");
             
@@ -23,9 +23,9 @@ namespace PriceObserver.Parser.Concrete.Intertop
             return int.Parse(price);
         }
 
-        protected override string GetTitle(IList<IElement> elements)
-        {
-            var productName = elements
+        protected override string GetTitle(IHtmlDocument document)
+        {   
+            var productName = document.All
                 .First(e =>
                     !string.IsNullOrEmpty(e.ClassName) &&
                     e.ClassName == "user-product-name")

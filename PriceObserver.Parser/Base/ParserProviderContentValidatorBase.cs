@@ -12,16 +12,14 @@ namespace PriceObserver.Parser.Base
     {
         public abstract ShopType ProviderType { get; }
 
-        public ContentValidatorResult Validate(IHtmlDocument htmlDocument)
+        public ContentValidatorResult Validate(IHtmlDocument document)
         {
-            var elements = htmlDocument.All.ToList();
-
-            if (!IsPriceExists(elements))
+            if (!IsPriceExists(document))
                 return ContentValidatorResult.PriceDoesNotExist();
 
             return ContentValidatorResult.Success();
         }
 
-        protected abstract bool IsPriceExists(IList<IElement> elements);
+        protected abstract bool IsPriceExists(IHtmlDocument document);
     }
 }

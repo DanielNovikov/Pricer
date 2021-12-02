@@ -28,6 +28,13 @@ namespace PriceObserver.Data.Seed.Shops
                 ShopType.Answear,
                 "answear.ua",
                 new Uri("https://i1.wp.com/expert.com.ua/wp-content/uploads/2015/11/logo-2.png?fit=605%2C225&ssl=1"));
+            
+            ShopInitializer.Initialize(
+                context,
+                "Brocard",
+                ShopType.Brocard,
+                "www.brocard.ua",
+                new Uri("https://cdn.worldvectorlogo.com/logos/brocard-parfums.svg"));
         }
     }
 }

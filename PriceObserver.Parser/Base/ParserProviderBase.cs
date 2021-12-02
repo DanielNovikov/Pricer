@@ -15,20 +15,18 @@ namespace PriceObserver.Parser.Base
 
         public ParsedItem Parse(IHtmlDocument document)
         {
-            var elements = document.All.ToList();
-
             return new ParsedItem
             {
                 ShopType = ProviderType,
-                Price = GetPrice(elements),
-                Title = GetTitle(elements).Trim(' ', '\r', '\n'),
+                Price = GetPrice(document),
+                Title = GetTitle(document).Trim(' ', '\r', '\n'),
                 ImageUrl = GetImageUrl(document)
             };
         }
         
-        protected abstract int GetPrice(IList<IElement> elements);
+        protected abstract int GetPrice(IHtmlDocument elements);
         
-        protected abstract string GetTitle(IList<IElement> elements);
+        protected abstract string GetTitle(IHtmlDocument elements);
 
         protected abstract Uri GetImageUrl(IHtmlDocument document);
     }

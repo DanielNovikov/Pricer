@@ -12,8 +12,10 @@ namespace PriceObserver.Parser.Concrete.Answear
     {
         public override ShopType ProviderType => ShopType.Answear;
 
-        protected override int GetPrice(IList<IElement> elements)
+        protected override int GetPrice(IHtmlDocument document)
         {
+            var elements = document.All;
+            
             var priceSpan = elements.First(e =>
                 !string.IsNullOrEmpty(e.ClassName) &&
                 e.ClassName.Contains("Price__currentPrice"));
@@ -26,9 +28,9 @@ namespace PriceObserver.Parser.Concrete.Answear
             return int.Parse(price);
         }
 
-        protected override string GetTitle(IList<IElement> elements)
+        protected override string GetTitle(IHtmlDocument document)
         {
-            return elements
+            return document.All
                 .First(x =>
                     !string.IsNullOrEmpty(x.ClassName) &&
                     x.ClassName.Contains("productNameAndLogo"))
