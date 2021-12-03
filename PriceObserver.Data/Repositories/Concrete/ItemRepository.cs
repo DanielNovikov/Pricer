@@ -44,12 +44,12 @@ namespace PriceObserver.Data.Repositories.Concrete
                 .ToListAsync();
         }
 
-        public async Task<bool> ExistsByUrl(Uri url)
+        public async Task<bool> ExistsForUserByUrl(long userId, Uri url)
         {
             return await _context
                 .Items
                 .AsNoTracking()
-                .AnyAsync(x => x.Url == url);
+                .AnyAsync(x => x.UserId == userId && x.Url == url);
         }
 
         public async Task Add(Item item)

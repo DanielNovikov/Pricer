@@ -46,7 +46,7 @@ namespace PriceObserver.Dialog.Menus.Concrete.NewItemMenuHandler
 
             var url = urlExtractionResult.Result;
 
-            var itemExists = await _itemRepository.ExistsByUrl(url);
+            var itemExists = await _itemRepository.ExistsForUserByUrl(message.User.Id, url);
             if (itemExists)
             {
                 _userActionLogger.LogDuplicateItem(message.User, url);

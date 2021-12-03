@@ -13,7 +13,7 @@ namespace PriceObserver.Data.Repositories.Abstract
 
         Task<List<Item>> GetByUserId(long userId);
 
-        Task<bool> ExistsByUrl(Uri url);
+        Task<bool> ExistsForUserByUrl(long userId, Uri url);
         
         Task Add(Item item);
 
