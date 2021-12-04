@@ -24,9 +24,9 @@ namespace PriceObserver.Parser.Base
             };
         }
         
-        protected abstract int GetPrice(IHtmlDocument elements);
+        protected abstract int GetPrice(IHtmlDocument document);
         
-        protected abstract string GetTitle(IHtmlDocument elements);
+        protected abstract string GetTitle(IHtmlDocument document);
 
         protected abstract Uri GetImageUrl(IHtmlDocument document);
     }

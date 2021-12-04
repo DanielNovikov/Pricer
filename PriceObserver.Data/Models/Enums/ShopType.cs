@@ -5,6 +5,7 @@
         Intertop,
         MdFashion,
         Answear,
-        Brocard
+        Brocard,
+        Farfetch
     }
 }

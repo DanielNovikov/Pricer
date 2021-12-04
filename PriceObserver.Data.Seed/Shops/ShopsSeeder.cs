@@ -35,6 +35,13 @@ namespace PriceObserver.Data.Seed.Shops
                 ShopType.Brocard,
                 "www.brocard.ua",
                 new Uri("https://cosmo-multimall.com/wp-content/uploads/2021/03/078.jpg"));
+            
+            ShopInitializer.Initialize(
+                context,
+                "FARFETCH",
+                ShopType.Farfetch,
+                "www.farfetch.com",
+                new Uri("https://logos-download.com/wp-content/uploads/2016/12/Farfetch_logo_logotype.png"));
         }
     }
 }
