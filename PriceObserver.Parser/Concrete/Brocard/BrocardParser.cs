@@ -34,7 +34,7 @@ namespace PriceObserver.Parser.Concrete.Brocard
                 .Children
                 .First();
 
-            return productName.Text().Trim(' ', '\r', '\n');
+            return productName.Text();
         }
 
         protected override Uri GetImageUrl(IHtmlDocument document)
