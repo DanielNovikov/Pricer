@@ -3,7 +3,7 @@ using System.Linq;
 using PriceObserver.Data.Models;
 using PriceObserver.Data.Models.Enums;
 
-namespace PriceObserver.Data.Seed.Shops.Initializers.Common
+namespace PriceObserver.Data.Seed.Shops.Initializers
 {
     public class ShopInitializer
     {

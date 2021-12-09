@@ -2,7 +2,7 @@
 using PriceObserver.Data.Models;
 using PriceObserver.Data.Models.Enums;
 
-namespace PriceObserver.Data.Seed.Dialog.Initializers.Common
+namespace PriceObserver.Data.Seed.Dialog.Initializers
 {
     public class MenuInitializer
     {

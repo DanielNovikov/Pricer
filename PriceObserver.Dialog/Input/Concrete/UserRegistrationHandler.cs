@@ -3,6 +3,7 @@ using PriceObserver.Common.Extensions;
 using PriceObserver.Data.Models;
 using PriceObserver.Data.Models.Enums;
 using PriceObserver.Data.Repositories.Abstract;
+using PriceObserver.Data.Service.Abstract;
 using PriceObserver.Dialog.Common.Abstract;
 using PriceObserver.Dialog.Common.Models;
 using PriceObserver.Dialog.Input.Abstract;
@@ -16,17 +17,20 @@ namespace PriceObserver.Dialog.Input.Concrete
         private readonly IMenuKeyboardBuilder _menuKeyboardBuilder;
         private readonly IShopsInfoMessageBuilder _shopsInfoMessageBuilder;
         private readonly IUserActionLogger _userActionLogger;
+        private readonly IResourceService _resourceService;
         
         public UserRegistrationHandler(
             ICommandRepository commandRepository,
             IMenuKeyboardBuilder menuKeyboardBuilder, 
             IShopsInfoMessageBuilder shopsInfoMessageBuilder, 
-            IUserActionLogger userActionLogger)
+            IUserActionLogger userActionLogger, 
+            IResourceService resourceService)
         {
             _commandRepository = commandRepository;
             _menuKeyboardBuilder = menuKeyboardBuilder;
             _shopsInfoMessageBuilder = shopsInfoMessageBuilder;
             _userActionLogger = userActionLogger;
+            _resourceService = resourceService;
         }
 
         public async Task<ReplyResult> Handle(User user)
@@ -38,18 +42,15 @@ namespace PriceObserver.Dialog.Input.Concrete
             var writeToSupportTitle = await GetCommandTitle(CommandType.WriteToSupport);
             
             var shopsInfoMessage = await _shopsInfoMessageBuilder.Build();
-            
-            var message = $@"Приветствую, {user.GetFullName()}! 🎉
 
-Здесь Вы сможете добавить желаемые товары за которыми Вы хотели бы следить. Мы оповестим Вас как только цена снизится. ({addCommandTitle})
-
-Так же можно перейти на сайт, где доступно больше возможностей для редактирования Вашего списка товаров в более удобном формате. ({websiteCommandTitle})
-
-Если у вас есть какое-то пожелание или негодование, можете обратиться в поддержку. ({writeToSupportTitle})
-
-{shopsInfoMessage}
-
-{user.Menu.Text}";
+            var message = _resourceService.Get(
+                ResourceKey.Dialog_UserRegistered,
+                user.GetFullName(),
+                addCommandTitle,
+                websiteCommandTitle,
+                writeToSupportTitle,
+                shopsInfoMessage,
+                user.Menu.Text);
 
             var menuKeyboard = await _menuKeyboardBuilder.Build(user.Menu);
 

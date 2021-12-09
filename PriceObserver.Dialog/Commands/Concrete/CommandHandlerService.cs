@@ -50,7 +50,7 @@ namespace PriceObserver.Dialog.Commands.Concrete
             if (!commandAvailableInMenu)
             {
                 _userActionLogger.LogWrongCommand(message.User, message.Text);
-                return CommandHandlingServiceResult.Fail("Неверная комманда");
+                return CommandHandlingServiceResult.Fail(ResourceKey.Dialog_IncorrectCommand);
             }
 
             if (command.MenuToRedirectId.HasValue)

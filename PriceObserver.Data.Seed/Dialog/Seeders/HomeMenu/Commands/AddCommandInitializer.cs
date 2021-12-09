@@ -1,8 +1,8 @@
 ﻿using PriceObserver.Data.Models;
 using PriceObserver.Data.Models.Enums;
-using PriceObserver.Data.Seed.Dialog.Initializers.Common;
+using PriceObserver.Data.Seed.Dialog.Initializers;
 
-namespace PriceObserver.Data.Seed.Dialog.Initializers.HomeMenu.Commands
+namespace PriceObserver.Data.Seed.Dialog.Seeders.HomeMenu.Commands
 {
     public class AddCommandInitializer
     {

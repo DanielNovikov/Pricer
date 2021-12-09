@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using PriceObserver.Data.Service.Abstract;
 using PriceObserver.Dialog.Input.Abstract;
 using PriceObserver.Telegram.Abstract;
 using PriceObserver.Telegram.Extensions;
@@ -11,15 +12,18 @@ namespace PriceObserver.Telegram.Concrete
         private readonly IInputHandler _inputHandler;
         private readonly ITelegramBotService _telegramBotService;
         private readonly IReplyKeyboardMarkupBuilder _keyboardBuilder;
+        private readonly IResourceService _resourceService;
         
         public UpdateHandler(
             IInputHandler inputHandler, 
             ITelegramBotService telegramBotService,
-            IReplyKeyboardMarkupBuilder keyboardBuilder)
+            IReplyKeyboardMarkupBuilder keyboardBuilder, 
+            IResourceService resourceService)
         {
             _inputHandler = inputHandler;
             _telegramBotService = telegramBotService;
             _keyboardBuilder = keyboardBuilder;
+            _resourceService = resourceService;
         }
 
         public async Task Handle(Update update)
@@ -31,7 +35,8 @@ namespace PriceObserver.Telegram.Concrete
 
             if (!serviceResult.IsSuccess)
             {
-                await _telegramBotService.SendMessage(userId, serviceResult.Error);
+                var errorMessage = _resourceService.Get(serviceResult.Error);
+                await _telegramBotService.SendMessage(userId, errorMessage);
                 return;
             }
 

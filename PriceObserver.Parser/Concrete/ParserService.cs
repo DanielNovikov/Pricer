@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using PriceObserver.Data.Models.Enums;
 using PriceObserver.Data.Repositories.Abstract;
 using PriceObserver.Parser.Abstract;
 using ParsedItemResult = PriceObserver.Parser.Models.ParsedItemResult;
@@ -27,7 +28,7 @@ namespace PriceObserver.Parser.Concrete
             var shop = await _shopRepository.GetByHost(url.Host);
             
             if (shop is null)
-                return ParsedItemResult.Fail("Магазин недоступен ❌");
+                return ParsedItemResult.Fail(ResourceKey.Parser_ShopIsNotAvailable);
 
             var htmlLoadResult = await _htmlLoader.Load(url);
 

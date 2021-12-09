@@ -1,8 +1,9 @@
 ﻿using System;
-using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using PriceObserver.Common.Extensions;
 using PriceObserver.Data.Models;
+using PriceObserver.Data.Models.Enums;
+using PriceObserver.Data.Service.Abstract;
 using PriceObserver.Dialog.Common.Abstract;
 
 namespace PriceObserver.Dialog.Common.Concrete
@@ -10,115 +11,100 @@ namespace PriceObserver.Dialog.Common.Concrete
     public class UserActionLogger : IUserActionLogger
     {
         private readonly ILogger<UserActionLogger> _logger;
+        private readonly IResourceService _resourceService;
 
-        public UserActionLogger(ILogger<UserActionLogger> logger)
+        public UserActionLogger(
+            ILogger<UserActionLogger> logger,
+            IResourceService resourceService)
         {
             _logger = logger;
+            _resourceService = resourceService;
         }
 
         public void LogAllItemsCalled(User user)
         {
-            LogInformation(user, "ℹ Получил добавленные продукты");
+            LogInformation(user, ResourceKey.UserAction_GotAddedProducts);
         }
 
         public void LogShopsCalled(User user)
         {
-            LogInformation(user, "ℹ Получил доступные магазины");
+            LogInformation(user, ResourceKey.UserAction_GotAvailableShops);
         }
 
         public void LogWebsiteCalled(User user)
         {
-            LogInformation(user, "ℹ Получил ссылку на сайт");
+            LogInformation(user, ResourceKey.UserAction_GotWebsiteLink);
         }
 
         public void LogUserRegistered(User user)
         {
-            LogInformation(user, "🎉 Новый пользователь зарегистрирован");
+            LogInformation(user, ResourceKey.UserAction_UserRegistered);
         }
 
-        public void LogWrongUrlPassed(User user, string messageText, string error)
+        public void LogWrongUrlPassed(User user, string messageText, ResourceKey error)
         {
-            var message = $@"❌ Не смогло достать ссылку из сообщения
-Сообщение: {messageText}
-Ошибка: {error}";
-            
-            LogError(user, message);
+            var errorMessage = _resourceService.Get(error);
+            LogError(user, ResourceKey.UserAction_PassedWrongUrl, messageText, errorMessage);
         }
 
         public void LogDuplicateItem(User user, Uri url)
         {
-            var message = $@"❌ Попытался добавить дубликат
-Ссылка: {url}";
-            
-            LogError(user, message);
+            LogError(user, ResourceKey.UserAction_TriedAddDuplicate, url);
         }
 
-        public void LogParsingError(User user, Uri url, string parseResultError)
+        public void LogParsingError(User user, Uri url, ResourceKey error)
         {
-            var message = $@"❌ Не смогло достать данные по ссылке 
-Ссылка: {url}
-Ошибка: {parseResultError}";
-            
-            LogError(user, message);
+            var errorMessage = _resourceService.Get(error);
+            LogError(user, ResourceKey.UserAction_ParsingError, url, errorMessage);
         }
 
         public void LogItemAdded(User user, Item item)
         {
-            var message = $@"✅ Новый продукт добавлен в каталог 
-Ссылка: {item.Url}
-Заголовок: {item.Title}
-Цена: {item.Price}";
-            
-            LogInformation(user, message);
+            LogInformation(user, ResourceKey.UserAction_AddedItem, item.Url, item.Title, item.Price);
         }
 
         public void LogWriteToSupport(User user, string messageText)
         {
-            var message = $@"👨🏻‍ Написал в поддержку 
-Сообщение: {messageText}";
-            
-            LogInformation(user, message);
+            LogInformation(user, ResourceKey.UserAction_WroteToSupport, messageText);
         }
 
         public void LogWrongCommand(User user, string messageText)
         {
-            var message = $@"❌ Ввёл неверную комманду 
-Текст: {messageText}";
-            
-            LogInformation(user, message);
+            LogInformation(user, ResourceKey.UserAction_WroteWrongCommand, messageText);
         }
 
         public void LogRedirectToMenu(User user, Menu menuToRedirect)
         {
-            var message = $@"➡ Перешёл в другое меню 
-Название: {menuToRedirect.Type.ToString()}";
-                    
-            LogInformation(user, message);
+            LogInformation(user, ResourceKey.UserAction_RedirectedToMenu, menuToRedirect.Type.ToString());
         }
 
-        private void LogInformation(User user, string message)
+        private void LogInformation(User user, ResourceKey message, params object[] parameters)
         {
-            Log(user, LogLevel.Information, message);
+            Log(user, LogLevel.Information, message, parameters);
         }
 
-        private void LogError(User user, string message)
+        private void LogError(User user, ResourceKey message, params object[] parameters)
         {
-            Task.Run(() => Log(user, LogLevel.Error, message));
+            Log(user, LogLevel.Error, message, parameters);
         }
 
-        private void Log(User user, LogLevel logLevel, string message)
+        private void Log(User user, LogLevel logLevel, ResourceKey resource, params object[] parameters)
         {
+            var message = _resourceService.Get(resource, parameters);
             var userInfo = GetUserInfo(user);
 
             _logger.Log(logLevel, $"{message}{Environment.NewLine}{userInfo}");
         }
-        
+
         private string GetUserInfo(User user)
         {
-            var info = $@"Имя: {user.GetFullName()} (Id: {user.Id})";
+            var info = _resourceService.Get(ResourceKey.UserAction_UserInfo, user.GetFullName(), user.Id);
 
             if (!string.IsNullOrEmpty(user.Username))
-                info += $"{Environment.NewLine}Логин: @{user.Username}";
+            {
+                info += Environment.NewLine;
+                info += _resourceService.Get(ResourceKey.UserAction_UserLogin, user.Username);
+            }
 
             return info;
         }

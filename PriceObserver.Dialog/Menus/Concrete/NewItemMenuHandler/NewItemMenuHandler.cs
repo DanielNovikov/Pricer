@@ -2,6 +2,7 @@
 using PriceObserver.Data.Models;
 using PriceObserver.Data.Models.Enums;
 using PriceObserver.Data.Repositories.Abstract;
+using PriceObserver.Data.Service.Abstract;
 using PriceObserver.Dialog.Common.Abstract;
 using PriceObserver.Dialog.Input.Models;
 using PriceObserver.Dialog.Menus.Abstract;
@@ -17,19 +18,22 @@ namespace PriceObserver.Dialog.Menus.Concrete.NewItemMenuHandler
         private readonly IShopRepository _shopRepository;
         private readonly IUrlExtractor _urlExtractor;
         private readonly IUserActionLogger _userActionLogger;
+        private readonly IResourceService _resourceService;
 
         public NewItemMenuHandler(
             IParserService parserService,
             IItemRepository itemRepository,
             IShopRepository shopRepository, 
             IUrlExtractor urlExtractor,
-            IUserActionLogger userActionLogger)
+            IUserActionLogger userActionLogger, 
+            IResourceService resourceService)
         {
             _parserService = parserService;
             _itemRepository = itemRepository;
             _shopRepository = shopRepository;
             _urlExtractor = urlExtractor;
             _userActionLogger = userActionLogger;
+            _resourceService = resourceService;
         }
 
         public MenuType Type => MenuType.NewItem;
@@ -50,13 +54,14 @@ namespace PriceObserver.Dialog.Menus.Concrete.NewItemMenuHandler
             if (itemExists)
             {
                 _userActionLogger.LogDuplicateItem(message.User, url);
-                return MenuInputHandlingServiceResult.Fail("Такой товар уже есть в Вашем списке ☑");
+                return MenuInputHandlingServiceResult.Fail(ResourceKey.Dialog_DuplicateItem);
             }
 
             var parseResult = await _parserService.Parse(url);
 
             if (!parseResult.IsSuccess)
             {
+                
                 _userActionLogger.LogParsingError(message.User, url, parseResult.Error);
                 return MenuInputHandlingServiceResult.Fail(parseResult.Error);
             }
@@ -77,8 +82,9 @@ namespace PriceObserver.Dialog.Menus.Concrete.NewItemMenuHandler
             await _itemRepository.Add(item);
 
             _userActionLogger.LogItemAdded(message.User, item);
-            
-            return MenuInputHandlingServiceResult.Success("Успешно добавлено! ✅");
+
+            var successMessage = _resourceService.Get(ResourceKey.Dialog_ItemAdded); 
+            return MenuInputHandlingServiceResult.Success(successMessage);
         }
     }
 }

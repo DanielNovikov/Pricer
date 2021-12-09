@@ -1,11 +1,12 @@
 ﻿using PriceObserver.Common.Models;
+using PriceObserver.Data.Models.Enums;
 using PriceObserver.Dialog.Commands.Models;
 using PriceObserver.Dialog.Common.Models;
 using PriceObserver.Dialog.Menus.Models;
 
 namespace PriceObserver.Dialog.Input.Models
 {
-    public class InputHandlingServiceResult : ServiceResult<InputHandlingServiceResult, ReplyResult, string>
+    public class InputHandlingServiceResult : ServiceResult<InputHandlingServiceResult, ReplyResult, ResourceKey>
     {
         public static InputHandlingServiceResult FromServiceResult(MenuInputHandlingServiceResult serviceResult)
         {

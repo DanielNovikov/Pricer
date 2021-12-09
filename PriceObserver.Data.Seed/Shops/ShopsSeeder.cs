@@ -1,6 +1,6 @@
 ﻿using System;
 using PriceObserver.Data.Models.Enums;
-using PriceObserver.Data.Seed.Shops.Initializers.Common;
+using PriceObserver.Data.Seed.Shops.Initializers;
 
 namespace PriceObserver.Data.Seed.Shops
 {

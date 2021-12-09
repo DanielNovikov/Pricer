@@ -18,19 +18,25 @@ namespace PriceObserver.Data
 
             services.AddMemoryCache();
             
-            services.AddScoped<ICommandRepository, CommandRepository>();
-            services.Decorate<ICommandRepository, CommandRepositoryCache>();
             services.AddScoped<IItemRepository, ItemRepository>();
             services.AddScoped<IItemPriceChangeRepository, ItemPriceChangeRepository>();
-            services.AddScoped<IMenuCommandRepository, MenuCommandRepository>();
-            services.Decorate<IMenuCommandRepository, MenuCommandRepositoryCache>();
-            services.AddScoped<IMenuRepository, MenuRepository>();
-            services.Decorate<IMenuRepository, MenuRepositoryCache>();
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IUserTokenRepository, UserTokenRepository>();
+            services.AddScoped<INotificationRepository, NotificationRepository>();
+            services.AddTransient<IResourceRepository, ResourceRepository>();
+            
+            // static
+            services.AddScoped<ICommandRepository, CommandRepository>();
+            services.Decorate<ICommandRepository, CommandRepositoryCache>();
+            
+            services.AddScoped<IMenuCommandRepository, MenuCommandRepository>();
+            services.Decorate<IMenuCommandRepository, MenuCommandRepositoryCache>();
+            
+            services.AddScoped<IMenuRepository, MenuRepository>();
+            services.Decorate<IMenuRepository, MenuRepositoryCache>();
+            
             services.AddScoped<IShopRepository, ShopRepository>();
             services.Decorate<IShopRepository, ShopRepositoryCache>();
-            services.AddScoped<INotificationRepository, NotificationRepository>();
         }
     }
 }

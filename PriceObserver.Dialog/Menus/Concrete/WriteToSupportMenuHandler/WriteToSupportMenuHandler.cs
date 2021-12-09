@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using PriceObserver.Data.Models.Enums;
+using PriceObserver.Data.Service.Abstract;
 using PriceObserver.Dialog.Common.Abstract;
 using PriceObserver.Dialog.Input.Models;
 using PriceObserver.Dialog.Menus.Abstract;
@@ -10,10 +11,14 @@ namespace PriceObserver.Dialog.Menus.Concrete.WriteToSupportMenuHandler
     public class WriteToSupportMenuHandler : IMenuInputHandler
     {
         private readonly IUserActionLogger _userActionLogger;
+        private readonly IResourceService _resourceService;
 
-        public WriteToSupportMenuHandler(IUserActionLogger userActionLogger)
+        public WriteToSupportMenuHandler(
+            IUserActionLogger userActionLogger,
+            IResourceService resourceService)
         {
             _userActionLogger = userActionLogger;
+            _resourceService = resourceService;
         }
 
         public MenuType Type => MenuType.Support;
@@ -22,7 +27,7 @@ namespace PriceObserver.Dialog.Menus.Concrete.WriteToSupportMenuHandler
         {
             _userActionLogger.LogWriteToSupport(message.User, message.Text);
 
-            const string responseMessage = "Спасибо за Ваше сообщение, мы с Вами скоро свяжемся! 🏃";
+            var responseMessage = _resourceService.Get(ResourceKey.Dialog_SupportReply);
             var result = MenuInputHandlingServiceResult.Success(responseMessage); 
             
             return Task.FromResult(result);

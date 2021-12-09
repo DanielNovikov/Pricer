@@ -1,5 +1,6 @@
 ﻿using System;
 using PriceObserver.Data.Models;
+using PriceObserver.Data.Models.Enums;
 
 namespace PriceObserver.Dialog.Common.Abstract
 {
@@ -13,11 +14,11 @@ namespace PriceObserver.Dialog.Common.Abstract
         
         void LogUserRegistered(User user);
         
-        void LogWrongUrlPassed(User user, string messageText, string error);
+        void LogWrongUrlPassed(User user, string messageText, ResourceKey error);
         
         void LogDuplicateItem(User user, Uri url);
         
-        void LogParsingError(User user, Uri url, string parseResultError);
+        void LogParsingError(User user, Uri url, ResourceKey error);
 
         void LogItemAdded(User user, Item item);
         

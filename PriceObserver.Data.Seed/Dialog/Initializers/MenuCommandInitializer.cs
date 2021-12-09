@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using PriceObserver.Data.Models;
 
-namespace PriceObserver.Data.Seed.Dialog.Initializers.Common
+namespace PriceObserver.Data.Seed.Dialog.Initializers
 {
     public class MenuCommandInitializer
     {

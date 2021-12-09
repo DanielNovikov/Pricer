@@ -1,4 +1,5 @@
 ﻿using PriceObserver.Common.Models;
+using PriceObserver.Data.Models.Enums;
 using PriceObserver.Dialog.Common.Models;
 
 namespace PriceObserver.Dialog.Commands.Models
@@ -7,7 +8,7 @@ namespace PriceObserver.Dialog.Commands.Models
         ServiceResult<
             CommandHandlingServiceResult, 
             ReplyResult,
-            string>
+            ResourceKey>
     {
     }
 }

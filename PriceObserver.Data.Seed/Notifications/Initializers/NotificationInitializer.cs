@@ -2,7 +2,7 @@
 using System.Linq;
 using PriceObserver.Data.Models;
 
-namespace PriceObserver.Data.Seed.Notifications.Initializers.Common
+namespace PriceObserver.Data.Seed.Notifications.Initializers
 {
     public class NotificationInitializer
     {

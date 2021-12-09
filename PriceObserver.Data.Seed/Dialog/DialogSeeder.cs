@@ -1,8 +1,8 @@
-﻿using PriceObserver.Data.Seed.Dialog.Initializers.Common;
-using PriceObserver.Data.Seed.Dialog.Initializers.HomeMenu;
-using PriceObserver.Data.Seed.Dialog.Initializers.HomeMenu.Commands;
-using PriceObserver.Data.Seed.Dialog.Initializers.NewItemMenu;
-using PriceObserver.Data.Seed.Dialog.Initializers.SupportMenu;
+﻿using PriceObserver.Data.Seed.Dialog.Initializers;
+using PriceObserver.Data.Seed.Dialog.Seeders.HomeMenu;
+using PriceObserver.Data.Seed.Dialog.Seeders.HomeMenu.Commands;
+using PriceObserver.Data.Seed.Dialog.Seeders.NewItemMenu;
+using PriceObserver.Data.Seed.Dialog.Seeders.SupportMenu;
 
 namespace PriceObserver.Data.Seed.Dialog
 {
@@ -10,9 +10,9 @@ namespace PriceObserver.Data.Seed.Dialog
     {
         public static void Seed(ApplicationDbContext context)
         {
-            var homeMenu = HomeMenuInitializer.Initialize(context);
-            var newItemMenu = NewItemMenuInitializer.Initialize(context, homeMenu);
-            var supportMenu = SupportMenuInitializer.Initialize(context, homeMenu);
+            var homeMenu = HomeMenuSeeder.Seed(context);
+            var newItemMenu = NewItemMenuSeeder.Seed(context, homeMenu);
+            var supportMenu = SupportMenuSeeder.Seed(context, homeMenu);
             
             AddCommandInitializer.Initialize(context, homeMenu, newItemMenu);
             AllItemsCommandInitializer.Initialize(context, homeMenu);

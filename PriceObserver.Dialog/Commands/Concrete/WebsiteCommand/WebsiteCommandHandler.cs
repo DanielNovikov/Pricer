@@ -15,15 +15,18 @@ namespace PriceObserver.Dialog.Commands.Concrete.WebsiteCommand
         private readonly IUserTokenRepository _userTokenRepository;
         private readonly IUserTokenService _userTokenService;
         private readonly IUserActionLogger _userActionLogger;
+        private readonly IResourceService _resourceService;
         
         public WebsiteCommandHandler(
             IUserTokenRepository userTokenRepository,
             IUserTokenService userTokenService, 
-            IUserActionLogger userActionLogger)
+            IUserActionLogger userActionLogger, 
+            IResourceService resourceService)
         {
             _userTokenRepository = userTokenRepository;
             _userTokenService = userTokenService;
             _userActionLogger = userActionLogger;
+            _resourceService = resourceService;
         }
 
         public CommandType Type => CommandType.Website;
@@ -38,7 +41,7 @@ namespace PriceObserver.Dialog.Commands.Concrete.WebsiteCommand
                 userToken = await _userTokenService.CreateForUser(user.Id);
 
             var url = $"https://pricer.ink/login/{userToken.Token}";
-            var message = $"Нажмите <a href='{url}'>здесь</a> для перехода на сайт";
+            var message = _resourceService.Get(ResourceKey.Dialog_Website, url);
             
             var result = ReplyResult.Reply(message);
             return CommandHandlingServiceResult.Success(result);

@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Threading.Tasks;
+using AngleSharp.Media;
 using Microsoft.Extensions.Logging;
+using PriceObserver.Data.Models.Enums;
+using PriceObserver.Data.Service.Abstract;
 using PriceObserver.Telegram.Abstract;
 using Telegram.Bot.Types;
 
@@ -11,15 +14,18 @@ namespace PriceObserver.Telegram.Concrete
         private readonly IUpdateHandler _handler;
         private readonly ILogger<UpdateExceptionHandler> _logger;
         private readonly ITelegramBotService _telegramBotService;
+        private readonly IResourceService _resourceService;
 
         public UpdateExceptionHandler(
             IUpdateHandler handler,
             ILogger<UpdateExceptionHandler> logger,
-            ITelegramBotService telegramBotService)
+            ITelegramBotService telegramBotService, 
+            IResourceService resourceService)
         {
             _handler = handler;
             _logger = logger;
             _telegramBotService = telegramBotService;
+            _resourceService = resourceService;
         }
 
         public async Task Handle(Update update)
@@ -36,7 +42,8 @@ namespace PriceObserver.Telegram.Concrete
 Message: {ex.Message}
 InnerException: {ex.InnerException}");
 
-                await _telegramBotService.SendMessage(userId, "Произошла ошибка ❌");
+                var message = _resourceService.Get(ResourceKey.Dialog_ErrorOccured);
+                await _telegramBotService.SendMessage(userId, message);
             }
         }
     }

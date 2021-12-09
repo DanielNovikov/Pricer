@@ -1,5 +1,5 @@
 ﻿using System;
-using PriceObserver.Data.Seed.Notifications.Initializers.Common;
+using PriceObserver.Data.Seed.Notifications.Initializers;
 
 namespace PriceObserver.Data.Seed.Notifications
 {

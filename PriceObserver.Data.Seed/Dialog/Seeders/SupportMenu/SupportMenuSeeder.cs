@@ -1,12 +1,12 @@
 ﻿using PriceObserver.Data.Models;
 using PriceObserver.Data.Models.Enums;
-using PriceObserver.Data.Seed.Dialog.Initializers.Common;
+using PriceObserver.Data.Seed.Dialog.Initializers;
 
-namespace PriceObserver.Data.Seed.Dialog.Initializers.SupportMenu
+namespace PriceObserver.Data.Seed.Dialog.Seeders.SupportMenu
 {
-    public class SupportMenuInitializer
+    public class SupportMenuSeeder
     {
-        public static Menu Initialize(ApplicationDbContext context, Menu parent)
+        public static Menu Seed(ApplicationDbContext context, Menu parent)
         {
             return MenuInitializer.Initialize(
                 context,

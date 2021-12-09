@@ -2,6 +2,7 @@
 using System.Net.Http;
 using System.Threading.Tasks;
 using AngleSharp.Html.Parser;
+using PriceObserver.Data.Models.Enums;
 using PriceObserver.Parser.Abstract;
 using HtmlLoadResult = PriceObserver.Parser.Models.HtmlLoadResult;
 
@@ -23,7 +24,7 @@ namespace PriceObserver.Parser.Concrete
             var response = await _httpClient.GetAsync(url);
             
             if (!response.IsSuccessStatusCode)
-                return HtmlLoadResult.Fail("Страница не найдена");
+                return HtmlLoadResult.Fail(ResourceKey.Parser_PageNotFound);
             
             var html = await response.Content.ReadAsStreamAsync();
             var htmlDocument =  await _htmlParser.ParseDocumentAsync(html);

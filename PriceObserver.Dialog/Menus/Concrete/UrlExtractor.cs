@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text.RegularExpressions;
+using PriceObserver.Data.Models.Enums;
 using PriceObserver.Dialog.Menus.Abstract;
 using PriceObserver.Dialog.Menus.Models;
 
@@ -15,13 +16,13 @@ namespace PriceObserver.Dialog.Menus.Concrete
             var match = Regex.Match(str, UrlRegex);
 
             if (!match.Success)
-                return UrlExtractionResult.Fail("В сообщении нет ссылки на товар ❌");
+                return UrlExtractionResult.Fail(ResourceKey.Dialog_MessageDoesNotContainLink);
 
             var url = match.Groups[0].Value;
 
             return Uri.TryCreate(url, UriKind.Absolute, out var uri)
                 ? UrlExtractionResult.Success(uri)
-                : UrlExtractionResult.Fail("Ссылка в неверном формате ❌");
+                : UrlExtractionResult.Fail(ResourceKey.Dialog_LinkInIncorrectFormat);
         }
     }
 }

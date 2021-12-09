@@ -2,6 +2,7 @@
 using System.Collections.Immutable;
 using System.Linq;
 using System.Threading.Tasks;
+using PriceObserver.Data.Models.Enums;
 using PriceObserver.Dialog.Common.Abstract;
 using PriceObserver.Dialog.Input.Models;
 using PriceObserver.Dialog.Menus.Abstract;
@@ -28,7 +29,7 @@ namespace PriceObserver.Dialog.Menus.Concrete
             if (!userMenu.CanExpectInput)
             {
                 _userActionLogger.LogWrongCommand(message.User, message.Text);
-                return MenuInputHandlingServiceResult.Fail("Неверная комманда");
+                return MenuInputHandlingServiceResult.Fail(ResourceKey.Dialog_IncorrectCommand);
             }
 
             var handler = _handlers.Single(x => x.Type == userMenu.Type);

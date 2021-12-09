@@ -55,7 +55,6 @@ namespace PriceObserver.Background.Jobs
         private async Task HandleUpdate(Update update)
         {
             using var scope = _serviceProvider.CreateScope();
-
             var updateHandler = scope.ServiceProvider.GetService<IUpdateHandler>();
 
             await updateHandler!.Handle(update);
@@ -69,7 +68,7 @@ namespace PriceObserver.Background.Jobs
 
             var logger = scope.ServiceProvider.GetService<ILogger<TelegramUpdateReceiverJob>>();
 
-            logger.LogError($@"Unable to send changed price
+            logger.LogError($@"Receive error
 Message: {exception.Message}
 InnerException: {exception.InnerException}");
 

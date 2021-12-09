@@ -3,6 +3,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using PriceObserver.Data.Models.Enums;
 using PriceObserver.Data.Repositories.Abstract;
 using PriceObserver.Data.Service.Abstract;
 using PriceObserver.Parser.Abstract;
@@ -31,20 +32,25 @@ namespace PriceObserver.Background.Jobs
                     var parserService = scope.ServiceProvider.GetService<IParserService>();
                     var telegramBotService = scope.ServiceProvider.GetService<ITelegramBotService>();
                     var itemService = scope.ServiceProvider.GetService<IItemService>();
+                    var resourceService = scope.ServiceProvider.GetService<IResourceService>();
                     
-                    var items = await itemRepository.GetAll();
+                    var items = await itemRepository!.GetAll();
 
                     foreach (var item in items)
                     {
-                        var parsedItemResult = await parserService.Parse(item.Url);
+                        var parsedItemResult = await parserService!.Parse(item.Url);
 
                         if (!parsedItemResult.IsSuccess)
                         {
                             await itemRepository.Delete(item);
+
+                            var itemDeletedMessage = resourceService!.Get(
+                                ResourceKey.Background_ItemDeleted,
+                                item.Url.ToString(),
+                                item.Title,
+                                parsedItemResult.Error);
                             
-                            await telegramBotService.SendMessage(
-                                item.UserId,
-                                $"❗️Товар <a href='{item.Url}'>{item.Title}</a> удалён\r\nℹ {parsedItemResult.Error}");
+                            await telegramBotService!.SendMessage(item.UserId, itemDeletedMessage);
                             
                             continue;
                         }
@@ -58,14 +64,17 @@ namespace PriceObserver.Background.Jobs
                             continue;
 
                         var priceMessage = newPrice < oldPrice
-                            ? $"📉 Цена на <a href='{item.Url}'>товар</a> снизилась до <b>{newPrice}</b>"
-                            : $"📈 Цена на <a href='{item.Url}'>товар</a> повысилась до <b>{newPrice}</b>";
+                            ? resourceService!.Get(ResourceKey.Background_ItemPriceWentDown, item.Url, newPrice)
+                            : resourceService!.Get(ResourceKey.Background_ItemPriceGrewUp, item.Url, newPrice);
 
-                        var message = $"❗️{item.Title}{Environment.NewLine}{priceMessage}";
+                        var message = resourceService.Get(
+                            ResourceKey.Background_ItemPriceChanged, 
+                            item.Title,
+                            priceMessage);
                         
-                        await telegramBotService.SendMessage(item.UserId, message);
+                        await telegramBotService!.SendMessage(item.UserId, message);
 
-                        await itemService.UpdatePrice(item, newPrice);
+                        await itemService!.UpdatePrice(item, newPrice);
                     }
 
                     await Task.Delay(TimeSpan.FromMinutes(30), cancellationToken);
