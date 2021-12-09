@@ -42,6 +42,13 @@ namespace PriceObserver.Data.Seed.Shops
                 ShopType.Farfetch,
                 "www.farfetch.com",
                 new Uri("https://logos-download.com/wp-content/uploads/2016/12/Farfetch_logo_logotype.png"));
+            
+            ShopInitializer.Initialize(
+                context,
+                "MAKEUP",
+                ShopType.Makeup,
+                "makeup.com.ua",
+                new Uri("https://u.makeup.com.ua/DTaP9LmVOYM1111111.jpg"));
         }
     }
 }

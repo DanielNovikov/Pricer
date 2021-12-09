@@ -6,6 +6,7 @@
         MdFashion,
         Answear,
         Brocard,
-        Farfetch
+        Farfetch,
+        Makeup
     }
 }

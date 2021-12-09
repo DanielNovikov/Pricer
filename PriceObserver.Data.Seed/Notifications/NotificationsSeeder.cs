@@ -18,6 +18,12 @@ namespace PriceObserver.Data.Seed.Notifications
                 @"🆕 Доступен новый магазин <b>FARFETCH</b>❕
 Теперь дорогие вещи могут стать доступнее 💰",
                 DateTime.Parse("2021-12-04 10:00:00").ToUniversalTime());
+            
+            NotificationInitializer.Initialize(
+                context,
+                @"🆕 Доступен новый магазин <b>MAKEUP</b>❕
+Косметика теперь может обойтись Вам дешевле 🎨",
+                DateTime.Parse("2021-12-08 18:05:00").ToUniversalTime());
         }
     }
 }
