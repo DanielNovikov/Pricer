@@ -49,6 +49,13 @@ namespace PriceObserver.Data.Seed.Shops
                 ShopType.Makeup,
                 "makeup.com.ua",
                 new Uri("https://u.makeup.com.ua/DTaP9LmVOYM1111111.jpg"));
+                
+            ShopInitializer.Initialize(
+                context,
+                "Adidas",
+                ShopType.Adidas,
+                "www.adidas.ua",
+                new Uri("https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Adidas-group-logo-fr.svg/1200px-Adidas-group-logo-fr.svg.png"));
         }
     }
 }

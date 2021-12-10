@@ -7,6 +7,7 @@
         Answear,
         Brocard,
         Farfetch,
-        Makeup
+        Makeup,
+        Adidas
     }
 }

@@ -24,6 +24,12 @@ namespace PriceObserver.Data.Seed.Notifications
                 @"🆕 Доступен новый магазин <b>MAKEUP</b>❕
 Косметика теперь может обойтись Вам дешевле 🎨",
                 DateTime.Parse("2021-12-08 18:05:00").ToUniversalTime());
+            
+            NotificationInitializer.Initialize(
+                context,
+                @"🆕 Доступен новый магазин <b>Adidas</b>❕
+Ваши пожелания услышаны 📝",
+                DateTime.Parse("2021-12-10 16:21:00").ToUniversalTime());
         }
     }
 }
