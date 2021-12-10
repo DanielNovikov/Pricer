@@ -17,7 +17,6 @@ namespace PriceObserver.Parser.Concrete.Farfetch
             return 
                 document.QuerySelector<IHtmlElement>(discountPriceSelector) is not null ||
                 document.QuerySelector<IHtmlElement>(fullPriceSelector) is not null;
-            
         }
     }
 }

@@ -44,11 +44,12 @@ namespace PriceObserver.Background.Jobs
                         {
                             await itemRepository.Delete(item);
 
-                            var itemDeletedMessage = resourceService!.Get(
+                            var errorReason = resourceService!.Get(parsedItemResult.Error);
+                            var itemDeletedMessage = resourceService.Get(
                                 ResourceKey.Background_ItemDeleted,
                                 item.Url.ToString(),
                                 item.Title,
-                                parsedItemResult.Error);
+                                errorReason);
                             
                             await telegramBotService!.SendMessage(item.UserId, itemDeletedMessage);
                             
