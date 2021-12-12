@@ -7,7 +7,7 @@ namespace PriceObserver.Data.Models
     {
         public int Id { get; set; }
         
-        public string Text { get; set; }
+        public ResourceKey ResourceKey { get; set; }
         
         public MenuType Type { get; set; }
         

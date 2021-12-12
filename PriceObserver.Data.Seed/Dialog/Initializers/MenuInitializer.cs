@@ -9,7 +9,7 @@ namespace PriceObserver.Data.Seed.Dialog.Initializers
         public static Menu Initialize(
             ApplicationDbContext context,
             MenuType type,
-            string text,
+            ResourceKey resourceKey,
             bool canExpectInput,
             bool isDefault = false,
             Menu parent = null)
@@ -17,14 +17,14 @@ namespace PriceObserver.Data.Seed.Dialog.Initializers
             var menu = context.Menus.SingleOrDefault(x => x.Type == type);
 
             return menu is not null
-                ? Update(context, menu, text, canExpectInput, isDefault, parent)
-                : Add(context, type, text, canExpectInput, isDefault, parent);
+                ? Update(context, menu, resourceKey, canExpectInput, isDefault, parent)
+                : Add(context, type, resourceKey, canExpectInput, isDefault, parent);
         }
 
         private static Menu Add(
             ApplicationDbContext context,
             MenuType type,
-            string text,
+            ResourceKey resourceKey,
             bool canExpectInput,
             bool isDefault,
             Menu parent)
@@ -32,7 +32,7 @@ namespace PriceObserver.Data.Seed.Dialog.Initializers
             var menu = new Menu
             {
                 Type = type,
-                Text = text,
+                ResourceKey = resourceKey,
                 CanExpectInput = canExpectInput,
                 IsDefault = isDefault,
                 Parent = parent
@@ -47,12 +47,12 @@ namespace PriceObserver.Data.Seed.Dialog.Initializers
         private static Menu Update(
             ApplicationDbContext context,
             Menu menu,
-            string text,
+            ResourceKey resourceKey,
             bool canExpectInput,
             bool isDefault,
             Menu parent)
         {
-            menu.Text = text;
+            menu.ResourceKey = resourceKey;
             menu.CanExpectInput = canExpectInput;
             menu.IsDefault = isDefault;
             menu.Parent = parent;

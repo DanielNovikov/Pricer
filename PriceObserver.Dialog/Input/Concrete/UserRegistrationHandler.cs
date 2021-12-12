@@ -43,6 +43,8 @@ namespace PriceObserver.Dialog.Input.Concrete
             
             var shopsInfoMessage = await _shopsInfoMessageBuilder.Build();
 
+            var menuText = _resourceService.Get(user.Menu.ResourceKey); 
+                
             var message = _resourceService.Get(
                 ResourceKey.Dialog_UserRegistered,
                 user.GetFullName(),
@@ -50,7 +52,7 @@ namespace PriceObserver.Dialog.Input.Concrete
                 websiteCommandTitle,
                 writeToSupportTitle,
                 shopsInfoMessage,
-                user.Menu.Text);
+                menuText);
 
             var menuKeyboard = await _menuKeyboardBuilder.Build(user.Menu);
 

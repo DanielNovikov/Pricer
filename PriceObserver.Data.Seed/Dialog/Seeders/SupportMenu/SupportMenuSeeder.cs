@@ -11,7 +11,7 @@ namespace PriceObserver.Data.Seed.Dialog.Seeders.SupportMenu
             return MenuInitializer.Initialize(
                 context,
                 MenuType.Support,
-                "Опишите с чем вы хотели-бы обратиться 📝",
+                ResourceKey.Menu_Support,
                 true,
                 parent: parent);
         }

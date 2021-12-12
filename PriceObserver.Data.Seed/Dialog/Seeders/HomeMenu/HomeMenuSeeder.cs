@@ -11,7 +11,7 @@ namespace PriceObserver.Data.Seed.Dialog.Seeders.HomeMenu
             return MenuInitializer.Initialize(
                 context,
                 MenuType.Home,
-                "Выберите что хотите сделать ⬇",
+                ResourceKey.Menu_Home,
                 false,
                 isDefault: true);
         }

@@ -11,7 +11,7 @@ namespace PriceObserver.Data.Seed.Dialog.Seeders.NewItemMenu
             return MenuInitializer.Initialize(
                 context,
                 MenuType.NewItem,
-                "Поделитесь ссылкой на желаемый товар 🆕",
+                ResourceKey.Menu_NewItem,
                 true,
                 parent: parent);
         }

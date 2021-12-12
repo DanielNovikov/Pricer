@@ -11,8 +11,7 @@ namespace PriceObserver.Data.Configurations
             builder.HasKey(x => x.Id);
 
             builder
-                .Property(x => x.Text)
-                .HasMaxLength(250)
+                .Property(x => x.ResourceKey)
                 .IsRequired();
 
             builder
