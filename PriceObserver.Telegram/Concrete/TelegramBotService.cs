@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Logging;
 using PriceObserver.Data.Service.Abstract;
 using PriceObserver.Telegram.Abstract;
+using Telegram.Bot.Exceptions;
 using Telegram.Bot.Types.Enums;
 using Telegram.Bot.Types.ReplyMarkups;
 
@@ -25,33 +26,39 @@ namespace PriceObserver.Telegram.Concrete
         
         public async Task SendMessage(long userId, string message)
         {
-            try
-            {
-                await _telegramBot.GetClient().SendTextMessageAsync(userId, message, ParseMode.Html);
-            }
-            catch
-            {
-                await DeactivateUser(userId);
-            }
+            await Send(userId, message);
         }
 
         public async Task SendKeyboard(long userId, string message, ReplyKeyboardMarkup keyboard)
         {
-            try
-            {
-                await _telegramBot.GetClient().SendTextMessageAsync(userId, message, replyMarkup: keyboard);
-            }
-            catch
-            {
-                await DeactivateUser(userId);
-            }
+            await Send(userId, message, keyboard);
         }
 
-        private async Task DeactivateUser(long userId)
+        private const int UserDeactivatedErrorCode = 403;
+        private const int SendMessagePause = 1000;
+        
+        private async Task Send(long userId, string message, IReplyMarkup keyboard = default)
         {
-            _logger.LogWarning($"User deactivated with id {userId}");
-            
-            await _userService.DeactivateUserById(userId);
+            try
+            {
+                await _telegramBot.GetClient()
+                    .SendTextMessageAsync(userId, message, ParseMode.Html, replyMarkup: keyboard);
+            }
+            catch (ApiRequestException ex)
+            {
+                if (ex.ErrorCode != UserDeactivatedErrorCode)
+                {
+                    _logger.LogWarning($"Send error. Message: {ex.Message}");
+
+                    await Task.Delay(SendMessagePause);
+                    await Send(userId, message, keyboard);
+                    
+                    return;
+                }
+
+                _logger.LogWarning($"User deactivated with id {userId}");
+                await _userService.DeactivateUserById(userId);
+            }
         }
     }
 }

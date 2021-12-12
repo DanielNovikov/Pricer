@@ -6,7 +6,7 @@ networks:
 
 services:
   server:
-    image: danilnovikovdev/server:1.0.3
+    image: danilnovikovdev/server:1.0.4
     build: .
     restart: always
     depends_on:
