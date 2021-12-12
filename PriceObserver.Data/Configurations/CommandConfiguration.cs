@@ -16,10 +16,11 @@ namespace PriceObserver.Data.Configurations
                 .IsRequired();
 
             builder
-                .Property(x => x.Title)
-                .HasMaxLength(100)
-                .IsRequired();
-
+                .HasOne(x => x.Resource)
+                .WithOne()
+                .HasForeignKey<Command>(x => x.ResourceId)
+                .IsRequired(false);
+            
             builder
                 .HasOne(x => x.MenuToRedirect)
                 .WithMany()

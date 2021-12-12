@@ -61,7 +61,7 @@ namespace PriceObserver.Dialog.Input.Concrete
 
         private async Task<string> GetCommandTitle(CommandType type)
         {
-            return (await _commandRepository.GetByType(type)).Title;
+            return (await _commandRepository.GetByType(type)).Resource.Value;
         }
     }
 }

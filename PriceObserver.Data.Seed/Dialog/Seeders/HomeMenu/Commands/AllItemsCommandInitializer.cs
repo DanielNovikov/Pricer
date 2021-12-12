@@ -1,4 +1,5 @@
 ﻿using PriceObserver.Data.Models;
+using PriceObserver.Data.Models.Enums;
 using PriceObserver.Data.Seed.Dialog.Initializers;
 using CommandType = PriceObserver.Data.Models.Enums.CommandType;
 
@@ -11,7 +12,7 @@ namespace PriceObserver.Data.Seed.Dialog.Seeders.HomeMenu.Commands
             var allItemsCommand = CommandInitializer.Initialize(
                 context,
                 CommandType.AllItems,
-                "Все товары ℹ");
+                ResourceKey.Command_AllItems);
 
             MenuCommandInitializer.Initialize(context, menu, allItemsCommand);
 

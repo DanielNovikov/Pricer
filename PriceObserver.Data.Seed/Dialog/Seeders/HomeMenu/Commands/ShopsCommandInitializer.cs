@@ -11,7 +11,7 @@ namespace PriceObserver.Data.Seed.Dialog.Seeders.HomeMenu.Commands
             var shopsCommand = CommandInitializer.Initialize(
                 context,
                 CommandType.Shops,
-                "Магазины 🛒");
+                ResourceKey.Command_Shops);
 
             MenuCommandInitializer.Initialize(context, menu, shopsCommand);
 

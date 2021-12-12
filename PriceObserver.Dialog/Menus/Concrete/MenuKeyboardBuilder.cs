@@ -33,11 +33,11 @@ namespace PriceObserver.Dialog.Menus.Concrete
                 commands = commands.Append(backCommand).ToList();
             }
             
-            var buttonTitles = commands.Select((x, i) => new { Index = i, x.Title });
+            var buttonTitles = commands.Select((x, i) => new { Index = i, Text = x.Resource.Value });
 
             var buttonRows = buttonTitles
                 .GroupBy(x => x.Index / ButtonsInRow)
-                .Select(x => x.Select(y => y.Title));
+                .Select(x => x.Select(y => y.Text));
 
             var buttonsGrid = buttonRows
                 .Select(

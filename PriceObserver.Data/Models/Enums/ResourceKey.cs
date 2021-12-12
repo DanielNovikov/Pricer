@@ -40,6 +40,13 @@
         
         Menu_Home = 400,
         Menu_NewItem = 401,
-        Menu_Support = 402
+        Menu_Support = 402,
+        
+        Command_Back = 500,
+        Command_Add = 501,
+        Command_AllItems = 502,
+        Command_Shops = 503,
+        Command_Website = 504,
+        Command_WriteToSupport = 505
     }
 }

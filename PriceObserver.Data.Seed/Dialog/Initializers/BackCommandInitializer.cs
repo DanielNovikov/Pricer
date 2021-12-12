@@ -10,7 +10,7 @@ namespace PriceObserver.Data.Seed.Dialog.Initializers
             return CommandInitializer.Initialize(
                 context,
                 CommandType.Back,
-                "Назад ◀");
+                ResourceKey.Command_Back);
         }
     }
 }

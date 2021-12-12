@@ -13,10 +13,10 @@ namespace PriceObserver.Data.Seed
 
             try
             {
+                ResourcesSeeder.Seed(context);
                 DialogSeeder.Seed(context);
                 ShopsSeeder.Seed(context);
                 AppNotificationsSeeder.Seed(context);
-                ResourcesSeeder.Seed(context);
                 
                 transaction.Commit();
             }

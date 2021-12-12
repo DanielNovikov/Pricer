@@ -20,8 +20,9 @@ namespace PriceObserver.Data.Repositories.Concrete
             return _context
                 .Commands
                 .AsNoTracking()
+                .Include(x => x.Resource)
                 .Include(x => x.MenuToRedirect)
-                .SingleOrDefaultAsync(x => x.Title == title);
+                .SingleOrDefaultAsync(x => x.Resource.Value == title);
         }
 
         public Task<Command> GetByType(CommandType type)
@@ -29,6 +30,7 @@ namespace PriceObserver.Data.Repositories.Concrete
             return _context
                 .Commands
                 .AsNoTracking()
+                .Include(x => x.Resource)
                 .SingleOrDefaultAsync(x => x.Type == type);
         }
     }

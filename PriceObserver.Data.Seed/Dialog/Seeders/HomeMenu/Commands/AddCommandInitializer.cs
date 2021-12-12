@@ -11,7 +11,7 @@ namespace PriceObserver.Data.Seed.Dialog.Seeders.HomeMenu.Commands
             var addCommand = CommandInitializer.Initialize(
                 context,
                 CommandType.Add,
-                "Добавить ➕",
+                ResourceKey.Command_Add,
                 menuToRedirect);
 
             MenuCommandInitializer.Initialize(context, menu, addCommand);

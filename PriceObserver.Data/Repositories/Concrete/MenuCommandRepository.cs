@@ -28,6 +28,7 @@ namespace PriceObserver.Data.Repositories.Concrete
             return await _context.MenuCommands
                 .AsNoTracking()
                 .Include(x => x.Command)
+                    .ThenInclude(x => x.Resource)
                 .Where(x => x.MenuId == menuId)
                 .Select(x => x.Command)
                 .ToListAsync();

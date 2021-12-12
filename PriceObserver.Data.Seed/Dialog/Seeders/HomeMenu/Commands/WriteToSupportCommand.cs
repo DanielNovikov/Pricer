@@ -11,7 +11,7 @@ namespace PriceObserver.Data.Seed.Dialog.Seeders.HomeMenu.Commands
             var writeToSupportCommand = CommandInitializer.Initialize(
                 context,
                 CommandType.WriteToSupport,
-                "Поддержка 👨🏻‍💻",
+                ResourceKey.Command_WriteToSupport,
                 menuToRedirect);
 
             MenuCommandInitializer.Initialize(context, menu, writeToSupportCommand);

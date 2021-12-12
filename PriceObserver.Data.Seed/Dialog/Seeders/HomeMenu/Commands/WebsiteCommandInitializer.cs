@@ -11,7 +11,7 @@ namespace PriceObserver.Data.Seed.Dialog.Seeders.HomeMenu.Commands
             var websiteCommand = CommandInitializer.Initialize(
                 context,
                 CommandType.Website,
-                "Сайт 🌍");
+                ResourceKey.Command_Website);
 
             MenuCommandInitializer.Initialize(context, menu, websiteCommand);
 

@@ -11,6 +11,7 @@ namespace PriceObserver.Data.Seed.Resources
             ParserSeeder.Seed(context);
             BackgroundSeeder.Seed(context);
             MenuSeeder.Seed(context);
+            CommandsSeeder.Seed(context);
         }
     }
 }
