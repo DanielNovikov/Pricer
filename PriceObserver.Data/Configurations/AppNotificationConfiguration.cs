@@ -4,18 +4,14 @@ using PriceObserver.Data.Models;
 
 namespace PriceObserver.Data.Configurations
 {
-    public class NotificationConfiguration : IEntityTypeConfiguration<Notification>
+    public class AppNotificationConfiguration : IEntityTypeConfiguration<AppNotification>
     {
-        public void Configure(EntityTypeBuilder<Notification> builder)
+        public void Configure(EntityTypeBuilder<AppNotification> builder)
         {
             builder.HasKey(x => x.Id);
 
             builder
                 .Property(x => x.Text)
-                .IsRequired();
-
-            builder
-                .Property(x => x.Planned)
                 .IsRequired();
 
             builder

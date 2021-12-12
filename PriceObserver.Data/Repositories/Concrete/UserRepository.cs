@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using PriceObserver.Data.Models;
@@ -24,10 +25,11 @@ namespace PriceObserver.Data.Repositories.Concrete
                 .FirstOrDefaultAsync(x => x.Id == id);
         }
 
-        public async Task<IList<User>> GetAll()
+        public async Task<IList<User>> GetAllActive()
         {
             return await _context.Users
                 .AsNoTracking()
+                .Where(x => x.IsActive)
                 .ToListAsync();
         }
 

@@ -9,11 +9,11 @@ using PriceObserver.Telegram.Abstract;
 
 namespace PriceObserver.Background.Jobs
 {
-    public class NotificationsJob : IHostedService
+    public class AppNotificationsJob : IHostedService
     {
         private readonly IServiceProvider _serviceProvider;
 
-        public NotificationsJob(IServiceProvider serviceProvider)
+        public AppNotificationsJob(IServiceProvider serviceProvider)
         {
             _serviceProvider = serviceProvider;
         }
@@ -22,16 +22,16 @@ namespace PriceObserver.Background.Jobs
         {
             using var scope = _serviceProvider.CreateScope();
 
-            var notificationRepository = scope.ServiceProvider.GetService<INotificationRepository>();
+            var appNotificationRepository = scope.ServiceProvider.GetService<IAppNotificationRepository>();
             var userRepository = scope.ServiceProvider.GetService<IUserRepository>();
             var telegramBotService = scope.ServiceProvider.GetService<ITelegramBotService>();
             
-            var notifications = await notificationRepository!.GetToExecute();
+            var notifications = await appNotificationRepository!.GetToExecute();
 
             if (!notifications.Any())
                 return;
                 
-            var users = await userRepository!.GetAll();
+            var users = await userRepository!.GetAllActive();
 
             foreach (var notification in notifications)
             {
@@ -41,7 +41,7 @@ namespace PriceObserver.Background.Jobs
                 }
 
                 notification.Executed = true;
-                await notificationRepository.Update(notification);
+                await appNotificationRepository.Update(notification);
             }
         }
 

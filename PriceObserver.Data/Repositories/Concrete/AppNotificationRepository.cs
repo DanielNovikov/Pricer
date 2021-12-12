@@ -8,26 +8,26 @@ using PriceObserver.Data.Repositories.Abstract;
 
 namespace PriceObserver.Data.Repositories.Concrete
 {
-    public class NotificationRepository : INotificationRepository
+    public class AppNotificationRepository : IAppNotificationRepository
     {
         private readonly ApplicationDbContext _context;
 
-        public NotificationRepository(ApplicationDbContext context)
+        public AppNotificationRepository(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        public async Task<IList<Notification>> GetToExecute()
+        public async Task<IList<AppNotification>> GetToExecute()
         {
-            return await _context.Notifications
+            return await _context.AppNotifications
                 .AsNoTracking()
-                .Where(x => !x.Executed && x.Planned < DateTime.UtcNow)
+                .Where(x => !x.Executed)
                 .ToListAsync();
         }
 
-        public async Task Update(Notification notification)
+        public async Task Update(AppNotification appNotification)
         {
-            _context.Notifications.Update(notification);
+            _context.AppNotifications.Update(appNotification);
             await _context.SaveChangesAsync();
             
             _context.DetachAll();

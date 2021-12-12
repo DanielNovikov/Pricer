@@ -22,7 +22,7 @@ namespace PriceObserver.Data
             services.AddScoped<IItemPriceChangeRepository, ItemPriceChangeRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IUserTokenRepository, UserTokenRepository>();
-            services.AddScoped<INotificationRepository, NotificationRepository>();
+            services.AddScoped<IAppNotificationRepository, AppNotificationRepository>();
             services.AddTransient<IResourceRepository, ResourceRepository>();
             
             // static

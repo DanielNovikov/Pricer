@@ -4,10 +4,10 @@ using PriceObserver.Data.Models;
 
 namespace PriceObserver.Data.Repositories.Abstract
 {
-    public interface INotificationRepository
+    public interface IAppNotificationRepository
     {
-        Task<IList<Notification>> GetToExecute();
+        Task<IList<AppNotification>> GetToExecute();
 
-        Task Update(Notification notification);
+        Task Update(AppNotification appNotification);
     }
 }

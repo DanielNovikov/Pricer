@@ -22,7 +22,7 @@ namespace PriceObserver.Data
         
         public DbSet<Shop> Shops { get; set; }
 
-        public DbSet<Notification> Notifications { get; set; }
+        public DbSet<AppNotification> AppNotifications { get; set; }
         
         public DbSet<Resource> Resources { get; set; }
 

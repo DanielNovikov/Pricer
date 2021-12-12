@@ -8,7 +8,7 @@ namespace PriceObserver.Data.Repositories.Abstract
     {
         Task<User> GetById(long id);
 
-        Task<IList<User>> GetAll();
+        Task<IList<User>> GetAllActive();
 
         Task Add(User user);
 

@@ -1,5 +1,5 @@
-﻿using PriceObserver.Data.Seed.Dialog;
-using PriceObserver.Data.Seed.Notifications;
+﻿using PriceObserver.Data.Seed.AppNotifications;
+using PriceObserver.Data.Seed.Dialog;
 using PriceObserver.Data.Seed.Resources;
 using PriceObserver.Data.Seed.Shops;
 
@@ -15,7 +15,7 @@ namespace PriceObserver.Data.Seed
             {
                 DialogSeeder.Seed(context);
                 ShopsSeeder.Seed(context);
-                NotificationsSeeder.Seed(context);
+                AppNotificationsSeeder.Seed(context);
                 ResourcesSeeder.Seed(context);
                 
                 transaction.Commit();
