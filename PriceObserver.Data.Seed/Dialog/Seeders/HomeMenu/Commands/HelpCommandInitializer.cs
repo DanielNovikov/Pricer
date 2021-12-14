@@ -4,16 +4,16 @@ using PriceObserver.Data.Seed.Dialog.Initializers;
 
 namespace PriceObserver.Data.Seed.Dialog.Seeders.HomeMenu.Commands
 {
-    public class WebsiteCommandInitializer
+    public class HelpCommandInitializer
     {
         public static void Initialize(ApplicationDbContext context, Menu menu)
         {
-            var websiteCommand = CommandInitializer.Initialize(
+            var helpCommand = CommandInitializer.Initialize(
                 context,
-                CommandType.Website,
-                ResourceKey.Command_Website);
+                CommandType.Help,
+                ResourceKey.Command_Help);
 
-            MenuCommandInitializer.Initialize(context, menu, websiteCommand);
+            MenuCommandInitializer.Initialize(context, menu, helpCommand);
         }
     }
 }

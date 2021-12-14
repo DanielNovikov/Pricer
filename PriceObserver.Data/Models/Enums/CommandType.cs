@@ -7,6 +7,7 @@
         Website = 2,
         Shops = 3,
         Back = 4,
-        WriteToSupport
+        WriteToSupport = 5,
+        Help = 6
     }
 }

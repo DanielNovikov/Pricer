@@ -37,20 +37,14 @@ namespace PriceObserver.Dialog.Input.Concrete
         {
             _userActionLogger.LogUserRegistered(user);
             
-            var addCommandTitle = await GetCommandTitle(CommandType.Add);
-            var websiteCommandTitle = await GetCommandTitle(CommandType.Website);
-            var writeToSupportTitle = await GetCommandTitle(CommandType.WriteToSupport);
-            
+            var helpCommandTitle = await GetCommandTitle(CommandType.Help);
             var shopsInfoMessage = await _shopsInfoMessageBuilder.Build();
-
             var menuText = _resourceService.Get(user.Menu.ResourceKey); 
                 
             var message = _resourceService.Get(
                 ResourceKey.Dialog_UserRegistered,
                 user.GetFullName(),
-                addCommandTitle,
-                websiteCommandTitle,
-                writeToSupportTitle,
+                helpCommandTitle,
                 shopsInfoMessage,
                 menuText);
 

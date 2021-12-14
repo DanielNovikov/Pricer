@@ -82,6 +82,11 @@ namespace PriceObserver.Data.Seed.Resources.Seeders
                 context,
                 ResourceKey.UserAction_UserLogin,
                 "Логин: @{0}");
+            
+            ResourceInitializer.Initialize(
+                context,
+                ResourceKey.UserAction_CalledHelp,
+                "🆘 Запросил помощь");
         }
     }
 }

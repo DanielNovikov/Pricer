@@ -27,5 +27,7 @@ namespace PriceObserver.Dialog.Common.Abstract
         void LogWrongCommand(User user, string messageText);
 
         void LogRedirectToMenu(User user, Menu menuToRedirect);
+
+        void LogHelpCalled(User user);
     }
 }

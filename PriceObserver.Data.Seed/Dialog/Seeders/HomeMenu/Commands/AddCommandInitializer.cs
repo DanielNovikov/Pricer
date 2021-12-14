@@ -6,7 +6,7 @@ namespace PriceObserver.Data.Seed.Dialog.Seeders.HomeMenu.Commands
 {
     public class AddCommandInitializer
     {
-        public static Command Initialize(ApplicationDbContext context, Menu menu, Menu menuToRedirect)
+        public static void Initialize(ApplicationDbContext context, Menu menu, Menu menuToRedirect)
         {
             var addCommand = CommandInitializer.Initialize(
                 context,
@@ -15,8 +15,6 @@ namespace PriceObserver.Data.Seed.Dialog.Seeders.HomeMenu.Commands
                 menuToRedirect);
 
             MenuCommandInitializer.Initialize(context, menu, addCommand);
-
-            return addCommand;
         }
     }
 }

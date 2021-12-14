@@ -78,6 +78,11 @@ namespace PriceObserver.Dialog.Common.Concrete
             LogInformation(user, ResourceKey.UserAction_RedirectedToMenu, menuToRedirect.Type.ToString());
         }
 
+        public void LogHelpCalled(User user)
+        {
+            LogInformation(user, ResourceKey.UserAction_CalledHelp);
+        }
+
         private void LogInformation(User user, ResourceKey message, params object[] parameters)
         {
             Log(user, LogLevel.Information, message, parameters);

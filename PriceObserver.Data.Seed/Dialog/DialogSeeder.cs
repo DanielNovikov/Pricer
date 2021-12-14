@@ -14,6 +14,7 @@ namespace PriceObserver.Data.Seed.Dialog
             var newItemMenu = NewItemMenuSeeder.Seed(context, homeMenu);
             var supportMenu = SupportMenuSeeder.Seed(context, homeMenu);
             
+            HelpCommandInitializer.Initialize(context, homeMenu);
             AddCommandInitializer.Initialize(context, homeMenu, newItemMenu);
             AllItemsCommandInitializer.Initialize(context, homeMenu);
             ShopsCommandInitializer.Initialize(context, homeMenu);

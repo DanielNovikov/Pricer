@@ -5,9 +5,9 @@ namespace PriceObserver.Data.Seed.Dialog.Initializers
 {
     public class BackCommandInitializer
     {
-        public static Command Initialize(ApplicationDbContext context)
+        public static void Initialize(ApplicationDbContext context)
         {
-            return CommandInitializer.Initialize(
+            CommandInitializer.Initialize(
                 context,
                 CommandType.Back,
                 ResourceKey.Command_Back);

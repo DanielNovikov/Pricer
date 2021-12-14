@@ -14,6 +14,7 @@
         Dialog_MessageDoesNotContainLink = 9,
         Dialog_LinkInIncorrectFormat = 10,
         Dialog_ErrorOccured = 11,
+        Dialog_Help,
 
         UserAction_GotAddedProducts = 100,
         UserAction_ParsingError = 101,
@@ -28,6 +29,7 @@
         UserAction_UserInfo = 110,
         UserAction_UserLogin = 111,
         UserAction_GotAvailableShops = 112,
+        UserAction_CalledHelp = 113,
         
         Parser_PageNotFound = 200,
         Parser_ShopIsNotAvailable = 201,
@@ -47,6 +49,7 @@
         Command_AllItems = 502,
         Command_Shops = 503,
         Command_Website = 504,
-        Command_WriteToSupport = 505
+        Command_WriteToSupport = 505,
+        Command_Help = 506
     }
 }

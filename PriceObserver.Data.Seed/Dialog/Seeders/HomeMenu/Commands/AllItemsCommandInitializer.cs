@@ -7,7 +7,7 @@ namespace PriceObserver.Data.Seed.Dialog.Seeders.HomeMenu.Commands
 {
     public class AllItemsCommandInitializer
     {
-        public static Command Initialize(ApplicationDbContext context, Menu menu)
+        public static void Initialize(ApplicationDbContext context, Menu menu)
         {
             var allItemsCommand = CommandInitializer.Initialize(
                 context,
@@ -15,8 +15,6 @@ namespace PriceObserver.Data.Seed.Dialog.Seeders.HomeMenu.Commands
                 ResourceKey.Command_AllItems);
 
             MenuCommandInitializer.Initialize(context, menu, allItemsCommand);
-
-            return allItemsCommand;
         }
     }
 }

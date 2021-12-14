@@ -6,7 +6,7 @@ namespace PriceObserver.Data.Seed.Dialog.Seeders.HomeMenu.Commands
 {
     public class ShopsCommandInitializer
     {
-        public static Command Initialize(ApplicationDbContext context, Menu menu)
+        public static void Initialize(ApplicationDbContext context, Menu menu)
         {
             var shopsCommand = CommandInitializer.Initialize(
                 context,
@@ -14,8 +14,6 @@ namespace PriceObserver.Data.Seed.Dialog.Seeders.HomeMenu.Commands
                 ResourceKey.Command_Shops);
 
             MenuCommandInitializer.Initialize(context, menu, shopsCommand);
-
-            return shopsCommand;
         }
     }
 }
