@@ -38,34 +38,34 @@ namespace PriceObserver.Dialog
         [SuppressMessage("ReSharper", "PossibleNullReferenceException")]
         private static void AddCommandHandlers(this IServiceCollection services)
         {
-            var commandType = typeof(ICommandHandler);
+            var commandKey = typeof(ICommandHandler);
 
             var commandImplementations = Assembly
                 .GetExecutingAssembly()
                 .DefinedTypes
-                .Where(type => commandType.IsAssignableFrom(type) && commandType != type)
+                .Where(type => commandKey.IsAssignableFrom(type) && commandKey != type)
                 .ToList();
 
             commandImplementations.ForEach(commandImplementation =>
             {
-                services.AddTransient(commandType, commandImplementation);
+                services.AddTransient(commandKey, commandImplementation);
             });
         }
         
         [SuppressMessage("ReSharper", "PossibleNullReferenceException")]
         private static void AddMenuHandlers(this IServiceCollection services)
         {
-            var commandType = typeof(IMenuInputHandler);
+            var commandKey = typeof(IMenuInputHandler);
 
             var commandImplementations = Assembly
                 .GetExecutingAssembly()
                 .DefinedTypes
-                .Where(type => commandType.IsAssignableFrom(type) && commandType != type)
+                .Where(type => commandKey.IsAssignableFrom(type) && commandKey != type)
                 .ToList();
 
             commandImplementations.ForEach(commandImplementation =>
             {
-                services.AddTransient(commandType, commandImplementation);
+                services.AddTransient(commandKey, commandImplementation);
             });
         }
     }

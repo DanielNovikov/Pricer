@@ -13,4 +13,8 @@
       <PackageReference Include="Scrutor.AspNetCore" Version="3.3.0" />
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\PriceObserver.Data.InMemory\PriceObserver.Data.InMemory.csproj" />
+    </ItemGroup>
+
 </Project>

@@ -3,7 +3,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using PriceObserver.Data.Models.Enums;
+using PriceObserver.Data.InMemory.Models.Enums;
 using PriceObserver.Data.Repositories.Abstract;
 using PriceObserver.Data.Service.Abstract;
 using PriceObserver.Parser.Abstract;
@@ -20,7 +20,7 @@ namespace PriceObserver.Background.Jobs
             _serviceProvider = serviceProvider;
         }
 
-        public async Task StartAsync(CancellationToken cancellationToken)
+        public Task StartAsync(CancellationToken cancellationToken)
         {
             Task.Run(async () =>
             {
@@ -81,6 +81,8 @@ namespace PriceObserver.Background.Jobs
                     await Task.Delay(TimeSpan.FromMinutes(30), cancellationToken);
                 }
             }, cancellationToken);
+
+            return Task.CompletedTask;
         }
 
         public Task StopAsync(CancellationToken cancellationToken)

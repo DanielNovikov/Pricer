@@ -1,8 +1,9 @@
 ﻿using System;
 using Microsoft.Extensions.Logging;
 using PriceObserver.Common.Extensions;
+using PriceObserver.Data.InMemory.Models;
+using PriceObserver.Data.InMemory.Models.Enums;
 using PriceObserver.Data.Models;
-using PriceObserver.Data.Models.Enums;
 using PriceObserver.Data.Service.Abstract;
 using PriceObserver.Dialog.Common.Abstract;
 
@@ -75,7 +76,7 @@ namespace PriceObserver.Dialog.Common.Concrete
 
         public void LogRedirectToMenu(User user, Menu menuToRedirect)
         {
-            LogInformation(user, ResourceKey.UserAction_RedirectedToMenu, menuToRedirect.Type.ToString());
+            LogInformation(user, ResourceKey.UserAction_RedirectedToMenu, menuToRedirect.Key);
         }
 
         public void LogHelpCalled(User user)

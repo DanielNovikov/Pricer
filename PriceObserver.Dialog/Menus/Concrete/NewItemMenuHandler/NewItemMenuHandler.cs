@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
+using PriceObserver.Data.InMemory.Models.Enums;
+using PriceObserver.Data.InMemory.Repositories.Abstract;
 using PriceObserver.Data.Models;
-using PriceObserver.Data.Models.Enums;
 using PriceObserver.Data.Repositories.Abstract;
 using PriceObserver.Data.Service.Abstract;
 using PriceObserver.Dialog.Common.Abstract;
@@ -36,7 +37,7 @@ namespace PriceObserver.Dialog.Menus.Concrete.NewItemMenuHandler
             _resourceService = resourceService;
         }
 
-        public MenuType Type => MenuType.NewItem;
+        public MenuKey Type => MenuKey.NewItem;
         
         public async Task<MenuInputHandlingServiceResult> Handle(MessageDto message)
         {
@@ -67,7 +68,7 @@ namespace PriceObserver.Dialog.Menus.Concrete.NewItemMenuHandler
             }
 
             var parsedItem = parseResult.Result;
-            var shop = await _shopRepository.GetByType(parsedItem.ShopType);
+            var shop = _shopRepository.GetByKey(parsedItem.ShopKey);
             
             var item = new Item
             {
@@ -76,7 +77,7 @@ namespace PriceObserver.Dialog.Menus.Concrete.NewItemMenuHandler
                 Title = parsedItem.Title,
                 ImageUrl = parsedItem.ImageUrl,
                 UserId = message.User.Id, 
-                ShopId = shop.Id
+                ShopKey = shop.Key
             };
 
             await _itemRepository.Add(item);

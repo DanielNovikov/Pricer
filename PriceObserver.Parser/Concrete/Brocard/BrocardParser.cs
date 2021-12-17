@@ -2,14 +2,14 @@
 using System.Linq;
 using AngleSharp.Dom;
 using AngleSharp.Html.Dom;
-using PriceObserver.Data.Models.Enums;
+using PriceObserver.Data.InMemory.Models.Enums;
 using PriceObserver.Parser.Base;
 
 namespace PriceObserver.Parser.Concrete.Brocard
 {
     public class BrocardParser : ParserProviderBase
     {
-        public override ShopType ProviderType => ShopType.Brocard;
+        public override ShopKey ProviderType => ShopKey.Brocard;
 
         protected override int GetPrice(IHtmlDocument document)
         {

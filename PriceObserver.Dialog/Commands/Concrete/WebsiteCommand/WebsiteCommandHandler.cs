@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
+using PriceObserver.Data.InMemory.Models.Enums;
 using PriceObserver.Data.Models;
-using PriceObserver.Data.Models.Enums;
 using PriceObserver.Data.Repositories.Abstract;
 using PriceObserver.Data.Service.Abstract;
 using PriceObserver.Dialog.Commands.Abstract;
@@ -29,7 +29,7 @@ namespace PriceObserver.Dialog.Commands.Concrete.WebsiteCommand
             _resourceService = resourceService;
         }
 
-        public CommandType Type => CommandType.Website;
+        public CommandKey Type => CommandKey.Website;
         
         public async Task<CommandHandlingServiceResult> Handle(User user)
         {

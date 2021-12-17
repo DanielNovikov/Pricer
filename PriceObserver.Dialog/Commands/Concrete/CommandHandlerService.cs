@@ -1,9 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using PriceObserver.Data.InMemory.Models;
+using PriceObserver.Data.InMemory.Models.Enums;
+using PriceObserver.Data.InMemory.Repositories.Abstract;
 using PriceObserver.Data.Models;
-using PriceObserver.Data.Models.Enums;
-using PriceObserver.Data.Repositories.Abstract;
 using PriceObserver.Data.Service.Abstract;
 using PriceObserver.Dialog.Commands.Abstract;
 using PriceObserver.Dialog.Commands.Models;
@@ -16,50 +17,50 @@ namespace PriceObserver.Dialog.Commands.Concrete
     public class CommandHandlerService : ICommandHandlerService
     {
         private readonly IEnumerable<ICommandHandler> _commandHandlers;
-        private readonly IMenuCommandRepository _menuCommandRepository;
         private readonly IUserService _userService;
         private readonly IReplyWithKeyboardBuilder _replyWithKeyboardBuilder;
         private readonly IUserActionLogger _userActionLogger;
+        private readonly IMenuRepository _menuRepository;
 
         public CommandHandlerService(
             IEnumerable<ICommandHandler> commandHandlers,
-            IMenuCommandRepository menuCommandRepository, 
             IUserService userService,
             IReplyWithKeyboardBuilder replyWithKeyboardBuilder, 
-            IUserActionLogger userActionLogger)
+            IUserActionLogger userActionLogger, 
+            IMenuRepository menuRepository)
         {
             _commandHandlers = commandHandlers;
-            _menuCommandRepository = menuCommandRepository;
             _userService = userService;
             _replyWithKeyboardBuilder = replyWithKeyboardBuilder;
             _userActionLogger = userActionLogger;
+            _menuRepository = menuRepository;
         }
 
         public async Task<CommandHandlingServiceResult> Handle(Command command, MessageDto message)
         {
             var user = message.User;
-            var menu = user.Menu;
+            var menu = _menuRepository.GetByKey(user.MenuKey);
 
-            if (menu.ParentId.HasValue && command.Type == CommandType.Back)
+            if (menu.Parent is not null && command.Key == CommandKey.Back)
             {
                 _userActionLogger.LogRedirectToMenu(user, menu.Parent);
                 return await RedirectUserToMenu(user, menu.Parent);
             }
 
-            var commandAvailableInMenu = await _menuCommandRepository.HasPair(menu.Id, command.Id);
+            var commandAvailableInMenu = menu.Commands.Any(x => x == command);
             if (!commandAvailableInMenu)
             {
                 _userActionLogger.LogWrongCommand(message.User, message.Text);
                 return CommandHandlingServiceResult.Fail(ResourceKey.Dialog_IncorrectCommand);
             }
 
-            if (command.MenuToRedirectId.HasValue)
+            if (command.MenuToRedirect is not null)
             {
                 _userActionLogger.LogRedirectToMenu(user, command.MenuToRedirect);
                 return await RedirectUserToMenu(user, command.MenuToRedirect);
             }
 
-            var commandHandler = _commandHandlers.First(x => x.Type == command.Type);
+            var commandHandler = _commandHandlers.First(x => x.Type == command.Key);
             return await commandHandler.Handle(user);
         }
 

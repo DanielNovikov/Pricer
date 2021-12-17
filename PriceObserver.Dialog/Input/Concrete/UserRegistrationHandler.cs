@@ -1,8 +1,7 @@
 ﻿using System.Threading.Tasks;
 using PriceObserver.Common.Extensions;
+using PriceObserver.Data.InMemory.Models.Enums;
 using PriceObserver.Data.Models;
-using PriceObserver.Data.Models.Enums;
-using PriceObserver.Data.Repositories.Abstract;
 using PriceObserver.Data.Service.Abstract;
 using PriceObserver.Dialog.Common.Abstract;
 using PriceObserver.Dialog.Common.Models;
@@ -13,33 +12,37 @@ namespace PriceObserver.Dialog.Input.Concrete
 {
     public class UserRegistrationHandler : IUserRegistrationHandler
     {
-        private readonly ICommandRepository _commandRepository;
         private readonly IMenuKeyboardBuilder _menuKeyboardBuilder;
         private readonly IShopsInfoMessageBuilder _shopsInfoMessageBuilder;
         private readonly IUserActionLogger _userActionLogger;
         private readonly IResourceService _resourceService;
+        private readonly IMenuService _menuService;
+        private readonly ICommandService _commandService;
         
         public UserRegistrationHandler(
-            ICommandRepository commandRepository,
             IMenuKeyboardBuilder menuKeyboardBuilder, 
             IShopsInfoMessageBuilder shopsInfoMessageBuilder, 
             IUserActionLogger userActionLogger, 
-            IResourceService resourceService)
+            IResourceService resourceService, 
+            IMenuService menuService,
+            ICommandService commandService)
         {
-            _commandRepository = commandRepository;
             _menuKeyboardBuilder = menuKeyboardBuilder;
             _shopsInfoMessageBuilder = shopsInfoMessageBuilder;
             _userActionLogger = userActionLogger;
             _resourceService = resourceService;
+            _menuService = menuService;
+            _commandService = commandService;
         }
 
         public async Task<ReplyResult> Handle(User user)
         {
             _userActionLogger.LogUserRegistered(user);
-            
-            var helpCommandTitle = await GetCommandTitle(CommandType.Help);
-            var shopsInfoMessage = await _shopsInfoMessageBuilder.Build();
-            var menuText = _resourceService.Get(user.Menu.ResourceKey); 
+
+            var helpCommandTitle = _commandService.GetTitle(CommandKey.Help);
+            var shopsInfoMessage = _shopsInfoMessageBuilder.Build();
+
+            var menuText = _menuService.GetTitle(user.MenuKey); 
                 
             var message = _resourceService.Get(
                 ResourceKey.Dialog_UserRegistered,
@@ -48,14 +51,9 @@ namespace PriceObserver.Dialog.Input.Concrete
                 shopsInfoMessage,
                 menuText);
 
-            var menuKeyboard = await _menuKeyboardBuilder.Build(user.Menu);
+            var menuKeyboard = await _menuKeyboardBuilder.Build(user.MenuKey);
 
             return ReplyResult.ReplyWithKeyboard(message, menuKeyboard);
-        }
-
-        private async Task<string> GetCommandTitle(CommandType type)
-        {
-            return (await _commandRepository.GetByType(type)).Resource.Value;
         }
     }
 }

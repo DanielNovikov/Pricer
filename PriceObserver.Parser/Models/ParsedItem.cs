@@ -1,11 +1,11 @@
 ﻿using System;
-using PriceObserver.Data.Models.Enums;
+using PriceObserver.Data.InMemory.Models.Enums;
 
 namespace PriceObserver.Parser.Models
 {
     public class ParsedItem
     {
-        public ShopType ShopType { get; set; }
+        public ShopKey ShopKey { get; set; }
         
         public int Price { get; set; }
         

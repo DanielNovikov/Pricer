@@ -1,8 +1,5 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using AngleSharp.Dom;
-using AngleSharp.Html.Dom;
-using PriceObserver.Data.Models.Enums;
+﻿using AngleSharp.Html.Dom;
+using PriceObserver.Data.InMemory.Models.Enums;
 using PriceObserver.Parser.Abstract;
 using PriceObserver.Parser.Models;
 
@@ -10,7 +7,7 @@ namespace PriceObserver.Parser.Base
 {
     public abstract class ParserProviderContentValidatorBase : IParserProviderContentValidator
     {
-        public abstract ShopType ProviderType { get; }
+        public abstract ShopKey ProviderType { get; }
 
         public ContentValidatorResult Validate(IHtmlDocument document)
         {

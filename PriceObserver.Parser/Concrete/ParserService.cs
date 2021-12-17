@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
-using PriceObserver.Data.Models.Enums;
-using PriceObserver.Data.Repositories.Abstract;
+using PriceObserver.Data.InMemory.Models.Enums;
+using PriceObserver.Data.InMemory.Repositories.Abstract;
 using PriceObserver.Parser.Abstract;
 using ParsedItemResult = PriceObserver.Parser.Models.ParsedItemResult;
 
@@ -25,7 +25,7 @@ namespace PriceObserver.Parser.Concrete
 
         public async Task<ParsedItemResult> Parse(Uri url)
         {
-            var shop = await _shopRepository.GetByHost(url.Host);
+            var shop = _shopRepository.GetByHost(url.Host);
             
             if (shop is null)
                 return ParsedItemResult.Fail(ResourceKey.Parser_ShopIsNotAvailable);
@@ -37,7 +37,7 @@ namespace PriceObserver.Parser.Concrete
 
             var htmlDocument = htmlLoadResult.Result;
 
-            return _parserProviderService.Parse(shop.Type, htmlDocument);
+            return _parserProviderService.Parse(shop.Key, htmlDocument);
         }
     }
 }

@@ -8,12 +8,12 @@ namespace PriceObserver.Data.Service
     {
         public static void AddDataServices(this IServiceCollection services)
         {
-            services.AddTransient<IUserService, UserService>();
-            services.AddTransient<IItemService, ItemService>();
-            services.AddTransient<IUserTokenService, UserTokenService>();
-            
+            services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IItemService, ItemService>();
+            services.AddScoped<IUserTokenService, UserTokenService>();
             services.AddScoped<IResourceService, ResourceService>();
-            services.AddSingleton<IResourceValues, ResourceValues>();
+            services.AddScoped<IMenuService, MenuService>();
+            services.AddScoped<ICommandService, CommandService>();
         }
     }
 }

@@ -1,14 +1,14 @@
 ﻿using System;
 using AngleSharp.Dom;
 using AngleSharp.Html.Dom;
-using PriceObserver.Data.Models.Enums;
+using PriceObserver.Data.InMemory.Models.Enums;
 using PriceObserver.Parser.Base;
 
 namespace PriceObserver.Parser.Concrete.Makeup
 {
     public class MakeupParser : ParserProviderBase
     {
-        public override ShopType ProviderType => ShopType.Makeup;
+        public override ShopKey ProviderType => ShopKey.Makeup;
         
         protected override int GetPrice(IHtmlDocument document)
         {

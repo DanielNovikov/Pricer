@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
+using PriceObserver.Data.InMemory.Models.Enums;
 using PriceObserver.Data.Models;
-using PriceObserver.Data.Models.Enums;
 using PriceObserver.Data.Repositories.Abstract;
 using PriceObserver.Data.Service.Abstract;
 using PriceObserver.Dialog.Commands.Abstract;
@@ -28,7 +28,7 @@ namespace PriceObserver.Dialog.Commands.Concrete.AllItemsCommand
             _resourceService = resourceService;
         }
 
-        public CommandType Type => CommandType.AllItems; 
+        public CommandKey Type => CommandKey.AllItems; 
         
         public async Task<CommandHandlingServiceResult> Handle(User user)
         {

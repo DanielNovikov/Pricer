@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using PriceObserver.Data.Models.Enums;
+using PriceObserver.Data.InMemory.Models.Enums;
 using PriceObserver.Dialog.Input.Models;
 using PriceObserver.Dialog.Menus.Models;
 
@@ -7,7 +7,7 @@ namespace PriceObserver.Dialog.Menus.Abstract
 {
     public interface IMenuInputHandler
     {
-        MenuType Type { get; }
+        MenuKey Type { get; }
 
         Task<MenuInputHandlingServiceResult> Handle(MessageDto message);
     }

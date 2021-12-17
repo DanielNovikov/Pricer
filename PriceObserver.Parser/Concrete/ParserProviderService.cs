@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using AngleSharp.Html.Dom;
-using PriceObserver.Data.Models.Enums;
+using PriceObserver.Data.InMemory.Models.Enums;
 using PriceObserver.Parser.Abstract;
 using PriceObserver.Parser.Models;
 
@@ -20,7 +20,7 @@ namespace PriceObserver.Parser.Concrete
             _parsers = parsers;
         }
 
-        public ParsedItemResult Parse(ShopType providerType, IHtmlDocument html)
+        public ParsedItemResult Parse(ShopKey providerType, IHtmlDocument html)
         {
             var contentValidator = GetContentValidator(providerType);
             var contentValidationResult = contentValidator.Validate(html);
@@ -33,12 +33,12 @@ namespace PriceObserver.Parser.Concrete
             return ParsedItemResult.Success(parsedItem);
         }
 
-        private IParserProvider GetParser(ShopType providerType)
+        private IParserProvider GetParser(ShopKey providerType)
         {
             return _parsers.Single(x => x.ProviderType == providerType);
         }
 
-        private IParserProviderContentValidator GetContentValidator(ShopType providerType)
+        private IParserProviderContentValidator GetContentValidator(ShopKey providerType)
         {
             return _contentValidators.Single(p => p.ProviderType == providerType);
         }

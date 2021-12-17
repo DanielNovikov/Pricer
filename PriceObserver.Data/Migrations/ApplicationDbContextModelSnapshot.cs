@@ -38,32 +38,6 @@ namespace PriceObserver.Data.Migrations
                     b.ToTable("AppNotifications");
                 });
 
-            modelBuilder.Entity("PriceObserver.Data.Models.Command", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
-
-                    b.Property<int?>("MenuToRedirectId")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("ResourceId")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("Type")
-                        .HasColumnType("integer");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("MenuToRedirectId");
-
-                    b.HasIndex("ResourceId")
-                        .IsUnique();
-
-                    b.ToTable("Commands");
-                });
-
             modelBuilder.Entity("PriceObserver.Data.Models.Item", b =>
                 {
                     b.Property<int>("Id")
@@ -78,7 +52,7 @@ namespace PriceObserver.Data.Migrations
                     b.Property<int>("Price")
                         .HasColumnType("integer");
 
-                    b.Property<int>("ShopId")
+                    b.Property<int>("ShopKey")
                         .HasColumnType("integer");
 
                     b.Property<string>("Title")
@@ -94,8 +68,6 @@ namespace PriceObserver.Data.Migrations
                         .HasColumnType("bigint");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ShopId");
 
                     b.HasIndex("UserId");
 
@@ -128,108 +100,6 @@ namespace PriceObserver.Data.Migrations
                     b.ToTable("ItemPriceChanges");
                 });
 
-            modelBuilder.Entity("PriceObserver.Data.Models.Menu", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
-
-                    b.Property<bool>("CanExpectInput")
-                        .HasColumnType("boolean");
-
-                    b.Property<bool>("IsDefault")
-                        .HasColumnType("boolean");
-
-                    b.Property<int?>("ParentId")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("ResourceKey")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("Type")
-                        .HasColumnType("integer");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ParentId");
-
-                    b.ToTable("Menus");
-                });
-
-            modelBuilder.Entity("PriceObserver.Data.Models.MenuCommand", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
-
-                    b.Property<int>("CommandId")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("MenuId")
-                        .HasColumnType("integer");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CommandId");
-
-                    b.HasIndex("MenuId");
-
-                    b.ToTable("MenuCommands");
-                });
-
-            modelBuilder.Entity("PriceObserver.Data.Models.Resource", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
-
-                    b.Property<int>("Key")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("Value")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("Key")
-                        .IsUnique();
-
-                    b.ToTable("Resources");
-                });
-
-            modelBuilder.Entity("PriceObserver.Data.Models.Shop", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
-
-                    b.Property<string>("Host")
-                        .IsRequired()
-                        .HasMaxLength(150)
-                        .HasColumnType("character varying(150)");
-
-                    b.Property<string>("LogoUrl")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("character varying(100)");
-
-                    b.Property<int>("Type")
-                        .HasColumnType("integer");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Shops");
-                });
-
             modelBuilder.Entity("PriceObserver.Data.Models.User", b =>
                 {
                     b.Property<long>("Id")
@@ -249,7 +119,7 @@ namespace PriceObserver.Data.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("character varying(100)");
 
-                    b.Property<int>("MenuId")
+                    b.Property<int>("MenuKey")
                         .HasColumnType("integer");
 
                     b.Property<string>("Username")
@@ -257,8 +127,6 @@ namespace PriceObserver.Data.Migrations
                         .HasColumnType("character varying(250)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("MenuId");
 
                     b.ToTable("Users");
                 });
@@ -286,36 +154,13 @@ namespace PriceObserver.Data.Migrations
                     b.ToTable("UserTokens");
                 });
 
-            modelBuilder.Entity("PriceObserver.Data.Models.Command", b =>
-                {
-                    b.HasOne("PriceObserver.Data.Models.Menu", "MenuToRedirect")
-                        .WithMany()
-                        .HasForeignKey("MenuToRedirectId");
-
-                    b.HasOne("PriceObserver.Data.Models.Resource", "Resource")
-                        .WithOne()
-                        .HasForeignKey("PriceObserver.Data.Models.Command", "ResourceId");
-
-                    b.Navigation("MenuToRedirect");
-
-                    b.Navigation("Resource");
-                });
-
             modelBuilder.Entity("PriceObserver.Data.Models.Item", b =>
                 {
-                    b.HasOne("PriceObserver.Data.Models.Shop", "Shop")
-                        .WithMany("Items")
-                        .HasForeignKey("ShopId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("PriceObserver.Data.Models.User", "User")
                         .WithMany("Items")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Shop");
 
                     b.Navigation("User");
                 });
@@ -331,45 +176,6 @@ namespace PriceObserver.Data.Migrations
                     b.Navigation("Item");
                 });
 
-            modelBuilder.Entity("PriceObserver.Data.Models.Menu", b =>
-                {
-                    b.HasOne("PriceObserver.Data.Models.Menu", "Parent")
-                        .WithMany("Children")
-                        .HasForeignKey("ParentId");
-
-                    b.Navigation("Parent");
-                });
-
-            modelBuilder.Entity("PriceObserver.Data.Models.MenuCommand", b =>
-                {
-                    b.HasOne("PriceObserver.Data.Models.Command", "Command")
-                        .WithMany("CommandMenus")
-                        .HasForeignKey("CommandId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("PriceObserver.Data.Models.Menu", "Menu")
-                        .WithMany("MenuCommands")
-                        .HasForeignKey("MenuId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Command");
-
-                    b.Navigation("Menu");
-                });
-
-            modelBuilder.Entity("PriceObserver.Data.Models.User", b =>
-                {
-                    b.HasOne("PriceObserver.Data.Models.Menu", "Menu")
-                        .WithMany()
-                        .HasForeignKey("MenuId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Menu");
-                });
-
             modelBuilder.Entity("PriceObserver.Data.Models.UserToken", b =>
                 {
                     b.HasOne("PriceObserver.Data.Models.User", "User")
@@ -381,26 +187,9 @@ namespace PriceObserver.Data.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("PriceObserver.Data.Models.Command", b =>
-                {
-                    b.Navigation("CommandMenus");
-                });
-
             modelBuilder.Entity("PriceObserver.Data.Models.Item", b =>
                 {
                     b.Navigation("PriceChanges");
-                });
-
-            modelBuilder.Entity("PriceObserver.Data.Models.Menu", b =>
-                {
-                    b.Navigation("Children");
-
-                    b.Navigation("MenuCommands");
-                });
-
-            modelBuilder.Entity("PriceObserver.Data.Models.Shop", b =>
-                {
-                    b.Navigation("Items");
                 });
 
             modelBuilder.Entity("PriceObserver.Data.Models.User", b =>

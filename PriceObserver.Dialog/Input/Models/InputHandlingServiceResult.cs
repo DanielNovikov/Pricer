@@ -1,5 +1,5 @@
 ﻿using PriceObserver.Common.Models;
-using PriceObserver.Data.Models.Enums;
+using PriceObserver.Data.InMemory.Models.Enums;
 using PriceObserver.Dialog.Commands.Models;
 using PriceObserver.Dialog.Common.Models;
 using PriceObserver.Dialog.Menus.Models;

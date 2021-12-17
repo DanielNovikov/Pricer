@@ -1,5 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
+using PriceObserver.Data.InMemory.Models;
+using PriceObserver.Data.InMemory.Repositories.Abstract;
 using PriceObserver.Data.Models;
 using PriceObserver.Data.Repositories.Abstract;
 using PriceObserver.Data.Service.Abstract;
@@ -24,7 +26,9 @@ namespace PriceObserver.Data.Service.Concrete
 
         public async Task RedirectToMenu(User user, Menu menu)
         {
-            await _userRepository.UpdateMenu(user.Id, menu);
+            user.MenuKey = menu.Key;
+            
+            await _userRepository.Update(user);
         }
 
         public async Task DeactivateUserById(long userId)
@@ -37,8 +41,8 @@ namespace PriceObserver.Data.Service.Concrete
 
         public async Task<User> Create(User user)
         {
-            var defaultMenu = await _menuRepository.GetDefault();
-            user.MenuId = defaultMenu.Id;
+            var defaultMenu = _menuRepository.GetDefault();
+            user.MenuKey = defaultMenu.Key;
 
             await _userRepository.Add(user);
             

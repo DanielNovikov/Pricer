@@ -1,7 +1,6 @@
 ﻿using System.Threading.Tasks;
+using PriceObserver.Data.InMemory.Models.Enums;
 using PriceObserver.Data.Models;
-using PriceObserver.Data.Models.Enums;
-using PriceObserver.Data.Repositories.Abstract;
 using PriceObserver.Data.Service.Abstract;
 using PriceObserver.Dialog.Commands.Abstract;
 using PriceObserver.Dialog.Commands.Models;
@@ -14,29 +13,29 @@ namespace PriceObserver.Dialog.Commands.Concrete.HelpCommand
     {
         private readonly IUserActionLogger _userActionLogger;
         private readonly IResourceService _resourceService;
-        private readonly ICommandRepository _commandRepository;
+        private readonly ICommandService _commandService;
         
         public HelpCommandHandler(
             IUserActionLogger userActionLogger,
             IResourceService resourceService, 
-            ICommandRepository commandRepository)
+            ICommandService commandService)
         {
             _userActionLogger = userActionLogger;
             _resourceService = resourceService;
-            _commandRepository = commandRepository;
+            _commandService = commandService;
         }
 
-        public CommandType Type => CommandType.Help;
+        public CommandKey Type => CommandKey.Help;
         
-        public async Task<CommandHandlingServiceResult> Handle(User user)
+        public Task<CommandHandlingServiceResult> Handle(User user)
         {
             _userActionLogger.LogHelpCalled(user);
 
-            var addCommandTitle = await GetCommandTitle(CommandType.Add);
-            var allItemsCommandTitle = await GetCommandTitle(CommandType.AllItems);
-            var shopsCommandTitle = await GetCommandTitle(CommandType.Shops);
-            var websiteCommandTitle = await GetCommandTitle(CommandType.Website);
-            var writeToSupportCommandTitle = await GetCommandTitle(CommandType.WriteToSupport);
+            var addCommandTitle = _commandService.GetTitle(CommandKey.Add);
+            var allItemsCommandTitle = _commandService.GetTitle(CommandKey.AllItems);
+            var shopsCommandTitle = _commandService.GetTitle(CommandKey.Shops);
+            var websiteCommandTitle = _commandService.GetTitle(CommandKey.Website);
+            var writeToSupportCommandTitle = _commandService.GetTitle(CommandKey.WriteToSupport);
 
             var message = _resourceService.Get(
                 ResourceKey.Dialog_Help,
@@ -47,12 +46,9 @@ namespace PriceObserver.Dialog.Commands.Concrete.HelpCommand
                 writeToSupportCommandTitle);
 
             var result = ReplyResult.Reply(message);
-            return CommandHandlingServiceResult.Success(result);
-        }
+            var serviceResult = CommandHandlingServiceResult.Success(result);
 
-        private async Task<string> GetCommandTitle(CommandType type)
-        {
-            return (await _commandRepository.GetByType(type)).Resource.Value;
+            return Task.FromResult(serviceResult);
         }
     }
 }

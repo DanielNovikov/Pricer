@@ -20,8 +20,6 @@ namespace PriceObserver.Data.Repositories.Concrete
         {
             return await _context.Users
                 .AsNoTracking()
-                .Include(x => x.Menu)
-                    .ThenInclude(x => x.Parent)
                 .FirstOrDefaultAsync(x => x.Id == id);
         }
 
@@ -46,15 +44,6 @@ namespace PriceObserver.Data.Repositories.Concrete
             _context.Users.Update(user);
             await _context.SaveChangesAsync();
             
-            _context.DetachAll();
-        }
-
-        public async Task UpdateMenu(long id, Menu menu)
-        {
-            var user = await _context.Users.FindAsync(id);
-            user.MenuId = menu.Id;
-
-            await _context.SaveChangesAsync();
             _context.DetachAll();
         }
     }

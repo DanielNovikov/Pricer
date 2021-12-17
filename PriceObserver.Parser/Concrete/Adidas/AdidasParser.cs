@@ -1,14 +1,14 @@
 ﻿using System;
 using AngleSharp.Dom;
 using AngleSharp.Html.Dom;
-using PriceObserver.Data.Models.Enums;
+using PriceObserver.Data.InMemory.Models.Enums;
 using PriceObserver.Parser.Base;
 
 namespace PriceObserver.Parser.Concrete.Adidas
 {
     public class AdidasParser : ParserProviderBase
     {
-        public override ShopType ProviderType => ShopType.Adidas;
+        public override ShopKey ProviderType => ShopKey.Adidas;
         
         protected override int GetPrice(IHtmlDocument document)
         {

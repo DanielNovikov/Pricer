@@ -1,13 +1,13 @@
 ﻿using AngleSharp.Dom;
 using AngleSharp.Html.Dom;
-using PriceObserver.Data.Models.Enums;
+using PriceObserver.Data.InMemory.Models.Enums;
 using PriceObserver.Parser.Base;
 
 namespace PriceObserver.Parser.Concrete.Makeup
 {
     public class MakeupParserContentValidator : ParserProviderContentValidatorBase
     {
-        public override ShopType ProviderType => ShopType.Makeup;
+        public override ShopKey ProviderType => ShopKey.Makeup;
         
         protected override bool IsPriceExists(IHtmlDocument document)
         {

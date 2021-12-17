@@ -1,11 +1,11 @@
 ﻿using AngleSharp.Html.Dom;
-using PriceObserver.Data.Models.Enums;
+using PriceObserver.Data.InMemory.Models.Enums;
 using PriceObserver.Parser.Models;
 
 namespace PriceObserver.Parser.Abstract
 {
     public interface IParserProviderService
     {
-        ParsedItemResult Parse(ShopType providerType, IHtmlDocument html);
+        ParsedItemResult Parse(ShopKey providerType, IHtmlDocument html);
     }
 }

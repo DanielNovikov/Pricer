@@ -1,16 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using AngleSharp.Dom;
 using AngleSharp.Html.Dom;
-using PriceObserver.Data.Models.Enums;
+using PriceObserver.Data.InMemory.Models.Enums;
 using PriceObserver.Parser.Base;
 
 namespace PriceObserver.Parser.Concrete.MdFashion
 {
     public class MdFashionParser : ParserProviderBase
     {
-        public override ShopType ProviderType => ShopType.MdFashion;
+        public override ShopKey ProviderType => ShopKey.MdFashion;
 
         protected override int GetPrice(IHtmlDocument document)
         {

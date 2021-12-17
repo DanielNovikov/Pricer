@@ -14,17 +14,7 @@ namespace PriceObserver.Data
 
         public DbSet<UserToken> UserTokens { get; set; }
 
-        public DbSet<Menu> Menus { get; set; }
-        
-        public DbSet<MenuCommand> MenuCommands { get; set; }
-
-        public DbSet<Command> Commands { get; set; }
-        
-        public DbSet<Shop> Shops { get; set; }
-
         public DbSet<AppNotification> AppNotifications { get; set; }
-        
-        public DbSet<Resource> Resources { get; set; }
 
         public ApplicationDbContext()
         {

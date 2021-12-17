@@ -1,8 +1,8 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
-using PriceObserver.Data.Models;
-using PriceObserver.Data.Models.Enums;
-using PriceObserver.Data.Repositories.Abstract;
+using PriceObserver.Data.InMemory.Models.Enums;
+using PriceObserver.Data.InMemory.Repositories.Abstract;
+using PriceObserver.Data.Service.Abstract;
 using PriceObserver.Dialog.Common.Models;
 using PriceObserver.Dialog.Menus.Abstract;
 
@@ -10,30 +10,34 @@ namespace PriceObserver.Dialog.Menus.Concrete
 {
     public class MenuKeyboardBuilder : IMenuKeyboardBuilder
     {
-        private readonly IMenuCommandRepository _menuCommandRepository;
         private readonly ICommandRepository _commandRepository;
-
+        private readonly IMenuRepository _menuRepository;
+        private readonly IResourceService _resourceService;
+        
         private const int ButtonsInRow = 2; 
         
         public MenuKeyboardBuilder(
-            IMenuCommandRepository menuCommandRepository,
-            ICommandRepository commandRepository)
+            ICommandRepository commandRepository, 
+            IMenuRepository menuRepository, 
+            IResourceService resourceService)
         {
-            _menuCommandRepository = menuCommandRepository;
             _commandRepository = commandRepository;
+            _menuRepository = menuRepository;
+            _resourceService = resourceService;
         }
 
-        public async Task<MenuKeyboard> Build(Menu menu)
+        public async Task<MenuKeyboard> Build(MenuKey menuKey)
         {
-            var commands = await _menuCommandRepository.GetCommandsByMenuId(menu.Id);
+            var menu = _menuRepository.GetByKey(menuKey);
+            var commands = menu.Commands.ToList();
 
-            if (menu.ParentId.HasValue)
+            if (menu.Parent is not null)
             {
-                var backCommand = await _commandRepository.GetByType(CommandType.Back);
+                var backCommand = _commandRepository.GetByKey(CommandKey.Back);
                 commands = commands.Append(backCommand).ToList();
             }
             
-            var buttonTitles = commands.Select((x, i) => new { Index = i, Text = x.Resource.Value });
+            var buttonTitles = commands.Select((x, i) => new { Index = i, Text = _resourceService.Get(x.ResourceKey) });
 
             var buttonRows = buttonTitles
                 .GroupBy(x => x.Index / ButtonsInRow)

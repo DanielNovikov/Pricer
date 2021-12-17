@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
-using AngleSharp.Media;
 using Microsoft.Extensions.Logging;
-using PriceObserver.Data.Models.Enums;
+using PriceObserver.Data.InMemory.Models.Enums;
 using PriceObserver.Data.Service.Abstract;
 using PriceObserver.Telegram.Abstract;
 using Telegram.Bot.Types;

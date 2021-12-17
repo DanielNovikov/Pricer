@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using PriceObserver.Data.Models;
+using PriceObserver.Data.InMemory.Models;
 using PriceObserver.Dialog.Commands.Models;
 using PriceObserver.Dialog.Input.Models;
 

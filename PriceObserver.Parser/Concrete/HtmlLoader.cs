@@ -2,7 +2,7 @@
 using System.Net.Http;
 using System.Threading.Tasks;
 using AngleSharp.Html.Parser;
-using PriceObserver.Data.Models.Enums;
+using PriceObserver.Data.InMemory.Models.Enums;
 using PriceObserver.Parser.Abstract;
 using HtmlLoadResult = PriceObserver.Parser.Models.HtmlLoadResult;
 

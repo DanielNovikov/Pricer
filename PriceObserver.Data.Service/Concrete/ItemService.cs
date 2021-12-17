@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using PriceObserver.Data.InMemory.Models;
+using PriceObserver.Data.InMemory.Repositories.Abstract;
 using PriceObserver.Data.Models;
 using PriceObserver.Data.Repositories.Abstract;
 using PriceObserver.Data.Service.Abstract;
@@ -28,15 +30,15 @@ namespace PriceObserver.Data.Service.Concrete
         public async Task<IList<ShopVM>> GetGroupedByUserId(long userId)
         {
             var items = await _repository.GetByUserId(userId);
-            var shops = await _shopRepository.GetAll();
+            var shops = _shopRepository.GetAll();
             
             return items
-                .GroupBy(x => x.ShopId)
+                .GroupBy(x => x.ShopKey)
                 .OrderBy(x => x.Key)
                 .Join(
                     shops,
                     x => x.Key,
-                    x => x.Id,
+                    x => x.Key,
                     (grouped, shop) => new
                     {
                         Shop = shop,

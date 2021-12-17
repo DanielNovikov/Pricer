@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
+using PriceObserver.Data.InMemory.Models.Enums;
 using PriceObserver.Data.Models;
-using PriceObserver.Data.Models.Enums;
 using PriceObserver.Dialog.Commands.Abstract;
 using PriceObserver.Dialog.Commands.Models;
 using PriceObserver.Dialog.Common.Abstract;
@@ -21,16 +21,18 @@ namespace PriceObserver.Dialog.Commands.Concrete.ShopsCommand
             _userActionLogger = userActionLogger;
         }
 
-        public CommandType Type => CommandType.Shops;
+        public CommandKey Type => CommandKey.Shops;
         
-        public async Task<CommandHandlingServiceResult> Handle(User user)
+        public Task<CommandHandlingServiceResult> Handle(User user)
         {
             _userActionLogger.LogShopsCalled(user);
             
-            var shopsInfoMessage = await _shopsInfoMessageBuilder.Build();
+            var shopsInfoMessage = _shopsInfoMessageBuilder.Build();
 
             var result = ReplyResult.Reply(shopsInfoMessage);
-            return CommandHandlingServiceResult.Success(result);
+            var serviceResult = CommandHandlingServiceResult.Success(result);
+            
+            return Task.FromResult(serviceResult);
         }
     }
 }

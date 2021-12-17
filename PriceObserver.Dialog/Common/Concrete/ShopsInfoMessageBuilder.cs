@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Linq;
-using System.Threading.Tasks;
-using PriceObserver.Data.Models.Enums;
-using PriceObserver.Data.Repositories.Abstract;
+using PriceObserver.Data.InMemory.Models.Enums;
+using PriceObserver.Data.InMemory.Repositories.Abstract;
 using PriceObserver.Data.Service.Abstract;
 using PriceObserver.Dialog.Common.Abstract;
 
@@ -21,9 +20,9 @@ namespace PriceObserver.Dialog.Common.Concrete
             _resourceService = resourceService;
         }
 
-        public async Task<string> Build()
+        public string Build()
         {
-            var shops = await _shopRepository.GetAll();
+            var shops = _shopRepository.GetAll();
             
             var shopsInfo = shops
                 .Select(x => $"- {x.Name} ({x.Host})")

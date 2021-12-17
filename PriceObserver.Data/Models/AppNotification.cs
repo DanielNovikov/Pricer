@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace PriceObserver.Data.Models
+﻿namespace PriceObserver.Data.Models
 {
     public class AppNotification
     {

@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using PriceObserver.Data.Models.Enums;
+using PriceObserver.Data.InMemory.Models.Enums;
 using PriceObserver.Data.Service.Abstract;
 using PriceObserver.Dialog.Common.Abstract;
 using PriceObserver.Dialog.Input.Models;
@@ -21,7 +21,7 @@ namespace PriceObserver.Dialog.Menus.Concrete.WriteToSupportMenuHandler
             _resourceService = resourceService;
         }
 
-        public MenuType Type => MenuType.Support;
+        public MenuKey Type => MenuKey.Support;
         
         public Task<MenuInputHandlingServiceResult> Handle(MessageDto message)
         {

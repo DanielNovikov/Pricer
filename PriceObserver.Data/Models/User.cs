@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using PriceObserver.Data.InMemory.Models.Enums;
 
 namespace PriceObserver.Data.Models
 {
@@ -16,8 +17,7 @@ namespace PriceObserver.Data.Models
         
         public IList<Item> Items { get; set; }
         
-        public int MenuId { get; set; }
-        public Menu Menu { get; set; }
+        public MenuKey MenuKey { get; set; }
         
         public IList<UserToken> Tokens { get; set; }
     }

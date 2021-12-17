@@ -1,13 +1,13 @@
 ﻿using AngleSharp.Dom;
 using AngleSharp.Html.Dom;
-using PriceObserver.Data.Models.Enums;
+using PriceObserver.Data.InMemory.Models.Enums;
 using PriceObserver.Parser.Base;
 
 namespace PriceObserver.Parser.Concrete.Farfetch
 {
     public class FarfetchParserContentValidator : ParserProviderContentValidatorBase
     {
-        public override ShopType ProviderType => ShopType.Farfetch;
+        public override ShopKey ProviderType => ShopKey.Farfetch;
         
         protected override bool IsPriceExists(IHtmlDocument document)
         {

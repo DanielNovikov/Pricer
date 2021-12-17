@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using PriceObserver.Data.InMemory.Models.Enums;
 
 namespace PriceObserver.Data.Models
 {
@@ -15,11 +16,10 @@ namespace PriceObserver.Data.Models
         
         public Uri ImageUrl { get; set; }
         
+        public ShopKey ShopKey { get; set; }
+        
         public long UserId { get; set; }
         public User User { get; set; }
-        
-        public int ShopId { get; set; }
-        public Shop Shop { get; set; }
         
         public IList<ItemPriceChange> PriceChanges { get; set; } 
     }

@@ -3,9 +3,11 @@ using System.Reflection;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using PriceObserver.Data;
+using PriceObserver.Data.InMemory.Seed;
 using PriceObserver.Data.Seed;
 using Serilog;
 using TelegramSink;
@@ -37,11 +39,13 @@ namespace PriceObserver
         {
             using var scope = host.Services.CreateScope();
             var services = scope.ServiceProvider;
-            var context = services.GetService<ApplicationDbContext>();
             
+            var context = services.GetService<ApplicationDbContext>();
             context!.Database.Migrate();
-                
             DbSeeder.Seed(context);
+
+            var cache = services.GetService<IMemoryCache>();
+            InMemorySeeder.Seed(cache);
         }
         
         private static void InitializeLogger()

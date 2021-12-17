@@ -2,7 +2,6 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using PriceObserver.Data.Repositories.Abstract;
-using PriceObserver.Data.Repositories.Cache;
 using PriceObserver.Data.Repositories.Concrete;
 
 namespace PriceObserver.Data
@@ -23,20 +22,6 @@ namespace PriceObserver.Data
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IUserTokenRepository, UserTokenRepository>();
             services.AddScoped<IAppNotificationRepository, AppNotificationRepository>();
-            services.AddTransient<IResourceRepository, ResourceRepository>();
-            
-            // static
-            services.AddScoped<ICommandRepository, CommandRepository>();
-            services.Decorate<ICommandRepository, CommandRepositoryCache>();
-            
-            services.AddScoped<IMenuCommandRepository, MenuCommandRepository>();
-            services.Decorate<IMenuCommandRepository, MenuCommandRepositoryCache>();
-            
-            services.AddScoped<IMenuRepository, MenuRepository>();
-            services.Decorate<IMenuRepository, MenuRepositoryCache>();
-            
-            services.AddScoped<IShopRepository, ShopRepository>();
-            services.Decorate<IShopRepository, ShopRepositoryCache>();
         }
     }
 }

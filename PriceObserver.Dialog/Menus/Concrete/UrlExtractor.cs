@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Text.RegularExpressions;
-using PriceObserver.Data.Models.Enums;
+using PriceObserver.Data.InMemory.Models.Enums;
 using PriceObserver.Dialog.Menus.Abstract;
 using PriceObserver.Dialog.Menus.Models;
 

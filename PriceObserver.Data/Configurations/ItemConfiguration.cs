@@ -33,17 +33,16 @@ namespace PriceObserver.Data.Configurations
                     v => v.ToString(),
                     v => new Uri(v))
                 .IsRequired();
+
+            builder
+                .Property(x => x.ShopKey)
+                .HasConversion<int>()
+                .IsRequired();
             
             builder
                 .HasOne(i => i.User)
                 .WithMany(i => i.Items)
                 .HasForeignKey(i => i.UserId)
-                .IsRequired();
-
-            builder
-                .HasOne(x => x.Shop)
-                .WithMany(x => x.Items)
-                .HasForeignKey(x => x.ShopId)
                 .IsRequired();
         }
     }

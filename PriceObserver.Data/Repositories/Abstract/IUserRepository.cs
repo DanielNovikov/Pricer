@@ -13,7 +13,5 @@ namespace PriceObserver.Data.Repositories.Abstract
         Task Add(User user);
 
         Task Update(User user);
-
-        Task UpdateMenu(long id, Menu menu);
     }
 }

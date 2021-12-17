@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using PriceObserver.Data.Models;
+﻿using PriceObserver.Data.Models;
 
 namespace PriceObserver.Data.Service.Models
 {

@@ -7,6 +7,7 @@ using Microsoft.Extensions.Hosting;
 using PriceObserver.Authentication;
 using PriceObserver.Background;
 using PriceObserver.Data;
+using PriceObserver.Data.InMemory;
 using PriceObserver.Data.Service;
 using PriceObserver.Dialog;
 using PriceObserver.Parser;
@@ -34,9 +35,12 @@ namespace PriceObserver
             services.AddTelegramBot(_configuration);
             services.AddTelegramDialogServices();
             services.AddParserServices();
-            services.AddData(_configuration);
-            services.AddDataServices();
             services.AddBackgroundJobs();
+            
+            services.AddData(_configuration);
+            services.AddMemoryCache();
+            services.AddInMemoryData();
+            services.AddDataServices();
             
             services.AddCors();
         }

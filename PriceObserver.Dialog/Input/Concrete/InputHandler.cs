@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
-using PriceObserver.Data.Repositories.Abstract;
+using PriceObserver.Data.InMemory.Repositories.Abstract;
+using PriceObserver.Data.Service.Abstract;
 using PriceObserver.Dialog.Commands.Abstract;
 using PriceObserver.Dialog.Input.Abstract;
 using PriceObserver.Dialog.Input.Models;
@@ -14,19 +15,22 @@ namespace PriceObserver.Dialog.Input.Concrete
         private readonly IMenuInputHandlerService _menuInputHandlerService;
         private readonly ICommandHandlerService _commandHandlerService;
         private readonly IUserRegistrationHandler _userRegistrationHandler;
+        private readonly ICommandService _commandService;
         
         public InputHandler(
             IAuthorizationService authorizationService, 
             ICommandRepository commandRepository,
             IMenuInputHandlerService menuInputHandlerService,
             ICommandHandlerService commandHandlerService,
-            IUserRegistrationHandler userRegistrationHandler)
+            IUserRegistrationHandler userRegistrationHandler, 
+            ICommandService commandService)
         {
             _authorizationService = authorizationService;
             _commandRepository = commandRepository;
             _menuInputHandlerService = menuInputHandlerService;
             _commandHandlerService = commandHandlerService;
             _userRegistrationHandler = userRegistrationHandler;
+            _commandService = commandService;
         }
 
         public async Task<InputHandlingServiceResult> Handle(UpdateDto update)
@@ -43,7 +47,7 @@ namespace PriceObserver.Dialog.Input.Concrete
                 return InputHandlingServiceResult.Success(replyWithKeyboardResult);
             }
             
-            var command = await _commandRepository.GetByTitle(message.Text);
+            var command = _commandService.GetByTitle(message.Text);
             if (command is null)
             {
                 var menuInputHandlingServiceResult = await _menuInputHandlerService.Handle(message);

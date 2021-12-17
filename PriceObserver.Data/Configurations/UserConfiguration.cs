@@ -33,11 +33,10 @@ namespace PriceObserver.Data.Configurations
                 .Property(x => x.IsActive)
                 .HasDefaultValueSql("true")
                 .IsRequired();
-            
+
             builder
-                .HasOne(x => x.Menu)
-                .WithMany()
-                .HasForeignKey(x => x.MenuId)
+                .Property(x => x.MenuKey)
+                .HasConversion<int>()
                 .IsRequired();
         }
     }

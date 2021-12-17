@@ -9,7 +9,6 @@
     <ItemGroup>
         <ProjectReference Include="..\PriceObserver.Authentication\PriceObserver.Authentication.csproj" />
         <ProjectReference Include="..\PriceObserver.Background\PriceObserver.Background.csproj" />
-        <ProjectReference Include="..\PriceObserver.Data.Seed\PriceObserver.Data.Seed.csproj" />
         <ProjectReference Include="..\PriceObserver.Data\PriceObserver.Data.csproj" />
         <ProjectReference Include="..\PriceObserver.Parser\PriceObserver.Parser.csproj" />
         <ProjectReference Include="..\PriceObserver.Telegram\PriceObserver.Telegram.csproj" />

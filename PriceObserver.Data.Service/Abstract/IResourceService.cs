@@ -1,5 +1,4 @@
-﻿using System.Threading.Tasks;
-using PriceObserver.Data.Models.Enums;
+﻿using PriceObserver.Data.InMemory.Models.Enums;
 
 namespace PriceObserver.Data.Service.Abstract
 {
