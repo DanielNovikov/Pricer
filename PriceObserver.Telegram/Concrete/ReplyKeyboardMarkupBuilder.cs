@@ -12,7 +12,10 @@ namespace PriceObserver.Telegram.Concrete
             var buttons = keyboard.ButtonsGrid
                 .Select(x => x.Select(y => new KeyboardButton(y.Title)));
 
-            return new ReplyKeyboardMarkup(buttons, true);
+            return new ReplyKeyboardMarkup(buttons)
+            {
+                ResizeKeyboard = true
+            };
         }
     }
 }

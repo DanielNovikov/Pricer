@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Logging;
 using PriceObserver.Data.Service.Abstract;
 using PriceObserver.Telegram.Abstract;
+using Telegram.Bot;
 using Telegram.Bot.Exceptions;
 using Telegram.Bot.Types.Enums;
 using Telegram.Bot.Types.ReplyMarkups;

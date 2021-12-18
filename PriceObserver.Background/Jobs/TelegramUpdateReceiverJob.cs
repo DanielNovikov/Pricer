@@ -5,6 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using PriceObserver.Telegram.Abstract;
+using Telegram.Bot;
 using Telegram.Bot.Extensions.Polling;
 using Telegram.Bot.Types;
 using Telegram.Bot.Types.Enums;
@@ -25,26 +26,22 @@ namespace PriceObserver.Background.Jobs
             _serviceProvider = serviceProvider;
         }
 
-        public async Task StartAsync(CancellationToken cancellationToken)
+        public Task StartAsync(CancellationToken cancellationToken)
         {
             var client = _telegramBot.GetClient();
 
-            var allowedUpdateTypes = new[] { UpdateType.Message };
-
-            var updateReceiver = new QueuedUpdateReceiver(client);
-
-            updateReceiver.StartReceiving(
-                allowedUpdateTypes,
-                HandleError,
+            var receiverOptions = new ReceiverOptions
+            {
+                AllowedUpdates = new[] { UpdateType.Message } 
+            };
+            
+            client.StartReceiving(
+                HandleUpdateAsync, 
+                HandleError, 
+                receiverOptions, 
                 cancellationToken);
 
-            Task.Run(async () =>
-            {
-                await foreach (var update in updateReceiver.YieldUpdatesAsync().WithCancellation(cancellationToken))
-                {
-                    await HandleUpdate(update);
-                }
-            }, cancellationToken);
+            return Task.CompletedTask;
         }
 
         public Task StopAsync(CancellationToken cancellationToken)
@@ -52,17 +49,15 @@ namespace PriceObserver.Background.Jobs
             return Task.CompletedTask;
         }
 
-        private async Task HandleUpdate(Update update)
+        async Task HandleUpdateAsync(ITelegramBotClient botClient, Update update, CancellationToken cancellationToken)
         {
             using var scope = _serviceProvider.CreateScope();
             var updateHandler = scope.ServiceProvider.GetService<IUpdateHandler>();
 
             await updateHandler!.Handle(update);
         }
-
-        private Task HandleError(
-            Exception exception,
-            CancellationToken cancellationToken)
+        
+        private Task HandleError(ITelegramBotClient botClient, Exception exception, CancellationToken cancellationToken)
         {
             using var scope = _serviceProvider.CreateScope();
 
