@@ -52,7 +52,7 @@ namespace PriceObserver
         {
             var configuration = new ConfigurationBuilder()
                 .AddJsonFile("appsettings.json")
-                .AddUserSecrets(Assembly.GetExecutingAssembly())
+                .AddUserSecrets(Assembly.GetExecutingAssembly(), true)
                 .Build();
             
             Log.Logger = new LoggerConfiguration()
