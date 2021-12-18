@@ -1,4 +1,4 @@
-﻿FROM mcr.microsoft.com/dotnet/sdk:5.0-alpine AS back-build
+﻿FROM mcr.microsoft.com/dotnet/sdk:6.0-alpine AS back-build
 EXPOSE 5000
 
 WORKDIR /app/backend
@@ -8,7 +8,7 @@ COPY PriceObserver.Authentication/PriceObserver.Authentication.csproj ./PriceObs
 COPY PriceObserver.Background/PriceObserver.Background.csproj ./PriceObserver.Background/PriceObserver.Background.csproj
 COPY PriceObserver.Common/PriceObserver.Common.csproj ./PriceObserver.Common/PriceObserver.Common.csproj
 COPY PriceObserver.Data/PriceObserver.Data.csproj ./PriceObserver.Data/PriceObserver.Data.csproj
-COPY PriceObserver.Data.Seed/PriceObserver.Data.Seed.csproj ./PriceObserver.Data.Seed/PriceObserver.Data.Seed.csproj
+COPY PriceObserver.Data.InMemory/PriceObserver.Data.InMemory.csproj ./PriceObserver.Data.InMemory/PriceObserver.Data.InMemory.csproj
 COPY PriceObserver.Data.Service/PriceObserver.Data.Service.csproj ./PriceObserver.Data.Service/PriceObserver.Data.Service.csproj
 COPY PriceObserver.Dialog/PriceObserver.Dialog.csproj ./PriceObserver.Dialog/PriceObserver.Dialog.csproj
 COPY PriceObserver.Parser/PriceObserver.Parser.csproj ./PriceObserver.Parser/PriceObserver.Parser.csproj
@@ -27,7 +27,7 @@ COPY --from=back-build /app/backend/PriceObserver/ClientApp .
 RUN npm install
 RUN npm run build
 
-FROM mcr.microsoft.com/dotnet/aspnet:5.0
+FROM mcr.microsoft.com/dotnet/aspnet:6.0
 WORKDIR /app
 COPY --from=back-build /publish ./
 
