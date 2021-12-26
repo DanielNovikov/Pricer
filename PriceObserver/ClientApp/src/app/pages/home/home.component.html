@@ -6,5 +6,8 @@
   <small>Вы можете добавить желаемый товар в <a href="https://t.me/pricer_official_bot" target="_blank">боте</a> используя комманду <b>Добавить ➕</b>.</small>
 </div>
 
-
 <app-items [(shops)]="shops" *ngIf="shops && shops.length !== 0"></app-items>
+
+<div class="logout" (click)="logout()">
+  <img src="assets/images/logout.png" />
+</div>

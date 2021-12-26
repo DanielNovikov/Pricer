@@ -30,4 +30,9 @@ export class HomeComponent implements OnInit {
       });
   }
 
+  logout(): void {
+    localStorage.removeItem('access_token');
+
+    window.location.href = 'https://t.me/pricer_official_bot';
+  }
 }
