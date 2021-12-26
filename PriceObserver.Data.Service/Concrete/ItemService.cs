@@ -27,7 +27,7 @@ namespace PriceObserver.Data.Service.Concrete
             _priceChangeRepository = priceChangeRepository;
         }
 
-        public async Task<IList<ShopVM>> GetGroupedByUserId(long userId)
+        public async Task<IList<ShopVm>> GetGroupedByUserId(long userId)
         {
             var items = await _repository.GetByUserId(userId);
             var shops = _shopRepository.GetAll();
@@ -48,7 +48,7 @@ namespace PriceObserver.Data.Service.Concrete
                 .ToList();
         }
 
-        private static ShopVM CreateShopVM(Shop shop, IList<Item> items)
+        private static ShopVm CreateShopVM(Shop shop, IList<Item> items)
         {
             var address = $"https://{shop.Host}";
             var logoUrl = shop.LogoUrl.ToString();
@@ -67,11 +67,11 @@ namespace PriceObserver.Data.Service.Concrete
                             .Aggregate((a, b) => $"{a} {b}")
                         : "Нет истории";
 
-                    return y.ToVM(priceChanges);
+                    return y.ToVm(priceChanges);
                 })
                 .ToList();
 
-            return new ShopVM(address, logoUrl, itemVMs);
+            return new ShopVm(address, logoUrl, itemVMs);
         }
 
         public async Task UpdatePrice(Item item, int price)

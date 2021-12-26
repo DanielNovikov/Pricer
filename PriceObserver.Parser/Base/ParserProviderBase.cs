@@ -12,13 +12,11 @@ namespace PriceObserver.Parser.Base
 
         public ParsedItem Parse(IHtmlDocument document)
         {
-            return new ParsedItem
-            {
-                ShopKey = ProviderType,
-                Price = GetPrice(document),
-                Title = GetTitle(document).Trim(' ', '\r', '\n'),
-                ImageUrl = GetImageUrl(document)
-            };
+            return new ParsedItem(
+                ProviderType,
+                GetPrice(document),
+                GetTitle(document).Trim(' ', '\r', '\n'),
+                GetImageUrl(document));
         }
         
         protected abstract int GetPrice(IHtmlDocument document);

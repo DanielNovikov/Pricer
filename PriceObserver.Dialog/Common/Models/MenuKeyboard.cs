@@ -2,13 +2,5 @@
 
 namespace PriceObserver.Dialog.Common.Models
 {
-    public class MenuKeyboard
-    {
-        public List<List<MenuKeyboardButton>> ButtonsGrid { get; }
-
-        public MenuKeyboard(List<List<MenuKeyboardButton>> buttonsGrid)
-        {
-            ButtonsGrid = buttonsGrid;
-        }
-    }
+    public record MenuKeyboard(List<List<MenuKeyboardButton>> ButtonsGrid);
 }

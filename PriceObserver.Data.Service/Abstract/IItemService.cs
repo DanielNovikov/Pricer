@@ -7,7 +7,7 @@ namespace PriceObserver.Data.Service.Abstract
 {
     public interface IItemService
     {
-        Task<IList<ShopVM>> GetGroupedByUserId(long userId);
+        Task<IList<ShopVm>> GetGroupedByUserId(long userId);
 
         Task UpdatePrice(Item item, int price);
         

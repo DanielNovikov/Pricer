@@ -2,18 +2,5 @@
 
 namespace PriceObserver.Dialog.Input.Models
 {
-    public class MessageDto
-    {
-        public MessageDto(
-            string text,
-            User user)
-        {
-            Text = text;
-            User = user;
-        }
-
-        public string Text { get; }
-        
-        public User User { get; }
-    }
+    public record MessageDto(string Text, User User);
 }

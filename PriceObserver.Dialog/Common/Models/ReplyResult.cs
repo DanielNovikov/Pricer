@@ -2,9 +2,9 @@
 {
     public class ReplyResult
     {
-        public string Message { get; private set; }
+        public string Message { get; private init; }
         
-        public MenuKeyboard MenuKeyboard { get; private set; }
+        public MenuKeyboard MenuKeyboard { get; private init; }
 
         private ReplyResult()
         {

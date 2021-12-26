@@ -10,14 +10,12 @@ namespace PriceObserver.Telegram.Extensions
             var message = update.Message;
             var chat = message.Chat;
             
-            return new UpdateDto
-            {
-                Text = message.Text,
-                UserId = chat.Id,
-                Username = chat.Username,
-                FirstName = chat.FirstName,
-                LastName = chat.LastName
-            };
+            return new UpdateDto(
+                message.Text,
+                chat.Id,
+                chat.Username,
+                chat.FirstName,
+                chat.LastName);
         }
     }
 }
