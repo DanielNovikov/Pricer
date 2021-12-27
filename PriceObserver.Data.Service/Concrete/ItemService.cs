@@ -51,7 +51,7 @@ namespace PriceObserver.Data.Service.Concrete
         private static ShopVm CreateShopVM(Shop shop, IList<Item> items)
         {
             var address = $"https://{shop.Host}";
-            var logoUrl = shop.LogoUrl.ToString();
+            var logoFileName = shop.LogoFileName;
 
             var itemVMs = items
                 .Select(y =>
@@ -71,7 +71,7 @@ namespace PriceObserver.Data.Service.Concrete
                 })
                 .ToList();
 
-            return new ShopVm(address, logoUrl, itemVMs);
+            return new ShopVm(address, logoFileName, itemVMs);
         }
 
         public async Task UpdatePrice(Item item, int price)

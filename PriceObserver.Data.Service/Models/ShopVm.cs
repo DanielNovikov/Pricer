@@ -2,5 +2,5 @@
 
 namespace PriceObserver.Data.Service.Models
 {
-    public record ShopVm(string Address, string LogoUrl, IList<ItemVm> Items);
+    public record ShopVm(string Address, string LogoFileName, IList<ItemVm> Items);
 }

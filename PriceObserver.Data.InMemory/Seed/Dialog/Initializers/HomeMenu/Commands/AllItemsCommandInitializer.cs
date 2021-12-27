@@ -7,7 +7,7 @@ namespace PriceObserver.Data.InMemory.Seed.Dialog.Initializers.HomeMenu.Commands
     {
         public static Command Initialize(Menu menu)
         {
-            var command = new Command(CommandKey.AllItems, ResourceKey.Command_AllItems, menu, null);
+            var command = new Command(CommandKey.AllItems, ResourceKey.Command_AllItems, null);
 
             menu.Commands.Add(command);
 

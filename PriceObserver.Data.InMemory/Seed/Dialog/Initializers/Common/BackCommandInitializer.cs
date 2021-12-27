@@ -7,7 +7,7 @@ namespace PriceObserver.Data.InMemory.Seed.Dialog.Initializers.Common
     {
         public static Command Initialize()
         {
-            return new Command(CommandKey.Back, ResourceKey.Command_Back, null, null);
+            return new Command(CommandKey.Back, ResourceKey.Command_Back, null);
         }
     }
 }

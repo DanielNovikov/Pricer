@@ -2,5 +2,5 @@
 
 namespace PriceObserver.Data.InMemory.Models
 {
-    public record Command(CommandKey Key, ResourceKey ResourceKey, Menu Menu, Menu MenuToRedirect);
+    public record Command(CommandKey Key, ResourceKey ResourceKey, Menu MenuToRedirect);
 }

@@ -3,5 +3,5 @@ using PriceObserver.Data.InMemory.Models.Enums;
 
 namespace PriceObserver.Data.InMemory.Models
 {
-    public record Shop(string Name, ShopKey Key, string Host, Uri LogoUrl);
+    public record Shop(string Name, ShopKey Key, string Host, string LogoFileName);
 }
