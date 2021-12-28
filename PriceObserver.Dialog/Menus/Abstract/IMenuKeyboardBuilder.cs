@@ -2,10 +2,9 @@
 using PriceObserver.Data.InMemory.Models.Enums;
 using PriceObserver.Dialog.Common.Models;
 
-namespace PriceObserver.Dialog.Menus.Abstract
+namespace PriceObserver.Dialog.Menus.Abstract;
+
+public interface IMenuKeyboardBuilder
 {
-    public interface IMenuKeyboardBuilder
-    {
-        Task<MenuKeyboard> Build(MenuKey menuKey);
-    }
+    Task<MenuKeyboard> Build(MenuKey menuKey);
 }

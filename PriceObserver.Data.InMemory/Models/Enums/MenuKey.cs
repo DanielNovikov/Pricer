@@ -1,9 +1,8 @@
-﻿namespace PriceObserver.Data.InMemory.Models.Enums
+﻿namespace PriceObserver.Data.InMemory.Models.Enums;
+
+public enum MenuKey
 {
-    public enum MenuKey
-    {
-        Home,
-        NewItem,
-        Support
-    }
+    Home,
+    NewItem,
+    Support
 }

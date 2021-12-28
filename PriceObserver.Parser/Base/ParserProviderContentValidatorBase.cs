@@ -3,20 +3,19 @@ using PriceObserver.Data.InMemory.Models.Enums;
 using PriceObserver.Parser.Abstract;
 using PriceObserver.Parser.Models;
 
-namespace PriceObserver.Parser.Base
+namespace PriceObserver.Parser.Base;
+
+public abstract class ParserProviderContentValidatorBase : IParserProviderContentValidator
 {
-    public abstract class ParserProviderContentValidatorBase : IParserProviderContentValidator
+    public abstract ShopKey ProviderType { get; }
+
+    public ContentValidatorResult Validate(IHtmlDocument document)
     {
-        public abstract ShopKey ProviderType { get; }
+        if (!IsPriceExists(document))
+            return ContentValidatorResult.PriceDoesNotExist();
 
-        public ContentValidatorResult Validate(IHtmlDocument document)
-        {
-            if (!IsPriceExists(document))
-                return ContentValidatorResult.PriceDoesNotExist();
-
-            return ContentValidatorResult.Success();
-        }
-
-        protected abstract bool IsPriceExists(IHtmlDocument document);
+        return ContentValidatorResult.Success();
     }
+
+    protected abstract bool IsPriceExists(IHtmlDocument document);
 }

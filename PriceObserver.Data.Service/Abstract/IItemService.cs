@@ -3,14 +3,13 @@ using System.Threading.Tasks;
 using PriceObserver.Data.Models;
 using PriceObserver.Data.Service.Models;
 
-namespace PriceObserver.Data.Service.Abstract
-{
-    public interface IItemService
-    {
-        Task<IList<ShopVm>> GetGroupedByUserId(long userId);
+namespace PriceObserver.Data.Service.Abstract;
 
-        Task UpdatePrice(Item item, int price);
+public interface IItemService
+{
+    Task<IList<ShopVm>> GetGroupedByUserId(long userId);
+
+    Task UpdatePrice(Item item, int price);
         
-        Task Delete(int id, long userId);
-    }
+    Task Delete(int id, long userId);
 }

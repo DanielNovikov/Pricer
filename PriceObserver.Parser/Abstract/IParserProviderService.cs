@@ -2,10 +2,9 @@
 using PriceObserver.Data.InMemory.Models.Enums;
 using PriceObserver.Parser.Models;
 
-namespace PriceObserver.Parser.Abstract
+namespace PriceObserver.Parser.Abstract;
+
+public interface IParserProviderService
 {
-    public interface IParserProviderService
-    {
-        ParsedItemResult Parse(ShopKey providerType, IHtmlDocument html);
-    }
+    ParsedItemResult Parse(ShopKey providerType, IHtmlDocument html);
 }

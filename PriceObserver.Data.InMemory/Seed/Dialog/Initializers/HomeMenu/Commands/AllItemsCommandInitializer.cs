@@ -1,17 +1,16 @@
 ﻿using PriceObserver.Data.InMemory.Models;
 using PriceObserver.Data.InMemory.Models.Enums;
 
-namespace PriceObserver.Data.InMemory.Seed.Dialog.Initializers.HomeMenu.Commands
+namespace PriceObserver.Data.InMemory.Seed.Dialog.Initializers.HomeMenu.Commands;
+
+public class AllItemsCommandInitializer
 {
-    public class AllItemsCommandInitializer
+    public static Command Initialize(Menu menu)
     {
-        public static Command Initialize(Menu menu)
-        {
-            var command = new Command(CommandKey.AllItems, ResourceKey.Command_AllItems, null);
+        var command = new Command(CommandKey.AllItems, ResourceKey.Command_AllItems, null);
 
-            menu.Commands.Add(command);
+        menu.Commands.Add(command);
 
-            return command;
-        }
+        return command;
     }
 }

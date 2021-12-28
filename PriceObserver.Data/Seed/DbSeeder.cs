@@ -1,24 +1,23 @@
 ﻿using PriceObserver.Data.Seed.AppNotifications;
 
-namespace PriceObserver.Data.Seed
-{
-    public class DbSeeder
-    {
-        public static void Seed(ApplicationDbContext context)
-        {
-            using var transaction = context.Database.BeginTransaction();
+namespace PriceObserver.Data.Seed;
 
-            try
-            {
-                AppNotificationsSeeder.Seed(context);
+public class DbSeeder
+{
+    public static void Seed(ApplicationDbContext context)
+    {
+        using var transaction = context.Database.BeginTransaction();
+
+        try
+        {
+            AppNotificationsSeeder.Seed(context);
                 
-                transaction.Commit();
-            }
-            catch
-            {
-                transaction.Rollback();
-                throw;
-            }
+            transaction.Commit();
+        }
+        catch
+        {
+            transaction.Rollback();
+            throw;
         }
     }
 }

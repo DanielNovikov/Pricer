@@ -1,8 +1,7 @@
-﻿namespace PriceObserver.Authentication.Models
+﻿namespace PriceObserver.Authentication.Models;
+
+public enum AuthenticationErrorStatus
 {
-    public enum AuthenticationErrorStatus
-    {
-        TokenExpired,
-        TokenNotFound
-    }
+    TokenExpired,
+    TokenNotFound
 }

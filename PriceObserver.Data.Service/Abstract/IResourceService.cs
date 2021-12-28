@@ -1,9 +1,8 @@
 ﻿using PriceObserver.Data.InMemory.Models.Enums;
 
-namespace PriceObserver.Data.Service.Abstract
+namespace PriceObserver.Data.Service.Abstract;
+
+public interface IResourceService
 {
-    public interface IResourceService
-    {
-        string Get(ResourceKey key, params object[] parameters);
-    }
+    string Get(ResourceKey key, params object[] parameters);
 }

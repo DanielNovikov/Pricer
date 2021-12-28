@@ -1,9 +1,8 @@
 ﻿using PriceObserver.Data.InMemory.Models.Enums;
 
-namespace PriceObserver.Data.Service.Abstract
+namespace PriceObserver.Data.Service.Abstract;
+
+public interface IMenuService
 {
-    public interface IMenuService
-    {
-        string GetTitle(MenuKey key);
-    }
+    string GetTitle(MenuKey key);
 }

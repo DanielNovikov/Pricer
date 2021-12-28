@@ -6,44 +6,43 @@ using PriceObserver.Data.Service.Abstract;
 using PriceObserver.Telegram.Abstract;
 using Telegram.Bot.Types;
 
-namespace PriceObserver.Telegram.Concrete
+namespace PriceObserver.Telegram.Concrete;
+
+public class UpdateExceptionHandler : IUpdateHandler
 {
-    public class UpdateExceptionHandler : IUpdateHandler
+    private readonly IUpdateHandler _handler;
+    private readonly ILogger<UpdateExceptionHandler> _logger;
+    private readonly ITelegramBotService _telegramBotService;
+    private readonly IResourceService _resourceService;
+
+    public UpdateExceptionHandler(
+        IUpdateHandler handler,
+        ILogger<UpdateExceptionHandler> logger,
+        ITelegramBotService telegramBotService, 
+        IResourceService resourceService)
     {
-        private readonly IUpdateHandler _handler;
-        private readonly ILogger<UpdateExceptionHandler> _logger;
-        private readonly ITelegramBotService _telegramBotService;
-        private readonly IResourceService _resourceService;
+        _handler = handler;
+        _logger = logger;
+        _telegramBotService = telegramBotService;
+        _resourceService = resourceService;
+    }
 
-        public UpdateExceptionHandler(
-            IUpdateHandler handler,
-            ILogger<UpdateExceptionHandler> logger,
-            ITelegramBotService telegramBotService, 
-            IResourceService resourceService)
+    public async Task Handle(Update update)
+    {
+        try
         {
-            _handler = handler;
-            _logger = logger;
-            _telegramBotService = telegramBotService;
-            _resourceService = resourceService;
+            await _handler.Handle(update);
         }
-
-        public async Task Handle(Update update)
+        catch (Exception ex)
         {
-            try
-            {
-                await _handler.Handle(update);
-            }
-            catch (Exception ex)
-            {
-                var userId = update.Message.Chat.Id;
+            var userId = update.Message.Chat.Id;
                 
-                _logger.LogError($@"User id: {userId}
+            _logger.LogError($@"User id: {userId}
 Message: {ex.Message}
 InnerException: {ex.InnerException}");
 
-                var message = _resourceService.Get(ResourceKey.Dialog_ErrorOccured);
-                await _telegramBotService.SendMessage(userId, message);
-            }
+            var message = _resourceService.Get(ResourceKey.Dialog_ErrorOccured);
+            await _telegramBotService.SendMessage(userId, message);
         }
     }
 }

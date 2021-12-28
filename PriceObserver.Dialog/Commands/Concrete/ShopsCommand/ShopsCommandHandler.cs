@@ -6,33 +6,32 @@ using PriceObserver.Dialog.Commands.Models;
 using PriceObserver.Dialog.Common.Abstract;
 using PriceObserver.Dialog.Common.Models;
 
-namespace PriceObserver.Dialog.Commands.Concrete.ShopsCommand
+namespace PriceObserver.Dialog.Commands.Concrete.ShopsCommand;
+
+public class ShopsCommandHandler : ICommandHandler
 {
-    public class ShopsCommandHandler : ICommandHandler
+    private readonly IShopsInfoMessageBuilder _shopsInfoMessageBuilder;
+    private readonly IUserActionLogger _userActionLogger;
+        
+    public ShopsCommandHandler(
+        IShopsInfoMessageBuilder shopsInfoMessageBuilder,
+        IUserActionLogger userActionLogger)
     {
-        private readonly IShopsInfoMessageBuilder _shopsInfoMessageBuilder;
-        private readonly IUserActionLogger _userActionLogger;
-        
-        public ShopsCommandHandler(
-            IShopsInfoMessageBuilder shopsInfoMessageBuilder,
-            IUserActionLogger userActionLogger)
-        {
-            _shopsInfoMessageBuilder = shopsInfoMessageBuilder;
-            _userActionLogger = userActionLogger;
-        }
+        _shopsInfoMessageBuilder = shopsInfoMessageBuilder;
+        _userActionLogger = userActionLogger;
+    }
 
-        public CommandKey Type => CommandKey.Shops;
+    public CommandKey Type => CommandKey.Shops;
         
-        public Task<CommandHandlingServiceResult> Handle(User user)
-        {
-            _userActionLogger.LogShopsCalled(user);
+    public Task<CommandHandlingServiceResult> Handle(User user)
+    {
+        _userActionLogger.LogShopsCalled(user);
             
-            var shopsInfoMessage = _shopsInfoMessageBuilder.Build();
+        var shopsInfoMessage = _shopsInfoMessageBuilder.Build();
 
-            var result = ReplyResult.Reply(shopsInfoMessage);
-            var serviceResult = CommandHandlingServiceResult.Success(result);
+        var result = ReplyResult.Reply(shopsInfoMessage);
+        var serviceResult = CommandHandlingServiceResult.Success(result);
             
-            return Task.FromResult(serviceResult);
-        }
+        return Task.FromResult(serviceResult);
     }
 }

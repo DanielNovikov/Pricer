@@ -13,75 +13,74 @@ using PriceObserver.Dialog;
 using PriceObserver.Parser;
 using PriceObserver.Telegram;
 
-namespace PriceObserver
+namespace PriceObserver;
+
+public class Startup
 {
-    public class Startup
+    private readonly IConfiguration _configuration;
+
+    public Startup(IConfiguration configuration)
     {
-        private readonly IConfiguration _configuration;
+        _configuration = configuration;
+    }
 
-        public Startup(IConfiguration configuration)
+    public void ConfigureServices(IServiceCollection services)
+    {   
+        services.AddControllersWithViews();
+        services.AddSpaStaticFiles(configuration => { configuration.RootPath = "wwwroot"; });
+            
+        services.AddJwtAuthentication();
+        services.AddAuthenticationServices();
+            
+        services.AddTelegramBot(_configuration);
+        services.AddTelegramDialogServices();
+        services.AddParserServices();
+        services.AddBackgroundJobs();
+            
+        services.AddData(_configuration);
+        services.AddMemoryCache();
+        services.AddInMemoryData();
+        services.AddDataServices();
+            
+        services.AddCors();
+    }
+
+    public void Configure(
+        IApplicationBuilder app,
+        IWebHostEnvironment env)
+    {
+        if (env.IsDevelopment())
         {
-            _configuration = configuration;
+            app.UseDeveloperExceptionPage();
         }
-
-        public void ConfigureServices(IServiceCollection services)
-        {   
-            services.AddControllersWithViews();
-            services.AddSpaStaticFiles(configuration => { configuration.RootPath = "wwwroot"; });
             
-            services.AddJwtAuthentication();
-            services.AddAuthenticationServices();
-            
-            services.AddTelegramBot(_configuration);
-            services.AddTelegramDialogServices();
-            services.AddParserServices();
-            services.AddBackgroundJobs();
-            
-            services.AddData(_configuration);
-            services.AddMemoryCache();
-            services.AddInMemoryData();
-            services.AddDataServices();
-            
-            services.AddCors();
-        }
-
-        public void Configure(
-            IApplicationBuilder app,
-            IWebHostEnvironment env)
+        app.UseForwardedHeaders(new ForwardedHeadersOptions
         {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
+            ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
+        });
             
-            app.UseForwardedHeaders(new ForwardedHeadersOptions
-            {
-                ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
-            });
+        app.UseStaticFiles();
             
-            app.UseStaticFiles();
-            
-            app.UseRouting();
+        app.UseRouting();
 
-            app.UseAuthentication();
-            app.UseAuthorization();
+        app.UseAuthentication();
+        app.UseAuthorization();
             
-            app.UseCors(builder => builder
-                .AllowAnyHeader()
-                .AllowAnyMethod()
-                .AllowAnyOrigin());
+        app.UseCors(builder => builder
+            .AllowAnyHeader()
+            .AllowAnyMethod()
+            .AllowAnyOrigin());
             
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllerRoute(
-                    "default",
-                    "{controller}/{action}/{id?}");
-            });
+        app.UseEndpoints(endpoints =>
+        {
+            endpoints.MapControllerRoute(
+                "default",
+                "{controller}/{action}/{id?}");
+        });
 
-            if (!env.IsDevelopment())
-            {
-                app.UseSpa(builder => builder.Options.SourcePath = "wwwroot");
-            }
+        if (!env.IsDevelopment())
+        {
+            app.UseSpa(builder => builder.Options.SourcePath = "wwwroot");
         }
     }
 }

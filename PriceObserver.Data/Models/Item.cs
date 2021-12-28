@@ -2,25 +2,24 @@
 using System.Collections.Generic;
 using PriceObserver.Data.InMemory.Models.Enums;
 
-namespace PriceObserver.Data.Models
-{
-    public class Item
-    {
-        public int Id { get; set; }
+namespace PriceObserver.Data.Models;
 
-        public Uri Url { get; set; }
+public class Item
+{
+    public int Id { get; set; }
+
+    public Uri Url { get; set; }
         
-        public int Price { get; set; }
+    public int Price { get; set; }
         
-        public string Title { get; set; }
+    public string Title { get; set; }
         
-        public Uri ImageUrl { get; set; }
+    public Uri ImageUrl { get; set; }
         
-        public ShopKey ShopKey { get; set; }
+    public ShopKey ShopKey { get; set; }
         
-        public long UserId { get; set; }
-        public User User { get; set; }
+    public long UserId { get; set; }
+    public User User { get; set; }
         
-        public IList<ItemPriceChange> PriceChanges { get; set; } 
-    }
+    public IList<ItemPriceChange> PriceChanges { get; set; } 
 }

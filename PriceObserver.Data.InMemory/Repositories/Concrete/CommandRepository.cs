@@ -5,29 +5,28 @@ using PriceObserver.Data.InMemory.Models;
 using PriceObserver.Data.InMemory.Models.Enums;
 using PriceObserver.Data.InMemory.Repositories.Abstract;
 
-namespace PriceObserver.Data.InMemory.Repositories.Concrete
+namespace PriceObserver.Data.InMemory.Repositories.Concrete;
+
+public class CommandRepository : ICommandRepository
 {
-    public class CommandRepository : ICommandRepository
+    private readonly IMemoryCache _cache;
+
+    public CommandRepository(IMemoryCache cache)
     {
-        private readonly IMemoryCache _cache;
+        _cache = cache;
+    }
 
-        public CommandRepository(IMemoryCache cache)
-        {
-            _cache = cache;
-        }
+    public Command GetByKey(CommandKey key)
+    {
+        return _cache
+            .Get<List<Command>>(nameof(Command))
+            .Single(x => x.Key == key);
+    }
 
-        public Command GetByKey(CommandKey key)
-        {
-            return _cache
-                .Get<List<Command>>(nameof(Command))
-                .Single(x => x.Key == key);
-        }
-
-        public Command GetByResourceKey(ResourceKey resourceKey)
-        {
-            return _cache
-                .Get<List<Command>>(nameof(Command))
-                .SingleOrDefault(x => x.ResourceKey == resourceKey);
-        }
+    public Command GetByResourceKey(ResourceKey resourceKey)
+    {
+        return _cache
+            .Get<List<Command>>(nameof(Command))
+            .SingleOrDefault(x => x.ResourceKey == resourceKey);
     }
 }

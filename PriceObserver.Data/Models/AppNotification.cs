@@ -1,11 +1,10 @@
-﻿namespace PriceObserver.Data.Models
+﻿namespace PriceObserver.Data.Models;
+
+public class AppNotification
 {
-    public class AppNotification
-    {
-        public int Id { get; set; }
+    public int Id { get; set; }
         
-        public string Text { get; set; }
+    public string Text { get; set; }
         
-        public bool Executed { get; set; }
-    }
+    public bool Executed { get; set; }
 }

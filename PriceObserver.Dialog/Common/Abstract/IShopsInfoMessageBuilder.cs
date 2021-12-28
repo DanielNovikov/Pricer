@@ -1,7 +1,6 @@
-﻿namespace PriceObserver.Dialog.Common.Abstract
+﻿namespace PriceObserver.Dialog.Common.Abstract;
+
+public interface IShopsInfoMessageBuilder
 {
-    public interface IShopsInfoMessageBuilder
-    {
-        string Build();
-    }
+    string Build();
 }

@@ -1,27 +1,26 @@
 ﻿using System.Linq;
 using PriceObserver.Data.Models;
 
-namespace PriceObserver.Data.Seed.AppNotifications.Initializers
+namespace PriceObserver.Data.Seed.AppNotifications.Initializers;
+
+public class AppNotificationInitializer
 {
-    public class AppNotificationInitializer
+    public static void Initialize(
+        ApplicationDbContext context,
+        string text)
     {
-        public static void Initialize(
-            ApplicationDbContext context,
-            string text)
-        {
-            var appNotification = context.AppNotifications.SingleOrDefault(x => x.Text == text);
+        var appNotification = context.AppNotifications.SingleOrDefault(x => x.Text == text);
             
-            if (appNotification != null)
-                return;
+        if (appNotification != null)
+            return;
 
-            appNotification = new AppNotification
-            {
-                Text = text,
-                Executed = false
-            };
+        appNotification = new AppNotification
+        {
+            Text = text,
+            Executed = false
+        };
 
-            context.AppNotifications.Add(appNotification);
-            context.SaveChanges();
-        }
+        context.AppNotifications.Add(appNotification);
+        context.SaveChanges();
     }
 }

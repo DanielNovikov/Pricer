@@ -1,9 +1,8 @@
 ﻿using PriceObserver.Dialog.Menus.Models;
 
-namespace PriceObserver.Dialog.Menus.Abstract
+namespace PriceObserver.Dialog.Menus.Abstract;
+
+public interface IUrlExtractor
 {
-    public interface IUrlExtractor
-    {
-        UrlExtractionResult Extract(string str);
-    }
+    UrlExtractionResult Extract(string str);
 }

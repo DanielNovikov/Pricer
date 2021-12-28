@@ -1,61 +1,59 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Microsoft.Extensions.Caching.Memory;
 using PriceObserver.Data.InMemory.Models;
 using PriceObserver.Data.InMemory.Models.Enums;
 
-namespace PriceObserver.Data.InMemory.Seed.Shops
+namespace PriceObserver.Data.InMemory.Seed.Shops;
+
+public class ShopsSeeder
 {
-    public class ShopsSeeder
+    public static void Seed(IMemoryCache cache)
     {
-        public static void Seed(IMemoryCache cache)
+        var shops = new List<Shop>
         {
-            var shops = new List<Shop>
-            {
-                new Shop(
-                    "Intertop",
-                    ShopKey.Intertop,
-                    "intertop.ua",
-                    "intertop.png"),
+            new Shop(
+                "Intertop",
+                ShopKey.Intertop,
+                "intertop.ua",
+                "intertop.png"),
 
-                new Shop(
-                    "MdFashion",
-                    ShopKey.MdFashion,
-                    "md-fashion.com.ua",
-                    "md-fashion.jfif"),
+            new Shop(
+                "MdFashion",
+                ShopKey.MdFashion,
+                "md-fashion.com.ua",
+                "md-fashion.jfif"),
 
-                new Shop(
-                    "Answear",
-                    ShopKey.Answear,
-                    "answear.ua",
-                    "answear.png"),
+            new Shop(
+                "Answear",
+                ShopKey.Answear,
+                "answear.ua",
+                "answear.png"),
 
-                new Shop(
-                    "Brocard",
-                    ShopKey.Brocard,
-                    "www.brocard.ua",
-                    "brocard.jpg"),
+            new Shop(
+                "Brocard",
+                ShopKey.Brocard,
+                "www.brocard.ua",
+                "brocard.jpg"),
 
-                new Shop(
-                    "FARFETCH",
-                    ShopKey.Farfetch,
-                    "www.farfetch.com",
-                    "farfetch.png"),
+            new Shop(
+                "FARFETCH",
+                ShopKey.Farfetch,
+                "www.farfetch.com",
+                "farfetch.png"),
 
-                new Shop(
-                    "MAKEUP",
-                    ShopKey.Makeup,
-                    "makeup.com.ua",
-                    "makeup.png"),
+            new Shop(
+                "MAKEUP",
+                ShopKey.Makeup,
+                "makeup.com.ua",
+                "makeup.png"),
 
-                new Shop(
-                    "Adidas",
-                    ShopKey.Adidas,
-                    "www.adidas.ua",
-                    "adidas.png"),
-            };
+            new Shop(
+                "Adidas",
+                ShopKey.Adidas,
+                "www.adidas.ua",
+                "adidas.png"),
+        };
                 
-            cache.Set(nameof(Shop), shops);
-        }
+        cache.Set(nameof(Shop), shops);
     }
 }

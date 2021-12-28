@@ -3,17 +3,16 @@ using PriceObserver.Background.Jobs;
 using PriceObserver.Background.JobServices.Abstract;
 using PriceObserver.Background.JobServices.Concrete;
 
-namespace PriceObserver.Background
-{
-    public static class DependencyInjection
-    {
-        public static void AddBackgroundJobs(this IServiceCollection services)
-        {
-            services.AddHostedService<ItemsPriceObserver>();
-            services.AddHostedService<TelegramUpdateReceiverJob>();
-            services.AddHostedService<AppNotificationsSender>();
+namespace PriceObserver.Background;
 
-            services.AddTransient<IItemsPriceService, ItemsPriceService>();
-        }
+public static class DependencyInjection
+{
+    public static void AddBackgroundJobs(this IServiceCollection services)
+    {
+        services.AddHostedService<ItemsPriceObserver>();
+        services.AddHostedService<TelegramUpdateReceiverJob>();
+        services.AddHostedService<AppNotificationsSender>();
+
+        services.AddTransient<IItemsPriceService, ItemsPriceService>();
     }
 }

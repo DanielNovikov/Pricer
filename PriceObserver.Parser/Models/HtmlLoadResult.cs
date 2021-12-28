@@ -2,10 +2,9 @@
 using PriceObserver.Common.Models;
 using PriceObserver.Data.InMemory.Models.Enums;
 
-namespace PriceObserver.Parser.Models
+namespace PriceObserver.Parser.Models;
+
+public class HtmlLoadResult : ServiceResult<HtmlLoadResult, IHtmlDocument, ResourceKey>
 {
-    public class HtmlLoadResult : ServiceResult<HtmlLoadResult, IHtmlDocument, ResourceKey>
-    {
         
-    }
 }

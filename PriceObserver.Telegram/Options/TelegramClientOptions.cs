@@ -1,7 +1,6 @@
-﻿namespace PriceObserver.Telegram.Options
+﻿namespace PriceObserver.Telegram.Options;
+
+public class TelegramClientOptions
 {
-    public class TelegramClientOptions
-    {
-        public string AccessToken { get; set; }
-    }
+    public string AccessToken { get; set; }
 }

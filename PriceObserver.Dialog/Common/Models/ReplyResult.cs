@@ -1,30 +1,29 @@
-﻿namespace PriceObserver.Dialog.Common.Models
+﻿namespace PriceObserver.Dialog.Common.Models;
+
+public class ReplyResult
 {
-    public class ReplyResult
+    public string Message { get; private init; }
+        
+    public MenuKeyboard MenuKeyboard { get; private init; }
+
+    private ReplyResult()
     {
-        public string Message { get; private init; }
-        
-        public MenuKeyboard MenuKeyboard { get; private init; }
+    }
 
-        private ReplyResult()
+    public static ReplyResult Reply(string message)
+    {
+        return new ReplyResult
         {
-        }
-
-        public static ReplyResult Reply(string message)
-        {
-            return new ReplyResult
-            {
-                Message = message
-            };
-        }
+            Message = message
+        };
+    }
         
-        public static ReplyResult ReplyWithKeyboard(string message, MenuKeyboard menuKeyboard)
+    public static ReplyResult ReplyWithKeyboard(string message, MenuKeyboard menuKeyboard)
+    {
+        return new ReplyResult
         {
-            return new ReplyResult
-            {
-                Message = message,
-                MenuKeyboard = menuKeyboard
-            };
-        }
+            Message = message,
+            MenuKeyboard = menuKeyboard
+        };
     }
 }

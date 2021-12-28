@@ -8,47 +8,46 @@ using PriceObserver.Common.Extensions;
 using PriceObserver.Data.Repositories.Abstract;
 using PriceObserver.Telegram.Abstract;
 
-namespace PriceObserver.Background.Jobs
+namespace PriceObserver.Background.Jobs;
+
+public class AppNotificationsSender : IHostedService
 {
-    public class AppNotificationsSender : IHostedService
+    private readonly IServiceProvider _serviceProvider;
+
+    public AppNotificationsSender(IServiceProvider serviceProvider)
     {
-        private readonly IServiceProvider _serviceProvider;
+        _serviceProvider = serviceProvider;
+    }
 
-        public AppNotificationsSender(IServiceProvider serviceProvider)
-        {
-            _serviceProvider = serviceProvider;
-        }
+    public async Task StartAsync(CancellationToken cancellationToken)
+    {
+        using var scope = _serviceProvider.CreateScope();
 
-        public async Task StartAsync(CancellationToken cancellationToken)
-        {
-            using var scope = _serviceProvider.CreateScope();
-
-            var appNotificationRepository = scope.GetService<IAppNotificationRepository>();
-            var userRepository = scope.GetService<IUserRepository>();
-            var telegramBotService = scope.GetService<ITelegramBotService>();
+        var appNotificationRepository = scope.GetService<IAppNotificationRepository>();
+        var userRepository = scope.GetService<IUserRepository>();
+        var telegramBotService = scope.GetService<ITelegramBotService>();
             
-            var notifications = await appNotificationRepository.GetToExecute();
+        var notifications = await appNotificationRepository.GetToExecute();
 
-            if (!notifications.Any())
-                return;
+        if (!notifications.Any())
+            return;
                 
-            var users = await userRepository.GetAllActive();
+        var users = await userRepository.GetAllActive();
 
-            foreach (var notification in notifications)
-            {
-                foreach (var user in users)
-                {
-                    await telegramBotService.SendMessage(user.Id, notification.Text);
-                }
-
-                notification.Executed = true;
-                await appNotificationRepository.Update(notification);
-            }
-        }
-
-        public Task StopAsync(CancellationToken cancellationToken)
+        foreach (var notification in notifications)
         {
-            return Task.CompletedTask;
+            foreach (var user in users)
+            {
+                await telegramBotService.SendMessage(user.Id, notification.Text);
+            }
+
+            notification.Executed = true;
+            await appNotificationRepository.Update(notification);
         }
+    }
+
+    public Task StopAsync(CancellationToken cancellationToken)
+    {
+        return Task.CompletedTask;
     }
 }

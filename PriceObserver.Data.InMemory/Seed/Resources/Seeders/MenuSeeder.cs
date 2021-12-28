@@ -2,17 +2,16 @@
 using PriceObserver.Data.InMemory.Models;
 using PriceObserver.Data.InMemory.Models.Enums;
 
-namespace PriceObserver.Data.InMemory.Seed.Resources.Seeders
+namespace PriceObserver.Data.InMemory.Seed.Resources.Seeders;
+
+public class MenuSeeder
 {
-    public class MenuSeeder
+    public static void Seed(IList<Resource> resources)
     {
-        public static void Seed(IList<Resource> resources)
-        {
-            resources.Add(new Resource(ResourceKey.Menu_Home, "Выберите что хотите сделать ⬇"));
+        resources.Add(new Resource(ResourceKey.Menu_Home, "Выберите что хотите сделать ⬇"));
             
-            resources.Add(new Resource(ResourceKey.Menu_NewItem, "Поделитесь ссылкой на желаемый товар 🆕"));
+        resources.Add(new Resource(ResourceKey.Menu_NewItem, "Поделитесь ссылкой на желаемый товар 🆕"));
             
-            resources.Add(new Resource(ResourceKey.Menu_Support, "Опишите с чем вы хотели-бы обратиться 📝"));
-        }
+        resources.Add(new Resource(ResourceKey.Menu_Support, "Опишите с чем вы хотели-бы обратиться 📝"));
     }
 }

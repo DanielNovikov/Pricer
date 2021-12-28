@@ -2,10 +2,9 @@
 using System.Threading.Tasks;
 using PriceObserver.Authentication.Models;
 
-namespace PriceObserver.Authentication.Abstract
+namespace PriceObserver.Authentication.Abstract;
+
+public interface IAuthenticationService
 {
-    public interface IAuthenticationService
-    {
-        Task<AuthenticationServiceResult> Authenticate(Guid token);
-    }
+    Task<AuthenticationServiceResult> Authenticate(Guid token);
 }

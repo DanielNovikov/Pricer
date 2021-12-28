@@ -2,10 +2,9 @@
 using PriceObserver.Data.Models;
 using PriceObserver.Dialog.Common.Models;
 
-namespace PriceObserver.Dialog.Input.Abstract
+namespace PriceObserver.Dialog.Input.Abstract;
+
+public interface IUserRegistrationHandler
 {
-    public interface IUserRegistrationHandler
-    {
-        Task<ReplyResult> Handle(User user);
-    }
+    Task<ReplyResult> Handle(User user);
 }

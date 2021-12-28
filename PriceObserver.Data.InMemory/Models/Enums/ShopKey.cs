@@ -1,13 +1,12 @@
-﻿namespace PriceObserver.Data.InMemory.Models.Enums
+﻿namespace PriceObserver.Data.InMemory.Models.Enums;
+
+public enum ShopKey
 {
-    public enum ShopKey
-    {
-        Intertop,
-        MdFashion,
-        Answear,
-        Brocard,
-        Farfetch,
-        Makeup,
-        Adidas
-    }
+    Intertop,
+    MdFashion,
+    Answear,
+    Brocard,
+    Farfetch,
+    Makeup,
+    Adidas
 }

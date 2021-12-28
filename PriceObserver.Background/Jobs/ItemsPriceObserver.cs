@@ -6,38 +6,37 @@ using Microsoft.Extensions.Hosting;
 using PriceObserver.Background.JobServices.Abstract;
 using PriceObserver.Common.Extensions;
 
-namespace PriceObserver.Background.Jobs
+namespace PriceObserver.Background.Jobs;
+
+public class ItemsPriceObserver : IHostedService
 {
-    public class ItemsPriceObserver : IHostedService
-    {
-        private readonly IServiceProvider _serviceProvider;
+    private readonly IServiceProvider _serviceProvider;
         
-        public ItemsPriceObserver(IServiceProvider serviceProvider)
-        {
-            _serviceProvider = serviceProvider;
-        }
+    public ItemsPriceObserver(IServiceProvider serviceProvider)
+    {
+        _serviceProvider = serviceProvider;
+    }
 
-        public Task StartAsync(CancellationToken cancellationToken)
+    public Task StartAsync(CancellationToken cancellationToken)
+    {
+        Task.Run(async () =>
         {
-            Task.Run(async () =>
+            while (!cancellationToken.IsCancellationRequested)
             {
-                while (!cancellationToken.IsCancellationRequested)
-                {
-                    using var scope = _serviceProvider.CreateScope();
+                using var scope = _serviceProvider.CreateScope();
 
-                    var itemsPriceService = scope.GetService<IItemsPriceService>();
-                    await itemsPriceService.Observe();
+                var itemsPriceService = scope.GetService<IItemsPriceService>();
+                await itemsPriceService.Observe();
                     
-                    await Task.Delay(TimeSpan.FromMinutes(30), cancellationToken);
-                }
-            }, cancellationToken);
+                await Task.Delay(TimeSpan.FromMinutes(30), cancellationToken);
+            }
+        }, cancellationToken);
 
-            return Task.CompletedTask;
-        }
+        return Task.CompletedTask;
+    }
 
-        public Task StopAsync(CancellationToken cancellationToken)
-        {
-            return Task.CompletedTask;
-        }
+    public Task StopAsync(CancellationToken cancellationToken)
+    {
+        return Task.CompletedTask;
     }
 }

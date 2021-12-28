@@ -1,10 +1,9 @@
 ﻿using System.Threading.Tasks;
 using Telegram.Bot.Types;
 
-namespace PriceObserver.Telegram.Abstract
+namespace PriceObserver.Telegram.Abstract;
+
+public interface IUpdateHandler
 {
-    public interface IUpdateHandler
-    {
-        Task Handle(Update update);
-    }
+    Task Handle(Update update);
 }

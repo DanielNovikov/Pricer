@@ -2,16 +2,15 @@
 using System.Threading.Tasks;
 using PriceObserver.Data.Models;
 
-namespace PriceObserver.Data.Repositories.Abstract
+namespace PriceObserver.Data.Repositories.Abstract;
+
+public interface IUserRepository
 {
-    public interface IUserRepository
-    {
-        Task<User> GetById(long id);
+    Task<User> GetById(long id);
 
-        Task<IList<User>> GetAllActive();
+    Task<IList<User>> GetAllActive();
 
-        Task Add(User user);
+    Task Add(User user);
 
-        Task Update(User user);
-    }
+    Task Update(User user);
 }

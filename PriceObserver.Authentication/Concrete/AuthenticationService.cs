@@ -10,49 +10,48 @@ using PriceObserver.Authentication.Options;
 using PriceObserver.Data.Repositories.Abstract;
 using PriceObserver.Data.Service.Abstract;
 
-namespace PriceObserver.Authentication.Concrete
+namespace PriceObserver.Authentication.Concrete;
+
+public class AuthenticationService : IAuthenticationService
 {
-    public class AuthenticationService : IAuthenticationService
-    {
-        private readonly IUserTokenRepository _userTokenRepository;
-        private readonly IUserTokenService _userTokenService;
+    private readonly IUserTokenRepository _userTokenRepository;
+    private readonly IUserTokenService _userTokenService;
         
-        public AuthenticationService(
-            IUserTokenRepository userTokenRepository, 
-            IUserTokenService userTokenService)
-        {
-            _userTokenRepository = userTokenRepository;
-            _userTokenService = userTokenService;
-        }
+    public AuthenticationService(
+        IUserTokenRepository userTokenRepository, 
+        IUserTokenService userTokenService)
+    {
+        _userTokenRepository = userTokenRepository;
+        _userTokenService = userTokenService;
+    }
 
-        public async Task<AuthenticationServiceResult> Authenticate(Guid token)
-        {
-            var userToken = await _userTokenRepository.GetByToken(token);
+    public async Task<AuthenticationServiceResult> Authenticate(Guid token)
+    {
+        var userToken = await _userTokenRepository.GetByToken(token);
 
-            if (userToken is null)
-                return AuthenticationServiceResult.Fail(AuthenticationErrorStatus.TokenNotFound);
+        if (userToken is null)
+            return AuthenticationServiceResult.Fail(AuthenticationErrorStatus.TokenNotFound);
 
-            if (userToken.Expired)
-                return AuthenticationServiceResult.Fail(AuthenticationErrorStatus.TokenExpired);
+        if (userToken.Expired)
+            return AuthenticationServiceResult.Fail(AuthenticationErrorStatus.TokenExpired);
 
-            await _userTokenService.Expire(userToken);
+        await _userTokenService.Expire(userToken);
             
-            var claims = new List<Claim>
-            {
-                new Claim(ClaimTypes.NameIdentifier, userToken.UserId.ToString())
-            };
+        var claims = new List<Claim>
+        {
+            new Claim(ClaimTypes.NameIdentifier, userToken.UserId.ToString())
+        };
 
-            var securityToken = PrivateKey.GetSymmetricSecurityKey();
-            var credentials = new SigningCredentials(securityToken, SecurityAlgorithms.HmacSha256Signature);
+        var securityToken = PrivateKey.GetSymmetricSecurityKey();
+        var credentials = new SigningCredentials(securityToken, SecurityAlgorithms.HmacSha256Signature);
             
-            var jwtToken = new JwtSecurityToken(
-                claims: claims,
-                signingCredentials: credentials);
+        var jwtToken = new JwtSecurityToken(
+            claims: claims,
+            signingCredentials: credentials);
 
-            var accessToken = new JwtSecurityTokenHandler().WriteToken(jwtToken);
-            var responseModel = new AuthenticationResponseModel(accessToken);
+        var accessToken = new JwtSecurityTokenHandler().WriteToken(jwtToken);
+        var responseModel = new AuthenticationResponseModel(accessToken);
 
-            return AuthenticationServiceResult.Success(responseModel);
-        }
+        return AuthenticationServiceResult.Success(responseModel);
     }
 }

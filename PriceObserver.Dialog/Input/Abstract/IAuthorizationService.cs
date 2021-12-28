@@ -2,10 +2,9 @@
 using PriceObserver.Dialog.Common.Models;
 using PriceObserver.Dialog.Input.Models;
 
-namespace PriceObserver.Dialog.Input.Abstract
+namespace PriceObserver.Dialog.Input.Abstract;
+
+public interface IAuthorizationService
 {
-    public interface IAuthorizationService
-    {
-        Task<AuthorizationResult> Authorize(UpdateDto update);
-    }
+    Task<AuthorizationResult> Authorize(UpdateDto update);
 }

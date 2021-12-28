@@ -6,30 +6,29 @@ using Microsoft.AspNetCore.Mvc;
 using PriceObserver.Data.Models;
 using PriceObserver.Data.Repositories.Abstract;
 
-namespace PriceObserver.Controllers.Base
+namespace PriceObserver.Controllers.Base;
+
+[Authorize]
+[Route("api/[controller]")]
+[ApiController]
+public abstract class AuthorizedControllerBase : ControllerBase
 {
-    [Authorize]
-    [Route("api/[controller]")]
-    [ApiController]
-    public abstract class AuthorizedControllerBase : ControllerBase
+    private readonly IUserRepository _userRepository;
+
+    protected AuthorizedControllerBase(IUserRepository userRepository)
     {
-        private readonly IUserRepository _userRepository;
+        _userRepository = userRepository;
+    }
 
-        protected AuthorizedControllerBase(IUserRepository userRepository)
-        {
-            _userRepository = userRepository;
-        }
-
-        protected long GetUserId()
-        {
-            var userIdClaim = User.Claims.Single(x => x.Type == ClaimTypes.NameIdentifier);
-            return long.Parse(userIdClaim.Value);
-        }
+    protected long GetUserId()
+    {
+        var userIdClaim = User.Claims.Single(x => x.Type == ClaimTypes.NameIdentifier);
+        return long.Parse(userIdClaim.Value);
+    }
         
-        protected async Task<User> GetUser()
-        {
-            var userId = GetUserId();
-            return await _userRepository.GetById(userId);
-        }
+    protected async Task<User> GetUser()
+    {
+        var userId = GetUserId();
+        return await _userRepository.GetById(userId);
     }
 }

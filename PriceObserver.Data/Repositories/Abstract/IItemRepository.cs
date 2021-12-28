@@ -3,22 +3,21 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using PriceObserver.Data.Models;
 
-namespace PriceObserver.Data.Repositories.Abstract
+namespace PriceObserver.Data.Repositories.Abstract;
+
+public interface IItemRepository
 {
-    public interface IItemRepository
-    {
-        Task<List<Item>> GetAll();
+    Task<List<Item>> GetAll();
         
-        Task<Item> GetById(int id);
+    Task<Item> GetById(int id);
 
-        Task<List<Item>> GetByUserId(long userId);
+    Task<List<Item>> GetByUserId(long userId);
 
-        Task<bool> ExistsForUserByUrl(long userId, Uri url);
+    Task<bool> ExistsForUserByUrl(long userId, Uri url);
         
-        Task Add(Item item);
+    Task Add(Item item);
 
-        Task Update(Item item);
+    Task Update(Item item);
         
-        Task Delete(Item item);
-    }
+    Task Delete(Item item);
 }

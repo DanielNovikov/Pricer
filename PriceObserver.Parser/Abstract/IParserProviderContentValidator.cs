@@ -2,12 +2,11 @@
 using PriceObserver.Data.InMemory.Models.Enums;
 using PriceObserver.Parser.Models;
 
-namespace PriceObserver.Parser.Abstract
+namespace PriceObserver.Parser.Abstract;
+
+public interface IParserProviderContentValidator
 {
-    public interface IParserProviderContentValidator
-    {
-        ShopKey ProviderType { get; }
+    ShopKey ProviderType { get; }
         
-        ContentValidatorResult Validate(IHtmlDocument document);
-    }
+    ContentValidatorResult Validate(IHtmlDocument document);
 }

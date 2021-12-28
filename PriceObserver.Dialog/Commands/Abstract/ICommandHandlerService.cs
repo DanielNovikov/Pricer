@@ -3,10 +3,9 @@ using PriceObserver.Data.InMemory.Models;
 using PriceObserver.Dialog.Commands.Models;
 using PriceObserver.Dialog.Input.Models;
 
-namespace PriceObserver.Dialog.Commands.Abstract
+namespace PriceObserver.Dialog.Commands.Abstract;
+
+public interface ICommandHandlerService
 {
-    public interface ICommandHandlerService
-    {
-        Task<CommandHandlingServiceResult> Handle(Command command, MessageDto message);
-    }
+    Task<CommandHandlingServiceResult> Handle(Command command, MessageDto message);
 }

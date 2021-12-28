@@ -2,10 +2,9 @@
 using PriceObserver.Dialog.Input.Models;
 using PriceObserver.Dialog.Menus.Models;
 
-namespace PriceObserver.Dialog.Menus.Abstract
+namespace PriceObserver.Dialog.Menus.Abstract;
+
+public interface IMenuInputHandlerService
 {
-    public interface IMenuInputHandlerService
-    {
-        Task<MenuInputHandlingServiceResult> Handle(MessageDto message);
-    }
+    Task<MenuInputHandlingServiceResult> Handle(MessageDto message);
 }

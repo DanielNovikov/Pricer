@@ -13,56 +13,55 @@ using PriceObserver.Data.Seed;
 using Serilog;
 using TelegramSink;
 
-namespace PriceObserver
+namespace PriceObserver;
+
+public class Program
 {
-    public class Program
+    public static void Main(string[] args)
     {
-        public static void Main(string[] args)
-        {
-            var host = CreateHostBuilder(args).Build();
+        var host = CreateHostBuilder(args).Build();
             
-            SeedData(host);
+        SeedData(host);
 
-            InitializeLogger();
+        InitializeLogger();
             
-            host.Run();
-        }
+        host.Run();
+    }
 
-        private static IWebHostBuilder CreateHostBuilder(string[] args) =>
-            WebHost
-                .CreateDefaultBuilder(args)
-                .UseContentRoot(Directory.GetCurrentDirectory())
-                .UseSerilog()
-                .UseUrls("http://*:5000")
-                .UseStartup<Startup>();
+    private static IWebHostBuilder CreateHostBuilder(string[] args) =>
+        WebHost
+            .CreateDefaultBuilder(args)
+            .UseContentRoot(Directory.GetCurrentDirectory())
+            .UseSerilog()
+            .UseUrls("http://*:5000")
+            .UseStartup<Startup>();
 
-        private static void SeedData(IWebHost host)
-        {
-            using var scope = host.Services.CreateScope();
+    private static void SeedData(IWebHost host)
+    {
+        using var scope = host.Services.CreateScope();
             
-            var context = scope.GetService<ApplicationDbContext>();
-            context!.Database.Migrate();
-            DbSeeder.Seed(context);
+        var context = scope.GetService<ApplicationDbContext>();
+        context!.Database.Migrate();
+        DbSeeder.Seed(context);
 
-            var cache = scope.GetService<IMemoryCache>();
-            InMemorySeeder.Seed(cache);
-        }
+        var cache = scope.GetService<IMemoryCache>();
+        InMemorySeeder.Seed(cache);
+    }
         
-        private static void InitializeLogger()
-        {
-            var configuration = new ConfigurationBuilder()
-                .AddJsonFile("appsettings.json")
-                .AddUserSecrets(Assembly.GetExecutingAssembly(), true)
-                .Build();
+    private static void InitializeLogger()
+    {
+        var configuration = new ConfigurationBuilder()
+            .AddJsonFile("appsettings.json")
+            .AddUserSecrets(Assembly.GetExecutingAssembly(), true)
+            .Build();
             
-            Log.Logger = new LoggerConfiguration()
-                .ReadFrom.Configuration(configuration)
-                .Enrich.FromLogContext()
-                .MinimumLevel.Verbose()
-                .WriteTo.TeleSink(
-                    configuration.GetValue<string>("TelegramLogClient:AccessToken"),
-                    configuration.GetValue<string>("TelegramLogClient:UserId"))
-                .CreateLogger();
-        }
+        Log.Logger = new LoggerConfiguration()
+            .ReadFrom.Configuration(configuration)
+            .Enrich.FromLogContext()
+            .MinimumLevel.Verbose()
+            .WriteTo.TeleSink(
+                configuration.GetValue<string>("TelegramLogClient:AccessToken"),
+                configuration.GetValue<string>("TelegramLogClient:UserId"))
+            .CreateLogger();
     }
 }

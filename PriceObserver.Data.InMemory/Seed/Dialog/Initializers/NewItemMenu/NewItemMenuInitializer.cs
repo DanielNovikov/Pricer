@@ -1,18 +1,17 @@
 ﻿using PriceObserver.Data.InMemory.Models;
 using PriceObserver.Data.InMemory.Models.Enums;
 
-namespace PriceObserver.Data.InMemory.Seed.Dialog.Initializers.NewItemMenu
+namespace PriceObserver.Data.InMemory.Seed.Dialog.Initializers.NewItemMenu;
+
+public class NewItemMenuInitializer
 {
-    public class NewItemMenuInitializer
+    public static Menu Initialize(Menu parent)
     {
-        public static Menu Initialize(Menu parent)
-        {
-            return new Menu(
-                MenuKey.NewItem,
-                ResourceKey.Menu_NewItem,
-                true, 
-                false,
-                parent);
-        }
+        return new Menu(
+            MenuKey.NewItem,
+            ResourceKey.Menu_NewItem,
+            true, 
+            false,
+            parent);
     }
 }
