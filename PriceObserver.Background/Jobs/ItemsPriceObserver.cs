@@ -11,11 +11,11 @@ using PriceObserver.Telegram.Abstract;
 
 namespace PriceObserver.Background.Jobs
 {
-    public class ItemsObserverJob : IHostedService
+    public class ItemsPriceObserver : IHostedService
     {
         private readonly IServiceProvider _serviceProvider;
         
-        public ItemsObserverJob(IServiceProvider serviceProvider)
+        public ItemsPriceObserver(IServiceProvider serviceProvider)
         {
             _serviceProvider = serviceProvider;
         }
