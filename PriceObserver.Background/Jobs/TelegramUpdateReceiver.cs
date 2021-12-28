@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using PriceObserver.Common.Extensions;
 using PriceObserver.Telegram.Abstract;
 using Telegram.Bot;
 using Telegram.Bot.Extensions.Polling;
@@ -49,19 +50,19 @@ namespace PriceObserver.Background.Jobs
             return Task.CompletedTask;
         }
 
-        async Task HandleUpdateAsync(ITelegramBotClient botClient, Update update, CancellationToken cancellationToken)
+        private async Task HandleUpdateAsync(ITelegramBotClient botClient, Update update, CancellationToken cancellationToken)
         {
             using var scope = _serviceProvider.CreateScope();
-            var updateHandler = scope.ServiceProvider.GetService<IUpdateHandler>();
+            var updateHandler = scope.GetService<IUpdateHandler>();
 
-            await updateHandler!.Handle(update);
+            await updateHandler.Handle(update);
         }
         
         private Task HandleError(ITelegramBotClient botClient, Exception exception, CancellationToken cancellationToken)
         {
             using var scope = _serviceProvider.CreateScope();
 
-            var logger = scope.ServiceProvider.GetService<ILogger<TelegramUpdateReceiverJob>>();
+            var logger = scope.GetService<ILogger<TelegramUpdateReceiverJob>>();
 
             logger.LogError($@"Receive error
 Message: {exception.Message}

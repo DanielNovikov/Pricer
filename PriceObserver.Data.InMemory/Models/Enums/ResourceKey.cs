@@ -39,6 +39,7 @@
         Background_ItemPriceWentDown = 301,
         Background_ItemPriceGrewUp = 302,
         Background_ItemPriceChanged = 303,
+        Background_LogItemPriceChanged = 304,
         
         Menu_Home = 400,
         Menu_NewItem = 401,

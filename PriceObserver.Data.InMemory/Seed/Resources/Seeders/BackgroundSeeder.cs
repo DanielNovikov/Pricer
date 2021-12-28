@@ -24,6 +24,11 @@ namespace PriceObserver.Data.InMemory.Seed.Resources.Seeders
                 ResourceKey.Background_ItemPriceChanged,
                 @"❗️{0}
 {1}"));
+            
+            resources.Add(new Resource(
+                ResourceKey.Background_LogItemPriceChanged,
+                @"❗️Цена на товар изменилась с {0} на {1}
+Ссылка: {2}"));
         }
     }
 }

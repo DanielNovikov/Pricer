@@ -1,5 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using PriceObserver.Background.Jobs;
+using PriceObserver.Background.JobServices.Abstract;
+using PriceObserver.Background.JobServices.Concrete;
 
 namespace PriceObserver.Background
 {
@@ -10,6 +12,8 @@ namespace PriceObserver.Background
             services.AddHostedService<ItemsPriceObserver>();
             services.AddHostedService<TelegramUpdateReceiverJob>();
             services.AddHostedService<AppNotificationsSender>();
+
+            services.AddTransient<IItemsPriceService, ItemsPriceService>();
         }
     }
 }

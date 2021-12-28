@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using PriceObserver.Common.Extensions;
 using PriceObserver.Data;
 using PriceObserver.Data.InMemory.Seed;
 using PriceObserver.Data.Seed;
@@ -38,13 +39,12 @@ namespace PriceObserver
         private static void SeedData(IWebHost host)
         {
             using var scope = host.Services.CreateScope();
-            var services = scope.ServiceProvider;
             
-            var context = services.GetService<ApplicationDbContext>();
+            var context = scope.GetService<ApplicationDbContext>();
             context!.Database.Migrate();
             DbSeeder.Seed(context);
 
-            var cache = services.GetService<IMemoryCache>();
+            var cache = scope.GetService<IMemoryCache>();
             InMemorySeeder.Seed(cache);
         }
         

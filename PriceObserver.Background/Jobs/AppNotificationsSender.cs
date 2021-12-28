@@ -4,6 +4,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using PriceObserver.Common.Extensions;
 using PriceObserver.Data.Repositories.Abstract;
 using PriceObserver.Telegram.Abstract;
 
@@ -22,22 +23,22 @@ namespace PriceObserver.Background.Jobs
         {
             using var scope = _serviceProvider.CreateScope();
 
-            var appNotificationRepository = scope.ServiceProvider.GetService<IAppNotificationRepository>();
-            var userRepository = scope.ServiceProvider.GetService<IUserRepository>();
-            var telegramBotService = scope.ServiceProvider.GetService<ITelegramBotService>();
+            var appNotificationRepository = scope.GetService<IAppNotificationRepository>();
+            var userRepository = scope.GetService<IUserRepository>();
+            var telegramBotService = scope.GetService<ITelegramBotService>();
             
-            var notifications = await appNotificationRepository!.GetToExecute();
+            var notifications = await appNotificationRepository.GetToExecute();
 
             if (!notifications.Any())
                 return;
                 
-            var users = await userRepository!.GetAllActive();
+            var users = await userRepository.GetAllActive();
 
             foreach (var notification in notifications)
             {
                 foreach (var user in users)
                 {
-                    await telegramBotService!.SendMessage(user.Id, notification.Text);
+                    await telegramBotService.SendMessage(user.Id, notification.Text);
                 }
 
                 notification.Executed = true;
