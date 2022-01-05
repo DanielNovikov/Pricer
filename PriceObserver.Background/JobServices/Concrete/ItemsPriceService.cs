@@ -1,4 +1,5 @@
-﻿using System.Resources;
+﻿using System;
+using System.Resources;
 using System.Threading.Tasks;
 using PriceObserver.Background.JobServices.Abstract;
 using PriceObserver.Data.InMemory.Models.Enums;
@@ -15,27 +16,21 @@ public class ItemsPriceService : IItemsPriceService
 {
     private readonly IItemRepository _itemRepository;
     private readonly IParserService _parserService;
-    private readonly ITelegramBotService _telegramBotService;
-    private readonly IResourceService _resourceService;
     private readonly IItemPriceChanger _itemPriceChanger;
     private readonly IItemParseResultRepository _parseResultRepository;
     private readonly IItemParseResultService _parseResultService;
     private readonly IItemRemovalService _itemRemovalService;
-    
+
     public ItemsPriceService(
         IItemRepository itemRepository,
         IParserService parserService,
-        ITelegramBotService telegramBotService,
-        IResourceService resourceService,
-        IItemPriceChanger itemPriceChanger, 
-        IItemParseResultRepository parseResultRepository, 
-        IItemParseResultService parseResultService, 
+        IItemPriceChanger itemPriceChanger,
+        IItemParseResultRepository parseResultRepository,
+        IItemParseResultService parseResultService,
         IItemRemovalService itemRemovalService)
     {
         _itemRepository = itemRepository;
         _parserService = parserService;
-        _telegramBotService = telegramBotService;
-        _resourceService = resourceService;
         _itemPriceChanger = itemPriceChanger;
         _parseResultRepository = parseResultRepository;
         _parseResultService = parseResultService;

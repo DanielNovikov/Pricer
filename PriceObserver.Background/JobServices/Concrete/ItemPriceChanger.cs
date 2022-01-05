@@ -32,6 +32,8 @@ public class ItemPriceChanger : IItemPriceChanger
 
     public async Task Change(Item item, int oldPrice, int newPrice)
     {
+        await _parseResultService.CreateSucceeded(item);
+        
         if (newPrice == oldPrice)
             return;
 
@@ -41,8 +43,6 @@ public class ItemPriceChanger : IItemPriceChanger
 
         LogChangedPrice(item, oldPrice, newPrice);
         await SendChangedPrice(item, priceMessage);
-
-        await _parseResultService.CreateSucceeded(item);
         await _itemService.UpdatePrice(item, newPrice);
     }
 
