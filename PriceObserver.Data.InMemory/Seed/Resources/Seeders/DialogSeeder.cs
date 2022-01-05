@@ -19,52 +19,58 @@ public class DialogSeeder
 {2}
 
 {3}"));
-            
+
         resources.Add(new Resource(
             ResourceKey.Dialog_MessageDoesNotContainLink,
             "В сообщении нет ссылки на товар ❌"));
-            
+
         resources.Add(new Resource(
             ResourceKey.Dialog_LinkInIncorrectFormat,
             "Ссылка в неверном формате ❌"));
-            
+
         resources.Add(new Resource(
             ResourceKey.Dialog_SupportReply,
             "Спасибо за Ваше сообщение, мы с Вами скоро свяжемся! 🏃"));
-            
+
         resources.Add(new Resource(
             ResourceKey.Dialog_ItemAdded,
             "Успешно добавлено! ✅"));
-            
+
         resources.Add(new Resource(
             ResourceKey.Dialog_DuplicateItem,
             "Такой товар уже есть в Вашем списке ☑"));
-            
+
         resources.Add(new Resource(
             ResourceKey.Dialog_IncorrectCommand,
             "Неверная комманда ❌"));
-            
+
+#if DEBUG
+        resources.Add(new Resource(
+            ResourceKey.Dialog_Website,
+            "Ссылка на сайт - {0}"));
+#else
         resources.Add(new Resource(
             ResourceKey.Dialog_Website,
             "Нажмите <a href='{0}'>здесь</a> для перехода на сайт"));
-            
+#endif
+
         resources.Add(new Resource(
             ResourceKey.Dialog_EmptyCart,
             "В вашем списке ещё нет никаких товаров 🗑"));
-            
+
         resources.Add(new Resource(
             ResourceKey.Dialog_ItemInfo,
             "Цена на <a href='{0}'>товар</a> <b>{1}</b>"));
-            
+
         resources.Add(new Resource(
             ResourceKey.Dialog_AvailableShops,
             @"Доступные магазины 📋
 {0}"));
-            
+
         resources.Add(new Resource(
             ResourceKey.Dialog_ErrorOccured,
             @"Произошла ошибка ❌"));
-            
+
         resources.Add(new Resource(
             ResourceKey.Dialog_Help,
             @"Инструкция о том как пользоваться ботом 🤖
