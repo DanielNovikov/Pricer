@@ -25,7 +25,7 @@ public class Startup
     }
 
     public void ConfigureServices(IServiceCollection services)
-    {   
+    {       
         services.AddControllersWithViews();
         services.AddSpaStaticFiles(configuration => { configuration.RootPath = "wwwroot"; });
             
@@ -33,7 +33,7 @@ public class Startup
         services.AddAuthenticationServices();
             
         services.AddTelegramBot(_configuration);
-        services.AddTelegramDialogServices();
+        services.AddTelegramDialogServices(_configuration);
         services.AddParserServices();
         services.AddBackgroundJobs();
             

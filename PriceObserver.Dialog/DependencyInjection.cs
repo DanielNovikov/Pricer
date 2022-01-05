@@ -1,9 +1,11 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Reflection;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using PriceObserver.Dialog.Commands.Abstract;
 using PriceObserver.Dialog.Commands.Concrete;
+using PriceObserver.Dialog.Commands.Concrete.WebsiteCommand.Options;
 using PriceObserver.Dialog.Common.Abstract;
 using PriceObserver.Dialog.Common.Concrete;
 using PriceObserver.Dialog.Input.Abstract;
@@ -15,7 +17,9 @@ namespace PriceObserver.Dialog;
 
 public static class DependencyInjection
 {
-    public static void AddTelegramDialogServices(this IServiceCollection services)
+    public static void AddTelegramDialogServices(
+        this IServiceCollection services,
+        IConfiguration configuration)
     {
         services.AddTransient<ICommandHandlerService, CommandHandlerService>();
             
@@ -30,7 +34,11 @@ public static class DependencyInjection
         services.AddTransient<IMenuKeyboardBuilder, MenuKeyboardBuilder>();
         services.AddTransient<IReplyWithKeyboardBuilder, ReplyWithKeyboardBuilder>();
         services.AddTransient<IUrlExtractor, UrlExtractor>();
-            
+
+        services
+            .AddOptions<WebsiteCommandOptions>()
+            .Bind(configuration.GetSection(nameof(WebsiteCommandOptions)));
+
         services.AddCommandHandlers();
         services.AddMenuHandlers();
     }
