@@ -14,5 +14,6 @@ public static class DependencyInjection
         services.AddScoped<IResourceService, ResourceService>();
         services.AddScoped<IMenuService, MenuService>();
         services.AddScoped<ICommandService, CommandService>();
+        services.AddScoped<IItemParseResultService, ItemParseResultService>();
     }
 }

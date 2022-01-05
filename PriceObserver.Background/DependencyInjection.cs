@@ -14,5 +14,7 @@ public static class DependencyInjection
         services.AddHostedService<AppNotificationsSender>();
 
         services.AddTransient<IItemsPriceService, ItemsPriceService>();
+        services.AddTransient<IItemPriceChanger, ItemPriceChanger>();
+        services.AddTransient<IItemRemovalService, ItemRemovalService>();
     }
 }

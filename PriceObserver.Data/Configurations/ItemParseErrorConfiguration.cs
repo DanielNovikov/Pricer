@@ -4,22 +4,22 @@ using PriceObserver.Data.Models;
 
 namespace PriceObserver.Data.Configurations;
 
-public class ItemPriceChangeConfiguration : IEntityTypeConfiguration<ItemPriceChange>
+public class ItemParseErrorConfiguration : IEntityTypeConfiguration<ItemParseResult>
 {
-    public void Configure(EntityTypeBuilder<ItemPriceChange> builder)
+    public void Configure(EntityTypeBuilder<ItemParseResult> builder)
     {
         builder.HasKey(x => x.Id);
 
         builder
+            .Property(x => x.ItemId)
+            .IsRequired();
+
+        builder
+            .Property(x => x.IsSuccess)
+            .IsRequired();
+        
+        builder
             .Property(x => x.Created)
-            .IsRequired();
-            
-        builder
-            .Property(x => x.OldPrice)
-            .IsRequired();
-            
-        builder
-            .Property(x => x.NewPrice)
             .IsRequired();
     }
 }

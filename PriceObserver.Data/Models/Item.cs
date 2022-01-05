@@ -21,5 +21,7 @@ public class Item
     public long UserId { get; set; }
     public User User { get; set; }
         
-    public IList<ItemPriceChange> PriceChanges { get; set; } 
+    public IList<ItemPriceChange> PriceChanges { get; set; }
+    
+    public IList<ItemParseResult> ParseErrors { get; set; } 
 }
