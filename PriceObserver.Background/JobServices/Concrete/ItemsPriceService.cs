@@ -1,5 +1,5 @@
-﻿using System.Threading.Tasks;
-using Microsoft.Extensions.Logging;
+﻿using System.Resources;
+using System.Threading.Tasks;
 using PriceObserver.Background.JobServices.Abstract;
 using PriceObserver.Data.InMemory.Models.Enums;
 using PriceObserver.Data.Models;
@@ -16,24 +16,30 @@ public class ItemsPriceService : IItemsPriceService
     private readonly IItemRepository _itemRepository;
     private readonly IParserService _parserService;
     private readonly ITelegramBotService _telegramBotService;
-    private readonly IItemService _itemService;
     private readonly IResourceService _resourceService;
-    private readonly ILogger _logger;
+    private readonly IItemPriceChanger _itemPriceChanger;
+    private readonly IItemParseResultRepository _parseResultRepository;
+    private readonly IItemParseResultService _parseResultService;
+    private readonly IItemRemovalService _itemRemovalService;
     
     public ItemsPriceService(
         IItemRepository itemRepository,
         IParserService parserService,
         ITelegramBotService telegramBotService,
-        IItemService itemService,
         IResourceService resourceService,
-        ILogger<ItemsPriceService> logger)
+        IItemPriceChanger itemPriceChanger, 
+        IItemParseResultRepository parseResultRepository, 
+        IItemParseResultService parseResultService, 
+        IItemRemovalService itemRemovalService)
     {
         _itemRepository = itemRepository;
         _parserService = parserService;
         _telegramBotService = telegramBotService;
-        _itemService = itemService;
         _resourceService = resourceService;
-        _logger = logger;
+        _itemPriceChanger = itemPriceChanger;
+        _parseResultRepository = parseResultRepository;
+        _parseResultService = parseResultService;
+        _itemRemovalService = itemRemovalService;
     }
 
     public async Task Observe()
@@ -46,61 +52,32 @@ public class ItemsPriceService : IItemsPriceService
 
             if (!parsedItemResult.IsSuccess)
             {
-                await DeleteItem(item, parsedItemResult);
+                await DeleteItem(item, parsedItemResult.Error);
                 return;
             }
 
-            await ObservePrice(item, parsedItemResult);
+            await ObservePrice(item, parsedItemResult.Result);
         }
     }
 
-    private async Task ObservePrice(Item item, ParsedItemResult parsedItemResult)
+    private async Task ObservePrice(Item item, ParsedItem parsedItem)
     {
-        var parsedItem = parsedItemResult.Result;
-
         var oldPrice = item.Price;
         var newPrice = parsedItem.Price;
 
-        if (newPrice == oldPrice)
+        await _itemPriceChanger.Change(item, oldPrice, newPrice);
+    }
+
+    private async Task DeleteItem(Item item, ResourceKey error)
+    {
+        var lastParseResult = await _parseResultRepository.GetLastByItemId(item.Id);
+
+        if (lastParseResult is null || lastParseResult.IsSuccess)
+        {
+            await _parseResultService.CreateFailed(item);
             return;
+        }
 
-        var priceMessage = newPrice < oldPrice
-            ? _resourceService.Get(ResourceKey.Background_ItemPriceWentDown, item.Url, newPrice)
-            : _resourceService.Get(ResourceKey.Background_ItemPriceGrewUp, item.Url, newPrice);
-
-        LogChangedPrice(item, oldPrice, newPrice);
-        await SendChangedPrice(item, priceMessage);
-        await _itemService.UpdatePrice(item, newPrice);
-    }
-
-    private void LogChangedPrice(Item item, int oldPrice, int newPrice)
-    {
-        var logMessage = _resourceService.Get(
-            ResourceKey.Background_LogItemPriceChanged,
-            oldPrice,
-            newPrice,
-            item.Url);
-        
-        _logger.LogInformation(logMessage);
-    }
-
-    private async Task SendChangedPrice(Item item, string priceMessage)
-    {
-        var message = _resourceService.Get(ResourceKey.Background_ItemPriceChanged, item.Title, priceMessage);
-        await _telegramBotService.SendMessage(item.UserId, message);
-    }
-
-    private async Task DeleteItem(Item item, ParsedItemResult parsedItemResult)
-    {
-        await _itemRepository.Delete(item);
-
-        var errorReason = _resourceService.Get(parsedItemResult.Error);
-        var itemDeletedMessage = _resourceService.Get(
-            ResourceKey.Background_ItemDeleted,
-            item.Url.ToString(),
-            item.Title,
-            errorReason);
-
-        await _telegramBotService.SendMessage(item.UserId, itemDeletedMessage);
+        await _itemRemovalService.Remove(item, error);
     }
 }

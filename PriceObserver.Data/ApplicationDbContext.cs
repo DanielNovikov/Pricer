@@ -9,6 +9,8 @@ public sealed class ApplicationDbContext : DbContext
     public DbSet<Item> Items { get; set; }
         
     public DbSet<ItemPriceChange> ItemPriceChanges { get; set; }
+    
+    public DbSet<ItemParseResult> ItemParseResults { get; set; }
 
     public DbSet<User> Users { get; set; }
 

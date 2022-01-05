@@ -21,12 +21,5 @@ public class ItemPriceChangeConfiguration : IEntityTypeConfiguration<ItemPriceCh
         builder
             .Property(x => x.NewPrice)
             .IsRequired();
-
-        builder
-            .HasOne(x => x.Item)
-            .WithMany(x => x.PriceChanges)
-            .HasForeignKey(x => x.ItemId)
-            .OnDelete(DeleteBehavior.Cascade)
-            .IsRequired();
     }
 }

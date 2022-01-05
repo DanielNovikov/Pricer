@@ -44,5 +44,19 @@ public class ItemConfiguration : IEntityTypeConfiguration<Item>
             .WithMany(i => i.Items)
             .HasForeignKey(i => i.UserId)
             .IsRequired();
+        
+        builder
+            .HasMany(x => x.PriceChanges)
+            .WithOne()
+            .HasForeignKey(x => x.ItemId)
+            .OnDelete(DeleteBehavior.Cascade)
+            .IsRequired();
+        
+        builder
+            .HasMany(x => x.ParseErrors)
+            .WithOne()
+            .HasForeignKey(x => x.ItemId)
+            .OnDelete(DeleteBehavior.Cascade)
+            .IsRequired();
     }
 }

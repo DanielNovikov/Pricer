@@ -22,5 +22,6 @@ public static class DependencyInjection
         services.AddScoped<IUserRepository, UserRepository>();
         services.AddScoped<IUserTokenRepository, UserTokenRepository>();
         services.AddScoped<IAppNotificationRepository, AppNotificationRepository>();
+        services.AddScoped<IItemParseResultRepository, ItemParseResultRepository>();
     }
 }
