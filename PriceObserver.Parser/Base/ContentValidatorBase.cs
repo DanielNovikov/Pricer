@@ -5,7 +5,7 @@ using PriceObserver.Parser.Models;
 
 namespace PriceObserver.Parser.Base;
 
-public abstract class ParserProviderContentValidatorBase : IParserProviderContentValidator
+public abstract class ContentValidatorBase : IContentValidator
 {
     public abstract ShopKey ProviderType { get; }
 

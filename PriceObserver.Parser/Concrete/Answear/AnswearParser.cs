@@ -7,7 +7,7 @@ using PriceObserver.Parser.Base;
 
 namespace PriceObserver.Parser.Concrete.Answear;
 
-public class AnswearParser : ParserProviderBase
+public class AnswearParser : ParserBase
 {
     public override ShopKey ProviderType => ShopKey.Answear;
 

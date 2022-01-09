@@ -5,7 +5,7 @@ using PriceObserver.Parser.Base;
 
 namespace PriceObserver.Parser.Concrete.Makeup;
 
-public class MakeupParserContentValidator : ParserProviderContentValidatorBase
+public class MakeupContentValidator : ContentValidatorBase
 {
     public override ShopKey ProviderType => ShopKey.Makeup;
         

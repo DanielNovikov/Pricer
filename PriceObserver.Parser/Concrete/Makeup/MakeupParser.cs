@@ -6,7 +6,7 @@ using PriceObserver.Parser.Base;
 
 namespace PriceObserver.Parser.Concrete.Makeup;
 
-public class MakeupParser : ParserProviderBase
+public class MakeupParser : ParserBase
 {
     public override ShopKey ProviderType => ShopKey.Makeup;
         

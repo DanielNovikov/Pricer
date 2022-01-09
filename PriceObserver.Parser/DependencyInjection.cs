@@ -15,7 +15,7 @@ public static class DependencyInjection
         services.AddHttpClient<IHtmlLoader, HtmlLoader>();
 
         services.AddTransient<IParserService, ParserService>();
-        services.AddTransient<IParserProviderService, ParserProviderService>();
+        services.AddTransient<IDocumentParser, DocumentParser>();
             
         services.AddParsers();
         services.AddParserContentValidators();
@@ -23,7 +23,7 @@ public static class DependencyInjection
         
     private static void AddParsers(this IServiceCollection services)
     {
-        var parserProvider = typeof(IParserProvider);
+        var parserProvider = typeof(IParser);
 
         var parserImplementations = Assembly
             .GetExecutingAssembly()
@@ -42,7 +42,7 @@ public static class DependencyInjection
         
     private static void AddParserContentValidators(this IServiceCollection services)
     {
-        var parserProvider = typeof(IParserProviderContentValidator);
+        var parserProvider = typeof(IContentValidator);
 
         var parserImplementations = Assembly
             .GetExecutingAssembly()

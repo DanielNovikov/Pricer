@@ -7,7 +7,7 @@ using PriceObserver.Parser.Base;
 
 namespace PriceObserver.Parser.Concrete.Brocard;
 
-public class BrocardParser : ParserProviderBase
+public class BrocardParser : ParserBase
 {
     public override ShopKey ProviderType => ShopKey.Brocard;
 

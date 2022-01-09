@@ -5,7 +5,7 @@ using PriceObserver.Parser.Base;
 
 namespace PriceObserver.Parser.Concrete.Brocard;
 
-public class BrocardParserContentValidator : ParserProviderContentValidatorBase
+public class BrocardContentValidator : ContentValidatorBase
 {
     public override ShopKey ProviderType => ShopKey.Brocard;
         

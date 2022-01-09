@@ -3,7 +3,7 @@ using PriceObserver.Data.InMemory.Models.Enums;
 
 namespace PriceObserver.Parser.Models;
 
-public class ParsedItemResult : ServiceResult<ParsedItemResult, ParsedItem, ResourceKey>
+public class ParsedItemServiceResult : ServiceResult<ParsedItemServiceResult, ParsedItem, ResourceKey>
 {
         
 }

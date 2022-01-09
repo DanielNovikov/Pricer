@@ -7,38 +7,38 @@ using PriceObserver.Parser.Models;
 
 namespace PriceObserver.Parser.Concrete;
 
-public class ParserProviderService : IParserProviderService
+public class DocumentParser : IDocumentParser
 {
-    private readonly IEnumerable<IParserProviderContentValidator> _contentValidators;
-    private readonly IEnumerable<IParserProvider> _parsers;
+    private readonly IEnumerable<IContentValidator> _contentValidators;
+    private readonly IEnumerable<IParser> _parsers;
 
-    public ParserProviderService(
-        IEnumerable<IParserProviderContentValidator> contentValidators, 
-        IEnumerable<IParserProvider> parsers)
+    public DocumentParser(
+        IEnumerable<IContentValidator> contentValidators, 
+        IEnumerable<IParser> parsers)
     {
         _contentValidators = contentValidators;
         _parsers = parsers;
     }
 
-    public ParsedItemResult Parse(ShopKey providerType, IHtmlDocument html)
+    public ParsedItemServiceResult Parse(ShopKey providerType, IHtmlDocument html)
     {
         var contentValidator = GetContentValidator(providerType);
         var contentValidationResult = contentValidator.Validate(html);
 
         if (!contentValidationResult.IsSuccess)
-            return ParsedItemResult.Fail(contentValidationResult.Error);
+            return ParsedItemServiceResult.Fail(contentValidationResult.Error);
 
         var parser = GetParser(providerType);
         var parsedItem = parser.Parse(html);
-        return ParsedItemResult.Success(parsedItem);
+        return ParsedItemServiceResult.Success(parsedItem);
     }
 
-    private IParserProvider GetParser(ShopKey providerType)
+    private IParser GetParser(ShopKey providerType)
     {
         return _parsers.Single(x => x.ProviderType == providerType);
     }
 
-    private IParserProviderContentValidator GetContentValidator(ShopKey providerType)
+    private IContentValidator GetContentValidator(ShopKey providerType)
     {
         return _contentValidators.Single(p => p.ProviderType == providerType);
     }

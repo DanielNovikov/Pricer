@@ -3,18 +3,18 @@ using AngleSharp.Html.Dom;
 using PriceObserver.Data.InMemory.Models.Enums;
 using PriceObserver.Parser.Base;
 
-namespace PriceObserver.Parser.Concrete.Answear;
+namespace PriceObserver.Parser.Concrete.MdFashion;
 
-public class AnswearParserContentValidator : ParserProviderContentValidatorBase
+public class MdFashionContentValidator : ContentValidatorBase
 {
-    public override ShopKey ProviderType => ShopKey.Answear;
+    public override ShopKey ProviderType => ShopKey.MdFashion;
 
     protected override bool IsPriceExists(IHtmlDocument document)
     {
         return document.All
             .Any(e => 
-                e.TagName.ToLower() == "p" && 
+                e.TagName.ToLower() == "span" &&
                 !string.IsNullOrEmpty(e.ClassName) &&
-                e.ClassName.Contains("Price__currentPrice"));
+                e.ClassName.Contains("price_current"));
     }
 }

@@ -6,7 +6,7 @@ using PriceObserver.Parser.Base;
 
 namespace PriceObserver.Parser.Concrete.Farfetch;
 
-public class FarfetchParser : ParserProviderBase
+public class FarfetchParser : ParserBase
 {
     public override ShopKey ProviderType => ShopKey.Farfetch;
         

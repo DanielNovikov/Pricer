@@ -7,7 +7,7 @@ using PriceObserver.Parser.Base;
 
 namespace PriceObserver.Parser.Concrete.Intertop;
 
-public class IntertopParser : ParserProviderBase
+public class IntertopParser : ParserBase
 {
     public override ShopKey ProviderType => ShopKey.Intertop;
 

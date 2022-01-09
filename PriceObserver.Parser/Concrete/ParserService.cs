@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using PriceObserver.Data.InMemory.Models.Enums;
 using PriceObserver.Data.InMemory.Repositories.Abstract;
 using PriceObserver.Parser.Abstract;
-using ParsedItemResult = PriceObserver.Parser.Models.ParsedItemResult;
+using PriceObserver.Parser.Models;
 
 namespace PriceObserver.Parser.Concrete;
 
@@ -11,32 +11,32 @@ public class ParserService : IParserService
 {
     private readonly IShopRepository _shopRepository;
     private readonly IHtmlLoader _htmlLoader;
-    private readonly IParserProviderService _parserProviderService;
+    private readonly IDocumentParser _documentParser;
 
     public ParserService(
         IShopRepository shopRepository, 
         IHtmlLoader htmlLoader, 
-        IParserProviderService parserProviderService)
+        IDocumentParser documentParser)
     {
         _shopRepository = shopRepository;
         _htmlLoader = htmlLoader;
-        _parserProviderService = parserProviderService;
+        _documentParser = documentParser;
     }
 
-    public async Task<ParsedItemResult> Parse(Uri url)
+    public async Task<ParsedItemServiceResult> Parse(Uri url)
     {
         var shop = _shopRepository.GetByHost(url.Host);
             
         if (shop is null)
-            return ParsedItemResult.Fail(ResourceKey.Parser_ShopIsNotAvailable);
+            return ParsedItemServiceResult.Fail(ResourceKey.Parser_ShopIsNotAvailable);
 
         var htmlLoadResult = await _htmlLoader.Load(url);
 
         if (!htmlLoadResult.IsSuccess)
-            return ParsedItemResult.Fail(htmlLoadResult.Error);
+            return ParsedItemServiceResult.Fail(htmlLoadResult.Error);
 
         var htmlDocument = htmlLoadResult.Result;
 
-        return _parserProviderService.Parse(shop.Key, htmlDocument);
+        return _documentParser.Parse(shop.Key, htmlDocument);
     }
 }

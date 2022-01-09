@@ -6,5 +6,5 @@ namespace PriceObserver.Parser.Abstract;
 
 public interface IParserService
 {
-    Task<ParsedItemResult> Parse(Uri url);
+    Task<ParsedItemServiceResult> Parse(Uri url);
 }

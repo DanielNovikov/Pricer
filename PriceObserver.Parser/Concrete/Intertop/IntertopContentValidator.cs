@@ -5,7 +5,7 @@ using PriceObserver.Parser.Base;
 
 namespace PriceObserver.Parser.Concrete.Intertop;
 
-public class IntertopParserContentValidator : ParserProviderContentValidatorBase
+public class IntertopContentValidator : ContentValidatorBase
 {
     public override ShopKey ProviderType => ShopKey.Intertop;
 

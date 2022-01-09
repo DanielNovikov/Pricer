@@ -6,7 +6,7 @@ using PriceObserver.Parser.Models;
 
 namespace PriceObserver.Parser.Base;
 
-public abstract class ParserProviderBase : IParserProvider
+public abstract class ParserBase : IParser
 {
     public abstract ShopKey ProviderType { get; }
 

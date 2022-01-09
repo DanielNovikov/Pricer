@@ -6,7 +6,7 @@ using PriceObserver.Parser.Base;
 
 namespace PriceObserver.Parser.Concrete.Adidas;
 
-public class AdidasParser : ParserProviderBase
+public class AdidasParser : ParserBase
 {
     public override ShopKey ProviderType => ShopKey.Adidas;
         

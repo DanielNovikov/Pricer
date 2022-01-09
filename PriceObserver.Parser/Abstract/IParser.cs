@@ -4,7 +4,9 @@ using PriceObserver.Parser.Models;
 
 namespace PriceObserver.Parser.Abstract;
 
-public interface IParserProviderService
+public interface IParser
 {
-    ParsedItemResult Parse(ShopKey providerType, IHtmlDocument html);
+    ShopKey ProviderType { get; } 
+
+    ParsedItem Parse(IHtmlDocument document);
 }

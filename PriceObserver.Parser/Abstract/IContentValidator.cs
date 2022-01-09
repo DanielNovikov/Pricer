@@ -4,7 +4,7 @@ using PriceObserver.Parser.Models;
 
 namespace PriceObserver.Parser.Abstract;
 
-public interface IParserProviderContentValidator
+public interface IContentValidator
 {
     ShopKey ProviderType { get; }
         

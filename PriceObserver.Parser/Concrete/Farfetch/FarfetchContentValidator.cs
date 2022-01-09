@@ -5,7 +5,7 @@ using PriceObserver.Parser.Base;
 
 namespace PriceObserver.Parser.Concrete.Farfetch;
 
-public class FarfetchParserContentValidator : ParserProviderContentValidatorBase
+public class FarfetchContentValidator : ContentValidatorBase
 {
     public override ShopKey ProviderType => ShopKey.Farfetch;
         
