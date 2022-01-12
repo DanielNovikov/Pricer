@@ -3,15 +3,15 @@ using System.Linq;
 using AngleSharp.Dom;
 using AngleSharp.Html.Dom;
 using PriceObserver.Data.InMemory.Models.Enums;
-using PriceObserver.Parser.Base;
+using PriceObserver.Parser.Abstract;
 
 namespace PriceObserver.Parser.Concrete.Intertop;
 
-public class IntertopParser : ParserBase
+public class IntertopParserProvider : IParserProvider
 {
-    public override ShopKey ProviderType => ShopKey.Intertop;
+    public ShopKey ProviderKey => ShopKey.Intertop;
 
-    protected override int GetPrice(IHtmlDocument document)
+    public int GetPrice(IHtmlDocument document)
     {
         var priceSpan = document.All.First(e =>
             !string.IsNullOrEmpty(e.ClassName) &&
@@ -22,7 +22,7 @@ public class IntertopParser : ParserBase
         return int.Parse(price);
     }
 
-    protected override string GetTitle(IHtmlDocument document)
+    public string GetTitle(IHtmlDocument document)
     {   
         var productName = document.All
             .First(e =>
@@ -36,7 +36,7 @@ public class IntertopParser : ParserBase
         return $"{type} {description}";
     }
 
-    protected override Uri GetImageUrl(IHtmlDocument document)
+    public Uri GetImageUrl(IHtmlDocument document)
     {
         const string selector = "meta[property='og:image']";
         var meta = document.QuerySelector<IHtmlMetaElement>(selector);

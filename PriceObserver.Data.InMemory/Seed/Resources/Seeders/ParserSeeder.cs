@@ -13,10 +13,6 @@ public class ParserSeeder
             "Страница не найдена"));
             
         resources.Add(new Resource(
-            ResourceKey.Parser_ShopIsNotAvailable,
-            "Магазин недоступен ❌"));
-            
-        resources.Add(new Resource(
             ResourceKey.Parser_NoPriceOnPage,
             "На странице нет цены"));
     }

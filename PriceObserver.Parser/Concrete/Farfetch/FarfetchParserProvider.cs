@@ -2,15 +2,15 @@
 using AngleSharp.Dom;
 using AngleSharp.Html.Dom;
 using PriceObserver.Data.InMemory.Models.Enums;
-using PriceObserver.Parser.Base;
+using PriceObserver.Parser.Abstract;
 
 namespace PriceObserver.Parser.Concrete.Farfetch;
 
-public class FarfetchParser : ParserBase
+public class FarfetchParserProvider : IParserProvider
 {
-    public override ShopKey ProviderType => ShopKey.Farfetch;
+    public ShopKey ProviderKey => ShopKey.Farfetch;
         
-    protected override int GetPrice(IHtmlDocument document)
+    public int GetPrice(IHtmlDocument document)
     {
         const string discountPriceSelector = "strong[data-tstid=priceInfo-onsale]";
         const string fullPriceSelector = "span[data-tstid=priceInfo-original]";
@@ -29,7 +29,7 @@ public class FarfetchParser : ParserBase
         return int.Parse(formattedPriceString) * currency;
     }
 
-    protected override string GetTitle(IHtmlDocument document)
+    public string GetTitle(IHtmlDocument document)
     {
         const string descriptionSelector = "div[data-tstid=productOffer] span[data-tstid=cardInfo-description]";
         var description = document.QuerySelector<IHtmlElement>(descriptionSelector)!.Text();
@@ -41,7 +41,7 @@ public class FarfetchParser : ParserBase
         return $"{formattedDescription} {brandName}";
     }
 
-    protected override Uri GetImageUrl(IHtmlDocument document)
+    public Uri GetImageUrl(IHtmlDocument document)
     {
         const string selector = "img[data-test=imagery-img0]";
         var imageSource = document.QuerySelector<IHtmlImageElement>(selector)!.Source;

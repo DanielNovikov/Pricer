@@ -23,7 +23,7 @@ public class ShopRepository : IShopRepository
 
     public Shop GetByHost(string host)
     {
-        return GetAll().Single(x => x.Host == host);
+        return GetAll().SingleOrDefault(x => x.Host == host);
     }
 
     public IList<Shop> GetAll()

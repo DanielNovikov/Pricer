@@ -6,7 +6,7 @@ using PriceObserver.Dialog.Input.Models;
 using PriceObserver.Dialog.Menus.Abstract;
 using PriceObserver.Dialog.Menus.Models;
 
-namespace PriceObserver.Dialog.Menus.Concrete.WriteToSupportMenuHandler;
+namespace PriceObserver.Dialog.Menus.Concrete.WriteToSupportMenu;
 
 public class WriteToSupportMenuHandler : IMenuInputHandler
 {

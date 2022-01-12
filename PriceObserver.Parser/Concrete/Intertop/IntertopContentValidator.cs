@@ -1,15 +1,15 @@
 ﻿using System.Linq;
 using AngleSharp.Html.Dom;
 using PriceObserver.Data.InMemory.Models.Enums;
-using PriceObserver.Parser.Base;
+using PriceObserver.Parser.Abstract;
 
 namespace PriceObserver.Parser.Concrete.Intertop;
 
-public class IntertopContentValidator : ContentValidatorBase
+public class IntertopContentValidator : IContentValidator
 {
-    public override ShopKey ProviderType => ShopKey.Intertop;
+    public ShopKey ProviderKey => ShopKey.Intertop;
 
-    protected override bool IsPriceExists(IHtmlDocument document)
+    public bool IsPriceExists(IHtmlDocument document)
     {
         return document
             .All

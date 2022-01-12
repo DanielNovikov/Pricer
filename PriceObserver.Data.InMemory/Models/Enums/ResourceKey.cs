@@ -14,7 +14,8 @@ public enum ResourceKey
     Dialog_MessageDoesNotContainLink = 9,
     Dialog_LinkInIncorrectFormat = 10,
     Dialog_ErrorOccured = 11,
-    Dialog_Help,
+    Dialog_Help = 12,
+    Dialog_ShopIsNotAvailable = 13,
 
     UserAction_GotAddedProducts = 100,
     UserAction_ParsingError = 101,
@@ -30,9 +31,9 @@ public enum ResourceKey
     UserAction_UserLogin = 111,
     UserAction_GotAvailableShops = 112,
     UserAction_CalledHelp = 113,
+    UserAction_TriedToAddUnsupportedShop = 114,
         
     Parser_PageNotFound = 200,
-    Parser_ShopIsNotAvailable = 201,
     Parser_NoPriceOnPage = 202,
         
     Background_ItemDeleted = 300,

@@ -3,15 +3,15 @@ using System.Linq;
 using AngleSharp.Dom;
 using AngleSharp.Html.Dom;
 using PriceObserver.Data.InMemory.Models.Enums;
-using PriceObserver.Parser.Base;
+using PriceObserver.Parser.Abstract;
 
 namespace PriceObserver.Parser.Concrete.Brocard;
 
-public class BrocardParser : ParserBase
+public class BrocardParserProvider : IParserProvider
 {
-    public override ShopKey ProviderType => ShopKey.Brocard;
+    public ShopKey ProviderKey => ShopKey.Brocard;
 
-    protected override int GetPrice(IHtmlDocument document)
+    public int GetPrice(IHtmlDocument document)
     {
         const string selector = ".price-format > .price";
         var spanText = document.QuerySelector<IHtmlSpanElement>(selector)!.Text();
@@ -22,7 +22,7 @@ public class BrocardParser : ParserBase
         return int.Parse(price);
     }
 
-    protected override string GetTitle(IHtmlDocument document)
+    public string GetTitle(IHtmlDocument document)
     {
         var productName = document.All
             .First(e =>
@@ -37,7 +37,7 @@ public class BrocardParser : ParserBase
         return productName.Text();
     }
 
-    protected override Uri GetImageUrl(IHtmlDocument document)
+    public Uri GetImageUrl(IHtmlDocument document)
     {
         const string selector = "meta[property='og:image']";
         var imageUrl = document.QuerySelector<IHtmlMetaElement>(selector)!.Content;

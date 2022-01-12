@@ -30,4 +30,6 @@ public interface IUserActionLogger
     void LogRedirectToMenu(User user, Menu menuToRedirect);
 
     void LogHelpCalled(User user);
+
+    void LogTriedToAddUnsupportedShop(User user, Uri url);
 }

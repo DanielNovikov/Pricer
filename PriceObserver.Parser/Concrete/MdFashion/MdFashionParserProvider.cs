@@ -3,15 +3,15 @@ using System.Linq;
 using AngleSharp.Dom;
 using AngleSharp.Html.Dom;
 using PriceObserver.Data.InMemory.Models.Enums;
-using PriceObserver.Parser.Base;
+using PriceObserver.Parser.Abstract;
 
 namespace PriceObserver.Parser.Concrete.MdFashion;
 
-public class MdFashionParser : ParserBase
+public class MdFashionParserProvider : IParserProvider
 {
-    public override ShopKey ProviderType => ShopKey.MdFashion;
+    public ShopKey ProviderKey => ShopKey.MdFashion;
 
-    protected override int GetPrice(IHtmlDocument document)
+    public int GetPrice(IHtmlDocument document)
     {
         var priceSpan = document.All.First(e =>
             !string.IsNullOrEmpty(e.ClassName) &&
@@ -22,7 +22,7 @@ public class MdFashionParser : ParserBase
         return int.Parse(price);
     }
 
-    protected override string GetTitle(IHtmlDocument document)
+    public string GetTitle(IHtmlDocument document)
     {
         return document.All
             .First(x =>
@@ -31,7 +31,7 @@ public class MdFashionParser : ParserBase
             .Text();
     }
 
-    protected override Uri GetImageUrl(IHtmlDocument document)
+    public Uri GetImageUrl(IHtmlDocument document)
     {
         const string selector = ".product_image > div[id=product0] > span > img";
         var image = document.QuerySelector<IHtmlImageElement>(selector);

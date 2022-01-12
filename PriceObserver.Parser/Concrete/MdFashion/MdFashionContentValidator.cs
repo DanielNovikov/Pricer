@@ -1,15 +1,15 @@
 ﻿using System.Linq;
 using AngleSharp.Html.Dom;
 using PriceObserver.Data.InMemory.Models.Enums;
-using PriceObserver.Parser.Base;
+using PriceObserver.Parser.Abstract;
 
 namespace PriceObserver.Parser.Concrete.MdFashion;
 
-public class MdFashionContentValidator : ContentValidatorBase
+public class MdFashionContentValidator : IContentValidator
 {
-    public override ShopKey ProviderType => ShopKey.MdFashion;
+    public ShopKey ProviderKey => ShopKey.MdFashion;
 
-    protected override bool IsPriceExists(IHtmlDocument document)
+    public bool IsPriceExists(IHtmlDocument document)
     {
         return document.All
             .Any(e => 

@@ -11,51 +11,52 @@ public static class DependencyInjection
 {
     public static void AddParserServices(this IServiceCollection services)
     {
-        services.AddTransient<IHtmlParser, HtmlParser>();
+        services.AddScoped<IHtmlParser, HtmlParser>();
         services.AddHttpClient<IHtmlLoader, HtmlLoader>();
 
-        services.AddTransient<IParserService, ParserService>();
-        services.AddTransient<IDocumentParser, DocumentParser>();
-            
+        services.AddScoped<IParser, Concrete.Parser>();
+        services.AddScoped<IContentValidatorService, ContentValidatorService>();
+        services.AddScoped<IParserProviderService, ParserProviderService>();
+        
         services.AddParsers();
-        services.AddParserContentValidators();
+        services.AddContentValidators();
     }
         
     private static void AddParsers(this IServiceCollection services)
     {
-        var parserProvider = typeof(IParser);
+        var parserProviderType = typeof(IParserProvider);
 
-        var parserImplementations = Assembly
+        var parserProviderImplementations = Assembly
             .GetExecutingAssembly()
             .DefinedTypes
             .Where(type => 
-                parserProvider.IsAssignableFrom(type) && 
-                parserProvider != type && 
+                parserProviderType.IsAssignableFrom(type) && 
+                parserProviderType != type && 
                 !type.IsAbstract)
             .ToList();
 
-        parserImplementations.ForEach(parser =>
+        parserProviderImplementations.ForEach(parser =>
         {
-            services.AddTransient(parserProvider, parser);
+            services.AddTransient(parserProviderType, parser);
         });
     }
         
-    private static void AddParserContentValidators(this IServiceCollection services)
+    private static void AddContentValidators(this IServiceCollection services)
     {
-        var parserProvider = typeof(IContentValidator);
+        var contentValidatorType = typeof(IContentValidator);
 
-        var parserImplementations = Assembly
+        var contentValidatorsImplementations = Assembly
             .GetExecutingAssembly()
             .DefinedTypes
             .Where(type => 
-                parserProvider.IsAssignableFrom(type) && 
-                parserProvider != type && 
+                contentValidatorType.IsAssignableFrom(type) && 
+                contentValidatorType != type && 
                 !type.IsAbstract)
             .ToList();
 
-        parserImplementations.ForEach(parser =>
+        contentValidatorsImplementations.ForEach(parser =>
         {
-            services.AddTransient(parserProvider, parser);
+            services.AddTransient(contentValidatorType, parser);
         });
     }
 }

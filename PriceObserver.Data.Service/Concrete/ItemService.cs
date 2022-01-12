@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using PriceObserver.Data.InMemory.Models;
+using PriceObserver.Data.InMemory.Models.Enums;
 using PriceObserver.Data.InMemory.Repositories.Abstract;
 using PriceObserver.Data.Models;
 using PriceObserver.Data.Repositories.Abstract;
@@ -44,11 +45,11 @@ public class ItemService : IItemService
                     Shop = shop,
                     Items = grouped.ToList()
                 })
-            .Select(x => CreateShopVM(x.Shop, x.Items))
+            .Select(x => CreateShopVm(x.Shop, x.Items))
             .ToList();
     }
 
-    private static ShopVm CreateShopVM(Shop shop, IList<Item> items)
+    private static ShopVm CreateShopVm(Shop shop, IList<Item> items)
     {
         var address = $"https://{shop.Host}";
         var logoFileName = shop.LogoFileName;
@@ -98,5 +99,22 @@ public class ItemService : IItemService
             throw new InvalidOperationException();
             
         await _repository.Delete(item);
+    }
+
+    public async Task<Item> Create(int price, string title, Uri url, Uri imageUrl, long userId, ShopKey shopKey)
+    {
+        var item = new Item
+        {
+            Price = price,
+            Url = url,
+            Title = title,
+            ImageUrl = imageUrl,
+            UserId = userId,
+            ShopKey = shopKey
+        };
+
+        await _repository.Add(item);
+
+        return item;
     }
 }

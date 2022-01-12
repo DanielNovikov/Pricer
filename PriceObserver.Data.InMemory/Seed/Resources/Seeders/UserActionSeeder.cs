@@ -74,5 +74,10 @@ public class UserActionSeeder
         resources.Add(new Resource(
             ResourceKey.UserAction_CalledHelp,
             "🆘 Запросил помощь"));
+        
+        resources.Add(new Resource(
+            ResourceKey.UserAction_TriedToAddUnsupportedShop,
+            @"❌ Не известный магазин продукта
+Ссылка: {0}"));
     }
 }

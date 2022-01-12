@@ -2,15 +2,15 @@
 using AngleSharp.Dom;
 using AngleSharp.Html.Dom;
 using PriceObserver.Data.InMemory.Models.Enums;
-using PriceObserver.Parser.Base;
+using PriceObserver.Parser.Abstract;
 
 namespace PriceObserver.Parser.Concrete.Makeup;
 
-public class MakeupParser : ParserBase
+public class MakeupParserProvider : IParserProvider
 {
-    public override ShopKey ProviderType => ShopKey.Makeup;
+    public ShopKey ProviderKey => ShopKey.Makeup;
         
-    protected override int GetPrice(IHtmlDocument document)
+    public int GetPrice(IHtmlDocument document)
     {
         const string selector = "span[itemprop=price]";
         var price = document.QuerySelector<IHtmlSpanElement>(selector)!.TextContent;
@@ -18,13 +18,13 @@ public class MakeupParser : ParserBase
         return int.Parse(price);
     }
 
-    protected override string GetTitle(IHtmlDocument document)
+    public string GetTitle(IHtmlDocument document)
     {
         const string selector = "meta[name=KeyWords]";
         return document.QuerySelector<IHtmlMetaElement>(selector)!.Content;
     }
 
-    protected override Uri GetImageUrl(IHtmlDocument document)
+    public Uri GetImageUrl(IHtmlDocument document)
     {
         const string selector = "img[itemprop=image]";
         var source = document.QuerySelector<IHtmlImageElement>(selector)!.Source;

@@ -1,15 +1,15 @@
 ﻿using AngleSharp.Dom;
 using AngleSharp.Html.Dom;
 using PriceObserver.Data.InMemory.Models.Enums;
-using PriceObserver.Parser.Base;
+using PriceObserver.Parser.Abstract;
 
 namespace PriceObserver.Parser.Concrete.Adidas;
 
-public class AdidasContentValidator : ContentValidatorBase
+public class AdidasContentValidator : IContentValidator
 {
-    public override ShopKey ProviderType => ShopKey.Adidas;
+    public ShopKey ProviderKey => ShopKey.Adidas;
         
-    protected override bool IsPriceExists(IHtmlDocument document)
+    public bool IsPriceExists(IHtmlDocument document)
     {
         const string discountPriceSelector = "div.product__sidebar__inner > div > span.product__price--sale";
         const string fullPriceSelector = "div.product__sidebar__inner > div > span.product__price--first";

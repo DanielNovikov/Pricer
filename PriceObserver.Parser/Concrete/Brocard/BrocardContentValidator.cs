@@ -1,15 +1,15 @@
 ﻿using AngleSharp.Dom;
 using AngleSharp.Html.Dom;
 using PriceObserver.Data.InMemory.Models.Enums;
-using PriceObserver.Parser.Base;
+using PriceObserver.Parser.Abstract;
 
 namespace PriceObserver.Parser.Concrete.Brocard;
 
-public class BrocardContentValidator : ContentValidatorBase
+public class BrocardContentValidator : IContentValidator
 {
-    public override ShopKey ProviderType => ShopKey.Brocard;
+    public ShopKey ProviderKey => ShopKey.Brocard;
         
-    protected override bool IsPriceExists(IHtmlDocument document)
+    public bool IsPriceExists(IHtmlDocument document)
     {
         const string selector = ".price-format > .price";
         

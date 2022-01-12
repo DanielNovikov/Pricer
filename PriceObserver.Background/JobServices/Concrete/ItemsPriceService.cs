@@ -15,7 +15,7 @@ namespace PriceObserver.Background.JobServices.Concrete;
 public class ItemsPriceService : IItemsPriceService
 {
     private readonly IItemRepository _itemRepository;
-    private readonly IParserService _parserService;
+    private readonly IParser _parser;
     private readonly IItemPriceChanger _itemPriceChanger;
     private readonly IItemParseResultRepository _parseResultRepository;
     private readonly IItemParseResultService _parseResultService;
@@ -23,14 +23,14 @@ public class ItemsPriceService : IItemsPriceService
 
     public ItemsPriceService(
         IItemRepository itemRepository,
-        IParserService parserService,
+        IParser parser,
         IItemPriceChanger itemPriceChanger,
         IItemParseResultRepository parseResultRepository,
         IItemParseResultService parseResultService,
         IItemRemovalService itemRemovalService)
     {
         _itemRepository = itemRepository;
-        _parserService = parserService;
+        _parser = parser;
         _itemPriceChanger = itemPriceChanger;
         _parseResultRepository = parseResultRepository;
         _parseResultService = parseResultService;
@@ -43,7 +43,7 @@ public class ItemsPriceService : IItemsPriceService
 
         foreach (var item in items)
         {
-            var parsedItemResult = await _parserService.Parse(item.Url);
+            var parsedItemResult = await _parser.Parse(item.Url, item.ShopKey);
 
             if (!parsedItemResult.IsSuccess)
             {

@@ -84,6 +84,11 @@ public class UserActionLogger : IUserActionLogger
         LogInformation(user, ResourceKey.UserAction_CalledHelp);
     }
 
+    public void LogTriedToAddUnsupportedShop(User user, Uri url)
+    {
+        LogInformation(user, ResourceKey.UserAction_TriedToAddUnsupportedShop, url);
+    }
+
     private void LogInformation(User user, ResourceKey message, params object[] parameters)
     {
         Log(user, LogLevel.Information, message, parameters);
@@ -96,10 +101,14 @@ public class UserActionLogger : IUserActionLogger
 
     private void Log(User user, LogLevel logLevel, ResourceKey resource, params object[] parameters)
     {
+        if (!_logger.IsEnabled(logLevel))
+            return;
+        
         var message = _resourceService.Get(resource, parameters);
         var userInfo = GetUserInfo(user);
 
-        _logger.Log(logLevel, $"{message}{Environment.NewLine}{userInfo}");
+        var logMessage = string.Concat(message, Environment.NewLine, userInfo);
+        _logger.Log(logLevel, logMessage);
     }
 
     private string GetUserInfo(User user)

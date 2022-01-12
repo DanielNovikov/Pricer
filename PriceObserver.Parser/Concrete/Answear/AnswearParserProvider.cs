@@ -3,15 +3,15 @@ using System.Linq;
 using AngleSharp.Dom;
 using AngleSharp.Html.Dom;
 using PriceObserver.Data.InMemory.Models.Enums;
-using PriceObserver.Parser.Base;
+using PriceObserver.Parser.Abstract;
 
 namespace PriceObserver.Parser.Concrete.Answear;
 
-public class AnswearParser : ParserBase
+public class AnswearParserProvider : IParserProvider
 {
-    public override ShopKey ProviderType => ShopKey.Answear;
+    public ShopKey ProviderKey => ShopKey.Answear;
 
-    protected override int GetPrice(IHtmlDocument document)
+    public int GetPrice(IHtmlDocument document)
     {
         var elements = document.All;
             
@@ -27,7 +27,7 @@ public class AnswearParser : ParserBase
         return int.Parse(price);
     }
 
-    protected override string GetTitle(IHtmlDocument document)
+    public string GetTitle(IHtmlDocument document)
     {
         return document.All
             .First(x =>
@@ -38,7 +38,7 @@ public class AnswearParser : ParserBase
             .Text();
     }
 
-    protected override Uri GetImageUrl(IHtmlDocument document)
+    public Uri GetImageUrl(IHtmlDocument document)
     {
         const string selector = ".slick-current > div> .cardMedia >div > picture > img";
         var image = document.QuerySelector<IHtmlImageElement>(selector);

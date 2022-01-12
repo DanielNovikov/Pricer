@@ -1,12 +1,11 @@
 ﻿using AngleSharp.Html.Dom;
 using PriceObserver.Data.InMemory.Models.Enums;
-using PriceObserver.Parser.Models;
 
 namespace PriceObserver.Parser.Abstract;
 
 public interface IContentValidator
 {
-    ShopKey ProviderType { get; }
+    ShopKey ProviderKey { get; }
         
-    ContentValidatorResult Validate(IHtmlDocument document);
+    bool IsPriceExists(IHtmlDocument document);
 }

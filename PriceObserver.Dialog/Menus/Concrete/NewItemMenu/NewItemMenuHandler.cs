@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using PriceObserver.Data.InMemory.Models.Enums;
 using PriceObserver.Data.InMemory.Repositories.Abstract;
 using PriceObserver.Data.Models;
@@ -7,34 +8,29 @@ using PriceObserver.Data.Service.Abstract;
 using PriceObserver.Dialog.Common.Abstract;
 using PriceObserver.Dialog.Input.Models;
 using PriceObserver.Dialog.Menus.Abstract;
+using PriceObserver.Dialog.Menus.Abstract.NewItemMenu;
 using PriceObserver.Dialog.Menus.Models;
 using PriceObserver.Parser.Abstract;
 
-namespace PriceObserver.Dialog.Menus.Concrete.NewItemMenuHandler;
+namespace PriceObserver.Dialog.Menus.Concrete.NewItemMenu;
 
 public class NewItemMenuHandler : IMenuInputHandler
 {
-    private readonly IParserService _parserService;
     private readonly IItemRepository _itemRepository;
-    private readonly IShopRepository _shopRepository;
     private readonly IUrlExtractor _urlExtractor;
     private readonly IUserActionLogger _userActionLogger;
-    private readonly IResourceService _resourceService;
+    private readonly IUserItemParser _userItemParser;
 
     public NewItemMenuHandler(
-        IParserService parserService,
         IItemRepository itemRepository,
-        IShopRepository shopRepository, 
         IUrlExtractor urlExtractor,
         IUserActionLogger userActionLogger, 
-        IResourceService resourceService)
+        IUserItemParser userItemParser)
     {
-        _parserService = parserService;
         _itemRepository = itemRepository;
-        _shopRepository = shopRepository;
         _urlExtractor = urlExtractor;
         _userActionLogger = userActionLogger;
-        _resourceService = resourceService;
+        _userItemParser = userItemParser;
     }
 
     public MenuKey Type => MenuKey.NewItem;
@@ -58,33 +54,11 @@ public class NewItemMenuHandler : IMenuInputHandler
             return MenuInputHandlingServiceResult.Fail(ResourceKey.Dialog_DuplicateItem);
         }
 
-        var parseResult = await _parserService.Parse(url);
+        var parseResult = await _userItemParser.Parse(message.User, url);
 
         if (!parseResult.IsSuccess)
-        {
-                
-            _userActionLogger.LogParsingError(message.User, url, parseResult.Error);
             return MenuInputHandlingServiceResult.Fail(parseResult.Error);
-        }
 
-        var parsedItem = parseResult.Result;
-        var shop = _shopRepository.GetByKey(parsedItem.ShopKey);
-            
-        var item = new Item
-        {
-            Price = parsedItem.Price,
-            Url = url,
-            Title = parsedItem.Title,
-            ImageUrl = parsedItem.ImageUrl,
-            UserId = message.User.Id, 
-            ShopKey = shop.Key
-        };
-
-        await _itemRepository.Add(item);
-
-        _userActionLogger.LogItemAdded(message.User, item);
-
-        var successMessage = _resourceService.Get(ResourceKey.Dialog_ItemAdded); 
-        return MenuInputHandlingServiceResult.Success(successMessage);
+        return MenuInputHandlingServiceResult.Success(parseResult.Result);
     }
 }
