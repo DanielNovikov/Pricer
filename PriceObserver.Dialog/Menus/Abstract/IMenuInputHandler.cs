@@ -7,7 +7,7 @@ namespace PriceObserver.Dialog.Menus.Abstract;
 
 public interface IMenuInputHandler
 {
-    MenuKey Type { get; }
+    MenuKey Key { get; }
 
     Task<MenuInputHandlingServiceResult> Handle(MessageDto message);
 }

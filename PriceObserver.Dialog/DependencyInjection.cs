@@ -11,7 +11,6 @@ using PriceObserver.Dialog.Common.Concrete;
 using PriceObserver.Dialog.Input.Abstract;
 using PriceObserver.Dialog.Input.Concrete;
 using PriceObserver.Dialog.Menus.Abstract;
-using PriceObserver.Dialog.Menus.Abstract.NewItemMenu;
 using PriceObserver.Dialog.Menus.Concrete;
 using PriceObserver.Dialog.Menus.Concrete.NewItemMenu;
 

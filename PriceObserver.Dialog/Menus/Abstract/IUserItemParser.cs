@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using PriceObserver.Data.Models;
 using PriceObserver.Dialog.Menus.Models;
 
-namespace PriceObserver.Dialog.Menus.Abstract.NewItemMenu;
+namespace PriceObserver.Dialog.Menus.Abstract;
 
 public interface IUserItemParser
 {

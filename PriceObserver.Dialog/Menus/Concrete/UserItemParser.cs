@@ -3,13 +3,14 @@ using System.Threading.Tasks;
 using PriceObserver.Data.InMemory.Models.Enums;
 using PriceObserver.Data.InMemory.Repositories.Abstract;
 using PriceObserver.Data.Models;
+using PriceObserver.Data.Repositories.Abstract;
 using PriceObserver.Data.Service.Abstract;
 using PriceObserver.Dialog.Common.Abstract;
-using PriceObserver.Dialog.Menus.Abstract.NewItemMenu;
+using PriceObserver.Dialog.Menus.Abstract;
 using PriceObserver.Dialog.Menus.Models;
 using PriceObserver.Parser.Abstract;
 
-namespace PriceObserver.Dialog.Menus.Concrete.NewItemMenu;
+namespace PriceObserver.Dialog.Menus.Concrete;
 
 public class UserItemParser : IUserItemParser
 {
@@ -18,23 +19,33 @@ public class UserItemParser : IUserItemParser
     private readonly IParser _parser;
     private readonly IResourceService _resourceService;
     private readonly IItemService _itemService;
+    private readonly IItemRepository _itemRepository;
     
     public UserItemParser(
         IShopRepository shopRepository,
         IUserActionLogger userActionLogger,
         IParser parser, 
         IResourceService resourceService, 
-        IItemService itemService)
+        IItemService itemService, 
+        IItemRepository itemRepository)
     {
         _shopRepository = shopRepository;
         _userActionLogger = userActionLogger;
         _parser = parser;
         _resourceService = resourceService;
         _itemService = itemService;
+        _itemRepository = itemRepository;
     }
 
     public async Task<UserItemParseServiceResult> Parse(User user, Uri url)
     {
+        var itemExists = await _itemRepository.ExistsForUserByUrl(user.Id, url);
+        if (itemExists)
+        {
+            _userActionLogger.LogDuplicateItem(user, url);
+            return UserItemParseServiceResult.Fail(ResourceKey.Dialog_DuplicateItem);
+        }
+        
         var shop = _shopRepository.GetByHost(url.Host);
 
         if (shop == null)

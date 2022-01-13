@@ -8,12 +8,12 @@ using PriceObserver.Dialog.Menus.Models;
 
 namespace PriceObserver.Dialog.Menus.Concrete.WriteToSupportMenu;
 
-public class WriteToSupportMenuHandler : IMenuInputHandler
+public class WriteToSupportMenuInputHandler : IMenuInputHandler
 {
     private readonly IUserActionLogger _userActionLogger;
     private readonly IResourceService _resourceService;
 
-    public WriteToSupportMenuHandler(
+    public WriteToSupportMenuInputHandler(
         IUserActionLogger userActionLogger,
         IResourceService resourceService)
     {
@@ -21,7 +21,7 @@ public class WriteToSupportMenuHandler : IMenuInputHandler
         _resourceService = resourceService;
     }
 
-    public MenuKey Type => MenuKey.Support;
+    public MenuKey Key => MenuKey.Support;
         
     public Task<MenuInputHandlingServiceResult> Handle(MessageDto message)
     {

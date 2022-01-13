@@ -38,7 +38,7 @@ public class MenuInputHandlerService : IMenuInputHandlerService
             return MenuInputHandlingServiceResult.Fail(ResourceKey.Dialog_IncorrectCommand);
         }
 
-        var handler = _handlers.Single(x => x.Type == menuKey);
+        var handler = _handlers.Single(x => x.Key == menuKey);
 
         return await handler.Handle(message);
     }
