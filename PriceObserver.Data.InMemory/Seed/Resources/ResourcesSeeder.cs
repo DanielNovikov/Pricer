@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Microsoft.Extensions.Caching.Memory;
 using PriceObserver.Data.InMemory.Models;
+using PriceObserver.Data.InMemory.Models.Enums.Cache;
 using PriceObserver.Data.InMemory.Seed.Resources.Seeders;
 
 namespace PriceObserver.Data.InMemory.Seed.Resources;
@@ -18,6 +19,6 @@ public class ResourcesSeeder
         MenuSeeder.Seed(resources);
         CommandsSeeder.Seed(resources);
 
-        cache.Set(nameof(Resource), resources);
+        cache.Set(CacheKey.Resources, resources);
     }
 }

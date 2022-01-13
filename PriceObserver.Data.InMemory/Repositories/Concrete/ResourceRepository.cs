@@ -3,6 +3,7 @@ using System.Linq;
 using Microsoft.Extensions.Caching.Memory;
 using PriceObserver.Data.InMemory.Models;
 using PriceObserver.Data.InMemory.Models.Enums;
+using PriceObserver.Data.InMemory.Models.Enums.Cache;
 using PriceObserver.Data.InMemory.Repositories.Abstract;
 
 namespace PriceObserver.Data.InMemory.Repositories.Concrete;
@@ -19,14 +20,14 @@ public class ResourceRepository : IResourceRepository
     public Resource GetByKey(ResourceKey key)
     {
         return _cache
-            .Get<List<Resource>>(nameof(Resource))
+            .Get<List<Resource>>(CacheKey.Resources)
             .Single(x => x.Key == key);
     }
 
     public Resource GetByValue(string value)
     {
         return _cache
-            .Get<List<Resource>>(nameof(Resource))
+            .Get<List<Resource>>(CacheKey.Resources)
             .SingleOrDefault(x => x.Value == value);
     }
 }

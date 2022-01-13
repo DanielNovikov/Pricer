@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Microsoft.Extensions.Caching.Memory;
 using PriceObserver.Data.InMemory.Models;
+using PriceObserver.Data.InMemory.Models.Enums.Cache;
 using PriceObserver.Data.InMemory.Seed.Dialog.Initializers.Common;
 using PriceObserver.Data.InMemory.Seed.Dialog.Initializers.HomeMenu;
 using PriceObserver.Data.InMemory.Seed.Dialog.Initializers.HomeMenu.Commands;
@@ -17,12 +18,14 @@ public class DialogSeeder
         var newItemMenu = NewItemMenuInitializer.Initialize(homeMenu);
         var supportMenu = SupportMenuInitializer.Initialize(homeMenu);
 
-        cache.Set(nameof(Menu), new List<Menu>
+        var menus = new List<Menu>
         {
             homeMenu,
             newItemMenu,
             supportMenu
-        });
+        }; 
+        
+        cache.Set(CacheKey.Menus, menus);
             
         var helpCommand = HelpCommandInitializer.Initialize(homeMenu);
         var addCommand = AddCommandInitializer.Initialize(homeMenu, newItemMenu);
@@ -32,8 +35,8 @@ public class DialogSeeder
         var writeToSupportCommand = WriteToSupportCommand.Initialize(homeMenu, supportMenu);
 
         var backCommand = BackCommandInitializer.Initialize();
-            
-        cache.Set(nameof(Command), new List<Command>
+
+        var commands = new List<Command>
         {
             helpCommand,
             addCommand,
@@ -42,6 +45,8 @@ public class DialogSeeder
             websiteCommand,
             writeToSupportCommand,
             backCommand
-        });
+        }; 
+        
+        cache.Set(CacheKey.Commands, commands);
     }
 }

@@ -3,6 +3,7 @@ using System.Linq;
 using Microsoft.Extensions.Caching.Memory;
 using PriceObserver.Data.InMemory.Models;
 using PriceObserver.Data.InMemory.Models.Enums;
+using PriceObserver.Data.InMemory.Models.Enums.Cache;
 using PriceObserver.Data.InMemory.Repositories.Abstract;
 
 namespace PriceObserver.Data.InMemory.Repositories.Concrete;
@@ -28,6 +29,6 @@ public class ShopRepository : IShopRepository
 
     public IList<Shop> GetAll()
     {
-        return _cache.Get<List<Shop>>(nameof(Shop));
+        return _cache.Get<List<Shop>>(CacheKey.Shops);
     }
 }

@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Caching.Memory;
 using PriceObserver.Data.InMemory.Models;
 using PriceObserver.Data.InMemory.Models.Enums;
+using PriceObserver.Data.InMemory.Models.Enums.Cache;
 
 namespace PriceObserver.Data.InMemory.Seed.Shops;
 
@@ -54,6 +55,6 @@ public class ShopsSeeder
                 "adidas.png"),
         };
                 
-        cache.Set(nameof(Shop), shops);
+        cache.Set(CacheKey.Shops, shops);
     }
 }
