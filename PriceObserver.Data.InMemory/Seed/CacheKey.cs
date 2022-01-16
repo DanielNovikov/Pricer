@@ -1,4 +1,4 @@
-﻿namespace PriceObserver.Data.InMemory.Models.Enums.Cache;
+﻿namespace PriceObserver.Data.InMemory.Seed;
 
 public enum CacheKey
 {

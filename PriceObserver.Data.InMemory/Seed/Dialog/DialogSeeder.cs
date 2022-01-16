@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using Microsoft.Extensions.Caching.Memory;
 using PriceObserver.Data.InMemory.Models;
-using PriceObserver.Data.InMemory.Models.Enums.Cache;
 using PriceObserver.Data.InMemory.Seed.Dialog.Initializers.Common;
 using PriceObserver.Data.InMemory.Seed.Dialog.Initializers.HomeMenu;
 using PriceObserver.Data.InMemory.Seed.Dialog.Initializers.HomeMenu.Commands;

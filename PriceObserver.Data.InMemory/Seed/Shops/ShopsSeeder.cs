@@ -2,7 +2,6 @@
 using Microsoft.Extensions.Caching.Memory;
 using PriceObserver.Data.InMemory.Models;
 using PriceObserver.Data.InMemory.Models.Enums;
-using PriceObserver.Data.InMemory.Models.Enums.Cache;
 
 namespace PriceObserver.Data.InMemory.Seed.Shops;
 
