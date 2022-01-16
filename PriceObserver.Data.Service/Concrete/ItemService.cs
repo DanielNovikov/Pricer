@@ -17,15 +17,18 @@ public class ItemService : IItemService
     private readonly IItemRepository _repository;
     private readonly IShopRepository _shopRepository;
     private readonly IItemPriceChangeRepository _priceChangeRepository;
+    private readonly IResourceService _resourceService;
         
     public ItemService(
         IItemRepository repository, 
         IShopRepository shopRepository,
-        IItemPriceChangeRepository priceChangeRepository)
+        IItemPriceChangeRepository priceChangeRepository,
+        IResourceService resourceService)
     {
         _repository = repository;
         _shopRepository = shopRepository;
         _priceChangeRepository = priceChangeRepository;
+        _resourceService = resourceService;
     }
 
     public async Task<IList<ShopVm>> GetGroupedByUserId(long userId)
@@ -49,11 +52,12 @@ public class ItemService : IItemService
             .ToList();
     }
 
-    private static ShopVm CreateShopVm(Shop shop, IList<Item> items)
+    private ShopVm CreateShopVm(Shop shop, IList<Item> items)
     {
         var address = $"https://{shop.Host}";
         var logoFileName = shop.LogoFileName;
-
+        var currencySign = _resourceService.Get(shop.Currency.Sign);
+        
         var itemVMs = items
             .Select(y =>
             {
@@ -61,7 +65,7 @@ public class ItemService : IItemService
                     ? y.PriceChanges
                         .Select(z =>
                         {
-                            var sign = z.NewPrice > z.OldPrice ? "📈" : "📉" ; 
+                            var sign = z.OldPrice < z.NewPrice ? "📈" : "📉" ; 
                                 
                             return $"{z.OldPrice} {sign}";
                         })
@@ -72,7 +76,7 @@ public class ItemService : IItemService
             })
             .ToList();
 
-        return new ShopVm(address, logoFileName, itemVMs);
+        return new ShopVm(address, logoFileName, currencySign, itemVMs);
     }
 
     public async Task UpdatePrice(Item item, int price)

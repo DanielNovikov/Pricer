@@ -14,11 +14,11 @@ public class BackgroundSeeder
             
         resources.Add(new Resource(
             ResourceKey.Background_ItemPriceWentDown,
-            "📉 Цена на <a href='{0}'>товар</a> снизилась до <b>{1}</b>"));
+            "📉 Цена на <a href='{0}'>товар</a> снизилась до <b>{1}</b>{2}"));
             
         resources.Add(new Resource(
             ResourceKey.Background_ItemPriceGrewUp,
-            "📈 Цена на <a href='{0}'>товар</a> повысилась до <b>{1}</b>"));
+            "📈 Цена на <a href='{0}'>товар</a> повысилась до <b>{1}</b>{2}"));
             
         resources.Add(new Resource(
             ResourceKey.Background_ItemPriceChanged,

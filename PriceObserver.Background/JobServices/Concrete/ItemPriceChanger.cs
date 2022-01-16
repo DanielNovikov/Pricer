@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Logging;
 using PriceObserver.Background.JobServices.Abstract;
 using PriceObserver.Data.InMemory.Models.Enums;
+using PriceObserver.Data.InMemory.Repositories.Abstract;
 using PriceObserver.Data.Models;
 using PriceObserver.Data.Service.Abstract;
 using PriceObserver.Telegram.Abstract;
@@ -15,19 +16,22 @@ public class ItemPriceChanger : IItemPriceChanger
     private readonly ILogger _logger;
     private readonly ITelegramBotService _telegramBotService;
     private readonly IItemParseResultService _parseResultService;
+    private readonly IShopRepository _shopRepository;
     
     public ItemPriceChanger(
         IResourceService resourceService, 
         IItemService itemService, 
         ILogger<ItemPriceChanger> logger, 
         ITelegramBotService telegramBotService, 
-        IItemParseResultService parseResultService)
+        IItemParseResultService parseResultService, 
+        IShopRepository shopRepository)
     {
         _resourceService = resourceService;
         _itemService = itemService;
         _logger = logger;
         _telegramBotService = telegramBotService;
         _parseResultService = parseResultService;
+        _shopRepository = shopRepository;
     }
 
     public async Task Change(Item item, int oldPrice, int newPrice)
@@ -37,9 +41,12 @@ public class ItemPriceChanger : IItemPriceChanger
         if (newPrice == oldPrice)
             return;
 
+        var shop = _shopRepository.GetByKey(item.ShopKey);
+        var currencyTitle = _resourceService.Get(shop.Currency.Title);
+        
         var priceMessage = newPrice < oldPrice
-            ? _resourceService.Get(ResourceKey.Background_ItemPriceWentDown, item.Url, newPrice)
-            : _resourceService.Get(ResourceKey.Background_ItemPriceGrewUp, item.Url, newPrice);
+            ? _resourceService.Get(ResourceKey.Background_ItemPriceWentDown, item.Url, newPrice, currencyTitle)
+            : _resourceService.Get(ResourceKey.Background_ItemPriceGrewUp, item.Url, newPrice, currencyTitle);
 
         LogChangedPrice(item, oldPrice, newPrice);
         await SendChangedPrice(item, priceMessage);

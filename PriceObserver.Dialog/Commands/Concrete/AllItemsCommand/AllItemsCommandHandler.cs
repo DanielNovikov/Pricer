@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using PriceObserver.Data.InMemory.Models.Enums;
+using PriceObserver.Data.InMemory.Repositories.Abstract;
 using PriceObserver.Data.Models;
 using PriceObserver.Data.Repositories.Abstract;
 using PriceObserver.Data.Service.Abstract;
@@ -17,15 +18,18 @@ public class AllItemsCommandHandler : ICommandHandler
     private readonly IItemRepository _itemRepository;
     private readonly IUserActionLogger _userActionLogger;
     private readonly IResourceService _resourceService;
+    private readonly IShopRepository _shopRepository;
         
     public AllItemsCommandHandler(
         IItemRepository itemRepository,
         IUserActionLogger userActionLogger, 
-        IResourceService resourceService)
+        IResourceService resourceService, 
+        IShopRepository shopRepository)
     {
         _itemRepository = itemRepository;
         _userActionLogger = userActionLogger;
         _resourceService = resourceService;
+        _shopRepository = shopRepository;
     }
 
     public CommandKey Type => CommandKey.AllItems; 
@@ -38,11 +42,24 @@ public class AllItemsCommandHandler : ICommandHandler
 
         if (!items.Any())
             return CommandHandlingServiceResult.Fail(ResourceKey.Dialog_EmptyCart);
-            
+
+        var shops = _shopRepository.GetAll();
+        
         var message = items
+            .Join(
+                shops,
+                x => x.ShopKey,
+                x => x.Key,
+                (i, s) => new
+                {
+                    Title = i.Title,
+                    Url = i.Url,
+                    Price = i.Price,
+                    CurrencyTitle = _resourceService.Get(s.Currency.Title)
+                })
             .Select(x =>
             {
-                var itemPriceMessage = _resourceService.Get(ResourceKey.Dialog_ItemInfo, x.Url, x.Price);
+                var itemPriceMessage = _resourceService.Get(ResourceKey.Dialog_ItemInfo, x.Url, x.Price, x.CurrencyTitle);
                 return $"{x.Title}{Environment.NewLine}{itemPriceMessage}";
             })
             .Aggregate((x, y) => $"{x}{Environment.NewLine}{Environment.NewLine}{y}");

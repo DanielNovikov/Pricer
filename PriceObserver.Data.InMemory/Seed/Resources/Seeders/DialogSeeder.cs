@@ -60,7 +60,7 @@ public class DialogSeeder
 
         resources.Add(new Resource(
             ResourceKey.Dialog_ItemInfo,
-            "Цена на <a href='{0}'>товар</a> <b>{1}</b>"));
+            "Цена на <a href='{0}'>товар</a> <b>{1}</b>{2}"));
 
         resources.Add(new Resource(
             ResourceKey.Dialog_AvailableShops,

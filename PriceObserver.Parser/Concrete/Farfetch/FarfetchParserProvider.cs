@@ -24,9 +24,7 @@ public class FarfetchParserProvider : IParserProvider
             .Substring(0, priceString.IndexOf(' '))
             .Replace(" ", string.Empty);
 
-        const int currency = 30;
-
-        return int.Parse(formattedPriceString) * currency;
+        return int.Parse(formattedPriceString);
     }
 
     public string GetTitle(IHtmlDocument document)

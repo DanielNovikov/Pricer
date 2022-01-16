@@ -2,4 +2,4 @@
 
 namespace PriceObserver.Data.InMemory.Models;
 
-public record Shop(string Name, ShopKey Key, string Host, string LogoFileName, Currency Currency);
+public record Currency(CurrencyKey Key, ResourceKey Title, ResourceKey Sign);

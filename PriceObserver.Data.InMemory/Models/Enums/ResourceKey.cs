@@ -52,5 +52,10 @@ public enum ResourceKey
     Command_Shops = 503,
     Command_Website = 504,
     Command_WriteToSupport = 505,
-    Command_Help = 506
+    Command_Help = 506,
+    
+    Currency_UAH_Title = 600,
+    Currency_EUR_Title = 601,
+    Currency_UAH_Sign = 602,
+    Currency_EUR_Sign = 603
 }
