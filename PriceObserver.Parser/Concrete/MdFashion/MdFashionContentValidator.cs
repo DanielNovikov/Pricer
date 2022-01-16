@@ -1,4 +1,4 @@
-﻿using System.Linq;
+﻿using AngleSharp.Dom;
 using AngleSharp.Html.Dom;
 using PriceObserver.Data.InMemory.Models.Enums;
 using PriceObserver.Parser.Abstract;
@@ -9,12 +9,17 @@ public class MdFashionContentValidator : IContentValidator
 {
     public ShopKey ProviderKey => ShopKey.MdFashion;
 
+    public bool IsAvailable(IHtmlDocument document)
+    {
+        const string selector = "div[data-status=not-available]";
+
+        return document.QuerySelector<IHtmlDivElement>(selector) is null;
+    }
+
     public bool IsPriceExists(IHtmlDocument document)
     {
-        return document.All
-            .Any(e => 
-                e.TagName.ToLower() == "span" &&
-                !string.IsNullOrEmpty(e.ClassName) &&
-                e.ClassName.Contains("price_current"));
+        const string selector = "span[class~=price_current]";
+        
+        return document.QuerySelector<IHtmlSpanElement>(selector) is not null;
     }
 }

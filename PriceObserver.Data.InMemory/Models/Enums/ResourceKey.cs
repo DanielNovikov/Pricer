@@ -35,6 +35,7 @@ public enum ResourceKey
         
     Parser_PageNotFound = 200,
     Parser_NoPriceOnPage = 202,
+    Parser_OutOfStock = 203,
         
     Background_ItemDeleted = 300,
     Background_ItemPriceWentDown = 301,

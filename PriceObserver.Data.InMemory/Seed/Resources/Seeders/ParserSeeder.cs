@@ -15,5 +15,9 @@ public class ParserSeeder
         resources.Add(new Resource(
             ResourceKey.Parser_NoPriceOnPage,
             "На странице нет цены"));
+        
+        resources.Add(new Resource(
+            ResourceKey.Parser_OutOfStock,
+            "Товара нет в наличии"));
     }
 }

@@ -9,6 +9,11 @@ public class AnswearContentValidator : IContentValidator
 {
     public ShopKey ProviderKey => ShopKey.Answear;
 
+    public bool IsAvailable(IHtmlDocument document)
+    {
+        return true;
+    }
+
     public bool IsPriceExists(IHtmlDocument document)
     {
         return document.All

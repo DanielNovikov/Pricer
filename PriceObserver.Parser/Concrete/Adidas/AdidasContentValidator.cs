@@ -8,7 +8,12 @@ namespace PriceObserver.Parser.Concrete.Adidas;
 public class AdidasContentValidator : IContentValidator
 {
     public ShopKey ProviderKey => ShopKey.Adidas;
-        
+
+    public bool IsAvailable(IHtmlDocument document)
+    {
+        return true;
+    }
+
     public bool IsPriceExists(IHtmlDocument document)
     {
         const string discountPriceSelector = "div.product__sidebar__inner > div > span.product__price--sale";

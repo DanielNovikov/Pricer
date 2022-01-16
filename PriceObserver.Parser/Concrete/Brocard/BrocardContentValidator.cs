@@ -8,7 +8,14 @@ namespace PriceObserver.Parser.Concrete.Brocard;
 public class BrocardContentValidator : IContentValidator
 {
     public ShopKey ProviderKey => ShopKey.Brocard;
-        
+
+    public bool IsAvailable(IHtmlDocument document)
+    {
+        const string selector = "div[class='stock unavailable']";
+
+        return document.QuerySelector<IHtmlDivElement>(selector) is null;
+    }
+
     public bool IsPriceExists(IHtmlDocument document)
     {
         const string selector = ".price-format > .price";
