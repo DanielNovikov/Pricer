@@ -58,5 +58,9 @@ public enum ResourceKey
     Currency_UAH_Title = 600,
     Currency_EUR_Title = 601,
     Currency_UAH_Sign = 602,
-    Currency_EUR_Sign = 603
+    Currency_EUR_Sign = 603,
+    
+    Api_NoHistory = 700,
+    Api_GrewUpSign = 701,
+    Api_WentDownSign = 702
 }

@@ -9,13 +9,13 @@ import {environment} from "../../../environments/environment";
 })
 export class ItemHttpService {
 
-  readonly groupedEndpoint: string = environment.baseUrl + "api/Item/grouped";
+  readonly getEndpoint: string = environment.baseUrl + "api/Item/";
   readonly deleteEndpoint: string = environment.baseUrl + "api/Item/";
 
   constructor(private http: HttpClient) { }
 
-  public getGrouped() : Observable<Shop[]> {
-    return this.http.get<Shop[]>(this.groupedEndpoint);
+  public get() : Observable<Shop[]> {
+    return this.http.get<Shop[]>(this.getEndpoint);
   }
 
   public delete(id: number) : Observable<object> {

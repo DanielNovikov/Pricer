@@ -1,16 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IdentityModel.Tokens.Jwt;
+﻿using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
-using System.Threading.Tasks;
 using Microsoft.IdentityModel.Tokens;
-using PriceObserver.Authentication.Abstract;
-using PriceObserver.Authentication.Models;
-using PriceObserver.Authentication.Options;
+using PriceObserver.Api.Services.Abstract;
+using PriceObserver.Api.Services.Models.Response;
+using PriceObserver.Api.Services.Models.Service;
+using PriceObserver.Api.Services.Options;
 using PriceObserver.Data.Repositories.Abstract;
 using PriceObserver.Data.Service.Abstract;
 
-namespace PriceObserver.Authentication.Concrete;
+namespace PriceObserver.Api.Services.Concrete;
 
 public class AuthenticationService : IAuthenticationService
 {

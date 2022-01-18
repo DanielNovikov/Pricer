@@ -18,6 +18,7 @@ public class ResourcesSeeder
         MenuSeeder.Seed(resources);
         CommandsSeeder.Seed(resources);
         CurrencySeeder.Seed(resources);
+        ApiSeeder.Seed(resources);
         
         cache.Set(CacheKey.Resources, resources);
     }

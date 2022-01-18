@@ -2,8 +2,9 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using PriceObserver.Authentication.Abstract;
-using PriceObserver.Authentication.Models;
+using PriceObserver.Api.Services.Abstract;
+using PriceObserver.Api.Services.Models;
+using PriceObserver.Api.Services.Models.Service;
 
 namespace PriceObserver.Controllers;
 
@@ -14,8 +15,7 @@ public class AuthenticationController : ControllerBase
 {
     private readonly IAuthenticationService _authenticationService;
 
-    public AuthenticationController(
-        IAuthenticationService authenticationService)
+    public AuthenticationController(IAuthenticationService authenticationService)
     {
         _authenticationService = authenticationService;
     }
@@ -27,13 +27,12 @@ public class AuthenticationController : ControllerBase
 
         if (!result.IsSuccess)
         {
-            switch (result.Error)
+            return result.Error switch
             {
-                case AuthenticationErrorStatus.TokenNotFound:
-                    return BadRequest();
-                case AuthenticationErrorStatus.TokenExpired:
-                    return Unauthorized();
-            }
+                AuthenticationErrorStatus.TokenNotFound => BadRequest(),
+                AuthenticationErrorStatus.TokenExpired => Unauthorized(),
+                _ => throw new ArgumentOutOfRangeException(nameof(result.Error))
+            };
         }
 
         return Ok(result.Result);

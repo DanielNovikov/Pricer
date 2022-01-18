@@ -24,7 +24,7 @@ export class HomeComponent implements OnInit {
     }
 
     this.itemHttpService
-      .getGrouped()
+      .get()
       .subscribe(data => {
         this.shops = data;
       });

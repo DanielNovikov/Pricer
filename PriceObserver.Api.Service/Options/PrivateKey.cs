@@ -1,7 +1,7 @@
 ﻿using System.Text;
 using Microsoft.IdentityModel.Tokens;
 
-namespace PriceObserver.Authentication.Options;
+namespace PriceObserver.Api.Services.Options;
 
 public class PrivateKey
 {

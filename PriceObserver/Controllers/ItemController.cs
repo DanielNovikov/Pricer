@@ -1,38 +1,32 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using PriceObserver.Api.Services.Abstract;
+using PriceObserver.Api.Services.Models.Response;
 using PriceObserver.Controllers.Base;
-using PriceObserver.Data.Repositories.Abstract;
-using PriceObserver.Data.Service.Abstract;
 
 namespace PriceObserver.Controllers;
 
 public class ItemController : AuthorizedControllerBase
 {
-    private readonly IItemService _itemService;
+    private readonly IApiItemService _itemService;
 
-    public ItemController(
-        IItemService itemService, 
-        IUserRepository userRepository) 
-        : base(userRepository)
+    public ItemController(IApiItemService itemService)
     {
         _itemService = itemService;
     }
 
-    [HttpGet("grouped")]
-    public async Task<IActionResult> GetGroupedByUserId()
+    [HttpGet]
+    public async Task<IList<ShopVm>> Get()
     {
         var userId = GetUserId();
-        var result = await _itemService.GetGroupedByUserId(userId);
-            
-        return Ok(result);
+        return await _itemService.GetByUserId(userId);
     }
 
     [HttpDelete("{id:int}")]
-    public async Task<IActionResult> Delete(int id)
+    public async Task Delete(int id)
     {
         var userId = GetUserId();
         await _itemService.Delete(id, userId);
-            
-        return NoContent();
     }
 }

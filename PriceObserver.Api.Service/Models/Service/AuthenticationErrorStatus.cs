@@ -1,4 +1,4 @@
-﻿namespace PriceObserver.Authentication.Models;
+﻿namespace PriceObserver.Api.Services.Models.Service;
 
 public enum AuthenticationErrorStatus
 {

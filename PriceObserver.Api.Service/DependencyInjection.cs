@@ -1,14 +1,23 @@
 ﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
-using PriceObserver.Authentication.Abstract;
-using PriceObserver.Authentication.Concrete;
-using PriceObserver.Authentication.Options;
+using PriceObserver.Api.Services.Abstract;
+using PriceObserver.Api.Services.Concrete;
+using PriceObserver.Api.Services.Options;
 
-namespace PriceObserver.Authentication;
+namespace PriceObserver.Api.Services;
 
 public static class DependencyInjection
 {
+    public static void AddApiServices(this IServiceCollection services)
+    {
+        services.AddTransient<IApiItemService, ApiItemService>();
+        services.AddTransient<IShopVmBuilder, ShopVmBuilder>();
+        services.AddScoped<IPriceChangesStringBuilder, PriceChangesStringBuilder>();
+        
+        services.AddTransient<IAuthenticationService, AuthenticationService>();
+    }
+     
     public static void AddJwtAuthentication(this IServiceCollection services)
     {
         services
@@ -24,10 +33,5 @@ public static class DependencyInjection
                     IssuerSigningKey = PrivateKey.GetSymmetricSecurityKey()
                 };
             });
-    }
-
-    public static void AddAuthenticationServices(this IServiceCollection services)
-    {
-        services.AddTransient<IAuthenticationService, AuthenticationService>();
     }
 }

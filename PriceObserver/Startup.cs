@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using PriceObserver.Authentication;
+using PriceObserver.Api.Services;
 using PriceObserver.Background;
 using PriceObserver.Data;
 using PriceObserver.Data.InMemory;
@@ -27,10 +27,11 @@ public class Startup
     public void ConfigureServices(IServiceCollection services)
     {       
         services.AddControllersWithViews();
+        
         services.AddSpaStaticFiles(configuration => { configuration.RootPath = "wwwroot"; });
             
+        services.AddApiServices();
         services.AddJwtAuthentication();
-        services.AddAuthenticationServices();
             
         services.AddTelegramBot(_configuration);
         services.AddTelegramDialogServices(_configuration);
