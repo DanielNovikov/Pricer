@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {ItemHttpService} from "../../shared/services/item-http.service";
 import {Shop} from "../../shared/models/shop";
 import {Router} from "@angular/router";
+import {Subject} from "rxjs";
 
 @Component({
   selector: 'app-home',
@@ -10,6 +11,9 @@ import {Router} from "@angular/router";
 })
 export class HomeComponent implements OnInit {
 
+  dataLoaded: Subject<void> = new Subject<void>();
+
+  showData: boolean = false;
   shops: Shop[] | [];
 
   constructor(
@@ -26,7 +30,12 @@ export class HomeComponent implements OnInit {
     this.itemHttpService
       .get()
       .subscribe(data => {
-        this.shops = data;
+        this.dataLoaded.next();
+
+        setTimeout(() => {
+          this.shops = data;
+          this.showData = true;
+        });
       });
   }
 

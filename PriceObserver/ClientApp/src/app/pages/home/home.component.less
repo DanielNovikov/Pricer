@@ -2,42 +2,15 @@
   font-family: 'Source Sans Pro', sans-serif;
 }
 
-.no-items-container {
-  background: white;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-  width: 510px;
-  padding: 30px 50px;
-  text-align: center;
-  color: #0d0d0d;
+.data-container {
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s, opacity 1s linear;
+}
 
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-
-  & > img {
-    width: 350px;
-  }
-
-  & > p {
-    margin: 0 0 4px;
-    font-size: 19px;
-  }
-
-  & > small {
-    top: 8px;
-    font-size: 14px;
-
-    & > a {
-      color: #0d0d0d;
-      font-weight: bold;
-      text-decoration: none;
-
-      &:visited {
-        color: #0d0d0d;
-      }
-    }
-  }
+.show {
+  visibility: visible;
+  opacity: 1;
 }
 
 .logout {
@@ -72,24 +45,6 @@
 @min310: ~"(min-width: 310px) and (max-width: 400px)";
 
 @media @min768 {
-  .no-items-container {
-    width: 460px;
-    margin: auto;
-    padding: 27px 45px;
-
-    & > img {
-      width: 320px;
-    }
-
-    & > p {
-      margin: 0 0 3px;
-      font-size: 17px;
-    }
-
-    & > small {
-      font-size: 13px;
-    }
-  }
 
   .logout {
     padding: 10px;
@@ -108,24 +63,6 @@
 }
 
 @media @min530 {
-  .no-items-container {
-    width: 340px;
-    margin: auto;
-    padding: 23px 48px;
-
-    & > img {
-      width: 250px;
-    }
-
-    & > p {
-      margin: 0 0 3px;
-      font-size: 16px;
-    }
-
-    & > small {
-      font-size: 12px;
-    }
-  }
 
   .logout {
     padding: 9px;
@@ -144,24 +81,6 @@
 }
 
 @media @min450 {
-  .no-items-container {
-    width: 310px;
-    margin: auto;
-    padding: 21px 35px;
-
-    & > img {
-      width: 210px;
-    }
-
-    & > p {
-      margin: 0 0 3px;
-      font-size: 15px;
-    }
-
-    & > small {
-      font-size: 12px;
-    }
-  }
 
   .logout {
     padding: 9px;
@@ -180,24 +99,6 @@
 }
 
 @media @min400 {
-  .no-items-container {
-    width: 290px;
-    margin: auto;
-    padding: 18px 25px;
-
-    & > img {
-      width: 190px;
-    }
-
-    & > p {
-      margin: 0 0 2px;
-      font-size: 14px;
-    }
-
-    & > small {
-      font-size: 11px;
-    }
-  }
 
   .logout {
     padding: 8px;
@@ -216,24 +117,6 @@
 }
 
 @media @min310 {
-  .no-items-container {
-    width: 225px;
-    margin: auto;
-    padding: 16px 21px;
-
-    & > img {
-      width: 180px;
-    }
-
-    & > p {
-      margin: 0 0 4px;
-      font-size: 13px;
-    }
-
-    & > small {
-      font-size: 11px;
-    }
-  }
 
   .logout {
     padding: 7px;
