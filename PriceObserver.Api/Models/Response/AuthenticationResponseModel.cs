@@ -1,3 +1,3 @@
-﻿namespace PriceObserver.Api.Services.Models.Response;
+﻿namespace PriceObserver.Api.Models.Response;
 
 public record AuthenticationResponseModel(string AccessToken);

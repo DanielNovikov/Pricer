@@ -3,11 +3,11 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
+using PriceObserver.Api.Extensions;
 using PriceObserver.Api.Services.Abstract;
 using PriceObserver.Api.Services.Concrete;
-using PriceObserver.Api.Services.Extensions;
 
-namespace PriceObserver.Api.Services;
+namespace PriceObserver.Api;
 
 public static class DependencyInjection
 {

@@ -1,11 +1,9 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using PriceObserver.Api.Controllers.Base;
+using PriceObserver.Api.Models.Response;
 using PriceObserver.Api.Services.Abstract;
-using PriceObserver.Api.Services.Models.Response;
-using PriceObserver.Controllers.Base;
 
-namespace PriceObserver.Controllers;
+namespace PriceObserver.Api.Controllers;
 
 public class ItemController : AuthorizedControllerBase
 {

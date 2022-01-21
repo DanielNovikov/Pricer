@@ -21,7 +21,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PriceObserver.Common", "Pri
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PriceObserver.Data.InMemory", "PriceObserver.Data.InMemory\PriceObserver.Data.InMemory.csproj", "{24B05EBB-F8C3-478B-8861-86C78090D01A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PriceObserver.Api.Service", "PriceObserver.Api.Service\PriceObserver.Api.Service.csproj", "{2EE19CAA-A5DA-4BFD-85F0-0AA8084C6477}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PriceObserver.Api", "PriceObserver.Api\PriceObserver.Api.csproj", "{2EE19CAA-A5DA-4BFD-85F0-0AA8084C6477}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

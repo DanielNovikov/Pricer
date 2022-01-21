@@ -1,5 +1,5 @@
-﻿using PriceObserver.Api.Services.Abstract;
-using PriceObserver.Api.Services.Models.Response;
+﻿using PriceObserver.Api.Models.Response;
+using PriceObserver.Api.Services.Abstract;
 using PriceObserver.Data.InMemory.Repositories.Abstract;
 using PriceObserver.Data.Repositories.Abstract;
 

@@ -4,7 +4,7 @@ EXPOSE 5000
 WORKDIR /app/backend
 
 COPY PriceObserver/PriceObserver.csproj ./PriceObserver/PriceObserver.csproj
-COPY PriceObserver.Api.Service/PriceObserver.Api.Service.csproj ./PriceObserver.Api.Service/PriceObserver.Api.Service.csproj
+COPY PriceObserver.Api/PriceObserver.Api.csproj ./PriceObserver.Api/PriceObserver.Api.csproj
 COPY PriceObserver.Background/PriceObserver.Background.csproj ./PriceObserver.Background/PriceObserver.Background.csproj
 COPY PriceObserver.Common/PriceObserver.Common.csproj ./PriceObserver.Common/PriceObserver.Common.csproj
 COPY PriceObserver.Data/PriceObserver.Data.csproj ./PriceObserver.Data/PriceObserver.Data.csproj

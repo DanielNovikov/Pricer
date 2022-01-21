@@ -1,9 +1,8 @@
-﻿using System.Linq;
-using System.Security.Claims;
+﻿using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace PriceObserver.Controllers.Base;
+namespace PriceObserver.Api.Controllers.Base;
 
 [Authorize]
 [Route("api/[controller]")]

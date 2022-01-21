@@ -3,10 +3,10 @@ using System.Security.Claims;
 using System.Text;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
+using PriceObserver.Api.Extensions;
+using PriceObserver.Api.Models.Response;
+using PriceObserver.Api.Models.Service;
 using PriceObserver.Api.Services.Abstract;
-using PriceObserver.Api.Services.Extensions;
-using PriceObserver.Api.Services.Models.Response;
-using PriceObserver.Api.Services.Models.Service;
 using PriceObserver.Data.Repositories.Abstract;
 using PriceObserver.Data.Service.Abstract;
 

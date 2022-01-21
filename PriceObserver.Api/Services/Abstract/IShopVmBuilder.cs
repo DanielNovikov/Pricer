@@ -1,4 +1,4 @@
-﻿using PriceObserver.Api.Services.Models.Response;
+﻿using PriceObserver.Api.Models.Response;
 using PriceObserver.Data.InMemory.Models;
 using PriceObserver.Data.Models;
 

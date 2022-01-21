@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace PriceObserver.Controllers;
+namespace PriceObserver.Api.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]

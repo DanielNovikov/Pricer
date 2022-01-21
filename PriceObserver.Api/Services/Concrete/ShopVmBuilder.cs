@@ -1,5 +1,5 @@
-﻿using PriceObserver.Api.Services.Abstract;
-using PriceObserver.Api.Services.Models.Response;
+﻿using PriceObserver.Api.Models.Response;
+using PriceObserver.Api.Services.Abstract;
 using PriceObserver.Data.InMemory.Models;
 using PriceObserver.Data.InMemory.Models.Enums;
 using PriceObserver.Data.Models;

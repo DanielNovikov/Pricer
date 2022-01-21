@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using PriceObserver.Api.Services;
+using PriceObserver.Api;
 using PriceObserver.Background;
 using PriceObserver.Data;
 using PriceObserver.Data.InMemory;

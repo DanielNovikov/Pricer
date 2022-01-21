@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 
-namespace PriceObserver.Api.Services.Extensions;
+namespace PriceObserver.Api.Extensions;
 
 public static class ConfigurationExtensions
 {
