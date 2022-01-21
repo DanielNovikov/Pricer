@@ -14,7 +14,7 @@ public class AdidasContentValidator : IContentValidator
         return true;
     }
 
-    public bool IsPriceExists(IHtmlDocument document)
+    public bool HasItemInfo(IHtmlDocument document)
     {
         const string discountPriceSelector = "div.product__sidebar__inner > div > span.product__price--sale";
         const string fullPriceSelector = "div.product__sidebar__inner > div > span.product__price--first";

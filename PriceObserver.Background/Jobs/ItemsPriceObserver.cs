@@ -25,7 +25,7 @@ public class ItemsPriceObserver : IHostedService
             {
                 using var scope = _serviceProvider.CreateScope();
 
-                var itemsPriceService = scope.GetService<IItemsPriceService>();
+                var itemsPriceService = scope.GetService<IItemsPriceObserverService>();
                 await itemsPriceService.Observe();
                     
                 await Task.Delay(TimeSpan.FromHours(2), cancellationToken);

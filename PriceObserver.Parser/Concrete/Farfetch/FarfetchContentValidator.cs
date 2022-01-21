@@ -11,10 +11,12 @@ public class FarfetchContentValidator : IContentValidator
 
     public bool IsAvailable(IHtmlDocument document)
     {
-        return true;
+        const string selector = "div[data-tstid=outOfStock]";
+
+        return document.QuerySelector<IHtmlDivElement>(selector) is null;
     }
 
-    public bool IsPriceExists(IHtmlDocument document)
+    public bool HasItemInfo(IHtmlDocument document)
     {
         const string discountPriceSelector = "span[data-tstid=priceInfo-onsale]";
         const string fullPriceSelector = "span[data-tstid=priceInfo-original]";

@@ -34,7 +34,7 @@ public enum ResourceKey
     UserAction_TriedToAddUnsupportedShop = 114,
         
     Parser_PageNotFound = 200,
-    Parser_NoPriceOnPage = 202,
+    Parser_NoItemInfoOnPage = 202,
     Parser_OutOfStock = 203,
         
     Background_ItemDeleted = 300,

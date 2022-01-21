@@ -16,7 +16,7 @@ public class MakeupContentValidator : IContentValidator
         return document.QuerySelector<IHtmlLinkElement>(selector) is null;
     }
 
-    public bool IsPriceExists(IHtmlDocument document)
+    public bool HasItemInfo(IHtmlDocument document)
     {
         const string selector = "span[itemprop=price]";
         

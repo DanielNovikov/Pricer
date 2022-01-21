@@ -16,7 +16,7 @@ public class IntertopContentValidator : IContentValidator
         return document.QuerySelector<IHtmlElement>(selector) is null;
     }
 
-    public bool IsPriceExists(IHtmlDocument document)
+    public bool HasItemInfo(IHtmlDocument document)
     {
         const string selector = "span[class=price-contain]";
 

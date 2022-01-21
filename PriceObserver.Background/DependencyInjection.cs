@@ -13,7 +13,7 @@ public static class DependencyInjection
         services.AddHostedService<TelegramUpdateReceiverJob>();
         services.AddHostedService<AppNotificationsSender>();
 
-        services.AddTransient<IItemsPriceService, ItemsPriceService>();
+        services.AddTransient<IItemsPriceObserverService, ItemsPriceObserverService>();
         services.AddTransient<IItemPriceChanger, ItemPriceChanger>();
         services.AddTransient<IItemRemovalService, ItemRemovalService>();
     }

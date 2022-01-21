@@ -16,7 +16,7 @@ public class BrocardContentValidator : IContentValidator
         return document.QuerySelector<IHtmlDivElement>(selector) is null;
     }
 
-    public bool IsPriceExists(IHtmlDocument document)
+    public bool HasItemInfo(IHtmlDocument document)
     {
         const string selector = ".price-format > .price";
         

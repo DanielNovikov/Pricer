@@ -13,11 +13,11 @@ public class ParserSeeder
             "Страница не найдена"));
             
         resources.Add(new Resource(
-            ResourceKey.Parser_NoPriceOnPage,
-            "На странице нет цены"));
+            ResourceKey.Parser_NoItemInfoOnPage,
+            "На странице нет информации о товаре"));
         
         resources.Add(new Resource(
             ResourceKey.Parser_OutOfStock,
-            "Товара нет в наличии"));
+            "Нет в наличии"));
     }
 }

@@ -11,7 +11,7 @@ using PriceObserver.Parser.Models;
 
 namespace PriceObserver.Background.JobServices.Concrete;
 
-public class ItemsPriceService : IItemsPriceService
+public class ItemsPriceObserverService : IItemsPriceObserverService
 {
     private readonly IItemRepository _itemRepository;
     private readonly IParser _parser;
@@ -21,14 +21,14 @@ public class ItemsPriceService : IItemsPriceService
     private readonly IItemRemovalService _itemRemovalService;
     private readonly ILogger _logger;
 
-    public ItemsPriceService(
+    public ItemsPriceObserverService(
         IItemRepository itemRepository,
         IParser parser,
         IItemPriceChanger itemPriceChanger,
         IItemParseResultRepository parseResultRepository,
         IItemParseResultService parseResultService,
         IItemRemovalService itemRemovalService,
-        ILogger<ItemsPriceService> logger)
+        ILogger<ItemsPriceObserverService> logger)
     {
         _itemRepository = itemRepository;
         _parser = parser;
@@ -52,7 +52,7 @@ public class ItemsPriceService : IItemsPriceService
                 if (!parsedItemResult.IsSuccess)
                 {
                     await DeleteItem(item, parsedItemResult.Error);
-                    return;
+                    break;
                 }
 
                 await ObservePrice(item, parsedItemResult.Result);

@@ -23,8 +23,8 @@ public class ContentValidatorService : IContentValidatorService
         if (!contentValidator.IsAvailable(document))
             return ContentValidatorResult.OutOfStock(); 
         
-        if (!contentValidator.IsPriceExists(document))
-            return ContentValidatorResult.PriceDoesNotExist();
+        if (!contentValidator.HasItemInfo(document))
+            return ContentValidatorResult.NoItemInfo();
 
         return ContentValidatorResult.Success();
     }

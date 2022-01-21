@@ -10,8 +10,8 @@ public class ContentValidatorResult : ServiceResult<ContentValidatorResult, stri
         return Fail(ResourceKey.Parser_OutOfStock);
     }
     
-    public static ContentValidatorResult PriceDoesNotExist()
+    public static ContentValidatorResult NoItemInfo()
     {
-        return Fail(ResourceKey.Parser_NoPriceOnPage);
+        return Fail(ResourceKey.Parser_NoItemInfoOnPage);
     }
 }

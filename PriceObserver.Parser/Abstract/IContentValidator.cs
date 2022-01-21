@@ -9,5 +9,5 @@ public interface IContentValidator
 
     bool IsAvailable(IHtmlDocument document);
     
-    bool IsPriceExists(IHtmlDocument document);
+    bool HasItemInfo(IHtmlDocument document);
 }

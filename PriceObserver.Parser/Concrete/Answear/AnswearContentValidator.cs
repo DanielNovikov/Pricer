@@ -14,7 +14,7 @@ public class AnswearContentValidator : IContentValidator
         return true;
     }
 
-    public bool IsPriceExists(IHtmlDocument document)
+    public bool HasItemInfo(IHtmlDocument document)
     {
         return document.All
             .Any(e => 

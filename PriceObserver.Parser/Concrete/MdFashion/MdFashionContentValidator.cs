@@ -16,7 +16,7 @@ public class MdFashionContentValidator : IContentValidator
         return document.QuerySelector<IHtmlDivElement>(selector) is null;
     }
 
-    public bool IsPriceExists(IHtmlDocument document)
+    public bool HasItemInfo(IHtmlDocument document)
     {
         const string selector = "span[class~=price_current]";
         
