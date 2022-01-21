@@ -31,8 +31,8 @@ public class Startup
         services.AddSpaStaticFiles(configuration => { configuration.RootPath = "wwwroot"; });
             
         services.AddApiServices();
-        services.AddJwtAuthentication();
-            
+        services.AddJwtAuthentication(_configuration);
+        
         services.AddTelegramBot(_configuration);
         services.AddTelegramDialogServices(_configuration);
         services.AddParserServices();
