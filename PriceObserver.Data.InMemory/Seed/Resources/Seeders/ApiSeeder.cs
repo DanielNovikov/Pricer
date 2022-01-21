@@ -12,5 +12,7 @@ public class ApiSeeder
         
         resources.Add(new Resource(ResourceKey.Api_GrewUpSign, "📈"));
         resources.Add(new Resource(ResourceKey.Api_WentDownSign, "📉"));
+        
+        resources.Add(new Resource(ResourceKey.Api_UrlTemplate, "https://{0}"));
     }
 }

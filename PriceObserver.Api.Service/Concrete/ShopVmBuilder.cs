@@ -22,7 +22,7 @@ public class ShopVmBuilder : IShopVmBuilder
 
     public ShopVm Build(Shop shop, IList<Item> items)
     {
-        var address = $"https://{shop.Host}";
+        var address = _resourceService.Get(ResourceKey.Api_UrlTemplate, shop.Host);
         var logoFileName = shop.LogoFileName;
         var currencySign = _resourceService.Get(shop.Currency.Sign);
         
