@@ -4,10 +4,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using PriceObserver.Data.InMemory.Models.Enums;
 using PriceObserver.Data.InMemory.Repositories.Abstract;
-using PriceObserver.Dialog.Common.Abstract;
-using PriceObserver.Dialog.Input.Models;
 using PriceObserver.Dialog.Menus.Abstract;
 using PriceObserver.Dialog.Menus.Models;
+using PriceObserver.Dialog.Services.Abstract;
+using PriceObserver.Dialog.Services.Models;
 
 namespace PriceObserver.Dialog.Menus.Concrete;
 
@@ -27,7 +27,7 @@ public class MenuInputHandlerService : IMenuInputHandlerService
         _menuRepository = menuRepository;
     }
 
-    public async Task<MenuInputHandlingServiceResult> Handle(MessageDto message)
+    public async Task<MenuInputHandlingServiceResult> Handle(MessageServiceModel message)
     {
         var menuKey = message.User.MenuKey;
         var menu = _menuRepository.GetByKey(menuKey);

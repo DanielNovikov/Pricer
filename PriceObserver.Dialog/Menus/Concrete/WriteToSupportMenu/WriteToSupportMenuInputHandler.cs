@@ -1,10 +1,10 @@
 ﻿using System.Threading.Tasks;
 using PriceObserver.Data.InMemory.Models.Enums;
 using PriceObserver.Data.Service.Abstract;
-using PriceObserver.Dialog.Common.Abstract;
-using PriceObserver.Dialog.Input.Models;
 using PriceObserver.Dialog.Menus.Abstract;
 using PriceObserver.Dialog.Menus.Models;
+using PriceObserver.Dialog.Services.Abstract;
+using PriceObserver.Dialog.Services.Models;
 
 namespace PriceObserver.Dialog.Menus.Concrete.WriteToSupportMenu;
 
@@ -23,7 +23,7 @@ public class WriteToSupportMenuInputHandler : IMenuInputHandler
 
     public MenuKey Key => MenuKey.Support;
         
-    public Task<MenuInputHandlingServiceResult> Handle(MessageDto message)
+    public Task<MenuInputHandlingServiceResult> Handle(MessageServiceModel message)
     {
         _userActionLogger.LogWriteToSupport(message.User, message.Text);
 

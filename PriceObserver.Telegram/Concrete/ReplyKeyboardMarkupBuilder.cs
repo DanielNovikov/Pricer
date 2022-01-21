@@ -1,5 +1,5 @@
 ﻿using System.Linq;
-using PriceObserver.Dialog.Common.Models;
+using PriceObserver.Dialog.Services.Models;
 using PriceObserver.Telegram.Abstract;
 using Telegram.Bot.Types.ReplyMarkups;
 

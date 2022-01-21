@@ -1,16 +1,16 @@
-﻿using PriceObserver.Dialog.Input.Models;
+﻿using PriceObserver.Dialog.Services.Models;
 using Telegram.Bot.Types;
 
 namespace PriceObserver.Telegram.Extensions;
 
 public static class UpdateExtensions
 {
-    public static UpdateDto ToDto(this Update update)
+    public static UpdateServiceModel ToDto(this Update update)
     {
         var message = update.Message;
         var chat = message.Chat;
             
-        return new UpdateDto(
+        return new UpdateServiceModel(
             message.Text,
             chat.Id,
             chat.Username,

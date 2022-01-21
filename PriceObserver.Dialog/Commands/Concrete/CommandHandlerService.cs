@@ -8,9 +8,9 @@ using PriceObserver.Data.Models;
 using PriceObserver.Data.Service.Abstract;
 using PriceObserver.Dialog.Commands.Abstract;
 using PriceObserver.Dialog.Commands.Models;
-using PriceObserver.Dialog.Common.Abstract;
-using PriceObserver.Dialog.Input.Models;
 using PriceObserver.Dialog.Menus.Abstract;
+using PriceObserver.Dialog.Services.Abstract;
+using PriceObserver.Dialog.Services.Models;
 
 namespace PriceObserver.Dialog.Commands.Concrete;
 
@@ -36,7 +36,7 @@ public class CommandHandlerService : ICommandHandlerService
         _menuRepository = menuRepository;
     }
 
-    public async Task<CommandHandlingServiceResult> Handle(Command command, MessageDto message)
+    public async Task<CommandHandlingServiceResult> Handle(Command command, MessageServiceModel message)
     {
         var user = message.User;
         var menu = _menuRepository.GetByKey(user.MenuKey);

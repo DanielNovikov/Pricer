@@ -5,10 +5,10 @@ using PriceObserver.Data.InMemory.Repositories.Abstract;
 using PriceObserver.Data.Models;
 using PriceObserver.Data.Repositories.Abstract;
 using PriceObserver.Data.Service.Abstract;
-using PriceObserver.Dialog.Common.Abstract;
-using PriceObserver.Dialog.Input.Models;
 using PriceObserver.Dialog.Menus.Abstract;
 using PriceObserver.Dialog.Menus.Models;
+using PriceObserver.Dialog.Services.Abstract;
+using PriceObserver.Dialog.Services.Models;
 using PriceObserver.Parser.Abstract;
 
 namespace PriceObserver.Dialog.Menus.Concrete.NewItemMenu;
@@ -31,7 +31,7 @@ public class NewItemMenuHandler : IMenuInputHandler
 
     public MenuKey Key => MenuKey.NewItem;
         
-    public async Task<MenuInputHandlingServiceResult> Handle(MessageDto message)
+    public async Task<MenuInputHandlingServiceResult> Handle(MessageServiceModel message)
     {
         var urlExtractionResult = _urlExtractor.Extract(message.Text);
 

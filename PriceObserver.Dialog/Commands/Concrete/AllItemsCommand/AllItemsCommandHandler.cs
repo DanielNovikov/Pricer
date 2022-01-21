@@ -8,8 +8,8 @@ using PriceObserver.Data.Repositories.Abstract;
 using PriceObserver.Data.Service.Abstract;
 using PriceObserver.Dialog.Commands.Abstract;
 using PriceObserver.Dialog.Commands.Models;
-using PriceObserver.Dialog.Common.Abstract;
-using PriceObserver.Dialog.Common.Models;
+using PriceObserver.Dialog.Services.Abstract;
+using PriceObserver.Dialog.Services.Models;
 
 namespace PriceObserver.Dialog.Commands.Concrete.AllItemsCommand;
 
