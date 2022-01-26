@@ -9,6 +9,9 @@ import {Shop} from "../../shared/models/shop";
 })
 export class ItemsComponent implements OnInit {
 
+  modalImageVisible: boolean;
+  modalImageSrc: string;
+
   @Input() shops: Shop[] | [];
   @Output() shopsChange = new EventEmitter<Shop[]>();
 
@@ -32,5 +35,14 @@ export class ItemsComponent implements OnInit {
 
         shop.items = shop.items.filter(x => x.id !== id);
       });
+  }
+
+  showModalImage(src: string): void {
+    this.modalImageVisible = true;
+    this.modalImageSrc = src;
+  }
+
+  closeModalImage(): void {
+    this.modalImageVisible = false;
   }
 }

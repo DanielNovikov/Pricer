@@ -12,7 +12,7 @@
       <div class="item-container" *ngFor="let item of shop.items">
         <div class="image-container">
           <span class="delete-button" (click)="remove(item.id!)">
-            <img src="assets/images/trash.png">
+            <img src="assets/images/trash.png" />
           </span>
 
           <div class="price-container">
@@ -28,7 +28,7 @@
             </a>
           </div>
 
-          <img src="{{item.imageUrl}}">
+          <img (click)="showModalImage(item.imageUrl!)" src="{{item.imageUrl}}" alt="{{item.title}}" />
         </div>
 
         <div class="title-container">
@@ -38,4 +38,12 @@
     </div>
 
   </div>
+</div>
+
+<div class="image-modal-container" [ngClass]="modalImageVisible ? 'show-modal' : ''" (click)="closeModalImage()">
+
+  <span (click)="closeModalImage()">&times;</span>
+
+  <img [src]="modalImageSrc" />
+
 </div>
