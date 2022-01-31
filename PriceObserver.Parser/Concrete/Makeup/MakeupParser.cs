@@ -6,7 +6,7 @@ using PriceObserver.Parser.Abstract;
 
 namespace PriceObserver.Parser.Concrete.Makeup;
 
-public class MakeupParserProvider : IParserProvider
+public class MakeupParser : IParserProvider
 {
     public ShopKey ProviderKey => ShopKey.Makeup;
         

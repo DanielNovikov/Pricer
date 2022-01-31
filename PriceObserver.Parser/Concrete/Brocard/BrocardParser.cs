@@ -7,7 +7,7 @@ using PriceObserver.Parser.Abstract;
 
 namespace PriceObserver.Parser.Concrete.Brocard;
 
-public class BrocardParserProvider : IParserProvider
+public class BrocardParser : IParserProvider
 {
     public ShopKey ProviderKey => ShopKey.Brocard;
 

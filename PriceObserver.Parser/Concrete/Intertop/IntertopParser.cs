@@ -7,7 +7,7 @@ using PriceObserver.Parser.Abstract;
 
 namespace PriceObserver.Parser.Concrete.Intertop;
 
-public class IntertopParserProvider : IParserProvider
+public class IntertopParser : IParserProvider
 {
     public ShopKey ProviderKey => ShopKey.Intertop;
 

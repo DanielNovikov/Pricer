@@ -7,7 +7,7 @@ using PriceObserver.Parser.Abstract;
 
 namespace PriceObserver.Parser.Concrete.Answear;
 
-public class AnswearParserProvider : IParserProvider
+public class AnswearParser : IParserProvider
 {
     public ShopKey ProviderKey => ShopKey.Answear;
 

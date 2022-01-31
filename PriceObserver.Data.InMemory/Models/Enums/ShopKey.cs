@@ -8,5 +8,6 @@ public enum ShopKey
     Brocard,
     Farfetch,
     Makeup,
-    Adidas
+    Adidas,
+    Rozetka
 }

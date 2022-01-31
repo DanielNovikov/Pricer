@@ -7,7 +7,7 @@ using PriceObserver.Parser.Abstract;
 
 namespace PriceObserver.Parser.Concrete.MdFashion;
 
-public class MdFashionParserProvider : IParserProvider
+public class MdFashionParser : IParserProvider
 {
     public ShopKey ProviderKey => ShopKey.MdFashion;
 

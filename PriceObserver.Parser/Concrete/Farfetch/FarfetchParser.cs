@@ -6,7 +6,7 @@ using PriceObserver.Parser.Abstract;
 
 namespace PriceObserver.Parser.Concrete.Farfetch;
 
-public class FarfetchParserProvider : IParserProvider
+public class FarfetchParser : IParserProvider
 {
     public ShopKey ProviderKey => ShopKey.Farfetch;
         

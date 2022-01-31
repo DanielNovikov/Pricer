@@ -69,6 +69,13 @@ public class ShopsSeeder
                 "www.adidas.ua",
                 "adidas.png",
                 uahCurrency),
+            
+            new Shop(
+                "Rozetka",
+                ShopKey.Rozetka,
+                "rozetka.com.ua",
+                "rozetka.png",
+                uahCurrency),
         };
                 
         cache.Set(CacheKey.Shops, shops);
