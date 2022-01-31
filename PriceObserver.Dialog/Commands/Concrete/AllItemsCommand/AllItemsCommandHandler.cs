@@ -57,11 +57,8 @@ public class AllItemsCommandHandler : ICommandHandler
                     Price = i.Price,
                     CurrencyTitle = _resourceService.Get(s.Currency.Title)
                 })
-            .Select(x =>
-            {
-                var itemPriceMessage = _resourceService.Get(ResourceKey.Dialog_ItemInfo, x.Url, x.Price, x.CurrencyTitle);
-                return $"{x.Title}{Environment.NewLine}{itemPriceMessage}";
-            })
+            .Select((x, i) => 
+                _resourceService.Get(ResourceKey.Dialog_ItemInfo, i + 1, x.Title, x.Price, x.CurrencyTitle, x.Url))
             .Aggregate((x, y) => $"{x}{Environment.NewLine}{Environment.NewLine}{y}");
 
         var replyResult = ReplyResult.Reply(message);
