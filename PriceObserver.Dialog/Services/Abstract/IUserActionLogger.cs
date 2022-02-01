@@ -14,9 +14,7 @@ public interface IUserActionLogger
     void LogWebsiteCalled(User user);
         
     void LogUserRegistered(User user);
-        
-    void LogWrongUrlPassed(User user, string messageText, ResourceKey error);
-        
+
     void LogDuplicateItem(User user, Uri url);
         
     void LogParsingError(User user, Uri url, ResourceKey error);
@@ -32,4 +30,6 @@ public interface IUserActionLogger
     void LogHelpCalled(User user);
 
     void LogTriedToAddUnsupportedShop(User user, Uri url);
+
+    void LogGotAddItemInstruction(User user);
 }

@@ -42,12 +42,6 @@ public class UserActionLogger : IUserActionLogger
         LogInformation(user, ResourceKey.UserAction_UserRegistered);
     }
 
-    public void LogWrongUrlPassed(User user, string messageText, ResourceKey error)
-    {
-        var errorMessage = _resourceService.Get(error);
-        LogError(user, ResourceKey.UserAction_PassedWrongUrl, messageText, errorMessage);
-    }
-
     public void LogDuplicateItem(User user, Uri url)
     {
         LogError(user, ResourceKey.UserAction_TriedAddDuplicate, url);
@@ -87,6 +81,11 @@ public class UserActionLogger : IUserActionLogger
     public void LogTriedToAddUnsupportedShop(User user, Uri url)
     {
         LogInformation(user, ResourceKey.UserAction_TriedToAddUnsupportedShop, url);
+    }
+
+    public void LogGotAddItemInstruction(User user)
+    {
+        LogInformation(user, ResourceKey.UserAction_GotAddItemInstruction);
     }
 
     private void LogInformation(User user, ResourceKey message, params object[] parameters)

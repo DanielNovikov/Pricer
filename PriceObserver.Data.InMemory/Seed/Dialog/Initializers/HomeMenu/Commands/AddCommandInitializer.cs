@@ -5,9 +5,9 @@ namespace PriceObserver.Data.InMemory.Seed.Dialog.Initializers.HomeMenu.Commands
 
 public class AddCommandInitializer
 {
-    public static Command Initialize(Menu menu, Menu menuToRedirect)
+    public static Command Initialize(Menu menu)
     {
-        var command = new Command(CommandKey.Add, ResourceKey.Command_Add, menuToRedirect);
+        var command = new Command(CommandKey.Add, ResourceKey.Command_Add, null);
 
         menu.Commands.Add(command);
 

@@ -1,5 +1,7 @@
 ﻿using System.Threading.Tasks;
 using PriceObserver.Data.InMemory.Models.Enums;
+using PriceObserver.Data.InMemory.Repositories.Abstract;
+using PriceObserver.Data.Repositories.Abstract;
 using PriceObserver.Dialog.Menus.Abstract;
 using PriceObserver.Dialog.Menus.Models;
 using PriceObserver.Dialog.Services.Abstract;
@@ -12,31 +14,52 @@ public class HomeMenuInputHandler : IMenuInputHandler
     private readonly IUrlExtractor _urlExtractor;
     private readonly IUserActionLogger _userActionLogger;
     private readonly IUserItemParser _userItemParser;
+    private readonly IItemRepository _itemRepository;
+    private readonly IShopRepository _shopRepository;
 
     public HomeMenuInputHandler(
         IUrlExtractor urlExtractor,
         IUserActionLogger userActionLogger,
-        IUserItemParser userItemParser)
+        IUserItemParser userItemParser, 
+        IItemRepository itemRepository,
+        IShopRepository shopRepository)
     {
         _urlExtractor = urlExtractor;
         _userActionLogger = userActionLogger;
         _userItemParser = userItemParser;
+        _itemRepository = itemRepository;
+        _shopRepository = shopRepository;
     }
 
     public MenuKey Key => MenuKey.Home;
     
     public async Task<MenuInputHandlingServiceResult> Handle(MessageServiceModel message)
     {
+        var user = message.User;
+        
         var urlExtractionResult = _urlExtractor.Extract(message.Text);
-
         if (!urlExtractionResult.IsSuccess)
         {
-            _userActionLogger.LogWrongCommand(message.User, message.Text);
+            _userActionLogger.LogWrongCommand(user, message.Text);
             return MenuInputHandlingServiceResult.Fail(ResourceKey.Dialog_IncorrectCommand);
         }
 
         var url = urlExtractionResult.Result;
-        var parseResult = await _userItemParser.Parse(message.User, url);
+        var itemExists = await _itemRepository.ExistsForUserByUrl(user.Id, url);
+        if (itemExists)
+        {
+            _userActionLogger.LogDuplicateItem(user, url);
+            return MenuInputHandlingServiceResult.Fail(ResourceKey.Dialog_DuplicateItem);
+        }
+        
+        var shop = _shopRepository.GetByHost(url.Host);
+        if (shop is null)
+        {
+            _userActionLogger.LogTriedToAddUnsupportedShop(user, url);
+            return MenuInputHandlingServiceResult.Fail(ResourceKey.Dialog_ShopIsNotAvailable);
+        }
+        
+        var parseResult = await _userItemParser.Parse(user, url, shop.Key);
 
         if (!parseResult.IsSuccess)
             return MenuInputHandlingServiceResult.Fail(parseResult.Error);

@@ -13,47 +13,26 @@ namespace PriceObserver.Dialog.Services.Concrete;
 
 public class UserItemParser : IUserItemParser
 {
-    private readonly IShopRepository _shopRepository;
     private readonly IUserActionLogger _userActionLogger;
     private readonly IParser _parser;
     private readonly IResourceService _resourceService;
     private readonly IItemService _itemService;
-    private readonly IItemRepository _itemRepository;
     
     public UserItemParser(
-        IShopRepository shopRepository,
         IUserActionLogger userActionLogger,
         IParser parser, 
         IResourceService resourceService, 
-        IItemService itemService, 
-        IItemRepository itemRepository)
+        IItemService itemService)
     {
-        _shopRepository = shopRepository;
         _userActionLogger = userActionLogger;
         _parser = parser;
         _resourceService = resourceService;
         _itemService = itemService;
-        _itemRepository = itemRepository;
     }
 
-    public async Task<UserItemParseServiceResult> Parse(User user, Uri url)
+    public async Task<UserItemParseServiceResult> Parse(User user, Uri url, ShopKey shop)
     {
-        var itemExists = await _itemRepository.ExistsForUserByUrl(user.Id, url);
-        if (itemExists)
-        {
-            _userActionLogger.LogDuplicateItem(user, url);
-            return UserItemParseServiceResult.Fail(ResourceKey.Dialog_DuplicateItem);
-        }
-        
-        var shop = _shopRepository.GetByHost(url.Host);
-
-        if (shop == null)
-        {
-            _userActionLogger.LogTriedToAddUnsupportedShop(user, url);
-            return UserItemParseServiceResult.Fail(ResourceKey.Dialog_ShopIsNotAvailable);
-        }
-
-        var parseResult = await _parser.Parse(url, shop.Key);
+        var parseResult = await _parser.Parse(url, shop);
 
         if (!parseResult.IsSuccess)
         {
@@ -69,7 +48,7 @@ public class UserItemParser : IUserItemParser
             url,
             parsedItem.ImageUrl,
             user.Id,
-            shop.Key);
+            shop);
         
         _userActionLogger.LogItemAdded(user, item);
 

@@ -8,7 +8,6 @@ using PriceObserver.Dialog.Commands.Concrete;
 using PriceObserver.Dialog.Commands.Concrete.WebsiteCommand.Options;
 using PriceObserver.Dialog.Menus.Abstract;
 using PriceObserver.Dialog.Menus.Concrete;
-using PriceObserver.Dialog.Menus.Concrete.NewItemMenu;
 using PriceObserver.Dialog.Services.Abstract;
 using PriceObserver.Dialog.Services.Concrete;
 

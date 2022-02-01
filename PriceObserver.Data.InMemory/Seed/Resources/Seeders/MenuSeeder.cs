@@ -10,8 +10,6 @@ public class MenuSeeder
     {
         resources.Add(new Resource(ResourceKey.Menu_Home, "Выберите что хотите сделать ⬇"));
             
-        resources.Add(new Resource(ResourceKey.Menu_NewItem, "Поделитесь ссылкой на желаемый товар 🆕"));
-            
         resources.Add(new Resource(ResourceKey.Menu_Support, "Опишите с чем вы хотели-бы обратиться 📝"));
     }
 }

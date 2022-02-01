@@ -23,13 +23,7 @@ public class UserActionSeeder
         resources.Add(new Resource(
             ResourceKey.UserAction_UserRegistered,
             "🎉 Новый пользователь зарегистрирован"));
-            
-        resources.Add(new Resource(
-            ResourceKey.UserAction_PassedWrongUrl,
-            @"❌ Не смогло достать ссылку из сообщения
-Сообщение: {0}
-Ошибка: {1}"));
-            
+
         resources.Add(new Resource(
             ResourceKey.UserAction_TriedAddDuplicate,
             @"❌ Попытался добавить дубликат
@@ -79,5 +73,9 @@ public class UserActionSeeder
             ResourceKey.UserAction_TriedToAddUnsupportedShop,
             @"❌ Не известный магазин продукта
 Ссылка: {0}"));
+        
+        resources.Add(new Resource(
+            ResourceKey.UserAction_GotAddItemInstruction, 
+            "Получил инструкцию по добавлению нового товара"));
     }
 }

@@ -3,6 +3,5 @@
 public enum MenuKey
 {
     Home,
-    NewItem,
     Support
 }

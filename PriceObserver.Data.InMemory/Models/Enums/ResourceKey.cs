@@ -16,12 +16,12 @@ public enum ResourceKey
     Dialog_ErrorOccured = 11,
     Dialog_Help = 12,
     Dialog_ShopIsNotAvailable = 13,
+    Dialog_AddItemInformation = 14,
 
     UserAction_GotAddedProducts = 100,
     UserAction_ParsingError = 101,
     UserAction_GotWebsiteLink = 102,
     UserAction_UserRegistered = 103,
-    UserAction_PassedWrongUrl = 104,
     UserAction_TriedAddDuplicate = 105,
     UserAction_AddedItem = 106,
     UserAction_WroteToSupport = 107,
@@ -32,6 +32,7 @@ public enum ResourceKey
     UserAction_GotAvailableShops = 112,
     UserAction_CalledHelp = 113,
     UserAction_TriedToAddUnsupportedShop = 114,
+    UserAction_GotAddItemInstruction = 115,
         
     Parser_PageNotFound = 200,
     Parser_NoItemInfoOnPage = 202,
@@ -44,8 +45,7 @@ public enum ResourceKey
     Background_LogItemPriceChanged = 304,
         
     Menu_Home = 400,
-    Menu_NewItem = 401,
-    Menu_Support = 402,
+    Menu_Support = 401,
         
     Command_Back = 500,
     Command_Add = 501,
