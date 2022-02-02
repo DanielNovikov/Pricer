@@ -43,13 +43,16 @@ public class ItemPriceChanger : IItemPriceChanger
 
         var shop = _shopRepository.GetByKey(item.ShopKey);
         var currencyTitle = _resourceService.Get(shop.Currency.Title);
-        
-        var priceMessage = newPrice < oldPrice
-            ? _resourceService.Get(ResourceKey.Background_ItemPriceWentDown, item.Url, newPrice, currencyTitle)
-            : _resourceService.Get(ResourceKey.Background_ItemPriceGrewUp, item.Url, newPrice, currencyTitle);
+
+        if (newPrice < oldPrice)
+        {
+            var priceChangedMessage = _resourceService
+                .Get(ResourceKey.Background_ItemPriceWentDown, item.Url, newPrice, currencyTitle);
+            
+            await SendChangedPrice(item, priceChangedMessage);
+        }
 
         LogChangedPrice(item, oldPrice, newPrice);
-        await SendChangedPrice(item, priceMessage);
         await _itemService.UpdatePrice(item, newPrice);
     }
 

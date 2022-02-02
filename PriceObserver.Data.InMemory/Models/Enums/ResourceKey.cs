@@ -40,9 +40,8 @@ public enum ResourceKey
         
     Background_ItemDeleted = 300,
     Background_ItemPriceWentDown = 301,
-    Background_ItemPriceGrewUp = 302,
-    Background_ItemPriceChanged = 303,
-    Background_LogItemPriceChanged = 304,
+    Background_ItemPriceChanged = 302,
+    Background_LogItemPriceChanged = 303,
         
     Menu_Home = 400,
     Menu_Support = 401,

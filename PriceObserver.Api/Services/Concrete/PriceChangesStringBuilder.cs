@@ -17,6 +17,7 @@ public class PriceChangesStringBuilder : IPriceChangesStringBuilder
     public string Build(IList<ItemPriceChange> priceChanges)
     {
         return priceChanges
+            .OrderBy(x => x.Created)
             .Select(z =>
             {
                 var signResourceKey = z.OldPrice < z.NewPrice 
