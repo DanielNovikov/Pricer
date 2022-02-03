@@ -75,7 +75,8 @@ public class ShopsSeeder
                 ShopKey.Rozetka,
                 "rozetka.com.ua",
                 "rozetka.png",
-                uahCurrency),
+                uahCurrency,
+                new [] { "bt.rozetka.com.ua" }),
         };
                 
         cache.Set(CacheKey.Shops, shops);

@@ -24,7 +24,9 @@ public class ShopRepository : IShopRepository
 
     public Shop GetByHost(string host)
     {
-        return GetAll().SingleOrDefault(x => x.Host == host);
+        return GetAll().SingleOrDefault(x => 
+            x.Host == host || 
+            (x.SubHosts != null && x.SubHosts.Any(y => y == host)));
     }
 
     public IList<Shop> GetAll()
