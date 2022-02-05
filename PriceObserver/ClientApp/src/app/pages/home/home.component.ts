@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {ItemHttpService} from "../../shared/services/item-http.service";
-import {Shop} from "../../shared/models/shop";
+import {Items} from "../../shared/models/items";
 import {Router} from "@angular/router";
 import {Subject} from "rxjs";
 
@@ -14,7 +14,7 @@ export class HomeComponent implements OnInit {
   dataLoaded: Subject<void> = new Subject<void>();
 
   showData: boolean = false;
-  shops: Shop[] | [];
+  itemsLists: Items[] | [];
 
   constructor(
     private itemHttpService: ItemHttpService,
@@ -33,7 +33,7 @@ export class HomeComponent implements OnInit {
         this.dataLoaded.next();
 
         setTimeout(() => {
-          this.shops = data;
+          this.itemsLists = data;
           this.showData = true;
         });
       });

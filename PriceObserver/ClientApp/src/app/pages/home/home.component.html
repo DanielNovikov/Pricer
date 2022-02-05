@@ -2,9 +2,9 @@
 <app-load-spinner [loaded]="dataLoaded.asObservable()"></app-load-spinner>
 
 <div class="data-container" [ngClass]="showData ? 'show' : ''">
-  <app-no-items *ngIf="shops && shops.length === 0"></app-no-items>
+  <app-no-items *ngIf="itemsLists && itemsLists.length === 0"></app-no-items>
 
-  <app-items [(shops)]="shops" *ngIf="shops && shops.length !== 0"></app-items>
+  <app-items [(itemsLists)]="itemsLists" *ngIf="itemsLists && itemsLists.length !== 0"></app-items>
 
   <div class="logout" (click)="logout()">
     <img src="assets/images/logout.png" />

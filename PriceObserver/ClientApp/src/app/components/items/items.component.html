@@ -1,34 +1,34 @@
 
 <div class="shops-container">
-  <div *ngFor="let shop of shops">
+  <div *ngFor="let itemsList of itemsLists">
 
     <div class="logo-container">
-      <a href="{{shop.address}}" target="_blank">
-        <img src="assets/images/logos/{{shop.logoFileName}}" />
+      <a href="{{itemsList.shop.address}}" target="_blank">
+        <img src="assets/images/logos/{{itemsList.shop.logo}}">
       </a>
     </div>
 
     <div class="items-container">
-      <div class="item-container" *ngFor="let item of shop.items">
-        <div class="image-container">
+      <div class="item-container" *ngFor="let item of itemsList.items">
+        <div class="image-container" [ngClass]="itemsList.shop.sameFormatImages ? '' : 'unified-image-format'">
+          <img (click)="showModalImage(item.imageUrl!)" src="{{item.imageUrl}}" alt="{{item.title}}">
+
           <span class="delete-button" (click)="remove(item.id!)">
-            <img src="assets/images/trash.png" />
+            <img src="assets/images/trash.png">
           </span>
 
           <div class="price-container">
             <span class="price" id="{{item.priceChanges}}">
-              {{item.price}}<b>{{shop.currencySign}}</b>
+              {{item.price}}<b>{{itemsList.shop.currencySign}}</b>
             </span>
           </div>
 
           <div class="redirect-container">
             <a href="{{item.url}}" target="_blank">
               Перейти
-              <img src="assets/images/arrow.png" />
+              <img src="assets/images/arrow.png">
             </a>
           </div>
-
-          <img (click)="showModalImage(item.imageUrl!)" src="{{item.imageUrl}}" alt="{{item.title}}" />
         </div>
 
         <div class="title-container">
@@ -44,6 +44,6 @@
 
   <span (click)="closeModalImage()">&times;</span>
 
-  <img [src]="modalImageSrc" />
+  <img [src]="modalImageSrc">
 
 </div>

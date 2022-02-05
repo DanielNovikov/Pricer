@@ -6,6 +6,7 @@ public record Shop(
     string Name,
     ShopKey Key,
     string Host,
-    string LogoFileName, 
+    string Logo,
+    bool SameFormatImages,
     Currency Currency,
     string[] SubHosts = null);
