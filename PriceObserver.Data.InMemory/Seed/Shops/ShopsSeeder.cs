@@ -26,6 +26,7 @@ public class ShopsSeeder
                 ShopKey.Intertop,
                 "intertop.ua",
                 "intertop.png",
+                true,
                 uahCurrency),
 
             new Shop(
@@ -33,6 +34,7 @@ public class ShopsSeeder
                 ShopKey.MdFashion,
                 "md-fashion.com.ua",
                 "md-fashion.jfif",
+                true,
                 uahCurrency),
 
             new Shop(
@@ -40,6 +42,7 @@ public class ShopsSeeder
                 ShopKey.Answear,
                 "answear.ua",
                 "answear.png",
+                true,
                 uahCurrency),
 
             new Shop(
@@ -47,6 +50,7 @@ public class ShopsSeeder
                 ShopKey.Brocard,
                 "www.brocard.ua",
                 "brocard.jpg",
+                true,
                 uahCurrency),
 
             new Shop(
@@ -54,6 +58,7 @@ public class ShopsSeeder
                 ShopKey.Farfetch,
                 "www.farfetch.com",
                 "farfetch.png",
+                true,
                 eurCurrency),
 
             new Shop(
@@ -61,6 +66,7 @@ public class ShopsSeeder
                 ShopKey.Makeup,
                 "makeup.com.ua",
                 "makeup.png",
+                false,
                 uahCurrency),
 
             new Shop(
@@ -68,6 +74,7 @@ public class ShopsSeeder
                 ShopKey.Adidas,
                 "www.adidas.ua",
                 "adidas.png",
+                true,
                 uahCurrency),
             
             new Shop(
@@ -75,6 +82,7 @@ public class ShopsSeeder
                 ShopKey.Rozetka,
                 "rozetka.com.ua",
                 "rozetka.png",
+                false,
                 uahCurrency,
                 new [] { "bt.rozetka.com.ua" }),
         };

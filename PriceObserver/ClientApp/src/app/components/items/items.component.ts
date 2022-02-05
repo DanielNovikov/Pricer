@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {ItemHttpService} from "../../shared/services/item-http.service";
-import {Shop} from "../../shared/models/shop";
+import {Items} from "../../shared/models/items";
 
 @Component({
   selector: 'app-items',
@@ -12,8 +12,8 @@ export class ItemsComponent implements OnInit {
   modalImageVisible: boolean;
   modalImageSrc: string;
 
-  @Input() shops: Shop[] | [];
-  @Output() shopsChange = new EventEmitter<Shop[]>();
+  @Input() itemsLists: Items[] | [];
+  @Output() itemsListsChange = new EventEmitter<Items[]>();
 
   constructor(private itemHttpService: ItemHttpService) { }
 
@@ -24,16 +24,16 @@ export class ItemsComponent implements OnInit {
     this.itemHttpService
       .delete(id)
       .subscribe(response => {
-        let shop = this.shops?.find(x => x.items.some(y => y.id === id))!;
+        let itemsList = this.itemsLists?.find(x => x.items.some(y => y.id === id))!;
 
-        if (shop.items.length === 1) {
+        if (itemsList.items.length === 1) {
 
-          this.shops = this.shops!.filter(x => x != shop) || [];
-          this.shopsChange.emit(this.shops);
+          this.itemsLists = this.itemsLists!.filter(x => x != itemsList) || [];
+          this.itemsListsChange.emit(this.itemsLists);
           return;
         }
 
-        shop.items = shop.items.filter(x => x.id !== id);
+        itemsList.items = itemsList.items.filter(x => x.id !== id);
       });
   }
 

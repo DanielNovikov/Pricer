@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {Shop} from "../models/shop";
+import {Items} from "../models/items";
 import {Observable} from "rxjs";
 import {environment} from "../../../environments/environment";
 
@@ -14,8 +14,8 @@ export class ItemHttpService {
 
   constructor(private http: HttpClient) { }
 
-  public get() : Observable<Shop[]> {
-    return this.http.get<Shop[]>(this.getEndpoint);
+  public get() : Observable<Items[]> {
+    return this.http.get<Items[]>(this.getEndpoint);
   }
 
   public delete(id: number) : Observable<object> {

@@ -15,7 +15,7 @@ public class ItemController : AuthorizedControllerBase
     }
 
     [HttpGet]
-    public async Task<IList<ShopVm>> Get()
+    public async Task<IList<ItemsVm>> Get()
     {
         var userId = GetUserId();
         return await _itemService.GetByUserId(userId);
