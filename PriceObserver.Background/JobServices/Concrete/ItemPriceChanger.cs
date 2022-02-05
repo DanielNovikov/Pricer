@@ -46,10 +46,18 @@ public class ItemPriceChanger : IItemPriceChanger
 
         if (newPrice < oldPrice)
         {
-            var priceChangedMessage = _resourceService
-                .Get(ResourceKey.Background_ItemPriceWentDown, item.Url, newPrice, currencyTitle);
+            var difference = oldPrice - newPrice;
             
-            await SendChangedPrice(item, priceChangedMessage);
+            var priceChangedMessage = _resourceService.Get(
+                ResourceKey.Background_ItemPriceWentDown,
+                item.Title,
+                item.Url,
+                difference,
+                currencyTitle,
+                newPrice, 
+                currencyTitle);
+            
+            await _telegramBotService.SendMessage(item.UserId, priceChangedMessage);
         }
 
         LogChangedPrice(item, oldPrice, newPrice);
@@ -65,11 +73,5 @@ public class ItemPriceChanger : IItemPriceChanger
             item.Url);
         
         _logger.LogInformation(logMessage);
-    }
-
-    private async Task SendChangedPrice(Item item, string priceMessage)
-    {
-        var message = _resourceService.Get(ResourceKey.Background_ItemPriceChanged, item.Title, priceMessage);
-        await _telegramBotService.SendMessage(item.UserId, message);
     }
 }
