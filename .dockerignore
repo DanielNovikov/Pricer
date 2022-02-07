@@ -19,6 +19,7 @@
 **/node_modules
 **/npm-debug.log
 **/obj
+**/wwwroot
 **/secrets.dev.yaml
 **/values.dev.yaml
 **/package-lock.json

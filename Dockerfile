@@ -23,8 +23,9 @@ RUN dotnet publish -c Release -o /publish
 
 FROM node:14-alpine as front-build
 WORKDIR /app/front/source
-COPY --from=back-build /app/backend/PriceObserver/ClientApp .
+COPY --from=back-build /app/backend/PriceObserver/ClientApp/package.json package.json
 RUN npm install
+COPY --from=back-build /app/backend/PriceObserver/ClientApp/. .
 RUN npm run build
 
 FROM mcr.microsoft.com/dotnet/aspnet:6.0
