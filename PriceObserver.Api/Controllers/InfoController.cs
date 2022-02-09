@@ -2,7 +2,7 @@
 
 namespace PriceObserver.Api.Controllers;
 
-[Route("api/[controller]")]
+[Route("api/info")]
 [ApiController]
 public class InfoController : ControllerBase
 {

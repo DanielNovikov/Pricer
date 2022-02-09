@@ -5,6 +5,7 @@ using PriceObserver.Api.Services.Abstract;
 
 namespace PriceObserver.Api.Controllers;
 
+[Route("api/item")]
 public class ItemController : AuthorizedControllerBase
 {
     private readonly IApiItemService _itemService;

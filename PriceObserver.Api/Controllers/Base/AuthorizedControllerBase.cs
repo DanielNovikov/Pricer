@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Mvc;
 namespace PriceObserver.Api.Controllers.Base;
 
 [Authorize]
-[Route("api/[controller]")]
 [ApiController]
 public abstract class AuthorizedControllerBase : ControllerBase
 {

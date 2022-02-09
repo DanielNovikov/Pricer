@@ -8,7 +8,7 @@ import {AuthenticationResult} from "../models/authentication-result";
   providedIn: 'root'
 })
 export class AuthenticationHttpService {
-  readonly authenticationEndpoint: string = environment.baseUrl + "api/Authentication/";
+  readonly authenticationEndpoint: string = environment.baseUrl + "api/authorize/";
 
   constructor(private http: HttpClient) { }
 

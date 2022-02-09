@@ -1,13 +1,11 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using PriceObserver.Api.Models.Service;
 using PriceObserver.Api.Services.Abstract;
 
 namespace PriceObserver.Api.Controllers;
 
-[Route("api/[controller]")]
+[Route("api")]
 [ApiController]
-[AllowAnonymous]
 public class AuthenticationController : ControllerBase
 {
     private readonly IAuthenticationService _authenticationService;
@@ -17,7 +15,7 @@ public class AuthenticationController : ControllerBase
         _authenticationService = authenticationService;
     }
 
-    [HttpPost("{token:guid}")]
+    [HttpPost("authorize/{token:guid}")]
     public async Task<IActionResult> Authenticate(Guid token)
     {
         var result = await _authenticationService.Authenticate(token);

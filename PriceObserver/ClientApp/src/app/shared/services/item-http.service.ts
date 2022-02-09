@@ -9,8 +9,8 @@ import {environment} from "../../../environments/environment";
 })
 export class ItemHttpService {
 
-  readonly getEndpoint: string = environment.baseUrl + "api/Item/";
-  readonly deleteEndpoint: string = environment.baseUrl + "api/Item/";
+  readonly getEndpoint: string = environment.baseUrl + "api/item/";
+  readonly deleteEndpoint: string = environment.baseUrl + "api/item/";
 
   constructor(private http: HttpClient) { }
 
