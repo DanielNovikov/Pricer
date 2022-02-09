@@ -9,5 +9,6 @@ public enum ShopKey
     Farfetch,
     Makeup,
     Adidas,
-    Rozetka
+    Rozetka,
+    Modivo
 }

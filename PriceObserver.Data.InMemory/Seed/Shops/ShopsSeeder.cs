@@ -76,6 +76,14 @@ public class ShopsSeeder
                 "adidas.png",
                 true,
                 uahCurrency),
+
+            new Shop(
+                "Modivo",
+                ShopKey.Modivo,
+                "modivo.ua",
+                "modivo.png",
+                true,
+                uahCurrency),
             
             new Shop(
                 "Rozetka",
