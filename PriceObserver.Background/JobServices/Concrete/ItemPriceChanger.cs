@@ -52,9 +52,9 @@ public class ItemPriceChanger : IItemPriceChanger
                 ResourceKey.Background_ItemPriceWentDown,
                 item.Title,
                 item.Url,
-                difference,
-                currencyTitle,
                 newPrice, 
+                currencyTitle,
+                difference,
                 currencyTitle);
             
             await _telegramBotService.SendMessage(item.UserId, priceChangedMessage);
