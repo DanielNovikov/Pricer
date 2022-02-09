@@ -66,13 +66,17 @@ Message: {3}
 InnerException: {4}";
 
                 _logger.LogError(
-                    ex, 
+                    ex,
                     templateLogMessage,
                     item.Title,
                     item.Id,
                     item.Url,
-                    ex.Message, 
+                    ex.Message,
                     ex.InnerException);
+            }
+            finally
+            {
+                await Task.Delay(1000);
             }
         }
     }
