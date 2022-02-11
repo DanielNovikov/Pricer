@@ -93,6 +93,14 @@ public class ShopsSeeder
                 false,
                 uahCurrency,
                 new [] { "bt.rozetka.com.ua" }),
+            
+            new Shop(
+                "Citrus",
+                ShopKey.Citrus,
+                "www.ctrs.com.ua",
+                "citrus.png",
+                false,
+                uahCurrency),
         };
                 
         cache.Set(CacheKey.Shops, shops);
