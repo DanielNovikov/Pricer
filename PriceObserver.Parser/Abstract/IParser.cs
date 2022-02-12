@@ -7,5 +7,5 @@ namespace PriceObserver.Parser.Abstract;
 
 public interface IParser
 {
-    Task<ParsedItemServiceResult> Parse(Uri url, ShopKey key);
+    Task<ParsedItemServiceResult> Parse(Uri url, ShopKey shopKey);
 }

@@ -34,8 +34,8 @@ public class RozetkaParser : IParserProvider
     public Uri GetImageUrl(IHtmlDocument document)
     {
         const string selector = "rz-gallery-main-content-image > img";
-        var titleElement = document.QuerySelector<IHtmlImageElement>(selector);
-        var imageSource = titleElement!.Source; 
+        var imageMetaElement = document.QuerySelector<IHtmlImageElement>(selector);
+        var imageSource = imageMetaElement!.Source; 
         
         return new Uri(imageSource!);
     }

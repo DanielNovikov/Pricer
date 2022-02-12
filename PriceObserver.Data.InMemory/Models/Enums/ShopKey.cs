@@ -11,5 +11,6 @@ public enum ShopKey
     Adidas,
     Modivo,
     Rozetka,
-    Citrus
+    Citrus,
+    Stylus
 }

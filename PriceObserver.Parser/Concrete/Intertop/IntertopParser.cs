@@ -39,8 +39,8 @@ public class IntertopParser : IParserProvider
     public Uri GetImageUrl(IHtmlDocument document)
     {
         const string selector = "meta[property='og:image']";
-        var meta = document.QuerySelector<IHtmlMetaElement>(selector);
-        var imageUrl = $"https://intertop.ua/{meta.Content}";
+        var imageMetaElement = document.QuerySelector<IHtmlMetaElement>(selector);
+        var imageUrl = $"https://intertop.ua/{imageMetaElement!.Content}";
 
         return new Uri(imageUrl);
     }

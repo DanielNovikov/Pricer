@@ -9,38 +9,35 @@ namespace PriceObserver.Parser.Concrete;
 
 public class Parser : IParser
 {
-    private readonly IShopRepository _shopRepository;
     private readonly IHtmlLoader _htmlLoader;
     private readonly IContentValidatorService _contentValidatorService;
     private readonly IParserProviderService _parserProviderService;
 
     public Parser(
-        IShopRepository shopRepository, 
         IHtmlLoader htmlLoader, 
         IContentValidatorService contentValidatorService,
         IParserProviderService parserProviderService)
     {
-        _shopRepository = shopRepository;
         _htmlLoader = htmlLoader;
         _contentValidatorService = contentValidatorService;
         _parserProviderService = parserProviderService;
     }
 
-    public async Task<ParsedItemServiceResult> Parse(Uri url, ShopKey key)
+    public async Task<ParsedItemServiceResult> Parse(Uri url, ShopKey shopKey)
     {
-        var htmlLoadResult = await _htmlLoader.Load(url);
+        var htmlLoadResult = await _htmlLoader.Load(url, shopKey);
 
         if (!htmlLoadResult.IsSuccess)
             return ParsedItemServiceResult.Fail(htmlLoadResult.Error);
 
         var htmlDocument = htmlLoadResult.Result;
         
-        var contentValidationResult = _contentValidatorService.Validate(key, htmlDocument);
+        var contentValidationResult = _contentValidatorService.Validate(shopKey, htmlDocument);
 
         if (!contentValidationResult.IsSuccess)
             return ParsedItemServiceResult.Fail(contentValidationResult.Error);
 
-        var parsedItem = _parserProviderService.Parse(key, htmlDocument);
+        var parsedItem = _parserProviderService.Parse(shopKey, htmlDocument);
         return ParsedItemServiceResult.Success(parsedItem);
     }
 }

@@ -40,11 +40,11 @@ public class CitrusParser : IParserProvider
     {
         const string selector = "meta[property='og:image']";
         
-        var titleElement =
+        var imageMetaElement =
             document.QuerySelector<IHtmlMetaElement>(selector) ??
             throw new ArgumentNullException($"{nameof(CitrusParser)}:{nameof(GetImageUrl)}:Element");
         
-        var imageSource = titleElement.Content; 
+        var imageSource = imageMetaElement.Content; 
         
         return new Uri(imageSource!);
     }

@@ -13,6 +13,7 @@ public static class DependencyInjection
     {
         services.AddScoped<IHtmlParser, HtmlParser>();
         services.AddHttpClient<IHtmlLoader, HtmlLoader>();
+        services.AddScoped<IRequestHeadersBuilder, RequestHeadersBuilder>();
 
         services.AddScoped<IParser, Concrete.Parser>();
         services.AddScoped<IContentValidatorService, ContentValidatorService>();

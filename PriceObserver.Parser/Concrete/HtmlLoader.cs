@@ -12,15 +12,25 @@ public class HtmlLoader : IHtmlLoader
 {
     private readonly HttpClient _httpClient;
     private readonly IHtmlParser _htmlParser;
+    private readonly IRequestHeadersBuilder _requestHeadersBuilder;
         
-    public HtmlLoader(HttpClient httpClient, IHtmlParser htmlParser)
+    public HtmlLoader(
+        HttpClient httpClient,
+        IHtmlParser htmlParser,
+        IRequestHeadersBuilder requestHeadersBuilder)
     {
         _httpClient = httpClient;
         _htmlParser = htmlParser;
+        _requestHeadersBuilder = requestHeadersBuilder;
     }
         
-    public async Task<HtmlLoadResult> Load(Uri url)
+    public async Task<HtmlLoadResult> Load(Uri url, ShopKey shopKey)
     {
+        var requestHeaders = _requestHeadersBuilder.Build(url, shopKey);
+        
+        foreach (var (key, value) in requestHeaders)
+            _httpClient.DefaultRequestHeaders.Add(key, value);
+        
         var response = await _httpClient.GetAsync(url);
             
         if (!response.IsSuccessStatusCode)
