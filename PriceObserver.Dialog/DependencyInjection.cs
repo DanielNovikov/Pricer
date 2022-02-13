@@ -3,6 +3,7 @@ using System.Linq;
 using System.Reflection;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using PriceObserver.Common.Extensions;
 using PriceObserver.Dialog.Commands.Abstract;
 using PriceObserver.Dialog.Commands.Concrete;
 using PriceObserver.Dialog.Commands.Concrete.WebsiteCommand.Options;
@@ -38,41 +39,7 @@ public static class DependencyInjection
             .AddOptions<WebsiteCommandOptions>()
             .Bind(configuration.GetSection(nameof(WebsiteCommandOptions)));
 
-        services.AddCommandHandlers();
-        services.AddMenuHandlers();
-    }
-
-    [SuppressMessage("ReSharper", "PossibleNullReferenceException")]
-    private static void AddCommandHandlers(this IServiceCollection services)
-    {
-        var commandKey = typeof(ICommandHandler);
-
-        var commandImplementations = Assembly
-            .GetExecutingAssembly()
-            .DefinedTypes
-            .Where(type => commandKey.IsAssignableFrom(type) && commandKey != type)
-            .ToList();
-
-        commandImplementations.ForEach(commandImplementation =>
-        {
-            services.AddTransient(commandKey, commandImplementation);
-        });
-    }
-        
-    [SuppressMessage("ReSharper", "PossibleNullReferenceException")]
-    private static void AddMenuHandlers(this IServiceCollection services)
-    {
-        var commandKey = typeof(IMenuInputHandler);
-
-        var commandImplementations = Assembly
-            .GetExecutingAssembly()
-            .DefinedTypes
-            .Where(type => commandKey.IsAssignableFrom(type) && commandKey != type)
-            .ToList();
-
-        commandImplementations.ForEach(commandImplementation =>
-        {
-            services.AddTransient(commandKey, commandImplementation);
-        });
+        services.AddImplementations<ICommandHandler>();
+        services.AddImplementations<IMenuInputHandler>();
     }
 }

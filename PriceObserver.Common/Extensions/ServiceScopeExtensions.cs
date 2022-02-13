@@ -7,7 +7,7 @@ public static class ServiceScopeExtensions
 {
     public static T GetService<T>(this IServiceScope scope)
     {
-        return scope.ServiceProvider.GetService<T>() 
-               ?? throw new ArgumentNullException(typeof(T).Name);
+        return scope.ServiceProvider.GetService<T>() ?? 
+               throw new ArgumentNullException(typeof(T).Name);
     }
 }

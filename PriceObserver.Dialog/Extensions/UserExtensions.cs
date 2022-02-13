@@ -1,6 +1,6 @@
 ﻿using PriceObserver.Data.Models;
 
-namespace PriceObserver.Common.Extensions;
+namespace PriceObserver.Dialog.Extensions;
 
 public static class UserExtensions
 {

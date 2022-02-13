@@ -1,10 +1,10 @@
 ﻿using System;
 using Microsoft.Extensions.Logging;
-using PriceObserver.Common.Extensions;
 using PriceObserver.Data.InMemory.Models;
 using PriceObserver.Data.InMemory.Models.Enums;
 using PriceObserver.Data.Models;
 using PriceObserver.Data.Service.Abstract;
+using PriceObserver.Dialog.Extensions;
 using PriceObserver.Dialog.Services.Abstract;
 
 namespace PriceObserver.Dialog.Services.Concrete;
