@@ -19,9 +19,9 @@ public class ReplyWithKeyboardBuilder : IReplyWithKeyboardBuilder
         _resourceService = resourceService;
     }
 
-    public async Task<ReplyResult> Build(Menu menu)
+    public ReplyResult Build(Menu menu)
     {
-        var keyboard = await _menuKeyboardBuilder.Build(menu.Key);
+        var keyboard = _menuKeyboardBuilder.Build(menu.Key);
         var menuText = _resourceService.Get(menu.ResourceKey);
             
         return ReplyResult.ReplyWithKeyboard(menuText, keyboard);

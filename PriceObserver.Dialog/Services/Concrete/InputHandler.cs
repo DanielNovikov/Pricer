@@ -40,7 +40,7 @@ public class InputHandler : IInputHandler
 
         if (authorizationResult.IsNew)
         {
-            var replyWithKeyboardResult = await _userRegistrationHandler.Handle(message.User);
+            var replyWithKeyboardResult = _userRegistrationHandler.Handle(message.User);
             return InputHandlingServiceResult.Success(replyWithKeyboardResult);
         }
             

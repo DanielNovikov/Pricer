@@ -34,6 +34,7 @@ public static class DependencyInjection
         services.AddTransient<IReplyWithKeyboardBuilder, ReplyWithKeyboardBuilder>();
         services.AddTransient<IUrlExtractor, UrlExtractor>();
         services.AddTransient<IUserItemParser, UserItemParser>();
+        services.AddTransient<IUserRedirectionService, UserRedirectionService>();
 
         services
             .AddOptions<WebsiteCommandOptions>()

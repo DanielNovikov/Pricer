@@ -1,10 +1,11 @@
 ﻿using System.Threading.Tasks;
+using PriceObserver.Data.InMemory.Models;
 using PriceObserver.Data.Models;
 using PriceObserver.Dialog.Services.Models;
 
 namespace PriceObserver.Dialog.Services.Abstract;
 
-public interface IUserRegistrationHandler
+public interface IUserRedirectionService
 {
-    ReplyResult Handle(User user);
+    Task<ReplyResult> Redirect(User user, Menu menuToRedirect);
 }

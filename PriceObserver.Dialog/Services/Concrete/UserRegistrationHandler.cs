@@ -1,5 +1,4 @@
-﻿using System.Threading.Tasks;
-using PriceObserver.Data.InMemory.Models.Enums;
+﻿using PriceObserver.Data.InMemory.Models.Enums;
 using PriceObserver.Data.Models;
 using PriceObserver.Data.Service.Abstract;
 using PriceObserver.Dialog.Extensions;
@@ -33,7 +32,7 @@ public class UserRegistrationHandler : IUserRegistrationHandler
         _commandService = commandService;
     }
 
-    public async Task<ReplyResult> Handle(User user)
+    public ReplyResult Handle(User user)
     {
         _userActionLogger.LogUserRegistered(user);
 
@@ -49,7 +48,7 @@ public class UserRegistrationHandler : IUserRegistrationHandler
             shopsInfoMessage,
             menuText);
 
-        var menuKeyboard = await _menuKeyboardBuilder.Build(user.MenuKey);
+        var menuKeyboard = _menuKeyboardBuilder.Build(user.MenuKey);
 
         return ReplyResult.ReplyWithKeyboard(message, menuKeyboard);
     }

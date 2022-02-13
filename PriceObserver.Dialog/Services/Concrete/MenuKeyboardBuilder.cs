@@ -26,7 +26,7 @@ public class MenuKeyboardBuilder : IMenuKeyboardBuilder
         _resourceService = resourceService;
     }
 
-    public async Task<MenuKeyboard> Build(MenuKey menuKey)
+    public MenuKeyboard Build(MenuKey menuKey)
     {
         var menu = _menuRepository.GetByKey(menuKey);
         var commands = menu.Commands.ToList();

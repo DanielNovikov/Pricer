@@ -6,5 +6,5 @@ namespace PriceObserver.Dialog.Services.Abstract;
 
 public interface IReplyWithKeyboardBuilder
 {
-    Task<ReplyResult> Build(Menu menu);
+    ReplyResult Build(Menu menu);
 }

@@ -6,5 +6,5 @@ namespace PriceObserver.Dialog.Services.Abstract;
 
 public interface IMenuKeyboardBuilder
 {
-    Task<MenuKeyboard> Build(MenuKey menuKey);
+    MenuKeyboard Build(MenuKey menuKey);
 }
