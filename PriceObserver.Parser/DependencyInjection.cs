@@ -8,7 +8,7 @@ namespace PriceObserver.Parser;
 
 public static class DependencyInjection
 {
-    public static void AddParserServices(this IServiceCollection services)
+    public static IServiceCollection AddParserServices(this IServiceCollection services)
     {
         services.AddScoped<IHtmlParser, HtmlParser>();
         services.AddHttpClient<IHtmlLoader, HtmlLoader>();
@@ -20,5 +20,7 @@ public static class DependencyInjection
         
         services.AddImplementations<IParserProvider>();
         services.AddImplementations<IContentValidator>();
+
+        return services;
     }
 }

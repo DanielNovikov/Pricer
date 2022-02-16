@@ -13,8 +13,8 @@ public static class UpdateExtensions
         return new UpdateServiceModel(
             message.Text,
             chat.Id,
-            chat.Username,
             chat.FirstName,
-            chat.LastName);
+            chat.LastName,
+            chat.Username);
     }
 }
