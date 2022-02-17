@@ -29,11 +29,11 @@ public class ParserTests : IntegrationTestingBase
         ShopKey.Citrus,
         "Электросамокат Like.Bike Twist (Black) 250 Wh",
         "https://i.citrus.world/imgcache/size_180/uploads/shop/d/8/d843364b222194297412ea6d55a9a4ef.png")]
-    // [InlineData(
-    //     "https://www.farfetch.com/ua/shopping/men/moncler-huit-item-16080096.aspx?rtype=portal_pdp_stlnostock_out_a&rmodule=shop_the_look&rid=685250&rpos=1",
-    //     ShopKey.Farfetch,
-    //     "Moncler куртка Huit",
-    //     "https://cdn-images.farfetch-contents.com/16/08/00/96/16080096_32698534_600.jpg")]
+    [InlineData(
+        "https://www.farfetch.com/ua/shopping/men/moschino-iphone-12-item-17412779.aspx?rtype=portal_pdp_outofstock_b&rpos=5&rid=aaf3572d-fa18-4021-a13e-5cb95783f88d",
+        ShopKey.Farfetch,
+        "Чехол для iPhone 12 с логотипом Moschino",
+        "https://cdn-images.farfetch-contents.com/17/41/27/79/17412779_36825619_1000.jpg")]
     [InlineData(
         "https://intertop.ua/ua/product/sweaters-and-sweaters-adidas-5701343",
         ShopKey.Intertop,
