@@ -13,19 +13,33 @@ public class ItemRemovalService : IItemRemovalService
     private readonly IItemRepository _itemRepository;
     private readonly IResourceService _resourceService;
     private readonly ITelegramBotService _telegramBotService;
+    private readonly IItemParseResultService _parseResultService;
+    private readonly IItemParseResultRepository _parseResultRepository;
     
     public ItemRemovalService(
         IItemRepository itemRepository,
         IResourceService resourceService, 
-        ITelegramBotService telegramBotService)
+        ITelegramBotService telegramBotService, 
+        IItemParseResultService parseResultService, 
+        IItemParseResultRepository parseResultRepository)
     {
         _itemRepository = itemRepository;
         _resourceService = resourceService;
         _telegramBotService = telegramBotService;
+        _parseResultService = parseResultService;
+        _parseResultRepository = parseResultRepository;
     }
 
     public async Task Remove(Item item, ResourceKey error)
     {
+        var lastParseResult = await _parseResultRepository.GetLastByItemId(item.Id);
+
+        if (lastParseResult is null || lastParseResult.IsSuccess)
+        {
+            await _parseResultService.CreateFailed(item);
+            return;
+        }
+        
         await _itemRepository.Delete(item);
 
         var errorReason = _resourceService.Get(error);

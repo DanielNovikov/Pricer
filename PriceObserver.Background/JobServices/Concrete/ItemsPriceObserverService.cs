@@ -16,8 +16,6 @@ public class ItemsPriceObserverService : IItemsPriceObserverService
     private readonly IItemRepository _itemRepository;
     private readonly IParser _parser;
     private readonly IItemPriceChanger _itemPriceChanger;
-    private readonly IItemParseResultRepository _parseResultRepository;
-    private readonly IItemParseResultService _parseResultService;
     private readonly IItemRemovalService _itemRemovalService;
     private readonly ILogger _logger;
 
@@ -25,16 +23,12 @@ public class ItemsPriceObserverService : IItemsPriceObserverService
         IItemRepository itemRepository,
         IParser parser,
         IItemPriceChanger itemPriceChanger,
-        IItemParseResultRepository parseResultRepository,
-        IItemParseResultService parseResultService,
         IItemRemovalService itemRemovalService,
         ILogger<ItemsPriceObserverService> logger)
     {
         _itemRepository = itemRepository;
         _parser = parser;
         _itemPriceChanger = itemPriceChanger;
-        _parseResultRepository = parseResultRepository;
-        _parseResultService = parseResultService;
         _itemRemovalService = itemRemovalService;
         _logger = logger;
     }
@@ -51,11 +45,11 @@ public class ItemsPriceObserverService : IItemsPriceObserverService
 
                 if (!parsedItemResult.IsSuccess)
                 {
-                    await DeleteItem(item, parsedItemResult.Error);
+                    await _itemRemovalService.Remove(item, parsedItemResult.Error);
                     break;
                 }
 
-                await ObservePrice(item, parsedItemResult.Result);
+                await HandlePriceChange(item, parsedItemResult.Result);
             }
             catch (Exception ex)
             {
@@ -81,24 +75,11 @@ InnerException: {4}";
         }
     }
 
-    private async Task ObservePrice(Item item, ParsedItem parsedItem)
+    private async Task HandlePriceChange(Item item, ParsedItem parsedItem)
     {
         var oldPrice = item.Price;
         var newPrice = parsedItem.Price;
 
         await _itemPriceChanger.Change(item, oldPrice, newPrice);
-    }
-
-    private async Task DeleteItem(Item item, ResourceKey error)
-    {
-        var lastParseResult = await _parseResultRepository.GetLastByItemId(item.Id);
-
-        if (lastParseResult is null || lastParseResult.IsSuccess)
-        {
-            await _parseResultService.CreateFailed(item);
-            return;
-        }
-
-        await _itemRemovalService.Remove(item, error);
     }
 }

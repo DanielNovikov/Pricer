@@ -17,6 +17,9 @@ public class ItemPriceChanger : IItemPriceChanger
     private readonly ITelegramBotService _telegramBotService;
     private readonly IItemParseResultService _parseResultService;
     private readonly IShopRepository _shopRepository;
+
+    private const double OneHundredPercent = 100.0;
+    private const int MinimumDifferenceRatio = 5;
     
     public ItemPriceChanger(
         IResourceService resourceService, 
@@ -44,7 +47,9 @@ public class ItemPriceChanger : IItemPriceChanger
         var shop = _shopRepository.GetByKey(item.ShopKey);
         var currencyTitle = _resourceService.Get(shop.Currency.Title);
 
-        if (newPrice < oldPrice)
+        var priceDecreased = HasPriceDecreased(oldPrice, newPrice);
+
+        if (priceDecreased)
         {
             var difference = oldPrice - newPrice;
             
@@ -62,6 +67,17 @@ public class ItemPriceChanger : IItemPriceChanger
 
         LogChangedPrice(item, oldPrice, newPrice);
         await _itemService.UpdatePrice(item, newPrice);
+    }
+
+    private static bool HasPriceDecreased(int oldPrice, int newPrice)
+    {
+        if (newPrice > oldPrice)
+            return false;
+
+        var difference = oldPrice - newPrice;
+        var differenceRatio = difference * OneHundredPercent / oldPrice;
+
+        return differenceRatio > MinimumDifferenceRatio;
     }
 
     private void LogChangedPrice(Item item, int oldPrice, int newPrice)
