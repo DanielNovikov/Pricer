@@ -82,7 +82,7 @@ public class ShopsSeeder
                 ShopKey.Modivo,
                 "modivo.ua",
                 "modivo.png",
-                true,
+                false,
                 uahCurrency),
             
             new Shop(

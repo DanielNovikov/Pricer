@@ -12,6 +12,7 @@ COPY PriceObserver.Data.InMemory/PriceObserver.Data.InMemory.csproj ./PriceObser
 COPY PriceObserver.Data.Service/PriceObserver.Data.Service.csproj ./PriceObserver.Data.Service/PriceObserver.Data.Service.csproj
 COPY PriceObserver.Dialog/PriceObserver.Dialog.csproj ./PriceObserver.Dialog/PriceObserver.Dialog.csproj
 COPY PriceObserver.Parser/PriceObserver.Parser.csproj ./PriceObserver.Parser/PriceObserver.Parser.csproj
+COPY PriceObserver.Parser.Tests/PriceObserver.Parser.Tests.csproj ./PriceObserver.Parser.Tests/PriceObserver.Parser.Tests.csproj
 COPY PriceObserver.Telegram/PriceObserver.Telegram.csproj ./PriceObserver.Telegram/PriceObserver.Telegram.csproj
 
 COPY PriceObserver.sln ./PriceObserver.sln
