@@ -10,6 +10,7 @@ public class ContentValidatorTests : IntegrationTestingBase
 {
     [Theory]
     [InlineData("https://www.brocard.ua/ua/product/nabir-dsquared2-red-wood-134978", ShopKey.Brocard)]
+    [InlineData("https://estore.ua/apple-watch-series-3-nike-42mm-gps-space-gray-aluminium-case-with-anthracite-black-nike-sport-band-mtf42", ShopKey.Estore)]
     [InlineData("https://www.farfetch.com/ua/shopping/men/alexander-mcqueen-iphone-xs-item-14620644.aspx?storeid=9359", ShopKey.Farfetch)]
     [InlineData("https://intertop.ua/ua/product/sneakers-clarks-4965745?tr_pr=analog", ShopKey.Intertop)]
     [InlineData("https://md-fashion.com.ua/store/zenskie-golubye-dzinsy-kiley-replay-wa434r000108-729-goluboj", ShopKey.MdFashion)]
@@ -30,6 +31,7 @@ public class ContentValidatorTests : IntegrationTestingBase
     [InlineData("https://answear.ua/c/vin", ShopKey.Answear)]
     [InlineData("https://www.brocard.ua/", ShopKey.Brocard)]
     [InlineData("https://www.ctrs.com.ua/", ShopKey.Citrus)]
+    [InlineData("https://estore.ua/", ShopKey.Estore)]
     [InlineData("https://www.farfetch.com/ua/shopping/men/alexander-mcqueen/items.aspx", ShopKey.Farfetch)]
     [InlineData("https://intertop.ua/ua/", ShopKey.Intertop)]
     [InlineData("https://makeup.com.ua/", ShopKey.Makeup)]

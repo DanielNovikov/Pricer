@@ -12,5 +12,6 @@ public enum ShopKey
     Modivo,
     Rozetka,
     Citrus,
-    Stylus
+    Stylus,
+    Estore
 }

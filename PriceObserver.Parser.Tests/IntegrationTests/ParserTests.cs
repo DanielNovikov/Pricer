@@ -30,6 +30,11 @@ public class ParserTests : IntegrationTestingBase
         "Электросамокат Like.Bike Twist (Black) 250 Wh",
         "https://i.citrus.world/imgcache/size_180/uploads/shop/d/8/d843364b222194297412ea6d55a9a4ef.png")]
     [InlineData(
+        "https://estore.ua/apple-watch-series-7-45mm-midnight-aluminium-case-with-sport-band/",
+        ShopKey.Estore,
+        "Apple WATCH Series 7 45mm Midnight Aluminum Case With Midnight Sport Band (MKN53)",
+        "/media/catalog/product/cache/8/image/265x/9df78eab33525d08d6e5fb8d27136e95/a/p/apple-watch-series-7_5__1_1.jpg")]
+    [InlineData(
         "https://www.farfetch.com/ua/shopping/men/moschino-iphone-12-item-17412779.aspx?rtype=portal_pdp_outofstock_b&rpos=5&rid=aaf3572d-fa18-4021-a13e-5cb95783f88d",
         ShopKey.Farfetch,
         "Чехол для iPhone 12 с логотипом Moschino",

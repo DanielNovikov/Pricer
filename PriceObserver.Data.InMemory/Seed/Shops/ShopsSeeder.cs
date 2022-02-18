@@ -109,6 +109,14 @@ public class ShopsSeeder
                 "stylus.png",
                 false,
                 uahCurrency),
+            
+            new Shop(
+                "eStore",
+                ShopKey.Estore,
+                "estore.ua",
+                "estore.png",
+                true,
+                uahCurrency)
         };
                 
         cache.Set(CacheKey.Shops, shops);
