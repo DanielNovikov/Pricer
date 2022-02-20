@@ -19,7 +19,13 @@ public class ExceptionHandlingController : ControllerBase
     public IActionResult Handle()
     {
         var context = HttpContext.Features.Get<IExceptionHandlerPathFeature>();
-        var error = context!.Error;
+        if (context is null)
+        {
+            _logger.LogError("Error context is null");
+            return Problem("Undefined exception occured");
+        }
+        
+        var error = context.Error;
         var originalPath = context.Path;
         
         const string errorMessageTemplate = @"Api error occured

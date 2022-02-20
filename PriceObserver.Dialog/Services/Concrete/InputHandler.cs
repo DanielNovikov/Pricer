@@ -1,5 +1,4 @@
 ﻿using System.Threading.Tasks;
-using PriceObserver.Data.InMemory.Repositories.Abstract;
 using PriceObserver.Data.Service.Abstract;
 using PriceObserver.Dialog.Commands.Abstract;
 using PriceObserver.Dialog.Menus.Abstract;

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
 using PriceObserver.Data.InMemory.Models.Enums;
-using PriceObserver.Data.InMemory.Repositories.Abstract;
 using PriceObserver.Data.Models;
 using PriceObserver.Data.Repositories.Abstract;
 using PriceObserver.Data.Service.Abstract;

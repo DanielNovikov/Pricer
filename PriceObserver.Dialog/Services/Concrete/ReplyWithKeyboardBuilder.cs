@@ -1,5 +1,4 @@
-﻿using System.Threading.Tasks;
-using PriceObserver.Data.InMemory.Models;
+﻿using PriceObserver.Data.InMemory.Models;
 using PriceObserver.Data.Service.Abstract;
 using PriceObserver.Dialog.Services.Abstract;
 using PriceObserver.Dialog.Services.Models;

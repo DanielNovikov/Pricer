@@ -2,10 +2,8 @@
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using PriceObserver.Background.JobServices.Abstract;
-using PriceObserver.Data.InMemory.Models.Enums;
 using PriceObserver.Data.Models;
 using PriceObserver.Data.Repositories.Abstract;
-using PriceObserver.Data.Service.Abstract;
 using PriceObserver.Parser.Abstract;
 using PriceObserver.Parser.Models;
 

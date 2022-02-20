@@ -10,8 +10,8 @@ public class AppNotificationInitializer
         string text)
     {
         var appNotification = context.AppNotifications.SingleOrDefault(x => x.Text == text);
-            
-        if (appNotification != null)
+        
+        if (appNotification is not null)
             return;
 
         appNotification = new AppNotification
