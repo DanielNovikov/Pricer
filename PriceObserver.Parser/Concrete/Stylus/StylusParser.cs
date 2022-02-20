@@ -14,24 +14,21 @@ public class StylusParser : IParserProvider
     {
         const string selector = "div.product-info-block div.regular-price";
         
-        var priceElement = 
-            document.QuerySelector<IHtmlDivElement>(selector) ?? 
+        var priceElement = document.QuerySelector<IHtmlDivElement>(selector) ?? 
             throw new ArgumentNullException($"{nameof(StylusParser)}:{nameof(GetPrice)}:Element");
 
-        var priceText = priceElement
-            .TextContent
+        var price = priceElement.TextContent
             .Replace(" ", string.Empty)
             .Replace("грн", string.Empty);
         
-        return int.Parse(priceText);
+        return int.Parse(price);
     }
 
     public string GetTitle(IHtmlDocument document)
     {
         const string selector = "h1.page-name";
         
-        var titleElement = 
-            document.QuerySelector<IHtmlHeadingElement>(selector) ??
+        var titleElement = document.QuerySelector<IHtmlHeadingElement>(selector) ??
             throw new ArgumentNullException($"{nameof(StylusParser)}:{nameof(GetTitle)}:Element");
 
         return titleElement.TextContent;
@@ -41,12 +38,12 @@ public class StylusParser : IParserProvider
     {
         const string selector = "meta[property='og:image']";
         
-        var imageMetaElement =
-            document.QuerySelector<IHtmlMetaElement>(selector) ??
+        var imageElement = document.QuerySelector<IHtmlMetaElement>(selector) ??
             throw new ArgumentNullException($"{nameof(StylusParser)}:{nameof(GetImageUrl)}:Element");
         
-        var imageSource = imageMetaElement.Content; 
+        var imageSource = imageElement.Content ??
+            throw new ArgumentNullException($"{nameof(StylusParser)}:{nameof(GetImageUrl)}:Element:Content"); 
         
-        return new Uri(imageSource!);
+        return new Uri(imageSource);
     }
 }

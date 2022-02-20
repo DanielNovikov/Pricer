@@ -13,37 +13,40 @@ public class AnswearParser : IParserProvider
 
     public int GetPrice(IHtmlDocument document)
     {
-        var elements = document.All;
-            
-        var priceSpan = elements.First(e =>
-            !string.IsNullOrEmpty(e.ClassName) &&
-            e.ClassName.Contains("Price__currentPrice"));
+        const string selector = "div[class*=container-fluid] p[class^=Price__currentPrice_]";
 
-        var fullPrice = priceSpan.InnerHtml;
+        var priceElement = document.QuerySelector<IHtmlParagraphElement>(selector) ??
+            throw new ArgumentNullException($"{nameof(AnswearParser)}:{nameof(GetPrice)}:Element");
 
-        var spaceIndex = fullPrice.IndexOf(' ');
-        var price = fullPrice.Substring(0, spaceIndex);
+        var price = priceElement.TextContent;
+
+        var spaceIndex = price.IndexOf(' ');
+        var formattedPrice = price.Substring(0, spaceIndex);
             
-        return int.Parse(price);
+        return int.Parse(formattedPrice);
     }
 
     public string GetTitle(IHtmlDocument document)
     {
-        return document.All
-            .First(x =>
-                !string.IsNullOrEmpty(x.ClassName) &&
-                x.ClassName.Contains("productNameAndLogo"))
-            .Children
-            .First(x => x.TagName.ToLower() == "h1")
-            .Text();
+        const string selector = "div[class^=ProductCard__productNameAndLogo] h1 span";
+
+        var titleElements = document.QuerySelectorAll<IHtmlSpanElement>(selector);
+
+        return titleElements
+            .Select(x => x.TextContent)
+            .Aggregate((x, y) => x + (x.EndsWith(' ') ? string.Empty : " ") + y);
     }
 
     public Uri GetImageUrl(IHtmlDocument document)
     {
-        const string selector = ".slick-current > div> .cardMedia >div > picture > img";
-        var image = document.QuerySelector<IHtmlImageElement>(selector);
-        var imageUrl = image.Source;
+        const string selector = "div[class*=slick-current] div[class*=cardMedia] img";
+        
+        var imageElement = document.QuerySelector<IHtmlImageElement>(selector) ??
+            throw new ArgumentNullException($"{nameof(AnswearParser)}:{nameof(GetImageUrl)}:Element");
+        
+        var imageSource = imageElement.Source ??
+            throw new ArgumentNullException($"{nameof(AnswearParser)}:{nameof(GetImageUrl)}:Element:Content");
 
-        return new Uri(imageUrl);
+        return new Uri(imageSource);
     }
 }

@@ -17,6 +17,7 @@ public class ModivoContentValidator : IContentValidator
     public bool HasItemInfo(IHtmlDocument document)
     {
         const string selector = "meta[property='product:price:amount']";
+        
         return document.QuerySelector<IHtmlMetaElement>(selector) is not null;
     }
 }

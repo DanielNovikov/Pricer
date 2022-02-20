@@ -17,33 +17,40 @@ public class FarfetchParser : IParserProvider
 
         var priceElement = 
             document.QuerySelector<IHtmlElement>(discountPriceSelector) ??
-            document.QuerySelector<IHtmlElement>(fullPriceSelector);
+            document.QuerySelector<IHtmlElement>(fullPriceSelector) ?? 
+            throw new ArgumentNullException($"{nameof(FarfetchParser)}:{nameof(GetPrice)}:Element:Content");
 
-        var priceString = priceElement!.Text();
-        var formattedPriceString = priceString
-            .Substring(0, priceString.IndexOf(' '))
+        var price = priceElement.TextContent;
+        var formattedPrice = price
+            .Substring(0, price.IndexOf(' '))
             .Replace(" ", string.Empty);
 
-        return int.Parse(formattedPriceString);
+        return int.Parse(formattedPrice);
     }
 
     public string GetTitle(IHtmlDocument document)
     {
-        const string descriptionSelector = "div[data-tstid=productOffer] span[data-tstid=cardInfo-description]";
-        var description = document.QuerySelector<IHtmlElement>(descriptionSelector)!.Text();
-        var formattedDescription = string.Concat(char.ToUpper(description[0]).ToString(), description[1..]);
-            
-        const string brandNameSelector = "div[data-tstid=productOffer] a[data-trk=pp_infobrd] > span";
-        var brandName = document.QuerySelector<IHtmlElement>(brandNameSelector)!.Text();
+        const string selector = "meta[property='og:title']";
+        
+        var titleElement = document.QuerySelector<IHtmlMetaElement>(selector) ??
+            throw new ArgumentNullException($"{nameof(FarfetchParser)}:{nameof(GetTitle)}:Element");
 
-        return $"{formattedDescription} {brandName}";
+        var title = titleElement.Content ??
+            throw new ArgumentNullException($"{nameof(FarfetchParser)}:{nameof(GetTitle)}:Element:Content");
+        
+        return title[..(title.LastIndexOf('-') - 1)];
     }
 
     public Uri GetImageUrl(IHtmlDocument document)
     {
         const string selector = "img[data-test=imagery-img0]";
-        var imageSource = document.QuerySelector<IHtmlImageElement>(selector)!.Source;
+        
+        var imageElement = document.QuerySelector<IHtmlImageElement>(selector) ??
+            throw new ArgumentNullException($"{nameof(FarfetchParser)}:{nameof(GetImageUrl)}:Element");
 
+        var imageSource = imageElement.Source ??
+            throw new ArgumentNullException($"{nameof(FarfetchParser)}:{nameof(GetImageUrl)}:Element:Content");
+        
         return new Uri(imageSource);
     }
 }

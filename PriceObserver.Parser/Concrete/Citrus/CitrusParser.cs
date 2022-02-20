@@ -14,23 +14,20 @@ public class CitrusParser : IParserProvider
     {
         const string selector = "div.price";
         
-        var priceElement = 
-            document.QuerySelector<IHtmlDivElement>(selector) ?? 
+        var priceElement = document.QuerySelector<IHtmlDivElement>(selector) ?? 
             throw new ArgumentNullException($"{nameof(CitrusParser)}:{nameof(GetPrice)}:Element");
         
-        var priceText =
-            priceElement.GetAttribute("data-price") ??
-            throw new ArgumentNullException($"{nameof(CitrusParser)}:{nameof(GetPrice)}:AttributeValue");
+        var price = priceElement.GetAttribute("data-price") ??
+            throw new ArgumentNullException($"{nameof(CitrusParser)}:{nameof(GetPrice)}:Element:Content");
         
-        return int.Parse(priceText!);
+        return int.Parse(price);
     }
 
     public string GetTitle(IHtmlDocument document)
     {
         const string selector = "meta[property='og:title']";
         
-        var titleElement = 
-            document.QuerySelector<IHtmlMetaElement>(selector) ??
+        var titleElement = document.QuerySelector<IHtmlMetaElement>(selector) ??
             throw new ArgumentNullException($"{nameof(CitrusParser)}:{nameof(GetTitle)}:Element");
 
         return titleElement.Content;
@@ -40,12 +37,12 @@ public class CitrusParser : IParserProvider
     {
         const string selector = "meta[property='og:image']";
         
-        var imageMetaElement =
-            document.QuerySelector<IHtmlMetaElement>(selector) ??
+        var imageElement = document.QuerySelector<IHtmlMetaElement>(selector) ??
             throw new ArgumentNullException($"{nameof(CitrusParser)}:{nameof(GetImageUrl)}:Element");
         
-        var imageSource = imageMetaElement.Content; 
+        var imageSource = imageElement.Content ??
+            throw new ArgumentNullException($"{nameof(CitrusParser)}:{nameof(GetImageUrl)}:Element:Content"); 
         
-        return new Uri(imageSource!);
+        return new Uri(imageSource);
     }
 }

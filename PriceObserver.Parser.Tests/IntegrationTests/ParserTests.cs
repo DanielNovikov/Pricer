@@ -33,11 +33,11 @@ public class ParserTests : IntegrationTestingBase
         "https://estore.ua/apple-watch-series-7-45mm-midnight-aluminium-case-with-sport-band/",
         ShopKey.Estore,
         "Apple WATCH Series 7 45mm Midnight Aluminum Case With Midnight Sport Band (MKN53)",
-        "/media/catalog/product/cache/8/image/265x/9df78eab33525d08d6e5fb8d27136e95/a/p/apple-watch-series-7_5__1_1.jpg")]
+        "https://estore.ua/media/catalog/product/cache/8/image/265x/9df78eab33525d08d6e5fb8d27136e95/a/p/apple-watch-series-7_5__1_1.jpg")]
     [InlineData(
         "https://www.farfetch.com/ua/shopping/men/moschino-iphone-12-item-17412779.aspx?rtype=portal_pdp_outofstock_b&rpos=5&rid=aaf3572d-fa18-4021-a13e-5cb95783f88d",
         ShopKey.Farfetch,
-        "Чехол для iPhone 12 с логотипом Moschino",
+        "Moschino Чехол Для iPhone 12 с Логотипом",
         "https://cdn-images.farfetch-contents.com/17/41/27/79/17412779_36825619_1000.jpg")]
     [InlineData(
         "https://intertop.ua/ua/product/sweaters-and-sweaters-adidas-5701343",
@@ -52,7 +52,7 @@ public class ParserTests : IntegrationTestingBase
     [InlineData(
         "https://md-fashion.com.ua/store/zenskaa-belaa-futbolka-calvin-klein-performance-00gwf0k142-belyj",
         ShopKey.MdFashion,
-        "Женская белая футболка",
+        "Женская белая футболка Calvin Klein Performance 00GWF0K142",
         "https://media.md-fashion.com.ua/images/db/56/03da0f3c233b56ecf1ce1e8aafc6.jpg")]
     [InlineData(
         "https://modivo.ua/p/michael-kors-godinnik-pyper-mk4340-zolotii",

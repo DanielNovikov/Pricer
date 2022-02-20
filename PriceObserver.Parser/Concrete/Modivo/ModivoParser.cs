@@ -13,26 +13,36 @@ public class ModivoParser : IParserProvider
     public int GetPrice(IHtmlDocument document)
     {
         const string selector = "meta[property='product:price:amount']";
-        var priceElement = document.QuerySelector<IHtmlMetaElement>(selector);
-        var price = priceElement!.Content;
+        
+        var priceElement = document.QuerySelector<IHtmlMetaElement>(selector) ?? 
+            throw new ArgumentNullException($"{nameof(ModivoParser)}:{nameof(GetPrice)}:Element");
+        
+        var price = priceElement.Content ?? 
+            throw new ArgumentNullException($"{nameof(ModivoParser)}:{nameof(GetPrice)}:Element:Content");
 
-        return int.Parse(price!);
+        return int.Parse(price);
     }
 
     public string GetTitle(IHtmlDocument document)
     {
         const string selector = "meta[name=title]";
-        var titleElement = document.QuerySelector<IHtmlMetaElement>(selector);
+        
+        var titleElement = document.QuerySelector<IHtmlMetaElement>(selector)  ?? 
+            throw new ArgumentNullException($"{nameof(ModivoParser)}:{nameof(GetTitle)}:Element");
 
-        return titleElement!.Content;
+        return titleElement.Content;
     }
 
     public Uri GetImageUrl(IHtmlDocument document)
     {
         const string selector = "meta[property='og:image']";
-        var imageElement = document.QuerySelector<IHtmlMetaElement>(selector);
-        var imageSrc = imageElement!.Content;
         
-        return new Uri(imageSrc!);
+        var imageElement = document.QuerySelector<IHtmlMetaElement>(selector) ?? 
+            throw new ArgumentNullException($"{nameof(ModivoParser)}:{nameof(GetImageUrl)}:Element");
+        
+        var imageSource = imageElement.Content ?? 
+            throw new ArgumentNullException($"{nameof(ModivoParser)}:{nameof(GetImageUrl)}:Element:Content");
+        
+        return new Uri(imageSource);
     }
 }

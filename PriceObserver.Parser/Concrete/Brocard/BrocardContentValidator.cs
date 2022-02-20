@@ -20,16 +20,15 @@ public class BrocardContentValidator : IContentValidator
     {
         const string selector = ".price-format > .price";
         
-        var span = document.QuerySelector<IHtmlSpanElement>(selector);
-        if (span == null)
+        var priceElement = document.QuerySelector<IHtmlSpanElement>(selector);
+        if (priceElement is null)
             return false;
         
-        var spanText = span.Text();
+        var price = priceElement.TextContent;
 
-        var price = spanText.Replace(" ", string.Empty);
-        price = price[..price.IndexOf(',')];
+        var priceWithoutSpaces = price.Replace(" ", string.Empty);
+        var formattedPrice = priceWithoutSpaces[..priceWithoutSpaces.IndexOf(',')];
         
-        var parsedPrice = int.Parse(price);
-        return parsedPrice > 0;
+        return int.Parse(formattedPrice) > 0;
     }
 }

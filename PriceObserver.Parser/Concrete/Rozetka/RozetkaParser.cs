@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using AngleSharp.Dom;
 using AngleSharp.Html.Dom;
 using PriceObserver.Data.InMemory.Models.Enums;
@@ -14,29 +13,38 @@ public class RozetkaParser : IParserProvider
     public int GetPrice(IHtmlDocument document)
     {
         const string selector = ".product-about__block .product-prices__big";
-        var price = document.QuerySelector<IHtmlParagraphElement>(selector);
-        var priceText = price!.Text()
+        
+        var priceElement = document.QuerySelector<IHtmlParagraphElement>(selector) ?? 
+            throw new ArgumentNullException($"{nameof(RozetkaParser)}:{nameof(GetPrice)}:Element");
+        
+        var price = priceElement.TextContent
             .Replace("₴", string.Empty)
             .Replace(" ", string.Empty)
             .Replace(" ", string.Empty);    
         
-        return int.Parse(priceText);
+        return int.Parse(price);
     }
 
     public string GetTitle(IHtmlDocument document)
     {
         const string selector = "meta[name=keywords]";
-        var titleElement = document.QuerySelector<IHtmlMetaElement>(selector);
+        
+        var titleElement = document.QuerySelector<IHtmlMetaElement>(selector) ?? 
+            throw new ArgumentNullException($"{nameof(RozetkaParser)}:{nameof(GetTitle)}:Element");
 
-        return titleElement!.Content;
+        return titleElement.Content;
     }
 
     public Uri GetImageUrl(IHtmlDocument document)
     {
         const string selector = "rz-gallery-main-content-image > img";
-        var imageMetaElement = document.QuerySelector<IHtmlImageElement>(selector);
-        var imageSource = imageMetaElement!.Source; 
         
-        return new Uri(imageSource!);
+        var imageElement = document.QuerySelector<IHtmlImageElement>(selector) ?? 
+            throw new ArgumentNullException($"{nameof(RozetkaParser)}:{nameof(GetImageUrl)}:Element");
+        
+        var imageSource = imageElement.Source ?? 
+            throw new ArgumentNullException($"{nameof(RozetkaParser)}:{nameof(GetImageUrl)}:Element:Content");
+        
+        return new Uri(imageSource);
     }
 }

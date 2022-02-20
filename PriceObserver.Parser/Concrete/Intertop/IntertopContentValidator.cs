@@ -11,7 +11,7 @@ public class IntertopContentValidator : IContentValidator
 
     public bool IsAvailable(IHtmlDocument document)
     {
-        const string selector = "a[id=report-availability]";
+        const string selector = "a[id='report-availability']";
 
         return document.QuerySelector<IHtmlElement>(selector) is null;
     }

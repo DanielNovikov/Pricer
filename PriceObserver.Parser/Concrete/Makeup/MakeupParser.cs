@@ -13,7 +13,11 @@ public class MakeupParser : IParserProvider
     public int GetPrice(IHtmlDocument document)
     {
         const string selector = "span[itemprop=price]";
-        var price = document.QuerySelector<IHtmlSpanElement>(selector)!.TextContent;
+        
+        var priceElement = document.QuerySelector<IHtmlSpanElement>(selector) ?? 
+            throw new ArgumentNullException($"{nameof(MakeupParser)}:{nameof(GetPrice)}:Element");
+        
+        var price = priceElement.TextContent;
 
         return int.Parse(price);
     }
@@ -21,14 +25,23 @@ public class MakeupParser : IParserProvider
     public string GetTitle(IHtmlDocument document)
     {
         const string selector = "meta[name=KeyWords]";
-        return document.QuerySelector<IHtmlMetaElement>(selector)!.Content;
+        
+        var titleElement = document.QuerySelector<IHtmlMetaElement>(selector) ?? 
+            throw new ArgumentNullException($"{nameof(MakeupParser)}:{nameof(GetTitle)}:Element");
+
+        return titleElement.Content;
     }
 
     public Uri GetImageUrl(IHtmlDocument document)
     {
         const string selector = "img[itemprop=image]";
-        var source = document.QuerySelector<IHtmlImageElement>(selector)!.Source;
-            
-        return new Uri(source!);
+        
+        var imageElement = document.QuerySelector<IHtmlImageElement>(selector) ?? 
+            throw new ArgumentNullException($"{nameof(MakeupParser)}:{nameof(GetImageUrl)}:Element");
+
+        var imageSource = imageElement.Source ?? 
+            throw new ArgumentNullException($"{nameof(MakeupParser)}:{nameof(GetImageUrl)}:Element:Content");
+        
+        return new Uri(imageSource);
     }
 }

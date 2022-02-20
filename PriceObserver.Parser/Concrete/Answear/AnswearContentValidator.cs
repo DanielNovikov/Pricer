@@ -1,4 +1,4 @@
-﻿using System.Linq;
+﻿using AngleSharp.Dom;
 using AngleSharp.Html.Dom;
 using PriceObserver.Data.InMemory.Models.Enums;
 using PriceObserver.Parser.Abstract;
@@ -16,10 +16,8 @@ public class AnswearContentValidator : IContentValidator
 
     public bool HasItemInfo(IHtmlDocument document)
     {
-        return document.All
-            .Any(e => 
-                e.TagName.ToLower() == "p" && 
-                !string.IsNullOrEmpty(e.ClassName) &&
-                e.ClassName.Contains("Price__currentPrice"));
+        const string selector = "div[class*=container-fluid] p[class^=Price__currentPrice_]";
+
+        return document.QuerySelector<IHtmlParagraphElement>(selector) is not null;
     }
 }

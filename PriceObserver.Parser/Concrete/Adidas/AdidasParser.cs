@@ -17,27 +17,37 @@ public class AdidasParser : IParserProvider
 
         var priceElement = 
             document.QuerySelector<IHtmlSpanElement>(discountPriceSelector) ??
-            document.QuerySelector<IHtmlSpanElement>(fullPriceSelector);
+            document.QuerySelector<IHtmlSpanElement>(fullPriceSelector) ??
+            throw new ArgumentNullException($"{nameof(AdidasParser)}:{nameof(GetPrice)}:Element");
 
-        var priceString = priceElement!.Text();
-        var formattedPriceString = priceString
-            .Substring(0, priceString.IndexOf("грн", StringComparison.Ordinal))
+        var price = priceElement.TextContent;
+        var formattedPrice = price
+            .Substring(0, price.IndexOf("грн", StringComparison.Ordinal))
             .Replace(" ", string.Empty);
 
-        return int.Parse(formattedPriceString);
+        return int.Parse(formattedPrice);
     }
 
     public string GetTitle(IHtmlDocument document)
     {
         const string selector = ".product__sidebar__inner > .common-text.product__title > span";
-        return document.QuerySelector<IHtmlSpanElement>(selector)!.TextContent;
+
+        var titleElement = document.QuerySelector<IHtmlSpanElement>(selector) ??
+            throw new ArgumentNullException($"{nameof(AdidasParser)}:{nameof(GetTitle)}:Element");
+
+        return titleElement.TextContent.Trim(' ', '\n');
     }
 
     public Uri GetImageUrl(IHtmlDocument document)
     {
         const string selector = ".slick-current.slick-slide.slick-active > div> div> div> div> picture > img";
-        var source = document.QuerySelector<IHtmlImageElement>(selector)!.Source;
+        
+        var imageElement = document.QuerySelector<IHtmlImageElement>(selector) ??
+            throw new ArgumentNullException($"{nameof(AdidasParser)}:{nameof(GetImageUrl)}:Element");
 
-        return new Uri(source!);
+        var imageSource = imageElement.Source ??
+            throw new ArgumentNullException($"{nameof(AdidasParser)}:{nameof(GetImageUrl)}:Element:Content");
+
+        return new Uri(imageSource);
     }
 }

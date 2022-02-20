@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using AngleSharp.Dom;
 using AngleSharp.Html.Dom;
 using PriceObserver.Data.InMemory.Models.Enums;
@@ -14,34 +13,38 @@ public class BrocardParser : IParserProvider
     public int GetPrice(IHtmlDocument document)
     {
         const string selector = ".price-format > .price";
-        var spanText = document.QuerySelector<IHtmlSpanElement>(selector)!.Text();
-            
-        var price = spanText.Replace(" ", string.Empty);
-        price = price[..price.IndexOf(',')];
+        
+        var priceElement = document.QuerySelector<IHtmlSpanElement>(selector) ??
+            throw new ArgumentNullException($"{nameof(BrocardParser)}:{nameof(GetPrice)}:Element");
+        
+        var price = priceElement.TextContent;
 
-        return int.Parse(price);
+        var priceWithoutSpaces = price.Replace(" ", string.Empty);
+        var formattedPrice = priceWithoutSpaces[..priceWithoutSpaces.IndexOf(',')];
+        
+        return int.Parse(formattedPrice);
     }
 
     public string GetTitle(IHtmlDocument document)
     {
-        var productName = document.All
-            .First(e =>
-                !string.IsNullOrEmpty(e.ClassName) &&
-                e.ClassName.Contains("itemsCritical") &&
-                e.TagName == "UL")
-            .Children
-            .Last()
-            .Children
-            .First();
+        const string selector = "ul[class$=itemsCritical] li:last-child span";
 
-        return productName.Text();
+        var titleElement = document.QuerySelector<IHtmlSpanElement>(selector) ??
+            throw new ArgumentNullException($"{nameof(BrocardParser)}:{nameof(GetTitle)}:Element");
+
+        return titleElement.TextContent.Trim(' ', '\r', '\n');
     }
 
     public Uri GetImageUrl(IHtmlDocument document)
     {
         const string selector = "meta[property='og:image']";
-        var imageUrl = document.QuerySelector<IHtmlMetaElement>(selector)!.Content;
-            
-        return new Uri(imageUrl!);
+        
+        var imageElement = document.QuerySelector<IHtmlMetaElement>(selector) ??
+            throw new ArgumentNullException($"{nameof(BrocardParser)}:{nameof(GetImageUrl)}:Element");
+
+        var imageSource = imageElement.Content ?? 
+            throw new ArgumentNullException($"{nameof(BrocardParser)}:{nameof(GetImageUrl)}:Element:Content");
+        
+        return new Uri(imageSource);
     }
 }

@@ -21,7 +21,7 @@ public class ParserProviderService : IParserProviderService
         var parserProvider = _parserProviders.Single(x => x.ProviderKey == providerKey);
 
         var price = parserProvider.GetPrice(document);
-        var title = parserProvider.GetTitle(document).Trim(' ', '\r', '\n');
+        var title = parserProvider.GetTitle(document);
         var imageUrl = parserProvider.GetImageUrl(document);
         
         return new ParsedItem(providerKey, price, title, imageUrl);

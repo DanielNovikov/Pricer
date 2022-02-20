@@ -30,7 +30,7 @@ public class EstoreParser : IParserProvider
         var titleElement = document.QuerySelector<IHtmlHeadingElement>(selector) ?? 
             throw new ArgumentNullException($"{nameof(EstoreParser)}:{nameof(GetTitle)}:Element");
 
-        return titleElement.TextContent;
+        return titleElement.TextContent.TrimStart('\n');
     }
 
     public Uri GetImageUrl(IHtmlDocument document)
@@ -41,7 +41,7 @@ public class EstoreParser : IParserProvider
             throw new ArgumentNullException($"{nameof(EstoreParser)}:{nameof(GetImageUrl)}:Element");
 
         var imageSource = imageElement.Content ??
-            throw new ArgumentNullException($"{nameof(EstoreParser)}:{nameof(GetImageUrl)}:ElementContent");
+            throw new ArgumentNullException($"{nameof(EstoreParser)}:{nameof(GetImageUrl)}:Element:Content");
         
         return new Uri(imageSource);
     }

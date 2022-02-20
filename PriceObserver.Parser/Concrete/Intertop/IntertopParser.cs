@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using AngleSharp.Dom;
 using AngleSharp.Html.Dom;
 using PriceObserver.Data.InMemory.Models.Enums;
@@ -13,34 +12,35 @@ public class IntertopParser : IParserProvider
 
     public int GetPrice(IHtmlDocument document)
     {
-        var priceSpan = document.All.First(e =>
-            !string.IsNullOrEmpty(e.ClassName) &&
-            e.ClassName == "price-contain");
+        const string selector = "span[class=price-contain]";
+
+        var priceElement = document.QuerySelector<IHtmlSpanElement>(selector) ?? 
+            throw new ArgumentNullException($"{nameof(IntertopParser)}:{nameof(GetPrice)}:Element");
             
-        var price = priceSpan.InnerHtml.Replace(" ", string.Empty);
+        var price = priceElement.TextContent;
+        var formattedPrice = price.Replace(" ", string.Empty);
             
-        return int.Parse(price);
+        return int.Parse(formattedPrice);
     }
 
     public string GetTitle(IHtmlDocument document)
-    {   
-        var productName = document.All
-            .First(e =>
-                !string.IsNullOrEmpty(e.ClassName) &&
-                e.ClassName == "user-product-name")
-            .Children;
+    {
+        const string selector = "meta[property='og:title']";
+        
+        var titleElement = document.QuerySelector<IHtmlMetaElement>(selector) ?? 
+            throw new ArgumentNullException($"{nameof(IntertopParser)}:{nameof(GetTitle)}:Element");
 
-        var type = productName[1].Text();
-        var description = productName[0].Text(); 
-
-        return $"{type} {description}";
+        return titleElement.Content;
     }
 
     public Uri GetImageUrl(IHtmlDocument document)
     {
         const string selector = "meta[property='og:image']";
-        var imageMetaElement = document.QuerySelector<IHtmlMetaElement>(selector);
-        var imageUrl = $"https://intertop.ua{imageMetaElement!.Content}";
+        
+        var imageElement = document.QuerySelector<IHtmlMetaElement>(selector) ?? 
+            throw new ArgumentNullException($"{nameof(IntertopParser)}:{nameof(GetImageUrl)}:Element");
+        
+        var imageUrl = $"https://intertop.ua{imageElement.Content}";
 
         return new Uri(imageUrl);
     }
