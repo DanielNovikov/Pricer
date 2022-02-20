@@ -17,6 +17,7 @@ public enum ResourceKey
     Dialog_Help = 12,
     Dialog_ShopIsNotAvailable = 13,
     Dialog_AddItemInformation = 14,
+    Dialog_MaximumOfItemsExceeded = 15,
 
     UserAction_GotAddedProducts = 100,
     UserAction_ParsingError = 101,

@@ -3,11 +3,11 @@ using Microsoft.Extensions.DependencyInjection;
 using PriceObserver.Common.Extensions;
 using PriceObserver.Dialog.Commands.Abstract;
 using PriceObserver.Dialog.Commands.Concrete;
-using PriceObserver.Dialog.Commands.Concrete.WebsiteCommand.Options;
 using PriceObserver.Dialog.Menus.Abstract;
 using PriceObserver.Dialog.Menus.Concrete;
 using PriceObserver.Dialog.Services.Abstract;
 using PriceObserver.Dialog.Services.Concrete;
+using PriceObserver.Dialog.Services.Options;
 
 namespace PriceObserver.Dialog;
 
@@ -25,6 +25,7 @@ public static class DependencyInjection
         services.AddTransient<IInputHandler, InputHandler>();
         services.AddTransient<IAuthorizationService, AuthorizationService>();
         services.AddTransient<IUserRegistrationHandler, UserRegistrationHandler>();
+        services.AddTransient<IWebsiteLoginUrlBuilder, WebsiteLoginUrlBuilder>();
 
         services.AddTransient<IMenuInputHandlerService, MenuInputHandlerService>();
         services.AddTransient<IMenuKeyboardBuilder, MenuKeyboardBuilder>();
@@ -34,8 +35,8 @@ public static class DependencyInjection
         services.AddTransient<IUserRedirectionService, UserRedirectionService>();
 
         services
-            .AddOptions<WebsiteCommandOptions>()
-            .Bind(configuration.GetSection(nameof(WebsiteCommandOptions)));
+            .AddOptions<WebsiteOptions>()
+            .Bind(configuration.GetSection(nameof(WebsiteOptions)));
 
         services.AddImplementations<ICommandHandler>();
         services.AddImplementations<IMenuInputHandler>();

@@ -7,11 +7,13 @@ namespace PriceObserver.Data.Repositories.Abstract;
 
 public interface IItemRepository
 {
-    Task<List<Item>> GetAll();
+    Task<IList<Item>> GetAll();
         
     Task<Item> GetById(int id);
 
-    Task<List<Item>> GetByUserId(long userId);
+    Task<IList<Item>> GetByUserId(long userId);
+    
+    Task<IList<Item>> GetByUserIdWithLimit(long userId, int limit);
 
     Task<bool> ExistsForUserByUrl(long userId, Uri url);
         

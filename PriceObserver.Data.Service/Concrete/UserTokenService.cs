@@ -24,7 +24,12 @@ public class UserTokenService : IUserTokenService
 
     public async Task<UserToken> CreateForUser(long userId)
     {
-        var token = new UserToken
+        var token = await _repository.GetNotExpiredByUserId(userId);
+
+        if (token is not null)
+            return token;
+        
+        token = new UserToken
         {
             Token = Guid.NewGuid(),
             Expired = false,

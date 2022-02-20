@@ -17,7 +17,7 @@ public class ItemRepository : IItemRepository
         _context = context;
     }
 
-    public async Task<List<Item>> GetAll()
+    public async Task<IList<Item>> GetAll()
     {
         return await _context
             .Items
@@ -33,13 +33,25 @@ public class ItemRepository : IItemRepository
             .FirstOrDefaultAsync(x => x.Id == id);
     }
 
-    public async Task<List<Item>> GetByUserId(long userId)
+    public async Task<IList<Item>> GetByUserId(long userId)
     {
         return await _context
             .Items
             .AsNoTracking()
             .Include(x => x.PriceChanges)
             .Where(i => i.UserId == userId)
+            .ToListAsync();
+    }
+
+    public async Task<IList<Item>> GetByUserIdWithLimit(long userId, int limit)
+    {
+        return await _context
+            .Items
+            .AsNoTracking()
+            .Include(x => x.PriceChanges)
+            .Where(i => i.UserId == userId)
+            .OrderBy(x => x.Title)
+            .Take(limit)
             .ToListAsync();
     }
 

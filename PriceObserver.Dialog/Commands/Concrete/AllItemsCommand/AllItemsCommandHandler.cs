@@ -19,17 +19,22 @@ public class AllItemsCommandHandler : ICommandHandler
     private readonly IUserActionLogger _userActionLogger;
     private readonly IResourceService _resourceService;
     private readonly IShopRepository _shopRepository;
-        
+    private readonly IWebsiteLoginUrlBuilder _websiteLoginUrlBuilder;
+
+    private const int MaximumOfItemsInMessage = 10;
+    
     public AllItemsCommandHandler(
         IItemRepository itemRepository,
         IUserActionLogger userActionLogger, 
         IResourceService resourceService, 
-        IShopRepository shopRepository)
+        IShopRepository shopRepository, 
+        IWebsiteLoginUrlBuilder websiteLoginUrlBuilder)
     {
         _itemRepository = itemRepository;
         _userActionLogger = userActionLogger;
         _resourceService = resourceService;
         _shopRepository = shopRepository;
+        _websiteLoginUrlBuilder = websiteLoginUrlBuilder;
     }
 
     public CommandKey Type => CommandKey.AllItems; 
@@ -38,14 +43,14 @@ public class AllItemsCommandHandler : ICommandHandler
     {
         _userActionLogger.LogAllItemsCalled(user);
             
-        var items = await _itemRepository.GetByUserId(user.Id);
+        var items = await _itemRepository.GetByUserIdWithLimit(user.Id, MaximumOfItemsInMessage);
 
         if (!items.Any())
             return CommandHandlingServiceResult.Fail(ResourceKey.Dialog_EmptyCart);
 
         var shops = _shopRepository.GetAll();
-        
-        var message = items
+
+        var itemsInfo = items
             .Join(
                 shops,
                 x => x.ShopKey,
@@ -56,13 +61,23 @@ public class AllItemsCommandHandler : ICommandHandler
                     Url = i.Url,
                     Price = i.Price,
                     CurrencyTitle = _resourceService.Get(s.Currency.Title)
-                })
+                });
+        
+        var message = itemsInfo
             .Select((x, i) => 
                 _resourceService.Get(ResourceKey.Dialog_ItemInfo, i + 1, x.Title, x.Price, x.CurrencyTitle, x.Url))
-            .Aggregate((x, y) => $"{x}{Environment.NewLine}{Environment.NewLine}{y}");
+            .Aggregate((x, y) => 
+                $"{x}{Environment.NewLine}{Environment.NewLine}{y}");
+
+        if (items.Count == MaximumOfItemsInMessage)
+        {
+            var loginUrl = await _websiteLoginUrlBuilder.Build(user.Id);
+            var maximumExceededMessage = _resourceService.Get(ResourceKey.Dialog_MaximumOfItemsExceeded, loginUrl);
+
+            message += $"{Environment.NewLine}{Environment.NewLine}{maximumExceededMessage}";
+        }
 
         var replyResult = ReplyResult.Reply(message);
-
         return CommandHandlingServiceResult.Success(replyResult);
     }
 }
