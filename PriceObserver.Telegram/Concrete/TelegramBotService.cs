@@ -36,7 +36,7 @@ public class TelegramBotService : ITelegramBotService
     }
 
     private const int UserDeactivatedErrorCode = 403;
-    private const int SendMessagePause = 1000;
+    private const int RetrySendMessagePause = 1000;
         
     private async Task Send(long userId, string message, IReplyMarkup keyboard = default)
     {
@@ -51,7 +51,7 @@ public class TelegramBotService : ITelegramBotService
             {
                 _logger.LogWarning($"Send error. Message: {ex.Message}");
 
-                await Task.Delay(SendMessagePause);
+                await Task.Delay(RetrySendMessagePause);
                 await Send(userId, message, keyboard);
                     
                 return;

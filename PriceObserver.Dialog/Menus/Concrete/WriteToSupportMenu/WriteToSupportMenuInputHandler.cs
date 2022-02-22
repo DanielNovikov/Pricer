@@ -28,7 +28,8 @@ public class WriteToSupportMenuInputHandler : IMenuInputHandler
         _userActionLogger.LogWriteToSupport(message.User, message.Text);
 
         var responseMessage = _resourceService.Get(ResourceKey.Dialog_SupportReply);
-        var result = MenuInputHandlingServiceResult.Success(responseMessage); 
+        var reply = ReplyResult.Reply(responseMessage);
+        var result = MenuInputHandlingServiceResult.Success(reply); 
             
         return Task.FromResult(result);
     }

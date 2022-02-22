@@ -2,7 +2,6 @@
 using System.Collections.Immutable;
 using System.Linq;
 using System.Threading.Tasks;
-using PriceObserver.Data.InMemory.Models.Enums;
 using PriceObserver.Data.InMemory.Repositories.Abstract;
 using PriceObserver.Dialog.Menus.Abstract;
 using PriceObserver.Dialog.Menus.Models;
@@ -14,17 +13,17 @@ namespace PriceObserver.Dialog.Menus.Concrete;
 public class MenuInputHandlerService : IMenuInputHandlerService
 {
     private readonly IReadOnlyList<IMenuInputHandler> _handlers;
-    private readonly IUserActionLogger _userActionLogger;
     private readonly IMenuRepository _menuRepository;
+    private readonly IWrongCommandHandler _wrongCommandHandler;
 
     public MenuInputHandlerService(
         IEnumerable<IMenuInputHandler> handlers,
-        IUserActionLogger userActionLogger, 
-        IMenuRepository menuRepository)
+        IMenuRepository menuRepository,
+        IWrongCommandHandler wrongCommandHandler)
     {
         _handlers = handlers.ToImmutableList();
-        _userActionLogger = userActionLogger;
         _menuRepository = menuRepository;
+        _wrongCommandHandler = wrongCommandHandler;
     }
 
     public async Task<MenuInputHandlingServiceResult> Handle(MessageServiceModel message)
@@ -34,8 +33,8 @@ public class MenuInputHandlerService : IMenuInputHandlerService
             
         if (!menu.CanExpectInput)
         {
-            _userActionLogger.LogWrongCommand(message.User, message.Text);
-            return MenuInputHandlingServiceResult.Fail(ResourceKey.Dialog_IncorrectCommand);
+            var replyResult = _wrongCommandHandler.Handle(message);
+            return MenuInputHandlingServiceResult.Success(replyResult);
         }
 
         var handler = _handlers.Single(x => x.Key == menuKey);

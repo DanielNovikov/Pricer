@@ -16,19 +16,22 @@ public class HomeMenuInputHandler : IMenuInputHandler
     private readonly IUserItemParser _userItemParser;
     private readonly IItemRepository _itemRepository;
     private readonly IShopRepository _shopRepository;
+    private readonly IWrongCommandHandler _wrongCommandHandler;
 
     public HomeMenuInputHandler(
         IUrlExtractor urlExtractor,
         IUserActionLogger userActionLogger,
         IUserItemParser userItemParser, 
         IItemRepository itemRepository,
-        IShopRepository shopRepository)
+        IShopRepository shopRepository, 
+        IWrongCommandHandler wrongCommandHandler)
     {
         _urlExtractor = urlExtractor;
         _userActionLogger = userActionLogger;
         _userItemParser = userItemParser;
         _itemRepository = itemRepository;
         _shopRepository = shopRepository;
+        _wrongCommandHandler = wrongCommandHandler;
     }
 
     public MenuKey Key => MenuKey.Home;
@@ -40,8 +43,8 @@ public class HomeMenuInputHandler : IMenuInputHandler
         var urlExtractionResult = _urlExtractor.Extract(message.Text);
         if (!urlExtractionResult.IsSuccess)
         {
-            _userActionLogger.LogWrongCommand(user, message.Text);
-            return MenuInputHandlingServiceResult.Fail(ResourceKey.Dialog_IncorrectCommand);
+            var replyResult = _wrongCommandHandler.Handle(message);
+            return MenuInputHandlingServiceResult.Success(replyResult);
         }
 
         var url = urlExtractionResult.Result;
@@ -64,6 +67,7 @@ public class HomeMenuInputHandler : IMenuInputHandler
         if (!parseResult.IsSuccess)
             return MenuInputHandlingServiceResult.Fail(parseResult.Error);
 
-        return MenuInputHandlingServiceResult.Success(parseResult.Result);
+        var reply = ReplyResult.Reply(parseResult.Result);
+        return MenuInputHandlingServiceResult.Success(reply);
     }
 }

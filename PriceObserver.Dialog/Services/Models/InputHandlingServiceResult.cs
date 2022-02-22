@@ -13,7 +13,7 @@ public class InputHandlingServiceResult : ServiceResult<InputHandlingServiceResu
         {
             IsSuccess = serviceResult.IsSuccess,
             Error = serviceResult.Error,
-            Result = ReplyResult.Reply(serviceResult.Result)
+            Result = serviceResult.Result
         };
     }
         

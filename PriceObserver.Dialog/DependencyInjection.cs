@@ -26,7 +26,8 @@ public static class DependencyInjection
         services.AddTransient<IAuthorizationService, AuthorizationService>();
         services.AddTransient<IUserRegistrationHandler, UserRegistrationHandler>();
         services.AddTransient<IWebsiteLoginUrlBuilder, WebsiteLoginUrlBuilder>();
-
+        services.AddTransient<IWrongCommandHandler, WrongCommandHandler>();
+        
         services.AddTransient<IMenuInputHandlerService, MenuInputHandlerService>();
         services.AddTransient<IMenuKeyboardBuilder, MenuKeyboardBuilder>();
         services.AddTransient<IReplyWithKeyboardBuilder, ReplyWithKeyboardBuilder>();
