@@ -33,6 +33,7 @@ public class Program
             .CreateDefaultBuilder(args)
             .UseContentRoot(Directory.GetCurrentDirectory())
             .UseSerilog()
+            .UseUrls("http://*:5000")
             .UseStartup<Startup>();
 
     private static void SeedData(IWebHost host)
