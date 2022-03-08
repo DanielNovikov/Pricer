@@ -2,7 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using PriceObserver.Parser.Abstract;
 
-namespace PriceObserver.Parser.Tests.IntegrationTests;
+namespace PriceObserver.Parser.Tests.Integration;
 
 public abstract class IntegrationTestingBase
 {

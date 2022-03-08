@@ -4,7 +4,7 @@ using FluentAssertions;
 using PriceObserver.Data.InMemory.Models.Enums;
 using Xunit;
 
-namespace PriceObserver.Parser.Tests.IntegrationTests;
+namespace PriceObserver.Parser.Tests.Integration;
 
 public class ContentValidatorTests : IntegrationTestingBase
 {

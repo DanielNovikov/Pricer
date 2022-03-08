@@ -4,24 +4,24 @@ using System.Threading.Tasks;
 using AngleSharp.Html.Parser;
 using PriceObserver.Data.InMemory.Models.Enums;
 using PriceObserver.Parser.Abstract;
-using HtmlLoadResult = PriceObserver.Parser.Models.HtmlLoadResult;
+using PriceObserver.Parser.Models;
 
 namespace PriceObserver.Parser.Concrete;
 
 public class HtmlLoader : IHtmlLoader
 {
+    private readonly IRequestHeadersBuilder _requestHeadersBuilder;
     private readonly HttpClient _httpClient;
     private readonly IHtmlParser _htmlParser;
-    private readonly IRequestHeadersBuilder _requestHeadersBuilder;
         
     public HtmlLoader(
+        IRequestHeadersBuilder requestHeadersBuilder,
         HttpClient httpClient,
-        IHtmlParser htmlParser,
-        IRequestHeadersBuilder requestHeadersBuilder)
+        IHtmlParser htmlParser)
     {
+        _requestHeadersBuilder = requestHeadersBuilder;
         _httpClient = httpClient;
         _htmlParser = htmlParser;
-        _requestHeadersBuilder = requestHeadersBuilder;
     }
         
     public async Task<HtmlLoadResult> Load(Uri url, ShopKey shopKey)
@@ -37,7 +37,7 @@ public class HtmlLoader : IHtmlLoader
             return HtmlLoadResult.Fail(ResourceKey.Parser_PageNotFound);
             
         var html = await response.Content.ReadAsStreamAsync();
-        var htmlDocument =  await _htmlParser.ParseDocumentAsync(html);
+        var htmlDocument = await _htmlParser.ParseDocumentAsync(html);
 
         return HtmlLoadResult.Success(htmlDocument);
     }
