@@ -33,6 +33,5 @@ public class Validate_WhenThereIsNoItemInfo_ShouldReturnNoItemInfoOnPageError : 
 
         result.IsSuccess.Should().BeFalse();
         result.Error.Should().Be(ResourceKey.Parser_NoItemInfoOnPage);
-        result.Result.Should().BeNull();
     }
 }

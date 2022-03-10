@@ -32,6 +32,5 @@ public class Validate_WhenItemIsNotAvailable_ShouldReturnOutOfStockError : Conte
 
         result.IsSuccess.Should().BeFalse();
         result.Error.Should().Be(ResourceKey.Parser_OutOfStock);
-        result.Result.Should().BeNull();
     }
 }

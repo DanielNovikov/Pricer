@@ -32,6 +32,5 @@ public class Validate_WhenItemIsAvailableAndHasInfo_ShouldReturnSuccess : Contex
 
         result.IsSuccess.Should().BeTrue();
         result.Error.Should().Be(default);
-        result.Result.Should().BeNull();
     }
 }

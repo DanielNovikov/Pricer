@@ -3,7 +3,7 @@ using PriceObserver.Data.InMemory.Models.Enums;
 
 namespace PriceObserver.Parser.Models;
 
-public class ContentValidatorResult : ServiceResult<ContentValidatorResult, string, ResourceKey>
+public class ContentValidatorResult : ServiceErrorResult<ContentValidatorResult, ResourceKey>
 {
     public static ContentValidatorResult OutOfStock()
     {
