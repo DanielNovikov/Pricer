@@ -8,13 +8,8 @@ namespace PriceObserver.Data;
 
 public static class DependencyInjection
 {
-    public static void AddData(this IServiceCollection services, IConfiguration configuration)
+    public static IServiceCollection AddData(this IServiceCollection services)
     {
-        services.AddDbContext<ApplicationDbContext>(
-            context => context.UseNpgsql(
-                configuration.GetConnectionString("PricerDB"),
-                x => x.MigrationsAssembly("PriceObserver.Data")));
-
         services.AddMemoryCache();
             
         services.AddScoped<IItemRepository, ItemRepository>();
@@ -23,5 +18,17 @@ public static class DependencyInjection
         services.AddScoped<IUserTokenRepository, UserTokenRepository>();
         services.AddScoped<IAppNotificationRepository, AppNotificationRepository>();
         services.AddScoped<IItemParseResultRepository, ItemParseResultRepository>();
+
+        return services;
+    }
+
+    public static IServiceCollection AddDataContext(this IServiceCollection services, IConfiguration configuration)
+    {
+        services.AddDbContext<ApplicationDbContext>(
+            context => context.UseNpgsql(
+                configuration.GetConnectionString("PricerDB"),
+                x => x.MigrationsAssembly("PriceObserver.Data")));
+
+        return services;
     }
 }

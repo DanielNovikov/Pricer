@@ -25,6 +25,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PriceObserver.Api", "PriceO
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PriceObserver.Parser.Tests", "PriceObserver.Parser.Tests\PriceObserver.Parser.Tests.csproj", "{6EC34CFA-6563-4603-890C-6B60A13C91E8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PriceObserver.Dialog.Tests", "PriceObserver.Dialog.Tests\PriceObserver.Dialog.Tests.csproj", "{CF63C167-D3BA-4E9F-BB1D-5EA48E75673B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -75,6 +77,10 @@ Global
 		{6EC34CFA-6563-4603-890C-6B60A13C91E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6EC34CFA-6563-4603-890C-6B60A13C91E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6EC34CFA-6563-4603-890C-6B60A13C91E8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CF63C167-D3BA-4E9F-BB1D-5EA48E75673B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CF63C167-D3BA-4E9F-BB1D-5EA48E75673B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CF63C167-D3BA-4E9F-BB1D-5EA48E75673B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CF63C167-D3BA-4E9F-BB1D-5EA48E75673B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

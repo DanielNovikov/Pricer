@@ -6,7 +6,7 @@ namespace PriceObserver.Data.Service;
 
 public static class DependencyInjection
 {
-    public static void AddDataServices(this IServiceCollection services)
+    public static IServiceCollection AddDataServices(this IServiceCollection services)
     {
         services.AddScoped<IUserService, UserService>();
         services.AddScoped<IItemService, ItemService>();
@@ -15,5 +15,7 @@ public static class DependencyInjection
         services.AddScoped<IMenuService, MenuService>();
         services.AddScoped<ICommandService, CommandService>();
         services.AddScoped<IItemParseResultService, ItemParseResultService>();
+
+        return services;
     }
 }

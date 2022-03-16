@@ -34,11 +34,12 @@ public class Startup
         services.AddJwtAuthentication(_configuration);
         
         services.AddTelegramBot(_configuration);
-        services.AddTelegramDialogServices(_configuration);
+        services.AddDialog(_configuration);
         services.AddParserServices();
         services.AddBackgroundJobs();
             
-        services.AddData(_configuration);
+        services.AddData();
+        services.AddDataContext(_configuration);
         services.AddMemoryCache();
         services.AddInMemoryData();
         services.AddDataServices();
