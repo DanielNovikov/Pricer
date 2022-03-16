@@ -13,5 +13,6 @@ public enum ShopKey
     Rozetka,
     Citrus,
     Stylus,
-    Estore
+    Estore,
+    Moyo
 }

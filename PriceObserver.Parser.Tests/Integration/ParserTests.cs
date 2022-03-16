@@ -60,6 +60,11 @@ public class ParserTests : IntegrationTestingBase
         "Michael Kors Годинник Pyper MK4340 Золотий",
         "https://img.modivo.cloud/product(8/1/a/2/81a2bbd303ea754aedd64cd0a49de870eee03182_mk4340_4013496283877.jpg,jpg)/michael-kors-godinnik-pyper-mk4340-zolotii.jpg")]
     [InlineData(
+        "https://www.moyo.ua/televizor-samsung-32t5300-ue32t5300auxua/463569.html",
+        ShopKey.Moyo,
+        "Телевизор SAMSUNG 32T5300 (UE32T5300AUXUA)",
+        "https://img.moyo.ua/img/products/4635/69_1500.jpg?1647424689")]
+    [InlineData(
         "https://rozetka.com.ua/lg_75up75006lc/p292227878/",
         ShopKey.Rozetka,
         "Телевизор LG 75UP75006LC",

@@ -14,6 +14,7 @@ public class ContentValidatorTests : IntegrationTestingBase
     [InlineData("https://www.farfetch.com/ua/shopping/men/alexander-mcqueen-iphone-xs-item-14620644.aspx?storeid=9359", ShopKey.Farfetch)]
     [InlineData("https://intertop.ua/ua/product/sneakers-clarks-4965745?tr_pr=analog", ShopKey.Intertop)]
     [InlineData("https://md-fashion.com.ua/store/zenskie-golubye-dzinsy-kiley-replay-wa434r000108-729-goluboj", ShopKey.MdFashion)]
+    [InlineData("https://www.moyo.ua/televizor-lg-75sm9000pla/448309.html", ShopKey.Moyo)]
     [InlineData("https://rozetka.com.ua/lg_75nano756pa/p292219333/", ShopKey.Rozetka)]
     [InlineData("https://stylus.ua/lg-55nano77-p803303c526.html", ShopKey.Stylus)]
     public async Task WhenIsNotAvailable_ShouldReturnOutOfStockError(string url, ShopKey shopKey)
@@ -37,6 +38,7 @@ public class ContentValidatorTests : IntegrationTestingBase
     [InlineData("https://makeup.com.ua/", ShopKey.Makeup)]
     [InlineData("https://md-fashion.com.ua/", ShopKey.MdFashion)]
     [InlineData("https://modivo.ua/", ShopKey.Modivo)]
+    [InlineData("https://www.moyo.ua/", ShopKey.Rozetka)]
     [InlineData("https://rozetka.com.ua/", ShopKey.Rozetka)]
     [InlineData("https://stylus.ua/", ShopKey.Stylus)]
     public async Task WhenThereIsNoItemInfo_ShouldReturnNoItemInfoOnPageError(string url, ShopKey shopKey)
