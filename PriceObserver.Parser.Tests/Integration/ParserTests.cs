@@ -30,6 +30,11 @@ public class ParserTests : IntegrationTestingBase
         "Электросамокат Like.Bike Twist (Black) 250 Wh",
         "https://i.citrus.world/imgcache/size_180/uploads/shop/d/8/d843364b222194297412ea6d55a9a4ef.png")]
     [InlineData(
+        "https://comfy.ua/smartfon-apple-13-pro-512gb-black.html",
+        ShopKey.Comfy,
+        "Смартфон Apple iPhone 13 Pro 512Gb Graphite",
+        "https://cdn.comfy.ua/media/catalog/product/cache/5/image/600x/9df78eab33525d08d6e5fb8d27136e95/i/p/iphone_13_pro_q421_graphite_pdp_image_position-1a__ww-ru_1__2.jpg")]
+    [InlineData(
         "https://estore.ua/apple-watch-series-7-45mm-midnight-aluminium-case-with-sport-band/",
         ShopKey.Estore,
         "Apple WATCH Series 7 45mm Midnight Aluminum Case With Midnight Sport Band (MKN53)",
@@ -63,7 +68,7 @@ public class ParserTests : IntegrationTestingBase
         "https://www.moyo.ua/televizor-samsung-32t5300-ue32t5300auxua/463569.html",
         ShopKey.Moyo,
         "Телевизор SAMSUNG 32T5300 (UE32T5300AUXUA)",
-        "https://img.moyo.ua/img/products/4635/69_1500.jpg?1647424689")]
+        "https://img.moyo.ua/img/products/4635/69_1500.jpg?1647509211")]
     [InlineData(
         "https://rozetka.com.ua/lg_75up75006lc/p292227878/",
         ShopKey.Rozetka,

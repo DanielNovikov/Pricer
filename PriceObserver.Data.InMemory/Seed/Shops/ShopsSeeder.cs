@@ -124,6 +124,14 @@ public class ShopsSeeder
                 "www.moyo.ua",
                 "moyo.png",
                 false,
+                uahCurrency),
+            
+            new Shop(
+                "Comfy",
+                ShopKey.Comfy,
+                "comfy.ua",
+                "comfy.png",
+                true,
                 uahCurrency)
         };
                 

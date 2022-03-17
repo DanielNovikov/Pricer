@@ -14,5 +14,6 @@ public enum ShopKey
     Citrus,
     Stylus,
     Estore,
-    Moyo
+    Moyo,
+    Comfy
 }
