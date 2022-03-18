@@ -42,6 +42,7 @@ public class ContentValidatorTests : IntegrationTestingBase
     [InlineData("https://modivo.ua/", ShopKey.Modivo)]
     [InlineData("https://www.moyo.ua/", ShopKey.Rozetka)]
     [InlineData("https://rozetka.com.ua/", ShopKey.Rozetka)]
+    [InlineData("https://www.sportmaster.ua/", ShopKey.Sportmaster)]
     [InlineData("https://stylus.ua/", ShopKey.Stylus)]
     public async Task WhenThereIsNoItemInfo_ShouldReturnNoItemInfoOnPageError(string url, ShopKey shopKey)
     {

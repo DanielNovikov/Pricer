@@ -68,12 +68,17 @@ public class ParserTests : IntegrationTestingBase
         "https://www.moyo.ua/televizor-samsung-32t5300-ue32t5300auxua/463569.html",
         ShopKey.Moyo,
         "Телевизор SAMSUNG 32T5300 (UE32T5300AUXUA)",
-        "https://img.moyo.ua/img/products/4635/69_1500.jpg?1647509211")]
+        "https://img.moyo.ua/img/products/4635/69_1500.jpg?1647599403")]
     [InlineData(
         "https://rozetka.com.ua/lg_75up75006lc/p292227878/",
         ShopKey.Rozetka,
         "Телевизор LG 75UP75006LC",
         "https://content2.rozetka.com.ua/goods/images/big/251707294.jpg")]
+    [InlineData(
+        "https://www.sportmaster.ua/catalogitem/krossovki_mugskie_puma_supertec_zero384642p0p01/",
+        ShopKey.Sportmaster,
+        "Кросівки чоловічі PUMA Supertec Zero",
+        "https://cdn.sportmaster.ua/static/i/2000_2000/products/260196/VL926aK1.jpeg")]
     [InlineData(
         "https://stylus.ua/samsung-galaxy-a52s-5g-6128gb-black-a528b-p841157c11256.html",
         ShopKey.Stylus,

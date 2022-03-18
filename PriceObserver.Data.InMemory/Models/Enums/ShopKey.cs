@@ -15,5 +15,6 @@ public enum ShopKey
     Stylus,
     Estore,
     Moyo,
-    Comfy
+    Comfy,
+    Sportmaster
 }

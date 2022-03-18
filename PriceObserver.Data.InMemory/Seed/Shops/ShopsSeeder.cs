@@ -132,6 +132,14 @@ public class ShopsSeeder
                 "comfy.ua",
                 "comfy.png",
                 true,
+                uahCurrency),
+            
+            new Shop(
+                "Спортмастер",
+                ShopKey.Sportmaster,
+                "www.sportmaster.ua",
+                "sportmaster.png",
+                false,
                 uahCurrency)
         };
                 
