@@ -33,6 +33,10 @@ public class RequestHeadersBuilder : IRequestHeadersBuilder
             case ShopKey.Stylus:
                 headers.Add(RefererKey, url.ToString());
                 break;
+            case ShopKey.Watsons:
+                headers.Add(AcceptKey, AcceptValue);
+                headers.Add(AcceptEncodingKey, AcceptEncodingValue);
+                break;
         }
 
         return headers.ToImmutableDictionary();

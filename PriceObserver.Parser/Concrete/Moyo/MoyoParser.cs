@@ -3,7 +3,6 @@ using AngleSharp.Dom;
 using AngleSharp.Html.Dom;
 using PriceObserver.Data.InMemory.Models.Enums;
 using PriceObserver.Parser.Abstract;
-using PriceObserver.Parser.Concrete.Rozetka;
 
 namespace PriceObserver.Parser.Concrete.Moyo;
 

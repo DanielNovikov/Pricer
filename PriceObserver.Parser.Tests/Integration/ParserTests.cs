@@ -84,6 +84,11 @@ public class ParserTests : IntegrationTestingBase
         ShopKey.Stylus,
         "Смартфон Samsung Galaxy A52s 5G 6/128GB Awesome Black A528B",
         "https://stylus.ua//thumbs/568x568/f7/ed/2113714.jpeg")]
+    [InlineData(
+        "https://www.watsons.ua/uk/wtcua/aksesuari/shkarpetki/zhinochi-shkarpetki/shkarpetki-brestskie-active-svitlo-zhovti-zhinochi-rozmir-25/p/BP_1089863?#ins_sr=eyJwcm9kdWN0SWQiOiIxMDg5ODYzIn0=",
+        ShopKey.Watsons,
+        "Шкарпетки Брестские Active світло-жовті жіночі розмір 25",
+        "https://www.watsons.ua/medias/sys_master/front-prd/front-prd/8862472241182/-Active-25-4810089319407.jpg")]
     public async Task WhenItemIsAvailableAndHasInfo_ShouldParsePage(
         string url,
         ShopKey shopKey,

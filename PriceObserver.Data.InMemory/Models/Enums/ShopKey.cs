@@ -16,5 +16,6 @@ public enum ShopKey
     Estore,
     Moyo,
     Comfy,
-    Sportmaster
+    Sportmaster,
+    Watsons
 }

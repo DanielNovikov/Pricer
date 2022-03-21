@@ -140,6 +140,14 @@ public class ShopsSeeder
                 "www.sportmaster.ua",
                 "sportmaster.png",
                 false,
+                uahCurrency),
+            
+            new Shop(
+                "Watsons",
+                ShopKey.Watsons,
+                "www.watsons.ua",
+                "watsons.png",
+                false,
                 uahCurrency)
         };
                 

@@ -44,6 +44,7 @@ public class ContentValidatorTests : IntegrationTestingBase
     [InlineData("https://rozetka.com.ua/", ShopKey.Rozetka)]
     [InlineData("https://www.sportmaster.ua/", ShopKey.Sportmaster)]
     [InlineData("https://stylus.ua/", ShopKey.Stylus)]
+    [InlineData("https://www.watsons.ua/", ShopKey.Watsons)]
     public async Task WhenThereIsNoItemInfo_ShouldReturnNoItemInfoOnPageError(string url, ShopKey shopKey)
     {
         var uri = new Uri(url);

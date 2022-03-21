@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using AngleSharp.Dom;
 using AngleSharp.Html.Dom;
 using PriceObserver.Data.InMemory.Models.Enums;
