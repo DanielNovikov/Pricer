@@ -27,9 +27,8 @@ public class Startup
     public void ConfigureServices(IServiceCollection services)
     {       
         services.AddControllersWithViews();
+        services.AddRazorPages();
         
-        services.AddSpaStaticFiles(configuration => { configuration.RootPath = "wwwroot"; });
-            
         services.AddApiServices();
         services.AddJwtAuthentication(_configuration);
         
@@ -51,13 +50,17 @@ public class Startup
         IApplicationBuilder app,
         IWebHostEnvironment env)
     {
+        if (env.IsDevelopment())
+            app.UseWebAssemblyDebugging();
+        
         app.UseExceptionHandling();
         
         app.UseForwardedHeaders(new ForwardedHeadersOptions
         {
             ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
         });
-            
+
+        app.UseBlazorFrameworkFiles();
         app.UseStaticFiles();
             
         app.UseRouting();
@@ -72,14 +75,13 @@ public class Startup
             
         app.UseEndpoints(endpoints =>
         {
+            endpoints.MapRazorPages();
+            
             endpoints.MapControllerRoute(
                 "default",
                 "{controller}/{action}/{id?}");
+            
+            endpoints.MapFallbackToPage("/_Host");
         });
-
-        if (!env.IsDevelopment())
-        {
-            app.UseSpa(builder => builder.Options.SourcePath = "wwwroot");
-        }
     }
 }

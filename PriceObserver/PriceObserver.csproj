@@ -8,6 +8,7 @@
 
     <ItemGroup>
         <ProjectReference Include="..\PriceObserver.Api\PriceObserver.Api.csproj" />
+        <ProjectReference Include="..\PriceObserver.App\PriceObserver.App.csproj" />
         <ProjectReference Include="..\PriceObserver.Background\PriceObserver.Background.csproj" />
         <ProjectReference Include="..\PriceObserver.Data\PriceObserver.Data.csproj" />
         <ProjectReference Include="..\PriceObserver.Parser\PriceObserver.Parser.csproj" />
@@ -15,6 +16,7 @@
     </ItemGroup>
 
     <ItemGroup>
+        <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="6.0.3" />
         <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="6.0.1" />
         <PackageReference Include="Serilog.AspNetCore" Version="4.1.0" />
         <PackageReference Include="Serilog.Sinks.Telegram" Version="0.2.1" />
