@@ -7,8 +7,8 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\PriceObserver.Api\PriceObserver.Api.csproj" />
-        <ProjectReference Include="..\PriceObserver.App\PriceObserver.App.csproj" />
+        <ProjectReference Include="..\PriceObserver.Web.Api\PriceObserver.Web.Api.csproj" />
+        <ProjectReference Include="..\PriceObserver.Web.App\PriceObserver.Web.App.csproj" />
         <ProjectReference Include="..\PriceObserver.Background\PriceObserver.Background.csproj" />
         <ProjectReference Include="..\PriceObserver.Data\PriceObserver.Data.csproj" />
         <ProjectReference Include="..\PriceObserver.Parser\PriceObserver.Parser.csproj" />

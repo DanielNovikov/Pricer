@@ -2,7 +2,7 @@
 using FluentAssertions;
 using PriceObserver.Data.InMemory.Models.Enums;
 
-namespace PriceObserver.Dialog.Tests.Integration.Commands;
+namespace PriceObserver.Dialog.Tests.Integration.Commands.AddItem;
 
 public class TryAddItemWithNoInfoTest : IntegrationTestingBase
 {
