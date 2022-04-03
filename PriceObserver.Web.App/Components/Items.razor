@@ -1,0 +1,55 @@
+﻿<div class="shops-container">
+    @foreach (var itemsVm in Data)
+    {
+        <div class="logo-container">
+            <a href="@itemsVm.Shop.Address" target="_blank">
+                <img src="/images/logos/@itemsVm.Shop.Logo">
+            </a>
+        </div>
+
+        <div class="items-container">
+            @foreach (var itemVm in itemsVm.Items)
+            {
+                <div class="item-container">
+                    <div class="image-container @(!itemsVm.Shop.SameFormatImages ? "unified-image-format" : string.Empty)">
+                        
+                        <img 
+                            @onclick="@(() => ShowItemImageModal(itemVm.ImageUrl))" 
+                            src="@itemVm.ImageUrl" 
+                            alt="@itemVm.Title">
+
+                        <span class="delete-button" @onclick="@(() => OnItemDeleted.InvokeAsync(itemVm.Id))">
+                            <img src="/images/trash.png">
+                        </span>
+
+                        <div class="price-container">
+                            <span class="price" id="@itemVm.PriceChanges">
+                                @itemVm.Price<b>@itemsVm.Shop.CurrencySign</b>
+                            </span>
+                        </div>
+
+                        <div class="redirect-container">
+                            <a href="@itemVm.Url" target="_blank">
+                                Перейти
+                                <img src="/images/arrow.png">
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="title-container">
+                        <p>@itemVm.Title</p>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+</div>
+
+<div 
+    class="image-modal-container @(ItemImageModalVisible ? "show-modal" : string.Empty)"
+    @onclick="CloseItemImageModal">
+
+    <span @onclick="CloseItemImageModal">&times;</span>
+
+    <img src="@ItemImageModalSource">
+</div>

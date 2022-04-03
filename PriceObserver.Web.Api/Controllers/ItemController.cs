@@ -1,28 +1,28 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using PriceObserver.Web.Api.Controllers.Base;
-using PriceObserver.Web.Api.Models;
-using PriceObserver.Web.Api.Services.Abstract;
+using PriceObserver.Web.Shared.Models;
+using PriceObserver.Web.Shared.Services.Abstract;
 
 namespace PriceObserver.Web.Api.Controllers;
 
-[Route("api/item")]
+[Route("api")]
 public class ItemController : AuthorizedControllerBase
 {
-    private readonly IApiItemService _itemService;
+    private readonly IItemService _itemService;
 
-    public ItemController(IApiItemService itemService)
+    public ItemController(IItemService itemService)
     {
         _itemService = itemService;
     }
 
-    [HttpGet]
+    [HttpGet("items")]
     public async Task<IList<ItemsVm>> Get()
     {
         var userId = GetUserId();
         return await _itemService.GetByUserId(userId);
     }
 
-    [HttpDelete("{id:int}")]
+    [HttpDelete("item/{id:int}")]
     public async Task Delete(int id)
     {
         var userId = GetUserId();

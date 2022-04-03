@@ -1,9 +1,8 @@
-﻿using System.Linq;
-using PriceObserver.Data.InMemory.Models.Enums;
+﻿using PriceObserver.Data.InMemory.Models.Enums;
 using PriceObserver.Data.Models;
 using PriceObserver.Data.Service.Abstract;
-using PriceObserver.Web.Api.Models;
 using PriceObserver.Web.Api.Services.Abstract;
+using PriceObserver.Web.Shared.Models;
 
 namespace PriceObserver.Web.Api.Services.Concrete;
 

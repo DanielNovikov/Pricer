@@ -1,7 +1,4 @@
-﻿using System;
-using System.Net.Http;
-using System.Net.Http.Json;
-using System.Threading.Tasks;
+﻿using System.Net.Http.Json;
 using PriceObserver.Web.Shared.Models;
 using PriceObserver.Web.Shared.Services.Abstract;
 
@@ -11,7 +8,7 @@ public class AuthenticationHttpService : IAuthenticationService
 {
     private readonly HttpClient _httpClient;
 
-    private const string AuthenticationEndpoint = "api/authentication/{0}";
+    private const string AuthenticationEndpoint = "/api/authentication/{0}";
     
     public AuthenticationHttpService(HttpClient httpClient)
     {
@@ -31,5 +28,10 @@ public class AuthenticationHttpService : IAuthenticationService
             throw new ArgumentNullException(nameof(response.Content));
         
         return AuthenticationServiceResult.Success(responseModel);
+    }
+
+    public long GetUserId(string accessToken)
+    {
+        return default;
     }
 }

@@ -1,22 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using PriceObserver.Data.InMemory.Repositories.Abstract;
+﻿using PriceObserver.Data.InMemory.Repositories.Abstract;
 using PriceObserver.Data.Repositories.Abstract;
-using PriceObserver.Web.Api.Models;
 using PriceObserver.Web.Api.Services.Abstract;
+using PriceObserver.Web.Shared.Models;
+using PriceObserver.Web.Shared.Services.Abstract;
 
 namespace PriceObserver.Web.Api.Services.Concrete;
 
-public class ApiItemService : IApiItemService
+public class ItemService : IItemService
 {
     private readonly IItemRepository _itemRepository;
     private readonly IShopRepository _shopRepository;
     private readonly IShopVmBuilder _shopVmBuilder;
     private readonly IItemVmBuilder _itemVmBuilder;
 
-    public ApiItemService(
+    public ItemService(
         IItemRepository itemRepository,
         IShopRepository shopRepository, 
         IShopVmBuilder shopVmBuilder, 

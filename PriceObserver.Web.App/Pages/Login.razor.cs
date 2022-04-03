@@ -21,7 +21,7 @@ public partial class Login : ComponentBase
     public bool Authorized { get; set; }
     
     protected override async Task OnInitializedAsync()
-    {        
+    {
         var authenticationResult = await AuthenticationService.Authenticate(Token);
 
         if (!authenticationResult.IsSuccess)
@@ -33,6 +33,6 @@ public partial class Login : ComponentBase
         var accessToken = authenticationResult.Result.AccessToken;
         await CookieManager.SetValue(CookieKeys.AccessToken, accessToken);
             
-        NavigationManager.NavigateTo("/items");
+        NavigationManager.NavigateTo("/home");
     }
 }

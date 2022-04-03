@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IdentityModel.Tokens.Jwt;
+﻿using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
@@ -75,5 +72,30 @@ public class AuthenticationService : IAuthenticationService
         _logger.LogInformation("User with id {0} authenticated", userToken.UserId);
         
         return AuthenticationServiceResult.Success(responseModel);
+    }
+
+    public long GetUserId(string accessToken)
+    {
+        var privateKey = _configuration.GetJwtPrivateKey();
+        var securityKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(privateKey));
+                
+        var tokenParameters = new TokenValidationParameters
+        {
+            ValidateIssuer = false,
+            ValidateAudience = false,
+            ValidateLifetime = false,
+            IssuerSigningKey = securityKey
+        };
+
+        var validator = new JwtSecurityTokenHandler();
+
+        if (!validator.CanReadToken(accessToken))
+            throw new InvalidOperationException("Token couldn't be read");
+
+        var principal = validator.ValidateToken(accessToken, tokenParameters, out _);
+
+        var userIdString = principal.Claims.Single(x => x.Type == ClaimTypes.NameIdentifier).Value;
+
+        return long.Parse(userIdString);
     }
 }

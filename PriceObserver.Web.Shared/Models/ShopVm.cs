@@ -1,4 +1,4 @@
-﻿namespace PriceObserver.Web.Api.Models;
+﻿namespace PriceObserver.Web.Shared.Models;
 
 public record ShopVm(
     string Address,

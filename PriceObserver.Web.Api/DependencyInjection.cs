@@ -15,7 +15,7 @@ public static class DependencyInjection
 {
     public static void AddApiServices(this IServiceCollection services)
     {
-        services.AddTransient<IApiItemService, ApiItemService>();
+        services.AddTransient<IItemService, ItemService>();
         services.AddTransient<IShopVmBuilder, ShopVmBuilder>();
         services.AddScoped<IPriceChangesStringBuilder, PriceChangesStringBuilder>();
         services.AddTransient<IItemVmBuilder, ItemVmBuilder>();

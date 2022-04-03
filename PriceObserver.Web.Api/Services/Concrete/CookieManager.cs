@@ -1,5 +1,4 @@
-﻿using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using PriceObserver.Web.Shared.Defaults;
 using PriceObserver.Web.Shared.Services.Abstract;
 
@@ -32,6 +31,17 @@ public class CookieManager : ICookieManager
             .Cookies;
         
         cookies?.Append(key, value);
+
+        return Task.CompletedTask;
+    }
+
+    public Task Remove(string key)
+    {
+        _httpContextAccessor
+            .HttpContext?
+            .Response
+            .Cookies
+            .Delete(key);
 
         return Task.CompletedTask;
     }

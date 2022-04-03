@@ -5,4 +5,6 @@ namespace PriceObserver.Web.Shared.Services.Abstract;
 public interface IAuthenticationService
 {
     Task<AuthenticationServiceResult> Authenticate(Guid token);
+
+    long GetUserId(string accessToken);
 }

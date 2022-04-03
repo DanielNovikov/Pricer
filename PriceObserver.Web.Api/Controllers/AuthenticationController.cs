@@ -1,6 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using PriceObserver.Web.Shared.Services.Abstract;
 
 namespace PriceObserver.Web.Api.Controllers;

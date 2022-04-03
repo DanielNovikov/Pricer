@@ -1,5 +1,5 @@
 ﻿using PriceObserver.Data.Models;
-using PriceObserver.Web.Api.Models;
+using PriceObserver.Web.Shared.Models;
 
 namespace PriceObserver.Web.Api.Services.Abstract;
 
