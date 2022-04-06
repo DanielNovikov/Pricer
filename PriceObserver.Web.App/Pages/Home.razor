@@ -1,0 +1,20 @@
+﻿@page "/home"
+
+@using PriceObserver.Web.App.Components
+
+@{
+    if (ItemsData.Any())
+    {
+        <Items 
+            Data="ItemsData"
+            OnItemDeleted="DeleteItem" />
+    }
+    else
+    {
+        <NoItems />
+    }
+}
+    
+<div class="logout" @onclick="@Logout">
+     <img src="/images/logout.png" />
+</div>

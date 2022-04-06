@@ -4,7 +4,7 @@ using FluentAssertions;
 using Microsoft.EntityFrameworkCore;
 using PriceObserver.Data;
 
-namespace PriceObserver.Dialog.Tests.Integration.Commands;
+namespace PriceObserver.Dialog.Tests.Integration.Commands.AddItem;
 
 public class AddItemTest : IntegrationTestingBase
 {

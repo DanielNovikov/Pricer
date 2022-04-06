@@ -1,10 +1,9 @@
-﻿FROM mcr.microsoft.com/dotnet/sdk:6.0-alpine AS back-build
+﻿FROM mcr.microsoft.com/dotnet/sdk:6.0-alpine AS build
 EXPOSE 5000
 
-WORKDIR /app/backend
+WORKDIR /app
 
 COPY PriceObserver/PriceObserver.csproj ./PriceObserver/PriceObserver.csproj
-COPY PriceObserver.Api/PriceObserver.Api.csproj ./PriceObserver.Api/PriceObserver.Api.csproj
 COPY PriceObserver.Background/PriceObserver.Background.csproj ./PriceObserver.Background/PriceObserver.Background.csproj
 COPY PriceObserver.Common/PriceObserver.Common.csproj ./PriceObserver.Common/PriceObserver.Common.csproj
 COPY PriceObserver.Data/PriceObserver.Data.csproj ./PriceObserver.Data/PriceObserver.Data.csproj
@@ -15,27 +14,17 @@ COPY PriceObserver.Dialog.Tests/PriceObserver.Dialog.Tests.csproj ./PriceObserve
 COPY PriceObserver.Parser/PriceObserver.Parser.csproj ./PriceObserver.Parser/PriceObserver.Parser.csproj
 COPY PriceObserver.Parser.Tests/PriceObserver.Parser.Tests.csproj ./PriceObserver.Parser.Tests/PriceObserver.Parser.Tests.csproj
 COPY PriceObserver.Telegram/PriceObserver.Telegram.csproj ./PriceObserver.Telegram/PriceObserver.Telegram.csproj
+COPY PriceObserver.Web.Api/PriceObserver.Web.Api.csproj ./PriceObserver.Web.Api/PriceObserver.Web.Api.csproj
+COPY PriceObserver.Web.App/PriceObserver.Web.App.csproj ./PriceObserver.Web.App/PriceObserver.Web.App.csproj
+COPY PriceObserver.Web.Shared/PriceObserver.Web.Shared.csproj ./PriceObserver.Web.Shared/PriceObserver.Web.Shared.csproj
 
 COPY PriceObserver.sln ./PriceObserver.sln
 
 RUN dotnet restore
 COPY . .
-WORKDIR /app/backend/PriceObserver/
+
+WORKDIR /app/PriceObserver/
 RUN dotnet publish -c Release -o /publish
 
-FROM node:14-alpine as front-build
-WORKDIR /app/front/source
-COPY --from=back-build /app/backend/PriceObserver/ClientApp/package.json package.json
-RUN npm install
-COPY --from=back-build /app/backend/PriceObserver/ClientApp/. .
-RUN npm run build
-
-FROM mcr.microsoft.com/dotnet/aspnet:6.0
-WORKDIR /app
-COPY --from=back-build /publish ./
-
-WORKDIR /app/front/wwwroot
-COPY --from=front-build . /app/wwwroot
-
-WORKDIR /app
+WORKDIR /publish
 ENTRYPOINT ["dotnet", "PriceObserver.dll"]
