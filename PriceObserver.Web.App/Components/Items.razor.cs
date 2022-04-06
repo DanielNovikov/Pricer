@@ -6,6 +6,7 @@ namespace PriceObserver.Web.App.Components;
 
 public partial class Items : ComponentBase
 {
+    [EditorRequired]
     [Parameter]
     public IList<ItemsVm> Data { get; set; }
     
