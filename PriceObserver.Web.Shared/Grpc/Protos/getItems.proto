@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+import "google/protobuf/empty.proto";
+
+option csharp_namespace = "PriceObserver.Web.Shared.Grpc";
+
+package GetItems;
+
+service GetItems {
+  rpc Get (google.protobuf.Empty) returns (GetItemsReply);
+}
+
+message GetItemsReply {
+  repeated ItemsResponseModel Data = 1;
+}
+
+message ItemsResponseModel {
+  ShopResponseModel shop = 1;
+  repeated ItemResponseModel items = 2;
+}
+
+message ShopResponseModel {
+  string address = 1;
+  string logo = 2;
+  string currencySign = 3;
+  bool sameFormatImages = 4;
+}
+
+message ItemResponseModel {
+  int32 id = 1;
+  string title = 2;
+  int32 price = 3;
+  string url = 4;
+  string imageUrl = 5;
+  string priceChanges = 6;
+}

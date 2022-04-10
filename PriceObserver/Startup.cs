@@ -42,7 +42,8 @@ public class Startup
         services.AddMemoryCache();
         services.AddInMemoryData();
         services.AddDataServices();
-            
+
+        services.AddGrpc();
         services.AddCors();
     }
 
@@ -64,6 +65,7 @@ public class Startup
         app.UseStaticFiles();
             
         app.UseRouting();
+        app.UseGrpcWeb();
 
         app.UseAuthentication();
         app.UseAuthorization();
@@ -81,6 +83,8 @@ public class Startup
                 "default",
                 "{controller}/{action}/{id?}");
             
+            endpoints.MapGrpcEndpoints();
+
             endpoints.MapFallbackToPage("/_Host");
         });
     }

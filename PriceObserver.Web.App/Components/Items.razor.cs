@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Components;
+using PriceObserver.Web.Shared.Grpc;
 using PriceObserver.Web.Shared.Models;
 using PriceObserver.Web.Shared.Services.Abstract;
 
@@ -8,7 +9,7 @@ public partial class Items : ComponentBase
 {
     [EditorRequired]
     [Parameter]
-    public IList<ItemsVm> Data { get; set; }
+    public IList<ItemsResponseModel> Data { get; set; }
     
     [Parameter]
     public EventCallback<int> OnItemDeleted { get; set; }

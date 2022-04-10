@@ -1,7 +1,8 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 using PriceObserver.Web.Shared.Defaults;
-using PriceObserver.Web.Shared.Models;
+using PriceObserver.Web.Shared.Grpc;
+using PriceObserver.Web.Shared.Grpc.HandlerServices;
 using PriceObserver.Web.Shared.Services.Abstract;
 
 namespace PriceObserver.Web.App.Pages;
@@ -13,9 +14,9 @@ public partial class Home : ComponentBase
     
     [Inject]
     public IAuthenticationService AuthenticationService { get; set; }
-    
+
     [Inject]
-    public IItemService ItemService { get; set; }
+    public IGetItemsHandlerService GetItemsHandlerService { get; set; }
 
     [Inject]
     public NavigationManager NavigationManager { get; set; }
@@ -23,7 +24,7 @@ public partial class Home : ComponentBase
     [Inject]
     public IJSRuntime JsRuntime { get; set; }
 
-    private IList<ItemsVm> ItemsData { get; set; } = new List<ItemsVm>();
+    private IList<ItemsResponseModel> ItemsData { get; set; } = new List<ItemsResponseModel>();
     
     protected override async Task OnInitializedAsync()
     {
@@ -36,7 +37,7 @@ public partial class Home : ComponentBase
         }
         
         var userId = AuthenticationService.GetUserId(accessToken);
-        ItemsData = await ItemService.GetByUserId(userId);
+        await LoadItemsData(userId);
     }
 
     private async Task DeleteItem(int id)
@@ -47,26 +48,20 @@ public partial class Home : ComponentBase
             throw new InvalidOperationException("Access token has been cleared");
         
         var userId = AuthenticationService.GetUserId(accessToken);
-        await ItemService.Delete(id, userId);
-
-        var itemsVm = ItemsData.Single(x => x.Items.Any(y => y.Id == id));
-
-        if (itemsVm.Items.Count == 1)
-        {
-            ItemsData = ItemsData
-                .Where(x => x != itemsVm)
-                .ToList();
-            
-            return;
-        }
-
-        var itemToDelete = itemsVm.Items.Single(x => x.Id == id);
-        itemsVm.Items.Remove(itemToDelete);
+        
+        //await DeleteItemHandlerService.Handle(id, userId);
+        await LoadItemsData(userId);
     }
 
     private async Task Logout()
     {
         await CookieManager.Remove(CookieKeys.AccessToken);
         NavigationManager.NavigateTo("https://t.me/pricer_official_bot");
+    }
+
+    private async Task LoadItemsData(long userId)
+    {
+        var response = await GetItemsHandlerService.Handle(userId);
+        ItemsData = response.Data;
     }
 }

@@ -2,16 +2,16 @@
 using PriceObserver.Data.Models;
 using PriceObserver.Data.Service.Abstract;
 using PriceObserver.Web.Api.Services.Abstract;
-using PriceObserver.Web.Shared.Models;
+using PriceObserver.Web.Shared.Grpc;
 
 namespace PriceObserver.Web.Api.Services.Concrete;
 
-public class ItemVmBuilder : IItemVmBuilder
+public class ItemResponseModelBuilder : IItemResponseModelBuilder
 {
     private readonly IPriceChangesStringBuilder _priceChangesStringBuilder;
     private readonly IResourceService _resourceService;
 
-    public ItemVmBuilder(
+    public ItemResponseModelBuilder(
         IPriceChangesStringBuilder priceChangesStringBuilder,
         IResourceService resourceService)
     {
@@ -19,18 +19,20 @@ public class ItemVmBuilder : IItemVmBuilder
         _resourceService = resourceService;
     }
 
-    public ItemVm Build(Item item)
+    public ItemResponseModel Build(Item item)
     {
         var priceChanges = item.PriceChanges.Any() 
             ? _priceChangesStringBuilder.Build(item.PriceChanges)
             : _resourceService.Get(ResourceKey.Api_NoHistory);
 
-        return new ItemVm(
-            item.Id,
-            item.Title,
-            item.Price,
-            item.Url.ToString(),
-            item.ImageUrl.ToString(),
-            priceChanges);
+        return new ItemResponseModel
+        {
+            Id = item.Id,
+            Title = item.Title,
+            Price = item.Price,
+            Url = item.Url.ToString(),
+            ImageUrl = item.ImageUrl.ToString(),
+            PriceChanges = priceChanges
+        };
     }
 }
