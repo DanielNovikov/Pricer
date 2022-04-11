@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Components;
 using PriceObserver.Web.Shared.Grpc;
-using PriceObserver.Web.Shared.Models;
 using PriceObserver.Web.Shared.Services.Abstract;
 
 namespace PriceObserver.Web.App.Components;

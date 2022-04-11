@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using PriceObserver.Data.Models;
+﻿using PriceObserver.Data.Models;
 
 namespace PriceObserver.Web.Api.Services.Abstract;
 

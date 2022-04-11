@@ -23,6 +23,7 @@ public static class DependencyInjection
         services.AddScoped<IPriceChangesStringBuilder, PriceChangesStringBuilder>();
         services.AddTransient<IItemResponseModelBuilder, ItemResponseModelBuilder>();
         
+        services.AddScoped<IAuthenticationHandlerService, AuthenticationHandlerService>();
         services.AddScoped<IDeleteItemHandlerService, DeleteItemHandlerService>();
         services.AddScoped<IGetItemsHandlerService, GetItemsHandlerService>();
         
@@ -59,6 +60,7 @@ public static class DependencyInjection
 
     public static void MapGrpcEndpoints(this IEndpointRouteBuilder endpoints)
     {
+        endpoints.MapGrpcService<AuthenticationHandler>().EnableGrpcWeb();
         endpoints.MapGrpcService<DeleteItemHandler>().EnableGrpcWeb();
         endpoints.MapGrpcService<GetItemsHandler>().EnableGrpcWeb();
     }

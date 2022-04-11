@@ -24,6 +24,8 @@ builder.Services
     });
 
 builder.Services
+    .AddGrpcWebClient<Authentication.AuthenticationClient>()
+    .AddScoped<IAuthenticationHandlerService, AuthenticationHandlerService>()
     .AddGrpcWebClient<DeleteItem.DeleteItemClient>()
     .AddScoped<IDeleteItemHandlerService, DeleteItemHandlerService>()
     .AddGrpcWebClient<GetItems.GetItemsClient>()

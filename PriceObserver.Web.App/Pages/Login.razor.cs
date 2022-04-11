@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components;
 using PriceObserver.Web.Shared.Defaults;
+using PriceObserver.Web.Shared.Grpc.HandlerServices;
 using PriceObserver.Web.Shared.Services.Abstract;
 
 namespace PriceObserver.Web.App.Pages;
@@ -9,9 +10,9 @@ public partial class Login : ComponentBase
     [Parameter]
     public Guid Token { get; set; }
 
-    [Inject] 
-    public IAuthenticationService AuthenticationService { get; set; } = default!;
-
+    [Inject]
+    public IAuthenticationHandlerService AuthenticationHandlerService { get; set; }
+    
     [Inject] 
     public NavigationManager NavigationManager { get; set; } = default!;
     
@@ -22,7 +23,7 @@ public partial class Login : ComponentBase
     
     protected override async Task OnInitializedAsync()
     {
-        var authenticationResult = await AuthenticationService.Authenticate(Token);
+        var authenticationResult = await AuthenticationHandlerService.Handle(Token);
 
         if (!authenticationResult.IsSuccess)
         {
@@ -30,7 +31,7 @@ public partial class Login : ComponentBase
             return;
         }
 
-        var accessToken = authenticationResult.Result.AccessToken;
+        var accessToken = authenticationResult.AccessToken;
         await CookieManager.SetValue(CookieKeys.AccessToken, accessToken);
             
         NavigationManager.NavigateTo("/home");
