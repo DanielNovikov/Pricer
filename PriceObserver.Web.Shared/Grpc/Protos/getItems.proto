@@ -11,10 +11,10 @@ service GetItems {
 }
 
 message GetItemsReply {
-  repeated ItemsResponseModel Data = 1;
+  repeated ShopItemsResponseModel Data = 1;
 }
 
-message ItemsResponseModel {
+message ShopItemsResponseModel {
   ShopResponseModel shop = 1;
   repeated ItemResponseModel items = 2;
 }

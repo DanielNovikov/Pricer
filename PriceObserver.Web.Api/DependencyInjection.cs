@@ -6,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using PriceObserver.Web.Api.Extensions;
+using PriceObserver.Web.Api.Handlers;
 using PriceObserver.Web.Api.Handlers.GetItems;
 using PriceObserver.Web.Api.Services.Abstract;
 using PriceObserver.Web.Api.Services.Concrete;
@@ -22,6 +23,7 @@ public static class DependencyInjection
         services.AddScoped<IPriceChangesStringBuilder, PriceChangesStringBuilder>();
         services.AddTransient<IItemResponseModelBuilder, ItemResponseModelBuilder>();
         
+        services.AddScoped<IDeleteItemHandlerService, DeleteItemHandlerService>();
         services.AddScoped<IGetItemsHandlerService, GetItemsHandlerService>();
         
         services.AddTransient<IAuthenticationService, AuthenticationService>();
@@ -57,6 +59,7 @@ public static class DependencyInjection
 
     public static void MapGrpcEndpoints(this IEndpointRouteBuilder endpoints)
     {
+        endpoints.MapGrpcService<DeleteItemHandler>().EnableGrpcWeb();
         endpoints.MapGrpcService<GetItemsHandler>().EnableGrpcWeb();
     }
 }

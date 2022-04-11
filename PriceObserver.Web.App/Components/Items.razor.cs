@@ -9,7 +9,7 @@ public partial class Items : ComponentBase
 {
     [EditorRequired]
     [Parameter]
-    public IList<ItemsResponseModel> Data { get; set; }
+    public IList<ShopItemsResponseModel> Data { get; set; }
     
     [Parameter]
     public EventCallback<int> OnItemDeleted { get; set; }

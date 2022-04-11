@@ -3,10 +3,9 @@ using Grpc.Core;
 using Microsoft.AspNetCore.Authorization;
 using PriceObserver.Web.Api.Extensions;
 using PriceObserver.Web.Shared.Grpc;
-using PriceObserver.Web.Shared.Grpc;
 using PriceObserver.Web.Shared.Grpc.HandlerServices;
 
-namespace PriceObserver.Web.Api.Handlers.GetItems;
+namespace PriceObserver.Web.Api.Handlers;
 
 [Authorize]
 public class GetItemsHandler : Shared.Grpc.GetItems.GetItemsBase

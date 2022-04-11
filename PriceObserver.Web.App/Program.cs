@@ -24,6 +24,8 @@ builder.Services
     });
 
 builder.Services
+    .AddGrpcWebClient<DeleteItem.DeleteItemClient>()
+    .AddScoped<IDeleteItemHandlerService, DeleteItemHandlerService>()
     .AddGrpcWebClient<GetItems.GetItemsClient>()
     .AddScoped<IGetItemsHandlerService, GetItemsHandlerService>();
 

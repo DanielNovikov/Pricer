@@ -28,5 +28,13 @@
             <OutputDir>obj\Debug\net6.0\</OutputDir>
             <Generator>MSBuild:Compile</Generator>
         </Protobuf>
+        <Protobuf Include="Grpc\Protos\deleteItem.proto">
+            <GrpcServices>Both</GrpcServices>
+            <Access>Public</Access>
+            <ProtoCompile>True</ProtoCompile>
+            <CompileOutputs>True</CompileOutputs>
+            <OutputDir>obj\Debug\net6.0\</OutputDir>
+            <Generator>MSBuild:Compile</Generator>
+        </Protobuf>
     </ItemGroup>
 </Project>

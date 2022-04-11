@@ -19,12 +19,15 @@ public partial class Home : ComponentBase
     public IGetItemsHandlerService GetItemsHandlerService { get; set; }
 
     [Inject]
+    public IDeleteItemHandlerService DeleteItemHandlerService { get; set; }
+    
+    [Inject]
     public NavigationManager NavigationManager { get; set; }
     
     [Inject]
     public IJSRuntime JsRuntime { get; set; }
 
-    private IList<ItemsResponseModel> ItemsData { get; set; } = new List<ItemsResponseModel>();
+    private IList<ShopItemsResponseModel> ItemsData { get; set; } = new List<ShopItemsResponseModel>();
     
     protected override async Task OnInitializedAsync()
     {
@@ -46,10 +49,21 @@ public partial class Home : ComponentBase
 
         if (string.IsNullOrEmpty(accessToken))
             throw new InvalidOperationException("Access token has been cleared");
+
+        var shopItems = ItemsData.First(x => x.Items.Any(y => y.Id == id));
+        if (shopItems.Items.Count == 1)
+        {
+            ItemsData.Remove(shopItems);
+        }
+        else
+        {
+            var itemToDelete = shopItems.Items.First(x => x.Id == id);
+            shopItems.Items.Remove(itemToDelete);
+        }
+        StateHasChanged();
         
         var userId = AuthenticationService.GetUserId(accessToken);
-        
-        //await DeleteItemHandlerService.Handle(id, userId);
+        await DeleteItemHandlerService.Handle(id, userId);
         await LoadItemsData(userId);
     }
 

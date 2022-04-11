@@ -2,7 +2,6 @@
 using PriceObserver.Data.Repositories.Abstract;
 using PriceObserver.Web.Api.Services.Abstract;
 using PriceObserver.Web.Shared.Grpc;
-using PriceObserver.Web.Shared.Grpc;
 using PriceObserver.Web.Shared.Grpc.HandlerServices;
 
 namespace PriceObserver.Web.Api.Handlers.GetItems;
@@ -48,7 +47,7 @@ public class GetItemsHandlerService : IGetItemsHandlerService
                 var shop = _shopResponseModelBuilder.Build(x.Shop);
                 var items = x.Items.Select(_itemResponseModelBuilder.Build);
 
-                var responseModel = new ItemsResponseModel
+                var responseModel = new ShopItemsResponseModel
                 {
                     Shop = shop
                 };

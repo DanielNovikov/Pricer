@@ -1,21 +1,20 @@
 ﻿using Google.Protobuf.WellKnownTypes;
 using PriceObserver.Web.App.Services.Abstract;
 using PriceObserver.Web.Shared.Grpc;
-using PriceObserver.Web.Shared.Grpc;
 using PriceObserver.Web.Shared.Grpc.HandlerServices;
 
 namespace PriceObserver.Web.App.Services.Concrete;
 
 public class GetItemsHandlerService : IGetItemsHandlerService
 {
-    private readonly GetItems.GetItemsClient _getItemsClient;
+    private readonly GetItems.GetItemsClient _client;
     private readonly IMetadataBuilder _metadataBuilder;
     
     public GetItemsHandlerService(
-        GetItems.GetItemsClient getItemsClient, 
+        GetItems.GetItemsClient client, 
         IMetadataBuilder metadataBuilder)
     {
-        _getItemsClient = getItemsClient;
+        _client = client;
         _metadataBuilder = metadataBuilder;
     }
     
@@ -23,6 +22,6 @@ public class GetItemsHandlerService : IGetItemsHandlerService
     {
         var metadata = await _metadataBuilder.Build();
         
-        return await _getItemsClient.GetAsync(new Empty(), metadata);
+        return await _client.GetAsync(new Empty(), metadata);
     }
 }
