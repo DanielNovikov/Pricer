@@ -7,7 +7,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using PriceObserver.Web.Api.Extensions;
 using PriceObserver.Web.Api.Handlers;
-using PriceObserver.Web.Api.Handlers.GetItems;
 using PriceObserver.Web.Api.Services.Abstract;
 using PriceObserver.Web.Api.Services.Concrete;
 using PriceObserver.Web.Shared.Grpc.HandlerServices;
@@ -24,10 +23,10 @@ public static class DependencyInjection
         services.AddTransient<IItemResponseModelBuilder, ItemResponseModelBuilder>();
         
         services.AddScoped<IAuthenticationHandlerService, AuthenticationHandlerService>();
-        services.AddScoped<IDeleteItemHandlerService, DeleteItemHandlerService>();
-        services.AddScoped<IGetItemsHandlerService, GetItemsHandlerService>();
+        services.AddScoped<IItemDeletionHandlerService, ItemDeletionHandlerService>();
+        services.AddScoped<IItemsReceptionHandlerService, ItemsReceptionHandlerService>();
         
-        services.AddTransient<IAuthenticationService, AuthenticationService>();
+        services.AddTransient<IUserAuthenticationService, UserAuthenticationService>();
         services.AddTransient<ICookieManager, CookieManager>();
         services.AddHttpContextAccessor();
     }
@@ -61,7 +60,7 @@ public static class DependencyInjection
     public static void MapGrpcEndpoints(this IEndpointRouteBuilder endpoints)
     {
         endpoints.MapGrpcService<AuthenticationHandler>().EnableGrpcWeb();
-        endpoints.MapGrpcService<DeleteItemHandler>().EnableGrpcWeb();
-        endpoints.MapGrpcService<GetItemsHandler>().EnableGrpcWeb();
+        endpoints.MapGrpcService<ItemDeletionHandler>().EnableGrpcWeb();
+        endpoints.MapGrpcService<ItemsReceptionHandler>().EnableGrpcWeb();
     }
 }

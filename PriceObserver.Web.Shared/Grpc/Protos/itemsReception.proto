@@ -4,13 +4,13 @@ import "google/protobuf/empty.proto";
 
 option csharp_namespace = "PriceObserver.Web.Shared.Grpc";
 
-package GetItems;
+package Items;
 
-service GetItems {
-  rpc Get (google.protobuf.Empty) returns (GetItemsReply);
+service ItemsReception {
+  rpc Receive (google.protobuf.Empty) returns (ItemsReceptionReply);
 }
 
-message GetItemsReply {
+message ItemsReceptionReply {
   repeated ShopItemsResponseModel Data = 1;
 }
 

@@ -4,16 +4,16 @@ using PriceObserver.Web.Api.Services.Abstract;
 using PriceObserver.Web.Shared.Grpc;
 using PriceObserver.Web.Shared.Grpc.HandlerServices;
 
-namespace PriceObserver.Web.Api.Handlers.GetItems;
+namespace PriceObserver.Web.Api.Handlers;
 
-public class GetItemsHandlerService : IGetItemsHandlerService
+public class ItemsReceptionHandlerService : IItemsReceptionHandlerService
 {
     private readonly IItemRepository _itemRepository;
     private readonly IShopRepository _shopRepository;
     private readonly IShopResponseModelBuilder _shopResponseModelBuilder;
     private readonly IItemResponseModelBuilder _itemResponseModelBuilder;
 
-    public GetItemsHandlerService(
+    public ItemsReceptionHandlerService(
         IItemRepository itemRepository,
         IShopRepository shopRepository,
         IShopResponseModelBuilder shopResponseModelBuilder,
@@ -25,7 +25,7 @@ public class GetItemsHandlerService : IGetItemsHandlerService
         _itemResponseModelBuilder = itemResponseModelBuilder;
     }
     
-    public async Task<GetItemsReply> Handle(long userId)
+    public async Task<ItemsReceptionReply> Receive(long userId)
     {
         var userItems = await _itemRepository.GetByUserId(userId);
         var shops = _shopRepository.GetAll();
@@ -58,7 +58,7 @@ public class GetItemsHandlerService : IGetItemsHandlerService
             })
             .ToList();
 
-        var result = new GetItemsReply();
+        var result = new ItemsReceptionReply();
         result.Data.AddRange(responseModels);
 
         return result;

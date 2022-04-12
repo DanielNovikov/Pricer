@@ -15,9 +15,9 @@ public abstract class Context
 {
     protected readonly Uri Url;
     protected readonly ShopKey ShopKey;
-    protected IHtmlLoader Sut;
+    protected IHtmlLoader Sut = default!;
 
-    protected HttpClient HttpClient;
+    protected HttpClient HttpClient = default!;
     
     protected readonly Fixture Fixture;
 

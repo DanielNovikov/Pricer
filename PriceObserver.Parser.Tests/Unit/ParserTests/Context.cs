@@ -9,7 +9,7 @@ public abstract class Context
 {
     protected readonly Uri Url;
     protected readonly ShopKey ShopKey;
-    protected IParser Sut;
+    protected IParser Sut = default!;
 
     protected readonly Fixture Fixture;
     

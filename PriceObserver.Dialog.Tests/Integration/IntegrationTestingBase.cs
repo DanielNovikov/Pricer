@@ -18,7 +18,7 @@ public abstract class IntegrationTestingBase
 {
     protected static readonly IInputHandler EntryPoint;
 
-    private static IServiceProvider _serviceProvider;
+    private static IServiceProvider _serviceProvider = default!;
     
     static IntegrationTestingBase()
     {

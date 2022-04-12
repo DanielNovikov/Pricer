@@ -3,16 +3,16 @@ using PriceObserver.Web.Shared.Grpc.HandlerServices;
 
 namespace PriceObserver.Web.Api.Handlers;
 
-public class DeleteItemHandlerService : IDeleteItemHandlerService
+public class ItemDeletionHandlerService : IItemDeletionHandlerService
 {
     private readonly IItemRepository _itemRepository;
 
-    public DeleteItemHandlerService(IItemRepository itemRepository)
+    public ItemDeletionHandlerService(IItemRepository itemRepository)
     {
         _itemRepository = itemRepository;
     }
 
-    public async Task Handle(int itemId, long userId)
+    public async Task Delete(int itemId, long userId)
     {
         var item = await _itemRepository.GetById(itemId);
 

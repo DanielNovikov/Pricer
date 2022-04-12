@@ -11,7 +11,7 @@ public partial class Login : ComponentBase
     public Guid Token { get; set; }
 
     [Inject]
-    public IAuthenticationHandlerService AuthenticationHandlerService { get; set; }
+    public IAuthenticationHandlerService AuthenticationHandlerService { get; set; } = default!;
     
     [Inject] 
     public NavigationManager NavigationManager { get; set; } = default!;
@@ -19,11 +19,11 @@ public partial class Login : ComponentBase
     [Inject]
     public ICookieManager CookieManager { get; set; } = default!;
 
-    public bool Authorized { get; set; }
+    private bool Authorized { get; set; }
     
     protected override async Task OnInitializedAsync()
     {
-        var authenticationResult = await AuthenticationHandlerService.Handle(Token);
+        var authenticationResult = await AuthenticationHandlerService.Authenticate(Token);
 
         if (!authenticationResult.IsSuccess)
         {

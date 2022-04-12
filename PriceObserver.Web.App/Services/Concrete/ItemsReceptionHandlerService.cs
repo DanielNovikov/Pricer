@@ -5,23 +5,23 @@ using PriceObserver.Web.Shared.Grpc.HandlerServices;
 
 namespace PriceObserver.Web.App.Services.Concrete;
 
-public class GetItemsHandlerService : IGetItemsHandlerService
+public class ItemsReceptionHandlerService : IItemsReceptionHandlerService
 {
-    private readonly GetItems.GetItemsClient _client;
+    private readonly ItemsReception.ItemsReceptionClient _client;
     private readonly IMetadataBuilder _metadataBuilder;
     
-    public GetItemsHandlerService(
-        GetItems.GetItemsClient client, 
+    public ItemsReceptionHandlerService(
+        ItemsReception.ItemsReceptionClient client, 
         IMetadataBuilder metadataBuilder)
     {
         _client = client;
         _metadataBuilder = metadataBuilder;
     }
     
-    public async Task<GetItemsReply> Handle(long userId)
+    public async Task<ItemsReceptionReply> Receive(long userId)
     {
         var metadata = await _metadataBuilder.Build();
         
-        return await _client.GetAsync(new Empty(), metadata);
+        return await _client.ReceiveAsync(new Empty(), metadata);
     }
 }

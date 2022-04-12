@@ -10,7 +10,7 @@ public abstract class Context
 {
     protected readonly ShopKey ProviderKey;
     protected readonly IHtmlDocument Document;
-    protected IParserProviderService Sut;
+    protected IParserProviderService Sut = default!;
 
     protected readonly Fixture Fixture;
     

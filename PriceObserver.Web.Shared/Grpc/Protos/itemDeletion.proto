@@ -4,12 +4,12 @@ import "google/protobuf/empty.proto";
 
 option csharp_namespace = "PriceObserver.Web.Shared.Grpc";
 
-package DeleteItem;
+package Item;
 
-service DeleteItem {
-  rpc Delete(DeleteItemRequest) returns (google.protobuf.Empty);
+service ItemDeletion {
+  rpc Delete(ItemDeletionRequest) returns (google.protobuf.Empty);
 }
 
-message DeleteItemRequest {
+message ItemDeletionRequest {
   int32 itemId = 1;
 }

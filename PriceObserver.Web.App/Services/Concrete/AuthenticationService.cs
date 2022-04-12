@@ -2,7 +2,7 @@
 
 namespace PriceObserver.Web.App.Services.Concrete;
 
-public class AuthenticationHttpService : IAuthenticationService
+public class UserAuthenticationService : IUserAuthenticationService
 {
     public long GetUserId(string accessToken)
     {

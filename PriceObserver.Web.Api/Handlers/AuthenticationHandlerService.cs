@@ -31,7 +31,7 @@ public class AuthenticationHandlerService : IAuthenticationHandlerService
         _logger = logger;
     }
 
-    public async Task<AuthenticationReply> Handle(Guid token)
+    public async Task<AuthenticationReply> Authenticate(Guid token)
     {
         var userToken = await _userTokenRepository.GetByToken(token);
 

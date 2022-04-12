@@ -25,8 +25,7 @@ public class Startup
     }
 
     public void ConfigureServices(IServiceCollection services)
-    {       
-        services.AddControllersWithViews();
+    {
         services.AddRazorPages();
         
         services.AddApiServices();
@@ -54,7 +53,7 @@ public class Startup
         if (env.IsDevelopment())
             app.UseWebAssemblyDebugging();
         
-        app.UseExceptionHandling();
+        //app.UseExceptionHandling();
         
         app.UseForwardedHeaders(new ForwardedHeadersOptions
         {
@@ -78,10 +77,6 @@ public class Startup
         app.UseEndpoints(endpoints =>
         {
             endpoints.MapRazorPages();
-            
-            endpoints.MapControllerRoute(
-                "default",
-                "{controller}/{action}/{id?}");
             
             endpoints.MapGrpcEndpoints();
 

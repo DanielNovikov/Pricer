@@ -2,5 +2,5 @@
 
 public interface IAuthenticationHandlerService
 {
-    Task<AuthenticationReply> Handle(Guid token);
+    Task<AuthenticationReply> Authenticate(Guid token);
 }

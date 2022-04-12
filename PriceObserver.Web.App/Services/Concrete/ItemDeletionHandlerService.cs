@@ -4,24 +4,24 @@ using PriceObserver.Web.Shared.Grpc.HandlerServices;
 
 namespace PriceObserver.Web.App.Services.Concrete;
 
-public class DeleteItemHandlerService : IDeleteItemHandlerService
+public class ItemDeletionHandlerService : IItemDeletionHandlerService
 {
-    private readonly DeleteItem.DeleteItemClient _client;
+    private readonly ItemDeletion.ItemDeletionClient _client;
     private readonly IMetadataBuilder _metadataBuilder;
 
-    public DeleteItemHandlerService(
-        DeleteItem.DeleteItemClient client,
+    public ItemDeletionHandlerService(
+        ItemDeletion.ItemDeletionClient client,
         IMetadataBuilder metadataBuilder)
     {
         _client = client;
         _metadataBuilder = metadataBuilder;
     }
 
-    public async Task Handle(int itemId, long userId)
+    public async Task Delete(int itemId, long userId)
     {
         var metadata = await _metadataBuilder.Build();
         
-        var request = new DeleteItemRequest
+        var request = new ItemDeletionRequest()
         {
             ItemId = itemId
         };

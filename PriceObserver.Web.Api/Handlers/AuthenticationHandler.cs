@@ -20,6 +20,6 @@ public class AuthenticationHandler : Authentication.AuthenticationBase
         if (!Guid.TryParse(request.Token, out var token))
             throw new InvalidOperationException($"Can't parse '{request.Token}'");
         
-        return await _handlerService.Handle(token);
+        return await _handlerService.Authenticate(token);
     }
 }

@@ -12,7 +12,7 @@ public class AuthenticationHandlerService : IAuthenticationHandlerService
         _client = client;
     }
 
-    public async Task<AuthenticationReply> Handle(Guid token)
+    public async Task<AuthenticationReply> Authenticate(Guid token)
     {
         var request = new AuthenticationRequest
         {

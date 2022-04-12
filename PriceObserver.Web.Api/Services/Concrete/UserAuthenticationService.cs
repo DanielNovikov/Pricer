@@ -8,11 +8,11 @@ using PriceObserver.Web.Shared.Services.Abstract;
 
 namespace PriceObserver.Web.Api.Services.Concrete;
 
-public class AuthenticationService : IAuthenticationService
+public class UserAuthenticationService : IUserAuthenticationService
 {
     private readonly IConfiguration _configuration;
 
-    public AuthenticationService(IConfiguration configuration)
+    public UserAuthenticationService(IConfiguration configuration)
     {
         _configuration = configuration;
     }
