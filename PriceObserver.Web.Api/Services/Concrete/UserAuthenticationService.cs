@@ -1,43 +1,23 @@
-﻿using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using System.Text;
-using Microsoft.Extensions.Configuration;
-using Microsoft.IdentityModel.Tokens;
-using PriceObserver.Web.Api.Extensions;
+﻿using System.Security.Claims;
+using PriceObserver.Web.Api.Services.Abstract;
 using PriceObserver.Web.Shared.Services.Abstract;
 
 namespace PriceObserver.Web.Api.Services.Concrete;
 
 public class UserAuthenticationService : IUserAuthenticationService
 {
-    private readonly IConfiguration _configuration;
+    private readonly IJwtService _jwtService;
 
-    public UserAuthenticationService(IConfiguration configuration)
+    public UserAuthenticationService(IJwtService jwtService)
     {
-        _configuration = configuration;
+        _jwtService = jwtService;
     }
 
     public long GetUserId(string accessToken)
     {
-        var privateKey = _configuration.GetJwtPrivateKey();
-        var securityKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(privateKey));
-                
-        var tokenParameters = new TokenValidationParameters
-        {
-            ValidateIssuer = false,
-            ValidateAudience = false,
-            ValidateLifetime = false,
-            IssuerSigningKey = securityKey
-        };
+        var claims = _jwtService.Parse(accessToken);
 
-        var validator = new JwtSecurityTokenHandler();
-
-        if (!validator.CanReadToken(accessToken))
-            throw new InvalidOperationException("Token couldn't be read");
-
-        var principal = validator.ValidateToken(accessToken, tokenParameters, out _);
-
-        var userIdString = principal.Claims.Single(x => x.Type == ClaimTypes.NameIdentifier).Value;
+        var userIdString = claims.Single(x => x.Type == ClaimTypes.NameIdentifier).Value;
 
         return long.Parse(userIdString);
     }

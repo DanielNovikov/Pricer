@@ -1,12 +1,8 @@
-﻿using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using System.Text;
-using Microsoft.Extensions.Configuration;
+﻿using System.Security.Claims;
 using Microsoft.Extensions.Logging;
-using Microsoft.IdentityModel.Tokens;
 using PriceObserver.Data.Repositories.Abstract;
 using PriceObserver.Data.Service.Abstract;
-using PriceObserver.Web.Api.Extensions;
+using PriceObserver.Web.Api.Services.Abstract;
 using PriceObserver.Web.Shared.Grpc;
 using PriceObserver.Web.Shared.Grpc.HandlerServices;
 
@@ -16,19 +12,19 @@ public class AuthenticationHandlerService : IAuthenticationHandlerService
 {
     private readonly IUserTokenRepository _userTokenRepository;
     private readonly IUserTokenService _userTokenService;
-    private readonly IConfiguration _configuration;
     private readonly ILogger<AuthenticationHandlerService> _logger;
+    private readonly IJwtService _jwtService;
 
     public AuthenticationHandlerService(
         IUserTokenRepository userTokenRepository,
         IUserTokenService userTokenService,
-        IConfiguration configuration,
-        ILogger<AuthenticationHandlerService> logger)
+        ILogger<AuthenticationHandlerService> logger, 
+        IJwtService jwtService)
     {
         _userTokenRepository = userTokenRepository;
         _userTokenService = userTokenService;
-        _configuration = configuration;
         _logger = logger;
+        _jwtService = jwtService;
     }
 
     public async Task<AuthenticationReply> Authenticate(Guid token)
@@ -51,23 +47,13 @@ public class AuthenticationHandlerService : IAuthenticationHandlerService
             return new AuthenticationReply { IsSuccess = false };
         }
 
-        await _userTokenService.Expire(userToken);
-
         var claims = new List<Claim>
         {
             new Claim(ClaimTypes.NameIdentifier, userToken.UserId.ToString())
         };
-
-        var privateKey = _configuration.GetJwtPrivateKey();
-        var securityKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(privateKey));
-        var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256Signature);
-
-        var jwtToken = new JwtSecurityToken(
-            claims: claims,
-            signingCredentials: credentials);
-
-        var accessToken = new JwtSecurityTokenHandler().WriteToken(jwtToken);
+        var accessToken = _jwtService.Create(claims);
         
+        await _userTokenService.Expire(userToken);
         _logger.LogInformation("User with id {0} authenticated", userToken.UserId);
         
         return new AuthenticationReply

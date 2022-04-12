@@ -25,10 +25,10 @@ public static class DependencyInjection
         services.AddScoped<IAuthenticationHandlerService, AuthenticationHandlerService>();
         services.AddScoped<IItemDeletionHandlerService, ItemDeletionHandlerService>();
         services.AddScoped<IItemsReceptionHandlerService, ItemsReceptionHandlerService>();
-        
+
+        services.AddTransient<IJwtService, JwtService>();
         services.AddTransient<IUserAuthenticationService, UserAuthenticationService>();
         services.AddTransient<ICookieManager, CookieManager>();
-        services.AddHttpContextAccessor();
     }
      
     public static void AddJwtAuthentication(this IServiceCollection services, IConfiguration configuration)
@@ -50,11 +50,6 @@ public static class DependencyInjection
                     IssuerSigningKey = securityKey
                 };
             });
-    }
-
-    public static void UseExceptionHandling(this IApplicationBuilder app)
-    {   
-        app.UseExceptionHandler("/api/error/handle");
     }
 
     public static void MapGrpcEndpoints(this IEndpointRouteBuilder endpoints)

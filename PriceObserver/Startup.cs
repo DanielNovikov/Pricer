@@ -53,8 +53,6 @@ public class Startup
         if (env.IsDevelopment())
             app.UseWebAssemblyDebugging();
         
-        //app.UseExceptionHandling();
-        
         app.UseForwardedHeaders(new ForwardedHeadersOptions
         {
             ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
