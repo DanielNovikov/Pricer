@@ -13,7 +13,7 @@ builder.Services
     .AddScoped<IAuthenticationHandlerService, AuthenticationHandlerService>()
     .AddGrpcWebClient<ItemDeletion.ItemDeletionClient>()
     .AddScoped<IItemDeletionHandlerService, ItemDeletionHandlerService>()
-    .AddGrpcWebClient<ItemDeletion.ItemDeletionClient>()
+    .AddGrpcWebClient<ItemsReception.ItemsReceptionClient>()
     .AddScoped<IItemsReceptionHandlerService, ItemsReceptionHandlerService>();
 
 builder.Services

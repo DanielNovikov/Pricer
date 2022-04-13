@@ -50,11 +50,11 @@ public abstract class IntegrationTestingBase
             .Build();
 
         _serviceProvider = new ServiceCollection()
-            .AddInMemoryData()
-            .AddData()
+            .AddInMemoryDataRepositories()
+            .AddPersistentDataRepositories()
             .AddDataServices()
             .AddParserServices()
-            .AddDialog(configuration)
+            .AddDialogServices(configuration)
             .AddDbContext<ApplicationDbContext>(options => 
                 options.UseInMemoryDatabase("Dialog.Tests"))
             .BuildServiceProvider();

@@ -28,21 +28,24 @@ public class Startup
     {
         services.AddRazorPages();
         
-        services.AddApiServices();
-        services.AddJwtAuthentication(_configuration);
+        services
+            .AddApiServices()
+            .AddJwtAuthentication(_configuration);
         
-        services.AddTelegramBot(_configuration);
-        services.AddDialog(_configuration);
-        services.AddParserServices();
-        services.AddBackgroundJobs();
+        services
+            .AddTelegramBot(_configuration)
+            .AddDialogServices(_configuration)
+            .AddParserServices()
+            .AddBackgroundJobs();
             
-        services.AddData();
-        services.AddDataContext(_configuration);
-        services.AddMemoryCache();
-        services.AddInMemoryData();
-        services.AddDataServices();
+        services
+            .AddPersistentDataRepositories()
+            .AddInMemoryDataRepositories()
+            .AddDbContext(_configuration)
+            .AddMemoryCache()
+            .AddDataServices();
 
-        services.AddGrpc();
+        services.AddConfiguredGrpc();
         services.AddCors();
     }
 

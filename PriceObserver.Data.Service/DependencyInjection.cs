@@ -8,14 +8,13 @@ public static class DependencyInjection
 {
     public static IServiceCollection AddDataServices(this IServiceCollection services)
     {
-        services.AddScoped<IUserService, UserService>();
-        services.AddScoped<IItemService, ItemService>();
-        services.AddScoped<IUserTokenService, UserTokenService>();
-        services.AddScoped<IResourceService, ResourceService>();
-        services.AddScoped<IMenuService, MenuService>();
-        services.AddScoped<ICommandService, CommandService>();
-        services.AddScoped<IItemParseResultService, ItemParseResultService>();
-
-        return services;
+        return services
+            .AddScoped<IUserService, UserService>()
+            .AddScoped<IItemService, ItemService>()
+            .AddScoped<IUserTokenService, UserTokenService>()
+            .AddScoped<IResourceService, ResourceService>()
+            .AddScoped<IMenuService, MenuService>()
+            .AddScoped<ICommandService, CommandService>()
+            .AddScoped<IItemParseResultService, ItemParseResultService>();
     }
 }

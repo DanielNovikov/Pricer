@@ -6,13 +6,12 @@ namespace PriceObserver.Data.InMemory;
 
 public static class DependencyInjection
 {
-    public static IServiceCollection AddInMemoryData(this IServiceCollection services)
+    public static IServiceCollection AddInMemoryDataRepositories(this IServiceCollection services)
     {
-        services.AddScoped<IResourceRepository, ResourceRepository>();
-        services.AddScoped<ICommandRepository, CommandRepository>();
-        services.AddScoped<IMenuRepository, MenuRepository>();
-        services.AddScoped<IShopRepository, ShopRepository>();
-
-        return services;
+        return services
+            .AddScoped<IResourceRepository, ResourceRepository>()
+            .AddScoped<ICommandRepository, CommandRepository>()
+            .AddScoped<IMenuRepository, MenuRepository>()
+            .AddScoped<IShopRepository, ShopRepository>();
     }
 }

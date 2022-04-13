@@ -7,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using PriceObserver.Web.Api.Extensions;
 using PriceObserver.Web.Api.Handlers;
+using PriceObserver.Web.Api.Interceptors;
 using PriceObserver.Web.Api.Services.Abstract;
 using PriceObserver.Web.Api.Services.Concrete;
 using PriceObserver.Web.Shared.Grpc.HandlerServices;
@@ -16,22 +17,32 @@ namespace PriceObserver.Web.Api;
 
 public static class DependencyInjection
 {
-    public static void AddApiServices(this IServiceCollection services)
+    public static IServiceCollection AddConfiguredGrpc(this IServiceCollection services)
     {
-        services.AddTransient<IShopResponseModelBuilder, ShopResponseModelBuilder>();
-        services.AddScoped<IPriceChangesStringBuilder, PriceChangesStringBuilder>();
-        services.AddTransient<IItemResponseModelBuilder, ItemResponseModelBuilder>();
+        services.AddGrpc(options => 
+            options.Interceptors.Add<ErrorHandlingInterceptor>());
         
-        services.AddScoped<IAuthenticationHandlerService, AuthenticationHandlerService>();
-        services.AddScoped<IItemDeletionHandlerService, ItemDeletionHandlerService>();
-        services.AddScoped<IItemsReceptionHandlerService, ItemsReceptionHandlerService>();
-
-        services.AddTransient<IJwtService, JwtService>();
-        services.AddTransient<IUserAuthenticationService, UserAuthenticationService>();
-        services.AddTransient<ICookieManager, CookieManager>();
+        return services;
+    }
+    
+    public static IServiceCollection AddApiServices(this IServiceCollection services)
+    {
+        return services
+            .AddTransient<IShopResponseModelBuilder, ShopResponseModelBuilder>()
+            .AddScoped<IPriceChangesStringBuilder, PriceChangesStringBuilder>()
+            .AddTransient<IItemResponseModelBuilder, ItemResponseModelBuilder>()
+            
+            .AddScoped<IAuthenticationHandlerService, AuthenticationHandlerService>()
+            .AddScoped<IItemDeletionHandlerService, ItemDeletionHandlerService>()
+            .AddScoped<IItemsReceptionHandlerService, ItemsReceptionHandlerService>()
+            
+            .AddTransient<IJwtService, JwtService>()
+            .AddTransient<IUserAuthenticationService, UserAuthenticationService>()
+            .AddTransient<ICookieManager, CookieManager>()
+            .AddHttpContextAccessor();
     }
      
-    public static void AddJwtAuthentication(this IServiceCollection services, IConfiguration configuration)
+    public static IServiceCollection AddJwtAuthentication(this IServiceCollection services, IConfiguration configuration)
     {
         services
             .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -50,12 +61,16 @@ public static class DependencyInjection
                     IssuerSigningKey = securityKey
                 };
             });
+
+        return services;
     }
 
-    public static void MapGrpcEndpoints(this IEndpointRouteBuilder endpoints)
+    public static IEndpointRouteBuilder MapGrpcEndpoints(this IEndpointRouteBuilder endpoints)
     {
         endpoints.MapGrpcService<AuthenticationHandler>().EnableGrpcWeb();
         endpoints.MapGrpcService<ItemDeletionHandler>().EnableGrpcWeb();
         endpoints.MapGrpcService<ItemsReceptionHandler>().EnableGrpcWeb();
+
+        return endpoints;
     }
 }

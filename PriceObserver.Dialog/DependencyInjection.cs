@@ -13,35 +13,34 @@ namespace PriceObserver.Dialog;
 
 public static class DependencyInjection
 {
-    public static IServiceCollection AddDialog(
+    public static IServiceCollection AddDialogServices(
         this IServiceCollection services,
         IConfiguration configuration)
     {
-        services.AddTransient<ICommandHandlerService, CommandHandlerService>();
-            
-        services.AddTransient<IShopsInfoMessageBuilder, ShopsInfoMessageBuilder>();
-        services.AddTransient<IUserActionLogger, UserActionLogger>();
-            
-        services.AddTransient<IInputHandler, InputHandler>();
-        services.AddTransient<IAuthorizationService, AuthorizationService>();
-        services.AddTransient<IUserRegistrationHandler, UserRegistrationHandler>();
-        services.AddTransient<IWebsiteLoginUrlBuilder, WebsiteLoginUrlBuilder>();
-        services.AddTransient<IWrongCommandHandler, WrongCommandHandler>();
-        
-        services.AddTransient<IMenuInputHandlerService, MenuInputHandlerService>();
-        services.AddTransient<IMenuKeyboardBuilder, MenuKeyboardBuilder>();
-        services.AddTransient<IReplyWithKeyboardBuilder, ReplyWithKeyboardBuilder>();
-        services.AddTransient<IUrlExtractor, UrlExtractor>();
-        services.AddTransient<IUserItemParser, UserItemParser>();
-        services.AddTransient<IUserRedirectionService, UserRedirectionService>();
-
         services
             .AddOptions<WebsiteOptions>()
             .Bind(configuration.GetSection(nameof(WebsiteOptions)));
-
-        services.AddImplementations<ICommandHandler>();
-        services.AddImplementations<IMenuInputHandler>();
-
-        return services;
+        
+        return services
+            .AddTransient<ICommandHandlerService, CommandHandlerService>()
+            
+            .AddTransient<IShopsInfoMessageBuilder, ShopsInfoMessageBuilder>()
+            .AddTransient<IUserActionLogger, UserActionLogger>()
+            
+            .AddTransient<IInputHandler, InputHandler>()
+            .AddTransient<IAuthorizationService, AuthorizationService>()
+            .AddTransient<IUserRegistrationHandler, UserRegistrationHandler>()
+            .AddTransient<IWebsiteLoginUrlBuilder, WebsiteLoginUrlBuilder>()
+            .AddTransient<IWrongCommandHandler, WrongCommandHandler>()
+            
+            .AddTransient<IMenuInputHandlerService, MenuInputHandlerService>()
+            .AddTransient<IMenuKeyboardBuilder, MenuKeyboardBuilder>()
+            .AddTransient<IReplyWithKeyboardBuilder, ReplyWithKeyboardBuilder>()
+            .AddTransient<IUrlExtractor, UrlExtractor>()
+            .AddTransient<IUserItemParser, UserItemParser>()
+            .AddTransient<IUserRedirectionService, UserRedirectionService>()
+            
+            .AddImplementations<ICommandHandler>()
+            .AddImplementations<IMenuInputHandler>();
     }
 }
