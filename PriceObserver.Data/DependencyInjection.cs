@@ -8,27 +8,23 @@ namespace PriceObserver.Data;
 
 public static class DependencyInjection
 {
-    public static IServiceCollection AddData(this IServiceCollection services)
+    public static IServiceCollection AddPersistentDataRepositories(this IServiceCollection services)
     {
-        services.AddMemoryCache();
-            
-        services.AddScoped<IItemRepository, ItemRepository>();
-        services.AddScoped<IItemPriceChangeRepository, ItemPriceChangeRepository>();
-        services.AddScoped<IUserRepository, UserRepository>();
-        services.AddScoped<IUserTokenRepository, UserTokenRepository>();
-        services.AddScoped<IAppNotificationRepository, AppNotificationRepository>();
-        services.AddScoped<IItemParseResultRepository, ItemParseResultRepository>();
-
-        return services;
+        return services
+            .AddMemoryCache()
+            .AddScoped<IItemRepository, ItemRepository>()
+            .AddScoped<IItemPriceChangeRepository, ItemPriceChangeRepository>()
+            .AddScoped<IUserRepository, UserRepository>()
+            .AddScoped<IUserTokenRepository, UserTokenRepository>()
+            .AddScoped<IAppNotificationRepository, AppNotificationRepository>()
+            .AddScoped<IItemParseResultRepository, ItemParseResultRepository>();
     }
 
-    public static IServiceCollection AddDataContext(this IServiceCollection services, IConfiguration configuration)
+    public static IServiceCollection AddDbContext(this IServiceCollection services, IConfiguration configuration)
     {
-        services.AddDbContext<ApplicationDbContext>(
+        return services.AddDbContext<ApplicationDbContext>(
             context => context.UseNpgsql(
                 configuration.GetConnectionString("PricerDB"),
                 x => x.MigrationsAssembly("PriceObserver.Data")));
-
-        return services;
     }
 }

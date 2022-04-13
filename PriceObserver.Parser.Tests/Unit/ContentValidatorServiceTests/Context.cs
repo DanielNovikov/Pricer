@@ -10,7 +10,7 @@ public abstract class Context
 {
     protected readonly ShopKey ProviderKey;
     protected readonly IHtmlDocument HtmlDocument;
-    protected IContentValidatorService Sut;
+    protected IContentValidatorService Sut = default!;
 
     protected Context()
     {   

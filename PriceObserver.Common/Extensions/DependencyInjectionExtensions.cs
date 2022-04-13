@@ -6,7 +6,7 @@ namespace PriceObserver.Common.Extensions;
 
 public static class DependencyInjectionExtensions
 {
-    public static void AddImplementations<TBase>(this IServiceCollection services)
+    public static IServiceCollection AddImplementations<TBase>(this IServiceCollection services)
     {
         var baseType = typeof(TBase);
 
@@ -23,5 +23,7 @@ public static class DependencyInjectionExtensions
         {
             services.AddTransient(baseType, implementation);
         });
+
+        return services;
     }
 }

@@ -25,24 +25,27 @@ public class Startup
     }
 
     public void ConfigureServices(IServiceCollection services)
-    {       
-        services.AddControllersWithViews();
+    {
         services.AddRazorPages();
         
-        services.AddApiServices();
-        services.AddJwtAuthentication(_configuration);
+        services
+            .AddApiServices()
+            .AddJwtAuthentication(_configuration);
         
-        services.AddTelegramBot(_configuration);
-        services.AddDialog(_configuration);
-        services.AddParserServices();
-        services.AddBackgroundJobs();
+        services
+            .AddTelegramBot(_configuration)
+            .AddDialogServices(_configuration)
+            .AddParserServices()
+            .AddBackgroundJobs();
             
-        services.AddData();
-        services.AddDataContext(_configuration);
-        services.AddMemoryCache();
-        services.AddInMemoryData();
-        services.AddDataServices();
-            
+        services
+            .AddPersistentDataRepositories()
+            .AddInMemoryDataRepositories()
+            .AddDbContext(_configuration)
+            .AddMemoryCache()
+            .AddDataServices();
+
+        services.AddConfiguredGrpc();
         services.AddCors();
     }
 
@@ -53,8 +56,6 @@ public class Startup
         if (env.IsDevelopment())
             app.UseWebAssemblyDebugging();
         
-        app.UseExceptionHandling();
-        
         app.UseForwardedHeaders(new ForwardedHeadersOptions
         {
             ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
@@ -64,6 +65,7 @@ public class Startup
         app.UseStaticFiles();
             
         app.UseRouting();
+        app.UseGrpcWeb();
 
         app.UseAuthentication();
         app.UseAuthorization();
@@ -77,10 +79,8 @@ public class Startup
         {
             endpoints.MapRazorPages();
             
-            endpoints.MapControllerRoute(
-                "default",
-                "{controller}/{action}/{id?}");
-            
+            endpoints.MapGrpcEndpoints();
+
             endpoints.MapFallbackToPage("/_Host");
         });
     }

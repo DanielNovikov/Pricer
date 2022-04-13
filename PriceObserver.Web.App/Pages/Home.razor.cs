@@ -1,29 +1,29 @@
 ﻿using Microsoft.AspNetCore.Components;
-using Microsoft.JSInterop;
 using PriceObserver.Web.Shared.Defaults;
-using PriceObserver.Web.Shared.Models;
+using PriceObserver.Web.Shared.Grpc;
+using PriceObserver.Web.Shared.Grpc.HandlerServices;
 using PriceObserver.Web.Shared.Services.Abstract;
 
 namespace PriceObserver.Web.App.Pages;
 
 public partial class Home : ComponentBase
-{
+{   
     [Inject]
-    public ICookieManager CookieManager { get; set; }
+    public ICookieManager CookieManager { get; set; } = default!;
     
     [Inject]
-    public IAuthenticationService AuthenticationService { get; set; }
-    
-    [Inject]
-    public IItemService ItemService { get; set; }
+    public IUserAuthenticationService UserAuthenticationService { get; set; } = default!;
 
     [Inject]
-    public NavigationManager NavigationManager { get; set; }
+    public IItemsReceptionHandlerService ItemsReceptionHandlerService { get; set; } = default!;
+
+    [Inject]
+    public IItemDeletionHandlerService ItemDeletionHandlerService { get; set; } = default!;
     
     [Inject]
-    public IJSRuntime JsRuntime { get; set; }
+    public NavigationManager NavigationManager { get; set; } = default!;
 
-    private IList<ItemsVm> ItemsData { get; set; } = new List<ItemsVm>();
+    private IList<ShopItemsResponseModel> ItemsData { get; set; } = new List<ShopItemsResponseModel>();
     
     protected override async Task OnInitializedAsync()
     {
@@ -35,8 +35,8 @@ public partial class Home : ComponentBase
             return;
         }
         
-        var userId = AuthenticationService.GetUserId(accessToken);
-        ItemsData = await ItemService.GetByUserId(userId);
+        var userId = UserAuthenticationService.GetUserId(accessToken);
+        await LoadItemsData(userId);
     }
 
     private async Task DeleteItem(int id)
@@ -45,28 +45,40 @@ public partial class Home : ComponentBase
 
         if (string.IsNullOrEmpty(accessToken))
             throw new InvalidOperationException("Access token has been cleared");
-        
-        var userId = AuthenticationService.GetUserId(accessToken);
-        await ItemService.Delete(id, userId);
 
-        var itemsVm = ItemsData.Single(x => x.Items.Any(y => y.Id == id));
+        RemoveItemFromView(id);
 
-        if (itemsVm.Items.Count == 1)
-        {
-            ItemsData = ItemsData
-                .Where(x => x != itemsVm)
-                .ToList();
-            
-            return;
-        }
-
-        var itemToDelete = itemsVm.Items.Single(x => x.Id == id);
-        itemsVm.Items.Remove(itemToDelete);
+        var userId = UserAuthenticationService.GetUserId(accessToken);
+        await ItemDeletionHandlerService.Delete(id, userId);
+        await LoadItemsData(userId);
     }
 
     private async Task Logout()
     {
         await CookieManager.Remove(CookieKeys.AccessToken);
         NavigationManager.NavigateTo("https://t.me/pricer_official_bot");
+    }
+
+    private void RemoveItemFromView(int id)
+    {
+        var shopItems = ItemsData.First(x => x.Items.Any(y => y.Id == id));
+        
+        if (shopItems.Items.Count == 1)
+        {
+            ItemsData.Remove(shopItems);
+        }
+        else
+        {
+            var itemToDelete = shopItems.Items.First(x => x.Id == id);
+            shopItems.Items.Remove(itemToDelete);
+        }
+
+        StateHasChanged();
+    }
+    
+    private async Task LoadItemsData(long userId)
+    {
+        var response = await ItemsReceptionHandlerService.Receive(userId);
+        ItemsData = response.Data;
     }
 }

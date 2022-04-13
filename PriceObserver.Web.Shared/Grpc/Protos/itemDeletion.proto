@@ -1,0 +1,15 @@
+﻿syntax = "proto3";
+
+import "google/protobuf/empty.proto";
+
+option csharp_namespace = "PriceObserver.Web.Shared.Grpc";
+
+package Item;
+
+service ItemDeletion {
+  rpc Delete(ItemDeletionRequest) returns (google.protobuf.Empty);
+}
+
+message ItemDeletionRequest {
+  int32 itemId = 1;
+}

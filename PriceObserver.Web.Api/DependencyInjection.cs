@@ -1,31 +1,48 @@
 ﻿using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using PriceObserver.Web.Api.Extensions;
+using PriceObserver.Web.Api.Handlers;
+using PriceObserver.Web.Api.Interceptors;
 using PriceObserver.Web.Api.Services.Abstract;
 using PriceObserver.Web.Api.Services.Concrete;
+using PriceObserver.Web.Shared.Grpc.HandlerServices;
 using PriceObserver.Web.Shared.Services.Abstract;
 
 namespace PriceObserver.Web.Api;
 
 public static class DependencyInjection
 {
-    public static void AddApiServices(this IServiceCollection services)
+    public static IServiceCollection AddConfiguredGrpc(this IServiceCollection services)
     {
-        services.AddTransient<IItemService, ItemService>();
-        services.AddTransient<IShopVmBuilder, ShopVmBuilder>();
-        services.AddScoped<IPriceChangesStringBuilder, PriceChangesStringBuilder>();
-        services.AddTransient<IItemVmBuilder, ItemVmBuilder>();
+        services.AddGrpc(options => 
+            options.Interceptors.Add<ErrorHandlingInterceptor>());
         
-        services.AddTransient<IAuthenticationService, AuthenticationService>();
-        services.AddTransient<ICookieManager, CookieManager>();
-        services.AddHttpContextAccessor();
+        return services;
+    }
+    
+    public static IServiceCollection AddApiServices(this IServiceCollection services)
+    {
+        return services
+            .AddTransient<IShopResponseModelBuilder, ShopResponseModelBuilder>()
+            .AddScoped<IPriceChangesStringBuilder, PriceChangesStringBuilder>()
+            .AddTransient<IItemResponseModelBuilder, ItemResponseModelBuilder>()
+            
+            .AddScoped<IAuthenticationHandlerService, AuthenticationHandlerService>()
+            .AddScoped<IItemDeletionHandlerService, ItemDeletionHandlerService>()
+            .AddScoped<IItemsReceptionHandlerService, ItemsReceptionHandlerService>()
+            
+            .AddTransient<IJwtService, JwtService>()
+            .AddTransient<IUserAuthenticationService, UserAuthenticationService>()
+            .AddTransient<ICookieManager, CookieManager>()
+            .AddHttpContextAccessor();
     }
      
-    public static void AddJwtAuthentication(this IServiceCollection services, IConfiguration configuration)
+    public static IServiceCollection AddJwtAuthentication(this IServiceCollection services, IConfiguration configuration)
     {
         services
             .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -44,10 +61,16 @@ public static class DependencyInjection
                     IssuerSigningKey = securityKey
                 };
             });
+
+        return services;
     }
 
-    public static void UseExceptionHandling(this IApplicationBuilder app)
-    {   
-        app.UseExceptionHandler("/api/error/handle");
+    public static IEndpointRouteBuilder MapGrpcEndpoints(this IEndpointRouteBuilder endpoints)
+    {
+        endpoints.MapGrpcService<AuthenticationHandler>().EnableGrpcWeb();
+        endpoints.MapGrpcService<ItemDeletionHandler>().EnableGrpcWeb();
+        endpoints.MapGrpcService<ItemsReceptionHandler>().EnableGrpcWeb();
+
+        return endpoints;
     }
 }

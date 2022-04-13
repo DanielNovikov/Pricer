@@ -10,17 +10,17 @@ public static class DependencyInjection
 {
     public static IServiceCollection AddParserServices(this IServiceCollection services)
     {
-        services.AddScoped<IHtmlParser, HtmlParser>();
         services.AddHttpClient<IHtmlLoader, HtmlLoader>();
-        services.AddScoped<IRequestHeadersBuilder, RequestHeadersBuilder>();
-
-        services.AddScoped<IParser, Concrete.Parser>();
-        services.AddScoped<IContentValidatorService, ContentValidatorService>();
-        services.AddScoped<IParserProviderService, ParserProviderService>();
         
-        services.AddImplementations<IParserProvider>();
-        services.AddImplementations<IContentValidator>();
-
-        return services;
+        return services
+            .AddScoped<IHtmlParser, HtmlParser>()
+            .AddScoped<IRequestHeadersBuilder, RequestHeadersBuilder>()
+            
+            .AddScoped<IParser, Concrete.Parser>()
+            .AddScoped<IContentValidatorService, ContentValidatorService>()
+            .AddScoped<IParserProviderService, ParserProviderService>()
+            
+            .AddImplementations<IParserProvider>()
+            .AddImplementations<IContentValidator>();
     }
 }

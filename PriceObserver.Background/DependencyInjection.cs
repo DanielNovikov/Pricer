@@ -7,14 +7,15 @@ namespace PriceObserver.Background;
 
 public static class DependencyInjection
 {
-    public static void AddBackgroundJobs(this IServiceCollection services)
+    public static IServiceCollection AddBackgroundJobs(this IServiceCollection services)
     {
-        services.AddHostedService<ItemsPriceObserver>();
-        services.AddHostedService<TelegramUpdateReceiverJob>();
-        services.AddHostedService<AppNotificationsSender>();
-
-        services.AddTransient<IItemsPriceObserverService, ItemsPriceObserverService>();
-        services.AddTransient<IItemPriceChanger, ItemPriceChanger>();
-        services.AddTransient<IItemRemovalService, ItemRemovalService>();
+        return services
+            .AddHostedService<ItemsPriceObserver>()
+            .AddHostedService<TelegramUpdateReceiverJob>()
+            .AddHostedService<AppNotificationsSender>()
+            
+            .AddTransient<IItemsPriceObserverService, ItemsPriceObserverService>()
+            .AddTransient<IItemPriceChanger, ItemPriceChanger>()
+            .AddTransient<IItemRemovalService, ItemRemovalService>();
     }
 }

@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using PriceObserver.Data.InMemory.Models.Enums;
+﻿using PriceObserver.Data.InMemory.Models.Enums;
 using PriceObserver.Data.Models;
 using PriceObserver.Data.Service.Abstract;
 using PriceObserver.Web.Api.Services.Abstract;

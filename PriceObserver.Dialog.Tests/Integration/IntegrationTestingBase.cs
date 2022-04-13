@@ -18,7 +18,7 @@ public abstract class IntegrationTestingBase
 {
     protected static readonly IInputHandler EntryPoint;
 
-    private static IServiceProvider _serviceProvider;
+    private static IServiceProvider _serviceProvider = default!;
     
     static IntegrationTestingBase()
     {
@@ -50,11 +50,11 @@ public abstract class IntegrationTestingBase
             .Build();
 
         _serviceProvider = new ServiceCollection()
-            .AddInMemoryData()
-            .AddData()
+            .AddInMemoryDataRepositories()
+            .AddPersistentDataRepositories()
             .AddDataServices()
             .AddParserServices()
-            .AddDialog(configuration)
+            .AddDialogServices(configuration)
             .AddDbContext<ApplicationDbContext>(options => 
                 options.UseInMemoryDatabase("Dialog.Tests"))
             .BuildServiceProvider();

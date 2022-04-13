@@ -1,5 +1,4 @@
 ﻿using System.Threading.Tasks;
-using PriceObserver.Dialog.Tests.Integration.Commands;
 using PriceObserver.Dialog.Tests.Integration.Commands.AddItem;
 using PriceObserver.Dialog.Tests.Integration.Commands.AllItems;
 using PriceObserver.Dialog.Tests.Integration.Commands.Help;
