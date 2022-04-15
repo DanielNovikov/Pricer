@@ -23,6 +23,9 @@ public partial class Home : ComponentBase
     [Inject]
     public NavigationManager NavigationManager { get; set; } = default!;
 
+    [Inject]
+    public IPrerenderCache Cache { get; set; } = default!;
+    
     private IList<ShopItemsResponseModel> ItemsData { get; set; } = new List<ShopItemsResponseModel>();
     
     protected override async Task OnInitializedAsync()
@@ -34,9 +37,13 @@ public partial class Home : ComponentBase
             NavigationManager.NavigateTo("/");
             return;
         }
-        
-        var userId = UserAuthenticationService.GetUserId(accessToken);
-        await LoadItemsData(userId);
+
+        ItemsData = await Cache.GetOrAdd("items", async () =>
+        {
+            var userId = UserAuthenticationService.GetUserId(accessToken);
+            var response = await ItemsReceptionHandlerService.Receive(userId);
+            return response.Data;
+        });
     }
 
     private async Task DeleteItem(int id)
@@ -50,7 +57,6 @@ public partial class Home : ComponentBase
 
         var userId = UserAuthenticationService.GetUserId(accessToken);
         await ItemDeletionHandlerService.Delete(id, userId);
-        await LoadItemsData(userId);
     }
 
     private async Task Logout()
@@ -74,11 +80,5 @@ public partial class Home : ComponentBase
         }
 
         StateHasChanged();
-    }
-    
-    private async Task LoadItemsData(long userId)
-    {
-        var response = await ItemsReceptionHandlerService.Receive(userId);
-        ItemsData = response.Data;
     }
 }

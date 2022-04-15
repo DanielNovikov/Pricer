@@ -12,6 +12,7 @@ using PriceObserver.Dialog;
 using PriceObserver.Parser;
 using PriceObserver.Telegram;
 using PriceObserver.Web.Api;
+using PriceObserver.Web.Shared;
 
 namespace PriceObserver;
 
@@ -30,6 +31,7 @@ public class Startup
         
         services
             .AddApiServices()
+            .AddPrerenderCache()
             .AddJwtAuthentication(_configuration);
         
         services
