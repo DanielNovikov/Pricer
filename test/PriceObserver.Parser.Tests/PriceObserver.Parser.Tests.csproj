@@ -27,7 +27,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\PriceObserver.Parser\PriceObserver.Parser.csproj" />
+      <ProjectReference Include="..\..\src\PriceObserver.Parser\PriceObserver.Parser.csproj" />
     </ItemGroup>
-
 </Project>

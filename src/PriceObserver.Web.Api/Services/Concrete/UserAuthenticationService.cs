@@ -16,9 +16,8 @@ public class UserAuthenticationService : IUserAuthenticationService
     public long GetUserId(string accessToken)
     {
         var claims = _jwtService.Parse(accessToken);
-
         var userIdString = claims.Single(x => x.Type == ClaimTypes.NameIdentifier).Value;
-
+        
         return long.Parse(userIdString);
     }
 }

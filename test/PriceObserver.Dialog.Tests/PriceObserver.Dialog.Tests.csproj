@@ -25,14 +25,14 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\PriceObserver.Dialog\PriceObserver.Dialog.csproj" />
-    </ItemGroup>
-
-    <ItemGroup>
       <None Remove="appsettings.json" />
       <Content Include="appsettings.json">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </Content>
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\src\PriceObserver.Dialog\PriceObserver.Dialog.csproj" />
     </ItemGroup>
 
 </Project>

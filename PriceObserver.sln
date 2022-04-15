@@ -3,33 +3,37 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29926.136
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PriceObserver", "PriceObserver\PriceObserver.csproj", "{2810C97E-E067-4F4E-829F-735236D3F55C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PriceObserver", "src\PriceObserver\PriceObserver.csproj", "{2810C97E-E067-4F4E-829F-735236D3F55C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PriceObserver.Telegram", "PriceObserver.Telegram\PriceObserver.Telegram.csproj", "{3D0A09AC-0D70-4C9A-AF8E-BA4484576C92}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PriceObserver.Telegram", "src\PriceObserver.Telegram\PriceObserver.Telegram.csproj", "{3D0A09AC-0D70-4C9A-AF8E-BA4484576C92}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PriceObserver.Parser", "PriceObserver.Parser\PriceObserver.Parser.csproj", "{BD1D3C9F-390A-43EB-BC6D-EC0A1F12590E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PriceObserver.Parser", "src\PriceObserver.Parser\PriceObserver.Parser.csproj", "{BD1D3C9F-390A-43EB-BC6D-EC0A1F12590E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PriceObserver.Data", "PriceObserver.Data\PriceObserver.Data.csproj", "{B85E3E09-5F05-4C8D-9BD9-DC82E27FF1D8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PriceObserver.Data", "src\PriceObserver.Data\PriceObserver.Data.csproj", "{B85E3E09-5F05-4C8D-9BD9-DC82E27FF1D8}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PriceObserver.Background", "PriceObserver.Background\PriceObserver.Background.csproj", "{BFA35F38-319F-4559-A9B5-D02FB14C6828}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PriceObserver.Background", "src\PriceObserver.Background\PriceObserver.Background.csproj", "{BFA35F38-319F-4559-A9B5-D02FB14C6828}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PriceObserver.Dialog", "PriceObserver.Dialog\PriceObserver.Dialog.csproj", "{BEAE268C-B46C-47EF-967B-95BC60681B59}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PriceObserver.Dialog", "src\PriceObserver.Dialog\PriceObserver.Dialog.csproj", "{BEAE268C-B46C-47EF-967B-95BC60681B59}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PriceObserver.Data.Service", "PriceObserver.Data.Service\PriceObserver.Data.Service.csproj", "{4E384CAE-7D5F-4639-9F4F-806B55F1EF03}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PriceObserver.Data.Service", "src\PriceObserver.Data.Service\PriceObserver.Data.Service.csproj", "{4E384CAE-7D5F-4639-9F4F-806B55F1EF03}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PriceObserver.Common", "PriceObserver.Common\PriceObserver.Common.csproj", "{94F25568-F5AA-414C-8D72-14959993B928}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PriceObserver.Common", "src\PriceObserver.Common\PriceObserver.Common.csproj", "{94F25568-F5AA-414C-8D72-14959993B928}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PriceObserver.Data.InMemory", "PriceObserver.Data.InMemory\PriceObserver.Data.InMemory.csproj", "{24B05EBB-F8C3-478B-8861-86C78090D01A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PriceObserver.Data.InMemory", "src\PriceObserver.Data.InMemory\PriceObserver.Data.InMemory.csproj", "{24B05EBB-F8C3-478B-8861-86C78090D01A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PriceObserver.Web.Api", "PriceObserver.Web.Api\PriceObserver.Web.Api.csproj", "{2EE19CAA-A5DA-4BFD-85F0-0AA8084C6477}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PriceObserver.Web.Api", "src\PriceObserver.Web.Api\PriceObserver.Web.Api.csproj", "{2EE19CAA-A5DA-4BFD-85F0-0AA8084C6477}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PriceObserver.Parser.Tests", "PriceObserver.Parser.Tests\PriceObserver.Parser.Tests.csproj", "{6EC34CFA-6563-4603-890C-6B60A13C91E8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PriceObserver.Parser.Tests", "test\PriceObserver.Parser.Tests\PriceObserver.Parser.Tests.csproj", "{6EC34CFA-6563-4603-890C-6B60A13C91E8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PriceObserver.Dialog.Tests", "PriceObserver.Dialog.Tests\PriceObserver.Dialog.Tests.csproj", "{CF63C167-D3BA-4E9F-BB1D-5EA48E75673B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PriceObserver.Dialog.Tests", "test\PriceObserver.Dialog.Tests\PriceObserver.Dialog.Tests.csproj", "{CF63C167-D3BA-4E9F-BB1D-5EA48E75673B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PriceObserver.Web.App", "PriceObserver.Web.App\PriceObserver.Web.App.csproj", "{3006FB26-87CA-45D4-851C-79D623349816}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PriceObserver.Web.App", "src\PriceObserver.Web.App\PriceObserver.Web.App.csproj", "{3006FB26-87CA-45D4-851C-79D623349816}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PriceObserver.Web.Shared", "PriceObserver.Web.Shared\PriceObserver.Web.Shared.csproj", "{6EF7388A-D2AD-429C-8197-B9F30678F371}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PriceObserver.Web.Shared", "src\PriceObserver.Web.Shared\PriceObserver.Web.Shared.csproj", "{6EF7388A-D2AD-429C-8197-B9F30678F371}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{02E3DB5F-1121-43A4-972E-723F9DD1D8C4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{32BC41B2-0F0C-491F-B1DB-AF57DDD3FA04}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -99,5 +103,21 @@ Global
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E4539B13-EB50-4954-8268-E9643BCB6F23}
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{2810C97E-E067-4F4E-829F-735236D3F55C} = {02E3DB5F-1121-43A4-972E-723F9DD1D8C4}
+		{3006FB26-87CA-45D4-851C-79D623349816} = {02E3DB5F-1121-43A4-972E-723F9DD1D8C4}
+		{4E384CAE-7D5F-4639-9F4F-806B55F1EF03} = {02E3DB5F-1121-43A4-972E-723F9DD1D8C4}
+		{BD1D3C9F-390A-43EB-BC6D-EC0A1F12590E} = {02E3DB5F-1121-43A4-972E-723F9DD1D8C4}
+		{94F25568-F5AA-414C-8D72-14959993B928} = {02E3DB5F-1121-43A4-972E-723F9DD1D8C4}
+		{24B05EBB-F8C3-478B-8861-86C78090D01A} = {02E3DB5F-1121-43A4-972E-723F9DD1D8C4}
+		{BEAE268C-B46C-47EF-967B-95BC60681B59} = {02E3DB5F-1121-43A4-972E-723F9DD1D8C4}
+		{BFA35F38-319F-4559-A9B5-D02FB14C6828} = {02E3DB5F-1121-43A4-972E-723F9DD1D8C4}
+		{3D0A09AC-0D70-4C9A-AF8E-BA4484576C92} = {02E3DB5F-1121-43A4-972E-723F9DD1D8C4}
+		{B85E3E09-5F05-4C8D-9BD9-DC82E27FF1D8} = {02E3DB5F-1121-43A4-972E-723F9DD1D8C4}
+		{2EE19CAA-A5DA-4BFD-85F0-0AA8084C6477} = {02E3DB5F-1121-43A4-972E-723F9DD1D8C4}
+		{6EF7388A-D2AD-429C-8197-B9F30678F371} = {02E3DB5F-1121-43A4-972E-723F9DD1D8C4}
+		{CF63C167-D3BA-4E9F-BB1D-5EA48E75673B} = {32BC41B2-0F0C-491F-B1DB-AF57DDD3FA04}
+		{6EC34CFA-6563-4603-890C-6B60A13C91E8} = {32BC41B2-0F0C-491F-B1DB-AF57DDD3FA04}
 	EndGlobalSection
 EndGlobal

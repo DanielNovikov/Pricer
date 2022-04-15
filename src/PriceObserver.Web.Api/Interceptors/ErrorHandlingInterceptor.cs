@@ -36,7 +36,6 @@ public class ErrorHandlingInterceptor : Interceptor
         }
         catch (Exception ex)
         {
-            Console.WriteLine("ERROR");
             _logger.LogError(ex, "gRPC error occured");
             throw;
         }
