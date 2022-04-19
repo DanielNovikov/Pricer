@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using PriceObserver.Data.InMemory.Models.Enums;
-using PriceObserver.Data.Models;
+using PriceObserver.Data.Persistent.Models;
 using PriceObserver.Dialog.Services.Models;
 
 namespace PriceObserver.Dialog.Services.Abstract;

@@ -1,5 +1,5 @@
 ﻿using PriceObserver.Data.InMemory.Repositories.Abstract;
-using PriceObserver.Data.Repositories.Abstract;
+using PriceObserver.Data.Persistent.Repositories.Abstract;
 using PriceObserver.Web.Api.Services.Abstract;
 using PriceObserver.Web.Shared.Grpc;
 using PriceObserver.Web.Shared.Grpc.HandlerServices;

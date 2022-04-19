@@ -7,6 +7,7 @@ using Microsoft.Extensions.Hosting;
 using PriceObserver.Background;
 using PriceObserver.Data;
 using PriceObserver.Data.InMemory;
+using PriceObserver.Data.Persistent;
 using PriceObserver.Data.Service;
 using PriceObserver.Dialog;
 using PriceObserver.Parser;

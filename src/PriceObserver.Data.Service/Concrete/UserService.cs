@@ -2,8 +2,8 @@
 using Microsoft.Extensions.Logging;
 using PriceObserver.Data.InMemory.Models;
 using PriceObserver.Data.InMemory.Repositories.Abstract;
-using PriceObserver.Data.Models;
-using PriceObserver.Data.Repositories.Abstract;
+using PriceObserver.Data.Persistent.Models;
+using PriceObserver.Data.Persistent.Repositories.Abstract;
 using PriceObserver.Data.Service.Abstract;
 
 namespace PriceObserver.Data.Service.Concrete;

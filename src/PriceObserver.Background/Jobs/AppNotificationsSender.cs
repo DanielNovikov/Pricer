@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using PriceObserver.Common.Extensions;
-using PriceObserver.Data.Repositories.Abstract;
+using PriceObserver.Data.Persistent.Repositories.Abstract;
 using PriceObserver.Telegram.Abstract;
 
 namespace PriceObserver.Background.Jobs;

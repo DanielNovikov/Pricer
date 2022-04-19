@@ -12,7 +12,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\PriceObserver.Data\PriceObserver.Data.csproj" />
+      <ProjectReference Include="..\PriceObserver.Data.Persistent\PriceObserver.Data.Persistent.csproj" />
       <ProjectReference Include="..\PriceObserver.Parser\PriceObserver.Parser.csproj" />
       <ProjectReference Include="..\PriceObserver.Telegram\PriceObserver.Telegram.csproj" />
     </ItemGroup>

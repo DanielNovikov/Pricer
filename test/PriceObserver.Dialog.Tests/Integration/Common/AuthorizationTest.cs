@@ -4,6 +4,7 @@ using FluentAssertions;
 using Microsoft.EntityFrameworkCore;
 using PriceObserver.Data;
 using PriceObserver.Data.InMemory.Models.Enums;
+using PriceObserver.Data.Persistent;
 using PriceObserver.Dialog.Services.Abstract;
 using PriceObserver.Dialog.Services.Models;
 

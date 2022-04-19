@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using PriceObserver.Data.Repositories.Abstract;
+using PriceObserver.Data.Persistent.Repositories.Abstract;
 using PriceObserver.Data.Service.Abstract;
 using PriceObserver.Dialog.Services.Abstract;
 using PriceObserver.Dialog.Services.Models;

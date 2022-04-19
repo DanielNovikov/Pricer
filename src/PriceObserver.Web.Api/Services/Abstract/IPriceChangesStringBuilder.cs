@@ -1,4 +1,4 @@
-﻿using PriceObserver.Data.Models;
+﻿using PriceObserver.Data.Persistent.Models;
 
 namespace PriceObserver.Web.Api.Services.Abstract;
 

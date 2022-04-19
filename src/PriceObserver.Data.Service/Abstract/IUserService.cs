@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 using PriceObserver.Data.InMemory.Models;
-using PriceObserver.Data.Models;
+using PriceObserver.Data.Persistent.Models;
 
 namespace PriceObserver.Data.Service.Abstract;
 

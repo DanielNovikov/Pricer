@@ -7,6 +7,7 @@ using PriceObserver.Common.Extensions;
 using PriceObserver.Data;
 using PriceObserver.Data.InMemory;
 using PriceObserver.Data.InMemory.Seed;
+using PriceObserver.Data.Persistent;
 using PriceObserver.Data.Service;
 using PriceObserver.Dialog.Services.Abstract;
 using PriceObserver.Dialog.Services.Models;

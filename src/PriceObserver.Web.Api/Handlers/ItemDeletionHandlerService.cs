@@ -1,4 +1,4 @@
-﻿using PriceObserver.Data.Repositories.Abstract;
+﻿using PriceObserver.Data.Persistent.Repositories.Abstract;
 using PriceObserver.Web.Shared.Grpc.HandlerServices;
 
 namespace PriceObserver.Web.Api.Handlers;

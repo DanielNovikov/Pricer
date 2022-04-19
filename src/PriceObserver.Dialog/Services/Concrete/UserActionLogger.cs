@@ -2,7 +2,7 @@
 using Microsoft.Extensions.Logging;
 using PriceObserver.Data.InMemory.Models;
 using PriceObserver.Data.InMemory.Models.Enums;
-using PriceObserver.Data.Models;
+using PriceObserver.Data.Persistent.Models;
 using PriceObserver.Data.Service.Abstract;
 using PriceObserver.Dialog.Extensions;
 using PriceObserver.Dialog.Services.Abstract;

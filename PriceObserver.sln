@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PriceObserver.Telegram", "s
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PriceObserver.Parser", "src\PriceObserver.Parser\PriceObserver.Parser.csproj", "{BD1D3C9F-390A-43EB-BC6D-EC0A1F12590E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PriceObserver.Data", "src\PriceObserver.Data\PriceObserver.Data.csproj", "{B85E3E09-5F05-4C8D-9BD9-DC82E27FF1D8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PriceObserver.Data.Persistent", "src\PriceObserver.Data.Persistent\PriceObserver.Data.Persistent.csproj", "{B85E3E09-5F05-4C8D-9BD9-DC82E27FF1D8}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PriceObserver.Background", "src\PriceObserver.Background\PriceObserver.Background.csproj", "{BFA35F38-319F-4559-A9B5-D02FB14C6828}"
 EndProject

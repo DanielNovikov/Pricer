@@ -1,6 +1,6 @@
 ﻿using System.Security.Claims;
 using Microsoft.Extensions.Logging;
-using PriceObserver.Data.Repositories.Abstract;
+using PriceObserver.Data.Persistent.Repositories.Abstract;
 using PriceObserver.Data.Service.Abstract;
 using PriceObserver.Web.Api.Services.Abstract;
 using PriceObserver.Web.Shared.Grpc;

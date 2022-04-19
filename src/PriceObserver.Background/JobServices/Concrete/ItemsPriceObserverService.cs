@@ -2,8 +2,8 @@
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using PriceObserver.Background.JobServices.Abstract;
-using PriceObserver.Data.Models;
-using PriceObserver.Data.Repositories.Abstract;
+using PriceObserver.Data.Persistent.Models;
+using PriceObserver.Data.Persistent.Repositories.Abstract;
 using PriceObserver.Parser.Abstract;
 using PriceObserver.Parser.Models;
 

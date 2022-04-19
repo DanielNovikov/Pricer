@@ -1,8 +1,8 @@
 ﻿using System.Threading.Tasks;
 using PriceObserver.Background.JobServices.Abstract;
 using PriceObserver.Data.InMemory.Models.Enums;
-using PriceObserver.Data.Models;
-using PriceObserver.Data.Repositories.Abstract;
+using PriceObserver.Data.Persistent.Models;
+using PriceObserver.Data.Persistent.Repositories.Abstract;
 using PriceObserver.Data.Service.Abstract;
 using PriceObserver.Telegram.Abstract;
 
