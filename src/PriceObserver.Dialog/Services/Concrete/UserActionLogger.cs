@@ -112,7 +112,7 @@ public class UserActionLogger : IUserActionLogger
 
     private string GetUserInfo(User user)
     {
-        var info = _resourceService.Get(ResourceKey.UserAction_UserInfo, user.GetFullName(), user.Id);
+        var info = _resourceService.Get(ResourceKey.UserAction_UserInfo, user.GetFullName(), user.ExternalId);
 
         if (!string.IsNullOrEmpty(user.Username))
         {

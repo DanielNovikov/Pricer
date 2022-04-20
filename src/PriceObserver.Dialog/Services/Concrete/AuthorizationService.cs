@@ -21,8 +21,7 @@ public class AuthorizationService : IAuthorizationService
 
     public async Task<AuthorizationResult> Authorize(UpdateServiceModel update)
     {
-        var userId = update.UserId;
-        var user = await _userRepository.GetById(userId);
+        var user = await _userRepository.GetByExternalId(update.UserExternalId);
             
         if (user is not null)
             return AuthorizationResult.LoggedIn(user);

@@ -1,11 +1,14 @@
 ﻿using System.Collections.Generic;
 using PriceObserver.Data.InMemory.Models.Enums;
+using PriceObserver.Data.Persistent.Models.Abstract;
 
 namespace PriceObserver.Data.Persistent.Models;
 
-public class User
+public class User : IAggregateRoot
 {
-    public long Id { get; set; }
+    public int Id { get; set; }
+    
+    public long ExternalId { get; set; }
         
     public string FirstName { get; set; }
         

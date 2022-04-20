@@ -1,6 +1,8 @@
-﻿namespace PriceObserver.Data.Persistent.Models;
+﻿using PriceObserver.Data.Persistent.Models.Abstract;
 
-public class AppNotification
+namespace PriceObserver.Data.Persistent.Models;
+
+public class AppNotification : IAggregateRoot
 {
     public int Id { get; set; }
         

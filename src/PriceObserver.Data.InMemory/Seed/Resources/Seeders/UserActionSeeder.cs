@@ -59,7 +59,7 @@ public class UserActionSeeder
             
         resources.Add(new Resource(
             ResourceKey.UserAction_UserInfo,
-            "Имя: {0} (Id: {1})"));
+            "Имя: {0} (External id: {1})"));
             
         resources.Add(new Resource(
             ResourceKey.UserAction_UserLogin,

@@ -12,7 +12,7 @@ public class ItemDeletionHandlerService : IItemDeletionHandlerService
         _itemRepository = itemRepository;
     }
 
-    public async Task Delete(int itemId, long userId)
+    public async Task Delete(int itemId, int userId)
     {
         var item = await _itemRepository.GetById(itemId);
 

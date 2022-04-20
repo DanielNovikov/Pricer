@@ -12,7 +12,13 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
 
         builder
             .Property(u => u.Id)
-            .ValueGeneratedNever();
+            .ValueGeneratedOnAdd();
+        
+        builder.HasIndex(u => u.ExternalId);
+        
+        builder
+            .Property(u => u.ExternalId)
+            .IsRequired();
 
         builder
             .Property(u => u.FirstName)

@@ -6,7 +6,7 @@ namespace PriceObserver.Data.Persistent.Repositories.Abstract;
 
 public interface IUserRepository
 {
-    Task<User> GetById(long id);
+    Task<User> GetByExternalId(long externalId);
 
     Task<IList<User>> GetAllActive();
 

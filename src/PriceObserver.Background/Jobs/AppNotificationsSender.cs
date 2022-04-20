@@ -38,7 +38,7 @@ public class AppNotificationsSender : IHostedService
         {
             foreach (var user in users)
             {
-                await telegramBotService.SendMessage(user.Id, notification.Text);
+                await telegramBotService.SendMessage(user.ExternalId, notification.Text);
             }
 
             notification.Executed = true;

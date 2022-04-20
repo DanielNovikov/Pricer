@@ -33,7 +33,7 @@ public class UserService : IUserService
 
     public async Task DeactivateUserById(long userId)
     {
-        var user = await _userRepository.GetById(userId);
+        var user = await _userRepository.GetByExternalId(userId);
         user.IsActive = false;
             
         await _userRepository.Update(user);
@@ -46,6 +46,6 @@ public class UserService : IUserService
 
         await _userRepository.Add(user);
             
-        return await _userRepository.GetById(user.Id);
+        return await _userRepository.GetByExternalId(user.ExternalId);
     }
 }

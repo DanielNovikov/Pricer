@@ -48,7 +48,7 @@ public class HomeMenuInputHandler : IMenuInputHandler
         }
 
         var url = urlExtractionResult.Result;
-        var itemExists = await _itemRepository.ExistsForUserByUrl(user.Id, url);
+        var itemExists = await _itemRepository.ExistsByUserIdAndUrl(user.Id, url);
         if (itemExists)
         {
             _userActionLogger.LogDuplicateItem(user, url);

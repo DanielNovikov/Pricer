@@ -18,7 +18,7 @@ public class ItemsReceptionHandlerService : IItemsReceptionHandlerService
         _metadataBuilder = metadataBuilder;
     }
     
-    public async Task<ItemsReceptionReply> Receive(long userId)
+    public async Task<ItemsReceptionReply> Receive(int userId)
     {
         var metadata = await _metadataBuilder.Build();
         

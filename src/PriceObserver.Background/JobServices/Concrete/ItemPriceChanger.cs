@@ -62,7 +62,7 @@ public class ItemPriceChanger : IItemPriceChanger
                 difference,
                 currencyTitle);
             
-            await _telegramBotService.SendMessage(item.UserId, priceChangedMessage);
+            await _telegramBotService.SendMessage(item.User.ExternalId, priceChangedMessage);
         }
 
         LogChangedPrice(item, oldPrice, newPrice);

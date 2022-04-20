@@ -4,5 +4,5 @@ namespace PriceObserver.Dialog.Services.Abstract;
 
 public interface IWebsiteLoginUrlBuilder
 {
-    Task<string> Build(long userId);
+    Task<string> Build(int userId);
 }

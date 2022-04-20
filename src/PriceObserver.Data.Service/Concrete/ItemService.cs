@@ -36,7 +36,7 @@ public class ItemService : IItemService
         await _repository.Update(item);
     }
 
-    public async Task<Item> Create(int price, string title, Uri url, Uri imageUrl, long userId, ShopKey shopKey)
+    public async Task<Item> Create(int price, string title, Uri url, Uri imageUrl, int userId, ShopKey shopKey)
     {
         var item = new Item
         {

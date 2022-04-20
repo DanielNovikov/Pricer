@@ -2,5 +2,5 @@
 
 public interface IItemsReceptionHandlerService
 {
-    Task<ItemsReceptionReply> Receive(long userId);
+    Task<ItemsReceptionReply> Receive(int userId);
 }

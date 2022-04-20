@@ -2,7 +2,12 @@
 
 namespace PriceObserver.Dialog.Services.Models;
 
-public record UpdateServiceModel(string Text, long UserId, string FirstName, string LastName, string Username);
+public record UpdateServiceModel(
+    string Text,
+    long UserExternalId,
+    string FirstName,
+    string LastName, 
+    string Username);
     
 public static class UpdateServiceModelExtensions
 {
@@ -10,7 +15,7 @@ public static class UpdateServiceModelExtensions
     {
         return new User
         {
-            Id = update.UserId,
+            ExternalId = update.UserExternalId,
             Username = update.Username,
             FirstName = update.FirstName,
             LastName = update.LastName

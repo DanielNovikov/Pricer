@@ -33,7 +33,7 @@ public class AuthorizationTest : IntegrationTestingBase
             .AsNoTracking()
             .Single();
         
-        user.Id.Should().Be(serviceModel.UserId);
+        user.ExternalId.Should().Be(serviceModel.UserExternalId);
         user.FirstName.Should().Be(serviceModel.FirstName);
         user.LastName.Should().Be(serviceModel.LastName);
         user.Username.Should().Be(serviceModel.Username);

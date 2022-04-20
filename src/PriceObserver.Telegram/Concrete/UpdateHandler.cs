@@ -29,14 +29,14 @@ public class UpdateHandler : IUpdateHandler
     public async Task Handle(Update update)
     {
         var updateDto = update.ToDto();
-        var userId = updateDto.UserId;
+        var userExternalId = updateDto.UserExternalId;
 
         var serviceResult = await _inputHandler.Handle(updateDto);
 
         if (!serviceResult.IsSuccess)
         {
             var errorMessage = _resourceService.Get(serviceResult.Error);
-            await _telegramBotService.SendMessage(userId, errorMessage);
+            await _telegramBotService.SendMessage(userExternalId, errorMessage);
             return;
         }
 
@@ -45,10 +45,10 @@ public class UpdateHandler : IUpdateHandler
         if (hasKeyboard)
         {
             var keyboard = _keyboardBuilder.Build(result.MenuKeyboard);
-            await _telegramBotService.SendKeyboard(userId, result.Message, keyboard);
+            await _telegramBotService.SendKeyboard(userExternalId, result.Message, keyboard);
             return;
         }
 
-        await _telegramBotService.SendMessage(userId, result.Message);
+        await _telegramBotService.SendMessage(userExternalId, result.Message);
     }
 }

@@ -1,8 +1,9 @@
 ﻿using System;
+using PriceObserver.Data.Persistent.Models.Abstract;
 
 namespace PriceObserver.Data.Persistent.Models;
 
-public class ItemPriceChange
+public class ItemPriceChange : IAggregateRoot
 {
     public int Id { get; set; }
         

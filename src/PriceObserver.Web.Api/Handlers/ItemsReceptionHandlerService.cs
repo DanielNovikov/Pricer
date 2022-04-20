@@ -25,7 +25,7 @@ public class ItemsReceptionHandlerService : IItemsReceptionHandlerService
         _itemResponseModelBuilder = itemResponseModelBuilder;
     }
     
-    public async Task<ItemsReceptionReply> Receive(long userId)
+    public async Task<ItemsReceptionReply> Receive(int userId)
     {
         var userItems = await _itemRepository.GetByUserId(userId);
         var shops = _shopRepository.GetAll();

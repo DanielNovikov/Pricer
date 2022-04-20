@@ -1,8 +1,9 @@
 ﻿using System;
+using PriceObserver.Data.Persistent.Models.Abstract;
 
 namespace PriceObserver.Data.Persistent.Models;
 
-public class UserToken
+public class UserToken : IAggregateRoot
 {
     public int Id { get; set; }
         
@@ -10,6 +11,6 @@ public class UserToken
         
     public bool Expired { get; set; }
         
-    public long UserId { get; set; }
+    public int UserId { get; set; }
     public User User { get; set; }
 }

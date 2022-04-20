@@ -17,11 +17,11 @@ public class ItemDeletionHandlerService : IItemDeletionHandlerService
         _metadataBuilder = metadataBuilder;
     }
 
-    public async Task Delete(int itemId, long userId)
+    public async Task Delete(int itemId, int userId)
     {
         var metadata = await _metadataBuilder.Build();
         
-        var request = new ItemDeletionRequest()
+        var request = new ItemDeletionRequest
         {
             ItemId = itemId
         };

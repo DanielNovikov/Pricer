@@ -2,5 +2,5 @@
 
 public interface IUserAuthenticationService
 {
-    long GetUserId(string accessToken);
+    int GetUserId(string accessToken);
 }

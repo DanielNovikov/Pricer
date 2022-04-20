@@ -22,6 +22,7 @@ public class ItemRepository : IItemRepository
         return await _context
             .Items
             .AsNoTracking()
+            .Include(x => x.User)
             .ToListAsync();
     }
 
@@ -33,7 +34,7 @@ public class ItemRepository : IItemRepository
             .FirstOrDefaultAsync(x => x.Id == id);
     }
 
-    public async Task<IList<Item>> GetByUserId(long userId)
+    public async Task<IList<Item>> GetByUserId(int userId)
     {
         return await _context
             .Items
@@ -43,7 +44,7 @@ public class ItemRepository : IItemRepository
             .ToListAsync();
     }
 
-    public async Task<IList<Item>> GetByUserIdWithLimit(long userId, int limit)
+    public async Task<IList<Item>> GetByUserIdWithLimit(int userId, int limit)
     {
         return await _context
             .Items
@@ -55,7 +56,7 @@ public class ItemRepository : IItemRepository
             .ToListAsync();
     }
 
-    public async Task<bool> ExistsForUserByUrl(long userId, Uri url)
+    public async Task<bool> ExistsByUserIdAndUrl(int userId, Uri url)
     {
         return await _context
             .Items

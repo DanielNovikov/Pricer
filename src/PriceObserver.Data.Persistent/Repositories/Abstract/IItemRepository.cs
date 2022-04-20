@@ -11,11 +11,11 @@ public interface IItemRepository
         
     Task<Item> GetById(int id);
 
-    Task<IList<Item>> GetByUserId(long userId);
+    Task<IList<Item>> GetByUserId(int userId);
     
-    Task<IList<Item>> GetByUserIdWithLimit(long userId, int limit);
+    Task<IList<Item>> GetByUserIdWithLimit(int userId, int limit);
 
-    Task<bool> ExistsForUserByUrl(long userId, Uri url);
+    Task<bool> ExistsByUserIdAndUrl(int userId, Uri url);
         
     Task Add(Item item);
 

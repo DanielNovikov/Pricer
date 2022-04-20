@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using PriceObserver.Data.InMemory.Models.Enums;
+using PriceObserver.Data.Persistent.Models.Abstract;
 
 namespace PriceObserver.Data.Persistent.Models;
 
-public class Item
+public class Item : IAggregateRoot
 {
     public int Id { get; set; }
 
@@ -18,7 +19,7 @@ public class Item
         
     public ShopKey ShopKey { get; set; }
         
-    public long UserId { get; set; }
+    public int UserId { get; set; }
     public User User { get; set; }
         
     public IList<ItemPriceChange> PriceChanges { get; set; }

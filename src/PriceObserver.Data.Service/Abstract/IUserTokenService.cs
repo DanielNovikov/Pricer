@@ -7,5 +7,5 @@ public interface IUserTokenService
 {
     Task Expire(UserToken userToken);
         
-    Task<UserToken> CreateForUser(long userId);
+    Task<UserToken> CreateForUser(int userId);
 }

@@ -9,5 +9,5 @@ public interface IItemService
 {
     Task UpdatePrice(Item item, int price);
     
-    Task<Item> Create(int price, string title, Uri url, Uri imageUrl, long userId, ShopKey shopKey);
+    Task<Item> Create(int price, string title, Uri url, Uri imageUrl, int userId, ShopKey shopKey);
 }

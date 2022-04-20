@@ -2,5 +2,5 @@
 
 public interface IItemDeletionHandlerService
 {
-    Task Delete(int itemId, long userId);
+    Task Delete(int itemId, int userId);
 }

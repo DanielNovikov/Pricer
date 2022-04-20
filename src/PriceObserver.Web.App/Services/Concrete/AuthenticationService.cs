@@ -4,7 +4,7 @@ namespace PriceObserver.Web.App.Services.Concrete;
 
 public class UserAuthenticationService : IUserAuthenticationService
 {
-    public long GetUserId(string accessToken)
+    public int GetUserId(string accessToken)
     {
         return default;
     }

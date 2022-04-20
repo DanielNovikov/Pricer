@@ -16,11 +16,11 @@ public class UserRepository : IUserRepository
         _context = context;
     }
 
-    public async Task<User> GetById(long id)
+    public async Task<User> GetByExternalId(long externalId)
     {
         return await _context.Users
             .AsNoTracking()
-            .FirstOrDefaultAsync(x => x.Id == id);
+            .FirstOrDefaultAsync(x => x.ExternalId == externalId);
     }
 
     public async Task<IList<User>> GetAllActive()

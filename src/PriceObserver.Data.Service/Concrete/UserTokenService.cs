@@ -22,7 +22,7 @@ public class UserTokenService : IUserTokenService
         await _repository.Update(userToken);
     }
 
-    public async Task<UserToken> CreateForUser(long userId)
+    public async Task<UserToken> CreateForUser(int userId)
     {
         var token = await _repository.GetNotExpiredByUserId(userId);
 

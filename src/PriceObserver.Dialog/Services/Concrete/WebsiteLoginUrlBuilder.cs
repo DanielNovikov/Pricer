@@ -21,7 +21,7 @@ public class WebsiteLoginUrlBuilder : IWebsiteLoginUrlBuilder
         _websiteOptions = websiteCommandOptionsSnapshot.Value;
     }
 
-    public async Task<string> Build(long userId)
+    public async Task<string> Build(int userId)
     {
         var userToken = await _userTokenService.CreateForUser(userId);
 

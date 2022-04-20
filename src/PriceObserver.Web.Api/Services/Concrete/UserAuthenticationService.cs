@@ -13,11 +13,11 @@ public class UserAuthenticationService : IUserAuthenticationService
         _jwtService = jwtService;
     }
 
-    public long GetUserId(string accessToken)
+    public int GetUserId(string accessToken)
     {
         var claims = _jwtService.Parse(accessToken);
         var userIdString = claims.Single(x => x.Type == ClaimTypes.NameIdentifier).Value;
         
-        return long.Parse(userIdString);
+        return int.Parse(userIdString);
     }
 }
