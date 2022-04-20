@@ -7,43 +7,23 @@ using PriceObserver.Data.Persistent.Repositories.Abstract;
 
 namespace PriceObserver.Data.Persistent.Repositories.Concrete;
 
-public class UserRepository : IUserRepository
+public class UserRepository : RepositoryBase<User>, IUserRepository
 {
-    private readonly ApplicationDbContext _context;
-
-    public UserRepository(ApplicationDbContext context)
-    {
-        _context = context;
-    }
+    public UserRepository(ApplicationDbContext context) : base(context)
+    { }
 
     public async Task<User> GetByExternalId(long externalId)
     {
-        return await _context.Users
+        return await Context.Users
             .AsNoTracking()
             .FirstOrDefaultAsync(x => x.ExternalId == externalId);
     }
 
     public async Task<IList<User>> GetAllActive()
     {
-        return await _context.Users
+        return await Context.Users
             .AsNoTracking()
             .Where(x => x.IsActive)
             .ToListAsync();
-    }
-
-    public async Task Add(User user)
-    {
-        await _context.Users.AddAsync(user);
-        await _context.SaveChangesAsync();
-            
-        _context.DetachEntity(user);
-    }
-
-    public async Task Update(User user)
-    {
-        _context.Users.Update(user);
-        await _context.SaveChangesAsync();
-            
-        _context.DetachEntity(user);
     }
 }

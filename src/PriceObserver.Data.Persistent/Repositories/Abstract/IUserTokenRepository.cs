@@ -4,13 +4,9 @@ using PriceObserver.Data.Persistent.Models;
 
 namespace PriceObserver.Data.Persistent.Repositories.Abstract;
 
-public interface IUserTokenRepository
+public interface IUserTokenRepository : IRepository<UserToken>
 {
     Task<UserToken> GetNotExpiredByUserId(long userId);
         
     Task<UserToken> GetByToken(Guid token);
-
-    Task Update(UserToken userToken);
-        
-    Task Add(UserToken userToken);
 }

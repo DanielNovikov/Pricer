@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using Microsoft.Extensions.Caching.Memory;
 using PriceObserver.Data.InMemory.Models;
 using PriceObserver.Data.InMemory.Models.Enums;
@@ -8,26 +7,13 @@ using PriceObserver.Data.InMemory.Seed;
 
 namespace PriceObserver.Data.InMemory.Repositories.Concrete;
 
-public class CommandRepository : ICommandRepository
+public class CommandRepository : ReadOnlyRepositoryBase<Command, CommandKey>, ICommandRepository
 {
-    private readonly IMemoryCache _cache;
-
-    public CommandRepository(IMemoryCache cache)
-    {
-        _cache = cache;
-    }
-
-    public Command GetByKey(CommandKey key)
-    {
-        return _cache
-            .Get<List<Command>>(CacheKey.Commands)
-            .Single(x => x.Key == key);
-    }
+    public CommandRepository(IMemoryCache cache) : base(cache, CacheKey.Commands)
+    { } 
 
     public Command GetByResourceKey(ResourceKey resourceKey)
     {
-        return _cache
-            .Get<List<Command>>(CacheKey.Commands)
-            .SingleOrDefault(x => x.ResourceKey == resourceKey);
+        return GetAll().SingleOrDefault(x => x.ResourceKey == resourceKey);
     }
 }

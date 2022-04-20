@@ -7,7 +7,6 @@ using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using PriceObserver.Common.Extensions;
-using PriceObserver.Data;
 using PriceObserver.Data.InMemory.Seed;
 using PriceObserver.Data.Persistent;
 using PriceObserver.Data.Persistent.Seed;

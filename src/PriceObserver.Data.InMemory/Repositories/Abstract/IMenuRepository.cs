@@ -3,9 +3,7 @@ using PriceObserver.Data.InMemory.Models.Enums;
 
 namespace PriceObserver.Data.InMemory.Repositories.Abstract;
 
-public interface IMenuRepository
+public interface IMenuRepository : IReadOnlyRepository<Menu, MenuKey>
 {
     Menu GetDefault();
-
-    Menu GetByKey(MenuKey key);
 }

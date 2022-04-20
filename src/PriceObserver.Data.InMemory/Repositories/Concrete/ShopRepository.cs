@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using Microsoft.Extensions.Caching.Memory;
 using PriceObserver.Data.InMemory.Models;
 using PriceObserver.Data.InMemory.Models.Enums;
@@ -8,29 +7,15 @@ using PriceObserver.Data.InMemory.Seed;
 
 namespace PriceObserver.Data.InMemory.Repositories.Concrete;
 
-public class ShopRepository : IShopRepository
+public class ShopRepository : ReadOnlyRepositoryBase<Shop, ShopKey>, IShopRepository
 {
-    private readonly IMemoryCache _cache;
-
-    public ShopRepository(IMemoryCache cache)
-    {
-        _cache = cache;
-    }
-
-    public Shop GetByKey(ShopKey key)
-    {
-        return GetAll().Single(x => x.Key == key);
-    }
+    public ShopRepository(IMemoryCache cache) : base(cache, CacheKey.Shops)
+    { }
 
     public Shop GetByHost(string host)
     {
         return GetAll().SingleOrDefault(x => 
             x.Host == host || 
             (x.SubHosts != null && x.SubHosts.Any(y => y == host)));
-    }
-
-    public IList<Shop> GetAll()
-    {
-        return _cache.Get<List<Shop>>(CacheKey.Shops);
     }
 }

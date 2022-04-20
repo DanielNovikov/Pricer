@@ -25,6 +25,7 @@ public class ShopsInfoMessageBuilder : IShopsInfoMessageBuilder
         var shops = _shopRepository.GetAll();
             
         var shopsInfo = shops
+            .OrderBy(x => x.Name)
             .Select(x => $"- {x.Name} ({x.Host})")
             .Aggregate((x, y) => $"{x}{Environment.NewLine}{y}");
 

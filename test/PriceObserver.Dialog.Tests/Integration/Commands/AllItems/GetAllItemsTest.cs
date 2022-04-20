@@ -2,7 +2,6 @@
 using System.Threading.Tasks;
 using FluentAssertions;
 using Microsoft.EntityFrameworkCore;
-using PriceObserver.Data;
 using PriceObserver.Data.Persistent;
 
 namespace PriceObserver.Dialog.Tests.Integration.Commands.AllItems;

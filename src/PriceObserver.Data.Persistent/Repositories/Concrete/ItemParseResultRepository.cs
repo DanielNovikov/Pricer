@@ -6,28 +6,16 @@ using PriceObserver.Data.Persistent.Repositories.Abstract;
 
 namespace PriceObserver.Data.Persistent.Repositories.Concrete;
 
-public class ItemParseResultRepository : IItemParseResultRepository
+public class ItemParseResultRepository : RepositoryBase<ItemParseResult>, IItemParseResultRepository
 {
-    private readonly ApplicationDbContext _context;
-
-    public ItemParseResultRepository(ApplicationDbContext context)
-    {
-        _context = context;
-    }
+    public ItemParseResultRepository(ApplicationDbContext context) : base(context)
+    { }
 
     public async Task<ItemParseResult> GetLastByItemId(int itemId)
     {
-        return await _context.ItemParseResults
+        return await Context.ItemParseResults
             .AsNoTracking()
             .OrderBy(x => x.Created)
             .LastOrDefaultAsync(x => x.ItemId == itemId);
-    }
-
-    public async Task Add(ItemParseResult entity)
-    {
-        await _context.ItemParseResults.AddAsync(entity);
-        await _context.SaveChangesAsync();
-        
-        _context.DetachEntity(entity);
     }
 }

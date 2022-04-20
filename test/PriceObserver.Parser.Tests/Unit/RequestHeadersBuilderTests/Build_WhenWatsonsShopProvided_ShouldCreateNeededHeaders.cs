@@ -9,24 +9,18 @@ using Xunit;
 
 namespace PriceObserver.Parser.Tests.Unit.RequestHeadersBuilderTests;
 
-public class Build_WhenOtherShopProvided_ShouldNotCreateAnyHeader
+public class Build_WhenWatsonsShopProvided_ShouldCreateNeededHeaders
 {
     private readonly Uri _url;
-    private readonly ShopKey[] _shopKeys;
+    private readonly ShopKey _shopKey;
     private readonly IRequestHeadersBuilder _sut;
 
-    public Build_WhenOtherShopProvided_ShouldNotCreateAnyHeader()
+    public Build_WhenWatsonsShopProvided_ShouldCreateNeededHeaders()
     {
         var fixture = new Fixture();
 
         _url = fixture.Create<Uri>();
-        _shopKeys = Enum
-            .GetValues<ShopKey>()
-            .Where(x =>
-                x != ShopKey.Farfetch &&
-                x != ShopKey.Stylus &&
-                x != ShopKey.Watsons)
-            .ToArray();
+        _shopKey = ShopKey.Watsons;
         
         _sut = new RequestHeadersBuilder();
     }
@@ -34,11 +28,11 @@ public class Build_WhenOtherShopProvided_ShouldNotCreateAnyHeader
     [Fact]
     public void Test()
     {
-        foreach (var shopKey in _shopKeys)
-        {
-            var result = _sut.Build(_url, shopKey);
+        var result = _sut.Build(_url, _shopKey);
 
-            result.Count.Should().Be(0);   
-        }
+        result.Count.Should().Be(2);
+
+        result.Any(x => x.Key == "accept" && x.Value == "text/html").Should().BeTrue();
+        result.Any(x => x.Key == "accept-encoding" && x.Value == "*").Should().BeTrue();
     }
 }

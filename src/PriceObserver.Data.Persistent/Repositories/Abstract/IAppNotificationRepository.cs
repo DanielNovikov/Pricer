@@ -4,9 +4,7 @@ using PriceObserver.Data.Persistent.Models;
 
 namespace PriceObserver.Data.Persistent.Repositories.Abstract;
 
-public interface IAppNotificationRepository
+public interface IAppNotificationRepository : IRepository<AppNotification>
 {
     Task<IList<AppNotification>> GetToExecute();
-
-    Task Update(AppNotification appNotification);
 }

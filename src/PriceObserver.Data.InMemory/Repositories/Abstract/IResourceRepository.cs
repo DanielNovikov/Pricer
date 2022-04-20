@@ -3,9 +3,7 @@ using PriceObserver.Data.InMemory.Models.Enums;
 
 namespace PriceObserver.Data.InMemory.Repositories.Abstract;
 
-public interface IResourceRepository
+public interface IResourceRepository : IReadOnlyRepository<Resource, ResourceKey>
 {
-    Resource GetByKey(ResourceKey key);
-
     Resource GetByValue(string value);
 }

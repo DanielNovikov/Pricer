@@ -1,4 +1,5 @@
-﻿using PriceObserver.Data.InMemory.Models.Enums;
+﻿using PriceObserver.Data.InMemory.Models.Abstract;
+using PriceObserver.Data.InMemory.Models.Enums;
 
 namespace PriceObserver.Data.InMemory.Models;
 
@@ -9,4 +10,5 @@ public record Shop(
     string Logo,
     bool SameFormatImages,
     Currency Currency,
-    string[] SubHosts = null);
+    string[] SubHosts = null)
+    : IReadonlyEntity<ShopKey>;
