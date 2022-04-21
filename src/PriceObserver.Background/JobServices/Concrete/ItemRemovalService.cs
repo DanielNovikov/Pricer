@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
 using PriceObserver.Background.JobServices.Abstract;
 using PriceObserver.Data.InMemory.Models.Enums;
 using PriceObserver.Data.Persistent.Models;
@@ -15,19 +16,22 @@ public class ItemRemovalService : IItemRemovalService
     private readonly ITelegramBotService _telegramBotService;
     private readonly IItemParseResultService _parseResultService;
     private readonly IItemParseResultRepository _parseResultRepository;
+    private readonly ILogger<ItemRemovalService> _logger;
     
     public ItemRemovalService(
         IItemRepository itemRepository,
         IResourceService resourceService, 
         ITelegramBotService telegramBotService, 
         IItemParseResultService parseResultService, 
-        IItemParseResultRepository parseResultRepository)
+        IItemParseResultRepository parseResultRepository,
+        ILogger<ItemRemovalService> logger)
     {
         _itemRepository = itemRepository;
         _resourceService = resourceService;
         _telegramBotService = telegramBotService;
         _parseResultService = parseResultService;
         _parseResultRepository = parseResultRepository;
+        _logger = logger;
     }
 
     public async Task Remove(Item item, ResourceKey error)
@@ -50,5 +54,8 @@ public class ItemRemovalService : IItemRemovalService
             errorReason);
 
         await _telegramBotService.SendMessage(item.UserId, itemDeletedMessage);   
+        
+        _logger.LogInformation($@"Item <a href='{item.Url}'>{item.Title}'</a> deleted
+Reason: {errorReason}");
     }
 }

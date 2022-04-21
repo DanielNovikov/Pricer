@@ -2,7 +2,7 @@
 
 namespace PriceObserver.Background.JobServices.Abstract;
 
-public interface IItemsPriceObserverService
+public interface IItemsObserverService
 {
     Task Observe();
 }

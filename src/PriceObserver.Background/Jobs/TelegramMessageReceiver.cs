@@ -14,12 +14,12 @@ using IUpdateHandler = PriceObserver.Telegram.Abstract.IUpdateHandler;
 
 namespace PriceObserver.Background.Jobs;
 
-public class TelegramUpdateReceiverJob : IHostedService
+public class TelegramMessageReceiver : IHostedService
 {
     private readonly ITelegramBot _telegramBot;
     private readonly IServiceProvider _serviceProvider;
 
-    public TelegramUpdateReceiverJob(
+    public TelegramMessageReceiver(
         ITelegramBot telegramBot,
         IServiceProvider serviceProvider)
     {
@@ -62,7 +62,7 @@ public class TelegramUpdateReceiverJob : IHostedService
     {
         using var scope = _serviceProvider.CreateScope();
 
-        var logger = scope.GetService<ILogger<TelegramUpdateReceiverJob>>();
+        var logger = scope.GetService<ILogger<TelegramMessageReceiver>>();
 
         logger.LogError($@"Receive error
 Message: {exception.Message}

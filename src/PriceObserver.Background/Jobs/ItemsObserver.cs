@@ -8,11 +8,11 @@ using PriceObserver.Common.Extensions;
 
 namespace PriceObserver.Background.Jobs;
 
-public class ItemsPriceObserver : IHostedService
+public class ItemsObserver : IHostedService
 {
     private readonly IServiceProvider _serviceProvider;
         
-    public ItemsPriceObserver(IServiceProvider serviceProvider)
+    public ItemsObserver(IServiceProvider serviceProvider)
     {
         _serviceProvider = serviceProvider;
     }
@@ -25,7 +25,7 @@ public class ItemsPriceObserver : IHostedService
             {
                 using var scope = _serviceProvider.CreateScope();
 
-                var itemsPriceService = scope.GetService<IItemsPriceObserverService>();
+                var itemsPriceService = scope.GetService<IItemsObserverService>();
                 await itemsPriceService.Observe();
                     
                 await Task.Delay(TimeSpan.FromHours(2), cancellationToken);

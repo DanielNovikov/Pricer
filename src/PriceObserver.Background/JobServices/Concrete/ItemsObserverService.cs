@@ -2,14 +2,12 @@
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using PriceObserver.Background.JobServices.Abstract;
-using PriceObserver.Data.Persistent.Models;
 using PriceObserver.Data.Persistent.Repositories.Abstract;
 using PriceObserver.Parser.Abstract;
-using PriceObserver.Parser.Models;
 
 namespace PriceObserver.Background.JobServices.Concrete;
 
-public class ItemsPriceObserverService : IItemsPriceObserverService
+public class ItemsObserverService : IItemsObserverService
 {
     private readonly IItemRepository _itemRepository;
     private readonly IParser _parser;
@@ -17,12 +15,12 @@ public class ItemsPriceObserverService : IItemsPriceObserverService
     private readonly IItemRemovalService _itemRemovalService;
     private readonly ILogger _logger;
 
-    public ItemsPriceObserverService(
+    public ItemsObserverService(
         IItemRepository itemRepository,
         IParser parser,
         IItemPriceChanger itemPriceChanger,
         IItemRemovalService itemRemovalService,
-        ILogger<ItemsPriceObserverService> logger)
+        ILogger<ItemsObserverService> logger)
     {
         _itemRepository = itemRepository;
         _parser = parser;
@@ -46,8 +44,11 @@ public class ItemsPriceObserverService : IItemsPriceObserverService
                     await _itemRemovalService.Remove(item, parsedItemResult.Error);
                     break;
                 }
-
-                await HandlePriceChange(item, parsedItemResult.Result);
+                
+                await _itemPriceChanger.Change(
+                    item, 
+                    oldPrice: item.Price,
+                    newPrice: parsedItemResult.Result.Price);
             }
             catch (Exception ex)
             {
@@ -71,13 +72,5 @@ InnerException: {4}";
                 await Task.Delay(1000);
             }
         }
-    }
-
-    private async Task HandlePriceChange(Item item, ParsedItem parsedItem)
-    {
-        var oldPrice = item.Price;
-        var newPrice = parsedItem.Price;
-
-        await _itemPriceChanger.Change(item, oldPrice, newPrice);
     }
 }

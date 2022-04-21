@@ -10,11 +10,11 @@ public static class DependencyInjection
     public static IServiceCollection AddBackgroundJobs(this IServiceCollection services)
     {
         return services
-            .AddHostedService<ItemsPriceObserver>()
-            .AddHostedService<TelegramUpdateReceiverJob>()
+            .AddHostedService<ItemsObserver>()
+            .AddHostedService<TelegramMessageReceiver>()
             .AddHostedService<AppNotificationsSender>()
             
-            .AddTransient<IItemsPriceObserverService, ItemsPriceObserverService>()
+            .AddTransient<IItemsObserverService, ItemsObserverService>()
             .AddTransient<IItemPriceChanger, ItemPriceChanger>()
             .AddTransient<IItemRemovalService, ItemRemovalService>();
     }
