@@ -23,9 +23,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PriceObserver.Data.InMemory
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PriceObserver.Web.Api", "src\PriceObserver.Web.Api\PriceObserver.Web.Api.csproj", "{2EE19CAA-A5DA-4BFD-85F0-0AA8084C6477}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PriceObserver.Parser.Tests", "test\PriceObserver.Parser.Tests\PriceObserver.Parser.Tests.csproj", "{6EC34CFA-6563-4603-890C-6B60A13C91E8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PriceObserver.Parser.UnitTests", "test\PriceObserver.Parser.UnitTests\PriceObserver.Parser.UnitTests.csproj", "{6EC34CFA-6563-4603-890C-6B60A13C91E8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PriceObserver.Dialog.Tests", "test\PriceObserver.Dialog.Tests\PriceObserver.Dialog.Tests.csproj", "{CF63C167-D3BA-4E9F-BB1D-5EA48E75673B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PriceObserver.Dialog.FunctionalTests", "test\PriceObserver.Dialog.FunctionalTests\PriceObserver.Dialog.FunctionalTests.csproj", "{CF63C167-D3BA-4E9F-BB1D-5EA48E75673B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PriceObserver.Web.App", "src\PriceObserver.Web.App\PriceObserver.Web.App.csproj", "{3006FB26-87CA-45D4-851C-79D623349816}"
 EndProject
@@ -34,6 +34,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{02E3DB5F-1121-43A4-972E-723F9DD1D8C4}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{32BC41B2-0F0C-491F-B1DB-AF57DDD3FA04}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PriceObserver.Parser.FunctionalTests", "test\PriceObserver.Parser.FunctionalTests\PriceObserver.Parser.FunctionalTests.csproj", "{64DAADE0-38C8-4F07-80AD-74660DD08E4D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -97,6 +99,10 @@ Global
 		{6EF7388A-D2AD-429C-8197-B9F30678F371}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6EF7388A-D2AD-429C-8197-B9F30678F371}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6EF7388A-D2AD-429C-8197-B9F30678F371}.Release|Any CPU.Build.0 = Release|Any CPU
+		{64DAADE0-38C8-4F07-80AD-74660DD08E4D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{64DAADE0-38C8-4F07-80AD-74660DD08E4D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{64DAADE0-38C8-4F07-80AD-74660DD08E4D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{64DAADE0-38C8-4F07-80AD-74660DD08E4D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -119,5 +125,6 @@ Global
 		{6EF7388A-D2AD-429C-8197-B9F30678F371} = {02E3DB5F-1121-43A4-972E-723F9DD1D8C4}
 		{CF63C167-D3BA-4E9F-BB1D-5EA48E75673B} = {32BC41B2-0F0C-491F-B1DB-AF57DDD3FA04}
 		{6EC34CFA-6563-4603-890C-6B60A13C91E8} = {32BC41B2-0F0C-491F-B1DB-AF57DDD3FA04}
+		{64DAADE0-38C8-4F07-80AD-74660DD08E4D} = {32BC41B2-0F0C-491F-B1DB-AF57DDD3FA04}
 	EndGlobalSection
 EndGlobal
