@@ -18,6 +18,7 @@ public class ContentValidatorTests : TestBase
     [InlineData("https://www.moyo.ua/televizor-lg-75sm9000pla/448309.html", ShopKey.Moyo)]
     [InlineData("https://rozetka.com.ua/lg_75nano756pa/p292219333/", ShopKey.Rozetka)]
     [InlineData("https://stylus.ua/lg-55nano77-p803303c526.html", ShopKey.Stylus)]
+    [InlineData("https://telemart.ua/products/lg-315-ultrafine-32un650-w-blacksilver/", ShopKey.Telemart)]
     public async Task WhenIsNotAvailable_ShouldReturnOutOfStockError(string url, ShopKey shopKey)
     {   
         var uri = new Uri(url);
@@ -44,6 +45,7 @@ public class ContentValidatorTests : TestBase
     [InlineData("https://rozetka.com.ua/", ShopKey.Rozetka)]
     [InlineData("https://www.sportmaster.ua/", ShopKey.Sportmaster)]
     [InlineData("https://stylus.ua/", ShopKey.Stylus)]
+    [InlineData("https://telemart.ua/", ShopKey.Telemart)]
     [InlineData("https://www.watsons.ua/", ShopKey.Watsons)]
     public async Task WhenThereIsNoItemInfo_ShouldReturnNoItemInfoOnPageError(string url, ShopKey shopKey)
     {

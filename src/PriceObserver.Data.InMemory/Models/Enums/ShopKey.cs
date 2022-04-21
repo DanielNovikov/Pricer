@@ -17,5 +17,6 @@ public enum ShopKey
     Moyo,
     Comfy,
     Sportmaster,
-    Watsons
+    Watsons,
+    Telemart
 }

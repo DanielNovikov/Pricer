@@ -148,6 +148,14 @@ public class ShopsSeeder
                 "www.watsons.ua",
                 "watsons.png",
                 false,
+                uahCurrency),
+            
+            new Shop(
+                "Telemart",
+                ShopKey.Telemart,
+                "telemart.ua",
+                "telemart.png",
+                false,
                 uahCurrency)
         };
                 

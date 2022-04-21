@@ -85,6 +85,11 @@ public class ParserTests : TestBase
         "Смартфон Samsung Galaxy A52s 5G 6/128GB Awesome Black A528B",
         "https://stylus.ua//thumbs/568x568/f7/ed/2113714.jpeg")]
     [InlineData(
+        "https://telemart.ua/products/evolve-optipart-gold-7h-evop-g7h104fn305x-16s500h1tbk-black/",
+        ShopKey.Telemart,
+        "Компьютер EVOLVE OptiPart Silver 5H (EVOP-S5Hi104FN305-16S500H1TBk) Black",
+        "https://img.telemart.ua/402351-566625-product_popup/evolve-optipart-gold-7h-evop-g7h104fn305x-16s500h1tbk-black.png")]
+    [InlineData(
         "https://www.watsons.ua/uk/wtcua/aksesuari/shkarpetki/zhinochi-shkarpetki/shkarpetki-brestskie-active-svitlo-zhovti-zhinochi-rozmir-25/p/BP_1089863?#ins_sr=eyJwcm9kdWN0SWQiOiIxMDg5ODYzIn0=",
         ShopKey.Watsons,
         "Шкарпетки Брестские Active світло-жовті жіночі розмір 25",
