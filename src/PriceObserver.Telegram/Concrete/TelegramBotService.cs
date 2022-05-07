@@ -36,7 +36,11 @@ public class TelegramBotService : ITelegramBotService
     }
 
     private const int UserDeactivatedErrorCode = 403;
+
+    private int _retryAttempt;
+    private const int RetrySendMessageCount = 3;
     private const int RetrySendMessagePause = 1000;
+    private const int MaximumMessageLengthInError = 120;
         
     private async Task Send(long userId, string message, IReplyMarkup keyboard = default)
     {
@@ -49,15 +53,27 @@ public class TelegramBotService : ITelegramBotService
         {
             if (ex.ErrorCode != UserDeactivatedErrorCode)
             {
-                _logger.LogWarning($"Send error. Message: {ex.Message}");
+                if (_retryAttempt == RetrySendMessageCount)
+                {
+                    _logger.LogError("Maximum count of attempts exhausted");
+                    return;
+                }
 
+                _logger.LogError(
+                    "Send error. User id: {0}, Message: {1}, Exception message: {2}",
+                    userId, 
+                    message[..MaximumMessageLengthInError],
+                    ex.Message);
+
+                _retryAttempt++;
                 await Task.Delay(RetrySendMessagePause);
+                
                 await Send(userId, message, keyboard);
                     
                 return;
             }
 
-            _logger.LogWarning($"User deactivated with id {userId}");
+            _logger.LogInformation("User deactivated with id {0}", userId);
             await _userService.DeactivateUserById(userId);
         }
     }

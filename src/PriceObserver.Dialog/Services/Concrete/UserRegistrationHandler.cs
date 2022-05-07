@@ -15,7 +15,9 @@ public class UserRegistrationHandler : IUserRegistrationHandler
     private readonly IResourceService _resourceService;
     private readonly IMenuService _menuService;
     private readonly ICommandService _commandService;
-        
+
+    private const int LimitCountOfShops = 5;
+    
     public UserRegistrationHandler(
         IMenuKeyboardBuilder menuKeyboardBuilder, 
         IShopsInfoMessageBuilder shopsInfoMessageBuilder, 
@@ -37,7 +39,7 @@ public class UserRegistrationHandler : IUserRegistrationHandler
         _userActionLogger.LogUserRegistered(user);
 
         var helpCommandTitle = _commandService.GetTitle(CommandKey.Help);
-        var shopsInfoMessage = _shopsInfoMessageBuilder.Build();
+        var shopsInfoMessage = _shopsInfoMessageBuilder.Build(LimitCountOfShops);
 
         var menuText = _menuService.GetTitle(user.MenuKey); 
                 

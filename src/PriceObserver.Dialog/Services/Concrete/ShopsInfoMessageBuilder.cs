@@ -20,14 +20,17 @@ public class ShopsInfoMessageBuilder : IShopsInfoMessageBuilder
         _resourceService = resourceService;
     }
 
-    public string Build()
+    public string Build(int? limit = default)
     {
-        var shops = _shopRepository.GetAll();
-            
+        var shops = _shopRepository.GetAll(limit);
+        
         var shopsInfo = shops
             .OrderBy(x => x.Name)
             .Select(x => $"- {x.Name} ({x.Host})")
             .Aggregate((x, y) => $"{x}{Environment.NewLine}{y}");
+
+        if (limit.HasValue)
+            shopsInfo += $"{Environment.NewLine}- ...";
 
         return _resourceService.Get(ResourceKey.Dialog_AvailableShops, shopsInfo);
     }

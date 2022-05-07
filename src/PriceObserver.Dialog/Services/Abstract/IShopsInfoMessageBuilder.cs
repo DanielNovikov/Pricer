@@ -2,5 +2,5 @@
 
 public interface IShopsInfoMessageBuilder
 {
-    string Build();
+    string Build(int? limit = default);
 }

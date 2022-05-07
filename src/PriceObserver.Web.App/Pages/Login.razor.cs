@@ -15,7 +15,9 @@ public partial class Login : ComponentBase
 
     [Inject] public ICookieManager CookieManager { get; set; } = default!;
 
-    protected override async Task OnInitializedAsync()
+    private bool? _isAuthenticated = default; 
+    
+    protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         var accessToken = await CookieManager.GetValue(CookieKeys.AccessToken);
         if (accessToken is not null)
@@ -27,7 +29,10 @@ public partial class Login : ComponentBase
         var authenticationResult = await AuthenticationHandlerService.Authenticate(Token);
 
         if (!authenticationResult.IsSuccess)
+        {
+            _isAuthenticated = false;
             return;
+        }
 
         accessToken = authenticationResult.AccessToken;
         await CookieManager.SetValue(CookieKeys.AccessToken, accessToken);
@@ -36,6 +41,6 @@ public partial class Login : ComponentBase
 
     private void NavigateToHome()
     {
-        NavigationManager.NavigateTo("/home");
+        NavigationManager.NavigateTo("/home", true);
     }
 }

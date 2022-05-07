@@ -15,7 +15,7 @@ public abstract class RepositoryBase<T> : IRepository<T> where T : class, IAggre
         Context = context;
     }
 
-    public async Task<T> GetById(int id)
+    public virtual async Task<T> GetById(int id)
     {
         var entity = await Context.Set<T>().FindAsync(id);
         
@@ -24,7 +24,7 @@ public abstract class RepositoryBase<T> : IRepository<T> where T : class, IAggre
         return entity;
     }
 
-    public async Task<IList<T>> GetAll()
+    public virtual async Task<IList<T>> GetAll()
     {
         return await Context
             .Set<T>()
@@ -32,7 +32,7 @@ public abstract class RepositoryBase<T> : IRepository<T> where T : class, IAggre
             .ToListAsync();
     }
 
-    public async Task Add(T entity)
+    public virtual async Task Add(T entity)
     {
         await Context.Set<T>().AddAsync(entity);
         await Context.SaveChangesAsync();
@@ -40,7 +40,7 @@ public abstract class RepositoryBase<T> : IRepository<T> where T : class, IAggre
         Context.DetachEntity(entity);
     }
 
-    public async Task Update(T entity)
+    public virtual async Task Update(T entity)
     {
         Context.Set<T>().Update(entity);
         await Context.SaveChangesAsync();
@@ -48,7 +48,7 @@ public abstract class RepositoryBase<T> : IRepository<T> where T : class, IAggre
         Context.DetachEntity(entity);
     }
 
-    public async Task Delete(T entity)
+    public virtual async Task Delete(T entity)
     {
         Context.Set<T>().Remove(entity);
         await Context.SaveChangesAsync();
