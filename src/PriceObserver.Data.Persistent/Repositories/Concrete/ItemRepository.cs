@@ -16,8 +16,8 @@ public class ItemRepository : RepositoryBase<Item>, IItemRepository
     public override async Task<IList<Item>> GetAll()
     {
         return await Context.Items
-            .AsNoTracking()
             .Include(x => x.User)
+            .AsNoTracking()
             .ToListAsync();
     }
 

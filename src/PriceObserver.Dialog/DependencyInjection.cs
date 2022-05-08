@@ -1,13 +1,13 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using PriceObserver.Common.Extensions;
+using PriceObserver.Common.Models.Options;
 using PriceObserver.Dialog.Commands.Abstract;
 using PriceObserver.Dialog.Commands.Concrete;
 using PriceObserver.Dialog.Menus.Abstract;
 using PriceObserver.Dialog.Menus.Concrete;
 using PriceObserver.Dialog.Services.Abstract;
 using PriceObserver.Dialog.Services.Concrete;
-using PriceObserver.Dialog.Services.Options;
 
 namespace PriceObserver.Dialog;
 

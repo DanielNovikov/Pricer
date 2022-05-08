@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using PriceObserver.Background.JobServices.Abstract;
+using PriceObserver.Common.Services.Abstract;
 using PriceObserver.Data.InMemory.Models.Enums;
 using PriceObserver.Data.InMemory.Repositories.Abstract;
 using PriceObserver.Data.Persistent.Models;
@@ -17,6 +18,7 @@ public class ItemPriceChanger : IItemPriceChanger
     private readonly ITelegramBotService _telegramBotService;
     private readonly IItemParseResultService _parseResultService;
     private readonly IShopRepository _shopRepository;
+    private readonly IPartnerUrlBuilder _partnerUrlBuilder;
 
     private const double OneHundredPercent = 100.0;
     private const int MinimumDifferenceRatio = 5;
@@ -27,7 +29,8 @@ public class ItemPriceChanger : IItemPriceChanger
         ILogger<ItemPriceChanger> logger, 
         ITelegramBotService telegramBotService, 
         IItemParseResultService parseResultService, 
-        IShopRepository shopRepository)
+        IShopRepository shopRepository, 
+        IPartnerUrlBuilder partnerUrlBuilder)
     {
         _resourceService = resourceService;
         _itemService = itemService;
@@ -35,6 +38,7 @@ public class ItemPriceChanger : IItemPriceChanger
         _telegramBotService = telegramBotService;
         _parseResultService = parseResultService;
         _shopRepository = shopRepository;
+        _partnerUrlBuilder = partnerUrlBuilder;
     }
 
     public async Task Change(Item item, int oldPrice, int newPrice)
@@ -52,11 +56,12 @@ public class ItemPriceChanger : IItemPriceChanger
         if (priceDecreased)
         {
             var difference = oldPrice - newPrice;
-            
+            var partnerUrl = _partnerUrlBuilder.Build(item.Url);
+                
             var priceChangedMessage = _resourceService.Get(
                 ResourceKey.Background_ItemPriceWentDown,
                 item.Title,
-                item.Url,
+                partnerUrl,
                 newPrice, 
                 currencyTitle,
                 difference,

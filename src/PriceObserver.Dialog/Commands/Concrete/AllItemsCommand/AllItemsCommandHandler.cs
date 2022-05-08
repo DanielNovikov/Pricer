@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
+using PriceObserver.Common.Services.Abstract;
 using PriceObserver.Data.InMemory.Models.Enums;
 using PriceObserver.Data.InMemory.Repositories.Abstract;
 using PriceObserver.Data.Persistent.Models;
@@ -20,6 +21,7 @@ public class AllItemsCommandHandler : ICommandHandler
     private readonly IResourceService _resourceService;
     private readonly IShopRepository _shopRepository;
     private readonly IWebsiteLoginUrlBuilder _websiteLoginUrlBuilder;
+    private readonly IPartnerUrlBuilder _partnerUrlBuilder;
 
     private const int MaximumOfItemsInMessage = 10;
     
@@ -28,13 +30,15 @@ public class AllItemsCommandHandler : ICommandHandler
         IUserActionLogger userActionLogger, 
         IResourceService resourceService, 
         IShopRepository shopRepository, 
-        IWebsiteLoginUrlBuilder websiteLoginUrlBuilder)
+        IWebsiteLoginUrlBuilder websiteLoginUrlBuilder, 
+        IPartnerUrlBuilder partnerUrlBuilder)
     {
         _itemRepository = itemRepository;
         _userActionLogger = userActionLogger;
         _resourceService = resourceService;
         _shopRepository = shopRepository;
         _websiteLoginUrlBuilder = websiteLoginUrlBuilder;
+        _partnerUrlBuilder = partnerUrlBuilder;
     }
 
     public CommandKey Type => CommandKey.AllItems; 
@@ -64,8 +68,17 @@ public class AllItemsCommandHandler : ICommandHandler
                 });
         
         var message = itemsInfo
-            .Select((x, i) => 
-                _resourceService.Get(ResourceKey.Dialog_ItemInfo, i + 1, x.Title, x.Price, x.CurrencyTitle, x.Url))
+            .Select((x, i) =>
+            {
+                var partnerUrl = _partnerUrlBuilder.Build(x.Url);
+                return _resourceService.Get(
+                    ResourceKey.Dialog_ItemInfo,
+                    i + 1, 
+                    x.Title,
+                    x.Price,
+                    x.CurrencyTitle,
+                    partnerUrl);
+            })
             .Aggregate((x, y) => 
                 $"{x}{Environment.NewLine}{Environment.NewLine}{y}");
 

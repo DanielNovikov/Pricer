@@ -1,4 +1,4 @@
-﻿namespace PriceObserver.Dialog.Services.Options;
+﻿namespace PriceObserver.Common.Models.Options;
 
 public class WebsiteOptions
 {

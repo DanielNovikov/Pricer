@@ -1,8 +1,8 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.Extensions.Options;
+using PriceObserver.Common.Models.Options;
 using PriceObserver.Data.Service.Abstract;
 using PriceObserver.Dialog.Services.Abstract;
-using PriceObserver.Dialog.Services.Options;
 
 namespace PriceObserver.Dialog.Services.Concrete;
 
