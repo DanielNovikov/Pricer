@@ -2,7 +2,7 @@
 using PriceObserver.Data.InMemory.Models.Enums;
 using PriceObserver.Data.Persistent.Models;
 
-namespace PriceObserver.Background.JobServices.Abstract;
+namespace PriceObserver.Background.Services.Abstract;
 
 public interface IItemRemovalService
 {

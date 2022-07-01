@@ -1,12 +1,11 @@
 ﻿using System;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
+using PriceObserver.Background.Services.Abstract;
 using PriceObserver.Common.Extensions;
-using PriceObserver.Data.Persistent.Repositories.Abstract;
-using PriceObserver.Telegram.Abstract;
 
 namespace PriceObserver.Background.Jobs;
 
@@ -19,31 +18,27 @@ public class AppNotificationsSender : IHostedService
         _serviceProvider = serviceProvider;
     }
 
-    public async Task StartAsync(CancellationToken cancellationToken)
+    public Task StartAsync(CancellationToken cancellationToken)
     {
-        using var scope = _serviceProvider.CreateScope();
-
-        var appNotificationRepository = scope.GetService<IAppNotificationRepository>();
-        var userRepository = scope.GetService<IUserRepository>();
-        var telegramBotService = scope.GetService<ITelegramBotService>();
-            
-        var notifications = await appNotificationRepository.GetToExecute();
-
-        if (!notifications.Any())
-            return;
-                
-        var users = await userRepository.GetAllActive();
-
-        foreach (var notification in notifications)
-        {
-            foreach (var user in users)
+        Task.Run(
+            async () =>
             {
-                await telegramBotService.SendMessage(user.ExternalId, notification.Text);
-            }
+                using var scope = _serviceProvider.CreateScope();
 
-            notification.Executed = true;
-            await appNotificationRepository.Update(notification);
-        }
+                try
+                {
+                    var appNotificationService = scope.GetService<IAppNotificationService>();
+                    await appNotificationService.Execute();
+                }
+                catch (Exception ex)
+                {
+                    var logger = scope.GetService<ILogger<AppNotificationsSender>>();
+                    logger.LogError("Exception occured while sending notifications of type {1}", ex.GetType().FullName);
+                }
+            }, 
+            cancellationToken);
+
+        return Task.CompletedTask;
     }
 
     public Task StopAsync(CancellationToken cancellationToken)

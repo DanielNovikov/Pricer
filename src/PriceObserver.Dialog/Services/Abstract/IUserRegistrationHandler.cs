@@ -1,5 +1,5 @@
 ﻿using PriceObserver.Data.Persistent.Models;
-using PriceObserver.Dialog.Services.Models;
+using PriceObserver.Dialog.Models;
 
 namespace PriceObserver.Dialog.Services.Abstract;
 

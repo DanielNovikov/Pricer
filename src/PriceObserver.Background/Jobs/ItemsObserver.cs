@@ -3,7 +3,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using PriceObserver.Background.JobServices.Abstract;
+using PriceObserver.Background.Services.Abstract;
 using PriceObserver.Common.Extensions;
 
 namespace PriceObserver.Background.Jobs;

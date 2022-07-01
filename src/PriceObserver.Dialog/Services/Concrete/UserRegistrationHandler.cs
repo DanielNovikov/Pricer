@@ -2,8 +2,8 @@
 using PriceObserver.Data.Persistent.Models;
 using PriceObserver.Data.Service.Abstract;
 using PriceObserver.Dialog.Extensions;
+using PriceObserver.Dialog.Models;
 using PriceObserver.Dialog.Services.Abstract;
-using PriceObserver.Dialog.Services.Models;
 
 namespace PriceObserver.Dialog.Services.Concrete;
 
@@ -45,10 +45,7 @@ public class UserRegistrationHandler : IUserRegistrationHandler
                 
         var message = _resourceService.Get(
             ResourceKey.Dialog_UserRegistered,
-            user.GetFullName(),
-            helpCommandTitle,
-            shopsInfoMessage,
-            menuText);
+            user.GetFullName(), helpCommandTitle, shopsInfoMessage, menuText);
 
         var menuKeyboard = _menuKeyboardBuilder.Build(user.MenuKey);
 

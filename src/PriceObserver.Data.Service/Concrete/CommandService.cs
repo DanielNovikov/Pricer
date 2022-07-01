@@ -32,6 +32,6 @@ public class CommandService : ICommandService
 
         return resource is not null 
             ? _repository.GetByResourceKey(resource.Key) 
-            : null;
+            : default;
     }
 }

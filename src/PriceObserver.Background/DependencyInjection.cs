@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using PriceObserver.Background.Jobs;
-using PriceObserver.Background.JobServices.Abstract;
-using PriceObserver.Background.JobServices.Concrete;
+using PriceObserver.Background.Services.Abstract;
+using PriceObserver.Background.Services.Concrete;
 
 namespace PriceObserver.Background;
 
@@ -14,6 +14,7 @@ public static class DependencyInjection
             .AddHostedService<TelegramMessageReceiver>()
             .AddHostedService<AppNotificationsSender>()
             
+            .AddTransient<IAppNotificationService, AppNotificationService>()
             .AddTransient<IItemsObserverService, ItemsObserverService>()
             .AddTransient<IItemPriceChanger, ItemPriceChanger>()
             .AddTransient<IItemRemovalService, ItemRemovalService>();

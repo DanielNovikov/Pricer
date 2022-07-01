@@ -6,8 +6,8 @@ using PriceObserver.Data.InMemory.Models.Enums;
 using PriceObserver.Data.InMemory.Repositories.Abstract;
 using PriceObserver.Dialog.Commands.Abstract;
 using PriceObserver.Dialog.Commands.Models;
+using PriceObserver.Dialog.Models;
 using PriceObserver.Dialog.Services.Abstract;
-using PriceObserver.Dialog.Services.Models;
 
 namespace PriceObserver.Dialog.Commands.Concrete;
 

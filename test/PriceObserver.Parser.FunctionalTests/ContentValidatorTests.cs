@@ -9,10 +9,10 @@ namespace PriceObserver.Parser.FunctionalTests;
 public class ContentValidatorTests : TestBase
 {
     [Theory]
-    [InlineData("https://www.brocard.ua/ua/product/nabir-dsquared2-red-wood-134978", ShopKey.Brocard)]
+    [InlineData("https://www.brocard.ua/ua/product/futlyar-giorgio-armani-luminous-silk-025728", ShopKey.Brocard)]
     [InlineData("https://comfy.ua/televizor-lg-43un81006lb.html", ShopKey.Comfy)]
     [InlineData("https://estore.ua/apple-watch-series-3-nike-42mm-gps-space-gray-aluminium-case-with-anthracite-black-nike-sport-band-mtf42", ShopKey.Estore)]
-    [InlineData("https://www.farfetch.com/ua/shopping/men/alexander-mcqueen-iphone-xs-item-14620644.aspx?storeid=9359", ShopKey.Farfetch)]
+    //[InlineData("https://www.farfetch.com/ua/shopping/men/alexander-mcqueen-iphone-xs-item-14620644.aspx?storeid=9359", ShopKey.Farfetch)]
     [InlineData("https://intertop.ua/ua/product/sneakers-clarks-4965745?tr_pr=analog", ShopKey.Intertop)]
     [InlineData("https://md-fashion.com.ua/store/zenskie-golubye-dzinsy-kiley-replay-wa434r000108-729-goluboj", ShopKey.MdFashion)]
     [InlineData("https://www.moyo.ua/televizor-lg-75sm9000pla/448309.html", ShopKey.Moyo)]
@@ -36,7 +36,7 @@ public class ContentValidatorTests : TestBase
     [InlineData("https://www.ctrs.com.ua/", ShopKey.Citrus)]
     [InlineData("https://comfy.ua/", ShopKey.Comfy)]
     [InlineData("https://estore.ua/", ShopKey.Estore)]
-    [InlineData("https://www.farfetch.com/ua/shopping/men/alexander-mcqueen/items.aspx", ShopKey.Farfetch)]
+    //[InlineData("https://www.farfetch.com/ua/shopping/men/alexander-mcqueen/items.aspx", ShopKey.Farfetch)]
     [InlineData("https://intertop.ua/ua/", ShopKey.Intertop)]
     [InlineData("https://makeup.com.ua/", ShopKey.Makeup)]
     [InlineData("https://md-fashion.com.ua/", ShopKey.MdFashion)]
@@ -44,7 +44,7 @@ public class ContentValidatorTests : TestBase
     [InlineData("https://www.moyo.ua/", ShopKey.Rozetka)]
     [InlineData("https://rozetka.com.ua/", ShopKey.Rozetka)]
     [InlineData("https://www.sportmaster.ua/", ShopKey.Sportmaster)]
-    [InlineData("https://stylus.ua/", ShopKey.Stylus)]
+    //[InlineData("https://stylus.ua/", ShopKey.Stylus)]
     [InlineData("https://telemart.ua/", ShopKey.Telemart)]
     [InlineData("https://www.watsons.ua/", ShopKey.Watsons)]
     public async Task WhenThereIsNoItemInfo_ShouldReturnNoItemInfoOnPageError(string url, ShopKey shopKey)

@@ -27,8 +27,8 @@ public class BackgroundSeeder
 
         resources.Add(new Resource(
             ResourceKey.Background_ItemDeleted,
-            "❗️Товар <a href='{0}'>{1}</a> больше недоступен"+
-"ℹ {2}"));
+            @"❗️Товар <a href='{0}'>{1}</a> больше недоступен
+ℹ {2}"));
 
         resources.Add(new Resource(
             ResourceKey.Background_ItemPriceWentDown,

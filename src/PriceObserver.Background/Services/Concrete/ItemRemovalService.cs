@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
-using PriceObserver.Background.JobServices.Abstract;
+using PriceObserver.Background.Services.Abstract;
 using PriceObserver.Common.Services.Abstract;
 using PriceObserver.Data.InMemory.Models.Enums;
 using PriceObserver.Data.Persistent.Models;
@@ -8,7 +8,7 @@ using PriceObserver.Data.Persistent.Repositories.Abstract;
 using PriceObserver.Data.Service.Abstract;
 using PriceObserver.Telegram.Abstract;
 
-namespace PriceObserver.Background.JobServices.Concrete;
+namespace PriceObserver.Background.Services.Concrete;
 
 public class ItemRemovalService : IItemRemovalService
 {
@@ -19,6 +19,7 @@ public class ItemRemovalService : IItemRemovalService
     private readonly IItemParseResultRepository _parseResultRepository;
     private readonly ILogger<ItemRemovalService> _logger;
     private readonly IPartnerUrlBuilder _partnerUrlBuilder;
+    private readonly IUserRepository _userRepository;
     
     public ItemRemovalService(
         IItemRepository itemRepository,
@@ -27,7 +28,8 @@ public class ItemRemovalService : IItemRemovalService
         IItemParseResultService parseResultService, 
         IItemParseResultRepository parseResultRepository,
         ILogger<ItemRemovalService> logger, 
-        IPartnerUrlBuilder partnerUrlBuilder)
+        IPartnerUrlBuilder partnerUrlBuilder, 
+        IUserRepository userRepository)
     {
         _itemRepository = itemRepository;
         _resourceService = resourceService;
@@ -36,6 +38,7 @@ public class ItemRemovalService : IItemRemovalService
         _parseResultRepository = parseResultRepository;
         _logger = logger;
         _partnerUrlBuilder = partnerUrlBuilder;
+        _userRepository = userRepository;
     }
 
     public async Task Remove(Item item, ResourceKey error)
@@ -53,14 +56,18 @@ public class ItemRemovalService : IItemRemovalService
         
         var itemDeletedMessage = _resourceService.Get(
             ResourceKey.Background_ItemDeleted,
-            partnerUrl,
-            item.Title,
-            errorReason);
+            partnerUrl, item.Title, errorReason);
 
-        await _telegramBotService.SendMessage(item.User.ExternalId, itemDeletedMessage);
+        var user = await _userRepository.GetById(item.UserId);
+        
+        await _telegramBotService.SendMessage(user.ExternalId, itemDeletedMessage);
         await _itemRepository.Delete(item);
         
-        _logger.LogInformation($@"Item <a href='{item.Url}'>{item.Title}'</a> deleted
-Reason: {errorReason}");
+        _logger.LogInformation(
+            @"Item {0} deleted
+Reason: {1}
+Link: {2}", 
+            item.Title, errorReason, item.Url);
+        
     }
 }

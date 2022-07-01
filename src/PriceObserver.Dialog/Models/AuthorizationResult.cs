@@ -1,6 +1,6 @@
 ﻿using PriceObserver.Data.Persistent.Models;
 
-namespace PriceObserver.Dialog.Services.Models;
+namespace PriceObserver.Dialog.Models;
 
 public class AuthorizationResult
 {

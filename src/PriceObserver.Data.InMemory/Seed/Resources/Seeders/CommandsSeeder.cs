@@ -11,7 +11,7 @@ public class CommandsSeeder
         resources.Add(new Resource(ResourceKey.Command_Back, "Назад ◀"));
         resources.Add(new Resource(ResourceKey.Command_Help, "Помощь 🆘"));
         resources.Add(new Resource(ResourceKey.Command_Add, "Добавить ➕"));
-        resources.Add(new Resource(ResourceKey.Command_AllItems, "Все товары ℹ"));
+        resources.Add(new Resource(ResourceKey.Command_AllItems, "Мои товары ℹ"));
         resources.Add(new Resource(ResourceKey.Command_Shops, "Магазины 🛒"));
         resources.Add(new Resource(ResourceKey.Command_Website, "Сайт 🌍"));
         resources.Add(new Resource(ResourceKey.Command_WriteToSupport, "Поддержка 👨🏻‍💻"));

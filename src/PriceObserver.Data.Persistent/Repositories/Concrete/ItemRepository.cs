@@ -13,14 +13,6 @@ public class ItemRepository : RepositoryBase<Item>, IItemRepository
     public ItemRepository(ApplicationDbContext context) : base(context)
     { }
 
-    public override async Task<IList<Item>> GetAll()
-    {
-        return await Context.Items
-            .Include(x => x.User)
-            .AsNoTracking()
-            .ToListAsync();
-    }
-
     public async Task<IList<Item>> GetByUserId(int userId)
     {
         return await Context

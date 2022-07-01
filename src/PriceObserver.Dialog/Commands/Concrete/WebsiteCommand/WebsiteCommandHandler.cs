@@ -4,8 +4,8 @@ using PriceObserver.Data.Persistent.Models;
 using PriceObserver.Data.Service.Abstract;
 using PriceObserver.Dialog.Commands.Abstract;
 using PriceObserver.Dialog.Commands.Models;
+using PriceObserver.Dialog.Models;
 using PriceObserver.Dialog.Services.Abstract;
-using PriceObserver.Dialog.Services.Models;
 
 namespace PriceObserver.Dialog.Commands.Concrete.WebsiteCommand;
 

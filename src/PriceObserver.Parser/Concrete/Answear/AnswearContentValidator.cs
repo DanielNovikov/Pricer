@@ -16,8 +16,11 @@ public class AnswearContentValidator : IContentValidator
 
     public bool HasItemInfo(IHtmlDocument document)
     {
-        const string selector = "div[class*=container-fluid] p[class^=Price__currentPrice_]";
+        const string discountPriceSelector = "div[class^=ProductCard] div[class^=Price__salePrice]";
+        const string fullPriceSelector = "div[class^=ProductCard] div[class^=Price__price]";
 
-        return document.QuerySelector<IHtmlParagraphElement>(selector) is not null;
+        return 
+            document.QuerySelector<IHtmlDivElement>(discountPriceSelector) is not null ||
+            document.QuerySelector<IHtmlDivElement>(fullPriceSelector) is not null;
     }
 }

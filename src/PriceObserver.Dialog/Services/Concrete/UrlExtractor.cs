@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Text.RegularExpressions;
 using PriceObserver.Data.InMemory.Models.Enums;
+using PriceObserver.Dialog.Models;
 using PriceObserver.Dialog.Services.Abstract;
-using PriceObserver.Dialog.Services.Models;
 
 namespace PriceObserver.Dialog.Services.Concrete;
 

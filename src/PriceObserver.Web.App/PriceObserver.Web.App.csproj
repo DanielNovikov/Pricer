@@ -34,5 +34,8 @@
       <None Update="Components\Items.razor.less">
         <DependentUpon>Items.razor</DependentUpon>
       </None>
+      <None Update="Pages\ItemView.razor.less">
+        <DependentUpon>ItemView.razor</DependentUpon>
+      </None>
     </ItemGroup>
 </Project>

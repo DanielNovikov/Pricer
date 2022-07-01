@@ -19,6 +19,7 @@ public class ResourcesSeeder
         CommandsSeeder.Seed(resources);
         CurrencySeeder.Seed(resources);
         ApiSeeder.Seed(resources);
+        TelegramSeeder.Seed(resources);
         
         cache.Set(CacheKey.Resources, resources);
     }

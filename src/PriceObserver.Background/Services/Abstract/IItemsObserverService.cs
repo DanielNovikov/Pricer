@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace PriceObserver.Background.JobServices.Abstract;
+namespace PriceObserver.Background.Services.Abstract;
 
 public interface IItemsObserverService
 {

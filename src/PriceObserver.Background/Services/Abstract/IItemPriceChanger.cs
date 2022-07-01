@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using PriceObserver.Data.Persistent.Models;
 
-namespace PriceObserver.Background.JobServices.Abstract;
+namespace PriceObserver.Background.Services.Abstract;
 
 public interface IItemPriceChanger
 {

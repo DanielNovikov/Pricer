@@ -38,6 +38,7 @@ public class UpdateExceptionHandler : IUpdateHandler
             var userId = update.Message.Chat.Id;
                 
             _logger.LogError($@"User id: {userId}
+User message: {update.Message.Text}
 Message: {ex.Message}
 InnerException: {ex.InnerException}");
 

@@ -3,7 +3,7 @@ using PriceObserver.Data.InMemory.Models.Enums;
 using PriceObserver.Dialog.Commands.Models;
 using PriceObserver.Dialog.Menus.Models;
 
-namespace PriceObserver.Dialog.Services.Models;
+namespace PriceObserver.Dialog.Models;
 
 public class InputHandlingServiceResult : ServiceResult<InputHandlingServiceResult, ReplyResult, ResourceKey>
 {

@@ -3,8 +3,8 @@ using System.Threading.Tasks;
 using PriceObserver.Data.InMemory.Models.Enums;
 using PriceObserver.Data.Persistent.Models;
 using PriceObserver.Data.Service.Abstract;
+using PriceObserver.Dialog.Models;
 using PriceObserver.Dialog.Services.Abstract;
-using PriceObserver.Dialog.Services.Models;
 using PriceObserver.Parser.Abstract;
 
 namespace PriceObserver.Dialog.Services.Concrete;

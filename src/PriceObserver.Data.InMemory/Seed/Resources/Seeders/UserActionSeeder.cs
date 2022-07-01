@@ -10,7 +10,7 @@ public class UserActionSeeder
     {
         resources.Add(new Resource(
             ResourceKey.UserAction_GotAddedProducts,
-            "ℹ Получил добавленные продукты"));
+            "ℹ Получил добавленные товары"));
 
         resources.Add(new Resource(
             ResourceKey.UserAction_GotAvailableShops,

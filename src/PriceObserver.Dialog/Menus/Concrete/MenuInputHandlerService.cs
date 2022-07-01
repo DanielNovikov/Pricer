@@ -5,8 +5,8 @@ using System.Threading.Tasks;
 using PriceObserver.Data.InMemory.Repositories.Abstract;
 using PriceObserver.Dialog.Menus.Abstract;
 using PriceObserver.Dialog.Menus.Models;
+using PriceObserver.Dialog.Models;
 using PriceObserver.Dialog.Services.Abstract;
-using PriceObserver.Dialog.Services.Models;
 
 namespace PriceObserver.Dialog.Menus.Concrete;
 

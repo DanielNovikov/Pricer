@@ -1,14 +1,15 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
-using PriceObserver.Background.JobServices.Abstract;
+using PriceObserver.Background.Services.Abstract;
 using PriceObserver.Common.Services.Abstract;
 using PriceObserver.Data.InMemory.Models.Enums;
 using PriceObserver.Data.InMemory.Repositories.Abstract;
 using PriceObserver.Data.Persistent.Models;
+using PriceObserver.Data.Persistent.Repositories.Abstract;
 using PriceObserver.Data.Service.Abstract;
 using PriceObserver.Telegram.Abstract;
 
-namespace PriceObserver.Background.JobServices.Concrete;
+namespace PriceObserver.Background.Services.Concrete;
 
 public class ItemPriceChanger : IItemPriceChanger
 {
@@ -19,6 +20,7 @@ public class ItemPriceChanger : IItemPriceChanger
     private readonly IItemParseResultService _parseResultService;
     private readonly IShopRepository _shopRepository;
     private readonly IPartnerUrlBuilder _partnerUrlBuilder;
+    private readonly IUserRepository _userRepository;
 
     private const double OneHundredPercent = 100.0;
     private const int MinimumDifferenceRatio = 5;
@@ -30,7 +32,8 @@ public class ItemPriceChanger : IItemPriceChanger
         ITelegramBotService telegramBotService, 
         IItemParseResultService parseResultService, 
         IShopRepository shopRepository, 
-        IPartnerUrlBuilder partnerUrlBuilder)
+        IPartnerUrlBuilder partnerUrlBuilder, 
+        IUserRepository userRepository)
     {
         _resourceService = resourceService;
         _itemService = itemService;
@@ -39,6 +42,7 @@ public class ItemPriceChanger : IItemPriceChanger
         _parseResultService = parseResultService;
         _shopRepository = shopRepository;
         _partnerUrlBuilder = partnerUrlBuilder;
+        _userRepository = userRepository;
     }
 
     public async Task Change(Item item, int oldPrice, int newPrice)
@@ -48,26 +52,23 @@ public class ItemPriceChanger : IItemPriceChanger
         if (newPrice == oldPrice)
             return;
 
-        var shop = _shopRepository.GetByKey(item.ShopKey);
-        var currencyTitle = _resourceService.Get(shop.Currency.Title);
-
         var priceDecreased = HasPriceDecreased(oldPrice, newPrice);
 
         if (priceDecreased)
         {
             var difference = oldPrice - newPrice;
             var partnerUrl = _partnerUrlBuilder.Build(item.Url);
-                
+
+            var shop = _shopRepository.GetByKey(item.ShopKey);
+            var currencyTitle = _resourceService.Get(shop.Currency.Title);
+            
             var priceChangedMessage = _resourceService.Get(
                 ResourceKey.Background_ItemPriceWentDown,
-                item.Title,
-                partnerUrl,
-                newPrice, 
-                currencyTitle,
-                difference,
-                currencyTitle);
+                item.Title, partnerUrl, newPrice, currencyTitle, difference, currencyTitle);
             
-            await _telegramBotService.SendMessage(item.User.ExternalId, priceChangedMessage);
+            var user = await _userRepository.GetById(item.UserId);
+            
+            await _telegramBotService.SendMessage(user.ExternalId, priceChangedMessage);
         }
 
         LogChangedPrice(item, oldPrice, newPrice);
@@ -89,9 +90,7 @@ public class ItemPriceChanger : IItemPriceChanger
     {
         var logMessage = _resourceService.Get(
             ResourceKey.Background_LogItemPriceChanged,
-            oldPrice,
-            newPrice,
-            item.Url);
+            oldPrice, newPrice, item.Url);
         
         _logger.LogInformation(logMessage);
     }

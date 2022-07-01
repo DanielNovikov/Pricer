@@ -9,8 +9,8 @@ using PriceObserver.Data.Persistent.Repositories.Abstract;
 using PriceObserver.Data.Service.Abstract;
 using PriceObserver.Dialog.Commands.Abstract;
 using PriceObserver.Dialog.Commands.Models;
+using PriceObserver.Dialog.Models;
 using PriceObserver.Dialog.Services.Abstract;
-using PriceObserver.Dialog.Services.Models;
 
 namespace PriceObserver.Dialog.Commands.Concrete.AllItemsCommand;
 
@@ -73,11 +73,7 @@ public class AllItemsCommandHandler : ICommandHandler
                 var partnerUrl = _partnerUrlBuilder.Build(x.Url);
                 return _resourceService.Get(
                     ResourceKey.Dialog_ItemInfo,
-                    i + 1, 
-                    x.Title,
-                    x.Price,
-                    x.CurrencyTitle,
-                    partnerUrl);
+                    i + 1, x.Title, x.Price, x.CurrencyTitle, partnerUrl);
             })
             .Aggregate((x, y) => 
                 $"{x}{Environment.NewLine}{Environment.NewLine}{y}");

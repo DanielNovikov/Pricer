@@ -4,7 +4,7 @@ using FluentAssertions;
 using Microsoft.EntityFrameworkCore;
 using PriceObserver.Data.InMemory.Models.Enums;
 using PriceObserver.Data.Persistent;
-using PriceObserver.Dialog.Services.Models;
+using PriceObserver.Dialog.Models;
 
 namespace PriceObserver.Dialog.FunctionalTests.Menus.Support;
 

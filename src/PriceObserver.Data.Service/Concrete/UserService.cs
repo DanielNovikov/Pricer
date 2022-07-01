@@ -12,16 +12,13 @@ public class UserService : IUserService
 {
     private readonly IUserRepository _userRepository;
     private readonly IMenuRepository _menuRepository;
-    private readonly ILogger _logger;
 
     public UserService(
         IUserRepository userRepository,
-        IMenuRepository menuRepository,
-        ILogger<UserService> logger)
+        IMenuRepository menuRepository)
     {
         _userRepository = userRepository;
         _menuRepository = menuRepository;
-        _logger = logger;
     }
 
     public async Task RedirectToMenu(User user, Menu menu)

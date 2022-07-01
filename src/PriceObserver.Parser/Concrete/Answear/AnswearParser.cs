@@ -13,16 +13,19 @@ public class AnswearParser : IParserProvider
 
     public int GetPrice(IHtmlDocument document)
     {
-        const string selector = "div[class*=container-fluid] p[class^=Price__currentPrice_]";
+        const string discountPriceSelector = "div[class^=ProductCard] div[class^=Price__salePrice]";
+        const string fullPriceSelector = "div[class^=ProductCard] div[class^=Price__price]";
 
-        var priceElement = document.QuerySelector<IHtmlParagraphElement>(selector) ??
+        var priceElement = 
+            document.QuerySelector<IHtmlDivElement>(discountPriceSelector) ??
+            document.QuerySelector<IHtmlDivElement>(fullPriceSelector) ??
             throw new ArgumentNullException($"{nameof(AnswearParser)}:{nameof(GetPrice)}:Element");
 
         var price = priceElement.TextContent;
+        var formattedPrice = price
+            .Substring(0, price.IndexOf("грн", StringComparison.Ordinal))
+            .Replace(" ", string.Empty);
 
-        var spaceIndex = price.IndexOf(' ');
-        var formattedPrice = price.Substring(0, spaceIndex);
-            
         return int.Parse(formattedPrice);
     }
 

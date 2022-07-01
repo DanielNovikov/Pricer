@@ -45,7 +45,7 @@ public class UpdateHandler : IUpdateHandler
         if (hasKeyboard)
         {
             var keyboard = _keyboardBuilder.Build(result.MenuKeyboard);
-            await _telegramBotService.SendKeyboard(userExternalId, result.Message, keyboard);
+            await _telegramBotService.SendMessageWithKeyboard(userExternalId, result.Message, keyboard);
             return;
         }
 

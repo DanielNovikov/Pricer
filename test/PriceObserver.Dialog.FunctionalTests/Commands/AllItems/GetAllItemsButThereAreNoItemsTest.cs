@@ -8,7 +8,7 @@ public class GetAllItemsButThereAreNoItemsTest : IntegrationTestingBase
 {
     public static async Task Run()
     {
-        var serviceModel = BuildServiceModel("Все товары ℹ");
+        var serviceModel = BuildServiceModel("Мои товары ℹ");
         
         var result = await EntryPoint.Handle(serviceModel);
         

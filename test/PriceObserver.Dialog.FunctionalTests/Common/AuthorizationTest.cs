@@ -4,8 +4,8 @@ using FluentAssertions;
 using Microsoft.EntityFrameworkCore;
 using PriceObserver.Data.InMemory.Models.Enums;
 using PriceObserver.Data.Persistent;
+using PriceObserver.Dialog.Models;
 using PriceObserver.Dialog.Services.Abstract;
-using PriceObserver.Dialog.Services.Models;
 
 namespace PriceObserver.Dialog.FunctionalTests.Common;
 
@@ -44,11 +44,11 @@ public class AuthorizationTest : IntegrationTestingBase
         string result)
     {
         var shopsInfoMessageBuilder = GetService<IShopsInfoMessageBuilder>();
-        var shopsInfoMessage = shopsInfoMessageBuilder.Build();
+        var shopsInfoMessage = shopsInfoMessageBuilder.Build(5);
 
         var expectedUserRegisteredText = $@"Приветствую, {serviceModel.FirstName} {serviceModel.LastName}! 🎉
 
-Здесь Вы сможете добавить желаемые товары за которыми Вы хотели бы следить. Мы оповестим Вас как только цена снизится 💰.
+Здесь Вы сможете добавить ссылки на желаемые товары за которыми Вы хотели бы следить. Мы оповестим Вас как только цена снизится 💰.
 
 Нажмите <b>Помощь 🆘</b> для получения дополнительной информации.
 
@@ -68,7 +68,7 @@ public class AuthorizationTest : IntegrationTestingBase
         buttons.Count.Should().Be(6);
         buttons[0].Title.Should().Be("Помощь 🆘");
         buttons[1].Title.Should().Be("Добавить ➕");
-        buttons[2].Title.Should().Be("Все товары ℹ");
+        buttons[2].Title.Should().Be("Мои товары ℹ");
         buttons[3].Title.Should().Be("Магазины 🛒");
         buttons[4].Title.Should().Be("Сайт 🌍");
         buttons[5].Title.Should().Be("Поддержка 👨🏻‍💻");

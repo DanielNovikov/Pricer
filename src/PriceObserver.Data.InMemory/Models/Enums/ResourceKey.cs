@@ -62,5 +62,7 @@ public enum ResourceKey
     Api_NoHistory = 700,
     Api_GrewUpSign = 701,
     Api_WentDownSign = 702,
-    Api_UrlTemplate = 703
+    Api_UrlTemplate = 703,
+    
+    Telegram_IncorrectTypeOfMessage = 704
 }

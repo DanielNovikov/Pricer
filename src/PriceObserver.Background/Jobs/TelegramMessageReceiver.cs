@@ -29,18 +29,28 @@ public class TelegramMessageReceiver : IHostedService
 
     public Task StartAsync(CancellationToken cancellationToken)
     {
-        var client = _telegramBot.GetClient();
-
-        var receiverOptions = new ReceiverOptions
+        try
         {
-            AllowedUpdates = new[] { UpdateType.Message } 
-        };
+            var client = _telegramBot.GetClient();
+
+            var receiverOptions = new ReceiverOptions
+            {
+                AllowedUpdates = new[] {UpdateType.Message}
+            };
+
+            client.StartReceiving(
+                HandleUpdateAsync,
+                HandleError,
+                receiverOptions,
+                cancellationToken);
+        }
+        catch (Exception ex)
+        {
+            using var scope = _serviceProvider.CreateScope();
+            var logger = scope.GetService<ILogger<TelegramMessageReceiver>>();
             
-        client.StartReceiving(
-            HandleUpdateAsync, 
-            HandleError, 
-            receiverOptions, 
-            cancellationToken);
+            logger.LogError("Creation of telegram bot failed with exception of type {1}", ex.GetType().FullName);
+        }
 
         return Task.CompletedTask;
     }
@@ -61,12 +71,12 @@ public class TelegramMessageReceiver : IHostedService
     private Task HandleError(ITelegramBotClient botClient, Exception exception, CancellationToken cancellationToken)
     {
         using var scope = _serviceProvider.CreateScope();
-
         var logger = scope.GetService<ILogger<TelegramMessageReceiver>>();
 
         logger.LogError($@"Receive error
+Exception type: {exception.GetType().FullName}
 Message: {exception.Message}
-InnerException: {exception.InnerException}");
+Inner exception: {exception.InnerException}");
 
         return Task.CompletedTask;
     }

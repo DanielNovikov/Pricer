@@ -30,7 +30,7 @@ public class TelegramBotService : ITelegramBotService
         await Send(userId, message);
     }
 
-    public async Task SendKeyboard(long userId, string message, ReplyKeyboardMarkup keyboard)
+    public async Task SendMessageWithKeyboard(long userId, string message, ReplyKeyboardMarkup keyboard)
     {
         await Send(userId, message, keyboard);
     }
