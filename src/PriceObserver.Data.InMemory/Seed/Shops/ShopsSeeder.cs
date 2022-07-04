@@ -135,10 +135,10 @@ public class ShopsSeeder
                 uahCurrency),
             
             new Shop(
-                "Спортмастер",
-                ShopKey.Sportmaster,
-                "www.sportmaster.ua",
-                "sportmaster.png",
+                "Athletics",
+                ShopKey.Athletics,
+                "athletics.kiev.ua",
+                "athletics.kiev.ua.png",
                 false,
                 uahCurrency),
             

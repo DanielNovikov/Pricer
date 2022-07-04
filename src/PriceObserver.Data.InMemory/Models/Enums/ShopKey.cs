@@ -16,7 +16,7 @@ public enum ShopKey
     Estore,
     Moyo,
     Comfy,
-    Sportmaster,
+    Athletics,
     Watsons,
     Telemart
 }

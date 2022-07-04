@@ -5,9 +5,9 @@ using PriceObserver.Parser.Abstract;
 
 namespace PriceObserver.Parser.Concrete.Sportmaster;
 
-public class SportmasterContentValidator : IContentValidator
+public class AthleticsContentValidator : IContentValidator
 {
-    public ShopKey ProviderKey => ShopKey.Sportmaster;
+    public ShopKey ProviderKey => ShopKey.Athletics;
     
     public bool IsAvailable(IHtmlDocument document)
     {

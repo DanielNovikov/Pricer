@@ -75,10 +75,10 @@ public class ParserTests : TestBase
         "Телевизор Philips 75PUS8506/12",
         "https://content2.rozetka.com.ua/goods/images/big/190084962.jpg")]
     [InlineData(
-        "https://www.sportmaster.ua/catalogitem/krossovki_mugskie_puma_supertec_zero384642p0p01/",
-        ShopKey.Sportmaster,
-        "Кросівки чоловічі PUMA Supertec Zero",
-        "https://cdn.sportmaster.ua/static/i/2000_2000/products/260196/VL926aK1.jpeg")]
+        "https://athletics.kiev.ua/catalogitem/krossovki_mugskie_nike_tanjun812654n06001/",
+        ShopKey.Athletics,
+        "Кросівки чоловічі Nike Tanjun",
+        "https://cdn2.athletics.kiev.ua/static/i/2000_2000/products/236580/XS0VZRg5.jpeg")]
     // [InlineData(
     //     "https://stylus.ua/samsung-galaxy-a52s-5g-6128gb-black-a528b-p841157c11256.html",
     //     ShopKey.Stylus,

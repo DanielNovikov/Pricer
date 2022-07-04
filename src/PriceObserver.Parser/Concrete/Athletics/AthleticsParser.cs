@@ -6,19 +6,19 @@ using PriceObserver.Parser.Abstract;
 
 namespace PriceObserver.Parser.Concrete.Sportmaster;
 
-public class SportmasterParser : IParserProvider
+public class AthleticsParser : IParserProvider
 {
-    public ShopKey ProviderKey => ShopKey.Sportmaster;
+    public ShopKey ProviderKey => ShopKey.Athletics;
     
     public int GetPrice(IHtmlDocument document)
     {
         const string selector = "meta[property='product:price:amount']";
         
         var priceElement = document.QuerySelector<IHtmlMetaElement>(selector) ?? 
-            throw new ArgumentNullException($"{nameof(SportmasterParser)}:{nameof(GetPrice)}:Element");
+            throw new ArgumentNullException($"{nameof(AthleticsParser)}:{nameof(GetPrice)}:Element");
         
         var price = priceElement.Content?.Replace(" ", string.Empty) ?? 
-            throw new ArgumentNullException($"{nameof(SportmasterParser)}:{nameof(GetPrice)}:Element:Content");    
+            throw new ArgumentNullException($"{nameof(AthleticsParser)}:{nameof(GetPrice)}:Element:Content");    
         
         return int.Parse(price);
     }
@@ -28,7 +28,7 @@ public class SportmasterParser : IParserProvider
         const string selector = "meta[name=Keywords]";
         
         var titleElement = document.QuerySelector<IHtmlMetaElement>(selector) ?? 
-            throw new ArgumentNullException($"{nameof(SportmasterParser)}:{nameof(GetTitle)}:Element");
+            throw new ArgumentNullException($"{nameof(AthleticsParser)}:{nameof(GetTitle)}:Element");
 
         return titleElement.Content;
     }
@@ -38,10 +38,10 @@ public class SportmasterParser : IParserProvider
         const string selector = "div.popup-gallery__slider_viewport__inner > div:first-child > img";
         
         var imageElement = document.QuerySelector<IHtmlImageElement>(selector) ?? 
-            throw new ArgumentNullException($"{nameof(SportmasterParser)}:{nameof(GetImageUrl)}:Element");
+            throw new ArgumentNullException($"{nameof(AthleticsParser)}:{nameof(GetImageUrl)}:Element");
         
         var imageSource = imageElement.Source ?? 
-            throw new ArgumentNullException($"{nameof(SportmasterParser)}:{nameof(GetImageUrl)}:Element:Content");
+            throw new ArgumentNullException($"{nameof(AthleticsParser)}:{nameof(GetImageUrl)}:Element:Content");
         
         return new Uri(imageSource);
     }
