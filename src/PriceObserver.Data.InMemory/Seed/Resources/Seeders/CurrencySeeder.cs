@@ -8,10 +8,10 @@ public class CurrencySeeder
 {
     public static void Seed(IList<Resource> resources)
     {
-        resources.Add(new Resource(ResourceKey.Currency_UAH_Title, " грн."));
-        resources.Add(new Resource(ResourceKey.Currency_EUR_Title, "€"));
+        resources.AddResource(ResourceKey.Currency_UAH_Title, " грн.", " грн.");
+        resources.AddResource(ResourceKey.Currency_EUR_Title, "€");
         
-        resources.Add(new Resource(ResourceKey.Currency_UAH_Sign, "₴"));
-        resources.Add(new Resource(ResourceKey.Currency_EUR_Sign, "€"));
+        resources.AddResource(ResourceKey.Currency_UAH_Sign, "₴");
+        resources.AddResource(ResourceKey.Currency_EUR_Sign, "€");
     }
 }

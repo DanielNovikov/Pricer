@@ -8,74 +8,111 @@ public class UserActionSeeder
 {
     public static void Seed(IList<Resource> resources)
     {
-        resources.Add(new Resource(
+        resources.AddResource(
             ResourceKey.UserAction_GotAddedProducts,
-            "ℹ Получил добавленные товары"));
+            "ℹ Отримав додані товари",
+            "ℹ Получил добавленные товары");
 
-        resources.Add(new Resource(
+        resources.AddResource(
             ResourceKey.UserAction_GotAvailableShops,
-            "ℹ Получил доступные магазины"));
+            "ℹ Отримав доступні магазини",
+            "ℹ Получил доступные магазины");
             
-        resources.Add(new Resource(
+        resources.AddResource(
             ResourceKey.UserAction_GotWebsiteLink,
-            "ℹ Получил ссылку на сайт"));
+            "ℹ Отримав посилання на сайт",
+            "ℹ Получил ссылку на сайт");
             
-        resources.Add(new Resource(
+        resources.AddResource(
             ResourceKey.UserAction_UserRegistered,
-            "🎉 Новый пользователь зарегистрирован"));
+            "🎉 Новий користувач зареєстровано",
+            "🎉 Новый пользователь зарегистрирован");
 
-        resources.Add(new Resource(
+        resources.AddResource(
             ResourceKey.UserAction_TriedAddDuplicate,
+            @"❌ Спробував додати дублікат
+Посилання: {0}",
             @"❌ Попытался добавить дубликат
-Ссылка: {0}"));
+Ссылка: {0}");
             
-        resources.Add(new Resource(
+        resources.AddResource(
             ResourceKey.UserAction_ParsingError,
+            @"❌ Не змогло дістати дані за посиланням 
+Посилання: {0}
+Помилка: {1}",
             @"❌ Не смогло достать данные по ссылке 
 Ссылка: {0}
-Ошибка: {1}"));
+Ошибка: {1}");
             
-        resources.Add(new Resource(
+        resources.AddResource(
             ResourceKey.UserAction_AddedItem,
+            @"✅ Новий продукт додано до каталогу 
+Посилання: {0}
+Заголовок: {1}
+Ціна: {2}",
             @"✅ Новый продукт добавлен в каталог 
 Ссылка: {0}
 Заголовок: {1}
-Цена: {2}"));
+Цена: {2}");
             
-        resources.Add(new Resource(
+        resources.AddResource(
             ResourceKey.UserAction_WroteToSupport,
+            @"👨🏻‍ Написав на підтримку 
+Повідомлення: {0}",
             @"👨🏻‍ Написал в поддержку 
-Сообщение: {0}"));
+Сообщение: {0}");
             
-        resources.Add(new Resource(
+        resources.AddResource(
             ResourceKey.UserAction_WroteWrongCommand,
+            @"❌ Ввів невірну команду 
+Текст: {0}",
             @"❌ Ввёл неверную комманду 
-Текст: {0}"));
+Текст: {0}");
             
-        resources.Add(new Resource(
+        resources.AddResource(
             ResourceKey.UserAction_RedirectedToMenu,
+            @"➡ Перейшов до іншого меню 
+Назва: {0}",
             @"➡ Перешёл в другое меню 
-Название: {0}"));
+Название: {0}");
             
-        resources.Add(new Resource(
+        resources.AddResource(
             ResourceKey.UserAction_UserInfo,
-            "Имя: {0} (External id: {1})"));
+            "Ім'я: {0} (External id: {1})",
+            "Имя: {0} (External id: {1})");
             
-        resources.Add(new Resource(
+        resources.AddResource(
             ResourceKey.UserAction_UserLogin,
-            "Логин: @{0}"));
+            "Логін: @{0}",
+            "Логин: @{0}");
             
-        resources.Add(new Resource(
+        resources.AddResource(
             ResourceKey.UserAction_CalledHelp,
-            "🆘 Запросил помощь"));
+            "🆘 Запитав допомогу",
+            "🆘 Запросил помощь");
         
-        resources.Add(new Resource(
+        resources.AddResource(
             ResourceKey.UserAction_TriedToAddUnsupportedShop,
+            @"❌ Не відомий магазин продукту
+Посилання: {0}",
             @"❌ Не известный магазин продукта
-Ссылка: {0}"));
+Ссылка: {0}");
         
-        resources.Add(new Resource(
+        resources.AddResource(
             ResourceKey.UserAction_GotAddItemInstruction, 
-            "Получил инструкцию по добавлению нового товара"));
+            "Отримав інструкцію щодо додавання нового товару",
+            "Получил инструкцию по добавлению нового товара");
+        
+        resources.AddResource(
+	        ResourceKey.UserAction_SelectedLanguage, 
+	        "Змінив мову на {0}",
+	        "Изменил язык на {0}");
+        
+        resources.AddResource(
+	        ResourceKey.UserAction_RedirectedBackToMenu,
+	        @"➡ Перейшов назад до меню 
+Назва: {0}",
+	        @"➡ Перешёл назад в меню 
+Название: {0}");
     }
 }

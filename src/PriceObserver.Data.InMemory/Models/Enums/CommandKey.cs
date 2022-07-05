@@ -8,5 +8,7 @@ public enum CommandKey
     Shops = 3,
     Back = 4,
     WriteToSupport = 5,
-    Help = 6
+    Help = 6,
+    SelectUkrainianLanguage = 7,
+    SelectRussianLanguage = 8
 }

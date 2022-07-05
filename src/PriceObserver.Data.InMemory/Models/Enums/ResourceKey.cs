@@ -34,6 +34,8 @@ public enum ResourceKey
     UserAction_CalledHelp = 113,
     UserAction_TriedToAddUnsupportedShop = 114,
     UserAction_GotAddItemInstruction = 115,
+    UserAction_SelectedLanguage = 116,
+    UserAction_RedirectedBackToMenu = 117,
         
     Parser_PageNotFound = 200,
     Parser_NoItemInfoOnPage = 202,
@@ -45,6 +47,7 @@ public enum ResourceKey
         
     Menu_Home = 400,
     Menu_Support = 401,
+    Menu_SelectLanguage = 402,
         
     Command_Back = 500,
     Command_Add = 501,
@@ -53,6 +56,8 @@ public enum ResourceKey
     Command_Website = 504,
     Command_WriteToSupport = 505,
     Command_Help = 506,
+    Command_SelectUkrainianLanguage = 507,
+    Command_SelectRussianLanguage = 508,
     
     Currency_UAH_Title = 600,
     Currency_EUR_Title = 601,
@@ -62,7 +67,5 @@ public enum ResourceKey
     Api_NoHistory = 700,
     Api_GrewUpSign = 701,
     Api_WentDownSign = 702,
-    Api_UrlTemplate = 703,
-    
-    Telegram_IncorrectTypeOfMessage = 704
+    Api_UrlTemplate = 703
 }

@@ -73,6 +73,11 @@ public class UserActionLogger : IUserActionLogger
         LogInformation(user, ResourceKey.UserAction_RedirectedToMenu, menuToRedirect.Key);
     }
 
+    public void LogRedirectBackToMenu(User user, Menu menuToRedirectBack)
+    {
+        LogInformation(user, ResourceKey.UserAction_RedirectedBackToMenu, menuToRedirectBack.Key);
+    }
+
     public void LogHelpCalled(User user)
     {
         LogInformation(user, ResourceKey.UserAction_CalledHelp);
@@ -86,6 +91,11 @@ public class UserActionLogger : IUserActionLogger
     public void LogGotAddItemInstruction(User user)
     {
         LogInformation(user, ResourceKey.UserAction_GotAddItemInstruction);
+    }
+
+    public void LogSelectedLanguage(User user, LanguageKey languageKey)
+    {
+        LogInformation(user, ResourceKey.UserAction_SelectedLanguage, languageKey.ToString());
     }
 
     private void LogInformation(User user, ResourceKey message, params object[] parameters)

@@ -27,9 +27,13 @@ public interface IUserActionLogger
 
     void LogRedirectToMenu(User user, Menu menuToRedirect);
 
+    void LogRedirectBackToMenu(User user, Menu menuToRedirectBack);
+
     void LogHelpCalled(User user);
 
     void LogTriedToAddUnsupportedShop(User user, Uri url);
 
     void LogGotAddItemInstruction(User user);
+
+    void LogSelectedLanguage(User user, LanguageKey languageKey);
 }

@@ -39,6 +39,7 @@ public static class DependencyInjection
             .AddTransient<IUrlExtractor, UrlExtractor>()
             .AddTransient<IUserItemParser, UserItemParser>()
             .AddTransient<IUserRedirectionService, UserRedirectionService>()
+            .AddTransient<IUserLanguageChanger, UserLanguageChanger>()
             
             .AddImplementations<ICommandHandler>()
             .AddImplementations<IMenuInputHandler>();

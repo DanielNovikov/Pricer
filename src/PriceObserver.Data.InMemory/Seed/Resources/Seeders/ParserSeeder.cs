@@ -8,16 +8,19 @@ public class ParserSeeder
 {
     public static void Seed(IList<Resource> resources)
     {
-        resources.Add(new Resource(
+        resources.AddResource(
             ResourceKey.Parser_PageNotFound,
-            "Страница не найдена"));
+            "Сторінку не знайдено",
+            "Страница не найдена");
             
-        resources.Add(new Resource(
+        resources.AddResource(
             ResourceKey.Parser_NoItemInfoOnPage,
-            "На странице нет информации о товаре"));
+            "На сторінці немає інформації про товар",
+            "На странице нет информации о товаре");
         
-        resources.Add(new Resource(
+        resources.AddResource(
             ResourceKey.Parser_OutOfStock,
-            "Нет в наличии"));
+            "Немає в наявності",
+            "Нет в наличии");
     }
 }

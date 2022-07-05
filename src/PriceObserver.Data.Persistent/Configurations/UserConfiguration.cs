@@ -44,5 +44,10 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
             .Property(x => x.MenuKey)
             .HasConversion<int>()
             .IsRequired();
+        
+        builder
+            .Property(x => x.SelectedLanguageKey)
+            .HasConversion<int>()
+            .IsRequired();
     }
 }

@@ -10,20 +10,20 @@ namespace PriceObserver.Web.Api.Handlers;
 [Authorize]
 public class ItemDeletionHandler : ItemDeletion.ItemDeletionBase
 {
-    private readonly IItemDeletionHandlerService _deletionHandlerService;
+	private readonly IItemDeletionHandlerService _deletionHandlerService;
 
-    public ItemDeletionHandler(IItemDeletionHandlerService deletionHandlerService)
-    {
-        _deletionHandlerService = deletionHandlerService;
-    }
+	public ItemDeletionHandler(IItemDeletionHandlerService deletionHandlerService)
+	{
+		_deletionHandlerService = deletionHandlerService;
+	}
 
-    public override async Task<Empty> Delete(ItemDeletionRequest request, ServerCallContext context)
-    {
-        var itemId = request.ItemId;
-        var userId = context.GetUserId();
+	public override async Task<Empty> Delete(ItemDeletionRequest request, ServerCallContext context)
+	{
+		var itemId = request.ItemId;
+		var userId = context.GetUserId();
 
-        await _deletionHandlerService.Delete(itemId, userId);
-        
-        return new Empty();
-    }
+		await _deletionHandlerService.Delete(itemId, userId);
+
+		return new Empty();
+	}
 }

@@ -7,21 +7,19 @@ namespace PriceObserver.Data.Service.Concrete;
 public class MenuService : IMenuService
 {
     private readonly IMenuRepository _repository;
-    private readonly IResourceRepository _resourceRepository;
+    private readonly IResourceService _resourceService;
 
     public MenuService(
         IMenuRepository repository, 
-        IResourceRepository resourceRepository)
+        IResourceService resourceService)
     {
         _repository = repository;
-        _resourceRepository = resourceRepository;
+        _resourceService = resourceService;
     }
 
     public string GetTitle(MenuKey key)
     {
         var menu = _repository.GetByKey(key);
-        var resource =  _resourceRepository.GetByKey(menu.ResourceKey);
-
-        return resource.Value;
+        return _resourceService.Get(menu.ResourceKey);;
     }
 }

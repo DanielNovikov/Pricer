@@ -20,6 +20,7 @@ public class ItemRemovalService : IItemRemovalService
     private readonly ILogger<ItemRemovalService> _logger;
     private readonly IPartnerUrlBuilder _partnerUrlBuilder;
     private readonly IUserRepository _userRepository;
+    private readonly IUserLanguage _userLanguage;
     
     public ItemRemovalService(
         IItemRepository itemRepository,
@@ -29,7 +30,8 @@ public class ItemRemovalService : IItemRemovalService
         IItemParseResultRepository parseResultRepository,
         ILogger<ItemRemovalService> logger, 
         IPartnerUrlBuilder partnerUrlBuilder, 
-        IUserRepository userRepository)
+        IUserRepository userRepository, 
+        IUserLanguage userLanguage)
     {
         _itemRepository = itemRepository;
         _resourceService = resourceService;
@@ -39,6 +41,7 @@ public class ItemRemovalService : IItemRemovalService
         _logger = logger;
         _partnerUrlBuilder = partnerUrlBuilder;
         _userRepository = userRepository;
+        _userLanguage = userLanguage;
     }
 
     public async Task Remove(Item item, ResourceKey error)
@@ -50,6 +53,9 @@ public class ItemRemovalService : IItemRemovalService
             await _parseResultService.CreateFailed(item);
             return;
         }
+
+        var user = await _userRepository.GetById(item.UserId);
+        _userLanguage.Set(user.SelectedLanguageKey);
         
         var errorReason = _resourceService.Get(error);
         var partnerUrl = _partnerUrlBuilder.Build(item.Url);
@@ -58,8 +64,6 @@ public class ItemRemovalService : IItemRemovalService
             ResourceKey.Background_ItemDeleted,
             partnerUrl, item.Title, errorReason);
 
-        var user = await _userRepository.GetById(item.UserId);
-        
         await _telegramBotService.SendMessage(user.ExternalId, itemDeletedMessage);
         await _itemRepository.Delete(item);
         

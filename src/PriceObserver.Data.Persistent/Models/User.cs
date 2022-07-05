@@ -21,6 +21,8 @@ public class User : IAggregateRoot
     public IList<Item> Items { get; set; }
         
     public MenuKey MenuKey { get; set; }
+    
+    public LanguageKey SelectedLanguageKey { get; set; }
         
     public IList<UserToken> Tokens { get; set; }
 }

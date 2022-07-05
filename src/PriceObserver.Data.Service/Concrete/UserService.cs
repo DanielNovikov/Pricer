@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
-using Microsoft.Extensions.Logging;
 using PriceObserver.Data.InMemory.Models;
+using PriceObserver.Data.InMemory.Models.Enums;
 using PriceObserver.Data.InMemory.Repositories.Abstract;
 using PriceObserver.Data.Persistent.Models;
 using PriceObserver.Data.Persistent.Repositories.Abstract;
@@ -33,6 +33,12 @@ public class UserService : IUserService
         var user = await _userRepository.GetByExternalId(userId);
         user.IsActive = false;
             
+        await _userRepository.Update(user);
+    }
+
+    public async Task ChangeSelectedLanguage(User user, LanguageKey languageKey)
+    {
+        user.SelectedLanguageKey = languageKey;
         await _userRepository.Update(user);
     }
 

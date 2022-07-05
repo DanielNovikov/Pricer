@@ -14,6 +14,6 @@ public class ResourceRepository : ReadOnlyRepositoryBase<Resource, ResourceKey>,
 
     public Resource GetByValue(string value)
     {
-        return GetAll().SingleOrDefault(x => x.Value == value);
+        return GetAll().SingleOrDefault(x => x.Values.Any(y => y.Text == value));
     }
 }

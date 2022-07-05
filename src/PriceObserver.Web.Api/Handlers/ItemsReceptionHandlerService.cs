@@ -1,4 +1,5 @@
-﻿using PriceObserver.Data.InMemory.Repositories.Abstract;
+﻿using PriceObserver.Common.Services.Abstract;
+using PriceObserver.Data.InMemory.Repositories.Abstract;
 using PriceObserver.Data.Persistent.Repositories.Abstract;
 using PriceObserver.Web.Api.Services.Abstract;
 using PriceObserver.Web.Shared.Grpc;
@@ -12,21 +13,26 @@ public class ItemsReceptionHandlerService : IItemsReceptionHandlerService
     private readonly IShopRepository _shopRepository;
     private readonly IShopResponseModelBuilder _shopResponseModelBuilder;
     private readonly IItemResponseModelBuilder _itemResponseModelBuilder;
+    private readonly IUserLanguage _userLanguage;
 
     public ItemsReceptionHandlerService(
         IItemRepository itemRepository,
         IShopRepository shopRepository,
         IShopResponseModelBuilder shopResponseModelBuilder,
-        IItemResponseModelBuilder itemResponseModelBuilder)
+        IItemResponseModelBuilder itemResponseModelBuilder,
+        IUserLanguage userLanguage)
     {
         _itemRepository = itemRepository;
         _shopRepository = shopRepository;
         _shopResponseModelBuilder = shopResponseModelBuilder;
         _itemResponseModelBuilder = itemResponseModelBuilder;
+        _userLanguage = userLanguage;
     }
     
     public async Task<ItemsReceptionReply> Receive(int userId)
     {
+        await _userLanguage.SetForUser(userId);
+        
         var userItems = await _itemRepository.GetByUserId(userId);
         var shops = _shopRepository.GetAll();
             

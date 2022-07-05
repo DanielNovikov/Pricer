@@ -3,7 +3,7 @@ using PriceObserver.Data.InMemory.Models.Enums;
 
 namespace PriceObserver.Data.InMemory.Seed.Dialog.Initializers.HomeMenu.Commands;
 
-public class WriteToSupportCommand
+public class WriteToSupportCommandInitializer
 {
     public static Command Initialize(Menu menu, Menu menuToRedirect)
     {

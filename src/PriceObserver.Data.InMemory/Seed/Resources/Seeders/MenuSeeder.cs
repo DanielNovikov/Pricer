@@ -8,8 +8,19 @@ public class MenuSeeder
 {
     public static void Seed(IList<Resource> resources)
     {
-        resources.Add(new Resource(ResourceKey.Menu_Home, "Выберите что хотите сделать ⬇"));
-            
-        resources.Add(new Resource(ResourceKey.Menu_Support, "Опишите с чем вы хотели-бы обратиться 📝"));
+        resources.AddResource(
+            ResourceKey.Menu_Home,
+            "Виберіть що хочете зробити ⬇",
+            "Выберите что хотите сделать ⬇");
+
+        resources.AddResource(
+            ResourceKey.Menu_Support, 
+            "Опишіть з чим ви хотіли б звернутися 📝",
+            "Опишите с чем Вы хотели-бы обратиться 📝");
+        
+        resources.AddResource(
+            ResourceKey.Menu_SelectLanguage,
+            "Виберіть мову ⬇",
+            "Выберите язык ⬇");
     }
 }

@@ -37,6 +37,7 @@ public class CommandHandlerService : ICommandHandlerService
 
         if (menu.Parent is not null && command.Key == CommandKey.Back)
         {
+            _userActionLogger.LogRedirectBackToMenu(user, menu.Parent);
             var replyResult = await _userRedirectionService.Redirect(user, menu.Parent);
             return CommandHandlingServiceResult.Success(replyResult);
         }
@@ -50,6 +51,7 @@ public class CommandHandlerService : ICommandHandlerService
 
         if (command.MenuToRedirect is not null)
         {            
+            _userActionLogger.LogRedirectToMenu(user, command.MenuToRedirect);
             var replyResult = await _userRedirectionService.Redirect(user, command.MenuToRedirect);
             return CommandHandlingServiceResult.Success(replyResult);
         }

@@ -2,6 +2,7 @@
 
 public enum MenuKey
 {
-    Home,
-    Support
+    Home = 0,
+    Support = 1,
+    SelectLanguage = 2
 }

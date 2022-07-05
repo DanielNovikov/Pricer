@@ -9,21 +9,22 @@ public class CommandService : ICommandService
 {
     private readonly ICommandRepository _repository;
     private readonly IResourceRepository _resourceRepository;
+    private readonly IResourceService _resourceService;
 
     public CommandService(
         ICommandRepository repository, 
-        IResourceRepository resourceRepository)
+        IResourceRepository resourceRepository, 
+        IResourceService resourceService)
     {
         _repository = repository;
         _resourceRepository = resourceRepository;
+        _resourceService = resourceService;
     }
 
     public string GetTitle(CommandKey key)
     {
         var command = _repository.GetByKey(key);
-        var resource =  _resourceRepository.GetByKey(command.ResourceKey);
-
-        return resource.Value;
+        return _resourceService.Get(command.ResourceKey);
     }
 
     public Command GetByTitle(string title)

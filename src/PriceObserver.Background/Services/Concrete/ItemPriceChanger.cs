@@ -21,6 +21,7 @@ public class ItemPriceChanger : IItemPriceChanger
     private readonly IShopRepository _shopRepository;
     private readonly IPartnerUrlBuilder _partnerUrlBuilder;
     private readonly IUserRepository _userRepository;
+    private readonly IUserLanguage _userLanguage;
 
     private const double OneHundredPercent = 100.0;
     private const int MinimumDifferenceRatio = 5;
@@ -33,7 +34,8 @@ public class ItemPriceChanger : IItemPriceChanger
         IItemParseResultService parseResultService, 
         IShopRepository shopRepository, 
         IPartnerUrlBuilder partnerUrlBuilder, 
-        IUserRepository userRepository)
+        IUserRepository userRepository, 
+        IUserLanguage userLanguage)
     {
         _resourceService = resourceService;
         _itemService = itemService;
@@ -43,6 +45,7 @@ public class ItemPriceChanger : IItemPriceChanger
         _shopRepository = shopRepository;
         _partnerUrlBuilder = partnerUrlBuilder;
         _userRepository = userRepository;
+        _userLanguage = userLanguage;
     }
 
     public async Task Change(Item item, int oldPrice, int newPrice)
@@ -52,6 +55,9 @@ public class ItemPriceChanger : IItemPriceChanger
         if (newPrice == oldPrice)
             return;
 
+        var user = await _userRepository.GetById(item.UserId);
+        _userLanguage.Set(user.SelectedLanguageKey);
+        
         var priceDecreased = HasPriceDecreased(oldPrice, newPrice);
 
         if (priceDecreased)
@@ -66,7 +72,6 @@ public class ItemPriceChanger : IItemPriceChanger
                 ResourceKey.Background_ItemPriceWentDown,
                 item.Title, partnerUrl, newPrice, currencyTitle, difference, currencyTitle);
             
-            var user = await _userRepository.GetById(item.UserId);
             
             await _telegramBotService.SendMessage(user.ExternalId, priceChangedMessage);
         }

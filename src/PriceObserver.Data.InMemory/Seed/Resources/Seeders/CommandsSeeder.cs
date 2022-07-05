@@ -8,12 +8,15 @@ public class CommandsSeeder
 {
     public static void Seed(IList<Resource> resources)
     {
-        resources.Add(new Resource(ResourceKey.Command_Back, "Назад ◀"));
-        resources.Add(new Resource(ResourceKey.Command_Help, "Помощь 🆘"));
-        resources.Add(new Resource(ResourceKey.Command_Add, "Добавить ➕"));
-        resources.Add(new Resource(ResourceKey.Command_AllItems, "Мои товары ℹ"));
-        resources.Add(new Resource(ResourceKey.Command_Shops, "Магазины 🛒"));
-        resources.Add(new Resource(ResourceKey.Command_Website, "Сайт 🌍"));
-        resources.Add(new Resource(ResourceKey.Command_WriteToSupport, "Поддержка 👨🏻‍💻"));
+        resources.AddResource(ResourceKey.Command_Back, "Назад ◀", "Назад ◀");
+        resources.AddResource(ResourceKey.Command_Help, "Допомога 🆘", "Помощь 🆘");
+        resources.AddResource(ResourceKey.Command_Add, "Додати ➕", "Добавить ➕");
+        resources.AddResource(ResourceKey.Command_AllItems, "Мої товари ℹ", "Мои товары ℹ");
+        resources.AddResource(ResourceKey.Command_Shops, "Магазини 🛒", "Магазины 🛒");
+        resources.AddResource(ResourceKey.Command_Website, "Сайт 🌍", "Сайт 🌍");
+        resources.AddResource(ResourceKey.Command_WriteToSupport, "Підтримка 👨🏻‍💻", "Поддержка 👨🏻‍💻");
+        
+        resources.AddResource(ResourceKey.Command_SelectUkrainianLanguage, "Українська 🇺🇦", "Украинский 🇺🇦");
+        resources.AddResource(ResourceKey.Command_SelectRussianLanguage, "Російська 🇷🇺", "Российский 🇷🇺");
     }
 }

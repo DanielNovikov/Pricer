@@ -11,22 +11,17 @@ public class UserRedirectionService : IUserRedirectionService
 {
     private readonly IUserService _userService;
     private readonly IReplyWithKeyboardBuilder _replyWithKeyboardBuilder;
-    private readonly IUserActionLogger _userActionLogger;
 
     public UserRedirectionService(
         IUserService userService,
-        IReplyWithKeyboardBuilder replyWithKeyboardBuilder,
-        IUserActionLogger userActionLogger)
+        IReplyWithKeyboardBuilder replyWithKeyboardBuilder)
     {
         _userService = userService;
         _replyWithKeyboardBuilder = replyWithKeyboardBuilder;
-        _userActionLogger = userActionLogger;
     }
 
     public async Task<ReplyResult> Redirect(User user, Menu menuToRedirect)
     {
-        _userActionLogger.LogRedirectToMenu(user, menuToRedirect);
-        
         await _userService.RedirectToMenu(user, menuToRedirect);
 
         return _replyWithKeyboardBuilder.Build(menuToRedirect);
