@@ -20,11 +20,6 @@ public class ParserTests : TestBase
         "Кофта Drykorn Bradley чоловіча колір зелений гладка",
         "https://img2.ans-media.com/i/540x813/SS22-BLM06T_77X_F1.jpg@jpg?v=1638960396")]
     [InlineData(
-        "https://www.brocard.ua/ua/product/ochisniy-zasib-dlya-aksesuariv-dior-backstage-150-ml-140278",
-        ShopKey.Brocard,
-        "Очисний засіб для аксесуарів Dior Backstage",
-        "https://www.brocard.ua/media/catalog/product/cache/39a08324f24a95494ff2c6ca11ab9865/image/2288234191/dior-backstage.jpg")]
-    [InlineData(
         "https://www.ctrs.com.ua/electroscooters/detskiy-elektrosamokat-likebike-twist-blue-661359.html",
         ShopKey.Citrus,
         "Электросамокат Like.Bike Twist (Black) 250 Wh",

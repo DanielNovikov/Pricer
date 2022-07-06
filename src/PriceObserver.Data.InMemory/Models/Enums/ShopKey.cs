@@ -5,7 +5,6 @@ public enum ShopKey
     Intertop = 0,
     MdFashion = 1,
     Answear = 2,
-    Brocard = 3,
     Farfetch = 4,
     Makeup = 5,
     Adidas = 6,

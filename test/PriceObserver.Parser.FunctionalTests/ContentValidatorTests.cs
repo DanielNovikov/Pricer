@@ -9,7 +9,6 @@ namespace PriceObserver.Parser.FunctionalTests;
 public class ContentValidatorTests : TestBase
 {
     [Theory]
-    [InlineData("https://www.brocard.ua/ua/product/futlyar-giorgio-armani-luminous-silk-025728", ShopKey.Brocard)]
     [InlineData("https://comfy.ua/televizor-lg-43un81006lb.html", ShopKey.Comfy)]
     [InlineData("https://estore.ua/apple-watch-series-3-nike-42mm-gps-space-gray-aluminium-case-with-anthracite-black-nike-sport-band-mtf42", ShopKey.Estore)]
     //[InlineData("https://www.farfetch.com/ua/shopping/men/alexander-mcqueen-iphone-xs-item-14620644.aspx?storeid=9359", ShopKey.Farfetch)]
@@ -32,7 +31,6 @@ public class ContentValidatorTests : TestBase
     [Theory]
     [InlineData("https://intertop.ua/ua/", ShopKey.Adidas)]
     [InlineData("https://answear.ua/c/vin", ShopKey.Answear)]
-    [InlineData("https://www.brocard.ua/", ShopKey.Brocard)]
     [InlineData("https://www.ctrs.com.ua/", ShopKey.Citrus)]
     [InlineData("https://comfy.ua/", ShopKey.Comfy)]
     [InlineData("https://estore.ua/", ShopKey.Estore)]

@@ -46,14 +46,6 @@ public class ShopsSeeder
                 uahCurrency),
 
             new Shop(
-                "Brocard",
-                ShopKey.Brocard,
-                "www.brocard.ua",
-                "brocard.jpg",
-                true,
-                uahCurrency),
-
-            new Shop(
                 "FARFETCH",
                 ShopKey.Farfetch,
                 "www.farfetch.com",
