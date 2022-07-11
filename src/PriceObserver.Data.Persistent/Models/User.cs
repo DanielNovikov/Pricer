@@ -23,6 +23,8 @@ public class User : IAggregateRoot
     public MenuKey MenuKey { get; set; }
     
     public LanguageKey SelectedLanguageKey { get; set; }
+    
+    public bool GrowthPriceNotificationsEnabled { get; set; }
         
     public IList<UserToken> Tokens { get; set; }
 }

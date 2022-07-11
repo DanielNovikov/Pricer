@@ -9,6 +9,11 @@ public enum CommandKey
     Back = 4,
     WriteToSupport = 5,
     Help = 6,
-    SelectUkrainianLanguage = 7,
-    SelectRussianLanguage = 8
+    Settings = 7,
+    SelectLanguage = 8,
+    TogglePriceGrowing = 9,
+    SelectUkrainianLanguage = 10,
+    SelectRussianLanguage = 11,
+    EnablePriceGrowing = 12,
+    DisablePriceGrowing = 13
 }

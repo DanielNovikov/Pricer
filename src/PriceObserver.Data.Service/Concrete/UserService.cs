@@ -42,6 +42,12 @@ public class UserService : IUserService
         await _userRepository.Update(user);
     }
 
+    public async Task ChangePriceGrowthNotificationsEnabled(User user, bool enabled)
+    {
+        user.GrowthPriceNotificationsEnabled = enabled;
+        await _userRepository.Update(user);
+    }
+
     public async Task<User> Create(User user)
     {
         var defaultMenu = _menuRepository.GetDefault();

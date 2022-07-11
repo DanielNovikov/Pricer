@@ -12,6 +12,8 @@ public interface IUserService
     Task DeactivateUserById(long userId);
 
     Task ChangeSelectedLanguage(User user, LanguageKey languageKey);
+
+    Task ChangePriceGrowthNotificationsEnabled(User user, bool enabled);
         
     Task<User> Create(User user);
 }

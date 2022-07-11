@@ -36,6 +36,7 @@ public enum ResourceKey
     UserAction_GotAddItemInstruction = 115,
     UserAction_SelectedLanguage = 116,
     UserAction_RedirectedBackToMenu = 117,
+    UserAction_ToggledPriceGrowthNotifications = 118,
         
     Parser_PageNotFound = 200,
     Parser_NoItemInfoOnPage = 202,
@@ -44,10 +45,13 @@ public enum ResourceKey
     Background_ItemDeleted = 300,
     Background_ItemPriceWentDown = 301,
     Background_LogItemPriceChanged = 302,
+    Background_ItemPriceGrewUp = 303,
         
     Menu_Home = 400,
     Menu_Support = 401,
     Menu_SelectLanguage = 402,
+    Menu_Settings = 403,
+    Menu_TogglePriceGrowing = 404,
         
     Command_Back = 500,
     Command_Add = 501,
@@ -56,8 +60,13 @@ public enum ResourceKey
     Command_Website = 504,
     Command_WriteToSupport = 505,
     Command_Help = 506,
-    Command_SelectUkrainianLanguage = 507,
-    Command_SelectRussianLanguage = 508,
+    Command_Settings = 507,
+    Command_SelectLanguage = 508,
+    Command_TogglePriceGrowing = 509,
+    Command_SelectUkrainianLanguage = 510,
+    Command_SelectRussianLanguage = 511,
+    Command_EnablePriceGrowing = 512,
+    Command_DisablePriceGrowing = 513,
     
     Currency_UAH_Title = 600,
     Currency_EUR_Title = 601,

@@ -36,7 +36,7 @@ public class ErrorHandlingInterceptor : Interceptor
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "gRPC error occured");
+            _logger.LogError(ex, "gRPC error occured. Message: {0}", ex.Message);
             throw;
         }
     }

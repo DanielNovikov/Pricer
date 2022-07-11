@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using PriceObserver.Background.Services.Abstract;
 using PriceObserver.Common.Services.Abstract;
@@ -60,18 +61,21 @@ public class ItemPriceChanger : IItemPriceChanger
         
         var priceDecreased = HasPriceDecreased(oldPrice, newPrice);
 
-        if (priceDecreased)
+        if (priceDecreased ||
+            (newPrice > oldPrice && user.GrowthPriceNotificationsEnabled))
         {
-            var difference = oldPrice - newPrice;
+            var difference = Math.Abs(oldPrice - newPrice);
             var partnerUrl = _partnerUrlBuilder.Build(item.Url);
 
             var shop = _shopRepository.GetByKey(item.ShopKey);
             var currencyTitle = _resourceService.Get(shop.Currency.Title);
+
+            var resourceTemplate = priceDecreased
+                ? ResourceKey.Background_ItemPriceWentDown
+                : ResourceKey.Background_ItemPriceGrewUp;
             
             var priceChangedMessage = _resourceService.Get(
-                ResourceKey.Background_ItemPriceWentDown,
-                item.Title, partnerUrl, newPrice, currencyTitle, difference, currencyTitle);
-            
+                resourceTemplate, item.Title, partnerUrl, newPrice, currencyTitle, difference, currencyTitle);
             
             await _telegramBotService.SendMessage(user.ExternalId, priceChangedMessage);
         }

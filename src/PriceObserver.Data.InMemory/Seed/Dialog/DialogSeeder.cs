@@ -6,7 +6,11 @@ using PriceObserver.Data.InMemory.Seed.Dialog.Initializers.HomeMenu;
 using PriceObserver.Data.InMemory.Seed.Dialog.Initializers.HomeMenu.Commands;
 using PriceObserver.Data.InMemory.Seed.Dialog.Initializers.SelectLanguageMenu;
 using PriceObserver.Data.InMemory.Seed.Dialog.Initializers.SelectLanguageMenu.Commands;
+using PriceObserver.Data.InMemory.Seed.Dialog.Initializers.SettingsMenu;
+using PriceObserver.Data.InMemory.Seed.Dialog.Initializers.SettingsMenu.Commands;
 using PriceObserver.Data.InMemory.Seed.Dialog.Initializers.SupportMenu;
+using PriceObserver.Data.InMemory.Seed.Dialog.Initializers.TogglePriceGrowingMenu;
+using PriceObserver.Data.InMemory.Seed.Dialog.Initializers.TogglePriceGrowingMenu.Commands;
 
 namespace PriceObserver.Data.InMemory.Seed.Dialog;
 
@@ -14,15 +18,19 @@ public class DialogSeeder
 {
 	public static void Seed(IMemoryCache cache)
 	{
-		var selectLanguage = SelectLanguageMenuInitializer.Initialize();
+		var selectLanguageMenu = SelectLanguageMenuInitializer.Initialize();
 		var homeMenu = HomeMenuInitializer.Initialize();
 		var supportMenu = SupportMenuInitializer.Initialize(homeMenu);
+		var settingsMenu = SettingsMenuInitializer.Initialize(homeMenu);
+		var togglePriceGrowingMenu = TogglePriceGrowingMenuInitializer.Initialize(settingsMenu);
 
 		var menus = new List<Menu>
 		{
 			homeMenu,
 			supportMenu,
-			selectLanguage
+			selectLanguageMenu,
+			settingsMenu,
+			togglePriceGrowingMenu
 		};
 
 		cache.Set(CacheKey.Menus, menus);
@@ -33,10 +41,17 @@ public class DialogSeeder
 		var shopsCommand = ShopsCommandInitializer.Initialize(homeMenu);
 		var websiteCommand = WebsiteCommandInitializer.Initialize(homeMenu);
 		var writeToSupportCommand = WriteToSupportCommandInitializer.Initialize(homeMenu, supportMenu);
+		var settingsCommand = SettingsCommandInitializer.Initialize(homeMenu, settingsMenu);
 
-		var selectUkrainianLanguage = SelectUkrainianLanguageCommandInitializer.Initialize(selectLanguage);
+		var selectLanguageCommand = SelectLanguageCommandInitializer.Initialize(settingsMenu, selectLanguageMenu);
+		var selectUkrainianLanguageCommand = SelectUkrainianLanguageCommandInitializer.Initialize(selectLanguageMenu);
+		var selectRussianLanguageCommand = SelectRussianLanguageCommandInitializer.Initialize(selectLanguageMenu);
 
-		var selectRussianLanguage = SelectRussianLanguageCommandInitializer.Initialize(selectLanguage);
+		var togglePriceGrowingCommand =
+			TogglePriceGrowingCommandInitializer.Initialize(settingsMenu, togglePriceGrowingMenu);
+
+		var enablePriceGrowingCommand = EnablePriceGrowingCommand.Initialize(togglePriceGrowingMenu);
+		var disablePriceGrowingCommand = DisablePriceGrowingCommand.Initialize(togglePriceGrowingMenu);
 
 		var backCommand = BackCommandInitializer.Initialize();
 
@@ -48,8 +63,13 @@ public class DialogSeeder
 			shopsCommand,
 			websiteCommand,
 			writeToSupportCommand,
-			selectUkrainianLanguage,
-			selectRussianLanguage,
+			settingsCommand,
+			selectLanguageCommand,
+			togglePriceGrowingCommand,
+			selectUkrainianLanguageCommand,
+			selectRussianLanguageCommand,
+			enablePriceGrowingCommand,
+			disablePriceGrowingCommand,
 			backCommand
 		};
 

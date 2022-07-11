@@ -98,6 +98,11 @@ public class UserActionLogger : IUserActionLogger
         LogInformation(user, ResourceKey.UserAction_SelectedLanguage, languageKey.ToString());
     }
 
+    public void LogToggledPriceGrowthNotifications(User user, bool enabled)
+    {
+        LogInformation(user, ResourceKey.UserAction_ToggledPriceGrowthNotifications, enabled);
+    }
+
     private void LogInformation(User user, ResourceKey message, params object[] parameters)
     {
         Log(user, LogLevel.Information, message, parameters);

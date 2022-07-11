@@ -105,8 +105,8 @@ public class UserActionSeeder
         
         resources.AddResource(
 	        ResourceKey.UserAction_SelectedLanguage, 
-	        "Змінив мову на {0}",
-	        "Изменил язык на {0}");
+	        "🌐 Змінив мову на {0}",
+	        "🌐 Изменил язык на {0}");
         
         resources.AddResource(
 	        ResourceKey.UserAction_RedirectedBackToMenu,
@@ -114,5 +114,10 @@ public class UserActionSeeder
 Назва: {0}",
 	        @"➡ Перешёл назад в меню 
 Название: {0}");
+        
+        resources.AddResource(
+	        ResourceKey.UserAction_ToggledPriceGrowthNotifications,
+	        @"🔔 Встановив слідкування за зростанням цін на - {0}",
+	        @"🔔 Установил слежение за возрастанием цен на - {0}");
     }
 }
