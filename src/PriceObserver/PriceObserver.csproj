@@ -16,9 +16,9 @@
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="6.0.3" />
-        <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="6.0.1" />
-        <PackageReference Include="Serilog.AspNetCore" Version="4.1.0" />
+        <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="6.0.6" />
+        <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="6.0.6" />
+        <PackageReference Include="Serilog.AspNetCore" Version="5.0.0" />
         <PackageReference Include="Serilog.Sinks.Telegram" Version="0.2.1" />
     </ItemGroup>
 </Project>

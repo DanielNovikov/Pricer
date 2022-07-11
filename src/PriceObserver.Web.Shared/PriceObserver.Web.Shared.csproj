@@ -11,14 +11,14 @@
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="Google.Protobuf" Version="3.20.0" />
-        <PackageReference Include="Grpc" Version="2.45.0" />
-        <PackageReference Include="Grpc.Tools" Version="2.45.0">
+        <PackageReference Include="Google.Protobuf" Version="3.21.2" />
+        <PackageReference Include="Grpc" Version="2.46.3" />
+        <PackageReference Include="Grpc.Tools" Version="2.47.0">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
-        <PackageReference Include="Microsoft.JSInterop" Version="6.0.1" />
-        <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
+        <PackageReference Include="Microsoft.JSInterop" Version="6.0.6" />
+        <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     </ItemGroup>
 
     <ItemGroup>
