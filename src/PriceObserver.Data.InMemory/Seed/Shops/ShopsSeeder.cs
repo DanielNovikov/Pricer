@@ -148,7 +148,71 @@ public class ShopsSeeder
                 "telemart.ua",
                 "telemart.png",
                 false,
-                uahCurrency)
+                uahCurrency),
+            
+            new Shop(
+                "JYSK",
+                ShopKey.Jysk,
+                "jysk.ua",
+                "jysk.jpg",
+                false,
+                uahCurrency),
+            
+            new Shop(
+                "МегаМаркет", 
+                ShopKey.MegaMarket,
+                "megamarket.zakaz.ua",
+                "megamarket.webp",
+                true,
+                uahCurrency),
+            
+            new Shop(
+                "ЕКО Маркет", 
+                ShopKey.EkoMarket,
+                "eko.zakaz.ua",
+                "ecomarket.jpg",
+                true,
+                uahCurrency),
+            
+            new Shop(
+                "Varus", 
+                ShopKey.Varus,
+                "varus.zakaz.ua",
+                "varus.png",
+                true,
+                uahCurrency),
+            
+            new Shop(
+                "Ашан", 
+                ShopKey.Auchan,
+                "auchan.zakaz.ua",
+                "auchan.png",
+                true,
+                uahCurrency),
+            
+            new Shop(
+                "Столичний Ринок", 
+                ShopKey.StolychnyiRynok,
+                "stolychnyi.zakaz.ua",
+                "stolychnyi.png",
+                true,
+                uahCurrency),
+            
+            new Shop(
+                "Новус", 
+                ShopKey.Novus,
+                "novus.zakaz.ua",
+                "novus.jpg",
+                true,
+                uahCurrency),
+            
+            new Shop(
+                "UltraMarket", 
+                ShopKey.UltraMarket,
+                "ultramarket.zakaz.ua",
+                "ultramarket.png",
+                true,
+                uahCurrency),
         };
                 
         cache.Set(CacheKey.Shops, shops);

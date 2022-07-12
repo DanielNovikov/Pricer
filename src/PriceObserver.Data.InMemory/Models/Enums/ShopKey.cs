@@ -17,5 +17,13 @@ public enum ShopKey
     Comfy = 13,
     Athletics = 14,
     Watsons = 15,
-    Telemart = 16
+    Telemart = 16,
+    Jysk = 17,
+    MegaMarket = 18,
+    EkoMarket = 19,
+    Varus = 20,
+    Auchan = 21,
+    StolychnyiRynok = 22,
+    Novus = 23,
+    UltraMarket = 24
 }
