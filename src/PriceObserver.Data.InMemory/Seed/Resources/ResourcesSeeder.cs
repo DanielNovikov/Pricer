@@ -19,6 +19,7 @@ public class ResourcesSeeder
         CommandsSeeder.Seed(resources);
         CurrencySeeder.Seed(resources);
         ApiSeeder.Seed(resources);
+        ShopCategoriesSeeder.Seed(resources);
         
         cache.Set(CacheKey.Resources, resources);
     }

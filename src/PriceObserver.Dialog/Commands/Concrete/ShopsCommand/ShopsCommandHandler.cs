@@ -10,15 +10,15 @@ namespace PriceObserver.Dialog.Commands.Concrete.ShopsCommand;
 
 public class ShopsCommandHandler : ICommandHandler
 {
-    private readonly IShopsInfoMessageBuilder _shopsInfoMessageBuilder;
     private readonly IUserActionLogger _userActionLogger;
+    private readonly IShopCategoriesMessageBuilder _shopCategoriesMessageBuilder;
         
     public ShopsCommandHandler(
-        IShopsInfoMessageBuilder shopsInfoMessageBuilder,
-        IUserActionLogger userActionLogger)
+        IUserActionLogger userActionLogger,
+        IShopCategoriesMessageBuilder shopCategoriesMessageBuilder)
     {
-        _shopsInfoMessageBuilder = shopsInfoMessageBuilder;
         _userActionLogger = userActionLogger;
+        _shopCategoriesMessageBuilder = shopCategoriesMessageBuilder;
     }
 
     public CommandKey Type => CommandKey.Shops;
@@ -27,7 +27,7 @@ public class ShopsCommandHandler : ICommandHandler
     {
         _userActionLogger.LogShopsCalled(user);
             
-        var shopsInfoMessage = _shopsInfoMessageBuilder.Build();
+        var shopsInfoMessage = _shopCategoriesMessageBuilder.Build();
 
         var result = ReplyResult.Reply(shopsInfoMessage);
         var serviceResult = CommandHandlingServiceResult.Success(result);

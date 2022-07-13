@@ -76,5 +76,11 @@ public enum ResourceKey
     Api_NoHistory = 700,
     Api_GrewUpSign = 701,
     Api_WentDownSign = 702,
-    Api_UrlTemplate = 703
+    Api_UrlTemplate = 703,
+    
+    ShopCategory_Clothes = 800,
+    ShopCategory_Electronics = 801,
+    ShopCategory_Food = 802,
+    ShopCategory_Cosmetics = 803,
+    ShopCategory_Furniture = 804,
 }

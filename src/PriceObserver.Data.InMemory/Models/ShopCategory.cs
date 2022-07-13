@@ -1,7 +1,7 @@
 ﻿using PriceObserver.Data.InMemory.Models.Abstract;
 using PriceObserver.Data.InMemory.Models.Enums;
+using System.Collections.Generic;
 
 namespace PriceObserver.Data.InMemory.Models;
 
-public record Resource(ResourceKey Key, ResourceValue[] Values)
-    : IReadonlyEntity<ResourceKey>;
+public record ShopCategory(ResourceKey Name, string Sign, IList<Shop> Shops) : IReadonlyEntity;

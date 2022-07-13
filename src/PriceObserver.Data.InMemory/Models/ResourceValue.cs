@@ -3,5 +3,4 @@ using PriceObserver.Data.InMemory.Models.Enums;
 
 namespace PriceObserver.Data.InMemory.Models;
 
-public record Resource(ResourceKey Key, ResourceValue[] Values)
-    : IReadonlyEntity<ResourceKey>;
+public record ResourceValue(string Text, LanguageKey LanguageKey) : IReadonlyEntity;

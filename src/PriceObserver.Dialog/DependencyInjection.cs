@@ -24,7 +24,8 @@ public static class DependencyInjection
         return services
             .AddTransient<ICommandHandlerService, CommandHandlerService>()
             
-            .AddTransient<IShopsInfoMessageBuilder, ShopsInfoMessageBuilder>()
+            .AddTransient<IShopsMessageBuilder, ShopsMessageBuilder>()
+            .AddTransient<IShopCategoriesMessageBuilder, ShopCategoriesMessageBuilder>()
             .AddTransient<IUserActionLogger, UserActionLogger>()
             
             .AddTransient<IInputHandler, InputHandler>()

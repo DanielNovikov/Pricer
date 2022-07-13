@@ -3,6 +3,7 @@
 public enum CacheKey
 {
     Shops,
+    ShopCategories,
     Resources,
     Menus,
     Commands

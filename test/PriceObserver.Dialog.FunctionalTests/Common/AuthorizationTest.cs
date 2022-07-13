@@ -43,7 +43,7 @@ public class AuthorizationTest : IntegrationTestingBase
         UpdateServiceModel serviceModel,
         string result)
     {
-        var shopsInfoMessageBuilder = GetService<IShopsInfoMessageBuilder>();
+        var shopsInfoMessageBuilder = GetService<IShopsMessageBuilder>();
         var shopsInfoMessage = shopsInfoMessageBuilder.Build(5);
 
         var expectedUserRegisteredText = $@"Приветствую, {serviceModel.FirstName} {serviceModel.LastName}! 🎉

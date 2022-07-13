@@ -12,6 +12,7 @@ public static class DependencyInjection
             .AddScoped<IResourceRepository, ResourceRepository>()
             .AddScoped<ICommandRepository, CommandRepository>()
             .AddScoped<IMenuRepository, MenuRepository>()
-            .AddScoped<IShopRepository, ShopRepository>();
+            .AddScoped<IShopRepository, ShopRepository>()
+            .AddScoped<IShopCategoryRepository, ShopCategoryRepository>();
     }
 }

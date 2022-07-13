@@ -7,12 +7,12 @@ using PriceObserver.Dialog.Services.Abstract;
 
 namespace PriceObserver.Dialog.Services.Concrete;
 
-public class ShopsInfoMessageBuilder : IShopsInfoMessageBuilder
+public class ShopsMessageBuilder : IShopsMessageBuilder
 {
     private readonly IShopRepository _shopRepository;
     private readonly IResourceService _resourceService;
 
-    public ShopsInfoMessageBuilder(
+    public ShopsMessageBuilder(
         IShopRepository shopRepository,
         IResourceService resourceService)
     {
@@ -20,7 +20,7 @@ public class ShopsInfoMessageBuilder : IShopsInfoMessageBuilder
         _resourceService = resourceService;
     }
 
-    public string Build(int? limit = default)
+    public string Build(int limit)
     {
         var shops = _shopRepository.GetAll(limit);
         
@@ -29,8 +29,7 @@ public class ShopsInfoMessageBuilder : IShopsInfoMessageBuilder
             .Select(x => $"- {x.Name} ({x.Host})")
             .Aggregate((x, y) => $"{x}{Environment.NewLine}{y}");
 
-        if (limit.HasValue)
-            shopsInfo += $"{Environment.NewLine}- ...";
+        shopsInfo += $"{Environment.NewLine}- ...";
 
         return _resourceService.Get(ResourceKey.Dialog_AvailableShops, shopsInfo);
     }

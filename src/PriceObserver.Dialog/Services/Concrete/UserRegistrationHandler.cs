@@ -10,7 +10,7 @@ namespace PriceObserver.Dialog.Services.Concrete;
 public class UserRegistrationHandler : IUserRegistrationHandler
 {
     private readonly IMenuKeyboardBuilder _menuKeyboardBuilder;
-    private readonly IShopsInfoMessageBuilder _shopsInfoMessageBuilder;
+    private readonly IShopsMessageBuilder _shopsMessageBuilder;
     private readonly IUserActionLogger _userActionLogger;
     private readonly IResourceService _resourceService;
     private readonly IMenuService _menuService;
@@ -20,14 +20,14 @@ public class UserRegistrationHandler : IUserRegistrationHandler
     
     public UserRegistrationHandler(
         IMenuKeyboardBuilder menuKeyboardBuilder, 
-        IShopsInfoMessageBuilder shopsInfoMessageBuilder, 
+        IShopsMessageBuilder shopsMessageBuilder, 
         IUserActionLogger userActionLogger, 
         IResourceService resourceService, 
         IMenuService menuService,
         ICommandService commandService)
     {
         _menuKeyboardBuilder = menuKeyboardBuilder;
-        _shopsInfoMessageBuilder = shopsInfoMessageBuilder;
+        _shopsMessageBuilder = shopsMessageBuilder;
         _userActionLogger = userActionLogger;
         _resourceService = resourceService;
         _menuService = menuService;
@@ -39,7 +39,7 @@ public class UserRegistrationHandler : IUserRegistrationHandler
         _userActionLogger.LogUserRegistered(user);
 
         var helpCommandTitle = _commandService.GetTitle(CommandKey.Help);
-        var shopsInfoMessage = _shopsInfoMessageBuilder.Build(LimitCountOfShops);
+        var shopsInfoMessage = _shopsMessageBuilder.Build(LimitCountOfShops);
 
         var menuText = _menuService.GetTitle(user.MenuKey); 
                 
