@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Logging;
 using PriceObserver.Data.Service.Abstract;
 using PriceObserver.Telegram.Abstract;
+using System;
 using Telegram.Bot;
 using Telegram.Bot.Exceptions;
 using Telegram.Bot.Types.Enums;
@@ -27,27 +28,36 @@ public class TelegramBotService : ITelegramBotService
         
     public async Task SendMessage(long userId, string message)
     {
-        await Send(userId, message);
+        await Send(userId, message,
+            async () => await _telegramBot.Client.SendTextMessageAsync(userId, message, Formatting));
     }
 
     public async Task SendMessageWithKeyboard(long userId, string message, ReplyKeyboardMarkup keyboard)
     {
-        await Send(userId, message, keyboard);
+        await Send(userId, message,
+            async () => await _telegramBot.Client.SendTextMessageAsync(userId, message, Formatting, replyMarkup: keyboard));
     }
 
+    public async Task SendVideo(long userId, string videoUrl, string message = default)
+    {
+        await Send(userId, message, 
+            async () => await _telegramBot.Client.SendVideoAsync(userId, videoUrl, caption: message, parseMode: Formatting));
+    }
+
+    private const ParseMode Formatting = ParseMode.Html;
+    
     private const int UserDeactivatedErrorCode = 403;
 
     private int _retryAttempt;
     private const int RetrySendMessageCount = 3;
     private const int RetrySendMessagePause = 1000;
     private const int MaximumMessageLengthInError = 120;
-        
-    private async Task Send(long userId, string message, IReplyMarkup keyboard = default)
+    
+    private async Task Send(long userId, string message, Func<Task> action)
     {
         try
         {
-            await _telegramBot.GetClient()
-                .SendTextMessageAsync(userId, message, ParseMode.Html, replyMarkup: keyboard);
+            await action();
         }
         catch (ApiRequestException ex)
         {
@@ -68,7 +78,7 @@ public class TelegramBotService : ITelegramBotService
                 _retryAttempt++;
                 await Task.Delay(RetrySendMessagePause);
                 
-                await Send(userId, message, keyboard);
+                await Send(userId, message, action);
                     
                 return;
             }

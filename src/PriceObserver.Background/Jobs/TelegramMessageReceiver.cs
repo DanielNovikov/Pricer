@@ -31,7 +31,7 @@ public class TelegramMessageReceiver : IHostedService
     {
         try
         {
-            var client = _telegramBot.GetClient();
+            var client = _telegramBot.Client;
 
             var receiverOptions = new ReceiverOptions
             {
@@ -49,7 +49,7 @@ public class TelegramMessageReceiver : IHostedService
             using var scope = _serviceProvider.CreateScope();
             var logger = scope.GetService<ILogger<TelegramMessageReceiver>>();
             
-            logger.LogError("Creation of telegram bot failed with exception of type {1}", ex.GetType().FullName);
+            logger.LogError("Creation of telegram bot failed with exception of type {0}", ex.GetType().FullName);
         }
 
         return Task.CompletedTask;
@@ -73,10 +73,13 @@ public class TelegramMessageReceiver : IHostedService
         using var scope = _serviceProvider.CreateScope();
         var logger = scope.GetService<ILogger<TelegramMessageReceiver>>();
 
-        logger.LogError($@"Receive error
-Exception type: {exception.GetType().FullName}
-Message: {exception.Message}
-Inner exception: {exception.InnerException}");
+        logger.LogError(@"Receive error
+Exception type: {0}
+Message: {1}
+Inner exception: {2}",
+            exception.GetType().FullName,
+            exception.Message,
+            exception.InnerException);
 
         return Task.CompletedTask;
     }

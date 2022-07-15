@@ -1,4 +1,5 @@
-﻿using PriceObserver.Data.Persistent.Seed.AppNotifications.Initializers;
+﻿using PriceObserver.Data.InMemory.Models.Enums;
+using PriceObserver.Data.Persistent.Seed.AppNotifications.Initializers;
 
 namespace PriceObserver.Data.Persistent.Seed.AppNotifications;
 
@@ -8,10 +9,7 @@ public class AppNotificationsSeeder
     {
         AppNotificationInitializer.Initialize(
             context,
-            @"📋 Добавлены новые магазины электроники
-- Rozetka (rozetka.com.ua)
-- Citrus (www.ctrs.com.ua)
-- Stylus (stylus.ua)
-- eStore (estore.ua)");
+            ResourceKey.AppNotification_HowToAddItem,
+            "https://pricer.ink/videos/how-to-add-item.mp4");
     }
 }

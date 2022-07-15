@@ -11,8 +11,13 @@ public class AppNotificationConfiguration : IEntityTypeConfiguration<AppNotifica
         builder.HasKey(x => x.Id);
 
         builder
-            .Property(x => x.Text)
+            .Property(x => x.Content)
+            .HasConversion<int>()
             .IsRequired();
+
+        builder
+            .Property(x => x.VideoUrl)
+            .IsRequired(false);
 
         builder
             .Property(x => x.Executed)

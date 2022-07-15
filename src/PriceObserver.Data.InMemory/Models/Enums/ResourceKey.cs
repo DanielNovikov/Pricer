@@ -83,4 +83,6 @@ public enum ResourceKey
     ShopCategory_Food = 802,
     ShopCategory_Cosmetics = 803,
     ShopCategory_Furniture = 804,
+    
+    AppNotification_HowToAddItem = 900
 }

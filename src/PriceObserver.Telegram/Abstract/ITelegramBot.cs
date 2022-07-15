@@ -4,5 +4,5 @@ namespace PriceObserver.Telegram.Abstract;
 
 public interface ITelegramBot
 {
-    ITelegramBotClient GetClient();
+    ITelegramBotClient Client { get; }
 }
