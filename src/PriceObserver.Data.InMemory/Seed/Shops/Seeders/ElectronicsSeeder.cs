@@ -69,6 +69,14 @@ public class ElectronicsSeeder
                 "telemart.ua",
                 "telemart.png",
                 false,
+                currencies.First(x => x.Key == CurrencyKey.UAH)),
+            
+            new Shop(
+                "Алло",
+                ShopKey.Allo,
+                "allo.ua",
+                "allo.png",
+                false,
                 currencies.First(x => x.Key == CurrencyKey.UAH))
 		};
 

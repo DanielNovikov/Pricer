@@ -15,6 +15,11 @@ public class ParserTests : TestBase
         "Брюки Ювентус",
         "https://assetmanagerpim-res.cloudinary.com/images/w_600/q_90/875968816fb7461d9d46acf5010f343a_9366/GR2931_21_model.WebP")]
     [InlineData(
+        "https://allo.ua/ru/products/mobile/xiaomi-redmi-note-11-4-128-gr-gray-2201117ty.html",
+        ShopKey.Allo,
+        "Xiaomi Redmi Note 11 4/128 Gr. Gray(2201117TY)",
+        "https://i.allo.ua/media/catalog/product/cache/1/image/468x468/602f0fa2c1f0d1ba5e241f914e856ff9/k/7/k724ef_1gfghj_2_1_1.jpg")]
+    [InlineData(
         "https://auchan.zakaz.ua/uk/products/auchan02203766000000/file-nasha-riaba-ukrayina/",
         ShopKey.Auchan,
         "Філе стегна курки Наша ряба курчати-бройлера охолоджене (упаковка PET ~ 1,1кг)",

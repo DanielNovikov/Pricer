@@ -31,7 +31,7 @@ public class CosmeticsSeeder
                 currencies.First(x => x.Key == CurrencyKey.UAH))
         };
 
-        var cosmeticsShopCategory = new ShopCategory(ResourceKey.ShopCategory_Cosmetics, "👩🏼", cosmeticsShops);
+        var cosmeticsShopCategory = new ShopCategory(ResourceKey.ShopCategory_Cosmetics, "💄", cosmeticsShops);
         
         shopCategories.Add(cosmeticsShopCategory);
         shops.AddRange(cosmeticsShops);

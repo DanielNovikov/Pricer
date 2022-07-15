@@ -25,5 +25,6 @@ public enum ShopKey
     Auchan = 21,
     StolychnyiRynok = 22,
     Novus = 23,
-    UltraMarket = 24
+    UltraMarket = 24,
+    Allo = 25
 }

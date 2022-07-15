@@ -9,6 +9,7 @@ namespace PriceObserver.Parser.FunctionalTests;
 public class ContentValidatorTests : TestBase
 {
     [Theory]
+    [InlineData("https://allo.ua/ru/televizory/50-xiaomi-mi-tv-uhd-4s-50-international-silver-u1_2.html", ShopKey.Allo)]
     [InlineData("https://auchan.zakaz.ua/uk/products/04823061323897/iogurt-chudo-270g-ukrayina/", ShopKey.Auchan)]
     [InlineData("https://comfy.ua/televizor-lg-43un81006lb.html", ShopKey.Comfy)]
     [InlineData("https://eko.zakaz.ua/uk/products/04820045704536/sir-molokiia-350g-ukrayina/", ShopKey.EkoMarket)]
@@ -36,7 +37,8 @@ public class ContentValidatorTests : TestBase
     }
 
     [Theory]
-    [InlineData("https://intertop.ua/ua/", ShopKey.Adidas)]
+    [InlineData("https://www.adidas.ua/", ShopKey.Adidas)]
+    [InlineData("https://allo.ua/", ShopKey.Allo)]
     [InlineData("https://answear.ua/c/vin", ShopKey.Answear)]
     [InlineData("https://www.ctrs.com.ua/", ShopKey.Citrus)]
     [InlineData("https://comfy.ua/", ShopKey.Comfy)]
