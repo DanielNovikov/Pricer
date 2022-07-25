@@ -45,4 +45,11 @@ public class AlloParser : IParserProvider
         
 		return new Uri(imageSource);
 	}
+
+	public bool IsAvailable(IHtmlDocument document)
+	{
+		const string selector = "button[class*=buy-button--out-stock]";
+
+		return document.QuerySelector<IHtmlButtonElement>(selector) is null;
+	}
 }

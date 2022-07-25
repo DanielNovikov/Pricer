@@ -20,10 +20,11 @@ public class ParserProviderService : IParserProviderService
     {
         var parserProvider = _parserProviders.Single(x => x.ProviderKey == providerKey);
 
-        var price = parserProvider.GetPrice(document);
+        var isAvailable = parserProvider.IsAvailable(document);
+        var price = isAvailable ? parserProvider.GetPrice(document) : default;
         var title = parserProvider.GetTitle(document);
         var imageUrl = parserProvider.GetImageUrl(document);
         
-        return new ParsedItem(providerKey, price, title, imageUrl);
+        return new ParsedItem(providerKey, price, title, imageUrl, isAvailable);
     }
 }

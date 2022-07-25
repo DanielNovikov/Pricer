@@ -6,8 +6,6 @@ namespace PriceObserver.Parser.Abstract;
 public interface IContentValidator
 {
     ShopKey ProviderKey { get; }
-
-    bool IsAvailable(IHtmlDocument document);
     
     bool HasItemInfo(IHtmlDocument document);
 }

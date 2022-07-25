@@ -7,14 +7,13 @@ using Xunit;
 
 namespace PriceObserver.Parser.UnitTests.ContentValidatorServiceTests;
 
-public class Validate_WhenItemIsAvailableAndHasInfo_ShouldReturnSuccess : Context
+public class Validate_WhenPageHasItemInfo_ShouldReturnSuccess : Context
 {
-    public Validate_WhenItemIsAvailableAndHasInfo_ShouldReturnSuccess()
+    public Validate_WhenPageHasItemInfo_ShouldReturnSuccess()
     {
         var contentValidator = Mock.Of<IContentValidator>(
             x => 
                 x.ProviderKey == ProviderKey && 
-                x.IsAvailable(HtmlDocument) == true &&
                 x.HasItemInfo(HtmlDocument) == true);
 
         var contentValidators = new List<IContentValidator>

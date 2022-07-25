@@ -8,13 +8,6 @@ namespace PriceObserver.Parser.Concrete.Providers.Estore;
 public class EstoreContentValidator : IContentValidator
 {
     public ShopKey ProviderKey => ShopKey.Estore;
-    
-    public bool IsAvailable(IHtmlDocument document)
-    {
-        const string selector = "p.availability.out-of-stock";
-        
-        return document.QuerySelector<IHtmlParagraphElement>(selector) is null;
-    }
 
     public bool HasItemInfo(IHtmlDocument document)
     {

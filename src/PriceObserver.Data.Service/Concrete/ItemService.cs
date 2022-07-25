@@ -36,7 +36,14 @@ public class ItemService : IItemService
         await _repository.Update(item);
     }
 
-    public async Task<Item> Create(int price, string title, Uri url, Uri imageUrl, int userId, ShopKey shopKey)
+    public async Task UpdateAvailability(Item item, bool isAvailable)
+    {
+        item.IsAvailable = isAvailable;
+        await _repository.Update(item);
+    }
+
+    public async Task<Item> Create(
+        int price, string title, Uri url, Uri imageUrl, int userId, ShopKey shopKey, bool isAvailable)
     {
         var item = new Item
         {
@@ -45,7 +52,8 @@ public class ItemService : IItemService
             Title = title,
             ImageUrl = imageUrl,
             UserId = userId,
-            ShopKey = shopKey
+            ShopKey = shopKey,
+            IsAvailable = isAvailable
         };
 
         await _repository.Add(item);

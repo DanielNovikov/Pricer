@@ -9,17 +9,13 @@ public class MdFashionContentValidator : IContentValidator
 {
     public ShopKey ProviderKey => ShopKey.MdFashion;
 
-    public bool IsAvailable(IHtmlDocument document)
-    {
-        const string selector = "div[data-status=not-available]";
-
-        return document.QuerySelector<IHtmlDivElement>(selector) is null;
-    }
-
     public bool HasItemInfo(IHtmlDocument document)
     {
-        const string selector = "span[class~=price_current]";
+        const string priceElementSelector = "span[class~=price_current]";
+        const string imageElementSelector = "div[id=product0] img";
         
-        return document.QuerySelector<IHtmlSpanElement>(selector) is not null;
+        return
+            document.QuerySelector<IHtmlSpanElement>(priceElementSelector) is not null ||
+            document.QuerySelector<IHtmlImageElement>(imageElementSelector) is not null;
     }
 }

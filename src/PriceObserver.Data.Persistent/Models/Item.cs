@@ -19,6 +19,8 @@ public class Item : IAggregateRoot
         
     public ShopKey ShopKey { get; set; }
         
+    public bool IsAvailable { get; set; }
+    
     public int UserId { get; set; }
     public User User { get; set; }
         

@@ -20,10 +20,10 @@ public class ParserTests : TestBase
         "Xiaomi Redmi Note 11 4/128 Gr. Gray(2201117TY)",
         "https://i.allo.ua/media/catalog/product/cache/1/image/468x468/602f0fa2c1f0d1ba5e241f914e856ff9/k/7/k724ef_1gfghj_2_1_1.jpg")]
     [InlineData(
-        "https://auchan.zakaz.ua/uk/products/auchan02203766000000/file-nasha-riaba-ukrayina/",
+        "https://ultramarket.zakaz.ua/uk/products/08423352400045/napii-natru-1000ml/",
         ShopKey.Auchan,
-        "Філе стегна курки Наша ряба курчати-бройлера охолоджене (упаковка PET ~ 1,1кг)",
-        "https://img2.zakaz.ua/ryaba.1613125334.ad72436478c_2021-02-12_Tatyana_L/ryaba.1613125334.SNCPSG10.obj.0.1.jpg.oe.jpg.pf.jpg.350nowm.jpg.350x.jpg")]
+        "Напій рисово-кокосовий Natrue Rice+Coconut без додавання цукру 2% 1л",
+        "https://img2.zakaz.ua/m.1607611321.ad72436478c_2020-12-10_Svetlana/m.1607611321.SNCPSG10.obj.0.1.jpg.oe.jpg.pf.jpg.350nowm.jpg.350x.jpg")]
     [InlineData(
         "https://athletics.kiev.ua/catalogitem/krossovki_mugskie_nike_tanjun812654n06001/",
         ShopKey.Athletics,
@@ -100,10 +100,10 @@ public class ParserTests : TestBase
         "Сьомга Norven філе-шматок слабосолена 180г",
         "https://img3.zakaz.ua/src.1644508583.ad72436478c_2022-02-10_Tatiana/src.1644508583.SNCPSG10.obj.0.1.jpg.oe.jpg.pf.jpg.350nowm.jpg.350x.jpg")]
     [InlineData(
-        "https://rozetka.com.ua/philips_75pus8506_12/p306981453/",
+        "https://rozetka.com.ua/310759363/p310759363/",
         ShopKey.Rozetka,
-        "Телевизор Philips 75PUS8506/12",
-        "https://content2.rozetka.com.ua/goods/images/big/190084962.jpg")]
+        "Робот - пылесос ECOVACS DEEBOT OZMO N8 PLUS (DLN26)",
+        "https://content.rozetka.com.ua/goods/images/big/195049341.jpg")]
     [InlineData(
         "https://stolychnyi.zakaz.ua/uk/products/04820226160991/iogurt-danon-260g-ukrayina/",
         ShopKey.StolychnyiRynok,
@@ -134,7 +134,7 @@ public class ParserTests : TestBase
         ShopKey.Watsons,
         "Шкарпетки жіночі Брестские Active розмір 25 Світло-жовті 1 шт",
         "https://www.watsons.ua/medias/sys_master/front-prd/front-prd/8862472241182/-Active-25-1-4810089319407.jpg")]
-    public async Task WhenItemIsAvailableAndHasInfo_ShouldParsePage(
+    public async Task WhenPageHasItemInfoAndItemIsInStock_ShouldParsePageAndSetAvailabilityCorrectly(
         string url,
         ShopKey shopKey,
         string expectedTitle,
@@ -149,5 +149,38 @@ public class ParserTests : TestBase
         result.Result.Price.Should().NotBe(0);
         result.Result.Title.Should().Be(expectedTitle);
         result.Result.ImageUrl.ToString().Should().Be(expectedImageUrl);
+        result.Result.IsAvailable.Should().BeTrue();
+    }
+    
+    [Theory]
+    [InlineData("https://allo.ua/ru/televizory/50-xiaomi-mi-tv-uhd-4s-50-international-silver-u1_2.html", ShopKey.Allo)]
+    [InlineData("https://auchan.zakaz.ua/uk/products/04823061323897/iogurt-chudo-270g-ukrayina/", ShopKey.Auchan)]
+    [InlineData("https://comfy.ua/televizor-lg-43un81006lb.html", ShopKey.Comfy)]
+    [InlineData("https://eko.zakaz.ua/uk/products/04820045704536/sir-molokiia-350g-ukrayina/", ShopKey.EkoMarket)]
+    [InlineData("https://estore.ua/apple-watch-series-3-nike-42mm-gps-space-gray-aluminium-case-with-anthracite-black-nike-sport-band-mtf42", ShopKey.Estore)]
+    //[InlineData("https://www.farfetch.com/ua/shopping/men/alexander-mcqueen-iphone-xs-item-14620644.aspx?storeid=9359", ShopKey.Farfetch)]
+    [InlineData("https://intertop.ua/ua/product/sneakers-clarks-4965745?tr_pr=analog", ShopKey.Intertop)]
+    [InlineData("https://md-fashion.com.ua/store/zenskie-golubye-dzinsy-kiley-replay-wa434r000108-729-goluboj", ShopKey.MdFashion)]
+    [InlineData("https://megamarket.zakaz.ua/uk/products/04820178810401/vershki-organik-milk-180g/", ShopKey.MegaMarket)]
+    [InlineData("https://www.moyo.ua/televizor-lg-75sm9000pla/448309.html", ShopKey.Moyo)]
+    [InlineData("https://novus.zakaz.ua/uk/products/novus02885537000000/sukhofrukti/", ShopKey.Novus)]
+    [InlineData("https://rozetka.com.ua/lg_75nano756pa/p292219333/", ShopKey.Rozetka)]
+    //[InlineData("https://stylus.ua/lg-55nano77-p803303c526.html", ShopKey.Stylus)]
+    [InlineData("https://stolychnyi.zakaz.ua/uk/products/stolychnyi02010000295007/iogurt-500ml/", ShopKey.StolychnyiRynok)]
+    [InlineData("https://telemart.ua/products/lg-315-ultrafine-32un650-w-blacksilver/", ShopKey.Telemart)]
+    [InlineData("https://ultramarket.zakaz.ua/uk/products/08410285100050/napii-santal-1000ml/", ShopKey.UltraMarket)]
+    [InlineData("https://varus.zakaz.ua/uk/products/04823065726878/iogurt-fanni-280g/", ShopKey.Varus)]
+    public async Task WhenPageHasItemInfoButItemIsOutOfStock_ShouldParsePageAndSetAvailabilityCorrectly(
+        string url,
+        ShopKey shopKey)
+    {
+        var uri = new Uri(url);
+
+        var result = await Parser.Parse(uri, shopKey);
+
+        result.IsSuccess.Should().BeTrue();
+        result.Result.ShopKey.Should().Be(shopKey);
+        result.Result.Price.Should().Be(0);
+        result.Result.IsAvailable.Should().BeFalse();
     }
 }

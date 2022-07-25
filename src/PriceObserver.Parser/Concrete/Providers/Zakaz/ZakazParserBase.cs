@@ -45,4 +45,11 @@ public abstract class ZakazParserBase : IParserProvider
         
 		return new Uri(imageSource);
 	}
+
+	public virtual bool IsAvailable(IHtmlDocument document)
+	{
+		const string selector = "div[class*=BigProductCardTopInfo__addToCartButtons] span[data-testid=icon_basket]";
+
+		return document.QuerySelector<IHtmlSpanElement>(selector) is not null;
+	}
 }

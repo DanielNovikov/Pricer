@@ -46,4 +46,11 @@ public class StylusParser : IParserProvider
         
         return new Uri(imageSource);
     }
+    
+    public bool IsAvailable(IHtmlDocument document)
+    {
+        const string selector = "div.availability.not-available";
+        
+        return document.QuerySelector<IHtmlDivElement>(selector) is null;
+    }
 }

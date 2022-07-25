@@ -9,11 +9,6 @@ public class AnswearContentValidator : IContentValidator
 {
     public ShopKey ProviderKey => ShopKey.Answear;
 
-    public bool IsAvailable(IHtmlDocument document)
-    {
-        return true;
-    }
-
     public bool HasItemInfo(IHtmlDocument document)
     {
         const string discountPriceSelector = "div[class^=ProductCard] div[class^=Price__salePrice]";

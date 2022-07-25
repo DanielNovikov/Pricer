@@ -9,13 +9,6 @@ public class RozetkaContentValidator : IContentValidator
 {
     public ShopKey ProviderKey => ShopKey.Rozetka;
 
-    public bool IsAvailable(IHtmlDocument document)
-    {
-        const string selector = ".status-label.status-label--gray.ng-star-inserted";
-
-        return document.QuerySelector<IHtmlParagraphElement>(selector) is null;
-    }
-
     public bool HasItemInfo(IHtmlDocument document)
     {
         const string selector = ".product-about__block .product-prices__big";

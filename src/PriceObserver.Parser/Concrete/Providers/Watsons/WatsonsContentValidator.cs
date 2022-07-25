@@ -8,11 +8,6 @@ namespace PriceObserver.Parser.Concrete.Providers.Watsons;
 public class WatsonsContentValidator : IContentValidator
 {
     public ShopKey ProviderKey => ShopKey.Watsons;
-    
-    public bool IsAvailable(IHtmlDocument document)
-    {
-        return true;
-    }
 
     public bool HasItemInfo(IHtmlDocument document)
     {

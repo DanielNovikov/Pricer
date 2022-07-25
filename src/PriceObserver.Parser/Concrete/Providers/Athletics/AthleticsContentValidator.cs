@@ -8,11 +8,6 @@ namespace PriceObserver.Parser.Concrete.Providers.Athletics;
 public class AthleticsContentValidator : IContentValidator
 {
     public ShopKey ProviderKey => ShopKey.Athletics;
-    
-    public bool IsAvailable(IHtmlDocument document)
-    {
-        return true;
-    }
 
     public bool HasItemInfo(IHtmlDocument document)
     {

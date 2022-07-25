@@ -21,7 +21,6 @@ public class WorkflowTests
         await TryAddItemWithNoInfoTest.Run();
         await TryAddItemWithNotAvailableShopTest.Run();
         await TryAddNotExistingItem.Run();
-        await TryAddOutOfStockItemTest.Run();
 
         await GetAllItemsButThereAreNoItemsTest.Run();
         await AddItemTest.Run();

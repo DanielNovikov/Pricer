@@ -46,10 +46,14 @@ public class UserItemParser : IUserItemParser
             url,
             parsedItem.ImageUrl,
             user.Id,
-            shop);
+            shop, 
+            parsedItem.IsAvailable);
         
-        _userActionLogger.LogItemAdded(user, item);
-
+        if (item.IsAvailable)
+            _userActionLogger.LogItemAdded(user, item);
+        else 
+            _userActionLogger.LogNotAvailableItemAdded(user, item);
+        
         var successMessage = _resourceService.Get(ResourceKey.Dialog_ItemAdded);
         return UserItemParseServiceResult.Success(successMessage);
     }

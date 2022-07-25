@@ -8,18 +8,14 @@ namespace PriceObserver.Parser.Concrete.Providers.Telemart;
 public class TelemartContentValidator : IContentValidator
 {
     public ShopKey ProviderKey => ShopKey.Telemart;
-    
-    public bool IsAvailable(IHtmlDocument document)
-    {
-        const string selector = ".b-product-mpr-info .b-i-product-available-gray";
-
-        return document.QuerySelector<IHtmlDivElement>(selector) is null;
-    }
 
     public bool HasItemInfo(IHtmlDocument document)
     {
-        const string selector = "meta[itemprop=price]";
+        const string priceElementSelector = "meta[itemprop=price]";
+        const string imageElementSelector = "meta[property='og:image']";
 
-        return document.QuerySelector<IHtmlMetaElement>(selector) is not null;
+        return
+            document.QuerySelector<IHtmlMetaElement>(priceElementSelector) is not null ||
+            document.QuerySelector<IHtmlMetaElement>(imageElementSelector) is not null;
     }
 }

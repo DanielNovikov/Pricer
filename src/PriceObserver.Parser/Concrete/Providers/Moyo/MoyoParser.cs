@@ -45,4 +45,11 @@ public class MoyoParser : IParserProvider
         
         return new Uri(imageSource);
     }
+    
+    public bool IsAvailable(IHtmlDocument document)
+    {
+        const string selector = "div.noinstock-status";
+
+        return document.QuerySelector<IHtmlDivElement>(selector) is null;
+    }
 }

@@ -45,4 +45,11 @@ public class EstoreParser : IParserProvider
         
         return new Uri(imageSource);
     }
+    
+    public bool IsAvailable(IHtmlDocument document)
+    {
+        const string selector = "p.availability.out-of-stock";
+        
+        return document.QuerySelector<IHtmlParagraphElement>(selector) is null;
+    }
 }

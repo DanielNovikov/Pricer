@@ -12,9 +12,12 @@ public class ComfyParser : IParserProvider
     
     public int GetPrice(IHtmlDocument document)
     {
-        const string selector = "meta[name='product:sale_price:amount']";
+        const string discountPriceSelector = "meta[name='product:sale_price:amount']";
+        const string fullPriceSelector = "meta[name='product:price:amount']";
         
-        var priceElement = document.QuerySelector<IHtmlMetaElement>(selector) ?? 
+        var priceElement = 
+            document.QuerySelector<IHtmlMetaElement>(discountPriceSelector) ??
+            document.QuerySelector<IHtmlMetaElement>(fullPriceSelector) ?? 
             throw new ArgumentNullException($"{nameof(ComfyParser)}:{nameof(GetPrice)}:Element");
         
         var price = priceElement.Content ??
@@ -44,5 +47,12 @@ public class ComfyParser : IParserProvider
             throw new ArgumentNullException($"{nameof(ComfyParser)}:{nameof(GetImageUrl)}:Element:Content"); 
         
         return new Uri(imageSource);
+    }
+    
+    public bool IsAvailable(IHtmlDocument document)
+    {
+        const string selector = "div.price__out-of-stock";
+
+        return document.QuerySelector<IHtmlDivElement>(selector) is null;
     }
 }

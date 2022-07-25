@@ -5,5 +5,5 @@ namespace PriceObserver.Background.Services.Abstract;
 
 public interface IItemPriceChanger
 {
-    Task Change(Item item, int oldPrice, int newPrice);
+    Task Change(Item item, int newPrice);
 }

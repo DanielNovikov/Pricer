@@ -19,9 +19,6 @@ public class ContentValidatorService : IContentValidatorService
     public ContentValidatorResult Validate(ShopKey providerKey, IHtmlDocument document)
     {
         var contentValidator = _contentValidators.Single(x => x.ProviderKey == providerKey);
-
-        if (!contentValidator.IsAvailable(document))
-            return ContentValidatorResult.OutOfStock(); 
         
         if (!contentValidator.HasItemInfo(document))
             return ContentValidatorResult.NoItemInfo();

@@ -8,18 +8,14 @@ namespace PriceObserver.Parser.Concrete.Providers.Comfy;
 public class ComfyContentValidator : IContentValidator
 {
     public ShopKey ProviderKey => ShopKey.Comfy;
-    
-    public bool IsAvailable(IHtmlDocument document)
-    {
-        const string selector = "div.price__out-of-stock";
-
-        return document.QuerySelector<IHtmlDivElement>(selector) is null;
-    }
 
     public bool HasItemInfo(IHtmlDocument document)
     {
-        const string selector = "meta[name='product:sale_price:amount']";
+        const string discountPriceSelector = "meta[name='product:sale_price:amount']";
+        const string fullPriceSelector = "meta[name='product:price:amount']";
 
-        return document.QuerySelector<IHtmlMetaElement>(selector) is not null;
+        return 
+            document.QuerySelector<IHtmlMetaElement>(discountPriceSelector) is not null ||
+            document.QuerySelector<IHtmlMetaElement>(fullPriceSelector) is not null;
     }
 }

@@ -9,11 +9,6 @@ public class JyskContentValidator : IContentValidator
 {
 	public ShopKey ProviderKey => ShopKey.Jysk;
 
-	public bool IsAvailable(IHtmlDocument document)
-	{
-		return true;
-	}
-
 	public bool HasItemInfo(IHtmlDocument document)
 	{	
 		const string selector = "span[class=ssr-product-price__value]";

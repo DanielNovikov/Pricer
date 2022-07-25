@@ -8,13 +8,6 @@ namespace PriceObserver.Parser.Concrete.Providers.Moyo;
 public class MoyoContentValidator : IContentValidator
 {
     public ShopKey ProviderKey => ShopKey.Moyo;
-    
-    public bool IsAvailable(IHtmlDocument document)
-    {
-        const string selector = "div.noinstock-status";
-
-        return document.QuerySelector<IHtmlDivElement>(selector) is null;
-    }
 
     public bool HasItemInfo(IHtmlDocument document)
     {

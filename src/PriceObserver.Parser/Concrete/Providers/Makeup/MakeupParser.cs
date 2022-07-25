@@ -44,4 +44,11 @@ public class MakeupParser : IParserProvider
         
         return new Uri(imageSource);
     }
+
+    public bool IsAvailable(IHtmlDocument document)
+    {
+        const string selector = "link[href='https://schema.org/OutOfStock']";
+
+        return document.QuerySelector<IHtmlLinkElement>(selector) is null;
+    }
 }

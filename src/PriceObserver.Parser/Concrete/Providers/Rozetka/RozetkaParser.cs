@@ -47,4 +47,11 @@ public class RozetkaParser : IParserProvider
         
         return new Uri(imageSource);
     }
+
+    public bool IsAvailable(IHtmlDocument document)
+    {
+        const string selector = ".status-label.status-label--gray.ng-star-inserted";
+
+        return document.QuerySelector<IHtmlParagraphElement>(selector) is null;
+    }
 }

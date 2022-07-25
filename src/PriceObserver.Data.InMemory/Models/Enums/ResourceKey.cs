@@ -37,15 +37,17 @@ public enum ResourceKey
     UserAction_SelectedLanguage = 116,
     UserAction_RedirectedBackToMenu = 117,
     UserAction_ToggledPriceGrowthNotifications = 118,
+    UserAction_AddedNotAvailableItem = 119,
         
     Parser_PageNotFound = 200,
     Parser_NoItemInfoOnPage = 202,
-    Parser_OutOfStock = 203,
         
     Background_ItemDeleted = 300,
     Background_ItemPriceWentDown = 301,
     Background_LogItemPriceChanged = 302,
     Background_ItemPriceGrewUp = 303,
+    Background_ItemIsInStock = 304,
+    Background_ItemIsOutOfStock = 305,
         
     Menu_Home = 400,
     Menu_Support = 401,

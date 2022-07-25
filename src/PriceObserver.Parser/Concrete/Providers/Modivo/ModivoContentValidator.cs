@@ -8,11 +8,6 @@ namespace PriceObserver.Parser.Concrete.Providers.Modivo;
 public class ModivoContentValidator : IContentValidator
 {
     public ShopKey ProviderKey => ShopKey.Modivo;
-    
-    public bool IsAvailable(IHtmlDocument document)
-    {
-        return true;
-    }
 
     public bool HasItemInfo(IHtmlDocument document)
     {

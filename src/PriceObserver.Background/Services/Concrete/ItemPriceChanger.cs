@@ -49,10 +49,11 @@ public class ItemPriceChanger : IItemPriceChanger
         _userLanguage = userLanguage;
     }
 
-    public async Task Change(Item item, int oldPrice, int newPrice)
+    public async Task Change(Item item, int newPrice)
     {
         await _parseResultService.CreateSucceeded(item);
         
+        var oldPrice = item.Price;
         if (newPrice == oldPrice)
             return;
 

@@ -17,6 +17,7 @@ public static class DependencyInjection
             .AddTransient<IAppNotificationService, AppNotificationService>()
             .AddTransient<IItemsObserverService, ItemsObserverService>()
             .AddTransient<IItemPriceChanger, ItemPriceChanger>()
+            .AddTransient<IItemAvailabilityChanger, ItemAvailabilityChanger>()
             .AddTransient<IItemRemovalService, ItemRemovalService>();
     }
 }

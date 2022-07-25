@@ -38,4 +38,6 @@ public interface IUserActionLogger
     void LogSelectedLanguage(User user, LanguageKey languageKey);
 
     void LogToggledPriceGrowthNotifications(User user, bool enabled);
+    
+    void LogNotAvailableItemAdded(User user, Item item);
 }

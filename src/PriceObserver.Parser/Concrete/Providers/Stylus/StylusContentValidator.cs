@@ -8,13 +8,6 @@ namespace PriceObserver.Parser.Concrete.Providers.Stylus;
 public class StylusContentValidator : IContentValidator
 {
     public ShopKey ProviderKey => ShopKey.Stylus;
-    
-    public bool IsAvailable(IHtmlDocument document)
-    {
-        const string selector = "div.availability.not-available";
-        
-        return document.QuerySelector<IHtmlDivElement>(selector) is null;
-    }
 
     public bool HasItemInfo(IHtmlDocument document)
     {

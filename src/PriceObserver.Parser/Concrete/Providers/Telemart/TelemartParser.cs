@@ -11,7 +11,7 @@ public class TelemartParser : IParserProvider
     public ShopKey ProviderKey => ShopKey.Telemart;
     
     public int GetPrice(IHtmlDocument document)
-    {
+    {        
         const string selector = "meta[itemprop=price]";
 
         var priceElement = document.QuerySelector<IHtmlMetaElement>(selector) ??
@@ -44,5 +44,12 @@ public class TelemartParser : IParserProvider
             throw new ArgumentNullException($"{nameof(TelemartParser)}:{nameof(GetImageUrl)}:Element:Content");
         
         return new Uri(imageUrl);
+    }
+    
+    public bool IsAvailable(IHtmlDocument document)
+    {
+        const string selector = ".b-product-mpr-info .b-i-product-available-gray";
+
+        return document.QuerySelector<IHtmlDivElement>(selector) is null;
     }
 }

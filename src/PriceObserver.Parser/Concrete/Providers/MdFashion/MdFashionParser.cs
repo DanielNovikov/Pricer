@@ -50,4 +50,11 @@ public class MdFashionParser : IParserProvider
 
         return new Uri(imageSource);
     }
+
+    public bool IsAvailable(IHtmlDocument document)
+    {
+        const string selector = "div[data-status=not-available]";
+
+        return document.QuerySelector<IHtmlDivElement>(selector) is null;
+    }
 }

@@ -9,23 +9,26 @@ using Xunit;
 
 namespace PriceObserver.Parser.UnitTests.ParserProviderServiceTests;
 
-public class Parse_WhenThereIsProperParserProvider_ShouldParseDocument : Context
+public class Parse_WhenThereIsProperParserProviderAndItemIsAvailable_ShouldParseDocumentWithPrice : Context
 {
     private readonly int _price;
     private readonly string _title;
     private readonly Uri _imageUrl;
+    private readonly bool _isAvailable;
     
-    public Parse_WhenThereIsProperParserProvider_ShouldParseDocument()
+    public Parse_WhenThereIsProperParserProviderAndItemIsAvailable_ShouldParseDocumentWithPrice()
     {
         _price = Fixture.Create<int>();
         _title = Fixture.Create<string>();
         _imageUrl = Fixture.Create<Uri>();
+        _isAvailable = true;
         
         var parserProvider = Mock.Of<IParserProvider>(x => 
             x.ProviderKey == ProviderKey &&
             x.GetPrice(Document) == _price &&
             x.GetTitle(Document) == _title &&
-            x.GetImageUrl(Document) == _imageUrl); 
+            x.GetImageUrl(Document) == _imageUrl &&
+            x.IsAvailable(Document) == _isAvailable); 
         
         var parserProviders = new List<IParserProvider>
         {
@@ -43,5 +46,6 @@ public class Parse_WhenThereIsProperParserProvider_ShouldParseDocument : Context
         result.Price.Should().Be(_price);
         result.Title.Should().Be(_title);
         result.ImageUrl.Should().Be(_imageUrl);
+        result.IsAvailable.Should().Be(_isAvailable);
     }
 }

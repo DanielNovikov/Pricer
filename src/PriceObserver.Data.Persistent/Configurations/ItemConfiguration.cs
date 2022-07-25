@@ -38,6 +38,10 @@ public class ItemConfiguration : IEntityTypeConfiguration<Item>
             .Property(x => x.ShopKey)
             .HasConversion<int>()
             .IsRequired();
+        
+        builder
+            .Property(x => x.IsAvailable)
+            .IsRequired();
             
         builder
             .HasOne(i => i.User)

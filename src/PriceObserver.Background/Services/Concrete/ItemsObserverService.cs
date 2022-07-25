@@ -10,23 +10,26 @@ namespace PriceObserver.Background.Services.Concrete;
 
 public class ItemsObserverService : IItemsObserverService
 {
-    private readonly IItemRepository _itemRepository;
     private readonly IParser _parser;
+    private readonly IItemRepository _itemRepository;
     private readonly IItemPriceChanger _itemPriceChanger;
     private readonly IItemRemovalService _itemRemovalService;
+    private readonly IItemAvailabilityChanger _itemAvailabilityChanger;
     private readonly ILogger _logger;
 
     public ItemsObserverService(
-        IItemRepository itemRepository,
         IParser parser,
+        IItemRepository itemRepository,
         IItemPriceChanger itemPriceChanger,
         IItemRemovalService itemRemovalService,
+        IItemAvailabilityChanger itemAvailabilityChanger,
         ILogger<ItemsObserverService> logger)
     {
-        _itemRepository = itemRepository;
         _parser = parser;
+        _itemRepository = itemRepository;
         _itemPriceChanger = itemPriceChanger;
         _itemRemovalService = itemRemovalService;
+        _itemAvailabilityChanger = itemAvailabilityChanger;
         _logger = logger;
     }
 
@@ -45,12 +48,17 @@ public class ItemsObserverService : IItemsObserverService
                     if (!parsedItemResult.IsSuccess)
                     {
                         await _itemRemovalService.Remove(item, parsedItemResult.Error);
-                        break;
+                        continue;
                     }
 
-                    var oldPrice = item.Price;
-                    var newPrice = parsedItemResult.Result.Price;
-                    await _itemPriceChanger.Change(item, oldPrice, newPrice);
+                    var isAvailable = parsedItemResult.Result.IsAvailable;
+                    await _itemAvailabilityChanger.Change(item, isAvailable);
+
+                    if (isAvailable)
+                    {
+                        var newPrice = parsedItemResult.Result.Price;
+                        await _itemPriceChanger.Change(item, newPrice);
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -61,13 +69,8 @@ Message: {3}
 InnerException: {4}";
 
                     _logger.LogError(
-                        ex,
-                        templateLogMessage,
-                        item.Title,
-                        item.Id,
-                        item.Url,
-                        ex.Message,
-                        ex.InnerException);
+                        ex, templateLogMessage,
+                        item.Title, item.Id, item.Url, ex.Message, ex.InnerException);
                 }
                 finally
                 {

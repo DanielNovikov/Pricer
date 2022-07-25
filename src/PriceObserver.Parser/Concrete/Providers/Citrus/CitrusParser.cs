@@ -45,4 +45,15 @@ public class CitrusParser : IParserProvider
         
         return new Uri(imageSource);
     }
+    
+    public bool IsAvailable(IHtmlDocument document)
+    {
+        const string selector = "span.fz14.aic";
+
+        var availabilityElement = document.QuerySelector<IHtmlSpanElement>(selector);
+        if (availabilityElement is null)
+            return true;
+
+        return !availabilityElement.TextContent.Contains("Нет в наличии");
+    }
 }

@@ -47,4 +47,9 @@ public class WatsonsParser : IParserProvider
 
         return new Uri(imageUrl);
     }
+    
+    public bool IsAvailable(IHtmlDocument document)
+    {
+        return true;
+    }
 }

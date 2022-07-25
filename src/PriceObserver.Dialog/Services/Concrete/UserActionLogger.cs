@@ -103,6 +103,11 @@ public class UserActionLogger : IUserActionLogger
         LogInformation(user, ResourceKey.UserAction_ToggledPriceGrowthNotifications, enabled);
     }
 
+    public void LogNotAvailableItemAdded(User user, Item item)
+    {
+        LogInformation(user, ResourceKey.UserAction_AddedNotAvailableItem, item.Url, item.Title, item.Price);
+    }
+
     private void LogInformation(User user, ResourceKey message, params object[] parameters)
     {
         Log(user, LogLevel.Information, message, parameters);

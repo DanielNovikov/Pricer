@@ -29,8 +29,7 @@ public class Parser : IParser
         if (!htmlLoadResult.IsSuccess)
             return ParsedItemServiceResult.Fail(htmlLoadResult.Error);
 
-        var htmlDocument = htmlLoadResult.Result;
-        
+        using var htmlDocument = htmlLoadResult.Result;
         var contentValidationResult = _contentValidatorService.Validate(shopKey, htmlDocument);
 
         if (!contentValidationResult.IsSuccess)

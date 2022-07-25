@@ -13,4 +13,6 @@ public interface IParserProvider
     string GetTitle(IHtmlDocument document);
 
     Uri GetImageUrl(IHtmlDocument document);
+
+    bool IsAvailable(IHtmlDocument document);
 }

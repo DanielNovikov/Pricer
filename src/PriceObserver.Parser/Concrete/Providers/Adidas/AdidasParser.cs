@@ -50,4 +50,9 @@ public class AdidasParser : IParserProvider
 
         return new Uri(imageSource);
     }
+
+    public bool IsAvailable(IHtmlDocument document)
+    {
+        return true;
+    }
 }

@@ -9,17 +9,13 @@ public class IntertopContentValidator : IContentValidator
 {
     public ShopKey ProviderKey => ShopKey.Intertop;
 
-    public bool IsAvailable(IHtmlDocument document)
-    {
-        const string selector = "a[id='report-availability']";
-
-        return document.QuerySelector<IHtmlElement>(selector) is null;
-    }
-
     public bool HasItemInfo(IHtmlDocument document)
     {
-        const string selector = "span[class=price-contain]";
+        const string priceElementSelector = "span[class=price-contain]";
+        const string reportAvailabilitySelector = "a[id='report-availability']";
 
-        return document.QuerySelector<IHtmlSpanElement>(selector) is not null;
+        return 
+	        document.QuerySelector<IHtmlSpanElement>(priceElementSelector) is not null ||
+            document.QuerySelector<IHtmlElement>(reportAvailabilitySelector) is not null;
     }
 }

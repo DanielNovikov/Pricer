@@ -9,17 +9,13 @@ public class AlloContentValidator : IContentValidator
 {
 	public ShopKey ProviderKey => ShopKey.Allo;
 
-	public bool IsAvailable(IHtmlDocument document)
-	{
-		const string selector = "button[class*=buy-button--out-stock]";
-
-		return document.QuerySelector<IHtmlButtonElement>(selector) is null;
-	}
-
 	public bool HasItemInfo(IHtmlDocument document)
 	{
-		const string selector = "meta[itemprop=price]";
-
-		return document.QuerySelector<IHtmlMetaElement>(selector) is not null;
+		const string priceElementSelector = "meta[itemprop=price]";
+		const string outOfStockButtonSelector = "button[class*=buy-button--out-stock]";
+		
+		return 
+			document.QuerySelector<IHtmlMetaElement>(priceElementSelector) is not null ||
+			document.QuerySelector<IHtmlButtonElement>(outOfStockButtonSelector) is not null;
 	}
 }

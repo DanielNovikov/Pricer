@@ -8,14 +8,14 @@ using Xunit;
 
 namespace PriceObserver.Parser.UnitTests.ContentValidatorServiceTests;
 
-public class Validate_WhenItemIsNotAvailable_ShouldReturnOutOfStockError : Context
+public class Validate_WhenThereIsNoItemInfoOnPage_ShouldReturnNoItemInfoOnPageError : Context
 {
-    public Validate_WhenItemIsNotAvailable_ShouldReturnOutOfStockError()
+    public Validate_WhenThereIsNoItemInfoOnPage_ShouldReturnNoItemInfoOnPageError()
     {
         var contentValidator = Mock.Of<IContentValidator>(
             x => 
                 x.ProviderKey == ProviderKey && 
-                x.IsAvailable(HtmlDocument) == false);
+                x.HasItemInfo(HtmlDocument) == false);
 
         var contentValidators = new List<IContentValidator>
         {
@@ -31,6 +31,6 @@ public class Validate_WhenItemIsNotAvailable_ShouldReturnOutOfStockError : Conte
         var result = Sut.Validate(ProviderKey, HtmlDocument);
 
         result.IsSuccess.Should().BeFalse();
-        result.Error.Should().Be(ResourceKey.Parser_OutOfStock);
+        result.Error.Should().Be(ResourceKey.Parser_NoItemInfoOnPage);
     }
 }

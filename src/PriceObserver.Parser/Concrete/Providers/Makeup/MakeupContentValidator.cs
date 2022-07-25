@@ -9,13 +9,6 @@ public class MakeupContentValidator : IContentValidator
 {
     public ShopKey ProviderKey => ShopKey.Makeup;
 
-    public bool IsAvailable(IHtmlDocument document)
-    {
-        const string selector = "link[href='https://schema.org/OutOfStock']";
-
-        return document.QuerySelector<IHtmlLinkElement>(selector) is null;
-    }
-
     public bool HasItemInfo(IHtmlDocument document)
     {
         const string selector = "span[itemprop=price]";
