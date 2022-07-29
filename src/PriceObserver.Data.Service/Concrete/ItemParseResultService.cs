@@ -15,6 +15,16 @@ public class ItemParseResultService : IItemParseResultService
         _repository = repository;
     }
 
+    public async Task<int> GetLastErrorsCount(int itemId)
+    {
+        var lastSucceeded = await _repository.GetLastSucceededByItemId(itemId);
+
+        if (lastSucceeded is null)
+            return default;
+        
+        return await _repository.GetCountOfFailedByItemId(lastSucceeded.Id, itemId);
+    }
+
     public async Task CreateSucceeded(Item item)
     {
         await Create(item, true);

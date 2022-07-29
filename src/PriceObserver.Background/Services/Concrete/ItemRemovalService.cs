@@ -16,18 +16,18 @@ public class ItemRemovalService : IItemRemovalService
     private readonly IResourceService _resourceService;
     private readonly ITelegramBotService _telegramBotService;
     private readonly IItemParseResultService _parseResultService;
-    private readonly IItemParseResultRepository _parseResultRepository;
     private readonly ILogger<ItemRemovalService> _logger;
     private readonly IPartnerUrlBuilder _partnerUrlBuilder;
     private readonly IUserRepository _userRepository;
     private readonly IUserLanguage _userLanguage;
+
+    private const int CountOfFailedToRemove = 2;
     
     public ItemRemovalService(
         IItemRepository itemRepository,
         IResourceService resourceService, 
         ITelegramBotService telegramBotService, 
         IItemParseResultService parseResultService, 
-        IItemParseResultRepository parseResultRepository,
         ILogger<ItemRemovalService> logger, 
         IPartnerUrlBuilder partnerUrlBuilder, 
         IUserRepository userRepository, 
@@ -37,7 +37,6 @@ public class ItemRemovalService : IItemRemovalService
         _resourceService = resourceService;
         _telegramBotService = telegramBotService;
         _parseResultService = parseResultService;
-        _parseResultRepository = parseResultRepository;
         _logger = logger;
         _partnerUrlBuilder = partnerUrlBuilder;
         _userRepository = userRepository;
@@ -46,10 +45,13 @@ public class ItemRemovalService : IItemRemovalService
 
     public async Task Remove(Item item, ResourceKey error)
     {
-        var lastParseResult = await _parseResultRepository.GetLastByItemId(item.Id);
+        var lastErrorsCount = await _parseResultService.GetLastErrorsCount(item.Id);
 
-        if (lastParseResult is null || lastParseResult.IsSuccess)
+        if (lastErrorsCount < CountOfFailedToRemove)
         {
+            _logger.LogInformation(
+                "Item with url {0} is about to be removed. Errors count: {1}", item.Url, lastErrorsCount);
+            
             await _parseResultService.CreateFailed(item);
             return;
         }
@@ -72,6 +74,5 @@ public class ItemRemovalService : IItemRemovalService
 Reason: {1}
 Link: {2}", 
             item.Title, errorReason, item.Url);
-        
     }
 }
