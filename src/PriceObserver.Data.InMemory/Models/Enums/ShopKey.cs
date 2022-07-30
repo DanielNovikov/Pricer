@@ -26,5 +26,6 @@ public enum ShopKey
     StolychnyiRynok = 22,
     Novus = 23,
     UltraMarket = 24,
-    Allo = 25
+    Allo = 25,
+    Eva = 26
 }

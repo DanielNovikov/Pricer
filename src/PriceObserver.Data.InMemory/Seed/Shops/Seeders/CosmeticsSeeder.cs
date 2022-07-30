@@ -28,7 +28,15 @@ public class CosmeticsSeeder
                 "www.watsons.ua",
                 "watsons.png",
                 false,
-                currencies.First(x => x.Key == CurrencyKey.UAH))
+                currencies.First(x => x.Key == CurrencyKey.UAH)),
+            
+            new Shop(
+                "EVA",
+                ShopKey.Eva,
+                "eva.ua",
+                "eva.png",
+                false,
+                currencies.First(x => x.Key == CurrencyKey.UAH)),
         };
 
         var cosmeticsShopCategory = new ShopCategory(ResourceKey.ShopCategory_Cosmetics, "💄", cosmeticsShops);

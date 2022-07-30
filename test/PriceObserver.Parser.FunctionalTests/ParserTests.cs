@@ -54,6 +54,11 @@ public class ParserTests : TestBase
         ShopKey.Estore,
         "Apple WATCH Series 7 45mm Midnight Aluminum Case With Midnight Sport Band (MKN53)",
         "https://estore.ua/media/catalog/product/cache/8/image/265x/9df78eab33525d08d6e5fb8d27136e95/a/p/apple-watch-series-7_5__1_1.jpg")]
+    [InlineData(
+        "https://eva.ua/ua/pr300615/",
+        ShopKey.Eva,
+        "Ультрам'який відновлювальний очищувальний засіб для обличчя Numee Glow Up Start Fresh Probiotics + Electrolytes, 150 мл",
+        "https://pwa-api.eva.ua/img/512/512/resize/6/6/668643_1_1635369532.jpg")]
     // [InlineData(
     //     "https://www.farfetch.com/ua/shopping/men/moschino-iphone-12-item-17412779.aspx?rtype=portal_pdp_outofstock_b&rpos=5&rid=aaf3572d-fa18-4021-a13e-5cb95783f88d",
     //     ShopKey.Farfetch,
@@ -158,6 +163,7 @@ public class ParserTests : TestBase
     [InlineData("https://comfy.ua/televizor-lg-43un81006lb.html", ShopKey.Comfy)]
     [InlineData("https://eko.zakaz.ua/uk/products/04820045704536/sir-molokiia-350g-ukrayina/", ShopKey.EkoMarket)]
     [InlineData("https://estore.ua/apple-watch-series-3-nike-42mm-gps-space-gray-aluminium-case-with-anthracite-black-nike-sport-band-mtf42", ShopKey.Estore)]
+    [InlineData("https://eva.ua/pr163257/", ShopKey.Eva)]
     //[InlineData("https://www.farfetch.com/ua/shopping/men/alexander-mcqueen-iphone-xs-item-14620644.aspx?storeid=9359", ShopKey.Farfetch)]
     [InlineData("https://intertop.ua/ua/product/sneakers-clarks-4965745?tr_pr=analog", ShopKey.Intertop)]
     [InlineData("https://md-fashion.com.ua/store/zenskie-golubye-dzinsy-kiley-replay-wa434r000108-729-goluboj", ShopKey.MdFashion)]

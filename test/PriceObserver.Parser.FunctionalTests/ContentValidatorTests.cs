@@ -15,6 +15,7 @@ public class ContentValidatorTests : TestBase
     [InlineData("https://www.ctrs.com.ua/", ShopKey.Citrus)]
     [InlineData("https://comfy.ua/", ShopKey.Comfy)]
     [InlineData("https://estore.ua/", ShopKey.Estore)]
+    [InlineData("https://eva.ua/", ShopKey.Eva)]
     //[InlineData("https://www.farfetch.com/ua/shopping/men/alexander-mcqueen/items.aspx", ShopKey.Farfetch)]
     [InlineData("https://intertop.ua/ua/", ShopKey.Intertop)]
     [InlineData("https://jysk.ua/", ShopKey.Jysk)]
