@@ -80,6 +80,11 @@ public class ParserTests : TestBase
         "Сыворотка для лица увлажняющая с гиалуроновой кислотой и ниацинамидом - Relance Hyaluronic Acid + Niacinamide Face Serum",
         "https://u.makeup.com.ua/h/he/helk3ldgv9dh.jpg")]
     [InlineData(
+        "https://maudau.com.ua/ru/pyvo-leffe-brune-temne-63-zhb-05-l-478576-md-421156.html",
+        ShopKey.MauDau,
+        "Пиво Leffe Brune темное, 6,3%, ж/б, 0,5 л (478576)",
+        "https://sf-api.maudau.com.ua/img/600/744/resize/catalog/product/R/H/RHsslBsz_1.jpg")]
+    [InlineData(
         "https://md-fashion.com.ua/store/bezevaa-kurtka-tommy-hilfiger-x-timberland-tommy-hilfiger-mw0mw20906-bezevyj",
         ShopKey.MdFashion,
         "Бежевая куртка Tommy Hilfiger x Timberland Tommy Hilfiger MW0MW20906",
@@ -171,6 +176,8 @@ public class ParserTests : TestBase
     [InlineData("https://eva.ua/pr163257/", ShopKey.Eva)]
     //[InlineData("https://www.farfetch.com/ua/shopping/men/alexander-mcqueen-iphone-xs-item-14620644.aspx?storeid=9359", ShopKey.Farfetch)]
     [InlineData("https://intertop.ua/ua/product/sneakers-clarks-4965745?tr_pr=analog", ShopKey.Intertop)]
+    [InlineData("https://makeup.com.ua/ua/product/812042/", ShopKey.Makeup)]
+    [InlineData("https://maudau.com.ua/ru/pyvo-chernihivske-titan-svitle-8-2-l-890070-md-487758.html", ShopKey.MauDau)]
     [InlineData("https://md-fashion.com.ua/store/zenskie-golubye-dzinsy-kiley-replay-wa434r000108-729-goluboj", ShopKey.MdFashion)]
     [InlineData("https://megamarket.zakaz.ua/uk/products/04820178810401/vershki-organik-milk-180g/", ShopKey.MegaMarket)]
     [InlineData("https://www.moyo.ua/televizor-lg-75sm9000pla/448309.html", ShopKey.Moyo)]

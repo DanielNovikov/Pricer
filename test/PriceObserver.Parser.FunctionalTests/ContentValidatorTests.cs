@@ -19,6 +19,7 @@ public class ContentValidatorTests : TestBase
     //[InlineData("https://www.farfetch.com/ua/shopping/men/alexander-mcqueen/items.aspx", ShopKey.Farfetch)]
     [InlineData("https://intertop.ua/ua/", ShopKey.Intertop)]
     [InlineData("https://jysk.ua/", ShopKey.Jysk)]
+    [InlineData("https://makeup.com.ua/", ShopKey.MauDau)]
     [InlineData("https://makeup.com.ua/", ShopKey.Makeup)]
     [InlineData("https://md-fashion.com.ua/", ShopKey.MdFashion)]
     [InlineData("https://modivo.ua/", ShopKey.Modivo)]

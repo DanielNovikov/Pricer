@@ -11,8 +11,8 @@ public class MakeupContentValidator : IContentValidator
 
     public bool HasItemInfo(IHtmlDocument document)
     {
-        const string selector = "span[itemprop=price]";
-        
-        return document.QuerySelector<IHtmlSpanElement>(selector) is not null;
+        const string selector = "img[itemprop=image]";
+
+        return document.QuerySelector<IHtmlImageElement>(selector) is not null;
     }
 }

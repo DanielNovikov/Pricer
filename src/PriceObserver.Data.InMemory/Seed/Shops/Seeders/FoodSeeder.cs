@@ -68,6 +68,14 @@ public class FoodSeeder
                 "ultramarket.zakaz.ua",
                 "ultramarket.png",
                 true,
+                currencies.First(x => x.Key == CurrencyKey.UAH)),
+            
+            new Shop(
+                "MauDau", 
+                ShopKey.MauDau,
+                "maudau.com.ua",
+                "maudau.png",
+                false,
                 currencies.First(x => x.Key == CurrencyKey.UAH))
 		};
 

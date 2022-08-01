@@ -28,5 +28,6 @@ public enum ShopKey
     UltraMarket = 24,
     Allo = 25,
     Eva = 26,
-    Pandora = 27
+    Pandora = 27,
+    MauDau = 28
 }
