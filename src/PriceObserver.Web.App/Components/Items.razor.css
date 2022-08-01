@@ -303,7 +303,11 @@
 }
 @media (min-width: 450px) and (max-width: 530px) {
   .shops-container {
-    grid-row-gap: 17px;
+    grid-row-gap: 9px;
+    padding: 13px 22px;
+  }
+  .logo-container > a > img {
+    height: 56px;
   }
   .items-container {
     grid-template-columns: repeat(2, 1fr);
@@ -359,7 +363,8 @@
 }
 @media (min-width: 400px) and (max-width: 450px) {
   .shops-container {
-    grid-row-gap: 16px;
+    grid-row-gap: 7px;
+    padding: 8px 12px;
   }
   .logo-container > a > img {
     height: 55px;
@@ -419,10 +424,11 @@
 }
 @media (min-width: 310px) and (max-width: 400px) {
   .shops-container {
-    grid-row-gap: 15px;
+    grid-row-gap: 5px;
+    padding: 12px 10px;
   }
   .logo-container > a > img {
-    height: 50px;
+    height: 48px;
   }
   .items-container {
     grid-template-columns: repeat(2, 1fr);
