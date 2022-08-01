@@ -35,7 +35,7 @@ public class CosmeticsSeeder
                 ShopKey.Eva,
                 "eva.ua",
                 "eva.png",
-                false,
+                true,
                 currencies.First(x => x.Key == CurrencyKey.UAH)),
         };
 

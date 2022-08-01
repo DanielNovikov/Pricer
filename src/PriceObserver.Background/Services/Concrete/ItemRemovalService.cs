@@ -21,7 +21,7 @@ public class ItemRemovalService : IItemRemovalService
     private readonly IUserRepository _userRepository;
     private readonly IUserLanguage _userLanguage;
 
-    private const int CountOfFailedToRemove = 2;
+    private const int CountOfFailedToRemove = 5;
     
     public ItemRemovalService(
         IItemRepository itemRepository,

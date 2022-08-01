@@ -105,6 +105,11 @@ public class ParserTests : TestBase
         "Сьомга Norven філе-шматок слабосолена 180г",
         "https://img3.zakaz.ua/src.1644508583.ad72436478c_2022-02-10_Tatiana/src.1644508583.SNCPSG10.obj.0.1.jpg.oe.jpg.pf.jpg.350nowm.jpg.350x.jpg")]
     [InlineData(
+        "https://e-pandora.ua/product/kabluchka_potriyna_spiral",
+        ShopKey.Pandora,
+        "Каблучка \"Потрійна спіраль\"",
+        "https://static.e-pandora.ua/19271/PNGTRPNT_180051C01_RGB.png")]
+    [InlineData(
         "https://rozetka.com.ua/310759363/p310759363/",
         ShopKey.Rozetka,
         "Робот - пылесос ECOVACS DEEBOT OZMO N8 PLUS (DLN26)",
