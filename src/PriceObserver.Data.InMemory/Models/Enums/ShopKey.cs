@@ -29,5 +29,6 @@ public enum ShopKey
     Allo = 25,
     Eva = 26,
     Pandora = 27,
-    MauDau = 28
+    MauDau = 28,
+    Prom = 29
 }

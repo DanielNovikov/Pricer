@@ -115,6 +115,11 @@ public class ParserTests : TestBase
         "Каблучка \"Потрійна спіраль\"",
         "https://static.e-pandora.ua/19271/PNGTRPNT_180051C01_RGB.png")]
     [InlineData(
+        "https://prom.ua/ua/p1298951388-gibkij-neon-12volt.html",
+        ShopKey.Prom,
+        "Гнучкий неон 12Вольт Блакитна \"SunLight\"",
+        "https://images.prom.ua/2743412622_w640_h640_gibkij-neon-12volt.jpg")]
+    [InlineData(
         "https://rozetka.com.ua/310759363/p310759363/",
         ShopKey.Rozetka,
         "Робот - пылесос ECOVACS DEEBOT OZMO N8 PLUS (DLN26)",

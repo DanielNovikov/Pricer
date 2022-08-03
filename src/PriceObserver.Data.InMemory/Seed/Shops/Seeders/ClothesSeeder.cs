@@ -68,6 +68,14 @@ public class ClothesSeeder
                 "athletics.kiev.ua",
                 "athletics.kiev.ua.png",
                 false,
+                currencies.First(x => x.Key == CurrencyKey.UAH)),
+            
+            new Shop(
+                "Prom",
+                ShopKey.Prom,
+                "prom.ua",
+                "prom.png",
+                false,
                 currencies.First(x => x.Key == CurrencyKey.UAH))
         };
 
