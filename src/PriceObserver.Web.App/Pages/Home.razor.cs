@@ -38,12 +38,14 @@ public partial class Home : ComponentBase
             return;
         }
 
-        ItemsData = await Cache.GetOrAdd("items", async () =>
-        {
-            var userId = UserAuthenticationService.GetUserId(accessToken);
-            var response = await ItemsReceptionHandlerService.Receive(userId);
-            return response.Data;
-        });
+        ItemsData = await Cache.GetOrAdd(
+            "items",
+            async () =>
+            {
+                var userId = UserAuthenticationService.GetUserId(accessToken);
+                var response = await ItemsReceptionHandlerService.Receive(userId);
+                return response.Data;
+            });
     }
 
     private async Task DeleteItem(int id)
