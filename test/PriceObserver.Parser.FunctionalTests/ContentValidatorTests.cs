@@ -27,6 +27,7 @@ public class ContentValidatorTests : TestBase
     [InlineData("https://e-pandora.ua/", ShopKey.Pandora)]
     [InlineData("https://prom.ua/", ShopKey.Prom)]
     [InlineData("https://rozetka.com.ua/", ShopKey.Rozetka)]
+    [InlineData("https://shafa.ua/", ShopKey.Shafa)]
     [InlineData("https://athletics.kiev.ua/", ShopKey.Athletics)]
     //[InlineData("https://stylus.ua/", ShopKey.Stylus)]
     [InlineData("https://telemart.ua/", ShopKey.Telemart)]

@@ -20,6 +20,7 @@ public class ShopsSeeder
         FoodSeeder.Seed(shopCategories, shops, currencies);
         FurnitureSeeder.Seed(shopCategories, shops, currencies);
         DecorationsSeeder.Seed(shopCategories, shops, currencies);
+        MarketPlacesSeeder.Seed(shopCategories, shops, currencies);
                 
         cache.Set(CacheKey.Shops, shops);
         cache.Set(CacheKey.ShopCategories, shopCategories);

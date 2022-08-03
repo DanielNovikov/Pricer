@@ -30,5 +30,6 @@ public enum ShopKey
     Eva = 26,
     Pandora = 27,
     MauDau = 28,
-    Prom = 29
+    Prom = 29,
+    Shafa = 30
 }

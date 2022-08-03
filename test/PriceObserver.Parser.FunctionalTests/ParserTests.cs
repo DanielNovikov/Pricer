@@ -125,6 +125,11 @@ public class ParserTests : TestBase
         "Робот - пылесос ECOVACS DEEBOT OZMO N8 PLUS (DLN26)",
         "https://content.rozetka.com.ua/goods/images/big/195049341.jpg")]
     [InlineData(
+        "https://shafa.ua/women/zhenskaya-obuv/tufli/98383447-tufli-na-ustoychivom-kabluke-elegantnye-tufli?gclid=Cj0KCQjw852XBhC6ARIsAJsFPN2W7l4ii_1qkx3Dj0w6ZFPSscV31l0BJcJ1WjObLEs5XX0iBMh6vcgaAn-uEALw_wcB",
+        ShopKey.Shafa,
+        "Туфли на устойчивом каблуке. элегантные туфли",
+        "https://image-thumbs.shafastatic.net/528090116_310_430")]
+    [InlineData(
         "https://stolychnyi.zakaz.ua/uk/products/04820226160991/iogurt-danon-260g-ukrayina/",
         ShopKey.StolychnyiRynok,
         "Йогурт Danone ананас-манго 2,5% 260г",
