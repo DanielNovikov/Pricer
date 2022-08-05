@@ -12,8 +12,7 @@ public class ShopCategoriesSeeder
 		resources.AddResource(ResourceKey.ShopCategory_Electronics, "Електроніка", "Электроника");
 		resources.AddResource(ResourceKey.ShopCategory_Food, "Продукти", "Продукты");
 		resources.AddResource(ResourceKey.ShopCategory_Cosmetics, "Косметика", "Косметика");
-		resources.AddResource(ResourceKey.ShopCategory_Furniture, "Меблі", "Мебель");
-		resources.AddResource(ResourceKey.ShopCategory_Decorations, "Прикраси", "Украшения");
 		resources.AddResource(ResourceKey.ShopCategory_MarketPlaces, "Маркетплейси", "Маркетплейсы");
+		resources.AddResource(ResourceKey.ShopCategory_Different, "Різне", "Разное");
 	}
 }

@@ -18,9 +18,8 @@ public class ShopsSeeder
         CosmeticsSeeder.Seed(shopCategories, shops, currencies);
         ElectronicsSeeder.Seed(shopCategories, shops, currencies);
         FoodSeeder.Seed(shopCategories, shops, currencies);
-        FurnitureSeeder.Seed(shopCategories, shops, currencies);
-        DecorationsSeeder.Seed(shopCategories, shops, currencies);
         MarketPlacesSeeder.Seed(shopCategories, shops, currencies);
+        DifferentSeeder.Seed(shopCategories, shops, currencies);
                 
         cache.Set(CacheKey.Shops, shops);
         cache.Set(CacheKey.ShopCategories, shopCategories);

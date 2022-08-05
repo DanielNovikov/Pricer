@@ -50,6 +50,11 @@ public class ParserTests : TestBase
         "Хліб Київхліб Супер тост світлий нарізаний 350г",
         "https://img3.zakaz.ua/src.1626182394.ad72436478c_2021-07-13_Tatiana/src.1626182394.SNCPSG10.obj.0.1.jpg.oe.jpg.pf.jpg.350nowm.jpg.350x.jpg")]
     [InlineData(
+        "https://epicentrk.ua/ua/shop/smartfon-oppo-a15-2-32gb-dynamic-black-cph2185-black.html",
+        ShopKey.Epicentr,
+        "Смартфон OPPO A15 2/32GB dynamic black (CPH2185 BLACK)",
+        "https://cdn.27.ua/799/ae/9e/3059358_5.jpeg")]
+    [InlineData(
         "https://estore.ua/apple-watch-series-7-45mm-midnight-aluminium-case-with-sport-band/",
         ShopKey.Estore,
         "Apple WATCH Series 7 45mm Midnight Aluminum Case With Midnight Sport Band (MKN53)",
@@ -182,6 +187,7 @@ public class ParserTests : TestBase
     [InlineData("https://auchan.zakaz.ua/uk/products/04823061323897/iogurt-chudo-270g-ukrayina/", ShopKey.Auchan)]
     [InlineData("https://comfy.ua/televizor-lg-43un81006lb.html", ShopKey.Comfy)]
     [InlineData("https://eko.zakaz.ua/uk/products/04820045704536/sir-molokiia-350g-ukrayina/", ShopKey.EkoMarket)]
+    [InlineData("https://epicentrk.ua/ua/shop/hubr-meizu-c9-2-16gb-globalnaya-versiya-black.html", ShopKey.Epicentr)]
     [InlineData("https://estore.ua/apple-watch-series-3-nike-42mm-gps-space-gray-aluminium-case-with-anthracite-black-nike-sport-band-mtf42", ShopKey.Estore)]
     [InlineData("https://eva.ua/pr163257/", ShopKey.Eva)]
     //[InlineData("https://www.farfetch.com/ua/shopping/men/alexander-mcqueen-iphone-xs-item-14620644.aspx?storeid=9359", ShopKey.Farfetch)]
