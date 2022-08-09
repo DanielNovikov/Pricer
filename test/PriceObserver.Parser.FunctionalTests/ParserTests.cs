@@ -139,11 +139,11 @@ public class ParserTests : TestBase
         ShopKey.StolychnyiRynok,
         "Йогурт Danone ананас-манго 2,5% 260г",
         "https://img3.zakaz.ua/src.1603876883.ad72436478c_2020-10-28_Tatyana/src.1603876883.SNCPSG10.obj.0.1.jpg.oe.jpg.pf.jpg.350nowm.jpg.350x.jpg")]
-    // [InlineData(
-    //     "https://stylus.ua/samsung-galaxy-a52s-5g-6128gb-black-a528b-p841157c11256.html",
-    //     ShopKey.Stylus,
-    //     "Смартфон Samsung Galaxy A52s 5G 6/128GB Awesome Black A528B",
-    //     "https://stylus.ua//thumbs/568x568/f7/ed/2113714.jpeg")]
+    [InlineData(
+        "https://stylus.ua/google-pixel-5a-5g-6128gb-mostly-black-p820591c11256.html",
+        ShopKey.Stylus,
+        "Смартфон Google Pixel 5a 5G 6/128GB Mostly Black",
+        "https://stylus.ua//thumbs/568x568/d2/80/2202880.jpeg")]
     [InlineData(
         "https://telemart.ua/products/evolve-optipart-gold-7h-evop-g7h104fn305x-16s500h1tbk-black/",
         ShopKey.Telemart,
@@ -199,7 +199,7 @@ public class ParserTests : TestBase
     [InlineData("https://www.moyo.ua/televizor-lg-75sm9000pla/448309.html", ShopKey.Moyo)]
     [InlineData("https://novus.zakaz.ua/uk/products/novus02885537000000/sukhofrukti/", ShopKey.Novus)]
     [InlineData("https://rozetka.com.ua/lg_75nano756pa/p292219333/", ShopKey.Rozetka)]
-    //[InlineData("https://stylus.ua/lg-55nano77-p803303c526.html", ShopKey.Stylus)]
+    [InlineData("https://stylus.ua/xiaomi-yi-sport-white-basic-edition-p227758c997.html", ShopKey.Stylus)]
     [InlineData("https://stolychnyi.zakaz.ua/uk/products/stolychnyi02010000295007/iogurt-500ml/", ShopKey.StolychnyiRynok)]
     [InlineData("https://telemart.ua/products/lg-315-ultrafine-32un650-w-blacksilver/", ShopKey.Telemart)]
     [InlineData("https://ultramarket.zakaz.ua/uk/products/08410285100050/napii-santal-1000ml/", ShopKey.UltraMarket)]

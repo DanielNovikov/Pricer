@@ -25,10 +25,12 @@ public class ItemsObserver : IHostedService
             {
                 using var scope = _serviceProvider.CreateScope();
 
-                var itemsPriceService = scope.GetService<IItemsObserverService>();
-                await itemsPriceService.Observe();
-                    
-                await Task.Delay(TimeSpan.FromHours(2), cancellationToken);
+               await scope
+                   .GetService<IItemsObserverService>()
+                   .Observe();
+
+                var delay = new Random().Next(60, 120);
+                await Task.Delay(TimeSpan.FromMinutes(delay), cancellationToken);
             }
         }, cancellationToken);
 

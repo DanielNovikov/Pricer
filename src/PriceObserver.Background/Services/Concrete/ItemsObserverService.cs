@@ -16,6 +16,7 @@ public class ItemsObserverService : IItemsObserverService
     private readonly IItemRemovalService _itemRemovalService;
     private readonly IItemAvailabilityChanger _itemAvailabilityChanger;
     private readonly ILogger _logger;
+    private readonly Random _random;
 
     public ItemsObserverService(
         IParser parser,
@@ -31,6 +32,7 @@ public class ItemsObserverService : IItemsObserverService
         _itemRemovalService = itemRemovalService;
         _itemAvailabilityChanger = itemAvailabilityChanger;
         _logger = logger;
+        _random = new Random();
     }
 
     public async Task Observe()
@@ -67,14 +69,15 @@ Item: {0} (Id: {1})
 Item url: {2}
 Message: {3}
 InnerException: {4}";
-
+                    
                     _logger.LogError(
                         ex, templateLogMessage,
                         item.Title, item.Id, item.Url, ex.Message, ex.InnerException);
                 }
                 finally
                 {
-                    await Task.Delay(1000);
+                    var delay = _random.Next(800, 1500);
+                    await Task.Delay(delay);
                 }
             }
         }

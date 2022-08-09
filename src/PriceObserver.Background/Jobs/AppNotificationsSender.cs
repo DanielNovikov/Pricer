@@ -27,8 +27,9 @@ public class AppNotificationsSender : IHostedService
 
                 try
                 {
-                    var appNotificationService = scope.GetService<IAppNotificationService>();
-                    await appNotificationService.Execute();
+                    await scope
+                        .GetService<IAppNotificationService>()
+                        .Execute();
                 }
                 catch (Exception ex)
                 {

@@ -20,8 +20,6 @@ public class RequestHeadersBuilder : IRequestHeadersBuilder
     private const string AcceptLanguageKey = "accept-language";
     private const string AcceptLanguageValue = "ru-RU";
     
-    private const string RefererKey = "Referer";
-    
     public IReadOnlyDictionary<string, string> Build(Uri url, ShopKey shopKey)
     {
         var headers = new Dictionary<string, string>();
@@ -37,7 +35,7 @@ public class RequestHeadersBuilder : IRequestHeadersBuilder
                 headers.Add(AcceptLanguageKey, AcceptLanguageValue);
                 break;
             case ShopKey.Stylus:
-                headers.Add(RefererKey, url.ToString());
+                headers.Add(UserAgentKey, UserAgentValue);
                 break;
             case ShopKey.Watsons:
                 headers.Add(AcceptKey, AcceptValue);

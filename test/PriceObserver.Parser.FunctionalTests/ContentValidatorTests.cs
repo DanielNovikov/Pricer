@@ -30,7 +30,7 @@ public class ContentValidatorTests : TestBase
     [InlineData("https://rozetka.com.ua/", ShopKey.Rozetka)]
     [InlineData("https://shafa.ua/", ShopKey.Shafa)]
     [InlineData("https://athletics.kiev.ua/", ShopKey.Athletics)]
-    //[InlineData("https://stylus.ua/", ShopKey.Stylus)]
+    [InlineData("https://stylus.ua/", ShopKey.Stylus)]
     [InlineData("https://telemart.ua/", ShopKey.Telemart)]
     [InlineData("https://www.watsons.ua/", ShopKey.Watsons)]
     public async Task WhenThereIsNoItemInfo_ShouldReturnNoItemInfoOnPageError(string url, ShopKey shopKey)
