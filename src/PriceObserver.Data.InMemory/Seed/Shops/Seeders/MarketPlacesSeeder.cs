@@ -28,6 +28,14 @@ public class MarketPlacesSeeder
 				"shafa.ua",
 				"shafa.png",
 				false,
+				currencies.First(x => x.Key == CurrencyKey.UAH)),
+			
+			new Shop(
+				"OLX",
+				ShopKey.Olx,
+				"www.olx.ua",
+				"olx.png",
+				false,
 				currencies.First(x => x.Key == CurrencyKey.UAH))
 		};
 

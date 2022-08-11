@@ -33,5 +33,6 @@ public enum ShopKey
     Prom = 29,
     Shafa = 30,
     Epicentr = 31,
-    Prostor = 32
+    Prostor = 32,
+    Olx = 33
 }
