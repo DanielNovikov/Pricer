@@ -1,16 +1,12 @@
 ﻿using PriceObserver.Data.InMemory.Models;
 using PriceObserver.Data.InMemory.Models.Enums;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace PriceObserver.Data.InMemory.Seed.Shops.Seeders;
 
 public class FoodSeeder
 {	
-	public static void Seed(
-		List<ShopCategory> shopCategories,
-		List<Shop> shops,
-		List<Currency> currencies)
+	public static void Seed(List<ShopCategory> shopCategories, List<Shop> shops)
 	{
 		var foodShops = new List<Shop>
 		{
@@ -19,64 +15,56 @@ public class FoodSeeder
                 ShopKey.MegaMarket,
                 "megamarket.zakaz.ua",
                 "megamarket.webp",
-                true,
-                currencies.First(x => x.Key == CurrencyKey.UAH)),
+                true),
             
             new Shop(
                 "ЕКО Маркет", 
                 ShopKey.EkoMarket,
                 "eko.zakaz.ua",
                 "ecomarket.jpg",
-                true,
-                currencies.First(x => x.Key == CurrencyKey.UAH)),
+                true),
             
             new Shop(
                 "Varus", 
                 ShopKey.Varus,
                 "varus.zakaz.ua",
                 "varus.png",
-                true,
-                currencies.First(x => x.Key == CurrencyKey.UAH)),
+                true),
             
             new Shop(
                 "Ашан", 
                 ShopKey.Auchan,
                 "auchan.zakaz.ua",
                 "auchan.png",
-                true,
-                currencies.First(x => x.Key == CurrencyKey.UAH)),
+                true),
             
             new Shop(
                 "Столичний Ринок", 
                 ShopKey.StolychnyiRynok,
                 "stolychnyi.zakaz.ua",
                 "stolychnyi.png",
-                true,
-                currencies.First(x => x.Key == CurrencyKey.UAH)),
+                true),
             
             new Shop(
                 "Новус", 
                 ShopKey.Novus,
                 "novus.zakaz.ua",
                 "novus.jpg",
-                true,
-                currencies.First(x => x.Key == CurrencyKey.UAH)),
+                true),
             
             new Shop(
                 "UltraMarket", 
                 ShopKey.UltraMarket,
                 "ultramarket.zakaz.ua",
                 "ultramarket.png",
-                true,
-                currencies.First(x => x.Key == CurrencyKey.UAH)),
+                true),
             
             new Shop(
                 "MauDau", 
                 ShopKey.MauDau,
                 "maudau.com.ua",
                 "maudau.png",
-                false,
-                currencies.First(x => x.Key == CurrencyKey.UAH))
+                false)
 		};
 
         // new Shop(

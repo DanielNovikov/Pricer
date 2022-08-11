@@ -9,6 +9,5 @@ public record Shop(
     string Host,
     string Logo,
     bool SameFormatImages,
-    Currency Currency,
     string[] SubHosts = null)
     : IReadonlyEntity<ShopKey>;

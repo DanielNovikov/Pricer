@@ -22,15 +22,15 @@ message ShopItemsResponseModel {
 message ShopResponseModel {
   string address = 1;
   string logo = 2;
-  string currencySign = 3;
-  bool sameFormatImages = 4;
+  bool sameFormatImages = 3;
 }
 
 message ItemResponseModel {
   int32 id = 1;
   string title = 2;
   int32 price = 3;
-  string url = 4;
-  string imageUrl = 5;
-  string priceChanges = 6;
+  string currency = 4;
+  string url = 5;
+  string imageUrl = 6;
+  string priceChanges = 7;
 }

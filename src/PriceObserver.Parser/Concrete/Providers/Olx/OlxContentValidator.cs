@@ -18,6 +18,8 @@ public class OlxContentValidator : IContentValidator
 		if (element is null || element.Content is null)
 			return false;
 
-		return element.Content.IndexOf("грн", StringComparison.Ordinal) > 0;
+		return 
+			!element.Content.StartsWith("Обмін", StringComparison.Ordinal) &&
+		    !element.Content.StartsWith("Обмен", StringComparison.Ordinal);
 	}
 }

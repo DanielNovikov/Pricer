@@ -52,4 +52,9 @@ public class EstoreParser : IParserProvider
         
         return document.QuerySelector<IHtmlParagraphElement>(selector) is null;
     }
+
+    public CurrencyKey GetCurrency(IHtmlDocument document)
+    {
+        return CurrencyKey.UAH;
+    }
 }

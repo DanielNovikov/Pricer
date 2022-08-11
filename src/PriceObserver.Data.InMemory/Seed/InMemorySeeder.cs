@@ -2,6 +2,7 @@
 using PriceObserver.Data.InMemory.Seed.Dialog;
 using PriceObserver.Data.InMemory.Seed.Resources;
 using PriceObserver.Data.InMemory.Seed.Shops;
+using PriceObserver.Data.InMemory.Seed.Shops.Seeders;
 
 namespace PriceObserver.Data.InMemory.Seed;
 
@@ -12,5 +13,6 @@ public class InMemorySeeder
         ResourcesSeeder.Seed(cache);
         DialogSeeder.Seed(cache);
         ShopsSeeder.Seed(cache);
+        CurrenciesSeeder.Seed(cache);
     }
 }

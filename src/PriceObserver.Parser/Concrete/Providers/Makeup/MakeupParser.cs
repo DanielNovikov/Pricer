@@ -51,4 +51,9 @@ public class MakeupParser : IParserProvider
 
         return document.QuerySelector<IHtmlLinkElement>(selector) is null;
     }
+
+    public CurrencyKey GetCurrency(IHtmlDocument document)
+    {
+        return CurrencyKey.UAH;
+    }
 }

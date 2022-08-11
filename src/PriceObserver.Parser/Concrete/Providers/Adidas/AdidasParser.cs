@@ -55,4 +55,9 @@ public class AdidasParser : IParserProvider
     {
         return true;
     }
+
+    public CurrencyKey GetCurrency(IHtmlDocument document)
+    {
+        return CurrencyKey.UAH;
+    }
 }

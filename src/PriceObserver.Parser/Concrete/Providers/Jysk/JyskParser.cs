@@ -51,4 +51,9 @@ public class JyskParser : IParserProvider
 	{
 		return true;
 	}
+
+    public CurrencyKey GetCurrency(IHtmlDocument document)
+    {
+        return CurrencyKey.UAH;
+    }
 }

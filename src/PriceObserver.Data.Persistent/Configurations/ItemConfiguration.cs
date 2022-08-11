@@ -42,6 +42,11 @@ public class ItemConfiguration : IEntityTypeConfiguration<Item>
         builder
             .Property(x => x.IsAvailable)
             .IsRequired();
+        
+        builder
+            .Property(x => x.CurrencyKey)
+            .HasConversion<int>()
+            .IsRequired();
             
         builder
             .HasOne(i => i.User)

@@ -15,4 +15,6 @@ public interface IParserProvider
     Uri GetImageUrl(IHtmlDocument document);
 
     bool IsAvailable(IHtmlDocument document);
+
+    CurrencyKey GetCurrency(IHtmlDocument document);
 }

@@ -53,4 +53,9 @@ public class MauDauParser : IParserProvider
 
 		return document.QuerySelector<IHtmlDivElement>(selector) is null;
 	}
+
+	public CurrencyKey GetCurrency(IHtmlDocument document)
+	{
+		return CurrencyKey.UAH;
+	}
 }

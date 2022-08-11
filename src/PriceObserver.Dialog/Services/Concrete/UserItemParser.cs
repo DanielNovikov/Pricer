@@ -47,7 +47,8 @@ public class UserItemParser : IUserItemParser
             parsedItem.ImageUrl,
             user.Id,
             shop, 
-            parsedItem.IsAvailable);
+            parsedItem.IsAvailable,
+            parsedItem.CurrencyKey);
         
         if (item.IsAvailable)
             _userActionLogger.LogItemAdded(user, item);

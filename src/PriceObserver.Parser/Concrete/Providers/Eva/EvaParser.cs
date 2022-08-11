@@ -52,4 +52,9 @@ public class EvaParser : IParserProvider
 
 		return document.QuerySelector<IHtmlMetaElement>(selector) is null;
 	}
+
+	public CurrencyKey GetCurrency(IHtmlDocument document)
+	{
+		return CurrencyKey.UAH;
+	}
 }

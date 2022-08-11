@@ -43,7 +43,7 @@ public class ItemService : IItemService
     }
 
     public async Task<Item> Create(
-        int price, string title, Uri url, Uri imageUrl, int userId, ShopKey shopKey, bool isAvailable)
+        int price, string title, Uri url, Uri imageUrl, int userId, ShopKey shopKey, bool isAvailable, CurrencyKey currencyKey)
     {
         var item = new Item
         {
@@ -53,7 +53,8 @@ public class ItemService : IItemService
             ImageUrl = imageUrl,
             UserId = userId,
             ShopKey = shopKey,
-            IsAvailable = isAvailable
+            IsAvailable = isAvailable,
+            CurrencyKey = currencyKey
         };
 
         await _repository.Add(item);

@@ -21,6 +21,8 @@ public class Item : IAggregateRoot
         
     public bool IsAvailable { get; set; }
     
+    public CurrencyKey CurrencyKey { get; set; }
+    
     public int UserId { get; set; }
     public User User { get; set; }
         

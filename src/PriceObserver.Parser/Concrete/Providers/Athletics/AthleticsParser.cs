@@ -50,4 +50,9 @@ public class AthleticsParser : IParserProvider
     {
         return true;
     }
+
+    public CurrencyKey GetCurrency(IHtmlDocument document)
+    {
+        return CurrencyKey.UAH;
+    }
 }

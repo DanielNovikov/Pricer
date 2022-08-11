@@ -115,10 +115,10 @@ public class ParserTests : TestBase
         "Сьомга Norven філе-шматок слабосолена 180г",
         "https://img3.zakaz.ua/src.1644508583.ad72436478c_2022-02-10_Tatiana/src.1644508583.SNCPSG10.obj.0.1.jpg.oe.jpg.pf.jpg.350nowm.jpg.350x.jpg")]
     [InlineData(
-        "https://www.olx.ua/d/uk/obyavlenie/pivnaya-kruzhka-zatecky-gus-1l-obmen-na-hoegaarden-0-5l-IDgRJMv.html",
+        "https://www.olx.ua/d/uk/obyavlenie/prodam-bmw-520-i-IDPn6AB.html",
         ShopKey.Olx,
         "Продам BMW 520 i .",
-        "https://ireland.apollo.olxcdn.com:443/v1/files/0r59aecgy4wv1-UA/image;s=4000x3000")]
+        "https://ireland.apollo.olxcdn.com/v1/files/0r59aecgy4wv1-UA/image;s=4000x3000")]
     [InlineData(
         "https://e-pandora.ua/product/kabluchka_potriyna_spiral",
         ShopKey.Pandora,

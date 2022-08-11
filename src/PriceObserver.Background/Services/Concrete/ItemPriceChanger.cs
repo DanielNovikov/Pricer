@@ -19,10 +19,10 @@ public class ItemPriceChanger : IItemPriceChanger
     private readonly ILogger _logger;
     private readonly ITelegramBotService _telegramBotService;
     private readonly IItemParseResultService _parseResultService;
-    private readonly IShopRepository _shopRepository;
     private readonly IPartnerUrlBuilder _partnerUrlBuilder;
     private readonly IUserRepository _userRepository;
     private readonly IUserLanguage _userLanguage;
+    private readonly ICurrencyService _currencyService;
 
     private const double OneHundredPercent = 100.0;
     private const int MinimumDifferenceRatio = 5;
@@ -33,20 +33,20 @@ public class ItemPriceChanger : IItemPriceChanger
         ILogger<ItemPriceChanger> logger, 
         ITelegramBotService telegramBotService, 
         IItemParseResultService parseResultService, 
-        IShopRepository shopRepository, 
         IPartnerUrlBuilder partnerUrlBuilder, 
         IUserRepository userRepository, 
-        IUserLanguage userLanguage)
+        IUserLanguage userLanguage,
+        ICurrencyService currencyService)
     {
         _resourceService = resourceService;
         _itemService = itemService;
         _logger = logger;
         _telegramBotService = telegramBotService;
         _parseResultService = parseResultService;
-        _shopRepository = shopRepository;
         _partnerUrlBuilder = partnerUrlBuilder;
         _userRepository = userRepository;
         _userLanguage = userLanguage;
+        _currencyService = currencyService;
     }
 
     public async Task Change(Item item, int newPrice)
@@ -68,8 +68,7 @@ public class ItemPriceChanger : IItemPriceChanger
             var difference = Math.Abs(oldPrice - newPrice);
             var partnerUrl = _partnerUrlBuilder.Build(item.Url);
 
-            var shop = _shopRepository.GetByKey(item.ShopKey);
-            var currencyTitle = _resourceService.Get(shop.Currency.Title);
+            var currencyTitle = _currencyService.GetTitle(item.CurrencyKey);
 
             var resourceTemplate = priceDecreased
                 ? ResourceKey.Background_ItemPriceWentDown

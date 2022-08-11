@@ -6,5 +6,6 @@ public enum CacheKey
     ShopCategories,
     Resources,
     Menus,
-    Commands
+    Commands,
+    Currencies
 }

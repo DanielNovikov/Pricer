@@ -56,4 +56,9 @@ public class CitrusParser : IParserProvider
 
         return !availabilityElement.TextContent.Contains("Нет в наличии");
     }
+
+    public CurrencyKey GetCurrency(IHtmlDocument document)
+    {
+        return CurrencyKey.UAH;
+    }
 }

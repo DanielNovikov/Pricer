@@ -13,6 +13,7 @@ public static class DependencyInjection
             .AddScoped<ICommandRepository, CommandRepository>()
             .AddScoped<IMenuRepository, MenuRepository>()
             .AddScoped<IShopRepository, ShopRepository>()
-            .AddScoped<IShopCategoryRepository, ShopCategoryRepository>();
+            .AddScoped<IShopCategoryRepository, ShopCategoryRepository>()
+            .AddScoped<ICurrencyRepository, CurrencyRepository>();
     }
 }

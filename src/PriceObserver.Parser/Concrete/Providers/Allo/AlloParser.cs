@@ -52,4 +52,9 @@ public class AlloParser : IParserProvider
 
 		return document.QuerySelector<IHtmlButtonElement>(selector) is null;
 	}
+
+	public CurrencyKey GetCurrency(IHtmlDocument document)
+	{
+		return CurrencyKey.UAH;
+	}
 }

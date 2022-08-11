@@ -57,4 +57,9 @@ public class AnswearParser : IParserProvider
     {
         return true;
     }
+
+    public CurrencyKey GetCurrency(IHtmlDocument document)
+    {
+        return CurrencyKey.UAH;
+    }
 }

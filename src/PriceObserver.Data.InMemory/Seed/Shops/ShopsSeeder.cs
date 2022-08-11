@@ -9,17 +9,15 @@ public class ShopsSeeder
 {
     public static void Seed(IMemoryCache cache)
     {
-        var currencies = CurrenciesSeeder.Seed();
-        
         var shopCategories = new List<ShopCategory>();
         var shops = new List<Shop>();
         
-        ClothesSeeder.Seed(shopCategories, shops, currencies);
-        CosmeticsSeeder.Seed(shopCategories, shops, currencies);
-        ElectronicsSeeder.Seed(shopCategories, shops, currencies);
-        FoodSeeder.Seed(shopCategories, shops, currencies);
-        MarketPlacesSeeder.Seed(shopCategories, shops, currencies);
-        DifferentSeeder.Seed(shopCategories, shops, currencies);
+        ClothesSeeder.Seed(shopCategories, shops);
+        CosmeticsSeeder.Seed(shopCategories, shops);
+        ElectronicsSeeder.Seed(shopCategories, shops);
+        FoodSeeder.Seed(shopCategories, shops);
+        MarketPlacesSeeder.Seed(shopCategories, shops);
+        DifferentSeeder.Seed(shopCategories, shops);
                 
         cache.Set(CacheKey.Shops, shops);
         cache.Set(CacheKey.ShopCategories, shopCategories);

@@ -24,7 +24,8 @@ public class ParserProviderService : IParserProviderService
         var price = isAvailable ? parserProvider.GetPrice(document) : default;
         var title = parserProvider.GetTitle(document);
         var imageUrl = parserProvider.GetImageUrl(document);
+        var currencyKey = parserProvider.GetCurrency(document);
         
-        return new ParsedItem(providerKey, price, title, imageUrl, isAvailable);
+        return new ParsedItem(providerKey, price, title, imageUrl, isAvailable, currencyKey);
     }
 }

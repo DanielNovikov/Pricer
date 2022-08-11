@@ -3,6 +3,7 @@ using AngleSharp.Html.Dom;
 using PriceObserver.Data.InMemory.Models.Enums;
 using PriceObserver.Parser.Abstract;
 using System;
+using System.Linq;
 
 namespace PriceObserver.Parser.Concrete.Providers.Olx;
 
@@ -20,8 +21,8 @@ public class OlxProvider : IParserProvider
 		var priceElementContent = priceElement.Content ??
 			throw new ArgumentNullException($"{nameof(OlxProvider)}:{nameof(GetPrice)}:Element");
 		
-		var priceCurrencyIndex = priceElementContent.IndexOf("грн", StringComparison.Ordinal);
-		var price = priceElementContent.Substring(0, priceCurrencyIndex - 1);
+		var priceSeparatorIndex = priceElementContent.IndexOf(" ", StringComparison.Ordinal);
+		var price = priceElementContent.Substring(0, priceSeparatorIndex);
 
 		return int.Parse(price);
 	}
@@ -52,5 +53,18 @@ public class OlxProvider : IParserProvider
 	public bool IsAvailable(IHtmlDocument document)
 	{
 		return true;
+	}
+
+	public CurrencyKey GetCurrency(IHtmlDocument document)
+	{
+		const string selector = "meta[name='description']";
+
+		var priceElement = document.QuerySelector<IHtmlMetaElement>(selector) ?? 
+			throw new ArgumentNullException($"{nameof(OlxProvider)}:{nameof(GetPrice)}:Element");
+		
+		var priceElementContent = priceElement.Content ??
+		    throw new ArgumentNullException($"{nameof(OlxProvider)}:{nameof(GetPrice)}:Element");
+
+		return priceElementContent.Contains('$') ? CurrencyKey.USD : CurrencyKey.UAH;
 	}
 }

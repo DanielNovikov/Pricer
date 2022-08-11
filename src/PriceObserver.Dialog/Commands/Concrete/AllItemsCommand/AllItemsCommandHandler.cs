@@ -19,9 +19,9 @@ public class AllItemsCommandHandler : ICommandHandler
     private readonly IItemRepository _itemRepository;
     private readonly IUserActionLogger _userActionLogger;
     private readonly IResourceService _resourceService;
-    private readonly IShopRepository _shopRepository;
     private readonly IWebsiteLoginUrlBuilder _websiteLoginUrlBuilder;
     private readonly IPartnerUrlBuilder _partnerUrlBuilder;
+    private readonly ICurrencyRepository _currencyRepository;
 
     private const int MaximumOfItemsInMessage = 10;
     
@@ -29,16 +29,16 @@ public class AllItemsCommandHandler : ICommandHandler
         IItemRepository itemRepository,
         IUserActionLogger userActionLogger, 
         IResourceService resourceService, 
-        IShopRepository shopRepository, 
         IWebsiteLoginUrlBuilder websiteLoginUrlBuilder, 
-        IPartnerUrlBuilder partnerUrlBuilder)
+        IPartnerUrlBuilder partnerUrlBuilder,
+        ICurrencyRepository currencyRepository)
     {
         _itemRepository = itemRepository;
         _userActionLogger = userActionLogger;
         _resourceService = resourceService;
-        _shopRepository = shopRepository;
         _websiteLoginUrlBuilder = websiteLoginUrlBuilder;
         _partnerUrlBuilder = partnerUrlBuilder;
+        _currencyRepository = currencyRepository;
     }
 
     public CommandKey Type => CommandKey.AllItems; 
@@ -52,19 +52,19 @@ public class AllItemsCommandHandler : ICommandHandler
         if (!items.Any())
             return CommandHandlingServiceResult.Fail(ResourceKey.Dialog_EmptyCart);
 
-        var shops = _shopRepository.GetAll();
+        var currencies = _currencyRepository.GetAll();
 
         var itemsInfo = items
             .Join(
-                shops,
-                x => x.ShopKey,
+                currencies,
+                x => x.CurrencyKey,
                 x => x.Key,
-                (i, s) => new
+                (i, c) => new
                 {
                     Title = i.Title,
                     Url = i.Url,
                     Price = i.Price,
-                    CurrencyTitle = _resourceService.Get(s.Currency.Title)
+                    CurrencyTitle = _resourceService.Get(c.Title)
                 });
         
         var message = itemsInfo

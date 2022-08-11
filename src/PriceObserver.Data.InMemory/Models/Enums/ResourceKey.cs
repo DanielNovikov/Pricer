@@ -71,9 +71,11 @@ public enum ResourceKey
     Command_DisablePriceGrowing = 513,
     
     Currency_UAH_Title = 600,
-    Currency_EUR_Title = 601,
-    Currency_UAH_Sign = 602,
+    Currency_UAH_Sign = 601,
+    Currency_EUR_Title = 602,
     Currency_EUR_Sign = 603,
+    Currency_USD_Title = 604,
+    Currency_USD_Sign = 605,
     
     Api_NoHistory = 700,
     Api_GrewUpSign = 701,

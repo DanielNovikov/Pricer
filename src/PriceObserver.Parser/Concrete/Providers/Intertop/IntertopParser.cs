@@ -66,4 +66,9 @@ public class IntertopParser : IParserProvider
 
         return document.QuerySelector<IHtmlElement>(selector) is null;
     }
+
+    public CurrencyKey GetCurrency(IHtmlDocument document)
+    {
+        return CurrencyKey.UAH;
+    }
 }

@@ -52,4 +52,9 @@ public abstract class ZakazParserBase : IParserProvider
 
 		return document.QuerySelector<IHtmlSpanElement>(selector) is not null;
 	}
+
+	public virtual CurrencyKey GetCurrency(IHtmlDocument document)
+	{
+		return CurrencyKey.UAH;
+	}
 }

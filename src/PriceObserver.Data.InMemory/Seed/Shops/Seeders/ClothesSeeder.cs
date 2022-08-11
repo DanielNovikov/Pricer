@@ -1,16 +1,12 @@
 ﻿using PriceObserver.Data.InMemory.Models;
 using PriceObserver.Data.InMemory.Models.Enums;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace PriceObserver.Data.InMemory.Seed.Shops.Seeders;
 
 public class ClothesSeeder
 {
-	public static void Seed(
-        List<ShopCategory> shopCategories,
-        List<Shop> shops,
-        List<Currency> currencies)
+	public static void Seed(List<ShopCategory> shopCategories, List<Shop> shops)
 	{
 		var clothesShops = new List<Shop>
         {
@@ -19,56 +15,49 @@ public class ClothesSeeder
                 ShopKey.Intertop,
                 "intertop.ua",
                 "intertop.png",
-                true,
-                currencies.First(x => x.Key == CurrencyKey.UAH)),
+                true),
 
             new Shop(
                 "MdFashion",
                 ShopKey.MdFashion,
                 "md-fashion.com.ua",
                 "md-fashion.jfif",
-                true,
-                currencies.First(x => x.Key == CurrencyKey.UAH)),
+                true),
 
             new Shop(
                 "Answear",
                 ShopKey.Answear,
                 "answear.ua",
                 "answear.png",
-                true,
-                currencies.First(x => x.Key == CurrencyKey.UAH)),
+                true),
 
             new Shop(
                 "FARFETCH",
                 ShopKey.Farfetch,
                 "www.farfetch.com",
                 "farfetch.png",
-                true,
-                currencies.First(x => x.Key == CurrencyKey.EUR)),
+                true),
 
             new Shop(
                 "Adidas",
                 ShopKey.Adidas,
                 "www.adidas.ua",
                 "adidas.png",
-                true,
-                currencies.First(x => x.Key == CurrencyKey.UAH)),
+                true),
 
             new Shop(
                 "Modivo",
                 ShopKey.Modivo,
                 "modivo.ua",
                 "modivo.png",
-                false,
-                currencies.First(x => x.Key == CurrencyKey.UAH)),
+                false),
             
             new Shop(
                 "Athletics",
                 ShopKey.Athletics,
                 "athletics.kiev.ua",
                 "athletics.kiev.ua.png",
-                false,
-                currencies.First(x => x.Key == CurrencyKey.UAH))
+                false)
         };
 
         var clothesShopCategory = new ShopCategory(ResourceKey.ShopCategory_Clothes, "🥻", clothesShops);

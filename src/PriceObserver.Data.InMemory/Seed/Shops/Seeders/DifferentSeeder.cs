@@ -1,16 +1,12 @@
 ﻿using PriceObserver.Data.InMemory.Models;
 using PriceObserver.Data.InMemory.Models.Enums;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace PriceObserver.Data.InMemory.Seed.Shops.Seeders;
 
 public class DifferentSeeder
 {
-	public static void Seed(
-		List<ShopCategory> shopCategories,
-		List<Shop> shops,
-		List<Currency> currencies)
+	public static void Seed(List<ShopCategory> shopCategories, List<Shop> shops)
 	{
 		var differentShops = new List<Shop>
 		{
@@ -19,24 +15,21 @@ public class DifferentSeeder
 				ShopKey.Pandora,
 				"e-pandora.ua",
 				"pandora.svg",
-				true,
-				currencies.First(x => x.Key == CurrencyKey.UAH)),
+				true),
 			
 			new Shop(
 				"JYSK",
 				ShopKey.Jysk,
 				"jysk.ua",
 				"jysk.jpg",
-				false,
-				currencies.First(x => x.Key == CurrencyKey.UAH)),
+				false),
 			
 			new Shop(
 				"Епіцентр",
 				ShopKey.Epicentr,
 				"epicentrk.ua",
 				"epicentr.png",
-				false,
-				currencies.First(x => x.Key == CurrencyKey.UAH))
+				false)
 		};
 
 		var differentShopCategory = new ShopCategory(ResourceKey.ShopCategory_Different, "🛒", differentShops);

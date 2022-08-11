@@ -11,5 +11,6 @@ public interface IItemService
     
     Task UpdateAvailability(Item item, bool isAvailable);
     
-    Task<Item> Create(int price, string title, Uri url, Uri imageUrl, int userId, ShopKey shopKey, bool isAvailable);
+    Task<Item> Create(
+        int price, string title, Uri url, Uri imageUrl, int userId, ShopKey shopKey, bool isAvailable, CurrencyKey currencyKey);
 }
