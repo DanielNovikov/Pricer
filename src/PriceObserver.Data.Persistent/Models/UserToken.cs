@@ -9,7 +9,7 @@ public class UserToken : IAggregateRoot
         
     public Guid Token { get; set; }
         
-    public bool Expired { get; set; }
+    public DateTime Expiration { get; set; }
         
     public int UserId { get; set; }
     public User User { get; set; }

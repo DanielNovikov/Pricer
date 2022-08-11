@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using FluentAssertions;
 using Microsoft.EntityFrameworkCore;
@@ -24,7 +25,7 @@ public class WebsiteCommandTest : IntegrationTestingBase
             .Single();
 
         var token = user.Tokens.Single();
-        token.Expired.Should().BeFalse();
+        token.Expiration.Should().BeAfter(DateTime.UtcNow);
 
         var loginUrl = $"https://pricer.ink/login/{token.Token}";
         

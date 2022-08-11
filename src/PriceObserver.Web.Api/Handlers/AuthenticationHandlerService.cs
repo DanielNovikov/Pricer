@@ -37,7 +37,7 @@ public class AuthenticationHandlerService : IAuthenticationHandlerService
             return new AuthenticationReply { IsSuccess = false };
         }
 
-        if (userToken.Expired)
+        if (userToken.Expiration < DateTime.UtcNow)
         {
             _logger.LogInformation(
                 "User with id '{0}' tried to use expired token '{1}'",
@@ -53,7 +53,6 @@ public class AuthenticationHandlerService : IAuthenticationHandlerService
         };
         var accessToken = _jwtService.Create(claims);
         
-        await _userTokenService.Expire(userToken);
         _logger.LogInformation("User with id {0} authenticated", userToken.UserId);
         
         return new AuthenticationReply

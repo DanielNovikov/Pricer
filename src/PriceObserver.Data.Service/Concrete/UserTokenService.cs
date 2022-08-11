@@ -15,13 +15,6 @@ public class UserTokenService : IUserTokenService
         _repository = repository;
     }
 
-    public async Task Expire(UserToken userToken)
-    {
-        userToken.Expired = true;
-
-        await _repository.Update(userToken);
-    }
-
     public async Task<UserToken> CreateForUser(int userId)
     {
         var token = await _repository.GetNotExpiredByUserId(userId);
@@ -32,7 +25,7 @@ public class UserTokenService : IUserTokenService
         token = new UserToken
         {
             Token = Guid.NewGuid(),
-            Expired = false,
+            Expiration = DateTime.UtcNow.AddMinutes(5),
             UserId = userId
         };
 

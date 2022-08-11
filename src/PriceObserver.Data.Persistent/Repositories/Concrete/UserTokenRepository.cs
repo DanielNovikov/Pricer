@@ -15,7 +15,7 @@ public class UserTokenRepository : RepositoryBase<UserToken>, IUserTokenReposito
     {
         return await Context.UserTokens
             .AsNoTracking()
-            .SingleOrDefaultAsync(x => !x.Expired && x.UserId == userId);
+            .SingleOrDefaultAsync(x => x.Expiration > DateTime.UtcNow && x.UserId == userId);
     }
 
     public async Task<UserToken> GetByToken(Guid token)

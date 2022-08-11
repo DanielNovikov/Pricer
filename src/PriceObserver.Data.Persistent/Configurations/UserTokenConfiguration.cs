@@ -15,7 +15,7 @@ public class UserTokenConfiguration : IEntityTypeConfiguration<UserToken>
             .IsRequired();
 
         builder
-            .Property(x => x.Expired)
+            .Property(x => x.Expiration)
             .IsRequired();
 
         builder
