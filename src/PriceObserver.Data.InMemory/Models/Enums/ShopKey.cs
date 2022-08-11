@@ -32,5 +32,6 @@ public enum ShopKey
     MauDau = 28,
     Prom = 29,
     Shafa = 30,
-    Epicentr = 31
+    Epicentr = 31,
+    Prostor = 32
 }

@@ -37,6 +37,14 @@ public class CosmeticsSeeder
                 "eva.png",
                 true,
                 currencies.First(x => x.Key == CurrencyKey.UAH)),
+            
+            new Shop(
+                "Prostor",
+                ShopKey.Prostor,
+                "prostor.ua",
+                "prostor.png",
+                false,
+                currencies.First(x => x.Key == CurrencyKey.UAH))
         };
 
         var cosmeticsShopCategory = new ShopCategory(ResourceKey.ShopCategory_Cosmetics, "💄", cosmeticsShops);

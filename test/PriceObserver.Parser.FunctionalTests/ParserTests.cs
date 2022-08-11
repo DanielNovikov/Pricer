@@ -125,6 +125,11 @@ public class ParserTests : TestBase
         "Гнучкий неон 12Вольт Блакитна \"SunLight\"",
         "https://images.prom.ua/2743412622_w640_h640_gibkij-neon-12volt.jpg")]
     [InlineData(
+        "https://prostor.ua/ru/product/lorena-beauty-gubnaya-pomada-uvlazhnyaushchaya-cl04/",
+        ShopKey.Prostor,
+        "LORENA beauty губна помада зволожувальна №CL04",
+        "https://prostor.ua/content/images/41/283x1000l80mc0/lorenabeautygubnapomadazvolozhuvalnacl04-49896498245517.webp")]
+    [InlineData(
         "https://rozetka.com.ua/310759363/p310759363/",
         ShopKey.Rozetka,
         "Робот - пылесос ECOVACS DEEBOT OZMO N8 PLUS (DLN26)",
@@ -198,6 +203,7 @@ public class ParserTests : TestBase
     [InlineData("https://megamarket.zakaz.ua/uk/products/04820178810401/vershki-organik-milk-180g/", ShopKey.MegaMarket)]
     [InlineData("https://www.moyo.ua/televizor-lg-75sm9000pla/448309.html", ShopKey.Moyo)]
     [InlineData("https://novus.zakaz.ua/uk/products/novus02885537000000/sukhofrukti/", ShopKey.Novus)]
+    [InlineData("https://prostor.ua/ru/product/maxi-color-pomada-hydra-shine-4.2g/", ShopKey.Prostor)]
     [InlineData("https://rozetka.com.ua/lg_75nano756pa/p292219333/", ShopKey.Rozetka)]
     [InlineData("https://stylus.ua/xiaomi-yi-sport-white-basic-edition-p227758c997.html", ShopKey.Stylus)]
     [InlineData("https://stolychnyi.zakaz.ua/uk/products/stolychnyi02010000295007/iogurt-500ml/", ShopKey.StolychnyiRynok)]
