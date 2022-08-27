@@ -35,7 +35,11 @@ public class TelegramMessageReceiver : IHostedService
 
             var receiverOptions = new ReceiverOptions
             {
-                AllowedUpdates = new[] {UpdateType.Message}
+                AllowedUpdates = new[]
+                {
+                    UpdateType.Message,
+                    UpdateType.CallbackQuery
+                }
             };
 
             client.StartReceiving(

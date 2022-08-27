@@ -9,7 +9,7 @@ public class ReplyKeyboardMarkupBuilder : IReplyKeyboardMarkupBuilder
 {
     public ReplyKeyboardMarkup Build(MenuKeyboard keyboard)
     {
-        var buttons = keyboard.ButtonsGrid
+        var buttons = keyboard.Buttons
             .Select(x => x.Select(y => new KeyboardButton(y.Title)));
 
         return new ReplyKeyboardMarkup(buttons)

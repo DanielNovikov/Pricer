@@ -19,7 +19,8 @@ public abstract class RepositoryBase<T> : IRepository<T> where T : class, IAggre
     {
         var entity = await Context.Set<T>().FindAsync(id);
         
-        Context.DetachEntity(entity);
+        if (entity is not null)
+            Context.DetachEntity(entity);
 
         return entity;
     }

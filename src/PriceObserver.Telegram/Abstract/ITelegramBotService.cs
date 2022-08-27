@@ -7,7 +7,9 @@ public interface ITelegramBotService
 {
     Task SendMessage(long userId, string message);
         
-    Task SendMessageWithKeyboard(long userId, string message, ReplyKeyboardMarkup keyboard);
+    Task SendMessageWithReplyMarkup(long userId, string message, IReplyMarkup keyboard);
 
     Task SendVideo(long userId, string videoUrl, string message = default);
+    
+    Task EditMessage(long userId, int messageId, string message, InlineKeyboardMarkup keyboard);
 }

@@ -12,13 +12,19 @@ public class PandoraParser : IParserProvider
 
 	public int GetPrice(IHtmlDocument document)
 	{
-		const string selector = "div.product div.product__price span";
+		const string selector = "script[type='application/ld+json']";
+		var scriptElement = document.QuerySelector<IHtmlScriptElement>(selector) ??
+			throw new ArgumentNullException($"{nameof(PandoraParser)}:{nameof(GetPrice)}:Element");
 
-		var priceElement = document.QuerySelector<IHtmlSpanElement>(selector) ??
-		    throw new ArgumentNullException($"{nameof(PandoraParser)}:{nameof(GetPrice)}:Element");
-		
-		var price = priceElement.TextContent.Split("\n")[1].Trim();
-		return int.Parse(price);
+		var scriptContent = scriptElement.TextContent;
+		var pricePropertyStartIndex = scriptContent.IndexOf("\"price\":", StringComparison.Ordinal);
+		var pricePropertyEndIndex = scriptContent.IndexOf(",", pricePropertyStartIndex, StringComparison.Ordinal);
+        
+		var priceString = scriptContent.Substring(
+			pricePropertyStartIndex + 8,
+			pricePropertyEndIndex - pricePropertyStartIndex - 8);
+
+		return int.Parse(priceString);
 	}
 
 	public string GetTitle(IHtmlDocument document)

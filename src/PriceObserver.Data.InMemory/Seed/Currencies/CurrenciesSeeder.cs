@@ -3,7 +3,7 @@ using PriceObserver.Data.InMemory.Models;
 using PriceObserver.Data.InMemory.Models.Enums;
 using System.Collections.Generic;
 
-namespace PriceObserver.Data.InMemory.Seed.Shops.Seeders;
+namespace PriceObserver.Data.InMemory.Seed.Currencies;
 
 public class CurrenciesSeeder
 {

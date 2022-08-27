@@ -36,7 +36,7 @@ public class MauDauParser : IParserProvider
 
 	public Uri GetImageUrl(IHtmlDocument document)
 	{
-		const string selector = "div.main-gallery div.slider-item:first-child > img";
+		const string selector = "div.slider-item.active > img";
 		
 		var imageElement = document.QuerySelector<IHtmlImageElement>(selector) ?? 
 		    throw new ArgumentNullException($"{nameof(MauDauParser)}:{nameof(GetImageUrl)}:Element");

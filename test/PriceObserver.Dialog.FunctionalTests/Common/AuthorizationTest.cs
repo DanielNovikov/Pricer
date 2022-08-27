@@ -61,7 +61,7 @@ public class AuthorizationTest : IntegrationTestingBase
     
     private static void AssertResultKeyboard(MenuKeyboard resultKeyboard)
     {
-        var buttons = resultKeyboard.ButtonsGrid
+        var buttons = resultKeyboard.Buttons
             .SelectMany(x => x)
             .ToList();
 

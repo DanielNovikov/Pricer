@@ -11,8 +11,8 @@ public class MakeupContentValidator : IContentValidator
 
     public bool HasItemInfo(IHtmlDocument document)
     {
-        const string selector = "img[itemprop=image]";
+        const string selector = "meta[property='og:image']";
 
-        return document.QuerySelector<IHtmlImageElement>(selector) is not null;
+        return document.QuerySelector<IHtmlMetaElement>(selector) is not null;
     }
 }

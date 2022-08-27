@@ -40,4 +40,8 @@ public interface IUserActionLogger
     void LogToggledPriceGrowthNotifications(User user, bool enabled);
     
     void LogNotAvailableItemAdded(User user, Item item);
+    
+    void LogDeletedItem(User user, Item item);
+
+    void LogRestoredItem(User user, Item item);
 }

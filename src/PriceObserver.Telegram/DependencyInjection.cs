@@ -19,6 +19,7 @@ public static class DependencyInjection
             .AddTransient<ITelegramBotService, TelegramBotService>()
             .AddTransient<IUpdateHandler, UpdateHandler>()
             .Decorate<IUpdateHandler, UpdateExceptionHandler>()
-            .AddTransient<IReplyKeyboardMarkupBuilder, ReplyKeyboardMarkupBuilder>();
+            .AddTransient<IReplyKeyboardMarkupBuilder, ReplyKeyboardMarkupBuilder>()
+            .AddTransient<IInlineKeyboardMarkupBuilder, InlineKeyboardMarkupBuilder>();
     }
 }

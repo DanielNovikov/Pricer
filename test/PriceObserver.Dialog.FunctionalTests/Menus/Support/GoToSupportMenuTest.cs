@@ -23,9 +23,9 @@ public class GoToSupportMenuTest : IntegrationTestingBase
         AssertUserMenu();
     }
 
-    private static void AssertResultKeyboard(InputHandlingServiceResult result)
+    private static void AssertResultKeyboard(MessageHandlingResult result)
     {
-        var buttons = result.Result.MenuKeyboard.ButtonsGrid
+        var buttons = result.Result.MenuKeyboard.Buttons
             .SelectMany(x => x)
             .ToList();
 

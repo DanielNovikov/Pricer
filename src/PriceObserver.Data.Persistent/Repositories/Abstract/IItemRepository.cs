@@ -11,5 +11,5 @@ public interface IItemRepository : IRepository<Item>
     
     Task<IList<Item>> GetByUserIdWithLimit(int userId, int limit);
 
-    Task<bool> ExistsByUserIdAndUrl(int userId, Uri url);
+    Task<Item> GetByUserIdAndUrl(int userId, Uri url);
 }

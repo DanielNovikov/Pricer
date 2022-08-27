@@ -17,10 +17,13 @@ public class PromParser : IParserProvider
 		var priceElement = document.QuerySelector<IHtmlSpanElement>(selector) ??
 		    throw new ArgumentNullException($"{nameof(PromParser)}:{nameof(GetPrice)}:Element");;
 
-		var price = priceElement.Attributes["data-qaprice"] ??
+		var priceAttribute = priceElement.Attributes["data-qaprice"] ??
 		    throw new ArgumentNullException($"{nameof(PromParser)}:{nameof(GetPrice)}:Element:Content");
+		
+		if (!double.TryParse(priceAttribute.Value, out var price))
+			throw new ArgumentException($"{nameof(PromParser)}:{nameof(GetPrice)}:Element:Content:Value");
 
-		return int.Parse(price.Value);
+		return (int)price;
 	}
 
 	public string GetTitle(IHtmlDocument document)
@@ -40,10 +43,13 @@ public class PromParser : IParserProvider
 		var imageElement = document.QuerySelector<IHtmlLinkElement>(selector) ??
 		    throw new ArgumentNullException($"{nameof(PromParser)}:{nameof(GetImageUrl)}:Element");
 		
-		var imageSource = imageElement.Href ??
+		var imageSourceAttribute = imageElement.Href ??
 		    throw new ArgumentNullException($"{nameof(PromParser)}:{nameof(GetImageUrl)}:Element:Content");
 
-		return new Uri(imageSource);
+		if (!Uri.TryCreate(imageSourceAttribute, UriKind.Absolute, out var imageSource))
+			throw new ArgumentException($"{nameof(PromParser)}:{nameof(GetImageUrl)}:Element:Content:Value");
+
+		return imageSource;
 	}
 
 	public bool IsAvailable(IHtmlDocument document)

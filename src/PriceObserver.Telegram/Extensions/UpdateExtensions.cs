@@ -1,20 +1,36 @@
 ﻿using PriceObserver.Dialog.Models;
+using System;
 using Telegram.Bot.Types;
 
 namespace PriceObserver.Telegram.Extensions;
 
 public static class UpdateExtensions
 {
-    public static UpdateServiceModel ToDto(this Update update)
+    public static MessageHandlingModel ToMessage(this Update update)
     {
-        var message = update.Message;
-        var chat = message.Chat;
+        var message = update.Message ?? 
+            throw new ArgumentNullException($"{nameof(ToMessage)}:{nameof(update.Message)}");
+        
+        var user = message.Chat.ToUser();
             
-        return new UpdateServiceModel(
-            message.Text,
-            chat.Id,
-            chat.FirstName,
-            chat.LastName,
-            chat.Username);
+        return new MessageHandlingModel(
+            message.Text!,
+            user);
+    }
+    
+    public static CallbackHandlingModel ToCallback(this Update update)
+    {
+        var callback = update.CallbackQuery ?? 
+            throw new ArgumentNullException($"{nameof(ToCallback)}:{nameof(update.CallbackQuery)}");
+        
+        var message = callback.Message ??
+            throw new ArgumentNullException($"{nameof(ToCallback)}:{nameof(update.Message)}");
+
+        var user = message.Chat.ToUser();
+        
+        return new CallbackHandlingModel(
+            callback.Data!,
+            message.MessageId,
+            user);
     }
 }

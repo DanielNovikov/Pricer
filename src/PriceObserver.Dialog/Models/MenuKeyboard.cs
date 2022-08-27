@@ -2,4 +2,4 @@
 
 namespace PriceObserver.Dialog.Models;
 
-public record MenuKeyboard(List<List<MenuKeyboardButton>> ButtonsGrid);
+public record MenuKeyboard(List<List<MenuKeyboardButton>> Buttons);

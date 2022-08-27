@@ -50,10 +50,10 @@ public class ParserTests : TestBase
         "Хліб Київхліб Супер тост світлий нарізаний 350г",
         "https://img3.zakaz.ua/src.1626182394.ad72436478c_2021-07-13_Tatiana/src.1626182394.SNCPSG10.obj.0.1.jpg.oe.jpg.pf.jpg.350nowm.jpg.350x.jpg")]
     [InlineData(
-        "https://epicentrk.ua/ua/shop/smartfon-oppo-a15-2-32gb-dynamic-black-cph2185-black.html",
+        "https://epicentrk.ua/ua/shop/mysh-esperanza-xm110k-black-.html?sc_content=15474_0",
         ShopKey.Epicentr,
-        "Смартфон OPPO A15 2/32GB dynamic black (CPH2185 BLACK)",
-        "https://cdn.27.ua/799/ae/9e/3059358_5.jpeg")]
+        "Миша ESPERANZA XM110K black",
+        "https://cdn.27.ua/799/de/ea/384746_1.jpeg")]
     [InlineData(
         "https://estore.ua/apple-watch-series-7-45mm-midnight-aluminium-case-with-sport-band/",
         ShopKey.Estore,
@@ -83,7 +83,7 @@ public class ParserTests : TestBase
         "https://makeup.com.ua/product/909452/",
         ShopKey.Makeup,
         "Сыворотка для лица увлажняющая с гиалуроновой кислотой и ниацинамидом - Relance Hyaluronic Acid + Niacinamide Face Serum",
-        "https://u.makeup.com.ua/h/he/helk3ldgv9dh.jpg")]
+        "https://u.makeup.com.ua/g/ga/garz1eytjlmi.jpg")]
     [InlineData(
         "https://maudau.com.ua/ru/pyvo-leffe-brune-temne-63-zhb-05-l-478576-md-421156.html",
         ShopKey.MauDau,

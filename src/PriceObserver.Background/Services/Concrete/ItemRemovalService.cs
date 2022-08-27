@@ -12,7 +12,6 @@ namespace PriceObserver.Background.Services.Concrete;
 
 public class ItemRemovalService : IItemRemovalService
 {
-    private readonly IItemRepository _itemRepository;
     private readonly IResourceService _resourceService;
     private readonly ITelegramBotService _telegramBotService;
     private readonly IItemParseResultService _parseResultService;
@@ -20,20 +19,20 @@ public class ItemRemovalService : IItemRemovalService
     private readonly IPartnerUrlBuilder _partnerUrlBuilder;
     private readonly IUserRepository _userRepository;
     private readonly IUserLanguage _userLanguage;
+    private readonly IItemService _itemService;
 
-    private const int CountOfFailedToRemove = 5;
+    private const int CountOfFailedToRemove = 20;
     
     public ItemRemovalService(
-        IItemRepository itemRepository,
         IResourceService resourceService, 
         ITelegramBotService telegramBotService, 
         IItemParseResultService parseResultService, 
         ILogger<ItemRemovalService> logger, 
         IPartnerUrlBuilder partnerUrlBuilder, 
         IUserRepository userRepository, 
-        IUserLanguage userLanguage)
+        IUserLanguage userLanguage,
+        IItemService itemService)
     {
-        _itemRepository = itemRepository;
         _resourceService = resourceService;
         _telegramBotService = telegramBotService;
         _parseResultService = parseResultService;
@@ -41,6 +40,7 @@ public class ItemRemovalService : IItemRemovalService
         _partnerUrlBuilder = partnerUrlBuilder;
         _userRepository = userRepository;
         _userLanguage = userLanguage;
+        _itemService = itemService;
     }
 
     public async Task Remove(Item item, ResourceKey error)
@@ -67,7 +67,7 @@ public class ItemRemovalService : IItemRemovalService
             partnerUrl, item.Title, errorReason);
 
         await _telegramBotService.SendMessage(user.ExternalId, itemDeletedMessage);
-        await _itemRepository.Delete(item);
+        await _itemService.Delete(item);
         
         _logger.LogInformation(
             @"Item {0} deleted

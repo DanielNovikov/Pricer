@@ -107,6 +107,16 @@ public class UserActionLogger : IUserActionLogger
     {
         LogInformation(user, ResourceKey.UserAction_AddedNotAvailableItem, item.Url, item.Title, item.Price);
     }
+    
+    public void LogDeletedItem(User user, Item item)
+    {
+        LogInformation(user, ResourceKey.UserAction_DeletedItem, item.Url, item.Title, item.Id);
+    }
+
+    public void LogRestoredItem(User user, Item item)
+    {
+        LogInformation(user, ResourceKey.UserAction_RestoredItem, item.Url, item.Title, item.Id);
+    }
 
     private void LogInformation(User user, ResourceKey message, params object[] parameters)
     {

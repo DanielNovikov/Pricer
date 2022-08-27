@@ -3,7 +3,6 @@ using AngleSharp.Html.Dom;
 using PriceObserver.Data.InMemory.Models.Enums;
 using PriceObserver.Parser.Abstract;
 using System;
-using System.Linq;
 
 namespace PriceObserver.Parser.Concrete.Providers.Olx;
 

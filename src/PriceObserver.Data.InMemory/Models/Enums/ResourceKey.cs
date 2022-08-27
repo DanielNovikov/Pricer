@@ -18,6 +18,9 @@ public enum ResourceKey
     Dialog_ShopIsNotAvailable = 13,
     Dialog_AddItemInformation = 14,
     Dialog_MaximumOfItemsExceeded = 15,
+    Dialog_RestoreItem = 16,
+    Dialog_GoByItemUrl = 17,
+    Dialog_ItemDeleted = 18,
 
     UserAction_GotAddedProducts = 100,
     UserAction_ParsingError = 101,
@@ -38,6 +41,8 @@ public enum ResourceKey
     UserAction_RedirectedBackToMenu = 117,
     UserAction_ToggledPriceGrowthNotifications = 118,
     UserAction_AddedNotAvailableItem = 119,
+    UserAction_DeletedItem = 120,
+    UserAction_RestoredItem = 121,
         
     Parser_PageNotFound = 200,
     Parser_NoItemInfoOnPage = 202,
@@ -48,6 +53,8 @@ public enum ResourceKey
     Background_ItemPriceGrewUp = 303,
     Background_ItemIsInStock = 304,
     Background_ItemIsOutOfStock = 305,
+    Background_DeleteItem = 306,
+    Background_GoByItemUrl = 307,
         
     Menu_Home = 400,
     Menu_Support = 401,

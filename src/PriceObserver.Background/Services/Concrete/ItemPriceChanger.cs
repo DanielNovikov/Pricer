@@ -4,7 +4,6 @@ using Microsoft.Extensions.Logging;
 using PriceObserver.Background.Services.Abstract;
 using PriceObserver.Common.Services.Abstract;
 using PriceObserver.Data.InMemory.Models.Enums;
-using PriceObserver.Data.InMemory.Repositories.Abstract;
 using PriceObserver.Data.Persistent.Models;
 using PriceObserver.Data.Persistent.Repositories.Abstract;
 using PriceObserver.Data.Service.Abstract;
@@ -19,10 +18,10 @@ public class ItemPriceChanger : IItemPriceChanger
     private readonly ILogger _logger;
     private readonly ITelegramBotService _telegramBotService;
     private readonly IItemParseResultService _parseResultService;
-    private readonly IPartnerUrlBuilder _partnerUrlBuilder;
     private readonly IUserRepository _userRepository;
     private readonly IUserLanguage _userLanguage;
     private readonly ICurrencyService _currencyService;
+    private readonly IPriceChangedKeyboardBuilder _priceChangedKeyboardBuilder;
 
     private const double OneHundredPercent = 100.0;
     private const int MinimumDifferenceRatio = 5;
@@ -33,20 +32,20 @@ public class ItemPriceChanger : IItemPriceChanger
         ILogger<ItemPriceChanger> logger, 
         ITelegramBotService telegramBotService, 
         IItemParseResultService parseResultService, 
-        IPartnerUrlBuilder partnerUrlBuilder, 
         IUserRepository userRepository, 
         IUserLanguage userLanguage,
-        ICurrencyService currencyService)
+        ICurrencyService currencyService,
+        IPriceChangedKeyboardBuilder priceChangedKeyboardBuilder)
     {
         _resourceService = resourceService;
         _itemService = itemService;
         _logger = logger;
         _telegramBotService = telegramBotService;
         _parseResultService = parseResultService;
-        _partnerUrlBuilder = partnerUrlBuilder;
         _userRepository = userRepository;
         _userLanguage = userLanguage;
         _currencyService = currencyService;
+        _priceChangedKeyboardBuilder = priceChangedKeyboardBuilder;
     }
 
     public async Task Change(Item item, int newPrice)
@@ -66,7 +65,6 @@ public class ItemPriceChanger : IItemPriceChanger
             (newPrice > oldPrice && user.GrowthPriceNotificationsEnabled))
         {
             var difference = Math.Abs(oldPrice - newPrice);
-            var partnerUrl = _partnerUrlBuilder.Build(item.Url);
 
             var currencyTitle = _currencyService.GetTitle(item.CurrencyKey);
 
@@ -75,9 +73,11 @@ public class ItemPriceChanger : IItemPriceChanger
                 : ResourceKey.Background_ItemPriceGrewUp;
             
             var priceChangedMessage = _resourceService.Get(
-                resourceTemplate, item.Title, partnerUrl, newPrice, currencyTitle, difference, currencyTitle);
+                resourceTemplate, item.Title, newPrice, currencyTitle, difference, currencyTitle);
+
+            var keyboard = _priceChangedKeyboardBuilder.Build(item);
             
-            await _telegramBotService.SendMessage(user.ExternalId, priceChangedMessage);
+            await _telegramBotService.SendMessageWithReplyMarkup(user.ExternalId, priceChangedMessage, keyboard);
         }
 
         LogChangedPrice(item, oldPrice, newPrice);

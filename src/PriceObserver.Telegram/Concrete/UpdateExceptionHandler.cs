@@ -35,15 +35,23 @@ public class UpdateExceptionHandler : IUpdateHandler
         }
         catch (Exception ex)
         {
-            var userId = update.Message.Chat.Id;
+            var message = update.Message ?? update.CallbackQuery?.Message;
+            if (message is null)
+            {
+                _logger.LogWarning("Unsupported update type: {0}", update.Type);
+                return;
+            }
+            
+            var userId = message.Chat.Id;
                 
-            _logger.LogError($@"User id: {userId}
-User message: {update.Message.Text}
-Message: {ex.Message}
-InnerException: {ex.InnerException}");
+            _logger.LogError(@"User id: {0}
+User message: {1}
+Message: {2}
+InnerException: {3}",
+                userId, message.Text, ex.Message, ex.InnerException?.ToString());
 
-            var message = _resourceService.Get(ResourceKey.Dialog_ErrorOccured);
-            await _telegramBotService.SendMessage(userId, message);
+            var reply = _resourceService.Get(ResourceKey.Dialog_ErrorOccured);
+            await _telegramBotService.SendMessage(userId, reply);
         }
     }
 }

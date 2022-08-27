@@ -33,9 +33,9 @@ public class GoBackFromSupportMenuTest : IntegrationTestingBase
         user.MenuKey.Should().Be(MenuKey.Home);
     }
 
-    private static void AssertResultKeyboard(InputHandlingServiceResult result)
+    private static void AssertResultKeyboard(MessageHandlingResult result)
     {
-        var buttons = result.Result.MenuKeyboard.ButtonsGrid
+        var buttons = result.Result.MenuKeyboard.Buttons
             .SelectMany(x => x)
             .ToList();
 

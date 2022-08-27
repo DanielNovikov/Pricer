@@ -76,19 +76,6 @@ public class DialogSeeder
             "У вашому списку ще немає жодних товарів 🗑",
             "В вашем списке ещё нет никаких товаров 🗑");
 
-#if DEBUG
-        
-        resources.AddResource(
-            ResourceKey.Dialog_ItemInfo,
-            @"{0}. {1}
- ├ Ціна <b>{2}</b>{3}
- └ Посилання: {4}",
-            @"{0}. {1}
- ├ Цена <b>{2}</b>{3}
- └ Ссылка: {4}");
-        
-#else
-
         resources.AddResource(
             ResourceKey.Dialog_ItemInfo,
             @"{0}. {1}
@@ -97,8 +84,6 @@ public class DialogSeeder
             @"{0}. {1}
  ├ Цена <b>{2}</b>{3}
  └ <a href='{4}'>Ссылка</a> на товар");
-
-#endif
 
         resources.AddResource(
             ResourceKey.Dialog_AvailableShops,
@@ -159,5 +144,10 @@ public class DialogSeeder
             ResourceKey.Dialog_MaximumOfItemsExceeded,
             "Перейдіть на <a href='{0}'>сайт</a> щоб подивитись усі товари 🌍",
             "Перейдите на <a href='{0}'>сайт</a> что-бы просмотреть все товары 🌍");
+        
+        resources.AddResource(ResourceKey.Dialog_RestoreItem, "Повернути ➕", "Вернуть ➕");
+        resources.AddResource(ResourceKey.Dialog_GoByItemUrl, "Перейти", "Перейти");
+        
+        resources.AddResource(ResourceKey.Dialog_ItemDeleted, "Товар видалено! 🗑", "Товар удален! 🗑");
     }
 }

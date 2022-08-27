@@ -62,6 +62,9 @@ namespace PriceObserver.Data.Migrations
                     b.Property<bool>("IsAvailable")
                         .HasColumnType("boolean");
 
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("boolean");
+
                     b.Property<int>("Price")
                         .HasColumnType("integer");
 

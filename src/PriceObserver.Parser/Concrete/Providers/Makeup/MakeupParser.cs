@@ -34,13 +34,13 @@ public class MakeupParser : IParserProvider
 
     public Uri GetImageUrl(IHtmlDocument document)
     {
-        const string selector = "img[itemprop=image]";
+        const string selector = "meta[property='og:image']";
         
-        var imageElement = document.QuerySelector<IHtmlImageElement>(selector) ?? 
+        var imageElement = document.QuerySelector<IHtmlMetaElement>(selector) ??
             throw new ArgumentNullException($"{nameof(MakeupParser)}:{nameof(GetImageUrl)}:Element");
-
-        var imageSource = imageElement.Source ?? 
-            throw new ArgumentNullException($"{nameof(MakeupParser)}:{nameof(GetImageUrl)}:Element:Content");
+        
+        var imageSource = imageElement.Content ??
+            throw new ArgumentNullException($"{nameof(MakeupParser)}:{nameof(GetImageUrl)}:Element:Content"); 
         
         return new Uri(imageSource);
     }

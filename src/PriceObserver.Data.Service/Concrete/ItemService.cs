@@ -61,4 +61,16 @@ public class ItemService : IItemService
 
         return item;
     }
+
+    public async Task Delete(Item item)
+    {
+        item.IsDeleted = true;
+        await _repository.Update(item);
+    }
+
+    public async Task Restore(Item item)
+    {
+        item.IsDeleted = false;
+        await _repository.Update(item);
+    }
 }

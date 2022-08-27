@@ -4,7 +4,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using PriceObserver.Data.InMemory.Repositories.Abstract;
 using PriceObserver.Dialog.Menus.Abstract;
-using PriceObserver.Dialog.Menus.Models;
 using PriceObserver.Dialog.Models;
 using PriceObserver.Dialog.Services.Abstract;
 
@@ -26,7 +25,7 @@ public class MenuInputHandlerService : IMenuInputHandlerService
         _wrongCommandHandler = wrongCommandHandler;
     }
 
-    public async Task<MenuInputHandlingServiceResult> Handle(MessageServiceModel message)
+    public async Task<MenuInputHandlingServiceResult> Handle(MessageModel message)
     {
         var menuKey = message.User.MenuKey;
         var menu = _menuRepository.GetByKey(menuKey);

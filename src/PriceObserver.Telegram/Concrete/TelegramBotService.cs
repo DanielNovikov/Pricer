@@ -32,7 +32,7 @@ public class TelegramBotService : ITelegramBotService
             async () => await _telegramBot.Client.SendTextMessageAsync(userId, message, Formatting));
     }
 
-    public async Task SendMessageWithKeyboard(long userId, string message, ReplyKeyboardMarkup keyboard)
+    public async Task SendMessageWithReplyMarkup(long userId, string message, IReplyMarkup keyboard)
     {
         await Send(userId, message,
             async () => await _telegramBot.Client.SendTextMessageAsync(userId, message, Formatting, replyMarkup: keyboard));
@@ -42,6 +42,12 @@ public class TelegramBotService : ITelegramBotService
     {
         await Send(userId, message, 
             async () => await _telegramBot.Client.SendVideoAsync(userId, videoUrl, caption: message, parseMode: Formatting));
+    }
+
+    public async Task EditMessage(long userId, int messageId, string message, InlineKeyboardMarkup keyboard)
+    {
+        await Send(userId, message, 
+            async () => await _telegramBot.Client.EditMessageTextAsync(userId, messageId, message, replyMarkup: keyboard, parseMode: Formatting));
     }
 
     private const ParseMode Formatting = ParseMode.Html;

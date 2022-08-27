@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using PriceObserver.Data.InMemory.Models.Enums;
+using PriceObserver.Data.InMemory.Repositories.Abstract;
 using PriceObserver.Data.Persistent.Models;
 using PriceObserver.Data.Service.Abstract;
 using PriceObserver.Dialog.Models;
@@ -15,40 +16,44 @@ public class UserItemParser : IUserItemParser
     private readonly IParser _parser;
     private readonly IResourceService _resourceService;
     private readonly IItemService _itemService;
+    private readonly IShopRepository _shopRepository;
     
     public UserItemParser(
         IUserActionLogger userActionLogger,
         IParser parser, 
         IResourceService resourceService, 
-        IItemService itemService)
+        IItemService itemService,
+        IShopRepository shopRepository)
     {
         _userActionLogger = userActionLogger;
         _parser = parser;
         _resourceService = resourceService;
         _itemService = itemService;
+        _shopRepository = shopRepository;
     }
 
-    public async Task<UserItemParseServiceResult> Parse(User user, Uri url, ShopKey shop)
-    {
-        var parseResult = await _parser.Parse(url, shop);
+    public async Task<UserItemParseResult> Parse(User user, Uri url)
+    {   
+        var shop = _shopRepository.GetByHost(url.Host);
+        if (shop is null)
+        {
+            _userActionLogger.LogTriedToAddUnsupportedShop(user, url);
+            return UserItemParseResult.Fail(ResourceKey.Dialog_ShopIsNotAvailable);
+        }
+        
+        var parseResult = await _parser.Parse(url, shop.Key);
 
         if (!parseResult.IsSuccess)
         {
             _userActionLogger.LogParsingError(user, url, parseResult.Error);
-            return UserItemParseServiceResult.Fail(parseResult.Error);
+            return UserItemParseResult.Fail(parseResult.Error);
         }
 
         var parsedItem = parseResult.Result;
 
         var item = await _itemService.Create(
-            parsedItem.Price,
-            parsedItem.Title,
-            url,
-            parsedItem.ImageUrl,
-            user.Id,
-            shop, 
-            parsedItem.IsAvailable,
-            parsedItem.CurrencyKey);
+            parsedItem.Price, parsedItem.Title, url, parsedItem.ImageUrl,
+            user.Id, shop.Key, parsedItem.IsAvailable, parsedItem.CurrencyKey);
         
         if (item.IsAvailable)
             _userActionLogger.LogItemAdded(user, item);
@@ -56,6 +61,6 @@ public class UserItemParser : IUserItemParser
             _userActionLogger.LogNotAvailableItemAdded(user, item);
         
         var successMessage = _resourceService.Get(ResourceKey.Dialog_ItemAdded);
-        return UserItemParseServiceResult.Success(successMessage);
+        return UserItemParseResult.Success(successMessage);
     }
 }

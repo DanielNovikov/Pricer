@@ -2,6 +2,8 @@
 using Microsoft.Extensions.DependencyInjection;
 using PriceObserver.Common.Extensions;
 using PriceObserver.Common.Models.Options;
+using PriceObserver.Dialog.Callbacks.Abstract;
+using PriceObserver.Dialog.Callbacks.Concrete;
 using PriceObserver.Dialog.Commands.Abstract;
 using PriceObserver.Dialog.Commands.Concrete;
 using PriceObserver.Dialog.Menus.Abstract;
@@ -28,7 +30,7 @@ public static class DependencyInjection
             .AddTransient<IShopCategoriesMessageBuilder, ShopCategoriesMessageBuilder>()
             .AddTransient<IUserActionLogger, UserActionLogger>()
             
-            .AddTransient<IInputHandler, InputHandler>()
+            .AddTransient<IMessageHandler, MessageHandler>()
             .AddTransient<IAuthorizationService, AuthorizationService>()
             .AddTransient<IUserRegistrationHandler, UserRegistrationHandler>()
             .AddTransient<IWebsiteLoginUrlBuilder, WebsiteLoginUrlBuilder>()
@@ -42,8 +44,11 @@ public static class DependencyInjection
             .AddTransient<IUserRedirectionService, UserRedirectionService>()
             .AddTransient<IUserLanguageChanger, UserLanguageChanger>()
             .AddTransient<IUserBackgroundSettingsService, UserBackgroundSettingsService>()
+            .AddTransient<ICallbackHandlerService, CallbackHandlerService>()
+            .AddTransient<IDeleteItemKeyboardBuilder, DeleteItemKeyboardBuilder>()
             
             .AddImplementations<ICommandHandler>()
-            .AddImplementations<IMenuInputHandler>();
+            .AddImplementations<IMenuInputHandler>()
+            .AddImplementations<ICallbackHandler>();
     }
 }

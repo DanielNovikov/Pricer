@@ -11,8 +11,8 @@ public class PandoraContentValidator : IContentValidator
 
 	public bool HasItemInfo(IHtmlDocument document)
 	{
-		const string selector = "div.product div.product__price span";
+		const string selector = "h1[itemprop='name']";
 
-		return document.QuerySelector<IHtmlSpanElement>(selector) is not null;
+		return document.QuerySelector<IHtmlHeadingElement>(selector) is not null;
 	}
 }

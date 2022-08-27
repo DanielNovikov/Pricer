@@ -1,5 +1,4 @@
 ﻿using PriceObserver.Data.InMemory.Models.Enums;
-using PriceObserver.Data.InMemory.Repositories.Abstract;
 using PriceObserver.Data.Persistent.Models;
 using PriceObserver.Data.Service.Abstract;
 using PriceObserver.Web.Api.Services.Abstract;

@@ -23,6 +23,8 @@ public class Item : IAggregateRoot
     
     public CurrencyKey CurrencyKey { get; set; }
     
+    public bool IsDeleted { get; set; }
+    
     public int UserId { get; set; }
     public User User { get; set; }
         

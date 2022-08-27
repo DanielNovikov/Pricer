@@ -25,7 +25,7 @@ public class IntertopParser : IParserProvider
         
         const string scriptSelector = "main script[type='application/ld+json']";
         var scriptElement = document.QuerySelector<IHtmlScriptElement>(scriptSelector) ??
-            throw new ArgumentNullException($"{nameof(IntertopParser)}:{nameof(GetPrice)}:Script");
+            throw new ArgumentNullException($"{nameof(IntertopParser)}:{nameof(GetPrice)}:Element");
 
         var scriptContent = scriptElement.TextContent;
         var pricePropertyStartIndex = scriptContent.IndexOf("\"price\":", StringComparison.Ordinal);

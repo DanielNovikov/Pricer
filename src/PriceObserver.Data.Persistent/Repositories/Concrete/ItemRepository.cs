@@ -13,13 +13,22 @@ public class ItemRepository : RepositoryBase<Item>, IItemRepository
     public ItemRepository(ApplicationDbContext context) : base(context)
     { }
 
+    public override async Task<IList<Item>> GetAll()
+    {
+        return await Context
+            .Items
+            .AsNoTracking()
+            .Where(x => !x.IsDeleted)
+            .ToListAsync();
+    }
+
     public async Task<IList<Item>> GetByUserId(int userId)
     {
         return await Context
             .Items
             .AsNoTracking()
             .Include(x => x.PriceChanges)
-            .Where(i => i.UserId == userId)
+            .Where(x => x.UserId == userId && !x.IsDeleted)
             .ToListAsync();
     }
 
@@ -29,17 +38,17 @@ public class ItemRepository : RepositoryBase<Item>, IItemRepository
             .Items
             .AsNoTracking()
             .Include(x => x.PriceChanges)
-            .Where(i => i.UserId == userId)
+            .Where(x => x.UserId == userId && x.IsDeleted)
             .OrderBy(x => x.Title)
             .Take(limit)
             .ToListAsync();
     }
 
-    public async Task<bool> ExistsByUserIdAndUrl(int userId, Uri url)
+    public async Task<Item> GetByUserIdAndUrl(int userId, Uri url)
     {
         return await Context
             .Items
             .AsNoTracking()
-            .AnyAsync(x => x.UserId == userId && x.Url == url);
+            .FirstOrDefaultAsync(x => x.UserId == userId && x.Url == url);
     }
 }

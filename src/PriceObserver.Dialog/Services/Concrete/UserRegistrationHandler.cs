@@ -1,9 +1,9 @@
 ﻿using PriceObserver.Data.InMemory.Models.Enums;
-using PriceObserver.Data.Persistent.Models;
 using PriceObserver.Data.Service.Abstract;
 using PriceObserver.Dialog.Extensions;
 using PriceObserver.Dialog.Models;
 using PriceObserver.Dialog.Services.Abstract;
+using System.Threading.Tasks;
 
 namespace PriceObserver.Dialog.Services.Concrete;
 
@@ -15,6 +15,7 @@ public class UserRegistrationHandler : IUserRegistrationHandler
     private readonly IResourceService _resourceService;
     private readonly IMenuService _menuService;
     private readonly ICommandService _commandService;
+    private readonly IAuthorizationService _authorizationService;
 
     private const int LimitCountOfShops = 5;
     
@@ -24,7 +25,8 @@ public class UserRegistrationHandler : IUserRegistrationHandler
         IUserActionLogger userActionLogger, 
         IResourceService resourceService, 
         IMenuService menuService,
-        ICommandService commandService)
+        ICommandService commandService,
+        IAuthorizationService authorizationService)
     {
         _menuKeyboardBuilder = menuKeyboardBuilder;
         _shopsMessageBuilder = shopsMessageBuilder;
@@ -32,10 +34,13 @@ public class UserRegistrationHandler : IUserRegistrationHandler
         _resourceService = resourceService;
         _menuService = menuService;
         _commandService = commandService;
+        _authorizationService = authorizationService;
     }
 
-    public ReplyResult Handle(User user)
+    public async Task<ReplyResult> Handle(UserModel userModel)
     {
+        var user = await _authorizationService.Register(userModel);
+        
         _userActionLogger.LogUserRegistered(user);
 
         var helpCommandTitle = _commandService.GetTitle(CommandKey.Help);

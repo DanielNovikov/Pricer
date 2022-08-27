@@ -21,7 +21,7 @@ public class WrongCommandHandler : IWrongCommandHandler
         _resourceService = resourceService;
     }
 
-    public ReplyResult Handle(MessageServiceModel message)
+    public ReplyResult Handle(MessageModel message)
     {
         _userActionLogger.LogWrongCommand(message.User, message.Text);
 

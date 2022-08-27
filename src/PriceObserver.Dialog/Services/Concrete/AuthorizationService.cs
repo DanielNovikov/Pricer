@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using PriceObserver.Common.Services.Abstract;
+using PriceObserver.Data.Persistent.Models;
 using PriceObserver.Data.Persistent.Repositories.Abstract;
 using PriceObserver.Data.Service.Abstract;
 using PriceObserver.Dialog.Models;
@@ -23,21 +24,23 @@ public class AuthorizationService : IAuthorizationService
         _userLanguage = userLanguage;
     }
 
-    public async Task<AuthorizationResult> Authorize(UpdateServiceModel update)
+    public async Task<User?> LogIn(long externalId)
     {
-        var user = await _userRepository.GetByExternalId(update.UserExternalId);
+        var user = await _userRepository.GetByExternalId(externalId);
 
         if (user is not null)
-        {
             _userLanguage.Set(user.SelectedLanguageKey);
-            return AuthorizationResult.LoggedIn(user);
-        }
 
-        user = update.ToUser();
+        return user;
+    }
 
+    public async Task<User> Register(UserModel userModel)
+    {
+        var user = userModel.ToUser();
         var createdUser = await _userService.Create(user);
+        
         _userLanguage.Set(createdUser.SelectedLanguageKey);
-            
-        return AuthorizationResult.Registered(createdUser);
+
+        return createdUser;
     }
 }

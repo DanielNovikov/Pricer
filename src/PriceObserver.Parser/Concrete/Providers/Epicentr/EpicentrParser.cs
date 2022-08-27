@@ -47,9 +47,9 @@ public class EpicentrParser : IParserProvider
 
 	public bool IsAvailable(IHtmlDocument document)
 	{
-		const string selector = "div#MAIN div.is-red";
-		
-		return document.QuerySelector<IHtmlDivElement>(selector) is null;
+		const string selector = "div[class='p-price__main']";
+
+		return document.QuerySelector<IHtmlDivElement>(selector) is not null;
 	}
 
 	public CurrencyKey GetCurrency(IHtmlDocument document)

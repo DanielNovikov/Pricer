@@ -5,7 +5,6 @@ using PriceObserver.Data.InMemory.Models;
 using PriceObserver.Data.InMemory.Models.Enums;
 using PriceObserver.Data.InMemory.Repositories.Abstract;
 using PriceObserver.Dialog.Commands.Abstract;
-using PriceObserver.Dialog.Commands.Models;
 using PriceObserver.Dialog.Models;
 using PriceObserver.Dialog.Services.Abstract;
 
@@ -30,7 +29,7 @@ public class CommandHandlerService : ICommandHandlerService
         _userRedirectionService = userRedirectionService;
     }
 
-    public async Task<CommandHandlingServiceResult> Handle(Command command, MessageServiceModel message)
+    public async Task<CommandHandlingServiceResult> Handle(Command command, MessageModel message)
     {
         var user = message.User;
         var menu = _menuRepository.GetByKey(user.MenuKey);
@@ -56,7 +55,7 @@ public class CommandHandlerService : ICommandHandlerService
             return CommandHandlingServiceResult.Success(replyResult);
         }
 
-        var commandHandler = _commandHandlers.First(x => x.Type == command.Key);
+        var commandHandler = _commandHandlers.First(x => x.Key == command.Key);
         return await commandHandler.Handle(user);
     }
 }

@@ -15,7 +15,7 @@ public class IncorrectCommandTest : IntegrationTestingBase
         result.IsSuccess.Should().BeTrue();
         result.Result.Message.Should().Be("Неверная комманда ❌");
         
-        var buttons = result.Result.MenuKeyboard.ButtonsGrid
+        var buttons = result.Result.MenuKeyboard.Buttons
             .SelectMany(x => x)
             .ToList();
 

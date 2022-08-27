@@ -9,7 +9,6 @@ using PriceObserver.Data.InMemory;
 using PriceObserver.Data.InMemory.Seed;
 using PriceObserver.Data.Persistent;
 using PriceObserver.Data.Service;
-using PriceObserver.Dialog.Models;
 using PriceObserver.Dialog.Services.Abstract;
 using PriceObserver.Parser;
 
@@ -17,7 +16,7 @@ namespace PriceObserver.Dialog.FunctionalTests;
 
 public abstract class IntegrationTestingBase
 {
-    protected static readonly IInputHandler EntryPoint;
+    protected static readonly IMessageHandler EntryPoint;
 
     private static IServiceProvider _serviceProvider = default!;
     
@@ -25,7 +24,7 @@ public abstract class IntegrationTestingBase
     {
         Initialize();
         
-        EntryPoint = GetService<IInputHandler>();
+        EntryPoint = GetService<IMessageHandler>();
     }
     
     protected static TService GetService<TService>()
