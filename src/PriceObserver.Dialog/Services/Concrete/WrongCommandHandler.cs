@@ -29,6 +29,6 @@ public class WrongCommandHandler : IWrongCommandHandler
         var keyboard = _menuKeyboardBuilder.Build(menuKey);
         var replyMessage = _resourceService.Get(ResourceKey.Dialog_IncorrectCommand);
 
-        return ReplyResult.ReplyWithKeyboard(replyMessage, keyboard);
+        return ReplyResult.ReplyWithMenuKeyboard(replyMessage, keyboard);
     }
 }

@@ -45,7 +45,7 @@ public static class DependencyInjection
             .AddTransient<IUserLanguageChanger, UserLanguageChanger>()
             .AddTransient<IUserBackgroundSettingsService, UserBackgroundSettingsService>()
             .AddTransient<ICallbackHandlerService, CallbackHandlerService>()
-            .AddTransient<IDeleteItemKeyboardBuilder, DeleteItemKeyboardBuilder>()
+            .AddTransient<ICallbackDataBuilder, CallbackDataBuilder>()
             
             .AddImplementations<ICommandHandler>()
             .AddImplementations<IMenuInputHandler>()

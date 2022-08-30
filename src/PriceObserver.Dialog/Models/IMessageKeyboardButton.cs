@@ -1,6 +1,8 @@
-﻿namespace PriceObserver.Dialog.Models;
+﻿using PriceObserver.Data.InMemory.Models.Enums;
+
+namespace PriceObserver.Dialog.Models;
 
 public interface IMessageKeyboardButton
 {
-	public string Text { get; init; }
+	public ResourceKey Text { get; init; }
 }

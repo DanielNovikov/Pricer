@@ -5,5 +5,5 @@ namespace PriceObserver.Telegram.Abstract;
 
 public interface IReplyKeyboardMarkupBuilder
 {
-    ReplyKeyboardMarkup Build(MenuKeyboard keyboard);
+    IReplyMarkup Build(MenuKeyboard keyboard);
 }

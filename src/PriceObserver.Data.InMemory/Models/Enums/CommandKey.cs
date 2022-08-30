@@ -10,7 +10,7 @@ public enum CommandKey
     WriteToSupport = 5,
     Help = 6,
     Settings = 7,
-    SelectLanguage = 8,
+    ChangeLanguage = 8,
     TogglePriceGrowing = 9,
     SelectUkrainianLanguage = 10,
     SelectRussianLanguage = 11,

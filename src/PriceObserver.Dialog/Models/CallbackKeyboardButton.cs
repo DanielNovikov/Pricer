@@ -1,3 +1,5 @@
-﻿namespace PriceObserver.Dialog.Models;
+﻿using PriceObserver.Data.InMemory.Models.Enums;
 
-public record CallbackKeyboardButton(string Text, string Data) : IMessageKeyboardButton;
+namespace PriceObserver.Dialog.Models;
+
+public record CallbackKeyboardButton(ResourceKey Text, string Data) : IMessageKeyboardButton;

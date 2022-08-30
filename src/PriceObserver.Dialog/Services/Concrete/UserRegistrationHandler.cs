@@ -54,6 +54,6 @@ public class UserRegistrationHandler : IUserRegistrationHandler
 
         var menuKeyboard = _menuKeyboardBuilder.Build(user.MenuKey);
 
-        return ReplyResult.ReplyWithKeyboard(message, menuKeyboard);
+        return ReplyResult.ReplyWithMenuKeyboard(message, menuKeyboard);
     }
 }

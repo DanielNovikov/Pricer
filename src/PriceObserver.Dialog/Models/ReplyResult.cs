@@ -5,6 +5,8 @@ public class ReplyResult
     public string Message { get; private init; }
         
     public MenuKeyboard? MenuKeyboard { get; private init; }
+    
+    public MessageKeyboard? MessageKeyboard { get; private init; }
 
     private ReplyResult()
     {
@@ -18,12 +20,21 @@ public class ReplyResult
         };
     }
         
-    public static ReplyResult ReplyWithKeyboard(string message, MenuKeyboard menuKeyboard)
+    public static ReplyResult ReplyWithMenuKeyboard(string message, MenuKeyboard menuKeyboard)
     {
         return new ReplyResult
         {
             Message = message,
             MenuKeyboard = menuKeyboard
+        };
+    }
+
+    public static ReplyResult ReplyWithMessageKeyboard(string message, MessageKeyboard messageKeyboard)
+    {
+        return new ReplyResult
+        {
+            Message = message,
+            MessageKeyboard = messageKeyboard
         };
     }
 }

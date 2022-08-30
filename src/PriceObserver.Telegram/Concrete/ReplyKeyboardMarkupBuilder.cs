@@ -7,7 +7,7 @@ namespace PriceObserver.Telegram.Concrete;
 
 public class ReplyKeyboardMarkupBuilder : IReplyKeyboardMarkupBuilder
 {
-    public ReplyKeyboardMarkup Build(MenuKeyboard keyboard)
+    public IReplyMarkup Build(MenuKeyboard keyboard)
     {
         var buttons = keyboard.Buttons
             .Select(x => x.Select(y => new KeyboardButton(y.Title)));

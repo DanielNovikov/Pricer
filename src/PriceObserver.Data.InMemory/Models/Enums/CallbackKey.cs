@@ -3,5 +3,6 @@
 public enum CallbackKey
 {
 	DeleteItem = 0,
-	RestoreItem = 1
+	RestoreItem = 1,
+	ChangeLanguage = 2
 }

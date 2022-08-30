@@ -50,6 +50,12 @@ public class TelegramBotService : ITelegramBotService
             async () => await _telegramBot.Client.EditMessageTextAsync(userId, messageId, message, replyMarkup: keyboard, parseMode: Formatting));
     }
 
+    public async Task DeleteMessage(long userId, int messageId)
+    {
+        await Send(userId, default, 
+            async () => await _telegramBot.Client.DeleteMessageAsync(userId, messageId));
+    }
+
     private const ParseMode Formatting = ParseMode.Html;
     
     private const int UserDeactivatedErrorCode = 403;

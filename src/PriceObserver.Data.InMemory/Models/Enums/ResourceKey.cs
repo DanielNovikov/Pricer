@@ -21,7 +21,11 @@ public enum ResourceKey
     Dialog_RestoreItem = 16,
     Dialog_GoByItemUrl = 17,
     Dialog_ItemDeleted = 18,
-
+    Dialog_ChangeLanguageToRussian = 19,
+    Dialog_ChangeLanguageToUkrainian = 20,
+    Dialog_ChangeLanguage = 21,
+    Dialog_LanguageChanged = 22,
+    
     UserAction_GotAddedProducts = 100,
     UserAction_ParsingError = 101,
     UserAction_GotWebsiteLink = 102,

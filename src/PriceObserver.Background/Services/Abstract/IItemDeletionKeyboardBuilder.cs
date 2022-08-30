@@ -3,7 +3,7 @@ using Telegram.Bot.Types.ReplyMarkups;
 
 namespace PriceObserver.Background.Services.Abstract;
 
-public interface IPriceChangedKeyboardBuilder
+public interface IItemDeletionKeyboardBuilder
 {
 	InlineKeyboardMarkup Build(Item item);
 }

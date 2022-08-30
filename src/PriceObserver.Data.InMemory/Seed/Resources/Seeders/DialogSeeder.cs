@@ -149,5 +149,18 @@ public class DialogSeeder
         resources.AddResource(ResourceKey.Dialog_GoByItemUrl, "Перейти", "Перейти");
         
         resources.AddResource(ResourceKey.Dialog_ItemDeleted, "Товар видалено! 🗑", "Товар удален! 🗑");
+        
+        resources.AddResource(
+            ResourceKey.Dialog_ChangeLanguageToRussian, 
+            "Чи бажаєте ви змінити мову користування на російську?",
+            "Хотите ли вы сменить язык пользования на росийский?");
+        
+        resources.AddResource(
+            ResourceKey.Dialog_ChangeLanguageToUkrainian, 
+            "Чи бажаєте ви змінити мову користування на українську?",
+            "Хотите ли вы сменить язык пользования на украинский?");
+        
+        resources.AddResource(ResourceKey.Dialog_ChangeLanguage, "Змінити мову 🌐", "Сменить язык 🌐");
+        resources.AddResource(ResourceKey.Dialog_LanguageChanged, "Мову змінено! 🌐", "Язык изменен! 🌐");
     }
 }

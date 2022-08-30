@@ -43,7 +43,7 @@ public class DialogSeeder
 		var writeToSupportCommand = WriteToSupportCommandInitializer.Initialize(homeMenu, supportMenu);
 		var settingsCommand = SettingsCommandInitializer.Initialize(homeMenu, settingsMenu);
 
-		var selectLanguageCommand = SelectLanguageCommandInitializer.Initialize(settingsMenu, selectLanguageMenu);
+		var selectLanguageCommand = SelectLanguageCommandInitializer.Initialize(settingsMenu);
 		var selectUkrainianLanguageCommand = SelectUkrainianLanguageCommandInitializer.Initialize(selectLanguageMenu);
 		var selectRussianLanguageCommand = SelectRussianLanguageCommandInitializer.Initialize(selectLanguageMenu);
 

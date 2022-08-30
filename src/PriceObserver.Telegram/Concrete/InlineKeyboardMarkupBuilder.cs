@@ -1,4 +1,5 @@
-﻿using PriceObserver.Dialog.Models;
+﻿using PriceObserver.Data.Service.Abstract;
+using PriceObserver.Dialog.Models;
 using PriceObserver.Telegram.Abstract;
 using System;
 using System.Linq;
@@ -8,6 +9,13 @@ namespace PriceObserver.Telegram.Concrete;
 
 public class InlineKeyboardMarkupBuilder : IInlineKeyboardMarkupBuilder
 {
+	private readonly IResourceService _resourceService;
+
+	public InlineKeyboardMarkupBuilder(IResourceService resourceService)
+	{
+		_resourceService = resourceService;
+	}
+
 	public InlineKeyboardMarkup Build(MessageKeyboard keyboard)
 	{
 		var buttons = keyboard.Buttons
@@ -21,9 +29,9 @@ public class InlineKeyboardMarkupBuilder : IInlineKeyboardMarkupBuilder
 		return button switch
 		{
 			CallbackKeyboardButton callbackButton =>
-				InlineKeyboardButton.WithCallbackData(callbackButton.Text, callbackButton.Data),
+				InlineKeyboardButton.WithCallbackData(_resourceService.Get(callbackButton.Text), callbackButton.Data),
 			UrlKeyboardButton urlButton => 
-				InlineKeyboardButton.WithUrl(urlButton.Text, urlButton.Url),
+				InlineKeyboardButton.WithUrl(_resourceService.Get(urlButton.Text), urlButton.Url),
 			_ => throw new InvalidOperationException($"Invalid button type: {button.GetType().FullName}")
 		};
 	}

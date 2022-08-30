@@ -21,7 +21,7 @@ public class ItemPriceChanger : IItemPriceChanger
     private readonly IUserRepository _userRepository;
     private readonly IUserLanguage _userLanguage;
     private readonly ICurrencyService _currencyService;
-    private readonly IPriceChangedKeyboardBuilder _priceChangedKeyboardBuilder;
+    private readonly IItemDeletionKeyboardBuilder _itemDeletionKeyboardBuilder;
 
     private const double OneHundredPercent = 100.0;
     private const int MinimumDifferenceRatio = 5;
@@ -35,7 +35,7 @@ public class ItemPriceChanger : IItemPriceChanger
         IUserRepository userRepository, 
         IUserLanguage userLanguage,
         ICurrencyService currencyService,
-        IPriceChangedKeyboardBuilder priceChangedKeyboardBuilder)
+        IItemDeletionKeyboardBuilder itemDeletionKeyboardBuilder)
     {
         _resourceService = resourceService;
         _itemService = itemService;
@@ -45,7 +45,7 @@ public class ItemPriceChanger : IItemPriceChanger
         _userRepository = userRepository;
         _userLanguage = userLanguage;
         _currencyService = currencyService;
-        _priceChangedKeyboardBuilder = priceChangedKeyboardBuilder;
+        _itemDeletionKeyboardBuilder = itemDeletionKeyboardBuilder;
     }
 
     public async Task Change(Item item, int newPrice)
@@ -75,7 +75,7 @@ public class ItemPriceChanger : IItemPriceChanger
             var priceChangedMessage = _resourceService.Get(
                 resourceTemplate, item.Title, newPrice, currencyTitle, difference, currencyTitle);
 
-            var keyboard = _priceChangedKeyboardBuilder.Build(item);
+            var keyboard = _itemDeletionKeyboardBuilder.Build(item);
             
             await _telegramBotService.SendMessageWithReplyMarkup(user.ExternalId, priceChangedMessage, keyboard);
         }

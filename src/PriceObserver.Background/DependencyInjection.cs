@@ -19,6 +19,6 @@ public static class DependencyInjection
             .AddTransient<IItemPriceChanger, ItemPriceChanger>()
             .AddTransient<IItemAvailabilityChanger, ItemAvailabilityChanger>()
             .AddTransient<IItemRemovalService, ItemRemovalService>()
-            .AddTransient<IPriceChangedKeyboardBuilder, PriceChangedKeyboardBuilder>();
+            .AddTransient<IItemDeletionKeyboardBuilder, ItemDeletionKeyboardBuilder>();
     }
 }

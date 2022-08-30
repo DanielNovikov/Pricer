@@ -5,12 +5,12 @@ namespace PriceObserver.Data.InMemory.Seed.Dialog.Initializers.SettingsMenu.Comm
 
 public class SelectLanguageCommandInitializer
 {
-	public static Command Initialize(Menu menu, Menu menuToRedirect)
+	public static Command Initialize(Menu menu)
 	{
 		var command = new Command(
-			CommandKey.SelectLanguage,
-			ResourceKey.Command_SelectLanguage,
-			menuToRedirect);
+			CommandKey.ChangeLanguage,
+			ResourceKey.Command_SelectLanguage, 
+			null);
 
 		menu.Commands.Add(command);
 

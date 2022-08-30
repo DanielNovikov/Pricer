@@ -15,7 +15,7 @@ public class UpdateHandler : IUpdateHandler
 {
     private readonly IMessageHandler _messageHandler;
     private readonly ITelegramBotService _telegramBotService;
-    private readonly IReplyKeyboardMarkupBuilder _keyboardBuilder;
+    private readonly IReplyKeyboardMarkupBuilder _replyKeyboardBuilder;
     private readonly IResourceService _resourceService;
     private readonly ICallbackHandlerService _callbackHandlerService;
     private readonly IInlineKeyboardMarkupBuilder _inlineKeyboardMarkupBuilder;
@@ -23,14 +23,14 @@ public class UpdateHandler : IUpdateHandler
     public UpdateHandler(
         IMessageHandler messageHandler, 
         ITelegramBotService telegramBotService,
-        IReplyKeyboardMarkupBuilder keyboardBuilder, 
+        IReplyKeyboardMarkupBuilder replyKeyboardBuilder, 
         IResourceService resourceService,
         ICallbackHandlerService callbackHandlerService,
         IInlineKeyboardMarkupBuilder inlineKeyboardMarkupBuilder)
     {
         _messageHandler = messageHandler;
         _telegramBotService = telegramBotService;
-        _keyboardBuilder = keyboardBuilder;
+        _replyKeyboardBuilder = replyKeyboardBuilder;
         _resourceService = resourceService;
         _callbackHandlerService = callbackHandlerService;
         _inlineKeyboardMarkupBuilder = inlineKeyboardMarkupBuilder;
@@ -57,12 +57,23 @@ public class UpdateHandler : IUpdateHandler
 
         if (!serviceResult.IsSuccess)
             return;
-
-        var result = serviceResult.Result;
-        var keyboard = _inlineKeyboardMarkupBuilder.Build(result.Keyboard);
         
         var userExternalId = callback.User.ExternalId;
         var messageId = callback.MessageId;
+        
+        var result = serviceResult.Result;
+        if (result.MenuKeyboard is not null)
+        {
+            await _telegramBotService.DeleteMessage(userExternalId, messageId);
+            
+            var menuKeyboard = _replyKeyboardBuilder.Build(result.MenuKeyboard);
+            await _telegramBotService.SendMessageWithReplyMarkup(userExternalId, result.MessageText, menuKeyboard);
+            return;
+        }
+        
+        var keyboard = result.MessageKeyboard is not null 
+            ? _inlineKeyboardMarkupBuilder.Build(result.MessageKeyboard) 
+            : default;
 
         await _telegramBotService.EditMessage(userExternalId, messageId, result.MessageText, keyboard);
     }
@@ -80,11 +91,13 @@ public class UpdateHandler : IUpdateHandler
         }
 
         var result = serviceResult.Result;
-        var hasKeyboard = result.MenuKeyboard is not null;
-        if (hasKeyboard)
+        if (result.MenuKeyboard is not null || result.MessageKeyboard is not null)
         {
-            var keyboard = _keyboardBuilder.Build(result.MenuKeyboard);
-            await _telegramBotService.SendMessageWithReplyMarkup(userExternalId, result.Message, keyboard);
+            var replyMarkup = result.MenuKeyboard is not null
+                ? _replyKeyboardBuilder.Build(result.MenuKeyboard)
+                : _inlineKeyboardMarkupBuilder.Build(result.MessageKeyboard);
+            
+            await _telegramBotService.SendMessageWithReplyMarkup(userExternalId, result.Message, replyMarkup);
             return;
         }
 

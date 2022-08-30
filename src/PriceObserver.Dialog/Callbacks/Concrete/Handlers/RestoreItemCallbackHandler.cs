@@ -5,7 +5,6 @@ using PriceObserver.Data.Service.Abstract;
 using PriceObserver.Dialog.Callbacks.Abstract;
 using PriceObserver.Dialog.Models;
 using PriceObserver.Dialog.Services.Abstract;
-using System.Collections.Generic;
 using System.Text.Json;
 using System.Threading.Tasks;
 
@@ -47,19 +46,11 @@ public class RestoreItemCallbackHandler : ICallbackHandler
 		_userActionLogger.LogRestoredItem(callback.User, item);
 		await _itemService.Restore(item);
 
-		var goByItemUrlMessage = _resourceService.Get(ResourceKey.Dialog_GoByItemUrl);
-		var partnerUrl = _partnerUrlBuilder.Build(item.Url);
-
-		var keyboardButtons = new List<List<IMessageKeyboardButton>>
-		{
-			new()
-			{
-				new UrlKeyboardButton(goByItemUrlMessage, partnerUrl)
-			}
-		};
-
 		var message = _resourceService.Get(ResourceKey.Dialog_ItemAdded);
-		var keyboard = new MessageKeyboard(keyboardButtons);
+		
+		var partnerUrl = _partnerUrlBuilder.Build(item.Url);
+		var goByItemUrlButton = new UrlKeyboardButton(ResourceKey.Dialog_GoByItemUrl, partnerUrl);
+		var keyboard = new MessageKeyboard(goByItemUrlButton);
 
 		var callbackResult = new CallbackResult(message, keyboard);
 

@@ -23,6 +23,6 @@ public class ReplyWithKeyboardBuilder : IReplyWithKeyboardBuilder
         var keyboard = _menuKeyboardBuilder.Build(menu.Key);
         var menuText = _resourceService.Get(menu.ResourceKey);
             
-        return ReplyResult.ReplyWithKeyboard(menuText, keyboard);
+        return ReplyResult.ReplyWithMenuKeyboard(menuText, keyboard);
     }
 }
