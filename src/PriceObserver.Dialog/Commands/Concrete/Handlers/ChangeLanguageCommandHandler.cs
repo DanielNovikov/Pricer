@@ -12,19 +12,24 @@ public class ChangeLanguageCommandHandler : ICommandHandler
 {
 	private readonly ICallbackDataBuilder _callbackDataBuilder;
 	private readonly IResourceService _resourceService;
+	private readonly IUserActionLogger _userActionLogger;
 
 	public ChangeLanguageCommandHandler(
 		ICallbackDataBuilder callbackDataBuilder,
-		IResourceService resourceService)
+		IResourceService resourceService,
+		IUserActionLogger userActionLogger)
 	{
 		_callbackDataBuilder = callbackDataBuilder;
 		_resourceService = resourceService;
+		_userActionLogger = userActionLogger;
 	}
 
 	public CommandKey Key => CommandKey.ChangeLanguage;
 
 	public Task<CommandHandlingServiceResult> Handle(User user)
 	{
+		_userActionLogger.LogCalledChangingLanguageMenu(user);	
+		
 		var language = user.SelectedLanguageKey == LanguageKey.Ukranian ? LanguageKey.Russian : LanguageKey.Ukranian;
 		var callbackData = _callbackDataBuilder.BuildJson(CallbackKey.ChangeLanguage, language);
 

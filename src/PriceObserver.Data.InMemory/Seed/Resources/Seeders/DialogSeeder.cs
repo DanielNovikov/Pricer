@@ -161,6 +161,29 @@ public class DialogSeeder
             "Хотите ли вы сменить язык пользования на украинский?");
         
         resources.AddResource(ResourceKey.Dialog_ChangeLanguage, "Змінити мову 🌐", "Сменить язык 🌐");
-        resources.AddResource(ResourceKey.Dialog_LanguageChanged, "Мову змінено! 🌐", "Язык изменен! 🌐");
+        resources.AddResource(ResourceKey.Dialog_LanguageChanged, "🌐 Мову змінено!", " 🌐 Язык изменен!");
+        
+        resources.AddResource(
+            ResourceKey.Dialog_TogglePriceGrowingNotificationsToEnabled, 
+            "Чи бажаєте ви отримувати повідомлення про зростання цін?",
+            "Хотите ли вы получать уведомления о возрастании цены на товары?");
+        
+        resources.AddResource(
+            ResourceKey.Dialog_TogglePriceGrowingNotificationsToDisabled, 
+            "Чи бажаєте ви вимкнути отримання повідомлень про зростання цін?",
+            "Хотите ли вы выключить получение уведомлений про возростание цен?");
+        
+        resources.AddResource(ResourceKey.Dialog_EnablePriceGrowingNotifications, "Увімкнути 🔔", "Включить 🔔");
+        resources.AddResource(ResourceKey.Dialog_DisablePriceGrowingNotifications, "Вимкнути 🔕", "Выключить 🔕");
+        
+        resources.AddResource(
+            ResourceKey.Dialog_PriceGrowingNotificationsEnabled, 
+            "🔔 Повідомлення про зростання цін увімкнені!",
+            "🔔 Уведомления про возрастание цен включены!");
+        
+        resources.AddResource(
+            ResourceKey.Dialog_PriceGrowingNotificationsDisabled, 
+            "🔕 Повідомлення про зростання цін вимкнені!",
+            "🔕 Уведомления про возростание цен выключены!");
     }
 }

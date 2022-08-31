@@ -11,9 +11,7 @@ public enum CommandKey
     Help = 6,
     Settings = 7,
     ChangeLanguage = 8,
-    TogglePriceGrowing = 9,
+    TogglePriceGrowingNotifications = 9,
     SelectUkrainianLanguage = 10,
-    SelectRussianLanguage = 11,
-    EnablePriceGrowing = 12,
-    DisablePriceGrowing = 13
+    SelectRussianLanguage = 11
 }

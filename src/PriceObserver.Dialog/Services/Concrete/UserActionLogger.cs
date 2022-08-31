@@ -118,6 +118,16 @@ public class UserActionLogger : IUserActionLogger
         LogInformation(user, ResourceKey.UserAction_RestoredItem, item.Url, item.Title, item.Id);
     }
 
+    public void LogCalledTogglingPriceGrowingMenu(User user)
+    {
+        LogInformation(user, ResourceKey.UserAction_CalledTogglingPriceGrowingMenu);
+    }
+
+    public void LogCalledChangingLanguageMenu(User user)
+    {
+        LogInformation(user, ResourceKey.UserAction_CalledChangingLanguageMenu);
+    }
+
     private void LogInformation(User user, ResourceKey message, params object[] parameters)
     {
         Log(user, LogLevel.Information, message, parameters);

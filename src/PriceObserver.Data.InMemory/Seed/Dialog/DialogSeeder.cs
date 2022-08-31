@@ -9,8 +9,6 @@ using PriceObserver.Data.InMemory.Seed.Dialog.Initializers.SelectLanguageMenu.Co
 using PriceObserver.Data.InMemory.Seed.Dialog.Initializers.SettingsMenu;
 using PriceObserver.Data.InMemory.Seed.Dialog.Initializers.SettingsMenu.Commands;
 using PriceObserver.Data.InMemory.Seed.Dialog.Initializers.SupportMenu;
-using PriceObserver.Data.InMemory.Seed.Dialog.Initializers.TogglePriceGrowingMenu;
-using PriceObserver.Data.InMemory.Seed.Dialog.Initializers.TogglePriceGrowingMenu.Commands;
 
 namespace PriceObserver.Data.InMemory.Seed.Dialog;
 
@@ -22,15 +20,13 @@ public class DialogSeeder
 		var homeMenu = HomeMenuInitializer.Initialize();
 		var supportMenu = SupportMenuInitializer.Initialize(homeMenu);
 		var settingsMenu = SettingsMenuInitializer.Initialize(homeMenu);
-		var togglePriceGrowingMenu = TogglePriceGrowingMenuInitializer.Initialize(settingsMenu);
 
 		var menus = new List<Menu>
 		{
 			homeMenu,
 			supportMenu,
 			selectLanguageMenu,
-			settingsMenu,
-			togglePriceGrowingMenu
+			settingsMenu
 		};
 
 		cache.Set(CacheKey.Menus, menus);
@@ -47,11 +43,7 @@ public class DialogSeeder
 		var selectUkrainianLanguageCommand = SelectUkrainianLanguageCommandInitializer.Initialize(selectLanguageMenu);
 		var selectRussianLanguageCommand = SelectRussianLanguageCommandInitializer.Initialize(selectLanguageMenu);
 
-		var togglePriceGrowingCommand =
-			TogglePriceGrowingCommandInitializer.Initialize(settingsMenu, togglePriceGrowingMenu);
-
-		var enablePriceGrowingCommand = EnablePriceGrowingCommand.Initialize(togglePriceGrowingMenu);
-		var disablePriceGrowingCommand = DisablePriceGrowingCommand.Initialize(togglePriceGrowingMenu);
+		var togglePriceGrowingCommand = TogglePriceGrowingCommandInitializer.Initialize(settingsMenu);
 
 		var backCommand = BackCommandInitializer.Initialize();
 
@@ -68,8 +60,6 @@ public class DialogSeeder
 			togglePriceGrowingCommand,
 			selectUkrainianLanguageCommand,
 			selectRussianLanguageCommand,
-			enablePriceGrowingCommand,
-			disablePriceGrowingCommand,
 			backCommand
 		};
 

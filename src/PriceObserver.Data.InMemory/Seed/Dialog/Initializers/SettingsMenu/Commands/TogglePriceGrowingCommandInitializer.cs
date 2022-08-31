@@ -5,12 +5,12 @@ namespace PriceObserver.Data.InMemory.Seed.Dialog.Initializers.SettingsMenu.Comm
 
 public class TogglePriceGrowingCommandInitializer
 {
-	public static Command Initialize(Menu menu, Menu menuToRedirect)
+	public static Command Initialize(Menu menu)
 	{
 		var command = new Command(
-			CommandKey.TogglePriceGrowing,
-			ResourceKey.Command_TogglePriceGrowing,
-			menuToRedirect);
+			CommandKey.TogglePriceGrowingNotifications,
+			ResourceKey.Command_TogglePriceGrowingNotifications,
+			null);
 
 		menu.Commands.Add(command);
 

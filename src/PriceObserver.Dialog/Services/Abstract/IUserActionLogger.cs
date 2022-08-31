@@ -44,4 +44,8 @@ public interface IUserActionLogger
     void LogDeletedItem(User user, Item item);
 
     void LogRestoredItem(User user, Item item);
+
+    void LogCalledTogglingPriceGrowingMenu(User user);
+
+    void LogCalledChangingLanguageMenu(User user);
 }

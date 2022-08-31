@@ -20,9 +20,7 @@ public class CommandsSeeder
         resources.AddResource(ResourceKey.Command_SelectUkrainianLanguage, "Українська 🇺🇦", "Украинский 🇺🇦");
         resources.AddResource(ResourceKey.Command_SelectRussianLanguage, "Російська 🇷🇺", "Российский 🇷🇺");
         
-        resources.AddResource(ResourceKey.Command_TogglePriceGrowing, "Зростання ціни 🔔", "Возрастание цены 🔔");
-        resources.AddResource(ResourceKey.Command_EnablePriceGrowing, "Увімкнути 🔔", "Включить 🔔");
-        resources.AddResource(ResourceKey.Command_DisablePriceGrowing, "Вимкнути 🔕", "Выключить 🔕");
+        resources.AddResource(ResourceKey.Command_TogglePriceGrowingNotifications, "Зростання ціни 🔔", "Возрастание цены 🔔");
         
         resources.AddResource(ResourceKey.Command_Back, "Назад ◀", "Назад ◀");
     }

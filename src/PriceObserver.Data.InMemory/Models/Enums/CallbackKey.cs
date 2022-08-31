@@ -4,5 +4,6 @@ public enum CallbackKey
 {
 	DeleteItem = 0,
 	RestoreItem = 1,
-	ChangeLanguage = 2
+	ChangeLanguage = 2,
+	TogglePriceGrowingNotifications = 3
 }

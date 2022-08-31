@@ -43,7 +43,6 @@ public static class DependencyInjection
             .AddTransient<IUserItemParser, UserItemParser>()
             .AddTransient<IUserRedirectionService, UserRedirectionService>()
             .AddTransient<IUserLanguageChanger, UserLanguageChanger>()
-            .AddTransient<IUserBackgroundSettingsService, UserBackgroundSettingsService>()
             .AddTransient<ICallbackHandlerService, CallbackHandlerService>()
             .AddTransient<ICallbackDataBuilder, CallbackDataBuilder>()
             

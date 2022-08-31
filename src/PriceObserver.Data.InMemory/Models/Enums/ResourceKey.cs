@@ -25,6 +25,12 @@ public enum ResourceKey
     Dialog_ChangeLanguageToUkrainian = 20,
     Dialog_ChangeLanguage = 21,
     Dialog_LanguageChanged = 22,
+    Dialog_TogglePriceGrowingNotificationsToEnabled = 23,
+    Dialog_TogglePriceGrowingNotificationsToDisabled = 24,
+    Dialog_EnablePriceGrowingNotifications = 25,
+    Dialog_DisablePriceGrowingNotifications = 26,
+    Dialog_PriceGrowingNotificationsEnabled = 27,
+    Dialog_PriceGrowingNotificationsDisabled = 28,
     
     UserAction_GotAddedProducts = 100,
     UserAction_ParsingError = 101,
@@ -47,7 +53,9 @@ public enum ResourceKey
     UserAction_AddedNotAvailableItem = 119,
     UserAction_DeletedItem = 120,
     UserAction_RestoredItem = 121,
-        
+    UserAction_CalledTogglingPriceGrowingMenu = 122,
+    UserAction_CalledChangingLanguageMenu = 123,
+
     Parser_PageNotFound = 200,
     Parser_NoItemInfoOnPage = 202,
         
@@ -75,11 +83,9 @@ public enum ResourceKey
     Command_Help = 506,
     Command_Settings = 507,
     Command_SelectLanguage = 508,
-    Command_TogglePriceGrowing = 509,
+    Command_TogglePriceGrowingNotifications = 509,
     Command_SelectUkrainianLanguage = 510,
     Command_SelectRussianLanguage = 511,
-    Command_EnablePriceGrowing = 512,
-    Command_DisablePriceGrowing = 513,
     
     Currency_UAH_Title = 600,
     Currency_UAH_Sign = 601,

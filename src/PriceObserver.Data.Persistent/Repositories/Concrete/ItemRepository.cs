@@ -38,7 +38,7 @@ public class ItemRepository : RepositoryBase<Item>, IItemRepository
             .Items
             .AsNoTracking()
             .Include(x => x.PriceChanges)
-            .Where(x => x.UserId == userId && x.IsDeleted)
+            .Where(x => x.UserId == userId && !x.IsDeleted)
             .OrderBy(x => x.Title)
             .Take(limit)
             .ToListAsync();
