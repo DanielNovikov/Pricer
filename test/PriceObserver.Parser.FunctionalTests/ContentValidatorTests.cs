@@ -25,6 +25,7 @@ public class ContentValidatorTests : TestBase
     [InlineData("https://md-fashion.com.ua/", ShopKey.MdFashion)]
     [InlineData("https://modivo.ua/", ShopKey.Modivo)]
     [InlineData("https://www.moyo.ua/", ShopKey.Moyo)]
+    [InlineData("https://www.notino.ua/", ShopKey.Notino)]
     [InlineData("https://www.olx.ua/d/uk/obyavlenie/pivnaya-kruzhka-zatecky-gus-1l-obmen-na-hoegaarden-0-5l-IDgRJMv.html", ShopKey.Olx)]
     [InlineData("https://www.olx.ua", ShopKey.Olx)]
     [InlineData("https://e-pandora.ua/", ShopKey.Pandora)]

@@ -110,6 +110,11 @@ public class ParserTests : TestBase
         "Телевізор SAMSUNG 32T5300 (UE32T5300AUXUA)",
         "https://img.moyo.ua/img/products/4635/69_1500.jpg?1656671891")]
     [InlineData(
+        "https://www.notino.ua/prada/les-infusions-infusion-mimosa-parfumovana-voda-uniseks/",
+        ShopKey.Notino,
+        "Prada Prada Les Infusions: Infusion Mimosa, Парфумовані води 100 мл",
+        "https://cdn.notinoimg.com/detail_thumb/prada/8435137753307_01x-o/prada-les-infusions-infusion-mimosa_.jpg")]
+    [InlineData(
         "https://novus.zakaz.ua/uk/products/04820185100304/file-somga-norven-180g/",
         ShopKey.Novus,
         "Сьомга Norven філе-шматок слабосолена 180г",
@@ -209,7 +214,7 @@ public class ParserTests : TestBase
     [InlineData("https://www.moyo.ua/televizor-lg-75sm9000pla/448309.html", ShopKey.Moyo)]
     [InlineData("https://novus.zakaz.ua/uk/products/novus02885537000000/sukhofrukti/", ShopKey.Novus)]
     [InlineData("https://prostor.ua/ru/product/maxi-color-pomada-hydra-shine-4.2g/", ShopKey.Prostor)]
-    [InlineData("https://rozetka.com.ua/lg_75nano756pa/p292219333/", ShopKey.Rozetka)]
+    [InlineData("https://rozetka.com.ua/ua/smart-chasy-xiaomi-watch-s1/g44662672/", ShopKey.Rozetka)]
     [InlineData("https://stylus.ua/xiaomi-yi-sport-white-basic-edition-p227758c997.html", ShopKey.Stylus)]
     [InlineData("https://stolychnyi.zakaz.ua/uk/products/stolychnyi02010000295007/iogurt-500ml/", ShopKey.StolychnyiRynok)]
     [InlineData("https://telemart.ua/products/lg-315-ultrafine-32un650-w-blacksilver/", ShopKey.Telemart)]

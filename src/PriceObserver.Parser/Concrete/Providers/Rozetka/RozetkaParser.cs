@@ -27,9 +27,9 @@ public class RozetkaParser : IParserProvider
 
     public string GetTitle(IHtmlDocument document)
     {
-        const string selector = "meta[name=keywords]";
+        const string selector = "meta[property='og:title']";
         
-        var titleElement = document.QuerySelector<IHtmlMetaElement>(selector) ?? 
+        var titleElement = document.QuerySelector<IHtmlMetaElement>(selector) ??
             throw new ArgumentNullException($"{nameof(RozetkaParser)}:{nameof(GetTitle)}:Element");
 
         return titleElement.Content;

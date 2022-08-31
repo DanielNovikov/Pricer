@@ -11,8 +11,8 @@ public class RozetkaContentValidator : IContentValidator
 
     public bool HasItemInfo(IHtmlDocument document)
     {
-        const string selector = ".product-about__block .product-prices__big";
+        const string selector = "rz-gallery-main-content-image > img";
         
-        return document.QuerySelector<IHtmlParagraphElement>(selector) is not null;
+        return document.QuerySelector<IHtmlImageElement>(selector) is not null;
     }
 }

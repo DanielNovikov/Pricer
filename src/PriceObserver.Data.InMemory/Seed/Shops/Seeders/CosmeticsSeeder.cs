@@ -36,6 +36,13 @@ public class CosmeticsSeeder
                 ShopKey.Prostor,
                 "prostor.ua",
                 "prostor.png",
+                false),
+            
+            new Shop(
+                "Notino",
+                ShopKey.Notino,
+                "www.notino.ua",
+                "notino.png",
                 false)
         };
 
