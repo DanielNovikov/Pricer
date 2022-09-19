@@ -48,10 +48,17 @@ public class UserService : IUserService
         await _userRepository.Update(user);
     }
 
+    public async Task ChangeMinimumDiscountThreshold(User user, int threshold)
+    {
+        user.MinimumDiscountThreshold = threshold;
+        await _userRepository.Update(user);
+    }
+
     public async Task<User> Create(User user)
     {
         var defaultMenu = _menuRepository.GetDefault();
         user.MenuKey = defaultMenu.Key;
+        user.MinimumDiscountThreshold = 5;
 
         await _userRepository.Add(user);
             

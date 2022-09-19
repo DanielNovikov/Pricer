@@ -48,4 +48,8 @@ public interface IUserActionLogger
     void LogCalledTogglingPriceGrowingMenu(User user);
 
     void LogCalledChangingLanguageMenu(User user);
+
+    void LogCalledChangingMinimumDiscountThreshold(User user);
+    
+    void LogChangedMinimumDiscountThreshold(User user, int discountThreshold);
 }

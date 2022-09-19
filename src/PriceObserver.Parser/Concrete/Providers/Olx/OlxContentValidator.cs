@@ -12,14 +12,20 @@ public class OlxContentValidator : IContentValidator
 
 	public bool HasItemInfo(IHtmlDocument document)
 	{
-		const string selector = "meta[name='description']";
-
-		var element = document.QuerySelector<IHtmlMetaElement>(selector);
-		if (element is null || element.Content is null)
+		const string headerSelector = "h1[data-cy='ad_title']";
+		
+		var headerElement = document.QuerySelector<IHtmlHeadingElement>(headerSelector);
+		if (headerElement is null)
+			return false;
+		
+		const string metaSelector = "meta[name='description']";
+		
+		var metaElement = document.QuerySelector<IHtmlMetaElement>(metaSelector);
+		if (metaElement is null || metaElement.Content is null)
 			return false;
 
 		return 
-			!element.Content.StartsWith("Обмін", StringComparison.Ordinal) &&
-		    !element.Content.StartsWith("Обмен", StringComparison.Ordinal);
+			!metaElement.Content.StartsWith("Обмін", StringComparison.Ordinal) &&
+		    !metaElement.Content.StartsWith("Обмен", StringComparison.Ordinal);
 	}
 }

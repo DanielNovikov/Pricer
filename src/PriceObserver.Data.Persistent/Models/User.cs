@@ -25,6 +25,8 @@ public class User : IAggregateRoot
     public LanguageKey SelectedLanguageKey { get; set; }
     
     public bool GrowthPriceNotificationsEnabled { get; set; }
+    
+    public int MinimumDiscountThreshold { get; set; }
         
     public IList<UserToken> Tokens { get; set; }
 }

@@ -33,7 +33,7 @@ public class ChangeLanguageCommandHandler : ICommandHandler
 		var language = user.SelectedLanguageKey == LanguageKey.Ukranian ? LanguageKey.Russian : LanguageKey.Ukranian;
 		var callbackData = _callbackDataBuilder.BuildJson(CallbackKey.ChangeLanguage, language);
 
-		var changeLanguageButton = new CallbackKeyboardButton(ResourceKey.Dialog_ChangeLanguage, callbackData);
+		var changeLanguageButton = new CallbackResourceButton(ResourceKey.Dialog_ChangeLanguage, callbackData);
 
 		var keyboard = new MessageKeyboard(changeLanguageButton);
 		

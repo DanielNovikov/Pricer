@@ -28,10 +28,10 @@ public class ItemDeletionKeyboardBuilder : IItemDeletionKeyboardBuilder
 	public InlineKeyboardMarkup Build(Item item)
 	{
 		var callbackDataJson = _callbackDataBuilder.BuildJson(CallbackKey.DeleteItem, item.Id);
-		var deleteItemButton = new CallbackKeyboardButton(ResourceKey.Background_DeleteItem, callbackDataJson);
+		var deleteItemButton = new CallbackResourceButton(ResourceKey.Background_DeleteItem, callbackDataJson);
 		
 		var partnerUrl = _partnerUrlBuilder.Build(item.Url);
-		var goByItemUrlButton = new UrlKeyboardButton(ResourceKey.Background_GoByItemUrl, partnerUrl);
+		var goByItemUrlButton = new UrlButton(ResourceKey.Background_GoByItemUrl, partnerUrl);
 
 		var keyboard = new MessageKeyboard(deleteItemButton, goByItemUrlButton);
 

@@ -12,27 +12,27 @@ public class ItemsObserverService : IItemsObserverService
 {
     private readonly IParser _parser;
     private readonly IItemRepository _itemRepository;
-    private readonly IItemPriceChanger _itemPriceChanger;
     private readonly IItemRemovalService _itemRemovalService;
-    private readonly IItemAvailabilityChanger _itemAvailabilityChanger;
+    private readonly IItemAvailabilityService _itemAvailabilityService;
     private readonly ILogger _logger;
     private readonly Random _random;
+    private readonly IItemModificationService _itemModificationService;
 
     public ItemsObserverService(
         IParser parser,
         IItemRepository itemRepository,
-        IItemPriceChanger itemPriceChanger,
         IItemRemovalService itemRemovalService,
-        IItemAvailabilityChanger itemAvailabilityChanger,
-        ILogger<ItemsObserverService> logger)
+        IItemAvailabilityService itemAvailabilityService,
+        ILogger<ItemsObserverService> logger, 
+        IItemModificationService itemModificationService)
     {
         _parser = parser;
         _itemRepository = itemRepository;
-        _itemPriceChanger = itemPriceChanger;
         _itemRemovalService = itemRemovalService;
-        _itemAvailabilityChanger = itemAvailabilityChanger;
+        _itemAvailabilityService = itemAvailabilityService;
         _logger = logger;
         _random = new Random();
+        _itemModificationService = itemModificationService;
     }
 
     public async Task Observe()
@@ -53,14 +53,13 @@ public class ItemsObserverService : IItemsObserverService
                         continue;
                     }
 
-                    var isAvailable = parsedItemResult.Result.IsAvailable;
-                    await _itemAvailabilityChanger.Change(item, isAvailable);
+                    var parsedItem = parsedItemResult.Result;
+                    
+                    var isAvailable = parsedItem.IsAvailable;
+                    await _itemAvailabilityService.Update(item, isAvailable);
 
                     if (isAvailable)
-                    {
-                        var newPrice = parsedItemResult.Result.Price;
-                        await _itemPriceChanger.Change(item, newPrice);
-                    }
+                        await _itemModificationService.Modify(item, parsedItem);
                 }
                 catch (Exception ex)
                 {

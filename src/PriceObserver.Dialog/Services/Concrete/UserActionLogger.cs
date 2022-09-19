@@ -128,6 +128,16 @@ public class UserActionLogger : IUserActionLogger
         LogInformation(user, ResourceKey.UserAction_CalledChangingLanguageMenu);
     }
 
+    public void LogCalledChangingMinimumDiscountThreshold(User user)
+    {
+        LogInformation(user, ResourceKey.UserAction_CalledChangingMinimumDiscountThreshold);
+    }
+
+    public void LogChangedMinimumDiscountThreshold(User user, int discountThreshold)
+    {
+        LogInformation(user, ResourceKey.UserAction_ChangedMinimumDiscountThreshold, discountThreshold);
+    }
+
     private void LogInformation(User user, ResourceKey message, params object[] parameters)
     {
         Log(user, LogLevel.Information, message, parameters);

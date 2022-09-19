@@ -52,10 +52,10 @@ public class DeleteItemCallbackHandler : ICallbackHandler
 		var keyboardMessage = _resourceService.Get(ResourceKey.Dialog_ItemDeleted);
 		
 		var callbackDataJson = _callbackDataBuilder.BuildJson(CallbackKey.RestoreItem, item.Id);
-		var restoreItemButton = new CallbackKeyboardButton(ResourceKey.Dialog_RestoreItem, callbackDataJson);
+		var restoreItemButton = new CallbackResourceButton(ResourceKey.Dialog_RestoreItem, callbackDataJson);
 		
 		var partnerUrl = _partnerUrlBuilder.Build(item.Url);
-		var goByItemUrlButton = new UrlKeyboardButton(ResourceKey.Dialog_GoByItemUrl, partnerUrl);
+		var goByItemUrlButton = new UrlButton(ResourceKey.Dialog_GoByItemUrl, partnerUrl);
 
 		var keyboard = new MessageKeyboard(restoreItemButton, goByItemUrlButton);
 		

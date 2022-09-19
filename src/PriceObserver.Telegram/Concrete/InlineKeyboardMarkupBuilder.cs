@@ -28,10 +28,12 @@ public class InlineKeyboardMarkupBuilder : IInlineKeyboardMarkupBuilder
 	{
 		return button switch
 		{
-			CallbackKeyboardButton callbackButton =>
-				InlineKeyboardButton.WithCallbackData(_resourceService.Get(callbackButton.Text), callbackButton.Data),
-			UrlKeyboardButton urlButton => 
-				InlineKeyboardButton.WithUrl(_resourceService.Get(urlButton.Text), urlButton.Url),
+			CallbackResourceButton callbackResourceButton =>
+				InlineKeyboardButton.WithCallbackData(_resourceService.Get(callbackResourceButton.Resource), callbackResourceButton.Data),
+			CallbackTextButton callbackTextButton =>
+				InlineKeyboardButton.WithCallbackData(callbackTextButton.Text, callbackTextButton.Data),
+			UrlButton urlButton => 
+				InlineKeyboardButton.WithUrl(_resourceService.Get(urlButton.Resource), urlButton.Url),
 			_ => throw new InvalidOperationException($"Invalid button type: {button.GetType().FullName}")
 		};
 	}

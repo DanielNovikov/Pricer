@@ -41,10 +41,11 @@ public class MauDauParser : IParserProvider
 		var imageElement = document.QuerySelector<IHtmlImageElement>(selector) ?? 
 		    throw new ArgumentNullException($"{nameof(MauDauParser)}:{nameof(GetImageUrl)}:Element");
 		
-		var imageSource = imageElement.Attributes["data-cfsrc"] ??
+		var imageSource = imageElement.Attributes["data-cfsrc"]?.Value ??
+		    imageElement.Source ??
 		    throw new ArgumentNullException($"{nameof(MauDauParser)}:{nameof(GetImageUrl)}:Element:Content");
 		
-		return new Uri(imageSource.Value);
+		return new Uri(imageSource);
 	}
 
 	public bool IsAvailable(IHtmlDocument document)

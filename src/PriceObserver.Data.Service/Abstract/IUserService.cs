@@ -14,6 +14,8 @@ public interface IUserService
     Task ChangeSelectedLanguage(User user, LanguageKey languageKey);
 
     Task ChangePriceGrowthNotificationsEnabled(User user, bool enabled);
+
+    Task ChangeMinimumDiscountThreshold(User user, int threshold);
         
     Task<User> Create(User user);
 }

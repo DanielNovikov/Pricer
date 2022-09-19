@@ -39,12 +39,13 @@ public class DialogSeeder
 		var writeToSupportCommand = WriteToSupportCommandInitializer.Initialize(homeMenu, supportMenu);
 		var settingsCommand = SettingsCommandInitializer.Initialize(homeMenu, settingsMenu);
 
-		var selectLanguageCommand = SelectLanguageCommandInitializer.Initialize(settingsMenu);
 		var selectUkrainianLanguageCommand = SelectUkrainianLanguageCommandInitializer.Initialize(selectLanguageMenu);
 		var selectRussianLanguageCommand = SelectRussianLanguageCommandInitializer.Initialize(selectLanguageMenu);
 
+		var selectLanguageCommand = SelectLanguageCommandInitializer.Initialize(settingsMenu);
 		var togglePriceGrowingCommand = TogglePriceGrowingCommandInitializer.Initialize(settingsMenu);
-
+		var changeMinimumDiscountCommand = ChangeMinimumDiscountCommandInitializer.Initialize(settingsMenu);
+		
 		var backCommand = BackCommandInitializer.Initialize();
 
 		var commands = new List<Command>
@@ -60,7 +61,8 @@ public class DialogSeeder
 			togglePriceGrowingCommand,
 			selectUkrainianLanguageCommand,
 			selectRussianLanguageCommand,
-			backCommand
+			backCommand,
+			changeMinimumDiscountCommand
 		};
 
 		cache.Set(CacheKey.Commands, commands);

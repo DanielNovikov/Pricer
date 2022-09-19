@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace PriceObserver.Background.Services.Concrete;
 
-public class ItemAvailabilityChanger : IItemAvailabilityChanger
+public class ItemAvailabilityService : IItemAvailabilityService
 {
 	private readonly IItemService _itemService;
 	private readonly IResourceService _resourceService;
@@ -18,7 +18,7 @@ public class ItemAvailabilityChanger : IItemAvailabilityChanger
 	private readonly IUserLanguage _userLanguage;
 	private readonly IPartnerUrlBuilder _partnerUrlBuilder;
 
-	public ItemAvailabilityChanger(
+	public ItemAvailabilityService(
 		IItemService itemService,
 		IResourceService resourceService,
 		ITelegramBotService telegramBotService,
@@ -34,7 +34,7 @@ public class ItemAvailabilityChanger : IItemAvailabilityChanger
 		_partnerUrlBuilder = partnerUrlBuilder;
 	}
 
-	public async ValueTask Change(Item item, bool isAvailable)
+	public async ValueTask Update(Item item, bool isAvailable)
 	{
 		if (item.IsAvailable == isAvailable)
 			return;

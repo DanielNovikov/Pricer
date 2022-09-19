@@ -37,7 +37,7 @@ public class TogglePriceGrowingNotificationsCommandHandler : ICommandHandler
 			? ResourceKey.Dialog_EnablePriceGrowingNotifications
 			: ResourceKey.Dialog_DisablePriceGrowingNotifications; 
 		
-		var toggleNotificationsButton = new CallbackKeyboardButton(toggleNotificationsButtonTitle, callbackData);
+		var toggleNotificationsButton = new CallbackResourceButton(toggleNotificationsButtonTitle, callbackData);
 		var keyboard = new MessageKeyboard(toggleNotificationsButton);
 		
 		var replyMessageKey = enableNotifications

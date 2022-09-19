@@ -11,7 +11,7 @@ using PriceObserver.Telegram.Abstract;
 
 namespace PriceObserver.Background.Services.Concrete;
 
-public class ItemPriceChanger : IItemPriceChanger
+public class ItemPriceService : IItemPriceService
 {
     private readonly IResourceService _resourceService;
     private readonly IItemService _itemService;
@@ -24,12 +24,11 @@ public class ItemPriceChanger : IItemPriceChanger
     private readonly IItemDeletionKeyboardBuilder _itemDeletionKeyboardBuilder;
 
     private const double OneHundredPercent = 100.0;
-    private const int MinimumDifferenceRatio = 5;
     
-    public ItemPriceChanger(
+    public ItemPriceService(
         IResourceService resourceService, 
         IItemService itemService, 
-        ILogger<ItemPriceChanger> logger, 
+        ILogger<ItemPriceService> logger, 
         ITelegramBotService telegramBotService, 
         IItemParseResultService parseResultService, 
         IUserRepository userRepository, 
@@ -59,16 +58,24 @@ public class ItemPriceChanger : IItemPriceChanger
         var user = await _userRepository.GetById(item.UserId);
         _userLanguage.Set(user.SelectedLanguageKey);
         
-        var priceDecreased = HasPriceDecreased(oldPrice, newPrice);
+        var priceChangedAboveThreshold = 
+            HasPriceChangedAboveThreshold(oldPrice, newPrice, user.MinimumDiscountThreshold);
 
-        if (priceDecreased ||
-            (newPrice > oldPrice && user.GrowthPriceNotificationsEnabled))
+        var notifyUser = priceChangedAboveThreshold && (newPrice < oldPrice || user.GrowthPriceNotificationsEnabled);
+
+        if (notifyUser || newPrice > oldPrice)
+        {
+            await _itemService.UpdatePrice(item, newPrice);
+            LogChangedPrice(item, oldPrice, newPrice);
+        }
+        
+        if (notifyUser)
         {
             var difference = Math.Abs(oldPrice - newPrice);
 
             var currencyTitle = _currencyService.GetTitle(item.CurrencyKey);
 
-            var resourceTemplate = priceDecreased
+            var resourceTemplate = newPrice < oldPrice
                 ? ResourceKey.Background_ItemPriceWentDown
                 : ResourceKey.Background_ItemPriceGrewUp;
             
@@ -79,20 +86,14 @@ public class ItemPriceChanger : IItemPriceChanger
             
             await _telegramBotService.SendMessageWithReplyMarkup(user.ExternalId, priceChangedMessage, keyboard);
         }
-
-        LogChangedPrice(item, oldPrice, newPrice);
-        await _itemService.UpdatePrice(item, newPrice);
     }
 
-    private static bool HasPriceDecreased(int oldPrice, int newPrice)
+    private static bool HasPriceChangedAboveThreshold(int oldPrice, int newPrice, int threshold)
     {
-        if (newPrice > oldPrice)
-            return false;
-
-        var difference = oldPrice - newPrice;
+        var difference = Math.Abs(oldPrice - newPrice);
         var differenceRatio = difference * OneHundredPercent / oldPrice;
 
-        return differenceRatio > MinimumDifferenceRatio;
+        return differenceRatio > threshold;
     }
 
     private void LogChangedPrice(Item item, int oldPrice, int newPrice)

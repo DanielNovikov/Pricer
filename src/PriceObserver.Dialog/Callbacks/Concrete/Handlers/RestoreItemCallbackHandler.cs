@@ -49,7 +49,7 @@ public class RestoreItemCallbackHandler : ICallbackHandler
 		var message = _resourceService.Get(ResourceKey.Dialog_ItemAdded);
 		
 		var partnerUrl = _partnerUrlBuilder.Build(item.Url);
-		var goByItemUrlButton = new UrlKeyboardButton(ResourceKey.Dialog_GoByItemUrl, partnerUrl);
+		var goByItemUrlButton = new UrlButton(ResourceKey.Dialog_GoByItemUrl, partnerUrl);
 		var keyboard = new MessageKeyboard(goByItemUrlButton);
 
 		var callbackResult = new CallbackResult(message, keyboard);

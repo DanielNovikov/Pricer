@@ -31,6 +31,8 @@ public enum ResourceKey
     Dialog_DisablePriceGrowingNotifications = 26,
     Dialog_PriceGrowingNotificationsEnabled = 27,
     Dialog_PriceGrowingNotificationsDisabled = 28,
+    Dialog_ChangeMinimumDiscountThreshold = 29,
+    Dialog_MinimumDiscountThresholdChanged = 30,
     
     UserAction_GotAddedProducts = 100,
     UserAction_ParsingError = 101,
@@ -55,6 +57,8 @@ public enum ResourceKey
     UserAction_RestoredItem = 121,
     UserAction_CalledTogglingPriceGrowingMenu = 122,
     UserAction_CalledChangingLanguageMenu = 123,
+    UserAction_CalledChangingMinimumDiscountThreshold = 124,
+    UserAction_ChangedMinimumDiscountThreshold = 125,
 
     Parser_PageNotFound = 200,
     Parser_NoItemInfoOnPage = 202,
@@ -86,6 +90,7 @@ public enum ResourceKey
     Command_TogglePriceGrowingNotifications = 509,
     Command_SelectUkrainianLanguage = 510,
     Command_SelectRussianLanguage = 511,
+    Command_ChangeMinimumDiscount = 512,
     
     Currency_UAH_Title = 600,
     Currency_UAH_Sign = 601,

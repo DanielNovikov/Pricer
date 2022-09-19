@@ -2,9 +2,9 @@
 
     <PropertyGroup>
         <TargetFramework>net6.0</TargetFramework>
-        <UserSecretsId>baed9532-bc0b-41c1-b77c-3eb1f0d571f9</UserSecretsId>
         <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
-    </PropertyGroup>
+        <UserSecretsId>46dd6f54-6299-4607-b438-06f5ad97591d</UserSecretsId>
+  </PropertyGroup>
 
     <ItemGroup>
         <ProjectReference Include="..\PriceObserver.Web.Api\PriceObserver.Web.Api.csproj" />

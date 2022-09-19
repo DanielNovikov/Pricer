@@ -16,11 +16,12 @@ public class CommandsSeeder
         resources.AddResource(ResourceKey.Command_WriteToSupport, "Підтримка 👨🏻‍💻", "Поддержка 👨🏻‍💻");
         resources.AddResource(ResourceKey.Command_Settings, "Налаштування ⚙️", "Настройки ⚙️");
         
-        resources.AddResource(ResourceKey.Command_SelectLanguage, "Мова 🌐", "Язык 🌐");
         resources.AddResource(ResourceKey.Command_SelectUkrainianLanguage, "Українська 🇺🇦", "Украинский 🇺🇦");
         resources.AddResource(ResourceKey.Command_SelectRussianLanguage, "Російська 🇷🇺", "Российский 🇷🇺");
         
+        resources.AddResource(ResourceKey.Command_SelectLanguage, "Мова 🌐", "Язык 🌐");
         resources.AddResource(ResourceKey.Command_TogglePriceGrowingNotifications, "Зростання ціни 🔔", "Возрастание цены 🔔");
+        resources.AddResource(ResourceKey.Command_ChangeMinimumDiscount, "Мінімальна знижка 💸", "Минимальная скидка 💸");
         
         resources.AddResource(ResourceKey.Command_Back, "Назад ◀", "Назад ◀");
     }

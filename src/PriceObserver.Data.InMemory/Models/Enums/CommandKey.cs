@@ -13,5 +13,6 @@ public enum CommandKey
     ChangeLanguage = 8,
     TogglePriceGrowingNotifications = 9,
     SelectUkrainianLanguage = 10,
-    SelectRussianLanguage = 11
+    SelectRussianLanguage = 11,
+    ChangeMinimumDiscount = 12
 }

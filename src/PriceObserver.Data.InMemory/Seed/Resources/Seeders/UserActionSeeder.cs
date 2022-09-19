@@ -162,5 +162,15 @@ public class UserActionSeeder
 	        ResourceKey.UserAction_CalledChangingLanguageMenu,
 	        "🌐 Запросив меню для зміни мови",
 	        "🌐 Запросил меню для изменения языка");
+        
+        resources.AddResource(
+            ResourceKey.UserAction_CalledChangingMinimumDiscountThreshold,
+            "💸 Запросив меню для зміни мінімальної знижки",
+            "💸 Запросил меню для смени минимальной скидки");
+        
+        resources.AddResource(
+            ResourceKey.UserAction_ChangedMinimumDiscountThreshold,
+            "🏷 Змінив мінімальну знижку на {0}%",
+            "🏷 Изменил минимальную скидку на {0}%");
     }
 }

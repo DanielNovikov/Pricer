@@ -2,4 +2,4 @@
 
 namespace PriceObserver.Dialog.Models;
 
-public record UrlKeyboardButton(ResourceKey Text, string Url) : IMessageKeyboardButton;
+public record UrlButton(ResourceKey Resource, string Url) : IMessageKeyboardButton;

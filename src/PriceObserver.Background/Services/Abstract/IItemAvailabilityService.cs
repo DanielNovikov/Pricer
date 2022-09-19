@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 namespace PriceObserver.Background.Services.Abstract;
 
-public interface IItemAvailabilityChanger
+public interface IItemAvailabilityService
 {
-	ValueTask Change(Item item, bool isAvailable);
+	ValueTask Update(Item item, bool isAvailable);
 }
