@@ -1,9 +1,10 @@
 ﻿using PriceObserver.Common.Models;
 using PriceObserver.Data.InMemory.Models.Enums;
+using PriceObserver.Dialog.Models.Abstract;
 
 namespace PriceObserver.Dialog.Models;
 
-public class MessageHandlingResult : ServiceResult<MessageHandlingResult, ReplyResult, ResourceKey>
+public class MessageHandlingResult : ServiceResult<MessageHandlingResult, IReplyResult, ResourceKey>
 {
     public static MessageHandlingResult FromServiceResult(MenuInputHandlingServiceResult serviceResult)
     {

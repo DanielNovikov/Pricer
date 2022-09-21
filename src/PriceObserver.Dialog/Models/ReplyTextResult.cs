@@ -2,4 +2,4 @@
 
 namespace PriceObserver.Dialog.Models;
 
-public record CallbackTextButton(string Text, string Data) : IMessageKeyboardButton;
+public record ReplyTextResult(string Text) : IReplyResult;

@@ -11,7 +11,9 @@ public interface ITelegramBotService
 
     Task SendVideo(long userId, string videoUrl, string message = default);
     
-    Task EditMessage(long userId, int messageId, string message, InlineKeyboardMarkup keyboard);
+    Task EditMessage(long userId, int messageId, string message);
+    
+    Task EditMessageWithInlineKeyboard(long userId, int messageId, string message, InlineKeyboardMarkup keyboard);
     
     Task DeleteMessage(long userId, int messageId);
 }

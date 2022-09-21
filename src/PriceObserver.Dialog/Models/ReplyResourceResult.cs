@@ -3,4 +3,4 @@ using PriceObserver.Dialog.Models.Abstract;
 
 namespace PriceObserver.Dialog.Models;
 
-public record UrlButton(ResourceKey Resource, string Url) : IMessageKeyboardButton;
+public record ReplyResourceResult(ResourceKey Resource, params object[] Parameters) : IReplyResult;

@@ -44,10 +44,9 @@ public class SelectLanguageCallbackHandler : ICallbackHandler
 		await _userService.ChangeSelectedLanguage(user, languageKey);
 		_userLanguage.Set(languageKey);
 
-		var resultMessage = _resourceService.Get(ResourceKey.Dialog_LanguageChanged);
 		var menuKeyboard = _menuKeyboardBuilder.Build(user.MenuKey);
 		
-		var result = new CallbackResult(resultMessage, menuKeyboard);
+		var result = new ReplyKeyboardResult(menuKeyboard, ResourceKey.Dialog_LanguageChanged);
 		return CallbackHandlingResult.Success(result);
 	}
 }

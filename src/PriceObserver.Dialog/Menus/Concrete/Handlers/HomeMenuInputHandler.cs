@@ -16,7 +16,6 @@ public class HomeMenuInputHandler : IMenuInputHandler
     private readonly IItemRepository _itemRepository;
     private readonly IWrongCommandHandler _wrongCommandHandler;
     private readonly IItemService _itemService;
-    private readonly IResourceService _resourceService;
 
     public HomeMenuInputHandler(
         IUrlExtractor urlExtractor,
@@ -24,8 +23,7 @@ public class HomeMenuInputHandler : IMenuInputHandler
         IUserItemParser userItemParser, 
         IItemRepository itemRepository,
         IWrongCommandHandler wrongCommandHandler,
-        IItemService itemService,
-        IResourceService resourceService)
+        IItemService itemService)
     {
         _urlExtractor = urlExtractor;
         _userActionLogger = userActionLogger;
@@ -33,7 +31,6 @@ public class HomeMenuInputHandler : IMenuInputHandler
         _itemRepository = itemRepository;
         _wrongCommandHandler = wrongCommandHandler;
         _itemService = itemService;
-        _resourceService = resourceService;
     }
 
     public MenuKey Key => MenuKey.Home;
@@ -45,8 +42,8 @@ public class HomeMenuInputHandler : IMenuInputHandler
         var urlExtractionResult = _urlExtractor.Extract(message.Text);
         if (!urlExtractionResult.IsSuccess)
         {
-            var replyResult = _wrongCommandHandler.Handle(message);
-            return MenuInputHandlingServiceResult.Success(replyResult);
+            var result = _wrongCommandHandler.Handle(message);
+            return MenuInputHandlingServiceResult.Success(result);
         }
 
         var url = urlExtractionResult.Result;
@@ -60,9 +57,9 @@ public class HomeMenuInputHandler : IMenuInputHandler
             }
 
             await _itemService.Restore(item);
-            var replyMessage = _resourceService.Get(ResourceKey.Dialog_ItemAdded);
-            var replyResult = ReplyResult.Reply(replyMessage);
-            return MenuInputHandlingServiceResult.Success(replyResult);
+            
+            var result = new ReplyResourceResult(ResourceKey.Dialog_ItemAdded);
+            return MenuInputHandlingServiceResult.Success(result);
         }
         
         var parseResult = await _userItemParser.Parse(user, url);
@@ -70,7 +67,7 @@ public class HomeMenuInputHandler : IMenuInputHandler
         if (!parseResult.IsSuccess)
             return MenuInputHandlingServiceResult.Fail(parseResult.Error);
 
-        var reply = ReplyResult.Reply(parseResult.Result);
-        return MenuInputHandlingServiceResult.Success(reply);
+        var replyResult = new ReplyResourceResult(parseResult.Result);
+        return MenuInputHandlingServiceResult.Success(replyResult);
     }
 }

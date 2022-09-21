@@ -61,28 +61,54 @@ public class UpdateHandler : IUpdateHandler
         var userExternalId = callback.User.ExternalId;
         var messageId = callback.MessageId;
         
-        var result = serviceResult.Result;
-        if (result.MenuKeyboard is not null)
+        switch (serviceResult.Result)
         {
-            await _telegramBotService.DeleteMessage(userExternalId, messageId);
+            case ReplyKeyboardResult keyboardResult:
+            {
+                var message = _resourceService.Get(
+                    keyboardResult.Resource,
+                    keyboardResult.Parameters);
+                
+                if (keyboardResult.Keyboard is MenuKeyboard menuKeyboard)
+                {
+                    await _telegramBotService.DeleteMessage(userExternalId, messageId);
             
-            var menuKeyboard = _replyKeyboardBuilder.Build(result.MenuKeyboard);
-            await _telegramBotService.SendMessageWithReplyMarkup(userExternalId, result.MessageText, menuKeyboard);
-            return;
-        }
-        
-        var keyboard = result.MessageKeyboard is not null 
-            ? _inlineKeyboardMarkupBuilder.Build(result.MessageKeyboard) 
-            : default;
+                    var replyKeyboard = _replyKeyboardBuilder.Build(menuKeyboard);
+                    await _telegramBotService.SendMessageWithReplyMarkup(userExternalId, message, replyKeyboard);
+                    return;
+                }
 
-        await _telegramBotService.EditMessage(userExternalId, messageId, result.MessageText, keyboard);
+                if (!(keyboardResult.Keyboard is MessageKeyboard messageKeyboard))
+                    throw new InvalidOperationException(
+                        $"Unexpected type of reply result {keyboardResult.Keyboard.GetType().FullName}");
+                
+                var inlineKeyboard = _inlineKeyboardMarkupBuilder.Build(messageKeyboard);
+                await _telegramBotService.EditMessageWithInlineKeyboard(
+                    userExternalId, messageId, message, inlineKeyboard);
+                
+                break;
+            }
+            case ReplyResourceResult resourceResult:
+            {
+                var message = _resourceService.Get(resourceResult.Resource, resourceResult.Parameters);
+                await _telegramBotService.EditMessage(userExternalId, messageId, message);
+                break;
+            }
+            case ReplyTextResult textResult:
+            {
+                await _telegramBotService.EditMessage(userExternalId, messageId, textResult.Text);
+                break;
+            }
+            default:
+                throw new InvalidOperationException($"Unexpected type of reply result {serviceResult.Result.GetType().FullName}");
+        }
     }
 
-    private async Task HandleMessage(MessageHandlingModel message)
+    private async Task HandleMessage(MessageHandlingModel messageModel)
     {
-        var serviceResult = await _messageHandler.Handle(message);
+        var serviceResult = await _messageHandler.Handle(messageModel);
 
-        var userExternalId = message.User.ExternalId;
+        var userExternalId = messageModel.User.ExternalId;
         if (!serviceResult.IsSuccess)
         {
             var errorMessage = _resourceService.Get(serviceResult.Error);
@@ -90,17 +116,38 @@ public class UpdateHandler : IUpdateHandler
             return;
         }
 
-        var result = serviceResult.Result;
-        if (result.MenuKeyboard is not null || result.MessageKeyboard is not null)
+        switch (serviceResult.Result)
         {
-            var replyMarkup = result.MenuKeyboard is not null
-                ? _replyKeyboardBuilder.Build(result.MenuKeyboard)
-                : _inlineKeyboardMarkupBuilder.Build(result.MessageKeyboard);
-            
-            await _telegramBotService.SendMessageWithReplyMarkup(userExternalId, result.Message, replyMarkup);
-            return;
-        }
+            case ReplyKeyboardResult keyboardResult:
+            {
+                var keyboard = keyboardResult.Keyboard switch
+                {
+                    MessageKeyboard messageKeyboard => _inlineKeyboardMarkupBuilder.Build(messageKeyboard),
+                    MenuKeyboard menuKeyboard => _replyKeyboardBuilder.Build(menuKeyboard),
+                    _ => throw new InvalidOperationException(
+                        $"Unexpected type of reply result {keyboardResult.Keyboard.GetType().FullName}")
+                };
 
-        await _telegramBotService.SendMessage(userExternalId, result.Message);
+                var message = _resourceService.Get(
+                    keyboardResult.Resource,
+                    keyboardResult.Parameters);
+            
+                await _telegramBotService.SendMessageWithReplyMarkup(userExternalId, message, keyboard);
+                break;
+            }
+            case ReplyResourceResult resourceResult:
+            {
+                var message = _resourceService.Get(resourceResult.Resource, resourceResult.Parameters);
+                await _telegramBotService.SendMessage(userExternalId, message);
+                break;
+            }
+            case ReplyTextResult textResult:
+            {
+                await _telegramBotService.SendMessage(userExternalId, textResult.Text);
+                break;
+            }
+            default:
+                throw new InvalidOperationException($"Unexpected type of reply result {serviceResult.Result.GetType().FullName}");
+        }
     }
 }

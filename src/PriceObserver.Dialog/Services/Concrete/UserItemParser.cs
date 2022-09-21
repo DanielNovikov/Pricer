@@ -14,20 +14,17 @@ public class UserItemParser : IUserItemParser
 {
     private readonly IUserActionLogger _userActionLogger;
     private readonly IParser _parser;
-    private readonly IResourceService _resourceService;
     private readonly IItemService _itemService;
     private readonly IShopRepository _shopRepository;
     
     public UserItemParser(
         IUserActionLogger userActionLogger,
-        IParser parser, 
-        IResourceService resourceService, 
+        IParser parser,  
         IItemService itemService,
         IShopRepository shopRepository)
     {
         _userActionLogger = userActionLogger;
         _parser = parser;
-        _resourceService = resourceService;
         _itemService = itemService;
         _shopRepository = shopRepository;
     }
@@ -60,7 +57,6 @@ public class UserItemParser : IUserItemParser
         else 
             _userActionLogger.LogNotAvailableItemAdded(user, item);
         
-        var successMessage = _resourceService.Get(ResourceKey.Dialog_ItemAdded);
-        return UserItemParseResult.Success(successMessage);
+        return UserItemParseResult.Success(ResourceKey.Dialog_ItemAdded);
     }
 }

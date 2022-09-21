@@ -1,8 +1,9 @@
 ﻿using PriceObserver.Dialog.Models;
+using PriceObserver.Dialog.Models.Abstract;
 
 namespace PriceObserver.Dialog.Services.Abstract;
 
 public interface IWrongCommandHandler
 {
-    ReplyResult Handle(MessageModel message);
+    IReplyResult Handle(MessageModel message);
 }

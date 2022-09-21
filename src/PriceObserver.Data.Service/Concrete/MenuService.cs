@@ -20,6 +20,6 @@ public class MenuService : IMenuService
     public string GetTitle(MenuKey key)
     {
         var menu = _repository.GetByKey(key);
-        return _resourceService.Get(menu.ResourceKey);;
+        return _resourceService.Get(menu.Title);;
     }
 }

@@ -3,6 +3,7 @@ using PriceObserver.Data.InMemory.Models;
 using PriceObserver.Data.Persistent.Models;
 using PriceObserver.Data.Service.Abstract;
 using PriceObserver.Dialog.Models;
+using PriceObserver.Dialog.Models.Abstract;
 using PriceObserver.Dialog.Services.Abstract;
 
 namespace PriceObserver.Dialog.Services.Concrete;
@@ -10,20 +11,21 @@ namespace PriceObserver.Dialog.Services.Concrete;
 public class UserRedirectionService : IUserRedirectionService
 {
     private readonly IUserService _userService;
-    private readonly IReplyWithKeyboardBuilder _replyWithKeyboardBuilder;
+    private readonly IMenuKeyboardBuilder _menuKeyboardBuilder;
 
     public UserRedirectionService(
-        IUserService userService,
-        IReplyWithKeyboardBuilder replyWithKeyboardBuilder)
+        IUserService userService, 
+        IMenuKeyboardBuilder menuKeyboardBuilder)
     {
         _userService = userService;
-        _replyWithKeyboardBuilder = replyWithKeyboardBuilder;
+        _menuKeyboardBuilder = menuKeyboardBuilder;
     }
 
-    public async Task<ReplyResult> Redirect(User user, Menu menuToRedirect)
+    public async Task<IReplyResult> Redirect(User user, Menu menuToRedirect)
     {
         await _userService.RedirectToMenu(user, menuToRedirect);
 
-        return _replyWithKeyboardBuilder.Build(menuToRedirect);
+        var keyboard = _menuKeyboardBuilder.Build(menuToRedirect.Key);
+        return new ReplyKeyboardResult(keyboard, menuToRedirect.Title);
     }
 }

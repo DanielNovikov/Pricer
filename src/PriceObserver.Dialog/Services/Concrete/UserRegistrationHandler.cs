@@ -4,6 +4,7 @@ using PriceObserver.Dialog.Extensions;
 using PriceObserver.Dialog.Models;
 using PriceObserver.Dialog.Services.Abstract;
 using System.Threading.Tasks;
+using PriceObserver.Dialog.Models.Abstract;
 
 namespace PriceObserver.Dialog.Services.Concrete;
 
@@ -12,7 +13,6 @@ public class UserRegistrationHandler : IUserRegistrationHandler
     private readonly IMenuKeyboardBuilder _menuKeyboardBuilder;
     private readonly IShopsMessageBuilder _shopsMessageBuilder;
     private readonly IUserActionLogger _userActionLogger;
-    private readonly IResourceService _resourceService;
     private readonly IMenuService _menuService;
     private readonly ICommandService _commandService;
     private readonly IAuthorizationService _authorizationService;
@@ -23,7 +23,6 @@ public class UserRegistrationHandler : IUserRegistrationHandler
         IMenuKeyboardBuilder menuKeyboardBuilder, 
         IShopsMessageBuilder shopsMessageBuilder, 
         IUserActionLogger userActionLogger, 
-        IResourceService resourceService, 
         IMenuService menuService,
         ICommandService commandService,
         IAuthorizationService authorizationService)
@@ -31,13 +30,12 @@ public class UserRegistrationHandler : IUserRegistrationHandler
         _menuKeyboardBuilder = menuKeyboardBuilder;
         _shopsMessageBuilder = shopsMessageBuilder;
         _userActionLogger = userActionLogger;
-        _resourceService = resourceService;
         _menuService = menuService;
         _commandService = commandService;
         _authorizationService = authorizationService;
     }
 
-    public async Task<ReplyResult> Handle(UserModel userModel)
+    public async Task<IReplyResult> Handle(UserModel userModel)
     {
         var user = await _authorizationService.Register(userModel);
         
@@ -47,13 +45,12 @@ public class UserRegistrationHandler : IUserRegistrationHandler
         var shopsInfoMessage = _shopsMessageBuilder.Build(LimitCountOfShops);
 
         var menuText = _menuService.GetTitle(user.MenuKey); 
-                
-        var message = _resourceService.Get(
-            ResourceKey.Dialog_UserRegistered,
-            user.GetFullName(), helpCommandTitle, shopsInfoMessage, menuText);
-
+              
         var menuKeyboard = _menuKeyboardBuilder.Build(user.MenuKey);
 
-        return ReplyResult.ReplyWithMenuKeyboard(message, menuKeyboard);
+        return new ReplyKeyboardResult(
+            menuKeyboard, 
+            ResourceKey.Dialog_UserRegistered,
+            user.GetFullName(), helpCommandTitle, shopsInfoMessage, menuText);
     }
 }

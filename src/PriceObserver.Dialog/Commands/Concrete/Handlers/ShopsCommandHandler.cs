@@ -28,8 +28,8 @@ public class ShopsCommandHandler : ICommandHandler
             
         var shopsInfoMessage = _shopCategoriesMessageBuilder.Build();
 
-        var result = ReplyResult.Reply(shopsInfoMessage);
-        var serviceResult = CommandHandlingServiceResult.Success(result);
+        var replyResult = new ReplyTextResult(shopsInfoMessage);
+        var serviceResult = CommandHandlingServiceResult.Success(replyResult);
             
         return Task.FromResult(serviceResult);
     }

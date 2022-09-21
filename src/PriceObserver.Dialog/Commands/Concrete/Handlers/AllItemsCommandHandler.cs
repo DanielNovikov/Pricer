@@ -85,7 +85,7 @@ public class AllItemsCommandHandler : ICommandHandler
             message += $"{Environment.NewLine}{Environment.NewLine}{maximumExceededMessage}";
         }
 
-        var replyResult = ReplyResult.Reply(message);
+        var replyResult = new ReplyTextResult(message);
         return CommandHandlingServiceResult.Success(replyResult);
     }
 }

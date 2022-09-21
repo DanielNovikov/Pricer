@@ -11,16 +11,13 @@ namespace PriceObserver.Dialog.Callbacks.Concrete.Handlers;
 public class ChangeMinimumDiscountThresholdCallbackHandler : ICallbackHandler
 {
     private readonly IUserService _userService;
-    private readonly IResourceService _resourceService;
     private readonly IUserActionLogger _userActionLogger;
 
     public ChangeMinimumDiscountThresholdCallbackHandler(
         IUserService userService,
-        IResourceService resourceService, 
         IUserActionLogger userActionLogger)
     {
         _userService = userService;
-        _resourceService = resourceService;
         _userActionLogger = userActionLogger;
     }
 
@@ -36,8 +33,7 @@ public class ChangeMinimumDiscountThresholdCallbackHandler : ICallbackHandler
         await _userService.ChangeMinimumDiscountThreshold(user, discountThreshold);
         _userActionLogger.LogChangedMinimumDiscountThreshold(user, discountThreshold); 
         
-        var message = _resourceService.Get(ResourceKey.Dialog_MinimumDiscountThresholdChanged, discountThreshold);
-        var replyResult = new CallbackResult(message);
+        var replyResult = new ReplyResourceResult(ResourceKey.Dialog_MinimumDiscountThresholdChanged, discountThreshold);
         return CallbackHandlingResult.Success(replyResult);
     }
 }

@@ -12,7 +12,6 @@ namespace PriceObserver.Dialog.Callbacks.Concrete.Handlers;
 
 public class DeleteItemCallbackHandler : ICallbackHandler
 {
-	private readonly IResourceService _resourceService;
 	private readonly IItemService _itemService;
 	private readonly IItemRepository _itemRepository;
 	private readonly IUserActionLogger _userActionLogger;
@@ -20,14 +19,12 @@ public class DeleteItemCallbackHandler : ICallbackHandler
 	private readonly IPartnerUrlBuilder _partnerUrlBuilder;
 
 	public DeleteItemCallbackHandler(
-		IResourceService resourceService,
 		IItemService itemService,
 		IItemRepository itemRepository,
 		IUserActionLogger userActionLogger,
 		ICallbackDataBuilder callbackDataBuilder,
 		IPartnerUrlBuilder partnerUrlBuilder)
 	{
-		_resourceService = resourceService;
 		_itemService = itemService;
 		_itemRepository = itemRepository;
 		_userActionLogger = userActionLogger;
@@ -48,8 +45,7 @@ public class DeleteItemCallbackHandler : ICallbackHandler
 			return CallbackHandlingResult.Fail();
 
 		_userActionLogger.LogDeletedItem(callback.User, item);
-		
-		var keyboardMessage = _resourceService.Get(ResourceKey.Dialog_ItemDeleted);
+		await _itemService.Delete(item);
 		
 		var callbackDataJson = _callbackDataBuilder.BuildJson(CallbackKey.RestoreItem, item.Id);
 		var restoreItemButton = new CallbackResourceButton(ResourceKey.Dialog_RestoreItem, callbackDataJson);
@@ -59,9 +55,7 @@ public class DeleteItemCallbackHandler : ICallbackHandler
 
 		var keyboard = new MessageKeyboard(restoreItemButton, goByItemUrlButton);
 		
-		var result = new CallbackResult(keyboardMessage, keyboard);
-		await _itemService.Delete(item);
-
+		var result = new ReplyKeyboardResult(keyboard, ResourceKey.Dialog_ItemDeleted);
 		return CallbackHandlingResult.Success(result);
 	}
 }

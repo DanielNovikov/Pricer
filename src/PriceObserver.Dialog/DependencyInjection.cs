@@ -38,7 +38,6 @@ public static class DependencyInjection
             
             .AddTransient<IMenuInputHandlerService, MenuInputHandlerService>()
             .AddTransient<IMenuKeyboardBuilder, MenuKeyboardBuilder>()
-            .AddTransient<IReplyWithKeyboardBuilder, ReplyWithKeyboardBuilder>()
             .AddTransient<IUrlExtractor, UrlExtractor>()
             .AddTransient<IUserItemParser, UserItemParser>()
             .AddTransient<IUserRedirectionService, UserRedirectionService>()

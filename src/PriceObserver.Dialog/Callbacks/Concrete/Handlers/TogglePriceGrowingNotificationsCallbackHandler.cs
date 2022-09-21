@@ -11,16 +11,13 @@ namespace PriceObserver.Dialog.Callbacks.Concrete.Handlers;
 public class TogglePriceGrowingNotificationsCallbackHandler : ICallbackHandler
 {
 	private readonly IUserActionLogger _userActionLogger;
-	private readonly IResourceService _resourceService;
 	private readonly IUserService _userService;
 
 	public TogglePriceGrowingNotificationsCallbackHandler(
 		IUserActionLogger userActionLogger,
-		IResourceService resourceService,
 		IUserService userService)
 	{
 		_userActionLogger = userActionLogger;
-		_resourceService = resourceService;
 		_userService = userService;
 	}
 
@@ -36,13 +33,11 @@ public class TogglePriceGrowingNotificationsCallbackHandler : ICallbackHandler
 		_userActionLogger.LogToggledPriceGrowthNotifications(user, enablePriceGrowing);
 		await _userService.ChangePriceGrowthNotificationsEnabled(user, enablePriceGrowing);
 
-		var resultMessageKey = enablePriceGrowing
+		var resultMessage = enablePriceGrowing
 			? ResourceKey.Dialog_PriceGrowingNotificationsEnabled
 			: ResourceKey.Dialog_PriceGrowingNotificationsDisabled;
-
-		var resultMessage = _resourceService.Get(resultMessageKey);
 		
-		var result = new CallbackResult(resultMessage);
+		var result = new ReplyResourceResult(resultMessage);
 		return CallbackHandlingResult.Success(result);
 	}
 }

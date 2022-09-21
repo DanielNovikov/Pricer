@@ -11,16 +11,13 @@ namespace PriceObserver.Dialog.Commands.Concrete.Handlers;
 public class HelpCommandHandler : ICommandHandler
 {
     private readonly IUserActionLogger _userActionLogger;
-    private readonly IResourceService _resourceService;
     private readonly ICommandService _commandService;
         
     public HelpCommandHandler(
         IUserActionLogger userActionLogger,
-        IResourceService resourceService, 
         ICommandService commandService)
     {
         _userActionLogger = userActionLogger;
-        _resourceService = resourceService;
         _commandService = commandService;
     }
 
@@ -36,11 +33,10 @@ public class HelpCommandHandler : ICommandHandler
         var websiteCommandTitle = _commandService.GetTitle(CommandKey.Website);
         var writeToSupportCommandTitle = _commandService.GetTitle(CommandKey.WriteToSupport);
 
-        var message = _resourceService.Get(
+        var result = new ReplyResourceResult(
             ResourceKey.Dialog_Help,
             addCommandTitle, allItemsCommandTitle, shopsCommandTitle, websiteCommandTitle, writeToSupportCommandTitle);
-
-        var result = ReplyResult.Reply(message);
+        
         var serviceResult = CommandHandlingServiceResult.Success(result);
 
         return Task.FromResult(serviceResult);

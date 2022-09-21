@@ -3,6 +3,6 @@ using PriceObserver.Data.InMemory.Models.Enums;
 
 namespace PriceObserver.Dialog.Models;
 
-public class UserItemParseResult : ServiceResult<UserItemParseResult, string, ResourceKey>
+public class UserItemParseResult : ServiceResult<UserItemParseResult, ResourceKey, ResourceKey>
 {
 }

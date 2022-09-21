@@ -3,6 +3,7 @@ using PriceObserver.Dialog.Models;
 using PriceObserver.Telegram.Abstract;
 using System;
 using System.Linq;
+using PriceObserver.Dialog.Models.Abstract;
 using Telegram.Bot.Types.ReplyMarkups;
 
 namespace PriceObserver.Telegram.Concrete;

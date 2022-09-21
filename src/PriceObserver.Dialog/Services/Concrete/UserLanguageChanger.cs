@@ -3,9 +3,9 @@ using PriceObserver.Data.InMemory.Models.Enums;
 using PriceObserver.Data.InMemory.Repositories.Abstract;
 using PriceObserver.Data.Persistent.Models;
 using PriceObserver.Data.Service.Abstract;
-using PriceObserver.Dialog.Models;
 using PriceObserver.Dialog.Services.Abstract;
 using System.Threading.Tasks;
+using PriceObserver.Dialog.Models.Abstract;
 
 namespace PriceObserver.Dialog.Services.Concrete;
 
@@ -31,7 +31,7 @@ public class UserLanguageChanger : IUserLanguageChanger
 		_userActionLogger = userActionLogger;
 	}
 
-	public async Task<ReplyResult> Change(User user, LanguageKey languageKey)
+	public async Task<IReplyResult> Change(User user, LanguageKey languageKey)
 	{
 		_userActionLogger.LogSelectedLanguage(user, languageKey);
 		await _userService.ChangeSelectedLanguage(user, languageKey);

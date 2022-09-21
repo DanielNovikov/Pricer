@@ -1,9 +1,10 @@
 ﻿using PriceObserver.Dialog.Models;
 using System.Threading.Tasks;
+using PriceObserver.Dialog.Models.Abstract;
 
 namespace PriceObserver.Dialog.Services.Abstract;
 
 public interface IUserRegistrationHandler
 {
-    Task<ReplyResult> Handle(UserModel userModel);
+    Task<IReplyResult> Handle(UserModel userModel);
 }

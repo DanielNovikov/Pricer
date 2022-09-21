@@ -19,4 +19,4 @@ Also were written `Integration tests` to test whole logic of parser, and besides
 All steps how to deploy were described in separate document. Go by [**link**](https://github.com/DanielNovikov/PriceObserver/blob/master/DEPLOY.md) to see the details.
 
 ##### Technology stack
-`C#`, `.NET 6`, `ASP.NET Core`, `Entity Framework Core`, `AngleSharp`, `Telegram.Bot`, `Angular`, `SCSS`, `PostgreSQL`
+`C#`, `.NET 6`, `ASP.NET Core`, `Entity Framework Core`, `AngleSharp`, `Telegram.Bot`, `Blazor`, `SCSS`, `PostgreSQL`

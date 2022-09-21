@@ -1,5 +1,4 @@
 using System.IO;
-using System.Reflection;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -31,6 +30,10 @@ public class Program
     private static IWebHostBuilder CreateHostBuilder(string[] args) =>
         WebHost
             .CreateDefaultBuilder(args)
+            .ConfigureAppConfiguration((context, config) =>
+            {
+                config.AddEnvironmentVariables();
+            })
             .UseContentRoot(Directory.GetCurrentDirectory())
             .UseSerilog()
             .UseUrls("http://*:5000")
@@ -52,9 +55,9 @@ public class Program
     {
         var configuration = new ConfigurationBuilder()
             .AddJsonFile("appsettings.json")
-            .AddUserSecrets(Assembly.GetExecutingAssembly(), true)
+            .AddEnvironmentVariables()
             .Build();
-            
+
         Log.Logger = new LoggerConfiguration()
             .ReadFrom.Configuration(configuration)
             .Enrich.FromLogContext()

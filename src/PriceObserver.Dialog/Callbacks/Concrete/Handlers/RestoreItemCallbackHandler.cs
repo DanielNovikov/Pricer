@@ -45,14 +45,12 @@ public class RestoreItemCallbackHandler : ICallbackHandler
 
 		_userActionLogger.LogRestoredItem(callback.User, item);
 		await _itemService.Restore(item);
-
-		var message = _resourceService.Get(ResourceKey.Dialog_ItemAdded);
 		
 		var partnerUrl = _partnerUrlBuilder.Build(item.Url);
 		var goByItemUrlButton = new UrlButton(ResourceKey.Dialog_GoByItemUrl, partnerUrl);
 		var keyboard = new MessageKeyboard(goByItemUrlButton);
 
-		var callbackResult = new CallbackResult(message, keyboard);
+		var callbackResult = new ReplyKeyboardResult(keyboard, ResourceKey.Dialog_ItemAdded);
 
 		return CallbackHandlingResult.Success(callbackResult);
 	}
