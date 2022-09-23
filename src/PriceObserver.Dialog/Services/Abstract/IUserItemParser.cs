@@ -7,5 +7,5 @@ namespace PriceObserver.Dialog.Services.Abstract;
 
 public interface IUserItemParser
 {
-    Task<UserItemParseResult> Parse(User user, Uri url);
+    ValueTask<UserItemParseResult> Parse(User user, Uri url);
 }

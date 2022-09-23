@@ -29,7 +29,7 @@ public class UserItemParser : IUserItemParser
         _shopRepository = shopRepository;
     }
 
-    public async Task<UserItemParseResult> Parse(User user, Uri url)
+    public async ValueTask<UserItemParseResult> Parse(User user, Uri url)
     {   
         var shop = _shopRepository.GetByHost(url.Host);
         if (shop is null)

@@ -67,8 +67,8 @@ public class DialogSeeder
 #else
         resources.AddResource(
             ResourceKey.Dialog_Website,
-            "Натисніть <a href='{0}'>тут</a>, щоб перейти на сайт ⤴",
-            "Нажмите <a href='{0}'>здесь</a> для перехода на сайт ⤴");
+            "Натисніть щоб перейти на сайт ⬇",
+            "Нажмите что-бы перейти на сайт ⬇");
 #endif
 
         resources.AddResource(
@@ -197,5 +197,9 @@ public class DialogSeeder
             ResourceKey.Dialog_MinimumDiscountThresholdChanged,
             @"🏷 Мінімальну знижку встановлено на <b>{0}</b>%!",
             @"🏷 Минимальную скидку установлено на <b>{0}</b>%!");
+        
+#if !DEBUG
+        resources.AddResource(ResourceKey.Dialog_GoToWebsite, @"Перейти", @"Перейти");
+#endif
     }
 }

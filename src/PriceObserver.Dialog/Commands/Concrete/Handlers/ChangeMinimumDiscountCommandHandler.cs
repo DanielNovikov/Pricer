@@ -32,7 +32,7 @@ public class ChangeMinimumDiscountCommandHandler : ICommandHandler
         _userActionLogger = userActionLogger;
     }
 
-    public Task<CommandHandlingServiceResult> Handle(User user)
+    public ValueTask<CommandHandlingServiceResult> Handle(User user)
     {
         _userActionLogger.LogCalledChangingMinimumDiscountThreshold(user);
         
@@ -53,6 +53,6 @@ public class ChangeMinimumDiscountCommandHandler : ICommandHandler
             ResourceKey.Dialog_ChangeMinimumDiscountThreshold, 
             user.MinimumDiscountThreshold);
         
-        return Task.FromResult(CommandHandlingServiceResult.Success(result));
+        return ValueTask.FromResult(CommandHandlingServiceResult.Success(result));
     }
 }

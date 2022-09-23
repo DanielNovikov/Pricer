@@ -22,7 +22,7 @@ public class TogglePriceGrowingNotificationsCommandHandler : ICommandHandler
 
 	public CommandKey Key => CommandKey.TogglePriceGrowingNotifications;
 
-	public Task<CommandHandlingServiceResult> Handle(User user)
+	public ValueTask<CommandHandlingServiceResult> Handle(User user)
 	{
 		_userActionLogger.LogCalledTogglingPriceGrowingMenu(user);
 
@@ -41,7 +41,7 @@ public class TogglePriceGrowingNotificationsCommandHandler : ICommandHandler
 			: ResourceKey.Dialog_TogglePriceGrowingNotificationsToDisabled;
 
 		var replyResult = new ReplyKeyboardResult(keyboard, replyResource);
-		return Task.FromResult(CommandHandlingServiceResult.Success(replyResult));
+		return ValueTask.FromResult(CommandHandlingServiceResult.Success(replyResult));
 		
 	}
 }

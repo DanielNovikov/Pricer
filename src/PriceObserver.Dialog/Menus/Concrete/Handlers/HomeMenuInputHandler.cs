@@ -35,7 +35,7 @@ public class HomeMenuInputHandler : IMenuInputHandler
 
     public MenuKey Key => MenuKey.Home;
     
-    public async Task<MenuInputHandlingServiceResult> Handle(MessageModel message)
+    public async ValueTask<MenuInputHandlingServiceResult> Handle(MessageModel message)
     {
         var user = message.User;
         

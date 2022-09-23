@@ -9,5 +9,5 @@ public interface ICommandHandler
 {
     public CommandKey Key { get; }
         
-    public Task<CommandHandlingServiceResult> Handle(User user);
+    public ValueTask<CommandHandlingServiceResult> Handle(User user);
 }

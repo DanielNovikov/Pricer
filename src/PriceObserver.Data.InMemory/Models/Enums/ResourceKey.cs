@@ -33,6 +33,7 @@ public enum ResourceKey
     Dialog_PriceGrowingNotificationsDisabled = 28,
     Dialog_ChangeMinimumDiscountThreshold = 29,
     Dialog_MinimumDiscountThresholdChanged = 30,
+    Dialog_GoToWebsite = 31,
     
     UserAction_GotAddedProducts = 100,
     UserAction_ParsingError = 101,

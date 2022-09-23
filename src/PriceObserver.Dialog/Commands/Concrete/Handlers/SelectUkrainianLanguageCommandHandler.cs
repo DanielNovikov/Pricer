@@ -18,7 +18,7 @@ public class SelectUkrainianLanguageCommandHandler : ICommandHandler
 
 	public CommandKey Key => CommandKey.SelectUkrainianLanguage;
 
-	public async Task<CommandHandlingServiceResult> Handle(User user)
+	public async ValueTask<CommandHandlingServiceResult> Handle(User user)
 	{
 		var replyResult = await _userLanguageChanger.Change(user, LanguageKey.Ukranian);
 		return CommandHandlingServiceResult.Success(replyResult);

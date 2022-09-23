@@ -22,7 +22,7 @@ public class ShopsCommandHandler : ICommandHandler
 
     public CommandKey Key => CommandKey.Shops;
         
-    public Task<CommandHandlingServiceResult> Handle(User user)
+    public ValueTask<CommandHandlingServiceResult> Handle(User user)
     {
         _userActionLogger.LogShopsCalled(user);
             
@@ -31,6 +31,6 @@ public class ShopsCommandHandler : ICommandHandler
         var replyResult = new ReplyTextResult(shopsInfoMessage);
         var serviceResult = CommandHandlingServiceResult.Success(replyResult);
             
-        return Task.FromResult(serviceResult);
+        return ValueTask.FromResult(serviceResult);
     }
 }

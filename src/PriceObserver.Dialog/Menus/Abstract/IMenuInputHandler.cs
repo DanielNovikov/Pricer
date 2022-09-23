@@ -8,5 +8,5 @@ public interface IMenuInputHandler
 {
     MenuKey Key { get; }
 
-    Task<MenuInputHandlingServiceResult> Handle(MessageModel message);
+    ValueTask<MenuInputHandlingServiceResult> Handle(MessageModel message);
 }

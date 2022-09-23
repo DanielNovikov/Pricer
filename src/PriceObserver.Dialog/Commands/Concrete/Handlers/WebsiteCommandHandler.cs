@@ -22,13 +22,20 @@ public class WebsiteCommandHandler : ICommandHandler
 
     public CommandKey Key => CommandKey.Website;
 
-    public async Task<CommandHandlingServiceResult> Handle(User user)
+    public async ValueTask<CommandHandlingServiceResult> Handle(User user)
     {
         _userActionLogger.LogWebsiteCalled(user);
 
         var loginUrl = await _websiteLoginUrlBuilder.Build(user.Id);
-            
+       
+#if DEBUG
         var result = new ReplyResourceResult(ResourceKey.Dialog_Website, loginUrl);
+#else
+        var goToWebsiteButton = new UrlButton(ResourceKey.Dialog_GoToWebsite, loginUrl);
+        var keyboard = new MessageKeyboard(goToWebsiteButton);
+        var result = new ReplyKeyboardResult(keyboard, ResourceKey.Dialog_Website);
+#endif  
+   
         return CommandHandlingServiceResult.Success(result);
     }
 }

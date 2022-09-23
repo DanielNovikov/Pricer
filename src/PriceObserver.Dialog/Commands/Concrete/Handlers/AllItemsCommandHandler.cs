@@ -42,7 +42,7 @@ public class AllItemsCommandHandler : ICommandHandler
 
     public CommandKey Key => CommandKey.AllItems; 
         
-    public async Task<CommandHandlingServiceResult> Handle(User user)
+    public async ValueTask<CommandHandlingServiceResult> Handle(User user)
     {
         _userActionLogger.LogAllItemsCalled(user);
             

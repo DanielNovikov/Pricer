@@ -18,13 +18,13 @@ public class WriteToSupportMenuInputHandler : IMenuInputHandler
 
     public MenuKey Key => MenuKey.Support;
         
-    public Task<MenuInputHandlingServiceResult> Handle(MessageModel message)
+    public ValueTask<MenuInputHandlingServiceResult> Handle(MessageModel message)
     {
         _userActionLogger.LogWriteToSupport(message.User, message.Text);
 
         var reply = new ReplyResourceResult(ResourceKey.Dialog_SupportReply);
         var result = MenuInputHandlingServiceResult.Success(reply); 
             
-        return Task.FromResult(result);
+        return ValueTask.FromResult(result);
     }
 }

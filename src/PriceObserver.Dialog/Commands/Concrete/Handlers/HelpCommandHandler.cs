@@ -23,7 +23,7 @@ public class HelpCommandHandler : ICommandHandler
 
     public CommandKey Key => CommandKey.Help;
         
-    public Task<CommandHandlingServiceResult> Handle(User user)
+    public ValueTask<CommandHandlingServiceResult> Handle(User user)
     {
         _userActionLogger.LogHelpCalled(user);
 
@@ -39,6 +39,6 @@ public class HelpCommandHandler : ICommandHandler
         
         var serviceResult = CommandHandlingServiceResult.Success(result);
 
-        return Task.FromResult(serviceResult);
+        return ValueTask.FromResult(serviceResult);
     }
 }

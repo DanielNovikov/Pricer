@@ -18,13 +18,13 @@ public class AddCommandHandler : ICommandHandler
 
     public CommandKey Key => CommandKey.Add;
     
-    public Task<CommandHandlingServiceResult> Handle(User user)
+    public ValueTask<CommandHandlingServiceResult> Handle(User user)
     {
         _userActionLogger.LogGotAddItemInstruction(user);
         
         var replyResult = new ReplyResourceResult(ResourceKey.Dialog_AddItemInformation);
         var serviceResult = CommandHandlingServiceResult.Success(replyResult);
 
-        return Task.FromResult(serviceResult);
+        return ValueTask.FromResult(serviceResult);
     }
 }

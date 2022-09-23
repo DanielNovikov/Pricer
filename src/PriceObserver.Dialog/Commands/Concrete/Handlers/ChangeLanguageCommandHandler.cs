@@ -22,7 +22,7 @@ public class ChangeLanguageCommandHandler : ICommandHandler
 
 	public CommandKey Key => CommandKey.ChangeLanguage;
 
-	public Task<CommandHandlingServiceResult> Handle(User user)
+	public ValueTask<CommandHandlingServiceResult> Handle(User user)
 	{
 		_userActionLogger.LogCalledChangingLanguageMenu(user);	
 		
@@ -38,6 +38,6 @@ public class ChangeLanguageCommandHandler : ICommandHandler
 			: ResourceKey.Dialog_ChangeLanguageToUkrainian;
 
 		var replyResult = new ReplyKeyboardResult(keyboard, replyResource);
-		return Task.FromResult(CommandHandlingServiceResult.Success(replyResult));
+		return ValueTask.FromResult(CommandHandlingServiceResult.Success(replyResult));
 	}
 }
