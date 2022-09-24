@@ -1,0 +1,8 @@
+﻿using PriceObserver.Web.Shared.Grpc;
+
+namespace Pricer.Web.Shared.Grpc.HandlerServices;
+
+public interface IItemsReceptionHandlerService
+{
+    Task<ItemsReceptionReply> Receive(int userId);
+}

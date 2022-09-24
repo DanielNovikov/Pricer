@@ -1,0 +1,9 @@
+﻿@using Pricer.Web.Shared.Services.Abstract
+@inject IPrerenderCache _cache
+
+<script suppress-error="BL9992" type="text/javascript">
+	window.prerenderCache = {
+		cache: @(new MarkupString(_cache.Serialize())),
+		load: () => window.prerenderCache.cache
+	};
+</script>
