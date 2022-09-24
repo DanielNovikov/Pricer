@@ -30,7 +30,7 @@ public class Program
     private static IWebHostBuilder CreateHostBuilder(string[] args) =>
         WebHost
             .CreateDefaultBuilder(args)
-            .ConfigureAppConfiguration((context, config) =>
+            .ConfigureAppConfiguration((_, config) =>
             {
                 config.AddEnvironmentVariables();
             })

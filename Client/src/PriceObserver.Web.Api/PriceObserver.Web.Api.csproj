@@ -8,8 +8,10 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\PriceObserver.Common\PriceObserver.Common.csproj" />
-      <ProjectReference Include="..\PriceObserver.Data.Service\PriceObserver.Data.Service.csproj" />
+      <ProjectReference Include="..\..\..\Shared\src\PriceObserver.Common\PriceObserver.Common.csproj" />
+      <ProjectReference Include="..\..\..\Shared\src\PriceObserver.Data.InMemory\PriceObserver.Data.InMemory.csproj" />
+      <ProjectReference Include="..\..\..\Shared\src\PriceObserver.Data.Persistent\PriceObserver.Data.Persistent.csproj" />
+      <ProjectReference Include="..\..\..\Shared\src\PriceObserver.Data.Service\PriceObserver.Data.Service.csproj" />
       <ProjectReference Include="..\PriceObserver.Web.Shared\PriceObserver.Web.Shared.csproj" />
     </ItemGroup>
 
