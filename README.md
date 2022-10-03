@@ -16,7 +16,7 @@ The logic for parser was implemented in `PriceObserver.Parser`, it supports a lo
 Also were written `Integration tests` to test whole logic of parser, and besides, test if all shops could be parsed correctly. Another advantage of these tests is that you don't need to run application to test if your new shop-parser works.
 
 #### Deploy 
-All steps how to deploy were described in separate document. Go by [**link**](https://github.com/DanielNovikov/PriceObserver/blob/master/DEPLOY.md) to see the details.
+All steps how to deploy Client solution were described in separate document. Go by [**link**](https://github.com/DanielNovikov/PriceObserver/blob/master/Client/DEPLOY.md) to see the details.
 
 ##### Technology stack
 `C#`, `.NET 6`, `ASP.NET Core`, `Entity Framework Core`, `AngleSharp`, `Telegram.Bot`, `Blazor`, `SCSS`, `PostgreSQL`
