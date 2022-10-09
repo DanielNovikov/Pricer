@@ -1,7 +1,82 @@
 ﻿@page "/"
 
-<PageTitle>Index</PageTitle>
+<PageTitle>Users</PageTitle>
 
-<MudButton Variant="Variant.Filled" Color="Color.Primary">Default</MudButton>
-<MudButton Variant="Variant.Text" Color="Color.Primary">Default</MudButton>
-<MudButton Variant="Variant.Outlined" Color="Color.Primary">Default</MudButton>
+<MudGrid Style="margin-top: 20px">
+    <MudItem xs="4">
+
+        <MudTextField
+            Immediate="true"
+            @bind-Value="@_search"
+            TextChanged="SearchTextChanged"
+            Label="Search..."
+            Variant="Variant.Text"
+            Clearable="true"
+            Adornment="Adornment.End"
+            AdornmentIcon="@Icons.Filled.Search"/>
+
+        <div style="height: 75vh; overflow-y: scroll; margin-top: 8px; padding-right: 1px">
+            <MudButtonGroup
+                Color="Color.Primary"
+                Variant="Variant.Filled"
+                VerticalAlign="true"
+                Style="width: 100%">
+
+                @if (_filteredUsers is not null)
+                {
+                    foreach (var user in _filteredUsers)
+                    {
+                        <MudButton
+                            FullWidth="true"
+                            OnClick="() => OnSelectedUserChanged(user)">
+
+                            @user.FullName
+                        </MudButton>
+                    }
+                }
+            </MudButtonGroup>
+        </div>
+    </MudItem>
+
+    <MudItem xs="1">
+        <MudDivider Vertical="true"/>
+    </MudItem>
+
+    <MudItem xs="7">
+        @if (_selectedUser is not null)
+        {
+            <MudGrid>
+                <MudItem xs="8">
+                    <MudPaper Class="pa-6">
+                        <MudText Typo="Typo.h5">@_selectedUser.FullName</MudText>
+
+                        @if (!string.IsNullOrEmpty(_selectedUser.UserName))
+                        {
+                            <MudText Typo="Typo.h6" Style="font-family: italic">@@@_selectedUser.UserName</MudText>
+                        }
+
+                        <MudText Typo="Typo.subtitle2">External Id - @_selectedUser.ExternalId</MudText>
+                    </MudPaper>
+                </MudItem>
+                <MudItem xs="8" Style="text-align: center">
+                    <MudPaper Class="pa-4">
+                        <MudTextField
+                            T="string"
+                            Label="Message"
+                            Variant="Variant.Text"
+                            Lines="2"/>
+
+                        <MudButton
+                            Variant="Variant.Filled"
+                            Color="Color.Secondary"
+                            EndIcon="@Icons.Material.Filled.Send"
+                            Size="Size.Small"
+                            Style="margin-top: 8px">
+                            Send
+                        </MudButton>
+                    </MudPaper>
+                </MudItem>
+            </MudGrid>
+        }
+    </MudItem>
+</MudGrid>
