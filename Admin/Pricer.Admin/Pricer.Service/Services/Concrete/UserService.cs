@@ -23,7 +23,7 @@ public class UserService : IUserService
             {
                 var fullName = GetFullName(x);
                 
-                return new UserViewModel(x.Id, fullName, x.Username, x.ExternalId.ToString(), x.IsActive);
+                return new UserViewModel(x.Id, fullName, x.Username, x.ExternalId, x.IsActive);
             })
             .ToArray();
     }

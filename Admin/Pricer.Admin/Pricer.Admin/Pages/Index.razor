@@ -3,7 +3,7 @@
 <PageTitle>Users</PageTitle>
 
 <MudGrid Style="margin-top: 20px">
-    <MudItem xs="4">
+    <MudItem md="4" xs="12">
 
         <MudTextField
             Immediate="true"
@@ -28,7 +28,8 @@
                     {
                         <MudButton
                             FullWidth="true"
-                            OnClick="() => OnSelectedUserChanged(user)">
+                            OnClick="() => OnSelectedUserChanged(user)"
+                            Style="@(user.IsActive ? string.Empty : "background-color: #3b3b3b")">
 
                             @user.FullName
                         </MudButton>
@@ -38,45 +39,76 @@
         </div>
     </MudItem>
 
-    <MudItem xs="1">
+    <MudItem md="1" xs="0">
         <MudDivider Vertical="true"/>
     </MudItem>
 
-    <MudItem xs="7">
+    <MudItem md="7" xs="12">
         @if (_selectedUser is not null)
         {
-            <MudGrid>
-                <MudItem xs="8">
-                    <MudPaper Class="pa-6">
-                        <MudText Typo="Typo.h5">@_selectedUser.FullName</MudText>
+            <MudStack>
+                <MudPaper Class="pa-6" Style="@(_selectedUser.IsActive ? "border-top: 3px solid #0aed02" : "border-top: 3px solid #ed0202")">
+                    <MudText Typo="Typo.h5">@_selectedUser.FullName</MudText>
 
-                        @if (!string.IsNullOrEmpty(_selectedUser.UserName))
-                        {
-                            <MudText Typo="Typo.h6" Style="font-family: italic">@@@_selectedUser.UserName</MudText>
-                        }
+                    @if (!string.IsNullOrEmpty(_selectedUser.UserName))
+                    {
+                        <MudText Typo="Typo.h6" Style="font-family: italic">@@@_selectedUser.UserName</MudText>
+                    }
 
-                        <MudText Typo="Typo.subtitle2">External Id - @_selectedUser.ExternalId</MudText>
-                    </MudPaper>
-                </MudItem>
-                <MudItem xs="8" Style="text-align: center">
+                    <MudText Typo="Typo.subtitle2">External Id - @_selectedUser.ExternalId</MudText>
+                </MudPaper>
+
+                <MudPaper Class="pa-4" Style="text-align: center">
+                    <MudTextField
+                        T="string"
+                        Label="Message"
+                        Variant="Variant.Text"
+                        Lines="2"
+                        @bind-Value="@_messageToUser"/>
+
+                    <MudButton
+                        Variant="Variant.Filled"
+                        Color="Color.Secondary"
+                        EndIcon="@Icons.Material.Filled.Send"
+                        Size="Size.Small"
+                        Style="margin-top: 8px"
+                        Disabled="string.IsNullOrEmpty(_messageToUser)"
+                        OnClick="SendMessageToUser">
+                        Send
+                    </MudButton>
+                </MudPaper>
+
+                @if (_items is not null && _items.Any())
+                {
                     <MudPaper Class="pa-4">
-                        <MudTextField
-                            T="string"
-                            Label="Message"
-                            Variant="Variant.Text"
-                            Lines="2"/>
-
-                        <MudButton
-                            Variant="Variant.Filled"
-                            Color="Color.Secondary"
-                            EndIcon="@Icons.Material.Filled.Send"
-                            Size="Size.Small"
-                            Style="margin-top: 8px">
-                            Send
-                        </MudButton>
+                        @foreach (var item in _items)
+                        {
+                            <MudStack>
+                                <MudPaper Style="box-shadow: none; border-bottom: 1px solid rgba(33,33,33,0.4980392156862745)">
+                                    <MudStack Row="true" Justify="Justify.SpaceBetween" AlignItems="AlignItems.Center">
+                                        <MudPaper Style="width: 130px; text-overflow: ellipsis; white-space: nowrap; overflow: hidden; box-shadow: none">
+                                            @item.Title
+                                        </MudPaper>
+                                        <MudPaper Style="box-shadow: none; width: 70px; text-overflow: ellipsis; white-space: nowrap; overflow: hidden; box-shadow: none">
+                                            @item.ShopKey.ToString()
+                                        </MudPaper>
+                                        <MudPaper Style="box-shadow: none">
+                                            <MudIconButton
+                                                Icon="@Icons.Material.Filled.Outbound"
+                                                Target="_blank"
+                                                Href="@item.Url.ToString()">
+                                            </MudIconButton>
+                                        </MudPaper>
+                                        <MudPaper Style="box-shadow: none">
+                                            <MudIconButton Icon="@Icons.Material.Filled.Delete"></MudIconButton>
+                                        </MudPaper>
+                                    </MudStack>
+                                </MudPaper>
+                            </MudStack>
+                        }
                     </MudPaper>
-                </MudItem>
-            </MudGrid>
+                }
+            </MudStack>
         }
     </MudItem>
 </MudGrid>
