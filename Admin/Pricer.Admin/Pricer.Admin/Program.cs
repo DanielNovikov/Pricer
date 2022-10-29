@@ -1,6 +1,9 @@
+using Microsoft.Extensions.Caching.Memory;
+using Microsoft.OpenApi.Writers;
 using MudBlazor.Services;
 using Pricer.Common;
 using Pricer.Data.InMemory;
+using Pricer.Data.InMemory.Seed;
 using Pricer.Data.Persistent;
 using Pricer.Data.Service;
 using Pricer.Parser;
@@ -47,5 +50,8 @@ app.UseRouting();
 app.MapControllers();
 app.MapBlazorHub();
 app.MapFallbackToPage("/_Host");
+
+var cache = app.Services.GetService<IMemoryCache>();
+InMemorySeeder.Seed(cache);
 
 app.Run();

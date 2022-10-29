@@ -1,6 +1,4 @@
 ﻿using Microsoft.AspNetCore.Components;
-using Pricer.Data.Persistent.Models;
-using Pricer.Data.Persistent.Repositories.Abstract;
 using Pricer.Service.Models;
 using Pricer.Service.Services.Abstract;
 using Pricer.Telegram.Abstract;
@@ -10,22 +8,19 @@ namespace Pricer.Admin.Pages;
 public partial class Index : ComponentBase
 {
     private string _search = string.Empty;
-    
+
     private UserViewModel[]? _users;
     private UserViewModel[]? _filteredUsers;
 
     private UserViewModel? _selectedUser;
-    private IList<Item>? _items;
+    private ItemViewModel[]? _selectedUserItems;
     private string _messageToUser = string.Empty;
-    
-    [Inject]
-    public IUserService UserService { get; set; } = default!;
 
-    [Inject]
-    public ITelegramBotService TelegramBotService { get; set; } = default!;
+    [Inject] public IUserService UserService { get; set; } = default!;
 
-    [Inject]
-    public IItemRepository ItemRepository { get; set; } = default!;
+    [Inject] public ITelegramBotService TelegramBotService { get; set; } = default!;
+
+    [Inject] public IItemService ItemService { get; set; } = default!;
 
     protected override async Task OnInitializedAsync()
     {
@@ -46,15 +41,24 @@ public partial class Index : ComponentBase
     private async Task OnSelectedUserChanged(UserViewModel user)
     {
         _selectedUser = user;
-        _items = await ItemRepository.GetByUserId(user.Id);
+        _selectedUserItems = await ItemService.GetByUserId(user.Id);
     }
 
     private async Task SendMessageToUser()
     {
         if (_selectedUser is null)
             return;
-        
+
         await TelegramBotService.SendMessage(_selectedUser.ExternalId, _messageToUser);
         _messageToUser = string.Empty;
+    }
+
+    private async Task DeleteItem(int id)
+    {
+        _selectedUserItems = _selectedUserItems?
+            .Where(x => x.Id != id)
+            .ToArray();
+        
+        await ItemService.DeleteItem(id);
     }
 }

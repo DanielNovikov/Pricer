@@ -78,35 +78,40 @@
                     </MudButton>
                 </MudPaper>
 
-                @if (_items is not null && _items.Any())
+                @if (_selectedUserItems is not null && _selectedUserItems.Any())
                 {
-                    <MudPaper Class="pa-4">
-                        @foreach (var item in _items)
-                        {
-                            <MudStack>
-                                <MudPaper Style="box-shadow: none; border-bottom: 1px solid rgba(33,33,33,0.4980392156862745)">
-                                    <MudStack Row="true" Justify="Justify.SpaceBetween" AlignItems="AlignItems.Center">
-                                        <MudPaper Style="width: 130px; text-overflow: ellipsis; white-space: nowrap; overflow: hidden; box-shadow: none">
-                                            @item.Title
-                                        </MudPaper>
-                                        <MudPaper Style="box-shadow: none; width: 70px; text-overflow: ellipsis; white-space: nowrap; overflow: hidden; box-shadow: none">
-                                            @item.ShopKey.ToString()
-                                        </MudPaper>
-                                        <MudPaper Style="box-shadow: none">
-                                            <MudIconButton
-                                                Icon="@Icons.Material.Filled.Outbound"
-                                                Target="_blank"
-                                                Href="@item.Url.ToString()">
-                                            </MudIconButton>
-                                        </MudPaper>
-                                        <MudPaper Style="box-shadow: none">
-                                            <MudIconButton Icon="@Icons.Material.Filled.Delete"></MudIconButton>
-                                        </MudPaper>
-                                    </MudStack>
-                                </MudPaper>
-                            </MudStack>
-                        }
-                    </MudPaper>
+                    <MudItem xs="12">
+                        <MudPaper>
+                            <MudExpansionPanels>
+                                @foreach (var item in _selectedUserItems)
+                                {
+                                    <MudExpansionPanel Text="@item.Title">
+                                        <MudGrid>
+                                            <MudItem xs="6">
+                                                <MudText Color="Color.Success">Price: @item.Price @item.Currency</MudText>
+                                                <MudText Color="item.IsAvailable ? Color.Default : Color.Error">Available: @(item.IsAvailable ? "yes" : "no")</MudText>
+                                                <MudText Color="item.IsDeleted ? Color.Error : Color.Default">Deleted: @(item.IsDeleted ? "yes" : "no")</MudText>
+                                            </MudItem>
+                                            <MudItem xs="6">
+                                                <MudStack Row="true" Justify="Justify.FlexEnd" AlignItems="AlignItems.Center">
+                                                    <MudPaper Style="box-shadow: none">
+                                                        <MudIconButton
+                                                            Icon="@Icons.Material.Filled.Outbound"
+                                                            Target="_blank"
+                                                            Href="@item.Url.ToString()">
+                                                        </MudIconButton>
+                                                    </MudPaper>
+                                                    <MudPaper Style="box-shadow: none">
+                                                        <MudIconButton Icon="@Icons.Material.Filled.Delete" OnClick="() => DeleteItem(item.Id)"></MudIconButton>
+                                                    </MudPaper>
+                                                </MudStack>
+                                            </MudItem>
+                                        </MudGrid>
+                                    </MudExpansionPanel>
+                                }
+                            </MudExpansionPanels>
+                        </MudPaper>
+                    </MudItem>
                 }
             </MudStack>
         }
