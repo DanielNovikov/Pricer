@@ -12,7 +12,7 @@ public class ParserTests : TestBase
     [InlineData(
         "https://www.adidas.ua/bryuki-yuventus-performance-gr2931",
         ShopKey.Adidas,
-        "Брюки Ювентус",
+        "Штани Ювентус",
         "https://assetmanagerpim-res.cloudinary.com/images/w_600/q_90/875968816fb7461d9d46acf5010f343a_9366/GR2931_21_model.WebP")]
     [InlineData(
         "https://allo.ua/ru/products/mobile/xiaomi-redmi-note-11-4-128-gr-gray-2201117ty.html",
@@ -23,32 +23,32 @@ public class ParserTests : TestBase
         "https://ultramarket.zakaz.ua/uk/products/08423352400045/napii-natru-1000ml/",
         ShopKey.Auchan,
         "Напій рисово-кокосовий Natrue Rice+Coconut без додавання цукру 2% 1л",
-        "https://img2.zakaz.ua/m.1607611321.ad72436478c_2020-12-10_Svetlana/m.1607611321.SNCPSG10.obj.0.1.jpg.oe.jpg.pf.jpg.350nowm.jpg.350x.jpg")]
+        "https://img..zakaz.ua/m.1607611321.ad72436478c_2020-12-10_Svetlana/m.1607611321.SNCPSG10.obj.0.1.jpg.oe.jpg.pf.jpg.350nowm.jpg.350x.jpg")]
     [InlineData(
         "https://athletics.kiev.ua/catalogitem/krossovki_mugskie_nike_tanjun812654n06001/",
         ShopKey.Athletics,
         "Кросівки чоловічі Nike Tanjun",
-        "https://cdn2.athletics.kiev.ua/static/i/2000_2000/products/236580/XS0VZRg5.jpeg")]
+        "https://static.athletics.kiev.ua/static/i/2000_2000/products/236580/XS0VZRg5.jpeg")]
     [InlineData(
         "https://answear.ua/p/kofta-drykorn-bradley-cholovicha-kolir-zelenyj-gladka-560980",
         ShopKey.Answear,
         "Кофта Drykorn Bradley чоловіча колір зелений гладка",
-        "https://img2.ans-media.com/i/540x813/SS22-BLM06T_77X_F1.jpg@jpg?v=1638960396")]
+        "https://img..ans-media.com/i/540x813/SS22-BLM06T_77X_F1.jpg@jpg?v=1638960396")]
     [InlineData(
         "https://www.ctrs.com.ua/electroscooters/detskiy-elektrosamokat-likebike-twist-blue-661359.html",
         ShopKey.Citrus,
-        "Электросамокат Like.Bike Twist (Black) 250 Wh",
+        "Like.Bike Twist (Black) 250 Wh$",
         "https://i.citrus.world/imgcache/size_180/uploads/shop/d/8/d843364b222194297412ea6d55a9a4ef.png")]
     [InlineData(
-        "https://comfy.ua/smartfon-apple-13-pro-1tb-pacific-blue.html?sc_content=22595_r776v1072",
+        "https://comfy.ua/ua/stiral-naja-mashina-whirlpool-wrbsb-6228-b-ua.html",
         ShopKey.Comfy,
-        "Смартфон Apple iPhone 13 Pro 1Tb Sierra Blue",
-        "https://cdn.comfy.ua/media/catalog/product/cache/5/image/600x/9df78eab33525d08d6e5fb8d27136e95/i/p/iphone_13_pro_q421_sierra_blue_pdp_image_position-1a__ww-ru_1__1.jpg")]
+        "Пральна машина Whirlpool WRBSS 6215 W UA",
+        "https://cdn.comfy.ua/media/catalog/product/w/r/wrbsb_6228_b_ua_5_.jpg")]
     [InlineData(
         "https://eko.zakaz.ua/uk/products/04820212490279/khlib-kiyivkhlib-350g/",
         ShopKey.EkoMarket,
         "Хліб Київхліб Супер тост світлий нарізаний 350г",
-        "https://img3.zakaz.ua/src.1626182394.ad72436478c_2021-07-13_Tatiana/src.1626182394.SNCPSG10.obj.0.1.jpg.oe.jpg.pf.jpg.350nowm.jpg.350x.jpg")]
+        "https://img..zakaz.ua/src.1656933913.ad72436478c_2022-08-31_Tatiana/src.1656933913.SNCPSG10.obj.0.1.jpg.oe.jpg.pf.jpg.350nowm.jpg.350x.jpg")]
     [InlineData(
         "https://epicentrk.ua/ua/shop/mysh-esperanza-xm110k-black-.html?sc_content=15474_0",
         ShopKey.Epicentr,
@@ -72,7 +72,7 @@ public class ParserTests : TestBase
     [InlineData(
         "https://intertop.ua/ua/product/sweaters-and-sweaters-adidas-5701343",
         ShopKey.Intertop,
-        "Кофта спортивна Adidas M ZNE WV COLDFZ",
+        "Кофта спортивна Adidas ZNE WV COLDFZ",
         "https://intertop.ua/load/CN1097/MAIN.jpg")]
     [InlineData(
         "https://jysk.ua/zberigannya/komodi/basic/komod-odby-3shukh-bilyy/siryy",
@@ -98,7 +98,7 @@ public class ParserTests : TestBase
         "https://megamarket.zakaz.ua/uk/products/08421384127534/khamon/",
         ShopKey.MegaMarket,
         "Хамон Loriente Серрано нарізка 100г",
-        "https://img2.zakaz.ua/ultra.1642181619.ad72436478c_2022-01-16_Julia/ultra.1642181619.SNCPSG10.obj.0.1.jpg.oe.jpg.pf.jpg.350nowm.jpg.350x.jpg")]
+        "https://img..zakaz.ua/ultra.1642181619.ad72436478c_2022-01-16_Julia/ultra.1642181619.SNCPSG10.obj.0.1.jpg.oe.jpg.pf.jpg.350nowm.jpg.350x.jpg")]
     [InlineData(
         "https://modivo.ua/p/michael-kors-godinnik-pyper-mk4340-zolotii",
         ShopKey.Modivo,
@@ -107,8 +107,8 @@ public class ParserTests : TestBase
     [InlineData(
         "https://www.moyo.ua/televizor-samsung-32t5300-ue32t5300auxua/463569.html",
         ShopKey.Moyo,
-        "Телевізор SAMSUNG 32T5300 (UE32T5300AUXUA)",
-        "https://img.moyo.ua/img/products/4635/69_1500.jpg?1656671891")]
+        "Телевизор Samsung 32T5300 (UE32T5300AUXUA)",
+        "https://img.moyo.ua/img/products/4635/69_1500")]
     [InlineData(
         "https://www.notino.ua/prada/les-infusions-infusion-mimosa-parfumovana-voda-uniseks/",
         ShopKey.Notino,
@@ -117,13 +117,13 @@ public class ParserTests : TestBase
     [InlineData(
         "https://novus.zakaz.ua/uk/products/04820185100304/file-somga-norven-180g/",
         ShopKey.Novus,
-        "Сьомга Norven філе-шматок слабосолена 180г",
-        "https://img3.zakaz.ua/src.1644508583.ad72436478c_2022-02-10_Tatiana/src.1644508583.SNCPSG10.obj.0.1.jpg.oe.jpg.pf.jpg.350nowm.jpg.350x.jpg")]
+        "Сьомга Norven слабосолена філе-шматок 180г",
+        "https://img..zakaz.ua/src.*SNCPSG10.obj.0.1.jpg.oe.jpg.pf.jpg.350nowm.jpg.350x.jpg")]
     [InlineData(
-        "https://www.olx.ua/d/uk/obyavlenie/prodam-bmw-520-i-IDPn6AB.html",
+        "https://www.olx.ua/d/obyavlenie/hp-victus-15-i5-12450h-rtx-3050-ram-8gb-ssd-512gb-144hz-IDQvdxB.html",
         ShopKey.Olx,
-        "Продам BMW 520 i .",
-        "https://ireland.apollo.olxcdn.com/v1/files/0r59aecgy4wv1-UA/image;s=4000x3000")]
+        "Hp Victus 15/i5 12450H/RTX 3050/RAM 8GB/SSD 512GB/144Hz",
+        "https://ireland.apollo.olxcdn.com/v1/files/h79utzoohbq71-UA/image;s=540x540")]
     [InlineData(
         "https://e-pandora.ua/product/kabluchka_potriyna_spiral",
         ShopKey.Pandora,
@@ -133,57 +133,57 @@ public class ParserTests : TestBase
         "https://prom.ua/ua/p1298951388-gibkij-neon-12volt.html",
         ShopKey.Prom,
         "Гнучкий неон 12Вольт Блакитна \"SunLight\"",
-        "https://images.prom.ua/2743412622_w640_h640_gibkij-neon-12volt.jpg")]
+        "https://images.prom.ua/4154349117_w2048_h2048_2400_2.png?fresh=1")]
     [InlineData(
         "https://prostor.ua/ru/product/lorena-beauty-gubnaya-pomada-uvlazhnyaushchaya-cl04/",
         ShopKey.Prostor,
         "LORENA beauty губна помада зволожувальна №CL04",
         "https://prostor.ua/content/images/41/283x1000l80mc0/lorenabeautygubnapomadazvolozhuvalnacl04-49896498245517.webp")]
     [InlineData(
-        "https://rozetka.com.ua/310759363/p310759363/",
+        "https://rozetka.com.ua/ua/xiaomi_roborock_s6_maxv/p249086106/",
         ShopKey.Rozetka,
-        "Робот - пылесос ECOVACS DEEBOT OZMO N8 PLUS (DLN26)",
-        "https://content.rozetka.com.ua/goods/images/big/195049341.jpg")]
+        "Робот-пилосос Roborock S6 MaxV Vacuum Cleaner Black",
+        "https://content1.rozetka.com.ua/goods/images/big/32011483.jpg")]
     [InlineData(
-        "https://shafa.ua/women/zhenskaya-obuv/tufli/98383447-tufli-na-ustoychivom-kabluke-elegantnye-tufli?gclid=Cj0KCQjw852XBhC6ARIsAJsFPN2W7l4ii_1qkx3Dj0w6ZFPSscV31l0BJcJ1WjObLEs5XX0iBMh6vcgaAn-uEALw_wcB",
+        "https://shafa.ua/women/zhenskaya-obuv/botinki/107757836-botinki-ot-ego",
         ShopKey.Shafa,
-        "Туфли на устойчивом каблуке. элегантные туфли",
-        "https://image-thumbs.shafastatic.net/528090116_310_430")]
+        "Ботинки от ego",
+        "https://image-thumbs.shafastatic.net/681691841_310_430")]
     [InlineData(
-        "https://stolychnyi.zakaz.ua/uk/products/04820226160991/iogurt-danon-260g-ukrayina/",
+        "https://stolychnyi.zakaz.ua/uk/products/iogurt-danon-260g-ukrayina--04820226162995/",
         ShopKey.StolychnyiRynok,
-        "Йогурт Danone ананас-манго 2,5% 260г",
-        "https://img3.zakaz.ua/src.1603876883.ad72436478c_2020-10-28_Tatyana/src.1603876883.SNCPSG10.obj.0.1.jpg.oe.jpg.pf.jpg.350nowm.jpg.350x.jpg")]
+        "Йогурт Danone персик-папайя 2,5% 260г",
+        "https://img..zakaz.ua/22092022.1663866936.ad72436478c_2022-09-22_Tatyana_L/22092022.1663866936.SNCPSG10.obj.0.1.jpg.oe.jpg.pf.jpg.350nowm.jpg.350x.jpg")]
     [InlineData(
-        "https://stylus.ua/google-pixel-5a-5g-6128gb-mostly-black-p820591c11256.html",
+        "https://stylus.ua/google-pixel-7-8128gb-snow-p982694c11256.html?sc_content=22390_r963v1317",
         ShopKey.Stylus,
-        "Смартфон Google Pixel 5a 5G 6/128GB Mostly Black",
-        "https://stylus.ua//thumbs/568x568/d2/80/2202880.jpeg")]
+        "Смартфон Google Pixel 7 8/128GB Snow",
+        "https://stylus.ua//thumbs/568x568/d9/37/2545091.jpeg")]
     [InlineData(
-        "https://telemart.ua/products/evolve-optipart-gold-7h-evop-g7h104fn305x-16s500h1tbk-black/",
+        "https://telemart.ua/ua/products/asus-27-tuf-gaming-vg27aq-black/",
         ShopKey.Telemart,
-        "Компьютер EVOLVE OptiPart Silver 5H (EVOP-S5Hi104FN305-16S500H1TBk) Black",
-        "https://img.telemart.ua/402351-566625-product_popup/evolve-optipart-gold-7h-evop-g7h104fn305x-16s500h1tbk-black.png")]
+        "Mонітор Asus 27\" TUF Gaming VG27AQ Black",
+        "https://img.telemart.ua/185613-488316-product_popup/asus-27-tuf-gaming-vg27aq-black.png")]
     [InlineData(
         "https://ultramarket.zakaz.ua/uk/products/04820245520530/sir-premialle-230g/",
         ShopKey.UltraMarket,
         "Сир Premialle Бринза 35% 230г",
-        "https://img3.zakaz.ua/upload.version_1.0.224c37aabcbe514772450b8a5d4a2282.350x350.jpeg")]
+        "https://img..zakaz.ua/upload.version_1.0.224c37aabcbe514772450b8a5d4a2282.350x350.jpeg")]
     [InlineData(
         "https://varus.zakaz.ua/uk/products/varus02050568200006/tsukor-varto-1000g/",
         ShopKey.Varus,
         "Цукор Varto бiлий кристалiчний 1кг",
-        "https://img3.zakaz.ua/09.1600792577.ad72436478c_2020-09-22_YuliaT/09.1600792577.SNCPSG10.obj.0.1.jpg.oe.jpg.pf.jpg.350nowm.jpg.350x.jpg")]
+        "https://img..zakaz.ua/09.1600792577.ad72436478c_2020-09-22_YuliaT/09.1600792577.SNCPSG10.obj.0.1.jpg.oe.jpg.pf.jpg.350nowm.jpg.350x.jpg")]
     [InlineData(
-        "https://www.watsons.ua/uk/wtcua/aksesuari/shkarpetki/zhinochi-shkarpetki/shkarpetki-brestskie-active-svitlo-zhovti-zhinochi-rozmir-25/p/BP_1089863?#ins_sr=eyJwcm9kdWN0SWQiOiIxMDg5ODYzIn0=",
+        "https://www.watsons.ua/uk/dim/zasobi-dlya-prannya/gel-dlya-delikatnogo-ta-dbaylivogo-prannya-domol-1-5-l/p/BP_183111",
         ShopKey.Watsons,
-        "Шкарпетки жіночі Брестские Active розмір 25 Світло-жовті 1 шт",
-        "https://www.watsons.ua/medias/sys_master/front-prd/front-prd/8862472241182/-Active-25-1-4810089319407.jpg")]
+        "Гель для делікатного та дбайливого прання Domol 1,5 л",
+        "https://www.watsons.ua/medias/sys_master/front-prd/front-prd/9004347916318/DOMOL-Domol-1-5-4305615101187.jpg")]
     public async Task WhenPageHasItemInfoAndItemIsInStock_ShouldParsePageAndSetAvailabilityCorrectly(
         string url,
         ShopKey shopKey,
-        string expectedTitle,
-        string expectedImageUrl)
+        string expectedTitleRegex,
+        string expectedImageUrlRegex)
     {
         var uri = new Uri(url);
 
@@ -192,8 +192,8 @@ public class ParserTests : TestBase
         result.IsSuccess.Should().BeTrue();
         result.Result.ShopKey.Should().Be(shopKey);
         result.Result.Price.Should().NotBe(0);
-        result.Result.Title.Should().Be(expectedTitle);
-        result.Result.ImageUrl.ToString().Should().Be(expectedImageUrl);
+        result.Result.Title.Should().MatchRegex(FormatRegex(expectedTitleRegex));
+        result.Result.ImageUrl.ToString().Should().MatchRegex(FormatRegex(expectedImageUrlRegex));
         result.Result.IsAvailable.Should().BeTrue();
     }
     
@@ -218,8 +218,8 @@ public class ParserTests : TestBase
     [InlineData("https://stylus.ua/xiaomi-yi-sport-white-basic-edition-p227758c997.html", ShopKey.Stylus)]
     [InlineData("https://stolychnyi.zakaz.ua/uk/products/stolychnyi02010000295007/iogurt-500ml/", ShopKey.StolychnyiRynok)]
     [InlineData("https://telemart.ua/products/lg-315-ultrafine-32un650-w-blacksilver/", ShopKey.Telemart)]
-    [InlineData("https://ultramarket.zakaz.ua/uk/products/08410285100050/napii-santal-1000ml/", ShopKey.UltraMarket)]
-    [InlineData("https://varus.zakaz.ua/uk/products/04823065726878/iogurt-fanni-280g/", ShopKey.Varus)]
+    [InlineData("https://ultramarket.zakaz.ua/uk/products/energetik-monster-355ml--05060751213062/", ShopKey.UltraMarket)]
+    [InlineData("https://varus.zakaz.ua/uk/products/energetik-non-stop-500ml--04820097899167/", ShopKey.Varus)]
     public async Task WhenPageHasItemInfoButItemIsOutOfStock_ShouldParsePageAndSetAvailabilityCorrectly(
         string url,
         ShopKey shopKey)
@@ -232,5 +232,15 @@ public class ParserTests : TestBase
         result.Result.ShopKey.Should().Be(shopKey);
         result.Result.Price.Should().Be(0);
         result.Result.IsAvailable.Should().BeFalse();
+    }
+
+    private static string FormatRegex(string regex)
+    {
+        return regex
+            .Replace("/", @"\/")
+            .Replace("(", "[(]")
+            .Replace(")", "[)]")
+            .Replace("+", "[+]")
+            .Replace("?", "[?]");
     }
 }

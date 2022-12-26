@@ -26,7 +26,7 @@ builder.Services
     .AddDbContext(builder.Configuration)
     .AddMemoryCache()
     .AddDataServices()
-    .AddParserServices()
+    .AddParserServices(builder.Configuration)
     .AddCommonServices(builder.Configuration)
     .AddTelegramBot(builder.Configuration);
 

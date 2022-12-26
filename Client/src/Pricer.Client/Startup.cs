@@ -51,7 +51,7 @@ public class Startup
             .AddDbContext(_configuration)
             .AddMemoryCache()
             .AddDataServices()
-            .AddParserServices()
+            .AddParserServices(_configuration)
             .AddCommonServices(_configuration)
             .AddTelegramBot(_configuration);
 

@@ -1,5 +1,4 @@
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
-using PriceObserver.Web.Shared;
 using PriceObserver.Web.Shared.Grpc;
 using Pricer.Web.App.Extensions;
 using Pricer.Web.App.Services.Abstract;

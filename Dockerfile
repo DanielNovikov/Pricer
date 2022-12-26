@@ -6,7 +6,7 @@ FROM mcr.microsoft.com/dotnet/sdk:6.0-bullseye-slim AS publish
 WORKDIR /
 
 COPY Client/src/Pricer.Client/Pricer.Client.csproj ./Client/src/Pricer.Client/Pricer.Client.csproj
-COPY Client/src/Pricer.Background/Pricer.Background.csproj .Client//src/Pricer.Background/Pricer.Background.csproj
+COPY Client/src/Pricer.Background/Pricer.Background.csproj ./Client/src/Pricer.Background/Pricer.Background.csproj
 COPY Client/src/Pricer.Dialog.Callback/Pricer.Dialog.Callback.csproj ./Client/src/Pricer.Dialog.Callback/Pricer.Dialog.Callback.csproj
 COPY Client/src/Pricer.Dialog.Common/Pricer.Dialog.Common.csproj ./Client/src/Pricer.Dialog.Common/Pricer.Dialog.Common.csproj
 COPY Client/src/Pricer.Dialog.Input/Pricer.Dialog.Input.csproj ./Client/src/Pricer.Dialog.Input/Pricer.Dialog.Input.csproj

@@ -25,12 +25,12 @@ public class CitrusParser : IParserProvider
 
     public string GetTitle(IHtmlDocument document)
     {
-        const string selector = "meta[property='og:title']";
+        const string selector = "h1.title-0-2-122";
         
-        var titleElement = document.QuerySelector<IHtmlMetaElement>(selector) ??
+        var titleElement = document.QuerySelector<IHtmlHeadingElement>(selector) ??
             throw new ArgumentNullException($"{nameof(CitrusParser)}:{nameof(GetTitle)}:Element");
 
-        return titleElement.Content;
+        return titleElement.TextContent;
     }
 
     public Uri GetImageUrl(IHtmlDocument document)
