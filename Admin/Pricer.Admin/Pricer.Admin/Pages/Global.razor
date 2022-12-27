@@ -1,0 +1,63 @@
+﻿@page "/Global"
+
+<MudGrid Style="margin-top: 20px">
+    <MudItem md="6" xs="12">
+        <MudPaper Class="pa-4" Style="text-align: center">
+            <MudTextField
+                T="string"
+                Label="Message"
+                Variant="Variant.Text"
+                Lines="2"
+                @bind-Value="@_message"/>
+
+            <MudButton
+                Variant="Variant.Filled"
+                Color="Color.Secondary"
+                EndIcon="@Icons.Material.Filled.Send"
+                Size="Size.Small"
+                Style="margin-top: 8px"
+                Disabled="string.IsNullOrEmpty(_message)"
+                OnClick="SendMessage">
+                Send
+            </MudButton>
+        </MudPaper>
+    </MudItem>
+
+    @if (_items is not null && _items.Any())
+    {
+        <MudItem xs="12">
+            <MudPaper>
+                <MudExpansionPanels>
+                    @foreach (var item in _items)
+                    {
+                        <MudExpansionPanel Text="@item.Title">
+                            <MudGrid>
+                                <MudItem xs="6">
+                                    <MudText Color="Color.Success">Price: @item.Price @item.Currency</MudText>
+                                    <MudText>User: @item.User.FirstName @item.User.LastName (@@@item.User.Username)</MudText>
+                                    <MudText Color="item.IsAvailable ? Color.Default : Color.Error">Available: @(item.IsAvailable ? "yes" : "no")</MudText>
+                                    <MudText Color="item.IsDeleted ? Color.Error : Color.Default">Deleted: @(item.IsDeleted ? "yes" : "no")</MudText>
+                                </MudItem>
+                                <MudItem xs="6">
+                                    <MudStack Row="true" Justify="Justify.FlexEnd" AlignItems="AlignItems.Center">
+                                        <MudPaper Style="box-shadow: none">
+                                            <MudIconButton
+                                                Icon="@Icons.Material.Filled.Outbound"
+                                                Target="_blank"
+                                                Href="@item.Url.ToString()">
+                                            </MudIconButton>
+                                        </MudPaper>
+                                        <MudPaper Style="box-shadow: none">
+                                            <MudIconButton Icon="@Icons.Material.Filled.Delete" OnClick="() => DeleteItem(item.Id)"></MudIconButton>
+                                        </MudPaper>
+                                    </MudStack>
+                                </MudItem>
+                            </MudGrid>
+                        </MudExpansionPanel>
+                    }
+                </MudExpansionPanels>
+            </MudPaper>
+        </MudItem>
+    }
+
+</MudGrid>

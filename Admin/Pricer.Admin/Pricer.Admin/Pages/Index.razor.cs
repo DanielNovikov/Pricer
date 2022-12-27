@@ -13,7 +13,7 @@ public partial class Index : ComponentBase
     private UserViewModel[]? _filteredUsers;
 
     private UserViewModel? _selectedUser;
-    private ItemViewModel[]? _selectedUserItems;
+    private UserItemViewModel[]? _selectedUserItems;
     private string _messageToUser = string.Empty;
 
     [Inject] public IUserService UserService { get; set; } = default!;

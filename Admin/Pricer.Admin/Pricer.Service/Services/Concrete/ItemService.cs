@@ -9,6 +9,7 @@ public class ItemService : IItemService
 {
     private readonly IItemRepository _itemRepository;
     private readonly IShopRepository _shopRepository;
+    
     public ItemService(
         IItemRepository itemRepository,
         IShopRepository shopRepository)
@@ -17,7 +18,25 @@ public class ItemService : IItemService
         _shopRepository = shopRepository;
     }
 
-    public async Task<ItemViewModel[]> GetByUserId(int userId)
+    public async Task<GlobalItemViewModel[]> GetAll()
+    {
+        var items = await _itemRepository.GetAllIncludingUser();
+        
+        return items
+            .Select(x =>
+            {
+                var shop = _shopRepository.GetByKey(x.ShopKey);
+                var title = $"{shop.Name}: {x.Title}";
+
+                var currency = x.CurrencyKey.ToString();
+                
+                return new GlobalItemViewModel(x.Id, x.Url, x.Price, title, x.IsAvailable, x.IsDeleted, currency, x.User);
+            })
+            .OrderBy(x => x.User.Id)
+            .ToArray();
+    }
+
+    public async Task<UserItemViewModel[]> GetByUserId(int userId)
     {
         var items = await _itemRepository.GetByUserId(userId);
 
@@ -29,7 +48,7 @@ public class ItemService : IItemService
 
                 var currency = x.CurrencyKey.ToString();
 
-                return new ItemViewModel(x.Id, x.Url, x.Price, title, x.ShopKey, x.IsAvailable, x.IsDeleted, currency);
+                return new UserItemViewModel(x.Id, x.Url, x.Price, title, x.IsAvailable, x.IsDeleted, currency);
             })
             .ToArray();
     }
