@@ -35,5 +35,6 @@ public enum ShopKey
     Epicentr = 31,
     Prostor = 32,
     Olx = 33,
-    Notino = 34
+    Notino = 34,
+    IHerb = 35
 }

@@ -43,6 +43,13 @@ public class CosmeticsSeeder
                 ShopKey.Notino,
                 "www.notino.ua",
                 "notino.png",
+                false),
+            
+            new Shop(
+                "iHerb",
+                ShopKey.Notino,
+                "ua.iherb.com",
+                "iHerb.png",
                 false)
         };
 

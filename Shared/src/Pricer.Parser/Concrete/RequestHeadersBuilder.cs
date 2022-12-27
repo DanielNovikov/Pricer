@@ -44,6 +44,9 @@ public class RequestHeadersBuilder : IRequestHeadersBuilder
             case ShopKey.Allo:
                 headers.Add(UserAgentKey, UserAgentValue);
                 break;
+            case ShopKey.IHerb:
+                headers.Add(UserAgentKey, UserAgentValue);
+                break;
         }
 
         return headers.ToImmutableDictionary();

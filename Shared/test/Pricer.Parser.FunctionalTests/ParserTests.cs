@@ -70,6 +70,11 @@ public class ParserTests : TestBase
     //     "Moschino Чехол Для iPhone 12 с Логотипом",
     //     "https://cdn-images.farfetch-contents.com/17/41/27/79/17412779_36825619_1000.jpg")]
     [InlineData(
+        "https://ua.iherb.com/pr/megafood-zinc-60-tablets/4074",
+        ShopKey.IHerb,
+        "MegaFood, цинк, 60 таблеток",
+        "https://cloudinary.images-iherb.com/image/upload/f_auto,q_auto:eco/images/mgf/mgf10188/v/33.jpg")]
+    [InlineData(
         "https://intertop.ua/ua/product/sweaters-and-sweaters-adidas-5701343",
         ShopKey.Intertop,
         "Кофта спортивна Adidas ZNE WV COLDFZ",

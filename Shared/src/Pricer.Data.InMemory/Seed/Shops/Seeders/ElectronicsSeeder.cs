@@ -16,7 +16,7 @@ public class ElectronicsSeeder
                 "rozetka.com.ua",
                 "rozetka.png",
                 false,
-                new [] { "bt.rozetka.com.ua" }),
+                new [] { "bt.rozetka.com.ua", "hard.rozetka.com.ua" }),
             
             new Shop(
                 "Citrus",

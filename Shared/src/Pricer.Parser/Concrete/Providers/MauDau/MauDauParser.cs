@@ -44,6 +44,9 @@ public class MauDauParser : IParserProvider
 		var imageSource = imageElement.Attributes["data-cfsrc"]?.Value ??
 		    imageElement.Source ??
 		    throw new ArgumentNullException($"{nameof(MauDauParser)}:{nameof(GetImageUrl)}:Element:Content");
+
+		if (!imageSource.StartsWith("https"))
+			imageSource = imageSource[imageSource.IndexOf("https", StringComparison.Ordinal)..];
 		
 		return new Uri(imageSource);
 	}

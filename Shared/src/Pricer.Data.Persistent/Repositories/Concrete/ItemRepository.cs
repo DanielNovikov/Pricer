@@ -51,4 +51,13 @@ public class ItemRepository : RepositoryBase<Item>, IItemRepository
             .AsNoTracking()
             .FirstOrDefaultAsync(x => x.UserId == userId && x.Url == url);
     }
+
+    public async Task<IList<Item>> GetAllIncludingUser()
+    {
+        return await Context
+            .Items
+            .AsNoTracking()
+            .Include(x => x.User)
+            .ToListAsync();
+    }
 }
