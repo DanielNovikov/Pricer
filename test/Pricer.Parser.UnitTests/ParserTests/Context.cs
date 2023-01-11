@@ -1,6 +1,6 @@
 ﻿using System;
 using AutoFixture;
-using PriceObserver.Data.InMemory.Models.Enums;
+using Pricer.Data.InMemory.Models.Enums;
 using Pricer.Parser.Abstract;
 
 namespace Pricer.Parser.UnitTests.ParserTests;

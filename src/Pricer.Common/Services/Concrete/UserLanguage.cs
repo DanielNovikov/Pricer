@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
-using PriceObserver.Data.InMemory.Models.Enums;
-using PriceObserver.Data.Persistent.Repositories.Abstract;
 using Pricer.Common.Services.Abstract;
+using Pricer.Data.InMemory.Models.Enums;
+using Pricer.Data.Persistent.Repositories.Abstract;
 
 namespace Pricer.Common.Services.Concrete;
 

@@ -5,29 +5,29 @@ EXPOSE 5000
 FROM mcr.microsoft.com/dotnet/sdk:6.0-bullseye-slim AS publish
 WORKDIR /
 
-COPY src/PriceObserver/PriceObserver.csproj ./src/PriceObserver/PriceObserver.csproj
-COPY src/PriceObserver.Background/PriceObserver.Background.csproj ./src/PriceObserver.Background/PriceObserver.Background.csproj
-COPY src/PriceObserver.Common/PriceObserver.Common.csproj ./src/PriceObserver.Common/PriceObserver.Common.csproj
-COPY src/PriceObserver.Data.Persistent/PriceObserver.Data.Persistent.csproj ./src/PriceObserver.Data.Persistent/PriceObserver.Data.Persistent.csproj
-COPY src/PriceObserver.Data.InMemory/PriceObserver.Data.InMemory.csproj ./src/PriceObserver.Data.InMemory/PriceObserver.Data.InMemory.csproj
-COPY src/PriceObserver.Data.Service/PriceObserver.Data.Service.csproj ./src/PriceObserver.Data.Service/PriceObserver.Data.Service.csproj
-COPY src/PriceObserver.Dialog/PriceObserver.Dialog.csproj ./src/PriceObserver.Dialog/PriceObserver.Dialog.csproj
-COPY src/PriceObserver.Parser/PriceObserver.Parser.csproj ./src/PriceObserver.Parser/PriceObserver.Parser.csproj
-COPY src/PriceObserver.Telegram/PriceObserver.Telegram.csproj ./src/PriceObserver.Telegram/PriceObserver.Telegram.csproj
-COPY src/PriceObserver.Web.Api/PriceObserver.Web.Api.csproj ./src/PriceObserver.Web.Api/PriceObserver.Web.Api.csproj
-COPY src/PriceObserver.Web.App/PriceObserver.Web.App.csproj ./src/PriceObserver.Web.App/PriceObserver.Web.App.csproj
-COPY src/PriceObserver.Web.Shared/PriceObserver.Web.Shared.csproj ./src/PriceObserver.Web.Shared/PriceObserver.Web.Shared.csproj
+COPY src/Pricer/Pricer.csproj ./src/Pricer/Pricer.csproj
+COPY src/Pricer.Background/Pricer.Background.csproj ./src/Pricer.Background/Pricer.Background.csproj
+COPY src/Pricer.Common/Pricer.Common.csproj ./src/Pricer.Common/Pricer.Common.csproj
+COPY src/Pricer.Data.Persistent/Pricer.Data.Persistent.csproj ./src/Pricer.Data.Persistent/Pricer.Data.Persistent.csproj
+COPY src/Pricer.Data.InMemory/Pricer.Data.InMemory.csproj ./src/Pricer.Data.InMemory/Pricer.Data.InMemory.csproj
+COPY src/Pricer.Data.Service/Pricer.Data.Service.csproj ./src/Pricer.Data.Service/Pricer.Data.Service.csproj
+COPY src/Pricer.Dialog/Pricer.Dialog.csproj ./src/Pricer.Dialog/Pricer.Dialog.csproj
+COPY src/Pricer.Parser/Pricer.Parser.csproj ./src/Pricer.Parser/Pricer.Parser.csproj
+COPY src/Pricer.Telegram/Pricer.Telegram.csproj ./src/Pricer.Telegram/Pricer.Telegram.csproj
+COPY src/Pricer.Web.Api/Pricer.Web.Api.csproj ./src/Pricer.Web.Api/Pricer.Web.Api.csproj
+COPY src/Pricer.Web.App/Pricer.Web.App.csproj ./src/Pricer.Web.App/Pricer.Web.App.csproj
+COPY src/Pricer.Web.Shared/Pricer.Web.Shared.csproj ./src/Pricer.Web.Shared/Pricer.Web.Shared.csproj
 
-WORKDIR /src/PriceObserver
+WORKDIR /src/Pricer
 RUN dotnet restore 
 
 WORKDIR /
 COPY . .
 
-WORKDIR /src/PriceObserver
+WORKDIR /src/Pricer
 RUN dotnet publish -c Release -o /app/publish
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "PriceObserver.dll"]
+ENTRYPOINT ["dotnet", "Pricer.dll"]

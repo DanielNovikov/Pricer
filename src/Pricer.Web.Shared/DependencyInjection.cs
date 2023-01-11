@@ -1,8 +1,8 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using PriceObserver.Web.Shared.Services.Abstract;
-using PriceObserver.Web.Shared.Services.Concrete;
+using Pricer.Web.Shared.Services.Abstract;
+using Pricer.Web.Shared.Services.Concrete;
 
-namespace PriceObserver.Web.Shared;
+namespace Pricer.Web.Shared;
 
 public static class DependencyInjection
 {

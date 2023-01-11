@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using Microsoft.Extensions.Caching.Memory;
-using PriceObserver.Data.InMemory.Models;
-using PriceObserver.Data.InMemory.Seed.Shops.Seeders;
+using Pricer.Data.InMemory.Models;
+using Pricer.Data.InMemory.Seed.Shops.Seeders;
 
-namespace PriceObserver.Data.InMemory.Seed.Shops;
+namespace Pricer.Data.InMemory.Seed.Shops;
 
 public class ShopsSeeder
 {

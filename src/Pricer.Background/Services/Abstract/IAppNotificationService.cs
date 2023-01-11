@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace PriceObserver.Background.Services.Abstract;
+namespace Pricer.Background.Services.Abstract;
 
 public interface IAppNotificationService
 {

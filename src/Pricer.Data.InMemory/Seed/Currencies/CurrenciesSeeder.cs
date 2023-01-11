@@ -1,9 +1,9 @@
-﻿using Microsoft.Extensions.Caching.Memory;
-using PriceObserver.Data.InMemory.Models;
-using PriceObserver.Data.InMemory.Models.Enums;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using Microsoft.Extensions.Caching.Memory;
+using Pricer.Data.InMemory.Models;
+using Pricer.Data.InMemory.Models.Enums;
 
-namespace PriceObserver.Data.InMemory.Seed.Currencies;
+namespace Pricer.Data.InMemory.Seed.Currencies;
 
 public class CurrenciesSeeder
 {

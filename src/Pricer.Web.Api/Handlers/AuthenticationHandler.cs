@@ -1,6 +1,6 @@
 ﻿using Grpc.Core;
-using PriceObserver.Web.Shared.Grpc;
-using PriceObserver.Web.Shared.Grpc.HandlerServices;
+using Pricer.Web.Shared.Grpc;
+using Pricer.Web.Shared.Grpc.HandlerServices;
 
 namespace Pricer.Web.Api.Handlers;
 

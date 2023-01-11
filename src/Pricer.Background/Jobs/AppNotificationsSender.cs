@@ -4,10 +4,10 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using PriceObserver.Background.Services.Abstract;
+using Pricer.Background.Services.Abstract;
 using Pricer.Common.Extensions;
 
-namespace PriceObserver.Background.Jobs;
+namespace Pricer.Background.Jobs;
 
 public class AppNotificationsSender : IHostedService
 {

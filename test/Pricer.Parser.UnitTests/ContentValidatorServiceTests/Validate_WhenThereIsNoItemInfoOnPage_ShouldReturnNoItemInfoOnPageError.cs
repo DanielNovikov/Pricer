@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using FluentAssertions;
 using Moq;
-using PriceObserver.Data.InMemory.Models.Enums;
+using Pricer.Data.InMemory.Models.Enums;
 using Pricer.Parser.Abstract;
 using Pricer.Parser.Concrete;
 using Xunit;

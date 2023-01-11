@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using Microsoft.Extensions.Caching.Memory;
-using PriceObserver.Data.InMemory.Models;
-using PriceObserver.Data.InMemory.Seed.Resources.Seeders;
+using Pricer.Data.InMemory.Models;
+using Pricer.Data.InMemory.Seed.Resources.Seeders;
 
-namespace PriceObserver.Data.InMemory.Seed.Resources;
+namespace Pricer.Data.InMemory.Seed.Resources;
 
 public class ResourcesSeeder
 {

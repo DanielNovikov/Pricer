@@ -1,9 +1,9 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using PriceObserver.Data.Persistent.Models;
+using Pricer.Data.Persistent.Models;
 
-namespace PriceObserver.Data.Persistent.Configurations;
+namespace Pricer.Data.Persistent.Configurations;
 
 public class ItemConfiguration : IEntityTypeConfiguration<Item>
 {

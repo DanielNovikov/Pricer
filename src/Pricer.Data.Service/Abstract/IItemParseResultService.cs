@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
-using PriceObserver.Data.Persistent.Models;
+using Pricer.Data.Persistent.Models;
 
-namespace PriceObserver.Data.Service.Abstract;
+namespace Pricer.Data.Service.Abstract;
 
 public interface IItemParseResultService
 {

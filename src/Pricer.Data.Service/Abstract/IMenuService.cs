@@ -1,6 +1,6 @@
-﻿using PriceObserver.Data.InMemory.Models.Enums;
+﻿using Pricer.Data.InMemory.Models.Enums;
 
-namespace PriceObserver.Data.Service.Abstract;
+namespace Pricer.Data.Service.Abstract;
 
 public interface IMenuService
 {

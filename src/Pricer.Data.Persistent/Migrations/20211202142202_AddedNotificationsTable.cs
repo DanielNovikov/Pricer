@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.Migrations;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
-namespace PriceObserver.Data.Migrations
+namespace Pricer.Data.Migrations
 {
     public partial class AddedNotificationsTable : Migration
     {

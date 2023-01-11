@@ -2,8 +2,8 @@
 using System.Threading.Tasks;
 using FluentAssertions;
 using Microsoft.EntityFrameworkCore;
-using PriceObserver.Data.InMemory.Models.Enums;
-using PriceObserver.Data.Persistent;
+using Pricer.Data.InMemory.Models.Enums;
+using Pricer.Data.Persistent;
 using Pricer.Dialog.Models;
 
 namespace Pricer.Dialog.FunctionalTests.Menus.Support;

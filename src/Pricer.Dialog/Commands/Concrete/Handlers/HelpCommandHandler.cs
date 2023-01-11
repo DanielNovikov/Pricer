@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
-using PriceObserver.Data.InMemory.Models.Enums;
-using PriceObserver.Data.Persistent.Models;
-using PriceObserver.Data.Service.Abstract;
+using Pricer.Data.InMemory.Models.Enums;
+using Pricer.Data.Persistent.Models;
+using Pricer.Data.Service.Abstract;
 using Pricer.Dialog.Commands.Abstract;
 using Pricer.Dialog.Models;
 using Pricer.Dialog.Services.Abstract;

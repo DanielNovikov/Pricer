@@ -2,7 +2,7 @@
 using System.Collections.Immutable;
 using System.Linq;
 using System.Threading.Tasks;
-using PriceObserver.Data.InMemory.Repositories.Abstract;
+using Pricer.Data.InMemory.Repositories.Abstract;
 using Pricer.Dialog.Menus.Abstract;
 using Pricer.Dialog.Models;
 using Pricer.Dialog.Services.Abstract;

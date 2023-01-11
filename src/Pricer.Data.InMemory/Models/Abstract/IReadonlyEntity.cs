@@ -1,4 +1,4 @@
-﻿namespace PriceObserver.Data.InMemory.Models.Abstract;
+﻿namespace Pricer.Data.InMemory.Models.Abstract;
 
 public interface IReadonlyEntity<TKey> : IReadonlyEntity
 {

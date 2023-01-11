@@ -2,7 +2,7 @@
 using AutoFixture;
 using FluentAssertions;
 using Moq;
-using PriceObserver.Data.InMemory.Models.Enums;
+using Pricer.Data.InMemory.Models.Enums;
 using Pricer.Parser.Abstract;
 using Pricer.Parser.Models;
 using Xunit;

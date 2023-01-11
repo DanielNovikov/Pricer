@@ -5,10 +5,10 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using PriceObserver.Data.InMemory.Seed;
-using PriceObserver.Data.Persistent;
-using PriceObserver.Data.Persistent.Seed;
 using Pricer.Common.Extensions;
+using Pricer.Data.InMemory.Seed;
+using Pricer.Data.Persistent;
+using Pricer.Data.Persistent.Seed;
 using Serilog;
 using TelegramSink;
 

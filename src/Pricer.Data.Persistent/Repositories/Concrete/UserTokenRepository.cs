@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using PriceObserver.Data.Persistent.Models;
-using PriceObserver.Data.Persistent.Repositories.Abstract;
+using Pricer.Data.Persistent.Models;
+using Pricer.Data.Persistent.Repositories.Abstract;
 
-namespace PriceObserver.Data.Persistent.Repositories.Concrete;
+namespace Pricer.Data.Persistent.Repositories.Concrete;
 
 public class UserTokenRepository : RepositoryBase<UserToken>, IUserTokenRepository
 {

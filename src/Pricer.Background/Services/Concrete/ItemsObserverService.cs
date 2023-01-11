@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
-using PriceObserver.Background.Jobs;
-using PriceObserver.Background.Services.Abstract;
-using PriceObserver.Data.Persistent.Repositories.Abstract;
+using Pricer.Background.Jobs;
+using Pricer.Background.Services.Abstract;
+using Pricer.Data.Persistent.Repositories.Abstract;
 using Pricer.Parser.Abstract;
 
-namespace PriceObserver.Background.Services.Concrete;
+namespace Pricer.Background.Services.Concrete;
 
 public class ItemsObserverService : IItemsObserverService
 {

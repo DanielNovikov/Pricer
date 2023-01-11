@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using PriceObserver.Data.Persistent.Models.Abstract;
-using PriceObserver.Data.Persistent.Repositories.Abstract;
+using Pricer.Data.Persistent.Models.Abstract;
+using Pricer.Data.Persistent.Repositories.Abstract;
 
-namespace PriceObserver.Data.Persistent.Repositories.Concrete;
+namespace Pricer.Data.Persistent.Repositories.Concrete;
 
 public abstract class RepositoryBase<T> : IRepository<T> where T : class, IAggregateRoot
 {

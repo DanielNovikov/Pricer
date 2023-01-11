@@ -1,10 +1,10 @@
 ﻿using Microsoft.Extensions.Caching.Memory;
-using PriceObserver.Data.InMemory.Seed.Currencies;
-using PriceObserver.Data.InMemory.Seed.Dialog;
-using PriceObserver.Data.InMemory.Seed.Resources;
-using PriceObserver.Data.InMemory.Seed.Shops;
+using Pricer.Data.InMemory.Seed.Currencies;
+using Pricer.Data.InMemory.Seed.Dialog;
+using Pricer.Data.InMemory.Seed.Resources;
+using Pricer.Data.InMemory.Seed.Shops;
 
-namespace PriceObserver.Data.InMemory.Seed;
+namespace Pricer.Data.InMemory.Seed;
 
 public class InMemorySeeder
 {

@@ -1,4 +1,4 @@
-﻿namespace PriceObserver.Data.InMemory.Models.Enums;
+﻿namespace Pricer.Data.InMemory.Models.Enums;
 
 public enum ShopKey
 {
@@ -35,5 +35,6 @@ public enum ShopKey
     Epicentr = 31,
     Prostor = 32,
     Olx = 33,
-    Notino = 34
+    Notino = 34,
+    IHerb = 35
 }

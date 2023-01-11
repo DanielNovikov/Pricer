@@ -1,8 +1,8 @@
 ﻿using System.Threading.Tasks;
-using PriceObserver.Data.InMemory.Models.Enums;
-using PriceObserver.Data.Persistent.Models;
+using Pricer.Data.InMemory.Models.Enums;
+using Pricer.Data.Persistent.Models;
 
-namespace PriceObserver.Background.Services.Abstract;
+namespace Pricer.Background.Services.Abstract;
 
 public interface IItemRemovalService
 {

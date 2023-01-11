@@ -1,12 +1,12 @@
 ﻿using System.Threading.Tasks;
-using PriceObserver.Data.InMemory.Models;
-using PriceObserver.Data.InMemory.Models.Enums;
-using PriceObserver.Data.InMemory.Repositories.Abstract;
-using PriceObserver.Data.Persistent.Models;
-using PriceObserver.Data.Persistent.Repositories.Abstract;
-using PriceObserver.Data.Service.Abstract;
+using Pricer.Data.InMemory.Models;
+using Pricer.Data.InMemory.Models.Enums;
+using Pricer.Data.InMemory.Repositories.Abstract;
+using Pricer.Data.Persistent.Models;
+using Pricer.Data.Persistent.Repositories.Abstract;
+using Pricer.Data.Service.Abstract;
 
-namespace PriceObserver.Data.Service.Concrete;
+namespace Pricer.Data.Service.Concrete;
 
 public class UserService : IUserService
 {

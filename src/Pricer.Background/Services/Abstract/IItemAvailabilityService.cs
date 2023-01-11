@@ -1,7 +1,7 @@
-﻿using PriceObserver.Data.Persistent.Models;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using Pricer.Data.Persistent.Models;
 
-namespace PriceObserver.Background.Services.Abstract;
+namespace Pricer.Background.Services.Abstract;
 
 public interface IItemAvailabilityService
 {

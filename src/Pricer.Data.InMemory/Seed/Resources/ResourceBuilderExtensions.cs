@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
-using PriceObserver.Data.InMemory.Models;
-using PriceObserver.Data.InMemory.Models.Enums;
+using Pricer.Data.InMemory.Models;
+using Pricer.Data.InMemory.Models.Enums;
 
-namespace PriceObserver.Data.InMemory.Seed.Resources;
+namespace Pricer.Data.InMemory.Seed.Resources;
 
 public static class ResourceBuilderExtensions
 {

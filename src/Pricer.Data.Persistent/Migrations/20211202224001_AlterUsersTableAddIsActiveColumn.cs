@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace PriceObserver.Data.Migrations
+namespace Pricer.Data.Migrations
 {
     public partial class AlterUsersTableAddIsActiveColumn : Migration
     {

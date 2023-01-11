@@ -1,5 +1,5 @@
-﻿using PriceObserver.Data.InMemory.Models;
-using PriceObserver.Web.Shared.Grpc;
+﻿using Pricer.Web.Shared.Grpc;
+using Pricer.Data.InMemory.Models;
 
 namespace Pricer.Web.Api.Services.Abstract;
 

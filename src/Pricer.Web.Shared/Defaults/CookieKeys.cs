@@ -1,4 +1,4 @@
-﻿namespace PriceObserver.Web.Shared.Defaults;
+﻿namespace Pricer.Web.Shared.Defaults;
 
 public class CookieKeys
 {

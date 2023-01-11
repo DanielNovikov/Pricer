@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using PriceObserver.Data.InMemory.Models.Enums;
-using PriceObserver.Data.Persistent.Models.Abstract;
+using Pricer.Data.InMemory.Models.Enums;
+using Pricer.Data.Persistent.Models.Abstract;
 
-namespace PriceObserver.Data.Persistent.Models;
+namespace Pricer.Data.Persistent.Models;
 
 public class Item : IAggregateRoot
 {

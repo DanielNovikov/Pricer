@@ -1,4 +1,4 @@
-﻿namespace PriceObserver.Data.InMemory.Seed;
+﻿namespace Pricer.Data.InMemory.Seed;
 
 public enum CacheKey
 {

@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Threading.Tasks;
 using FluentAssertions;
-using PriceObserver.Data.InMemory.Models.Enums;
+using Pricer.Data.InMemory.Models.Enums;
 using Xunit;
 
-namespace PriceObserver.Parser.FunctionalTests;
+namespace Pricer.Parser.FunctionalTests;
 
 public class ServiceTests : TestBase
 {

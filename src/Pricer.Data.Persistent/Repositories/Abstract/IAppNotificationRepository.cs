@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using PriceObserver.Data.Persistent.Models;
+using Pricer.Data.Persistent.Models;
 
-namespace PriceObserver.Data.Persistent.Repositories.Abstract;
+namespace Pricer.Data.Persistent.Repositories.Abstract;
 
 public interface IAppNotificationRepository : IRepository<AppNotification>
 {

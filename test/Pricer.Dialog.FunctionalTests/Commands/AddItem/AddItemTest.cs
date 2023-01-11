@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using FluentAssertions;
 using Microsoft.EntityFrameworkCore;
-using PriceObserver.Data.Persistent;
+using Pricer.Data.Persistent;
 
 namespace Pricer.Dialog.FunctionalTests.Commands.AddItem;
 

@@ -1,6 +1,6 @@
-﻿using PriceObserver.Data.Persistent.Seed.AppNotifications;
+﻿using Pricer.Data.Persistent.Seed.AppNotifications;
 
-namespace PriceObserver.Data.Persistent.Seed;
+namespace Pricer.Data.Persistent.Seed;
 
 public class DbSeeder
 {

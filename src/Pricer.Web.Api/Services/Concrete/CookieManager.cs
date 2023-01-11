@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
-using PriceObserver.Web.Shared.Defaults;
-using PriceObserver.Web.Shared.Services.Abstract;
+using Pricer.Web.Shared.Defaults;
+using Pricer.Web.Shared.Services.Abstract;
 
 namespace Pricer.Web.Api.Services.Concrete;
 

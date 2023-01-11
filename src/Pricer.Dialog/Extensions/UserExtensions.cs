@@ -1,4 +1,4 @@
-﻿using PriceObserver.Data.Persistent.Models;
+﻿using Pricer.Data.Persistent.Models;
 
 namespace Pricer.Dialog.Extensions;
 

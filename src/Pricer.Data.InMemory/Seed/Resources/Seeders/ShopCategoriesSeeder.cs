@@ -1,8 +1,8 @@
-﻿using PriceObserver.Data.InMemory.Models;
-using PriceObserver.Data.InMemory.Models.Enums;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using Pricer.Data.InMemory.Models;
+using Pricer.Data.InMemory.Models.Enums;
 
-namespace PriceObserver.Data.InMemory.Seed.Resources.Seeders;
+namespace Pricer.Data.InMemory.Seed.Resources.Seeders;
 
 public class ShopCategoriesSeeder
 {

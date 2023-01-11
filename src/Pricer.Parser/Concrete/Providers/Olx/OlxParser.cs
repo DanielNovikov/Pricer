@@ -1,12 +1,12 @@
 ﻿using System;
 using AngleSharp.Dom;
 using AngleSharp.Html.Dom;
-using PriceObserver.Data.InMemory.Models.Enums;
+using Pricer.Data.InMemory.Models.Enums;
 using Pricer.Parser.Abstract;
 
 namespace Pricer.Parser.Concrete.Providers.Olx;
 
-public class OlxProvider : IParserProvider
+public class OlxParser : IParserProvider
 {
 	public ShopKey ProviderKey => ShopKey.Olx;
 
@@ -15,10 +15,10 @@ public class OlxProvider : IParserProvider
 		const string selector = "meta[name='description']";
 
 		var priceElement = document.QuerySelector<IHtmlMetaElement>(selector) ?? 
-			throw new ArgumentNullException($"{nameof(OlxProvider)}:{nameof(GetPrice)}:Element");
+			throw new ArgumentNullException($"{nameof(OlxParser)}:{nameof(GetPrice)}:Element");
 		
 		var priceElementContent = priceElement.Content ??
-			throw new ArgumentNullException($"{nameof(OlxProvider)}:{nameof(GetPrice)}:Element");
+			throw new ArgumentNullException($"{nameof(OlxParser)}:{nameof(GetPrice)}:Element");
 		
 		var priceSeparatorIndex = priceElementContent.IndexOf(" ", StringComparison.Ordinal);
 		var price = priceElementContent.Substring(0, priceSeparatorIndex);
@@ -31,7 +31,7 @@ public class OlxProvider : IParserProvider
 		const string selector = "h1[data-cy='ad_title']";
 		
 		var titleElement = document.QuerySelector<IHtmlHeadingElement>(selector) ??
-		    throw new ArgumentNullException($"{nameof(OlxProvider)}:{nameof(GetTitle)}:Element");
+		    throw new ArgumentNullException($"{nameof(OlxParser)}:{nameof(GetTitle)}:Element");
 
 		return titleElement.TextContent.Trim();
 	}
@@ -41,10 +41,10 @@ public class OlxProvider : IParserProvider
 		const string selector = "meta[property='og:image']";
         
 		var imageElement = document.QuerySelector<IHtmlMetaElement>(selector) ??
-		    throw new ArgumentNullException($"{nameof(OlxProvider)}:{nameof(GetImageUrl)}:Element");
+		    throw new ArgumentNullException($"{nameof(OlxParser)}:{nameof(GetImageUrl)}:Element");
         
 		var imageSource = imageElement.Content ??
-		    throw new ArgumentNullException($"{nameof(OlxProvider)}:{nameof(GetImageUrl)}:Element:Content"); 
+		    throw new ArgumentNullException($"{nameof(OlxParser)}:{nameof(GetImageUrl)}:Element:Content"); 
         
 		return new Uri(imageSource);
 	}
@@ -59,10 +59,10 @@ public class OlxProvider : IParserProvider
 		const string selector = "meta[name='description']";
 
 		var priceElement = document.QuerySelector<IHtmlMetaElement>(selector) ?? 
-			throw new ArgumentNullException($"{nameof(OlxProvider)}:{nameof(GetPrice)}:Element");
+			throw new ArgumentNullException($"{nameof(OlxParser)}:{nameof(GetPrice)}:Element");
 		
 		var priceElementContent = priceElement.Content ??
-		    throw new ArgumentNullException($"{nameof(OlxProvider)}:{nameof(GetPrice)}:Element");
+		    throw new ArgumentNullException($"{nameof(OlxParser)}:{nameof(GetPrice)}:Element");
 
 		return priceElementContent.Contains('$') ? CurrencyKey.USD : CurrencyKey.UAH;
 	}

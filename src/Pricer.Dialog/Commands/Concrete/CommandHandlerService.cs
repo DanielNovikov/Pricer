@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using PriceObserver.Data.InMemory.Models;
-using PriceObserver.Data.InMemory.Models.Enums;
-using PriceObserver.Data.InMemory.Repositories.Abstract;
+using Pricer.Data.InMemory.Models;
+using Pricer.Data.InMemory.Models.Enums;
+using Pricer.Data.InMemory.Repositories.Abstract;
 using Pricer.Dialog.Commands.Abstract;
 using Pricer.Dialog.Models;
 using Pricer.Dialog.Services.Abstract;

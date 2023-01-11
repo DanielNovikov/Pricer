@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Components;
-using PriceObserver.Web.Shared.Defaults;
-using PriceObserver.Web.Shared.Grpc.HandlerServices;
-using PriceObserver.Web.Shared.Services.Abstract;
+using Pricer.Web.Shared.Defaults;
+using Pricer.Web.Shared.Grpc.HandlerServices;
+using Pricer.Web.Shared.Services.Abstract;
 
 namespace Pricer.Web.App.Pages;
 

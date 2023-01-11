@@ -1,8 +1,8 @@
 ﻿using System.Reflection;
 using Microsoft.EntityFrameworkCore;
-using PriceObserver.Data.Persistent.Models;
+using Pricer.Data.Persistent.Models;
 
-namespace PriceObserver.Data.Persistent;
+namespace Pricer.Data.Persistent;
 
 public sealed class ApplicationDbContext : DbContext
 {

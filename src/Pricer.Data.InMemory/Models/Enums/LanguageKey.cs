@@ -1,4 +1,4 @@
-﻿namespace PriceObserver.Data.InMemory.Models.Enums;
+﻿namespace Pricer.Data.InMemory.Models.Enums;
 
 public enum LanguageKey
 {

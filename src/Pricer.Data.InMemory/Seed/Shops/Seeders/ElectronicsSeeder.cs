@@ -1,8 +1,8 @@
-﻿using PriceObserver.Data.InMemory.Models;
-using PriceObserver.Data.InMemory.Models.Enums;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using Pricer.Data.InMemory.Models;
+using Pricer.Data.InMemory.Models.Enums;
 
-namespace PriceObserver.Data.InMemory.Seed.Shops.Seeders;
+namespace Pricer.Data.InMemory.Seed.Shops.Seeders;
 
 public class ElectronicsSeeder
 {	
@@ -16,7 +16,7 @@ public class ElectronicsSeeder
                 "rozetka.com.ua",
                 "rozetka.png",
                 false,
-                new [] { "bt.rozetka.com.ua" }),
+                new [] { "bt.rozetka.com.ua", "hard.rozetka.com.ua" }),
             
             new Shop(
                 "Citrus",

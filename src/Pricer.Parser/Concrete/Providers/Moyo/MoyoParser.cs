@@ -1,7 +1,7 @@
 ﻿using System;
 using AngleSharp.Dom;
 using AngleSharp.Html.Dom;
-using PriceObserver.Data.InMemory.Models.Enums;
+using Pricer.Data.InMemory.Models.Enums;
 using Pricer.Parser.Abstract;
 
 namespace Pricer.Parser.Concrete.Providers.Moyo;
@@ -48,9 +48,12 @@ public class MoyoParser : IParserProvider
     
     public bool IsAvailable(IHtmlDocument document)
     {
-        const string selector = "div.noinstock-status";
+        const string outOfStockSelector = "div.noinstock-status";
+        const string archivedSelector = "div.product_availability_status.archive-status";
 
-        return document.QuerySelector<IHtmlDivElement>(selector) is null;
+        return 
+            document.QuerySelector<IHtmlDivElement>(outOfStockSelector) is null && 
+            document.QuerySelector<IHtmlDivElement>(archivedSelector) is null;
     }
 
     public CurrencyKey GetCurrency(IHtmlDocument document)

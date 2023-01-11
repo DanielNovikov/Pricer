@@ -2,7 +2,7 @@
 
 import "google/protobuf/empty.proto";
 
-option csharp_namespace = "PriceObserver.Web.Shared.Grpc";
+option csharp_namespace = "Pricer.Web.Shared.Grpc";
 
 package Item;
 

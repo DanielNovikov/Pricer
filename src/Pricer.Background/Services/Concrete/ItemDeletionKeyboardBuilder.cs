@@ -1,13 +1,13 @@
-﻿using PriceObserver.Background.Services.Abstract;
-using PriceObserver.Data.InMemory.Models.Enums;
-using PriceObserver.Data.Persistent.Models;
+﻿using Pricer.Background.Services.Abstract;
 using Pricer.Common.Services.Abstract;
+using Pricer.Data.InMemory.Models.Enums;
+using Pricer.Data.Persistent.Models;
 using Pricer.Dialog.Models;
 using Pricer.Dialog.Services.Abstract;
 using Pricer.Telegram.Abstract;
 using Telegram.Bot.Types.ReplyMarkups;
 
-namespace PriceObserver.Background.Services.Concrete;
+namespace Pricer.Background.Services.Concrete;
 
 public class ItemDeletionKeyboardBuilder : IItemDeletionKeyboardBuilder
 {

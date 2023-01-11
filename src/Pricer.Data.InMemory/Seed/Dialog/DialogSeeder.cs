@@ -1,16 +1,16 @@
 ﻿using System.Collections.Generic;
 using Microsoft.Extensions.Caching.Memory;
-using PriceObserver.Data.InMemory.Models;
-using PriceObserver.Data.InMemory.Seed.Dialog.Initializers.Common;
-using PriceObserver.Data.InMemory.Seed.Dialog.Initializers.HomeMenu;
-using PriceObserver.Data.InMemory.Seed.Dialog.Initializers.HomeMenu.Commands;
-using PriceObserver.Data.InMemory.Seed.Dialog.Initializers.SelectLanguageMenu;
-using PriceObserver.Data.InMemory.Seed.Dialog.Initializers.SelectLanguageMenu.Commands;
-using PriceObserver.Data.InMemory.Seed.Dialog.Initializers.SettingsMenu;
-using PriceObserver.Data.InMemory.Seed.Dialog.Initializers.SettingsMenu.Commands;
-using PriceObserver.Data.InMemory.Seed.Dialog.Initializers.SupportMenu;
+using Pricer.Data.InMemory.Models;
+using Pricer.Data.InMemory.Seed.Dialog.Initializers.Common;
+using Pricer.Data.InMemory.Seed.Dialog.Initializers.HomeMenu;
+using Pricer.Data.InMemory.Seed.Dialog.Initializers.HomeMenu.Commands;
+using Pricer.Data.InMemory.Seed.Dialog.Initializers.SelectLanguageMenu;
+using Pricer.Data.InMemory.Seed.Dialog.Initializers.SelectLanguageMenu.Commands;
+using Pricer.Data.InMemory.Seed.Dialog.Initializers.SettingsMenu;
+using Pricer.Data.InMemory.Seed.Dialog.Initializers.SettingsMenu.Commands;
+using Pricer.Data.InMemory.Seed.Dialog.Initializers.SupportMenu;
 
-namespace PriceObserver.Data.InMemory.Seed.Dialog;
+namespace Pricer.Data.InMemory.Seed.Dialog;
 
 public class DialogSeeder
 {

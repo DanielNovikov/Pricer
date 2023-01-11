@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
-using PriceObserver.Data.InMemory.Models.Enums;
-using PriceObserver.Data.Service.Abstract;
+using Pricer.Data.InMemory.Models.Enums;
+using Pricer.Data.Service.Abstract;
 using Pricer.Telegram.Abstract;
 using Telegram.Bot.Types;
 

@@ -5,13 +5,13 @@ using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
-using PriceObserver.Web.Shared.Grpc.HandlerServices;
-using PriceObserver.Web.Shared.Services.Abstract;
 using Pricer.Web.Api.Extensions;
 using Pricer.Web.Api.Handlers;
 using Pricer.Web.Api.Interceptors;
 using Pricer.Web.Api.Services.Abstract;
 using Pricer.Web.Api.Services.Concrete;
+using Pricer.Web.Shared.Grpc.HandlerServices;
+using Pricer.Web.Shared.Services.Abstract;
 
 namespace Pricer.Web.Api;
 

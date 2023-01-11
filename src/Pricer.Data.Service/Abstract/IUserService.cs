@@ -1,9 +1,9 @@
 ﻿using System.Threading.Tasks;
-using PriceObserver.Data.InMemory.Models;
-using PriceObserver.Data.InMemory.Models.Enums;
-using PriceObserver.Data.Persistent.Models;
+using Pricer.Data.InMemory.Models;
+using Pricer.Data.InMemory.Models.Enums;
+using Pricer.Data.Persistent.Models;
 
-namespace PriceObserver.Data.Service.Abstract;
+namespace Pricer.Data.Service.Abstract;
 
 public interface IUserService
 {

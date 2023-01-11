@@ -1,11 +1,12 @@
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
-using PriceObserver.Web.Shared;
-using PriceObserver.Web.Shared.Grpc;
-using PriceObserver.Web.Shared.Grpc.HandlerServices;
-using PriceObserver.Web.Shared.Services.Abstract;
+using Pricer.Web.Shared;
+using Pricer.Web.Shared.Grpc;
 using Pricer.Web.App.Extensions;
 using Pricer.Web.App.Services.Abstract;
 using Pricer.Web.App.Services.Concrete;
+using Pricer.Web.Shared;
+using Pricer.Web.Shared.Grpc.HandlerServices;
+using Pricer.Web.Shared.Services.Abstract;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
 

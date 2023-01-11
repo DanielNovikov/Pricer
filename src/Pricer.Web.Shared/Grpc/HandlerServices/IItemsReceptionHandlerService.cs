@@ -1,4 +1,6 @@
-﻿namespace PriceObserver.Web.Shared.Grpc.HandlerServices;
+﻿using Pricer.Web.Shared.Grpc;
+
+namespace Pricer.Web.Shared.Grpc.HandlerServices;
 
 public interface IItemsReceptionHandlerService
 {

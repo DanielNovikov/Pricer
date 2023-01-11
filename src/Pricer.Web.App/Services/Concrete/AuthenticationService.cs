@@ -1,4 +1,4 @@
-﻿using PriceObserver.Web.Shared.Services.Abstract;
+﻿using Pricer.Web.Shared.Services.Abstract;
 
 namespace Pricer.Web.App.Services.Concrete;
 

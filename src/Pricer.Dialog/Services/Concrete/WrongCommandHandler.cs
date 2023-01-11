@@ -1,4 +1,4 @@
-﻿using PriceObserver.Data.InMemory.Models.Enums;
+﻿using Pricer.Data.InMemory.Models.Enums;
 using Pricer.Dialog.Models;
 using Pricer.Dialog.Models.Abstract;
 using Pricer.Dialog.Services.Abstract;

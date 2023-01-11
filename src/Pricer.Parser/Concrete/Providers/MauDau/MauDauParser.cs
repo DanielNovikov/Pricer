@@ -1,7 +1,7 @@
 ﻿using System;
 using AngleSharp.Dom;
 using AngleSharp.Html.Dom;
-using PriceObserver.Data.InMemory.Models.Enums;
+using Pricer.Data.InMemory.Models.Enums;
 using Pricer.Parser.Abstract;
 
 namespace Pricer.Parser.Concrete.Providers.MauDau;
@@ -44,6 +44,9 @@ public class MauDauParser : IParserProvider
 		var imageSource = imageElement.Attributes["data-cfsrc"]?.Value ??
 		    imageElement.Source ??
 		    throw new ArgumentNullException($"{nameof(MauDauParser)}:{nameof(GetImageUrl)}:Element:Content");
+		
+		if (!imageSource.StartsWith("https"))
+			imageSource = imageSource[imageSource.IndexOf("https", StringComparison.Ordinal)..];
 		
 		return new Uri(imageSource);
 	}

@@ -1,7 +1,7 @@
-﻿using PriceObserver.Data.InMemory.Models.Abstract;
-using PriceObserver.Data.InMemory.Models.Enums;
+﻿using Pricer.Data.InMemory.Models.Abstract;
+using Pricer.Data.InMemory.Models.Enums;
 
-namespace PriceObserver.Data.InMemory.Models;
+namespace Pricer.Data.InMemory.Models;
 
 public record Command(CommandKey Key, ResourceKey ResourceKey, Menu MenuToRedirect)
     : IReadonlyEntity<CommandKey>;

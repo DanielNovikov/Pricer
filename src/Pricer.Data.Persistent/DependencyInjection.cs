@@ -1,10 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using PriceObserver.Data.Persistent.Repositories.Abstract;
-using PriceObserver.Data.Persistent.Repositories.Concrete;
+using Pricer.Data.Persistent.Repositories.Abstract;
+using Pricer.Data.Persistent.Repositories.Concrete;
 
-namespace PriceObserver.Data.Persistent;
+namespace Pricer.Data.Persistent;
 
 public static class DependencyInjection
 {

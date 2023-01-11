@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using PriceObserver.Data.InMemory.Models.Abstract;
+using Pricer.Data.InMemory.Models.Abstract;
 
-namespace PriceObserver.Data.InMemory.Repositories.Abstract;
+namespace Pricer.Data.InMemory.Repositories.Abstract;
 
 public interface IReadOnlyRepository<T> where T: IReadonlyEntity
 {

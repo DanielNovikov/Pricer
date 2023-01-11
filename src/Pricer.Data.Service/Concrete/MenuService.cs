@@ -1,8 +1,8 @@
-﻿using PriceObserver.Data.InMemory.Models.Enums;
-using PriceObserver.Data.InMemory.Repositories.Abstract;
-using PriceObserver.Data.Service.Abstract;
+﻿using Pricer.Data.InMemory.Models.Enums;
+using Pricer.Data.InMemory.Repositories.Abstract;
+using Pricer.Data.Service.Abstract;
 
-namespace PriceObserver.Data.Service.Concrete;
+namespace Pricer.Data.Service.Concrete;
 
 public class MenuService : IMenuService
 {

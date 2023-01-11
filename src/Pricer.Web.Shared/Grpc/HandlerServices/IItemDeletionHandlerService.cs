@@ -1,4 +1,4 @@
-﻿namespace PriceObserver.Web.Shared.Grpc.HandlerServices;
+﻿namespace Pricer.Web.Shared.Grpc.HandlerServices;
 
 public interface IItemDeletionHandlerService
 {

@@ -1,4 +1,4 @@
-﻿namespace PriceObserver.Web.Shared.Services.Abstract;
+﻿namespace Pricer.Web.Shared.Services.Abstract;
 
 public interface ICookieManager
 {

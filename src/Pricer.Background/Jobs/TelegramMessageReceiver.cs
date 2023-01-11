@@ -12,7 +12,7 @@ using Telegram.Bot.Types;
 using Telegram.Bot.Types.Enums;
 using IUpdateHandler = Pricer.Telegram.Abstract.IUpdateHandler;
 
-namespace PriceObserver.Background.Jobs;
+namespace Pricer.Background.Jobs;
 
 public class TelegramMessageReceiver : IHostedService
 {

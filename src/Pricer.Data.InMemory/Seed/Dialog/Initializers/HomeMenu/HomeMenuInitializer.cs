@@ -1,7 +1,7 @@
-﻿using PriceObserver.Data.InMemory.Models;
-using PriceObserver.Data.InMemory.Models.Enums;
+﻿using Pricer.Data.InMemory.Models;
+using Pricer.Data.InMemory.Models.Enums;
 
-namespace PriceObserver.Data.InMemory.Seed.Dialog.Initializers.HomeMenu;
+namespace Pricer.Data.InMemory.Seed.Dialog.Initializers.HomeMenu;
 
 public class HomeMenuInitializer
 {

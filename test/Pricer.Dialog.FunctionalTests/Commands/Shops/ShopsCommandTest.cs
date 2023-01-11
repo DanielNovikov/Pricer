@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using FluentAssertions;
-using PriceObserver.Data.InMemory.Repositories.Abstract;
+using Pricer.Data.InMemory.Repositories.Abstract;
 
 namespace Pricer.Dialog.FunctionalTests.Commands.Shops;
 

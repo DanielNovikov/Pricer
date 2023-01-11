@@ -1,7 +1,7 @@
 ﻿using System;
 using AngleSharp.Dom;
 using AngleSharp.Html.Dom;
-using PriceObserver.Data.InMemory.Models.Enums;
+using Pricer.Data.InMemory.Models.Enums;
 using Pricer.Parser.Abstract;
 
 namespace Pricer.Parser.Concrete.Providers.Citrus;
@@ -25,12 +25,12 @@ public class CitrusParser : IParserProvider
 
     public string GetTitle(IHtmlDocument document)
     {
-        const string selector = "meta[property='og:title']";
-        
-        var titleElement = document.QuerySelector<IHtmlMetaElement>(selector) ??
+        const string selector = "h1.title-0-2-122";
+
+        var titleElement = document.QuerySelector<IHtmlHeadingElement>(selector) ??
             throw new ArgumentNullException($"{nameof(CitrusParser)}:{nameof(GetTitle)}:Element");
 
-        return titleElement.Content;
+        return titleElement.TextContent;
     }
 
     public Uri GetImageUrl(IHtmlDocument document)

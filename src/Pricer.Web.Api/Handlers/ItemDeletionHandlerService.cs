@@ -1,6 +1,6 @@
-﻿using PriceObserver.Data.Persistent.Repositories.Abstract;
-using PriceObserver.Data.Service.Abstract;
-using PriceObserver.Web.Shared.Grpc.HandlerServices;
+﻿using Pricer.Data.Persistent.Repositories.Abstract;
+using Pricer.Data.Service.Abstract;
+using Pricer.Web.Shared.Grpc.HandlerServices;
 
 namespace Pricer.Web.Api.Handlers;
 

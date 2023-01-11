@@ -5,10 +5,10 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
-using PriceObserver.Data;
-using PriceObserver.Data.Persistent;
+using Pricer.Data;
+using Pricer.Data.Persistent;
 
-namespace PriceObserver.Data.Migrations
+namespace Pricer.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     [Migration("20211205211113_AddResourcesTable")]

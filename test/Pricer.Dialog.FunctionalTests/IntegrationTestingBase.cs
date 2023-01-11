@@ -3,12 +3,12 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using PriceObserver.Data.InMemory;
-using PriceObserver.Data.InMemory.Seed;
-using PriceObserver.Data.Persistent;
-using PriceObserver.Data.Service;
 using Pricer.Common;
 using Pricer.Common.Extensions;
+using Pricer.Data.InMemory;
+using Pricer.Data.InMemory.Seed;
+using Pricer.Data.Persistent;
+using Pricer.Data.Service;
 using Pricer.Dialog.Services.Abstract;
 using Pricer.Parser;
 
@@ -54,7 +54,7 @@ public abstract class IntegrationTestingBase
             .AddPersistentDataRepositories()
             .AddDataServices()
             .AddCommonServices()
-            .AddParserServices()
+            .AddParserServices(configuration)
             .AddDialogServices(configuration)
             .AddDbContext<ApplicationDbContext>(options => 
                 options.UseInMemoryDatabase("Dialog.Tests"))

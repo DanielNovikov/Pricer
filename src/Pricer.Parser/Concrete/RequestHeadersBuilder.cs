@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
-using PriceObserver.Data.InMemory.Models.Enums;
+using Pricer.Data.InMemory.Models.Enums;
 using Pricer.Parser.Abstract;
 
 namespace Pricer.Parser.Concrete;
@@ -42,6 +42,9 @@ public class RequestHeadersBuilder : IRequestHeadersBuilder
                 headers.Add(AcceptEncodingKey, AcceptEncodingValue);
                 break;
             case ShopKey.Allo:
+                headers.Add(UserAgentKey, UserAgentValue);
+                break;
+            case ShopKey.IHerb:
                 headers.Add(UserAgentKey, UserAgentValue);
                 break;
         }

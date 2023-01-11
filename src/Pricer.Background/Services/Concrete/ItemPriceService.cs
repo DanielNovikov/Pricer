@@ -1,15 +1,15 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
-using PriceObserver.Background.Services.Abstract;
-using PriceObserver.Data.InMemory.Models.Enums;
-using PriceObserver.Data.Persistent.Models;
-using PriceObserver.Data.Persistent.Repositories.Abstract;
-using PriceObserver.Data.Service.Abstract;
+using Pricer.Background.Services.Abstract;
 using Pricer.Common.Services.Abstract;
+using Pricer.Data.InMemory.Models.Enums;
+using Pricer.Data.Persistent.Models;
+using Pricer.Data.Persistent.Repositories.Abstract;
+using Pricer.Data.Service.Abstract;
 using Pricer.Telegram.Abstract;
 
-namespace PriceObserver.Background.Services.Concrete;
+namespace Pricer.Background.Services.Concrete;
 
 public class ItemPriceService : IItemPriceService
 {

@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Linq;
-using PriceObserver.Data.Service.Abstract;
+using Pricer.Data.Service.Abstract;
 using Pricer.Dialog.Models;
 using Pricer.Dialog.Models.Abstract;
 using Pricer.Telegram.Abstract;

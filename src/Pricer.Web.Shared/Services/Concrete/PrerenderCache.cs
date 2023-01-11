@@ -1,8 +1,8 @@
 ﻿using Microsoft.JSInterop;
 using Newtonsoft.Json;
-using PriceObserver.Web.Shared.Services.Abstract;
+using Pricer.Web.Shared.Services.Abstract;
 
-namespace PriceObserver.Web.Shared.Services.Concrete;
+namespace Pricer.Web.Shared.Services.Concrete;
 
 public class PrerenderCache : IPrerenderCache
 {

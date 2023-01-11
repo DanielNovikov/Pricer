@@ -1,7 +1,7 @@
-﻿using PriceObserver.Data.Persistent.Models;
+﻿using Pricer.Data.Persistent.Models;
 using Telegram.Bot.Types.ReplyMarkups;
 
-namespace PriceObserver.Background.Services.Abstract;
+namespace Pricer.Background.Services.Abstract;
 
 public interface IItemDeletionKeyboardBuilder
 {

@@ -1,7 +1,7 @@
-﻿using PriceObserver.Data.InMemory.Models;
-using PriceObserver.Data.InMemory.Models.Enums;
+﻿using Pricer.Data.InMemory.Models;
+using Pricer.Data.InMemory.Models.Enums;
 
-namespace PriceObserver.Data.InMemory.Repositories.Abstract;
+namespace Pricer.Data.InMemory.Repositories.Abstract;
 
 public interface IMenuRepository : IReadOnlyRepository<Menu, MenuKey>
 {

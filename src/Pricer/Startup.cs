@@ -4,16 +4,17 @@ using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using PriceObserver.Background;
-using PriceObserver.Data.InMemory;
-using PriceObserver.Data.Persistent;
-using PriceObserver.Data.Service;
-using PriceObserver.Web.Shared;
+using Pricer.Web.Shared;
+using Pricer.Background;
 using Pricer.Common;
+using Pricer.Data.InMemory;
+using Pricer.Data.Persistent;
+using Pricer.Data.Service;
 using Pricer.Dialog;
 using Pricer.Parser;
 using Pricer.Telegram;
 using Pricer.Web.Api;
+using Pricer.Web.Shared;
 
 namespace Pricer;
 
@@ -39,7 +40,7 @@ public class Startup
             .AddCommonServices()
             .AddTelegramBot(_configuration)
             .AddDialogServices(_configuration)
-            .AddParserServices()
+            .AddParserServices(_configuration)
             .AddBackgroundJobs();
             
         services

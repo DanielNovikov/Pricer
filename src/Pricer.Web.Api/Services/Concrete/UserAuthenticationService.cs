@@ -1,6 +1,6 @@
 ﻿using System.Security.Claims;
-using PriceObserver.Web.Shared.Services.Abstract;
 using Pricer.Web.Api.Services.Abstract;
+using Pricer.Web.Shared.Services.Abstract;
 
 namespace Pricer.Web.Api.Services.Concrete;
 

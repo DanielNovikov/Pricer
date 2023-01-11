@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
-using PriceObserver.Data.Service.Abstract;
+using Pricer.Data.Service.Abstract;
 using Pricer.Dialog.Callbacks.Abstract;
 using Pricer.Dialog.Models;
 using Pricer.Dialog.Services.Abstract;

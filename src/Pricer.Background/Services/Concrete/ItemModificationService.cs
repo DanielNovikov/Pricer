@@ -1,10 +1,10 @@
 ﻿using System.Threading.Tasks;
-using PriceObserver.Background.Services.Abstract;
-using PriceObserver.Data.Persistent.Models;
-using PriceObserver.Data.Persistent.Repositories.Abstract;
+using Pricer.Background.Services.Abstract;
+using Pricer.Data.Persistent.Models;
+using Pricer.Data.Persistent.Repositories.Abstract;
 using Pricer.Parser.Models;
 
-namespace PriceObserver.Background.Services.Concrete;
+namespace Pricer.Background.Services.Concrete;
 
 public class ItemModificationService : IItemModificationService
 {

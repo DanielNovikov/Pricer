@@ -1,7 +1,7 @@
-﻿using PriceObserver.Data.Persistent.Models;
-using PriceObserver.Data.Persistent.Repositories.Abstract;
+﻿using Pricer.Data.Persistent.Models;
+using Pricer.Data.Persistent.Repositories.Abstract;
 
-namespace PriceObserver.Data.Persistent.Repositories.Concrete;
+namespace Pricer.Data.Persistent.Repositories.Concrete;
 
 public class ItemPriceChangeRepository : RepositoryBase<ItemPriceChange>, IItemPriceChangeRepository
 {

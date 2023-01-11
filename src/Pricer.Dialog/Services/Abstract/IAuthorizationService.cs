@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using PriceObserver.Data.Persistent.Models;
+using Pricer.Data.Persistent.Models;
 using Pricer.Dialog.Models;
 
 namespace Pricer.Dialog.Services.Abstract;

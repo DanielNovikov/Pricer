@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Components;
-using PriceObserver.Web.Shared.Grpc;
+using Pricer.Web.Shared.Grpc;
 
 namespace Pricer.Web.App.Components;
 

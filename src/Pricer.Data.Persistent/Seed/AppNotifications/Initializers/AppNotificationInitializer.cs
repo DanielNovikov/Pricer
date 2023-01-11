@@ -1,8 +1,8 @@
-﻿using PriceObserver.Data.InMemory.Models.Enums;
-using System.Linq;
-using PriceObserver.Data.Persistent.Models;
+﻿using System.Linq;
+using Pricer.Data.InMemory.Models.Enums;
+using Pricer.Data.Persistent.Models;
 
-namespace PriceObserver.Data.Persistent.Seed.AppNotifications.Initializers;
+namespace Pricer.Data.Persistent.Seed.AppNotifications.Initializers;
 
 public class AppNotificationInitializer
 {

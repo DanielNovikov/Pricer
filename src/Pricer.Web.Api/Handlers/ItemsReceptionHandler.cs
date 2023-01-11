@@ -1,9 +1,9 @@
 ﻿using Google.Protobuf.WellKnownTypes;
 using Grpc.Core;
 using Microsoft.AspNetCore.Authorization;
-using PriceObserver.Web.Shared.Grpc;
-using PriceObserver.Web.Shared.Grpc.HandlerServices;
+using Pricer.Web.Shared.Grpc;
 using Pricer.Web.Api.Extensions;
+using Pricer.Web.Shared.Grpc.HandlerServices;
 
 namespace Pricer.Web.Api.Handlers;
 

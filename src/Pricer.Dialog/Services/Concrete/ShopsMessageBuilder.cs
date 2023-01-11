@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Linq;
-using PriceObserver.Data.InMemory.Models.Enums;
-using PriceObserver.Data.InMemory.Repositories.Abstract;
-using PriceObserver.Data.Service.Abstract;
+using Pricer.Data.InMemory.Models.Enums;
+using Pricer.Data.InMemory.Repositories.Abstract;
+using Pricer.Data.Service.Abstract;
 using Pricer.Dialog.Services.Abstract;
 
 namespace Pricer.Dialog.Services.Concrete;

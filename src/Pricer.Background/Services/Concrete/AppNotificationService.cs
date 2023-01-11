@@ -1,12 +1,12 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
-using PriceObserver.Background.Services.Abstract;
-using PriceObserver.Data.Persistent.Repositories.Abstract;
-using PriceObserver.Data.Service.Abstract;
+using Pricer.Background.Services.Abstract;
 using Pricer.Common.Services.Abstract;
+using Pricer.Data.Persistent.Repositories.Abstract;
+using Pricer.Data.Service.Abstract;
 using Pricer.Telegram.Abstract;
 
-namespace PriceObserver.Background.Services.Concrete;
+namespace Pricer.Background.Services.Concrete;
 
 public class AppNotificationService : IAppNotificationService
 {

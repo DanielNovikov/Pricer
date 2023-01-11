@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Extensions.Caching.Memory;
-using PriceObserver.Data.InMemory.Models;
-using PriceObserver.Data.InMemory.Models.Enums;
-using PriceObserver.Data.InMemory.Repositories.Abstract;
-using PriceObserver.Data.InMemory.Seed;
+using Pricer.Data.InMemory.Models;
+using Pricer.Data.InMemory.Models.Enums;
+using Pricer.Data.InMemory.Repositories.Abstract;
+using Pricer.Data.InMemory.Seed;
 
-namespace PriceObserver.Data.InMemory.Repositories.Concrete;
+namespace Pricer.Data.InMemory.Repositories.Concrete;
 
 public class ShopRepository : ReadOnlyRepositoryBase<Shop, ShopKey>, IShopRepository
 {

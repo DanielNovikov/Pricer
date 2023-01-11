@@ -1,7 +1,7 @@
 ﻿using Grpc.Core;
-using PriceObserver.Web.Shared.Defaults;
-using PriceObserver.Web.Shared.Services.Abstract;
 using Pricer.Web.App.Services.Abstract;
+using Pricer.Web.Shared.Defaults;
+using Pricer.Web.Shared.Services.Abstract;
 
 namespace Pricer.Web.App.Services.Concrete;
 

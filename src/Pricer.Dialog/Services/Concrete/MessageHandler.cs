@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using PriceObserver.Data.Service.Abstract;
+using Pricer.Data.Service.Abstract;
 using Pricer.Dialog.Commands.Abstract;
 using Pricer.Dialog.Menus.Abstract;
 using Pricer.Dialog.Models;

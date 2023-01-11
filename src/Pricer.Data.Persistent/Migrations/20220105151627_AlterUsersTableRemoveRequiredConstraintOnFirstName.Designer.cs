@@ -5,12 +5,12 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
-using PriceObserver.Data;
-using PriceObserver.Data.Persistent;
+using Pricer.Data;
+using Pricer.Data.Persistent;
 
 #nullable disable
 
-namespace PriceObserver.Data.Migrations
+namespace Pricer.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     [Migration("20220105151627_AlterUsersTableRemoveRequiredConstraintOnFirstName")]

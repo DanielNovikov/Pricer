@@ -1,7 +1,7 @@
-﻿using PriceObserver.Data.InMemory.Models.Enums;
-using PriceObserver.Data.Persistent.Seed.AppNotifications.Initializers;
+﻿using Pricer.Data.InMemory.Models.Enums;
+using Pricer.Data.Persistent.Seed.AppNotifications.Initializers;
 
-namespace PriceObserver.Data.Persistent.Seed.AppNotifications;
+namespace Pricer.Data.Persistent.Seed.AppNotifications;
 
 public class AppNotificationsSeeder
 {

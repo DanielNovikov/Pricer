@@ -1,7 +1,7 @@
 ﻿using AngleSharp.Html.Dom;
 using AutoFixture;
 using Moq;
-using PriceObserver.Data.InMemory.Models.Enums;
+using Pricer.Data.InMemory.Models.Enums;
 using Pricer.Parser.Abstract;
 
 namespace Pricer.Parser.UnitTests.ParserProviderServiceTests;

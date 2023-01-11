@@ -1,5 +1,5 @@
 ﻿using System;
-using PriceObserver.Data.InMemory.Models.Enums;
+using Pricer.Data.InMemory.Models.Enums;
 
 namespace Pricer.Parser.Models;
 

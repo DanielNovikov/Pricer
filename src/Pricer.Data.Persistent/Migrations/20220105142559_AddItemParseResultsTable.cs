@@ -4,7 +4,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
-namespace PriceObserver.Data.Migrations
+namespace Pricer.Data.Migrations
 {
     public partial class AddItemParseResultsTable : Migration
     {

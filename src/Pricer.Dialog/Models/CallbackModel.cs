@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
-using PriceObserver.Data.InMemory.Models.Enums;
-using PriceObserver.Data.Persistent.Models;
+using Pricer.Data.InMemory.Models.Enums;
+using Pricer.Data.Persistent.Models;
 
 namespace Pricer.Dialog.Models;
 

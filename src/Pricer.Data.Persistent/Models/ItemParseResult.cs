@@ -1,7 +1,7 @@
 ﻿using System;
-using PriceObserver.Data.Persistent.Models.Abstract;
+using Pricer.Data.Persistent.Models.Abstract;
 
-namespace PriceObserver.Data.Persistent.Models;
+namespace Pricer.Data.Persistent.Models;
 
 public class ItemParseResult : IAggregateRoot
 {

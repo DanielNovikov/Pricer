@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.Extensions.Options;
-using PriceObserver.Data.Service.Abstract;
 using Pricer.Common.Models.Options;
+using Pricer.Data.Service.Abstract;
 using Pricer.Dialog.Services.Abstract;
 
 namespace Pricer.Dialog.Services.Concrete;

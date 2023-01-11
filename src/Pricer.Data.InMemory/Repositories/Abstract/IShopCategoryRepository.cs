@@ -1,6 +1,6 @@
-﻿using PriceObserver.Data.InMemory.Models;
+﻿using Pricer.Data.InMemory.Models;
 
-namespace PriceObserver.Data.InMemory.Repositories.Abstract;
+namespace Pricer.Data.InMemory.Repositories.Abstract;
 
 public interface IShopCategoryRepository : IReadOnlyRepository<ShopCategory>
 {

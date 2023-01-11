@@ -1,9 +1,9 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using PriceObserver.Background.Jobs;
-using PriceObserver.Background.Services.Abstract;
-using PriceObserver.Background.Services.Concrete;
+using Pricer.Background.Jobs;
+using Pricer.Background.Services.Abstract;
+using Pricer.Background.Services.Concrete;
 
-namespace PriceObserver.Background;
+namespace Pricer.Background;
 
 public static class DependencyInjection
 {

@@ -1,6 +1,6 @@
 ﻿using System;
 using AngleSharp.Html.Dom;
-using PriceObserver.Data.InMemory.Models.Enums;
+using Pricer.Data.InMemory.Models.Enums;
 
 namespace Pricer.Parser.Abstract;
 

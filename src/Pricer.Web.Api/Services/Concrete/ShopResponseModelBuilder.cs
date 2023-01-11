@@ -1,7 +1,7 @@
-﻿using PriceObserver.Data.InMemory.Models;
-using PriceObserver.Data.InMemory.Models.Enums;
-using PriceObserver.Data.Service.Abstract;
-using PriceObserver.Web.Shared.Grpc;
+﻿using Pricer.Web.Shared.Grpc;
+using Pricer.Data.InMemory.Models;
+using Pricer.Data.InMemory.Models.Enums;
+using Pricer.Data.Service.Abstract;
 using Pricer.Web.Api.Services.Abstract;
 
 namespace Pricer.Web.Api.Services.Concrete;

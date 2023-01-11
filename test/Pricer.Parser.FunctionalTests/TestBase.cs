@@ -1,9 +1,13 @@
 ﻿using System;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Pricer.Parser;
+using Microsoft.Extensions.DependencyInjection.Extensions;
+using Moq;
 using Pricer.Parser.Abstract;
+using Pricer.Parser.Concrete;
+using Pricer.Parser.Options;
 
-namespace PriceObserver.Parser.FunctionalTests;
+namespace Pricer.Parser.FunctionalTests;
 
 public abstract class TestBase
 {
@@ -11,8 +15,15 @@ public abstract class TestBase
     
     protected TestBase()
     {
-        var serviceProvider = new ServiceCollection()
-            .AddParserServices()
+        var configurationSection = Mock.Of<IConfigurationSection>();
+        var configuration = Mock.Of<IConfiguration>(x => x.GetSection(nameof(ProxySettings)) == configurationSection);
+
+        var serviceCollection = new ServiceCollection().AddParserServices(configuration);
+
+        serviceCollection.RemoveAll(typeof(IProxyHttpClient));
+        serviceCollection.AddHttpClient<IProxyHttpClient, ProxyHttpClient>();
+
+        var serviceProvider = serviceCollection
             .BuildServiceProvider();
 
         Parser = serviceProvider.GetService<IParser>()

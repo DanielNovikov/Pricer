@@ -1,8 +1,8 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using PriceObserver.Data.Service.Abstract;
-using PriceObserver.Data.Service.Concrete;
+using Pricer.Data.Service.Abstract;
+using Pricer.Data.Service.Concrete;
 
-namespace PriceObserver.Data.Service;
+namespace Pricer.Data.Service;
 
 public static class DependencyInjection
 {
