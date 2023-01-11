@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+  </PropertyGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\Pricer.Web.Api\Pricer.Web.Api.csproj" />
+        <ProjectReference Include="..\Pricer.Web.App\Pricer.Web.App.csproj" />
+        <ProjectReference Include="..\Pricer.Background\Pricer.Background.csproj" />
+        <ProjectReference Include="..\Pricer.Data.Persistent\Pricer.Data.Persistent.csproj" />
+        <ProjectReference Include="..\Pricer.Parser\Pricer.Parser.csproj" />
+        <ProjectReference Include="..\Pricer.Telegram\Pricer.Telegram.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="6.0.6" />
+        <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="6.0.6" />
+        <PackageReference Include="Serilog.AspNetCore" Version="5.0.0" />
+        <PackageReference Include="Serilog.Sinks.Telegram" Version="0.2.1" />
+    </ItemGroup>
+</Project>

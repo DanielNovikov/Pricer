@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="AngleSharp" Version="0.17.1" />
+      <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="6.0.0" />
+      <PackageReference Include="Microsoft.Extensions.Http" Version="6.0.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Pricer.Common\Pricer.Common.csproj" />
+      <ProjectReference Include="..\Pricer.Data.Service\Pricer.Data.Service.csproj" />
+      <ProjectReference Include="..\Pricer.Data.Persistent\Pricer.Data.Persistent.csproj" />
+    </ItemGroup>
+
+</Project>
