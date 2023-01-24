@@ -6,7 +6,7 @@ namespace Pricer.Dialog.Services.Abstract;
 
 public interface IAuthorizationService
 {
-    Task<User?> LogIn(long externalId);
+    Task<User?> LogIn(string externalId);
     
     Task<User> Register(UserModel userModel);
 }

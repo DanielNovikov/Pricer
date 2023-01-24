@@ -6,6 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Pricer.Web.Shared;
 using Pricer.Background;
+using Pricer.Bot;
 using Pricer.Common;
 using Pricer.Data.InMemory;
 using Pricer.Data.Persistent;
@@ -13,7 +14,9 @@ using Pricer.Data.Service;
 using Pricer.Dialog;
 using Pricer.Parser;
 using Pricer.Telegram;
+using Pricer.Viber;
 using Pricer.Web.Api;
+using Pricer.Web.Api.Middlewares;
 using Pricer.Web.Shared;
 
 namespace Pricer;
@@ -38,7 +41,9 @@ public class Startup
         
         services
             .AddCommonServices()
+            .AddBotServices()
             .AddTelegramBot(_configuration)
+            .AddViberBot()
             .AddDialogServices(_configuration)
             .AddParserServices(_configuration)
             .AddBackgroundJobs();
@@ -51,6 +56,7 @@ public class Startup
             .AddDataServices();
 
         services.AddConfiguredGrpc();
+        services.AddControllers().AddNewtonsoftJson();
         services.AddCors();
     }
 
@@ -67,8 +73,13 @@ public class Startup
         });
 
         app.UseBlazorFrameworkFiles();
-        app.UseStaticFiles();
-            
+        app.UseStaticFiles(new StaticFileOptions
+        {
+            ServeUnknownFileTypes = true
+        });
+
+        //app.UseMiddleware<ErrorHandlingMiddleware>();
+        
         app.UseRouting();
         app.UseGrpcWeb();
 
@@ -82,6 +93,10 @@ public class Startup
             
         app.UseEndpoints(endpoints =>
         {
+            endpoints.MapControllerRoute(
+                "default",
+                "{controller}/{action}/{id?}");
+            
             endpoints.MapRazorPages();
             
             endpoints.MapGrpcEndpoints();

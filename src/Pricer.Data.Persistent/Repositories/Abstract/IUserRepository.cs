@@ -6,7 +6,7 @@ namespace Pricer.Data.Persistent.Repositories.Abstract;
 
 public interface IUserRepository : IRepository<User>
 {
-    Task<User> GetByExternalId(long externalId);
+    Task<User> GetByExternalId(string externalId);
 
     Task<IList<User>> GetAllActive();
 }

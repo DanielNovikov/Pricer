@@ -28,9 +28,9 @@ public class UserService : IUserService
         await _userRepository.Update(user);
     }
 
-    public async Task DeactivateUserById(long userId)
+    public async Task DeactivateUserById(string externalId)
     {
-        var user = await _userRepository.GetByExternalId(userId);
+        var user = await _userRepository.GetByExternalId(externalId);
         user.IsActive = false;
             
         await _userRepository.Update(user);

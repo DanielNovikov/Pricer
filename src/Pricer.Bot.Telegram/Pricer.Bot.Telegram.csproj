@@ -2,6 +2,7 @@
 
     <PropertyGroup>
         <TargetFramework>net6.0</TargetFramework>
+        <RootNamespace>Pricer.Telegram</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>
@@ -12,6 +13,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\Pricer.Bot\Pricer.Bot.csproj" />
       <ProjectReference Include="..\Pricer.Data.Persistent\Pricer.Data.Persistent.csproj" />
       <ProjectReference Include="..\Pricer.Parser\Pricer.Parser.csproj" />
       <ProjectReference Include="..\Pricer.Dialog\Pricer.Dialog.csproj" />

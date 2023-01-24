@@ -12,7 +12,7 @@ public class UserRepository : RepositoryBase<User>, IUserRepository
     public UserRepository(ApplicationDbContext context) : base(context)
     { }
 
-    public async Task<User> GetByExternalId(long externalId)
+    public async Task<User> GetByExternalId(string externalId)
     {
         return await Context.Users
             .AsNoTracking()

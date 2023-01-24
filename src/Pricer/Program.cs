@@ -1,4 +1,5 @@
 using System.IO;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -9,6 +10,7 @@ using Pricer.Common.Extensions;
 using Pricer.Data.InMemory.Seed;
 using Pricer.Data.Persistent;
 using Pricer.Data.Persistent.Seed;
+using Pricer.Viber.Services.Abstract;
 using Serilog;
 using TelegramSink;
 
@@ -21,8 +23,8 @@ public class Program
         var host = CreateHostBuilder(args).Build();
             
         SeedData(host);
-
         InitializeLogger();
+        SetViberWebhook(host);
             
         host.Run();
     }
@@ -39,6 +41,19 @@ public class Program
             .UseUrls("http://*:5000")
             .UseStartup<Startup>();
 
+    private static void SetViberWebhook(IWebHost host)
+    {
+        using var scope = host.Services.CreateScope();
+            
+        var viberBotService = scope.GetService<IViberBotService>();
+
+        Task.Run(async () =>
+        {
+            await Task.Delay(2000);
+            await viberBotService.SetWebhook();
+        });
+    }
+    
     private static void SeedData(IWebHost host)
     {
         using var scope = host.Services.CreateScope();

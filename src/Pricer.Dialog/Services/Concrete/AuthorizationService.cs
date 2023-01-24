@@ -24,7 +24,7 @@ public class AuthorizationService : IAuthorizationService
         _userLanguage = userLanguage;
     }
 
-    public async Task<User?> LogIn(long externalId)
+    public async Task<User?> LogIn(string externalId)
     {
         var user = await _userRepository.GetByExternalId(externalId);
 

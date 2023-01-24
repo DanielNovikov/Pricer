@@ -3,7 +3,7 @@
 namespace Pricer.Dialog.Models;
 
 public record UserModel(
-	long ExternalId,
+	string ExternalId,
 	string? FirstName,
 	string? LastName,
 	string? Username)

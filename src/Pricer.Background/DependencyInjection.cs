@@ -12,9 +12,7 @@ public static class DependencyInjection
         return services
             .AddHostedService<ItemsObserver>()
             .AddHostedService<TelegramMessageReceiver>()
-            .AddHostedService<AppNotificationsSender>()
             
-            .AddTransient<IAppNotificationService, AppNotificationService>()
             .AddTransient<IItemsObserverService, ItemsObserverService>()
             .AddTransient<IItemPriceService, ItemPriceService>()
             .AddTransient<IItemAvailabilityService, ItemAvailabilityService>()

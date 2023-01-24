@@ -42,7 +42,7 @@ public class UpdateExceptionHandler : IUpdateHandler
                 return;
             }
             
-            var userId = message.Chat.Id;
+            var userId = message.Chat.Id.ToString();
                 
             _logger.LogError(@"User id: {0}
 User message: {1}
@@ -51,7 +51,7 @@ InnerException: {3}",
                 userId, message.Text, ex.Message, ex.InnerException?.ToString());
 
             var reply = _resourceService.Get(ResourceKey.Dialog_ErrorOccured);
-            await _telegramBotService.SendMessage(userId, reply);
+            await _telegramBotService.SendText(userId, reply);
         }
     }
 }

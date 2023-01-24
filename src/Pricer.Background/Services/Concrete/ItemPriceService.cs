@@ -84,7 +84,7 @@ public class ItemPriceService : IItemPriceService
 
             var keyboard = _itemDeletionKeyboardBuilder.Build(item);
             
-            await _telegramBotService.SendMessageWithReplyMarkup(user.ExternalId, priceChangedMessage, keyboard);
+            await _telegramBotService.SendTextWithMessageKeyboard(user.ExternalId, priceChangedMessage, keyboard);
         }
     }
 

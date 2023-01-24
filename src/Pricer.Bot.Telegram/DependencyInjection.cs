@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Pricer.Bot.Abstract;
 using Pricer.Telegram.Abstract;
 using Pricer.Telegram.Concrete;
 using Pricer.Telegram.Options;
@@ -17,9 +18,10 @@ public static class DependencyInjection
         return services
             .AddSingleton<ITelegramBot, TelegramBot>()
             .AddTransient<ITelegramBotService, TelegramBotService>()
+            .AddTransient<IBotService, TelegramBotService>()
             .AddTransient<IUpdateHandler, UpdateHandler>()
             .Decorate<IUpdateHandler, UpdateExceptionHandler>()
-            .AddTransient<IReplyKeyboardMarkupBuilder, ReplyKeyboardMarkupBuilder>()
+            .AddTransient<IReplyMarkupBuilder, ReplyMarkupBuilder>()
             .AddTransient<IInlineKeyboardMarkupBuilder, InlineKeyboardMarkupBuilder>();
     }
 }

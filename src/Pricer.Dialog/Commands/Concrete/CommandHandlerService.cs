@@ -16,17 +16,20 @@ public class CommandHandlerService : ICommandHandlerService
     private readonly IUserActionLogger _userActionLogger;
     private readonly IMenuRepository _menuRepository;
     private readonly IUserRedirectionService _userRedirectionService;
+    private readonly IWrongCommandHandler _wrongCommandHandler;
 
     public CommandHandlerService(
         IEnumerable<ICommandHandler> commandHandlers,
         IUserActionLogger userActionLogger, 
         IMenuRepository menuRepository, 
-        IUserRedirectionService userRedirectionService)
+        IUserRedirectionService userRedirectionService,
+        IWrongCommandHandler wrongCommandHandler)
     {
         _commandHandlers = commandHandlers;
         _userActionLogger = userActionLogger;
         _menuRepository = menuRepository;
         _userRedirectionService = userRedirectionService;
+        _wrongCommandHandler = wrongCommandHandler;
     }
 
     public async Task<CommandHandlingServiceResult> Handle(Command command, MessageModel message)
@@ -44,8 +47,8 @@ public class CommandHandlerService : ICommandHandlerService
         var commandAvailableInMenu = menu.Commands.Any(x => x == command);
         if (!commandAvailableInMenu)
         {
-            _userActionLogger.LogWrongCommand(message.User, message.Text);
-            return CommandHandlingServiceResult.Fail(ResourceKey.Dialog_IncorrectCommand);
+            var result = _wrongCommandHandler.Handle(message);
+            return CommandHandlingServiceResult.Success(result);
         }
 
         if (command.MenuToRedirect is not null)

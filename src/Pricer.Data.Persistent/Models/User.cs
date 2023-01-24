@@ -8,7 +8,7 @@ public class User : IAggregateRoot
 {
     public int Id { get; set; }
     
-    public long ExternalId { get; set; }
+    public string ExternalId { get; set; }
         
     public string FirstName { get; set; }
         

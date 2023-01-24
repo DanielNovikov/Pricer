@@ -8,7 +8,7 @@ public static class ChatExtensions
 	public static UserModel ToUser(this Chat chat)
 	{
 		return new UserModel(
-			chat.Id,
+			chat.Id.ToString(),
 			chat.FirstName,
 			chat.LastName,
 			chat.Username);

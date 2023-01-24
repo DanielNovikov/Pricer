@@ -11,11 +11,12 @@
         <ProjectReference Include="..\Pricer.Background\Pricer.Background.csproj" />
         <ProjectReference Include="..\Pricer.Data.Persistent\Pricer.Data.Persistent.csproj" />
         <ProjectReference Include="..\Pricer.Parser\Pricer.Parser.csproj" />
-        <ProjectReference Include="..\Pricer.Telegram\Pricer.Telegram.csproj" />
+        <ProjectReference Include="..\Pricer.Bot.Telegram\Pricer.Bot.Telegram.csproj" />
     </ItemGroup>
 
     <ItemGroup>
         <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="6.0.6" />
+        <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="6.0.13" />
         <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="6.0.6" />
         <PackageReference Include="Serilog.AspNetCore" Version="5.0.0" />
         <PackageReference Include="Serilog.Sinks.Telegram" Version="0.2.1" />

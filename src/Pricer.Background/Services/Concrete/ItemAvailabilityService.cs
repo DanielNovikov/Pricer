@@ -50,6 +50,6 @@ public class ItemAvailabilityService : IItemAvailabilityService
 			: ResourceKey.Background_ItemIsOutOfStock;
             
 		var availabilityMessage = _resourceService.Get(resourceTemplate, partnerUrl, item.Title);
-		await _telegramBotService.SendMessage(user.ExternalId, availabilityMessage);
+		await _telegramBotService.SendText(user.ExternalId, availabilityMessage);
 	}
 }

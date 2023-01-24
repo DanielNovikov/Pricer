@@ -9,7 +9,7 @@ public interface IUserService
 {
     Task RedirectToMenu(User user, Menu menu);
 
-    Task DeactivateUserById(long userId);
+    Task DeactivateUserById(string externalId);
 
     Task ChangeSelectedLanguage(User user, LanguageKey languageKey);
 

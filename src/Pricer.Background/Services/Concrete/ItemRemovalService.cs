@@ -66,7 +66,7 @@ public class ItemRemovalService : IItemRemovalService
             ResourceKey.Background_ItemDeleted,
             partnerUrl, item.Title, errorReason);
 
-        await _telegramBotService.SendMessage(user.ExternalId, itemDeletedMessage);
+        await _telegramBotService.SendText(user.ExternalId, itemDeletedMessage);
         await _itemService.Delete(item);
         
         _logger.LogInformation(

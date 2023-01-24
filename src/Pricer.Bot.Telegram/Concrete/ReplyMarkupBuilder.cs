@@ -5,7 +5,7 @@ using Telegram.Bot.Types.ReplyMarkups;
 
 namespace Pricer.Telegram.Concrete;
 
-public class ReplyKeyboardMarkupBuilder : IReplyKeyboardMarkupBuilder
+public class ReplyMarkupBuilder : IReplyMarkupBuilder
 {
     public IReplyMarkup Build(MenuKeyboard keyboard)
     {
