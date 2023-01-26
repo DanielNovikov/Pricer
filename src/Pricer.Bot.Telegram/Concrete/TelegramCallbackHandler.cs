@@ -1,24 +1,30 @@
-﻿using Pricer.Bot.Abstract;
+﻿using System;
+using System.Threading.Tasks;
+using Pricer.Bot.Abstract;
 using Pricer.Data.Service.Abstract;
 using Pricer.Dialog.Callbacks.Abstract;
 using Pricer.Dialog.Models;
+using Pricer.Telegram.Abstract;
 
-namespace Pricer.Bot.Concrete;
+namespace Pricer.Telegram.Concrete;
 
-public class BotCallbackHandler : IBotCallbackHandler
+public class TelegramCallbackHandler : ITelegramCallbackHandler
 {
     private readonly ICallbackHandlerService _callbackHandlerService;
     private readonly IResourceService _resourceService;
+    private readonly ITelegramBotService _telegramBotService;
 
-    public BotCallbackHandler(
+    public TelegramCallbackHandler(
         ICallbackHandlerService callbackHandlerService,
-        IResourceService resourceService)
+        IResourceService resourceService, 
+        ITelegramBotService telegramBotService)
     {
         _callbackHandlerService = callbackHandlerService;
         _resourceService = resourceService;
+        _telegramBotService = telegramBotService;
     }
 
-    public async Task Handle(CallbackHandlingModel callbackHandlingModel, IBotService botService)
+    public async Task Handle(CallbackHandlingModel callbackHandlingModel)
     {
         var serviceResult = await _callbackHandlerService.Handle(callbackHandlingModel);
 
@@ -37,11 +43,11 @@ public class BotCallbackHandler : IBotCallbackHandler
                 switch (keyboardResult.Keyboard)
                 {
                     case MenuKeyboard menuKeyboard:
-                        await botService.DeleteMessage(userExternalId, messageId);
-                        await botService.SendTextWithMenuKeyboard(userExternalId, text, menuKeyboard);
+                        await _telegramBotService.DeleteMessage(userExternalId, messageId);
+                        await _telegramBotService.SendTextWithMenuKeyboard(userExternalId, text, menuKeyboard);
                         return;
                     case MessageKeyboard messageKeyboard:
-                        await botService.EditMessageWithKeyboard(userExternalId, messageId, text, messageKeyboard);
+                        await _telegramBotService.EditMessageWithKeyboard(userExternalId, messageId, text, messageKeyboard);
                         return;
                     default:
                         throw new InvalidOperationException($"Unexpected type of reply result {keyboardResult.Keyboard.GetType().FullName}");
@@ -50,12 +56,12 @@ public class BotCallbackHandler : IBotCallbackHandler
             case ReplyResourceResult resourceResult:
             {
                 var text = _resourceService.Get(resourceResult.Resource, resourceResult.Parameters);
-                await botService.EditMessage(userExternalId, messageId, text);
+                await _telegramBotService.EditMessage(userExternalId, messageId, text);
                 break;
             }
             case ReplyTextResult textResult:
             {
-                await botService.EditMessage(userExternalId, messageId, textResult.Text);
+                await _telegramBotService.EditMessage(userExternalId, messageId, textResult.Text);
                 break;
             }
             default:

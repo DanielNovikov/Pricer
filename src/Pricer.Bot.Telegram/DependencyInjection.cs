@@ -16,6 +16,8 @@ public static class DependencyInjection
             .Bind(configuration.GetSection("TelegramClient"));
 
         return services
+            .AddTransient<ITelegramMessageHandler, TelegramMessageHandler>()
+            .AddTransient<ITelegramCallbackHandler, TelegramCallbackHandler>()
             .AddSingleton<ITelegramBot, TelegramBot>()
             .AddTransient<ITelegramBotService, TelegramBotService>()
             .AddTransient<IBotService, TelegramBotService>()

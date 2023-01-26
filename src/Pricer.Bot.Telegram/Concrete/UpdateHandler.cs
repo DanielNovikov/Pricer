@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Pricer.Bot.Abstract;
 using Pricer.Telegram.Abstract;
 using Pricer.Telegram.Extensions;
 using Telegram.Bot.Types;
@@ -10,18 +9,15 @@ namespace Pricer.Telegram.Concrete;
 
 public class UpdateHandler : IUpdateHandler
 {
-    private readonly IBotCallbackHandler _callbackHandler;
-    private readonly IBotMessageHandler _messageHandler;
-    private readonly ITelegramBotService _telegramBotService;
+    private readonly ITelegramCallbackHandler _callbackHandler;
+    private readonly ITelegramMessageHandler _telegramMessageHandler;
 
     public UpdateHandler(
-        IBotCallbackHandler callbackHandler,
-        IBotMessageHandler messageHandler, 
-        ITelegramBotService telegramBotService)
+        ITelegramCallbackHandler callbackHandler,
+        ITelegramMessageHandler telegramMessageHandler)
     {
         _callbackHandler = callbackHandler;
-        _messageHandler = messageHandler;
-        _telegramBotService = telegramBotService;
+        _telegramMessageHandler = telegramMessageHandler;
     }
 
     public async Task Handle(Update update)
@@ -29,10 +25,10 @@ public class UpdateHandler : IUpdateHandler
         switch (update.Type)
         {
             case UpdateType.Message:
-                await _messageHandler.Handle(update.ToMessage(), _telegramBotService);
+                await _telegramMessageHandler.Handle(update.ToMessage());
                 return;
             case UpdateType.CallbackQuery:
-                await _callbackHandler.Handle(update.ToCallback(), _telegramBotService);
+                await _callbackHandler.Handle(update.ToCallback());
                 return;
             default:
                 throw new ArgumentOutOfRangeException(nameof(update.Type));

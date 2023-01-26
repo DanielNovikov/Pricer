@@ -15,6 +15,8 @@ public static class DependencyInjection
         });
 
         return services
+            .AddTransient<IViberMessageHandler, ViberMessageHandler>()
+            .AddTransient<IViberCallbackHandler, ViberCallbackHandler>()
             .AddTransient<IViberWebhookHandler, ViberWebhookHandler>()
             .AddTransient<IKeyboardButtonsBuilder, KeyboardButtonsBuilder>();
     }

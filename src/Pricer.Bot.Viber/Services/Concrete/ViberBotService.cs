@@ -37,7 +37,7 @@ public class ViberBotService : IViberBotService
 #if DEBUG
         var body = new Dictionary<string, object>
         {
-            { "url", "https://1089-95-158-53-55.eu.ngrok.io/api/viber/webhook" }
+            { "url", "https://c948-95-158-53-50.eu.ngrok.io/api/viber/webhook" }
         };
 #else
         var body = new Dictionary<string, object>

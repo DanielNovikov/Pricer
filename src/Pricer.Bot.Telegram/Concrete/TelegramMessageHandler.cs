@@ -1,32 +1,37 @@
-﻿using Pricer.Bot.Abstract;
+﻿using System;
+using System.Threading.Tasks;
 using Pricer.Data.Service.Abstract;
 using Pricer.Dialog.Models;
 using Pricer.Dialog.Services.Abstract;
+using Pricer.Telegram.Abstract;
 
-namespace Pricer.Bot.Concrete;
+namespace Pricer.Telegram.Concrete;
 
-public class BotMessageHandler : IBotMessageHandler
+public class TelegramMessageHandler : ITelegramMessageHandler
 {
-    private readonly IMessageHandler _messageHandler;
+    private readonly IMessageHandler _telegramMessageHandler;
     private readonly IResourceService _resourceService;
+    private readonly ITelegramBotService _telegramBotService;
 
-    public BotMessageHandler(
-        IMessageHandler messageHandler,
-        IResourceService resourceService)
+    public TelegramMessageHandler(
+        IMessageHandler telegramMessageHandler,
+        IResourceService resourceService, 
+        ITelegramBotService telegramBotService)
     {
-        _messageHandler = messageHandler;
+        _telegramMessageHandler = telegramMessageHandler;
         _resourceService = resourceService;
+        _telegramBotService = telegramBotService;
     }
-
-    public async Task Handle(MessageHandlingModel messageHandlingModel, IBotService botService)
+    
+    public async Task Handle(MessageHandlingModel messageHandlingModel)
     {
-        var serviceResult = await _messageHandler.Handle(messageHandlingModel);
+        var serviceResult = await _telegramMessageHandler.Handle(messageHandlingModel);
 
         var userExternalId = messageHandlingModel.User.ExternalId;
         if (!serviceResult.IsSuccess)
         {
             var errorMessage = _resourceService.Get(serviceResult.Error);
-            await botService.SendText(userExternalId, errorMessage);
+            await _telegramBotService.SendText(userExternalId, errorMessage);
             return;
         }
 
@@ -36,10 +41,10 @@ public class BotMessageHandler : IBotMessageHandler
             {
                 var text = _resourceService.Get(keyboardResult.Resource, keyboardResult.Parameters);
                 
-                var keyboard = keyboardResult.Keyboard switch
+                _ = keyboardResult.Keyboard switch
                 {
-                    MessageKeyboard messageKeyboard => botService.SendTextWithMessageKeyboard(userExternalId, text, messageKeyboard),
-                    MenuKeyboard menuKeyboard => botService.SendTextWithMenuKeyboard(userExternalId, text, menuKeyboard),
+                    MessageKeyboard messageKeyboard => _telegramBotService.SendTextWithMessageKeyboard(userExternalId, text, messageKeyboard),
+                    MenuKeyboard menuKeyboard => _telegramBotService.SendTextWithMenuKeyboard(userExternalId, text, menuKeyboard),
                     _ => throw new InvalidOperationException(
                         $"Unexpected type of reply result {keyboardResult.Keyboard.GetType().FullName}")
                 };
@@ -49,12 +54,12 @@ public class BotMessageHandler : IBotMessageHandler
             case ReplyResourceResult resourceResult:
             {
                 var text = _resourceService.Get(resourceResult.Resource, resourceResult.Parameters);
-                await botService.SendText(userExternalId, text);
+                await _telegramBotService.SendText(userExternalId, text);
                 break;
             }
             case ReplyTextResult textResult:
             {
-                await botService.SendText(userExternalId, textResult.Text);
+                await _telegramBotService.SendText(userExternalId, textResult.Text);
                 break;
             }
             default:

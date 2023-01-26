@@ -8,22 +8,22 @@ namespace Pricer.Viber.Services.Concrete;
 
 public class ViberWebhookHandler : IViberWebhookHandler
 {
-    private readonly IBotMessageHandler _messageHandler;
+    private readonly IViberMessageHandler _viberMessageHandler;
     private readonly IViberBotService _viberBotService;
 
     public ViberWebhookHandler(
-        IBotMessageHandler messageHandler,
-        IViberBotService viberBotService)
+        IViberBotService viberBotService, 
+        IViberMessageHandler viberMessageHandler)
     {
-        _messageHandler = messageHandler;
         _viberBotService = viberBotService;
+        _viberMessageHandler = viberMessageHandler;
     }
 
     public async Task Handle(ViberWebhookRequest request)
     {
         if (request.Event == EventType.Message)
         {
-            await _messageHandler.Handle(request.MapToMessage(), _viberBotService);
+            await _viberMessageHandler.Handle(request.MapToMessage());
             return;
         }
     }

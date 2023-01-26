@@ -10,6 +10,14 @@ public class TextMessage : MessageBase
     {
     }
 
+    private string _text;
+    
     [JsonProperty("text")]
-    public string Text { get; set; } = default!;
+    public string Text
+    {
+        get => _text;
+        set => _text = value
+            .Replace("<b>", "*")
+            .Replace("</b>", "*");
+    }
 }
