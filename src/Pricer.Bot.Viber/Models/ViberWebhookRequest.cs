@@ -65,6 +65,14 @@ public class ViberWebhookRequest
         return new MessageHandlingModel(textMessage.Text, MapUser());
     }
 
+    public CallbackHandlingModel MapToCallback()
+    {
+        if (Message is not TextMessage textMessage)
+            throw new InvalidOperationException("Couldn't map request to text message");
+        
+        return new CallbackHandlingModel(textMessage.Text, default, MapUser());
+    }
+
     private UserModel MapUser()
     {
         if (Sender is null)
@@ -73,7 +81,6 @@ public class ViberWebhookRequest
         return new UserModel(
             Sender.Id,
             Sender.Name,
-            default,
             default);
     }
 }

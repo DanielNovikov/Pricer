@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using Pricer.Background.Services.Abstract;
+using Pricer.Bot.Abstract;
 using Pricer.Common.Services.Abstract;
 using Pricer.Data.InMemory.Models.Enums;
 using Pricer.Data.Persistent.Models;
@@ -13,34 +14,34 @@ namespace Pricer.Background.Services.Concrete;
 public class ItemRemovalService : IItemRemovalService
 {
     private readonly IResourceService _resourceService;
-    private readonly ITelegramBotService _telegramBotService;
     private readonly IItemParseResultService _parseResultService;
     private readonly ILogger<ItemRemovalService> _logger;
     private readonly IPartnerUrlBuilder _partnerUrlBuilder;
     private readonly IUserRepository _userRepository;
     private readonly IUserLanguage _userLanguage;
     private readonly IItemService _itemService;
+    private readonly IBotService _botService;
 
     private const int CountOfFailedToRemove = 20;
     
     public ItemRemovalService(
         IResourceService resourceService, 
-        ITelegramBotService telegramBotService, 
         IItemParseResultService parseResultService, 
         ILogger<ItemRemovalService> logger, 
         IPartnerUrlBuilder partnerUrlBuilder, 
         IUserRepository userRepository, 
         IUserLanguage userLanguage,
-        IItemService itemService)
+        IItemService itemService, 
+        IBotService botService)
     {
         _resourceService = resourceService;
-        _telegramBotService = telegramBotService;
         _parseResultService = parseResultService;
         _logger = logger;
         _partnerUrlBuilder = partnerUrlBuilder;
         _userRepository = userRepository;
         _userLanguage = userLanguage;
         _itemService = itemService;
+        _botService = botService;
     }
 
     public async Task Remove(Item item, ResourceKey error)
@@ -66,7 +67,7 @@ public class ItemRemovalService : IItemRemovalService
             ResourceKey.Background_ItemDeleted,
             partnerUrl, item.Title, errorReason);
 
-        await _telegramBotService.SendText(user.ExternalId, itemDeletedMessage);
+        await _botService.SendText(user.BotKey, user.ExternalId, itemDeletedMessage);
         await _itemService.Delete(item);
         
         _logger.LogInformation(

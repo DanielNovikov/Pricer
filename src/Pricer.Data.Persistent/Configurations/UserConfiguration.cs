@@ -21,12 +21,7 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
             .IsRequired();
 
         builder
-            .Property(u => u.FirstName)
-            .HasMaxLength(100)
-            .IsRequired(false);
-            
-        builder
-            .Property(u => u.LastName)
+            .Property(u => u.FullName)
             .HasMaxLength(100)
             .IsRequired(false);
 
@@ -47,6 +42,11 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
         
         builder
             .Property(x => x.SelectedLanguageKey)
+            .HasConversion<int>()
+            .IsRequired();
+
+        builder
+            .Property(x => x.BotKey)
             .HasConversion<int>()
             .IsRequired();
     }

@@ -4,8 +4,7 @@ namespace Pricer.Dialog.Models;
 
 public record UserModel(
 	string ExternalId,
-	string? FirstName,
-	string? LastName,
+	string FullName,
 	string? Username)
 {
 	public User ToUser()
@@ -13,8 +12,7 @@ public record UserModel(
 		return new User
 		{
 			ExternalId = ExternalId,
-			FirstName = FirstName,
-			LastName = LastName,
+			FullName = FullName,
 			Username = Username
 		};
 	}

@@ -1,21 +1,19 @@
-﻿using Pricer.Bot.Models.Enums;
+﻿using Pricer.Data.Persistent.Models.Enums;
 using Pricer.Dialog.Models;
 
 namespace Pricer.Bot.Abstract;
 
 public interface IBotService
 {
-    BotKey Key { get; }
-    
-    Task SendText(string userId, string text);
+    Task SendText(BotKey key, string userId, string text);
 
-    Task SendTextWithMenuKeyboard(string userId, string text, MenuKeyboard keyboard);
+    Task SendTextWithMenuKeyboard(BotKey key, string userId, string text, MenuKeyboard keyboard);
     
-    Task SendTextWithMessageKeyboard(string userId, string text, MessageKeyboard keyboard);
+    Task SendTextWithMessageKeyboard(BotKey key, string userId, string text, MessageKeyboard keyboard);
     
-    Task EditMessage(string userId, int messageId, string text);
+    Task EditMessage(BotKey key, string userId, int messageId, string text);
     
-    Task EditMessageWithKeyboard(string userId, int messageId, string text, MessageKeyboard keyboard);
+    Task EditMessageWithKeyboard(BotKey key, string userId, int messageId, string text, MessageKeyboard keyboard);
     
-    Task DeleteMessage(string userId, int messageId);
+    Task DeleteMessage(BotKey key, string userId, int messageId);
 }

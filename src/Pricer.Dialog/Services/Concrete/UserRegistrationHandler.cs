@@ -1,7 +1,6 @@
 ﻿using System.Threading.Tasks;
 using Pricer.Data.InMemory.Models.Enums;
 using Pricer.Data.Service.Abstract;
-using Pricer.Dialog.Extensions;
 using Pricer.Dialog.Models;
 using Pricer.Dialog.Models.Abstract;
 using Pricer.Dialog.Services.Abstract;
@@ -51,6 +50,6 @@ public class UserRegistrationHandler : IUserRegistrationHandler
         return new ReplyKeyboardResult(
             menuKeyboard, 
             ResourceKey.Dialog_UserRegistered,
-            user.GetFullName(), helpCommandTitle, shopsInfoMessage, menuText);
+            user.FullName, helpCommandTitle, shopsInfoMessage, menuText);
     }
 }

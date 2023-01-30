@@ -1,4 +1,5 @@
-﻿using Pricer.Data.Persistent.Repositories.Abstract;
+﻿using Pricer.Data.InMemory.Repositories.Abstract;
+using Pricer.Data.Persistent.Repositories.Abstract;
 using Pricer.Data.Service.Abstract;
 using Pricer.Dialog.Models;
 using Pricer.Dialog.Services.Abstract;
@@ -13,19 +14,21 @@ public class ViberMessageHandler : IViberMessageHandler
     private readonly IViberBotService _viberBotService;
     private readonly IMenuKeyboardBuilder _menuKeyboardBuilder;
     private readonly IUserRepository _userRepository;
+    private readonly IMenuRepository _menuRepository;
 
     public ViberMessageHandler(
         IMessageHandler telegramMessageHandler,
         IResourceService resourceService, 
         IViberBotService viberBotService, 
         IMenuKeyboardBuilder menuKeyboardBuilder, 
-        IUserRepository userRepository)
+        IUserRepository userRepository, IMenuRepository menuRepository)
     {
         _telegramMessageHandler = telegramMessageHandler;
         _resourceService = resourceService;
         _viberBotService = viberBotService;
         _menuKeyboardBuilder = menuKeyboardBuilder;
         _userRepository = userRepository;
+        _menuRepository = menuRepository;
     }
     
     public async Task Handle(MessageHandlingModel messageHandlingModel)
@@ -36,7 +39,9 @@ public class ViberMessageHandler : IViberMessageHandler
         if (!serviceResult.IsSuccess)
         {
             var errorMessage = _resourceService.Get(serviceResult.Error);
-            await _viberBotService.SendText(userExternalId, errorMessage);
+            var user = await _userRepository.GetByExternalId(userExternalId);
+            var keyboard = _menuKeyboardBuilder.Build(user.MenuKey);
+            await _viberBotService.SendTextWithMenuKeyboard(userExternalId, errorMessage, keyboard);
             return;
         }
 
@@ -45,15 +50,27 @@ public class ViberMessageHandler : IViberMessageHandler
             case ReplyKeyboardResult keyboardResult:
             {
                 var text = _resourceService.Get(keyboardResult.Resource, keyboardResult.Parameters);
-                
-                _ = keyboardResult.Keyboard switch
+
+                switch (keyboardResult.Keyboard)
                 {
-                    MessageKeyboard messageKeyboard => _viberBotService.SendTextWithMessageKeyboard(userExternalId, text, messageKeyboard),
-                    MenuKeyboard menuKeyboard => _viberBotService.SendTextWithMenuKeyboard(userExternalId, text, menuKeyboard),
-                    _ => throw new InvalidOperationException(
-                        $"Unexpected type of reply result {keyboardResult.Keyboard.GetType().FullName}")
-                };
-                
+                    case MessageKeyboard messageKeyboard:
+                        await _viberBotService.SendTextWithMessageKeyboard(userExternalId, text, messageKeyboard);
+                        
+                        var user = await _userRepository.GetByExternalId(userExternalId);
+                        var menu = _menuRepository.GetByKey(user.MenuKey);
+                        var keyboard = _menuKeyboardBuilder.Build(menu.Key);
+                        var menuText = _resourceService.Get(menu.Title);
+                        
+                        await _viberBotService.SendTextWithMenuKeyboard(userExternalId, menuText, keyboard);
+                        break;
+                    case MenuKeyboard menuKeyboard:
+                        await _viberBotService.SendTextWithMenuKeyboard(userExternalId, text, menuKeyboard);
+                        break;
+                    default:
+                        throw new InvalidOperationException(
+                            $"Unexpected type of reply result {keyboardResult.Keyboard.GetType().FullName}");
+                }
+
                 break;
             }
             case ReplyResourceResult resourceResult:

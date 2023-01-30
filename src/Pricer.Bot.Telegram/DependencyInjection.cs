@@ -20,7 +20,7 @@ public static class DependencyInjection
             .AddTransient<ITelegramCallbackHandler, TelegramCallbackHandler>()
             .AddSingleton<ITelegramBot, TelegramBot>()
             .AddTransient<ITelegramBotService, TelegramBotService>()
-            .AddTransient<IBotService, TelegramBotService>()
+            .AddTransient<IBotProviderService, TelegramBotService>()
             .AddTransient<IUpdateHandler, UpdateHandler>()
             .Decorate<IUpdateHandler, UpdateExceptionHandler>()
             .AddTransient<IReplyMarkupBuilder, ReplyMarkupBuilder>()

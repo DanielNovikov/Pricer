@@ -2,8 +2,8 @@
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
-using Pricer.Bot.Models.Enums;
 using Pricer.Common.Models.Options;
+using Pricer.Data.Persistent.Models.Enums;
 using Pricer.Dialog.Models;
 using Pricer.Viber.Models;
 using Pricer.Viber.Models.Message;
@@ -17,6 +17,7 @@ public class ViberBotService : IViberBotService
     private readonly WebsiteOptions _websiteOptions;
     private readonly ILogger<ViberBotService> _logger;
     private readonly IKeyboardButtonsBuilder _keyboardButtonsBuilder;
+    private readonly IRichMediaBuilder _richMediaBuilder;
 
     public BotKey Key => BotKey.Viber;
     
@@ -24,11 +25,13 @@ public class ViberBotService : IViberBotService
         HttpClient httpClient,
         IOptionsSnapshot<WebsiteOptions> websiteOptions,
         ILogger<ViberBotService> logger, 
-        IKeyboardButtonsBuilder keyboardButtonsBuilder)
+        IKeyboardButtonsBuilder keyboardButtonsBuilder, 
+        IRichMediaBuilder richMediaBuilder)
     {
         _httpClient = httpClient;
         _logger = logger;
         _keyboardButtonsBuilder = keyboardButtonsBuilder;
+        _richMediaBuilder = richMediaBuilder;
         _websiteOptions = websiteOptions.Value;
     }
 
@@ -37,7 +40,7 @@ public class ViberBotService : IViberBotService
 #if DEBUG
         var body = new Dictionary<string, object>
         {
-            { "url", "https://c948-95-158-53-50.eu.ngrok.io/api/viber/webhook" }
+            { "url", "https://6df9-95-158-53-33.eu.ngrok.io/api/viber/webhook" }
         };
 #else
         var body = new Dictionary<string, object>
@@ -84,9 +87,22 @@ public class ViberBotService : IViberBotService
         await Send(requestModel, "send_message");
     }
 
-    public Task SendTextWithMessageKeyboard(string userId, string text, MessageKeyboard keyboard)
+    public async Task SendTextWithMessageKeyboard(string userId, string text, MessageKeyboard keyboard)
     {
-        throw new NotImplementedException();
+        var richMedia = _richMediaBuilder.Build(text, keyboard);
+        
+        var requestModel = new RichMediaMessage
+        {
+            Receiver = userId,
+            Sender = new ViberUser
+            {
+                Name = "Pricer"
+            },
+            MinApiVersion = 6.7,
+            RichMedia = richMedia
+        };
+        
+        await Send(requestModel, "send_message");
     }
 
     public Task EditMessage(string userId, int messageId, string message)

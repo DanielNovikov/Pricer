@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using Pricer.Background.Services.Abstract;
+using Pricer.Bot.Abstract;
 using Pricer.Common.Services.Abstract;
 using Pricer.Data.InMemory.Models.Enums;
 using Pricer.Data.Persistent.Models;
@@ -13,25 +14,25 @@ public class ItemAvailabilityService : IItemAvailabilityService
 {
 	private readonly IItemService _itemService;
 	private readonly IResourceService _resourceService;
-	private readonly ITelegramBotService _telegramBotService;
 	private readonly IUserRepository _userRepository;
 	private readonly IUserLanguage _userLanguage;
 	private readonly IPartnerUrlBuilder _partnerUrlBuilder;
+	private readonly IBotService _botService;
 
 	public ItemAvailabilityService(
 		IItemService itemService,
 		IResourceService resourceService,
-		ITelegramBotService telegramBotService,
 		IUserRepository userRepository,
 		IUserLanguage userLanguage,
-		IPartnerUrlBuilder partnerUrlBuilder)
+		IPartnerUrlBuilder partnerUrlBuilder, 
+		IBotService botService)
 	{
 		_itemService = itemService;
 		_resourceService = resourceService;
-		_telegramBotService = telegramBotService;
 		_userRepository = userRepository;
 		_userLanguage = userLanguage;
 		_partnerUrlBuilder = partnerUrlBuilder;
+		_botService = botService;
 	}
 
 	public async ValueTask Update(Item item, bool isAvailable)
@@ -50,6 +51,6 @@ public class ItemAvailabilityService : IItemAvailabilityService
 			: ResourceKey.Background_ItemIsOutOfStock;
             
 		var availabilityMessage = _resourceService.Get(resourceTemplate, partnerUrl, item.Title);
-		await _telegramBotService.SendText(user.ExternalId, availabilityMessage);
+		await _botService.SendText(user.BotKey, user.ExternalId, availabilityMessage);
 	}
 }

@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using Pricer.Bot.Abstract;
 using Pricer.Viber.Services.Abstract;
 using Pricer.Viber.Services.Concrete;
 
@@ -13,11 +14,18 @@ public static class DependencyInjection
             client.BaseAddress = new Uri("https://chatapi.viber.com");
             client.DefaultRequestHeaders.Add("X-Viber-Auth-Token", "50687d871a67e550-450f5771df432363-9852ebf617b5d72");
         });
+        
+        services.AddHttpClient<IBotProviderService, ViberBotService>(client =>
+        {
+            client.BaseAddress = new Uri("https://chatapi.viber.com");
+            client.DefaultRequestHeaders.Add("X-Viber-Auth-Token", "50687d871a67e550-450f5771df432363-9852ebf617b5d72");
+        });
 
         return services
             .AddTransient<IViberMessageHandler, ViberMessageHandler>()
             .AddTransient<IViberCallbackHandler, ViberCallbackHandler>()
             .AddTransient<IViberWebhookHandler, ViberWebhookHandler>()
-            .AddTransient<IKeyboardButtonsBuilder, KeyboardButtonsBuilder>();
+            .AddTransient<IKeyboardButtonsBuilder, KeyboardButtonsBuilder>()
+            .AddTransient<IRichMediaBuilder, RichMediaBuilder>();
     }
 }

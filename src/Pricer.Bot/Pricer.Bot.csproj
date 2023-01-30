@@ -10,8 +10,4 @@
       <ProjectReference Include="..\Pricer.Dialog\Pricer.Dialog.csproj" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="Concrete" />
-    </ItemGroup>
-
 </Project>

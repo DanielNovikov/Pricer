@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
-using Pricer.Bot.Models.Enums;
+using Pricer.Data.Persistent.Models.Enums;
 using Pricer.Data.Service.Abstract;
 using Pricer.Dialog.Models;
 using Pricer.Telegram.Abstract;

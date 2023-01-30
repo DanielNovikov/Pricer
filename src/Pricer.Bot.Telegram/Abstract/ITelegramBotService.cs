@@ -2,6 +2,6 @@
 
 namespace Pricer.Telegram.Abstract;
 
-public interface ITelegramBotService : IBotService
+public interface ITelegramBotService : IBotProviderService
 {
 }

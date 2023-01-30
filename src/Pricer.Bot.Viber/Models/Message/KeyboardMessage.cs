@@ -11,13 +11,13 @@ public class KeyboardMessage : TextMessage
 
 public record Keyboard(KeyboardButton[] Buttons)
 {
-    public string Type { get; } = "keyboard";
+    public string Type => "keyboard";
 };
 
 public class KeyboardButton
 {
-    public int Rows { get; } = 1;
-    
+    public int Rows => 1;
+
     public int Columns { get; set; }
 
     private string _text;
@@ -29,5 +29,5 @@ public class KeyboardButton
 
     public string ActionBody { get; set; } = default!;
     
-    public string BgColor { get; } = "#0328fc";
+    public string BgColor => "#2847fa";
 }

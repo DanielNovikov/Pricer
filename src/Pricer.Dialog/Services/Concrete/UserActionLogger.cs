@@ -4,7 +4,6 @@ using Pricer.Data.InMemory.Models;
 using Pricer.Data.InMemory.Models.Enums;
 using Pricer.Data.Persistent.Models;
 using Pricer.Data.Service.Abstract;
-using Pricer.Dialog.Extensions;
 using Pricer.Dialog.Services.Abstract;
 
 namespace Pricer.Dialog.Services.Concrete;
@@ -162,7 +161,7 @@ public class UserActionLogger : IUserActionLogger
 
     private string GetUserInfo(User user)
     {
-        var info = _resourceService.Get(ResourceKey.UserAction_UserInfo, user.GetFullName(), user.ExternalId);
+        var info = _resourceService.Get(ResourceKey.UserAction_UserInfo, user.FullName, user.ExternalId);
 
         if (!string.IsNullOrEmpty(user.Username))
         {
