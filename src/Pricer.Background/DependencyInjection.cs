@@ -13,6 +13,7 @@ public static class DependencyInjection
             .AddHostedService<ItemsObserver>()
             .AddHostedService<TelegramMessageReceiver>()
             
+            .AddTransient<IBotService, BotService>()
             .AddTransient<IItemsObserverService, ItemsObserverService>()
             .AddTransient<IItemPriceService, ItemPriceService>()
             .AddTransient<IItemAvailabilityService, ItemAvailabilityService>()

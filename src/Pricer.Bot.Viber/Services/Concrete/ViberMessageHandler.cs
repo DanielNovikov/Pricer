@@ -9,7 +9,7 @@ namespace Pricer.Viber.Services.Concrete;
 
 public class ViberMessageHandler : IViberMessageHandler
 {
-    private readonly IMessageHandler _telegramMessageHandler;
+    private readonly IMessageHandler _messageHandler;
     private readonly IResourceService _resourceService;
     private readonly IViberBotService _viberBotService;
     private readonly IMenuKeyboardBuilder _menuKeyboardBuilder;
@@ -17,13 +17,14 @@ public class ViberMessageHandler : IViberMessageHandler
     private readonly IMenuRepository _menuRepository;
 
     public ViberMessageHandler(
-        IMessageHandler telegramMessageHandler,
+        IMessageHandler messageHandler,
         IResourceService resourceService, 
         IViberBotService viberBotService, 
         IMenuKeyboardBuilder menuKeyboardBuilder, 
-        IUserRepository userRepository, IMenuRepository menuRepository)
+        IUserRepository userRepository, 
+        IMenuRepository menuRepository)
     {
-        _telegramMessageHandler = telegramMessageHandler;
+        _messageHandler = messageHandler;
         _resourceService = resourceService;
         _viberBotService = viberBotService;
         _menuKeyboardBuilder = menuKeyboardBuilder;
@@ -33,7 +34,7 @@ public class ViberMessageHandler : IViberMessageHandler
     
     public async Task Handle(MessageHandlingModel messageHandlingModel)
     {
-        var serviceResult = await _telegramMessageHandler.Handle(messageHandlingModel);
+        var serviceResult = await _messageHandler.Handle(messageHandlingModel);
 
         var userExternalId = messageHandlingModel.User.ExternalId;
         if (!serviceResult.IsSuccess)

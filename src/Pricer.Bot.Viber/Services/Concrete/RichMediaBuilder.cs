@@ -22,7 +22,7 @@ public class RichMediaBuilder : IRichMediaBuilder
         var titleButton = new RichMediaButton
         {
             Columns = 6,
-            Rows = 2,
+            Rows = text.Length / 40 + 1,
             ActionType = ActionType.None,
             Text = text
         };

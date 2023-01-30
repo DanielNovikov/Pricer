@@ -18,6 +18,9 @@ public class TextMessage : MessageBase
         get => _text;
         set => _text = value
             .Replace("<b>", "*")
-            .Replace("</b>", "*");
+            .Replace("</b>", "*")
+            .Replace("<a href='", "(")
+            .Replace("'>", ") ")
+            .Replace("</a>", string.Empty);
     }
 }
