@@ -65,6 +65,9 @@ public class RichMediaBuilder : IRichMediaBuilder
             }
         }
 
+        if (titleButton.Rows + keyboard.Buttons.Count > 7)
+            titleButton.Rows = 7 - keyboard.Buttons.Count;
+        
         return new RichMedia
         {
             Buttons = buttons.ToArray(),

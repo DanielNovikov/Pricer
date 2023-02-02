@@ -1,7 +1,5 @@
 ﻿using Newtonsoft.Json;
-using Pricer.Bot.Abstract;
 using Pricer.Dialog.Models;
-using Pricer.Dialog.Services.Abstract;
 using Pricer.Viber.Models;
 using Pricer.Viber.Models.Enums;
 using Pricer.Viber.Models.Message;
@@ -38,7 +36,7 @@ public class ViberWebhookHandler : IViberWebhookHandler
                     },
                     MissingMemberHandling = MissingMemberHandling.Error
                 };
-                
+
                 JsonConvert.DeserializeObject<CallbackData>(textMessage.Text, settings);
                 if (isTextJson)
                 {
@@ -48,6 +46,10 @@ public class ViberWebhookHandler : IViberWebhookHandler
                 {
                     await _viberMessageHandler.Handle(request.MapToMessage());
                 }
+            }
+            else if (request.Message is UrlMessage)
+            {
+                await _callbackHandler.Handle(request.MapToCallback());
             }
         }
     }

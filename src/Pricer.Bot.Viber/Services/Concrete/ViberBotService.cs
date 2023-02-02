@@ -6,6 +6,7 @@ using Pricer.Common.Models.Options;
 using Pricer.Data.Persistent.Models.Enums;
 using Pricer.Dialog.Models;
 using Pricer.Viber.Models;
+using Pricer.Viber.Models.Enums;
 using Pricer.Viber.Models.Message;
 using Pricer.Viber.Services.Abstract;
 
@@ -65,7 +66,7 @@ public class ViberBotService : IViberBotService
             MinApiVersion = 1
         };
         
-        await Send(requestModel, "send_message");
+        await Send(requestModel, "send_message", userId);
     }
 
     public async Task SendTextWithMenuKeyboard(string userId, string text, MenuKeyboard keyboard)
@@ -84,7 +85,7 @@ public class ViberBotService : IViberBotService
             Keyboard = new Keyboard(keyboardButtons)
         };
         
-        await Send(requestModel, "send_message");
+        await Send(requestModel, "send_message", userId);
     }
 
     public async Task SendTextWithMessageKeyboard(string userId, string text, MessageKeyboard keyboard)
@@ -102,7 +103,7 @@ public class ViberBotService : IViberBotService
             RichMedia = richMedia
         };
         
-        await Send(requestModel, "send_message");
+        await Send(requestModel, "send_message", userId);
     }
 
     public Task EditMessage(string userId, int messageId, string message)
@@ -125,7 +126,7 @@ public class ViberBotService : IViberBotService
         throw new NotImplementedException();
     }
     
-    private async Task Send<T>(T data, string method)
+    private async Task Send<T>(T data, string method, string? userId = default)
     {
         try
         {
@@ -133,37 +134,19 @@ public class ViberBotService : IViberBotService
             var content = new StringContent(body, Encoding.UTF8, "application/json");
 
             var response = await _httpClient.PostAsync($"pa/{method}", content);
-            if (!response.IsSuccessStatusCode)
-                _logger.LogWarning($"Could not send message to Viber by method {method}");
-
             var responseBody = await response.Content.ReadAsStringAsync();
+            var responseModel = JsonConvert.DeserializeObject<ViberResponse>(responseBody);
+            
+            if (responseModel!.Status == ViberResponseCode.Ok)
+            {
+                _logger.LogWarning("Request couldn't be handled by Viber.\nMethod: {0}\nUserId: {1}\nStatus: {2}\nStatus message: {3}\nResponse: {4}",
+                    method, userId, responseModel.Status, responseModel.StatusMessage, responseBody);
+            }
         }
         catch (Exception ex)
         {
-            // if (ex.ErrorCode != UserDeactivatedErrorCode)
-            // {
-            //     if (_retryAttempt == RetrySendMessageCount)
-            //     {
-            //         _logger.LogError("Maximum count of attempts exhausted");
-            //         return;
-            //     }
-            //
-            //     _logger.LogError(
-            //         "Send error. User id: {0}, Message: {1}, Exception message: {2}",
-            //         userId, 
-            //         message[..MaximumMessageLengthInError],
-            //         ex.Message);
-            //
-            //     _retryAttempt++;
-            //     await Task.Delay(RetrySendMessagePause);
-            //     
-            //     await Send(userId, message, action);
-            //         
-            //     return;
-            // }
-
-            //_logger.LogInformation("User deactivated with id {0}", userId);
-            // await _userService.DeactivateUserById(userId);
+            _logger.LogError("Error occured while sending message to user with id {0} by method {1}.\nException type: {2}\nMessage: {3}\nInner message: {4}",
+                userId, method, ex.GetType().FullName, ex.Message, ex.InnerException);
         }
     }
 }
