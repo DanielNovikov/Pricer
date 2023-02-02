@@ -11,9 +11,10 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\Pricer.Bot\Pricer.Bot.csproj" />
       <ProjectReference Include="..\Pricer.Data.Persistent\Pricer.Data.Persistent.csproj" />
+      <ProjectReference Include="..\Pricer.Dialog\Pricer.Dialog.csproj" />
       <ProjectReference Include="..\Pricer.Parser\Pricer.Parser.csproj" />
-      <ProjectReference Include="..\Pricer.Bot.Telegram\Pricer.Bot.Telegram.csproj" />
     </ItemGroup>
 
 </Project>

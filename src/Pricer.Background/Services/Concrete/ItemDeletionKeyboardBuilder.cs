@@ -4,8 +4,6 @@ using Pricer.Data.InMemory.Models.Enums;
 using Pricer.Data.Persistent.Models;
 using Pricer.Dialog.Models;
 using Pricer.Dialog.Services.Abstract;
-using Pricer.Telegram.Abstract;
-using Telegram.Bot.Types.ReplyMarkups;
 
 namespace Pricer.Background.Services.Concrete;
 

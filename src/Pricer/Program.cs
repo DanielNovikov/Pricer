@@ -6,11 +6,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Pricer.Bot.Viber.Services.Abstract;
 using Pricer.Common.Extensions;
 using Pricer.Data.InMemory.Seed;
 using Pricer.Data.Persistent;
 using Pricer.Data.Persistent.Seed;
-using Pricer.Viber.Services.Abstract;
 using Serilog;
 using TelegramSink;
 

@@ -7,9 +7,9 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\Pricer.Bot\Pricer.Bot.csproj" />
       <ProjectReference Include="..\Pricer.Common\Pricer.Common.csproj" />
       <ProjectReference Include="..\Pricer.Data.Service\Pricer.Data.Service.csproj" />
-      <ProjectReference Include="..\Pricer.Bot.Viber\Pricer.Bot.Viber.csproj" />
       <ProjectReference Include="..\Pricer.Web.Shared\Pricer.Web.Shared.csproj" />
     </ItemGroup>
 

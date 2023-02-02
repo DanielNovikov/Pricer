@@ -2,13 +2,11 @@
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using Pricer.Background.Services.Abstract;
-using Pricer.Bot.Abstract;
 using Pricer.Common.Services.Abstract;
 using Pricer.Data.InMemory.Models.Enums;
 using Pricer.Data.Persistent.Models;
 using Pricer.Data.Persistent.Repositories.Abstract;
 using Pricer.Data.Service.Abstract;
-using Pricer.Telegram.Abstract;
 
 namespace Pricer.Background.Services.Concrete;
 

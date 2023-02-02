@@ -4,7 +4,6 @@ using Pricer.Web.Shared.Grpc;
 using Pricer.Web.App.Extensions;
 using Pricer.Web.App.Services.Abstract;
 using Pricer.Web.App.Services.Concrete;
-using Pricer.Web.Shared;
 using Pricer.Web.Shared.Grpc.HandlerServices;
 using Pricer.Web.Shared.Services.Abstract;
 

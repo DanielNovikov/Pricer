@@ -4,13 +4,13 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Pricer.Bot.Telegram.Abstract;
 using Pricer.Common.Extensions;
-using Pricer.Telegram.Abstract;
 using Telegram.Bot;
 using Telegram.Bot.Extensions.Polling;
 using Telegram.Bot.Types;
 using Telegram.Bot.Types.Enums;
-using IUpdateHandler = Pricer.Telegram.Abstract.IUpdateHandler;
+using IUpdateHandler = Pricer.Bot.Telegram.Abstract.IUpdateHandler;
 
 namespace Pricer.Background.Jobs;
 

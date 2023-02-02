@@ -1,9 +1,7 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Pricer.Viber.Models;
-using Pricer.Viber.Models.Enums;
-using Pricer.Viber.Models.Message;
-using Pricer.Viber.Services.Abstract;
+﻿using Microsoft.AspNetCore.Mvc;
+using Pricer.Bot.Viber.Models;
+using Pricer.Bot.Viber.Models.Enums;
+using Pricer.Bot.Viber.Services.Abstract;
 
 namespace Pricer.Web.Api.Controllers;
 
