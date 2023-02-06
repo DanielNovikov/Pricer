@@ -36,7 +36,7 @@ public class ItemService : IItemService
         await _repository.Update(item);
     }
 
-    public async Task UpdateAvailability(Item item, bool isAvailable)
+    public async Task UpdateIsAvailable(Item item, bool isAvailable)
     {
         item.IsAvailable = isAvailable;
         await _repository.Update(item);

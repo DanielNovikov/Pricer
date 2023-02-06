@@ -4,6 +4,7 @@ using Pricer.Data.Persistent.Models;
 using Pricer.Data.Service.Abstract;
 using Pricer.Dialog.Commands.Abstract;
 using Pricer.Dialog.Models;
+using Pricer.Dialog.Models.Abstract;
 using Pricer.Dialog.Services.Abstract;
 
 namespace Pricer.Dialog.Commands.Concrete.Handlers;
@@ -23,7 +24,7 @@ public class HelpCommandHandler : ICommandHandler
 
     public CommandKey Key => CommandKey.Help;
         
-    public ValueTask<CommandHandlingServiceResult> Handle(User user)
+    public ValueTask<IReplyResult> Handle(User user)
     {
         _userActionLogger.LogHelpCalled(user);
 
@@ -37,8 +38,6 @@ public class HelpCommandHandler : ICommandHandler
             ResourceKey.Dialog_Help,
             addCommandTitle, allItemsCommandTitle, shopsCommandTitle, websiteCommandTitle, writeToSupportCommandTitle);
         
-        var serviceResult = CommandHandlingServiceResult.Success(result);
-
-        return ValueTask.FromResult(serviceResult);
+        return ValueTask.FromResult<IReplyResult>(result);
     }
 }

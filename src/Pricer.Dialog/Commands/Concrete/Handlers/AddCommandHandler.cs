@@ -3,6 +3,7 @@ using Pricer.Data.InMemory.Models.Enums;
 using Pricer.Data.Persistent.Models;
 using Pricer.Dialog.Commands.Abstract;
 using Pricer.Dialog.Models;
+using Pricer.Dialog.Models.Abstract;
 using Pricer.Dialog.Services.Abstract;
 
 namespace Pricer.Dialog.Commands.Concrete.Handlers;
@@ -18,13 +19,11 @@ public class AddCommandHandler : ICommandHandler
 
     public CommandKey Key => CommandKey.Add;
     
-    public ValueTask<CommandHandlingServiceResult> Handle(User user)
+    public ValueTask<IReplyResult> Handle(User user)
     {
         _userActionLogger.LogGotAddItemInstruction(user);
         
-        var replyResult = new ReplyResourceResult(ResourceKey.Dialog_AddItemInformation);
-        var serviceResult = CommandHandlingServiceResult.Success(replyResult);
-
-        return ValueTask.FromResult(serviceResult);
+        var result = new ReplyResourceResult(ResourceKey.Dialog_AddItemInformation);
+        return ValueTask.FromResult<IReplyResult>(result);
     }
 }

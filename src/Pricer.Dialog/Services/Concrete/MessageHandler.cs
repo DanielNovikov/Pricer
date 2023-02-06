@@ -3,6 +3,7 @@ using Pricer.Data.Service.Abstract;
 using Pricer.Dialog.Commands.Abstract;
 using Pricer.Dialog.Menus.Abstract;
 using Pricer.Dialog.Models;
+using Pricer.Dialog.Models.Abstract;
 using Pricer.Dialog.Services.Abstract;
 
 namespace Pricer.Dialog.Services.Concrete;
@@ -29,7 +30,7 @@ public class MessageHandler : IMessageHandler
         _commandService = commandService;
     }
 
-    public async Task<MessageHandlingResult> Handle(MessageHandlingModel messageHandlingModel)
+    public async Task<IReplyResult> Handle(MessageHandlingModel messageHandlingModel)
     {
         var userModel = messageHandlingModel.User;
         
@@ -37,21 +38,13 @@ public class MessageHandler : IMessageHandler
         var text = messageHandlingModel.Text;
 
         if (user is null)
-        {
-            var replyWithKeyboardResult = await _userRegistrationHandler.Handle(userModel);
-            return MessageHandlingResult.Success(replyWithKeyboardResult);
-        }
+            return await _userRegistrationHandler.Handle(userModel);
         
         var message = new MessageModel(text, user);
-            
         var command = _commandService.GetByTitle(message.Text);
         if (command is null)
-        {
-            var menuInputHandlingServiceResult = await _menuInputHandlerService.Handle(message);
-            return MessageHandlingResult.FromServiceResult(menuInputHandlingServiceResult);
-        }
+            return await _menuInputHandlerService.Handle(message);
 
-        var commandHandlingServiceResult = await _commandHandlerService.Handle(command, message);
-        return MessageHandlingResult.FromServiceResult(commandHandlingServiceResult);
+        return await _commandHandlerService.Handle(command, message);
     }
 }

@@ -3,6 +3,7 @@ using Pricer.Data.InMemory.Models.Enums;
 using Pricer.Data.Persistent.Models;
 using Pricer.Dialog.Commands.Abstract;
 using Pricer.Dialog.Models;
+using Pricer.Dialog.Models.Abstract;
 using Pricer.Dialog.Services.Abstract;
 
 namespace Pricer.Dialog.Commands.Concrete.Handlers;
@@ -18,9 +19,8 @@ public class SelectUkrainianLanguageCommandHandler : ICommandHandler
 
 	public CommandKey Key => CommandKey.SelectUkrainianLanguage;
 
-	public async ValueTask<CommandHandlingServiceResult> Handle(User user)
+	public async ValueTask<IReplyResult> Handle(User user)
 	{
-		var replyResult = await _userLanguageChanger.Change(user, LanguageKey.Ukranian);
-		return CommandHandlingServiceResult.Success(replyResult);
+		return await _userLanguageChanger.Change(user, LanguageKey.Ukranian);
 	}
 }

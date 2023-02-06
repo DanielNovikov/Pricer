@@ -4,6 +4,7 @@ using Pricer.Data.Persistent.Repositories.Abstract;
 using Pricer.Data.Service.Abstract;
 using Pricer.Dialog.Menus.Abstract;
 using Pricer.Dialog.Models;
+using Pricer.Dialog.Models.Abstract;
 using Pricer.Dialog.Services.Abstract;
 
 namespace Pricer.Dialog.Menus.Concrete.Handlers;
@@ -35,16 +36,13 @@ public class HomeMenuInputHandler : IMenuInputHandler
 
     public MenuKey Key => MenuKey.Home;
     
-    public async ValueTask<MenuInputHandlingServiceResult> Handle(MessageModel message)
+    public async ValueTask<IReplyResult> Handle(MessageModel message)
     {
         var user = message.User;
         
         var urlExtractionResult = _urlExtractor.Extract(message.Text);
         if (!urlExtractionResult.IsSuccess)
-        {
-            var result = _wrongCommandHandler.Handle(message);
-            return MenuInputHandlingServiceResult.Success(result);
-        }
+            return _wrongCommandHandler.Handle(message);
 
         var url = urlExtractionResult.Result;
         var item = await _itemRepository.GetByUserIdAndUrl(user.Id, url);
@@ -53,21 +51,13 @@ public class HomeMenuInputHandler : IMenuInputHandler
             if (!item.IsDeleted)
             {
                 _userActionLogger.LogDuplicateItem(user, url);
-                return MenuInputHandlingServiceResult.Fail(ResourceKey.Dialog_DuplicateItem);
+                return new ReplyResourceResult(ResourceKey.Dialog_DuplicateItem);
             }
 
             await _itemService.Restore(item);
-            
-            var result = new ReplyResourceResult(ResourceKey.Dialog_ItemAdded);
-            return MenuInputHandlingServiceResult.Success(result);
+            return new ReplyResourceResult(ResourceKey.Dialog_ItemAdded);
         }
         
-        var parseResult = await _userItemParser.Parse(user, url);
-
-        if (!parseResult.IsSuccess)
-            return MenuInputHandlingServiceResult.Fail(parseResult.Error);
-
-        var replyResult = new ReplyResourceResult(parseResult.Result);
-        return MenuInputHandlingServiceResult.Success(replyResult);
+        return await _userItemParser.Parse(user, url);
     }
 }

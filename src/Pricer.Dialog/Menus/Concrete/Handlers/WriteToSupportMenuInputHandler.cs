@@ -2,6 +2,7 @@
 using Pricer.Data.InMemory.Models.Enums;
 using Pricer.Dialog.Menus.Abstract;
 using Pricer.Dialog.Models;
+using Pricer.Dialog.Models.Abstract;
 using Pricer.Dialog.Services.Abstract;
 
 namespace Pricer.Dialog.Menus.Concrete.Handlers;
@@ -18,13 +19,11 @@ public class WriteToSupportMenuInputHandler : IMenuInputHandler
 
     public MenuKey Key => MenuKey.Support;
         
-    public ValueTask<MenuInputHandlingServiceResult> Handle(MessageModel message)
+    public ValueTask<IReplyResult> Handle(MessageModel message)
     {
         _userActionLogger.LogWriteToSupport(message.User, message.Text);
 
-        var reply = new ReplyResourceResult(ResourceKey.Dialog_SupportReply);
-        var result = MenuInputHandlingServiceResult.Success(reply); 
-            
-        return ValueTask.FromResult(result);
+        var result = new ReplyResourceResult(ResourceKey.Dialog_SupportReply);
+        return ValueTask.FromResult<IReplyResult>(result);
     }
 }

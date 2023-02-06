@@ -32,7 +32,7 @@ public class ChangeMinimumDiscountCommandHandler : ICommandHandler
         _userActionLogger = userActionLogger;
     }
 
-    public ValueTask<CommandHandlingServiceResult> Handle(User user)
+    public ValueTask<IReplyResult> Handle(User user)
     {
         _userActionLogger.LogCalledChangingMinimumDiscountThreshold(user);
         
@@ -47,12 +47,8 @@ public class ChangeMinimumDiscountCommandHandler : ICommandHandler
             .ToList();
 
         var keyboard = new MessageKeyboard(buttons);
+        var result = new ReplyKeyboardResult(keyboard, ResourceKey.Dialog_ChangeMinimumDiscountThreshold, user.MinimumDiscountThreshold);
         
-        var result = new ReplyKeyboardResult(
-            keyboard, 
-            ResourceKey.Dialog_ChangeMinimumDiscountThreshold, 
-            user.MinimumDiscountThreshold);
-        
-        return ValueTask.FromResult(CommandHandlingServiceResult.Success(result));
+        return ValueTask.FromResult<IReplyResult>(result);
     }
 }

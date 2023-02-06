@@ -5,6 +5,7 @@ using Pricer.Data.InMemory.Repositories.Abstract;
 using Pricer.Data.Persistent.Models;
 using Pricer.Data.Service.Abstract;
 using Pricer.Dialog.Models;
+using Pricer.Dialog.Models.Abstract;
 using Pricer.Dialog.Services.Abstract;
 using Pricer.Parser.Abstract;
 
@@ -29,21 +30,20 @@ public class UserItemParser : IUserItemParser
         _shopRepository = shopRepository;
     }
 
-    public async ValueTask<UserItemParseResult> Parse(User user, Uri url)
+    public async ValueTask<IReplyResult> Parse(User user, Uri url)
     {   
         var shop = _shopRepository.GetByHost(url.Host);
         if (shop is null)
         {
             _userActionLogger.LogTriedToAddUnsupportedShop(user, url);
-            return UserItemParseResult.Fail(ResourceKey.Dialog_ShopIsNotAvailable);
+            return new ReplyResourceResult(ResourceKey.Dialog_ShopIsNotAvailable);
         }
         
         var parseResult = await _parser.Parse(url, shop.Key);
-
         if (!parseResult.IsSuccess)
         {
             _userActionLogger.LogParsingError(user, url, parseResult.Error);
-            return UserItemParseResult.Fail(parseResult.Error);
+            return new ReplyResourceResult(parseResult.Error);
         }
 
         var parsedItem = parseResult.Result;
@@ -57,6 +57,6 @@ public class UserItemParser : IUserItemParser
         else 
             _userActionLogger.LogNotAvailableItemAdded(user, item);
         
-        return UserItemParseResult.Success(ResourceKey.Dialog_ItemAdded);
+        return new ReplyResourceResult(ResourceKey.Dialog_ItemAdded);
     }
 }

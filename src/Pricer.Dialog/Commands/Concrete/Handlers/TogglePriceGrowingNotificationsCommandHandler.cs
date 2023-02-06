@@ -3,6 +3,7 @@ using Pricer.Data.InMemory.Models.Enums;
 using Pricer.Data.Persistent.Models;
 using Pricer.Dialog.Commands.Abstract;
 using Pricer.Dialog.Models;
+using Pricer.Dialog.Models.Abstract;
 using Pricer.Dialog.Services.Abstract;
 
 namespace Pricer.Dialog.Commands.Concrete.Handlers;
@@ -22,7 +23,7 @@ public class TogglePriceGrowingNotificationsCommandHandler : ICommandHandler
 
 	public CommandKey Key => CommandKey.TogglePriceGrowingNotifications;
 
-	public ValueTask<CommandHandlingServiceResult> Handle(User user)
+	public ValueTask<IReplyResult> Handle(User user)
 	{
 		_userActionLogger.LogCalledTogglingPriceGrowingMenu(user);
 
@@ -41,7 +42,7 @@ public class TogglePriceGrowingNotificationsCommandHandler : ICommandHandler
 			: ResourceKey.Dialog_TogglePriceGrowingNotificationsToDisabled;
 
 		var replyResult = new ReplyKeyboardResult(keyboard, replyResource);
-		return ValueTask.FromResult(CommandHandlingServiceResult.Success(replyResult));
+		return ValueTask.FromResult<IReplyResult>(replyResult);
 		
 	}
 }

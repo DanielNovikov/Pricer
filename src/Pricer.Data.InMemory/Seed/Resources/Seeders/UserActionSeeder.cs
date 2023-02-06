@@ -78,8 +78,8 @@ public class UserActionSeeder
             
         resources.AddResource(
             ResourceKey.UserAction_UserInfo,
-            "Ім'я: {0} (External id: {1})",
-            "Имя: {0} (External id: {1})");
+            "Ім'я: {0} (External Id: {1})\nБот: {2}",
+            "Имя: {0} (External Id: {1})\nБот: {2}");
             
         resources.AddResource(
             ResourceKey.UserAction_UserLogin,

@@ -6,6 +6,7 @@ using Pricer.Data.InMemory.Models.Enums;
 using Pricer.Data.InMemory.Repositories.Abstract;
 using Pricer.Dialog.Commands.Abstract;
 using Pricer.Dialog.Models;
+using Pricer.Dialog.Models.Abstract;
 using Pricer.Dialog.Services.Abstract;
 
 namespace Pricer.Dialog.Commands.Concrete;
@@ -32,7 +33,7 @@ public class CommandHandlerService : ICommandHandlerService
         _wrongCommandHandler = wrongCommandHandler;
     }
 
-    public async Task<CommandHandlingServiceResult> Handle(Command command, MessageModel message)
+    public async Task<IReplyResult> Handle(Command command, MessageModel message)
     {
         var user = message.User;
         var menu = _menuRepository.GetByKey(user.MenuKey);
@@ -40,22 +41,17 @@ public class CommandHandlerService : ICommandHandlerService
         if (menu.Parent is not null && command.Key == CommandKey.Back)
         {
             _userActionLogger.LogRedirectBackToMenu(user, menu.Parent);
-            var replyResult = await _userRedirectionService.Redirect(user, menu.Parent);
-            return CommandHandlingServiceResult.Success(replyResult);
+            return await _userRedirectionService.Redirect(user, menu.Parent);
         }
 
         var commandAvailableInMenu = menu.Commands.Any(x => x == command);
         if (!commandAvailableInMenu)
-        {
-            var result = _wrongCommandHandler.Handle(message);
-            return CommandHandlingServiceResult.Success(result);
-        }
+            return _wrongCommandHandler.Handle(message);
 
         if (command.MenuToRedirect is not null)
         {            
             _userActionLogger.LogRedirectToMenu(user, command.MenuToRedirect);
-            var replyResult = await _userRedirectionService.Redirect(user, command.MenuToRedirect);
-            return CommandHandlingServiceResult.Success(replyResult);
+            return await _userRedirectionService.Redirect(user, command.MenuToRedirect);
         }
 
         var commandHandler = _commandHandlers.First(x => x.Key == command.Key);

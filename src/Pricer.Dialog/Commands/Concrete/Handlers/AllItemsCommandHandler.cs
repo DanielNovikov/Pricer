@@ -9,6 +9,7 @@ using Pricer.Data.Persistent.Repositories.Abstract;
 using Pricer.Data.Service.Abstract;
 using Pricer.Dialog.Commands.Abstract;
 using Pricer.Dialog.Models;
+using Pricer.Dialog.Models.Abstract;
 using Pricer.Dialog.Services.Abstract;
 
 namespace Pricer.Dialog.Commands.Concrete.Handlers;
@@ -42,14 +43,14 @@ public class AllItemsCommandHandler : ICommandHandler
 
     public CommandKey Key => CommandKey.AllItems; 
         
-    public async ValueTask<CommandHandlingServiceResult> Handle(User user)
+    public async ValueTask<IReplyResult> Handle(User user)
     {
         _userActionLogger.LogAllItemsCalled(user);
             
         var items = await _itemRepository.GetByUserIdWithLimit(user.Id, MaximumOfItemsInMessage);
 
         if (!items.Any())
-            return CommandHandlingServiceResult.Fail(ResourceKey.Dialog_EmptyCart);
+            return new ReplyResourceResult(ResourceKey.Dialog_EmptyCart);
 
         var currencies = _currencyRepository.GetAll();
 
@@ -85,7 +86,6 @@ public class AllItemsCommandHandler : ICommandHandler
             message += $"{Environment.NewLine}{Environment.NewLine}{maximumExceededMessage}";
         }
 
-        var replyResult = new ReplyTextResult(message);
-        return CommandHandlingServiceResult.Success(replyResult);
+        return new ReplyTextResult(message);
     }
 }

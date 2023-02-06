@@ -3,6 +3,7 @@ using Pricer.Data.InMemory.Models.Enums;
 using Pricer.Data.Persistent.Models;
 using Pricer.Dialog.Commands.Abstract;
 using Pricer.Dialog.Models;
+using Pricer.Dialog.Models.Abstract;
 using Pricer.Dialog.Services.Abstract;
 
 namespace Pricer.Dialog.Commands.Concrete.Handlers;
@@ -22,15 +23,13 @@ public class ShopsCommandHandler : ICommandHandler
 
     public CommandKey Key => CommandKey.Shops;
         
-    public ValueTask<CommandHandlingServiceResult> Handle(User user)
+    public ValueTask<IReplyResult> Handle(User user)
     {
         _userActionLogger.LogShopsCalled(user);
             
         var shopsInfoMessage = _shopCategoriesMessageBuilder.Build();
-
         var replyResult = new ReplyTextResult(shopsInfoMessage);
-        var serviceResult = CommandHandlingServiceResult.Success(replyResult);
-            
-        return ValueTask.FromResult(serviceResult);
+        
+        return ValueTask.FromResult<IReplyResult>(replyResult);
     }
 }

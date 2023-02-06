@@ -23,17 +23,10 @@ public class TelegramMessageHandler : ITelegramMessageHandler
     
     public async Task Handle(MessageHandlingModel messageHandlingModel)
     {
-        var serviceResult = await _telegramMessageHandler.Handle(messageHandlingModel);
-
+        var replyResult = await _telegramMessageHandler.Handle(messageHandlingModel);
         var userExternalId = messageHandlingModel.User.ExternalId;
-        if (!serviceResult.IsSuccess)
-        {
-            var errorMessage = _resourceService.Get(serviceResult.Error);
-            await _telegramBotService.SendText(userExternalId, errorMessage);
-            return;
-        }
 
-        switch (serviceResult.Result)
+        switch (replyResult)
         {
             case ReplyKeyboardResult keyboardResult:
             {
@@ -61,7 +54,7 @@ public class TelegramMessageHandler : ITelegramMessageHandler
                 break;
             }
             default:
-                throw new InvalidOperationException($"Unexpected type of reply result {serviceResult.Result.GetType().FullName}");
+                throw new InvalidOperationException($"Unexpected type of reply result {replyResult.GetType().FullName}");
         }
     }
 }

@@ -34,19 +34,10 @@ public class ViberMessageHandler : IViberMessageHandler
     
     public async Task Handle(MessageHandlingModel messageHandlingModel)
     {
-        var serviceResult = await _messageHandler.Handle(messageHandlingModel);
-
+        var replyResult = await _messageHandler.Handle(messageHandlingModel);
         var userExternalId = messageHandlingModel.User.ExternalId;
-        if (!serviceResult.IsSuccess)
-        {
-            var errorMessage = _resourceService.Get(serviceResult.Error);
-            var user = await _userRepository.GetByExternalId(userExternalId);
-            var keyboard = _menuKeyboardBuilder.Build(user.MenuKey);
-            await _viberBotService.SendTextWithMenuKeyboard(userExternalId, errorMessage, keyboard);
-            return;
-        }
 
-        switch (serviceResult.Result)
+        switch (replyResult)
         {
             case ReplyKeyboardResult keyboardResult:
             {
@@ -92,7 +83,7 @@ public class ViberMessageHandler : IViberMessageHandler
                 break;
             }
             default:
-                throw new InvalidOperationException($"Unexpected type of reply result {serviceResult.Result.GetType().FullName}");
+                throw new InvalidOperationException($"Unexpected type of reply result {replyResult.GetType().FullName}");
         }
     }
 }

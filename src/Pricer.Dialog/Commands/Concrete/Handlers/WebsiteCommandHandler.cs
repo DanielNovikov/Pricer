@@ -3,6 +3,7 @@ using Pricer.Data.InMemory.Models.Enums;
 using Pricer.Data.Persistent.Models;
 using Pricer.Dialog.Commands.Abstract;
 using Pricer.Dialog.Models;
+using Pricer.Dialog.Models.Abstract;
 using Pricer.Dialog.Services.Abstract;
 
 namespace Pricer.Dialog.Commands.Concrete.Handlers;
@@ -22,20 +23,18 @@ public class WebsiteCommandHandler : ICommandHandler
 
     public CommandKey Key => CommandKey.Website;
 
-    public async ValueTask<CommandHandlingServiceResult> Handle(User user)
+    public async ValueTask<IReplyResult> Handle(User user)
     {
         _userActionLogger.LogWebsiteCalled(user);
 
         var loginUrl = await _websiteLoginUrlBuilder.Build(user.Id);
        
 #if DEBUG
-        var result = new ReplyResourceResult(ResourceKey.Dialog_Website, loginUrl);
+        return new ReplyResourceResult(ResourceKey.Dialog_Website, loginUrl);
 #else
         var goToWebsiteButton = new UrlButton(ResourceKey.Dialog_GoToWebsite, loginUrl);
         var keyboard = new MessageKeyboard(goToWebsiteButton);
-        var result = new ReplyKeyboardResult(keyboard, ResourceKey.Dialog_Website);
-#endif  
-   
-        return CommandHandlingServiceResult.Success(result);
+        return new ReplyKeyboardResult(keyboard, ResourceKey.Dialog_Website);
+#endif
     }
 }

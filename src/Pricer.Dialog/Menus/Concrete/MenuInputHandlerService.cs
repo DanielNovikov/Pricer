@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Pricer.Data.InMemory.Repositories.Abstract;
 using Pricer.Dialog.Menus.Abstract;
 using Pricer.Dialog.Models;
+using Pricer.Dialog.Models.Abstract;
 using Pricer.Dialog.Services.Abstract;
 
 namespace Pricer.Dialog.Menus.Concrete;
@@ -25,16 +26,13 @@ public class MenuInputHandlerService : IMenuInputHandlerService
         _wrongCommandHandler = wrongCommandHandler;
     }
 
-    public async Task<MenuInputHandlingServiceResult> Handle(MessageModel message)
+    public async Task<IReplyResult> Handle(MessageModel message)
     {
         var menuKey = message.User.MenuKey;
         var menu = _menuRepository.GetByKey(menuKey);
             
         if (!menu.CanExpectInput)
-        {
-            var replyResult = _wrongCommandHandler.Handle(message);
-            return MenuInputHandlingServiceResult.Success(replyResult);
-        }
+            return _wrongCommandHandler.Handle(message);
 
         var handler = _handlers.Single(x => x.Key == menuKey);
 
