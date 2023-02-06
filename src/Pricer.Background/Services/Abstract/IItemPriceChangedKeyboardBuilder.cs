@@ -3,7 +3,7 @@ using Pricer.Dialog.Models;
 
 namespace Pricer.Background.Services.Abstract;
 
-public interface IItemDeletionKeyboardBuilder
+public interface IItemPriceChangedKeyboardBuilder
 {
 	MessageKeyboard Build(Item item);
 }

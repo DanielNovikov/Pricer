@@ -12,27 +12,21 @@ public class ItemsObserverService : IItemsObserverService
 {
     private readonly IParser _parser;
     private readonly IItemRepository _itemRepository;
-    private readonly IItemRemovalService _itemRemovalService;
-    private readonly IItemAvailabilityService _itemAvailabilityService;
     private readonly ILogger _logger;
     private readonly Random _random;
-    private readonly IItemModificationService _itemModificationService;
+    private readonly IItemJobService _itemJobService;
 
     public ItemsObserverService(
         IParser parser,
         IItemRepository itemRepository,
-        IItemRemovalService itemRemovalService,
-        IItemAvailabilityService itemAvailabilityService,
         ILogger<ItemsObserverService> logger, 
-        IItemModificationService itemModificationService)
+        IItemJobService itemJobService)
     {
         _parser = parser;
         _itemRepository = itemRepository;
-        _itemRemovalService = itemRemovalService;
-        _itemAvailabilityService = itemAvailabilityService;
         _logger = logger;
+        _itemJobService = itemJobService;
         _random = new Random();
-        _itemModificationService = itemModificationService;
     }
 
     public async Task Observe()
@@ -49,17 +43,17 @@ public class ItemsObserverService : IItemsObserverService
 
                     if (!parsedItemResult.IsSuccess)
                     {
-                        await _itemRemovalService.Remove(item, parsedItemResult.Error);
+                        await _itemJobService.Remove(item, parsedItemResult.Error);
                         continue;
                     }
 
                     var parsedItem = parsedItemResult.Result;
                     
                     var isAvailable = parsedItem.IsAvailable;
-                    await _itemAvailabilityService.Update(item, isAvailable);
+                    await _itemJobService.UpdateIsAvailable(item, isAvailable);
 
                     if (isAvailable)
-                        await _itemModificationService.Modify(item, parsedItem);
+                        await _itemJobService.Update(item, parsedItem);
                 }
                 catch (Exception ex)
                 {

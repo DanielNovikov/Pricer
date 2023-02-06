@@ -7,12 +7,12 @@ using Pricer.Dialog.Services.Abstract;
 
 namespace Pricer.Background.Services.Concrete;
 
-public class ItemDeletionKeyboardBuilder : IItemDeletionKeyboardBuilder
+public class ItemPriceChangedKeyboardBuilder : IItemPriceChangedKeyboardBuilder
 {
 	private readonly IPartnerUrlBuilder _partnerUrlBuilder;
 	private readonly ICallbackDataBuilder _callbackDataBuilder;
 
-	public ItemDeletionKeyboardBuilder(
+	public ItemPriceChangedKeyboardBuilder(
 		IPartnerUrlBuilder partnerUrlBuilder,
 		ICallbackDataBuilder callbackDataBuilder)
 	{

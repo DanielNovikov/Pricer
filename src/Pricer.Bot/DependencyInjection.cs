@@ -1,9 +1,11 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 using Pricer.Bot.Abstract;
 using Pricer.Bot.Telegram.Abstract;
 using Pricer.Bot.Telegram.Concrete;
 using Pricer.Bot.Telegram.Options;
+using Pricer.Bot.Viber.Models.Options;
 using Pricer.Bot.Viber.Services.Abstract;
 using Pricer.Bot.Viber.Services.Concrete;
 
@@ -17,17 +19,22 @@ public static class DependencyInjection
             .AddOptions<TelegramClientOptions>()
             .Bind(configuration.GetSection("TelegramClient"));
 
-        services.AddHttpClient<IViberBotService, ViberBotService>(client =>
-        {
-            client.BaseAddress = new Uri("https://chatapi.viber.com");
-            client.DefaultRequestHeaders.Add("X-Viber-Auth-Token", "50687d871a67e550-450f5771df432363-9852ebf617b5d72");
-        });
+        services
+            .AddOptions<ViberSettings>()
+            .Bind(configuration.GetSection(nameof(ViberSettings)));
+
+        services
+            .AddHttpClient("ViberClient")
+            .ConfigureHttpClient((serviceProvider, client) =>
+            {
+                var settings = serviceProvider.GetService<IOptions<ViberSettings>>()!.Value;
+                
+                client.BaseAddress = new Uri("https://chatapi.viber.com");
+                client.DefaultRequestHeaders.Add("X-Viber-Auth-Token", settings.AuthToken);
+            });
         
-        services.AddHttpClient<IBotProviderService, ViberBotService>(client =>
-        {
-            client.BaseAddress = new Uri("https://chatapi.viber.com");
-            client.DefaultRequestHeaders.Add("X-Viber-Auth-Token", "50687d871a67e550-450f5771df432363-9852ebf617b5d72");
-        });
+        services.AddHttpClient<IViberBotService, ViberBotService>("ViberClient");
+        services.AddHttpClient<IBotProviderService, ViberBotService>("ViberClient");
 
         return services
             .AddTransient<IViberMessageHandler, ViberMessageHandler>()

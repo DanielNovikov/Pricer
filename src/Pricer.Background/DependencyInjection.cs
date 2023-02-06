@@ -15,10 +15,7 @@ public static class DependencyInjection
             
             .AddTransient<IBotService, BotService>()
             .AddTransient<IItemsObserverService, ItemsObserverService>()
-            .AddTransient<IItemPriceService, ItemPriceService>()
-            .AddTransient<IItemAvailabilityService, ItemAvailabilityService>()
-            .AddTransient<IItemRemovalService, ItemRemovalService>()
-            .AddTransient<IItemModificationService, ItemModificationService>()
-            .AddTransient<IItemDeletionKeyboardBuilder, ItemDeletionKeyboardBuilder>();
+            .AddTransient<IItemJobService, ItemJobService>()
+            .AddTransient<IItemPriceChangedKeyboardBuilder, ItemPriceChangedKeyboardBuilder>();
     }
 }
