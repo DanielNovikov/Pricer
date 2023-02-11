@@ -52,12 +52,19 @@ public class Startup
         IApplicationBuilder app,
         IWebHostEnvironment env)
     {
+        if (env.IsDevelopment())
+            app.UseWebAssemblyDebugging();
+        
         app.UseForwardedHeaders(new ForwardedHeadersOptions
         {
             ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
         });
 
-        app.UseStaticFiles();
+        app.UseBlazorFrameworkFiles();
+        app.UseStaticFiles(new StaticFileOptions
+        {
+            ServeUnknownFileTypes = true
+        });
         
         app.UseRouting();
 

@@ -14,43 +14,43 @@ public class CosmeticsSeeder
                 "MAKEUP",
                 ShopKey.Makeup,
                 "makeup.com.ua",
-                "makeup.png",
-                false),
+                "#ffffff",
+                "#000000"),
             
             new Shop(
                 "Watsons",
                 ShopKey.Watsons,
                 "www.watsons.ua",
-                "watsons.png",
-                false),
+                "#00a0a0",
+                "#fffffe"),
             
             new Shop(
                 "EVA",
                 ShopKey.Eva,
                 "eva.ua",
-                "eva.png",
-                true),
+                "#73bf43",
+                "#ffffff"),
             
             new Shop(
                 "Prostor",
                 ShopKey.Prostor,
                 "prostor.ua",
-                "prostor.png",
-                false),
+                "#d91d5c",
+                "#ffffff"),
             
             new Shop(
                 "Notino",
                 ShopKey.Notino,
                 "www.notino.ua",
-                "notino.png",
-                false),
+                "#000000",
+                "#ffffff"),
 
             new Shop(
                 "iHerb",
                 ShopKey.Notino,
                 "ua.iherb.com",
-                "iHerb.png",
-                false)
+                "#468500",
+                "#fffffc")
         };
 
         var cosmeticsShopCategory = new ShopCategory(ResourceKey.ShopCategory_Cosmetics, "💄", cosmeticsShops);

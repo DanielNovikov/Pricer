@@ -14,50 +14,50 @@ public class ClothesSeeder
                 "Intertop",
                 ShopKey.Intertop,
                 "intertop.ua",
-                "intertop.png",
-                true),
+                "#009f9d",
+                "#e7f7f6"),
 
             new Shop(
                 "MdFashion",
                 ShopKey.MdFashion,
                 "md-fashion.com.ua",
-                "md-fashion.jfif",
-                true),
+                "#000000",
+                "#ffffff"),
 
             new Shop(
                 "Answear",
                 ShopKey.Answear,
                 "answear.ua",
-                "answear.png",
-                true),
+                "#000000",
+                "#ffffff"),
 
             new Shop(
                 "FARFETCH",
                 ShopKey.Farfetch,
                 "www.farfetch.com",
-                "farfetch.png",
-                true),
+                "#ffffff",
+                "#000000"),
 
             new Shop(
                 "Adidas",
                 ShopKey.Adidas,
                 "www.adidas.ua",
-                "adidas.png",
-                true),
+                "#000000",
+                "#ffffff"),
 
             new Shop(
                 "Modivo",
                 ShopKey.Modivo,
                 "modivo.ua",
-                "modivo.png",
-                false),
+                "#ffffff",
+                "#000000"),
             
             new Shop(
                 "Athletics",
                 ShopKey.Athletics,
                 "athletics.kiev.ua",
-                "athletics.kiev.ua.png",
-                false)
+                "#545454",
+                "#ffffff")
         };
 
         var clothesShopCategory = new ShopCategory(ResourceKey.ShopCategory_Clothes, "🥻", clothesShops);

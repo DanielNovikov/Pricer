@@ -14,58 +14,58 @@ public class ElectronicsSeeder
                 "Rozetka",
                 ShopKey.Rozetka,
                 "rozetka.com.ua",
-                "rozetka.png",
-                false,
+                "#00a03e",
+                "#191c14",
                 new [] { "bt.rozetka.com.ua", "hard.rozetka.com.ua" }),
             
             new Shop(
                 "Citrus",
                 ShopKey.Citrus,
                 "www.ctrs.com.ua",
-                "citrus.png",
-                false),
+                "#f6731c",
+                "#fefefe"),
             
             new Shop(
                 "Stylus",
                 ShopKey.Stylus,
                 "stylus.ua",
-                "stylus.png",
-                false),
+                "#13b6d3",
+                "#fffeff"),
             
             new Shop(
                 "eStore",
                 ShopKey.Estore,
                 "estore.ua",
-                "estore.png",
-                true),
+                "#000000",
+                "#ffffff"),
             
             new Shop(
                 "MOYO",
                 ShopKey.Moyo,
                 "www.moyo.ua",
-                "moyo.png",
-                false),
+                "#00acdc",
+                "#ffffff"),
             
             new Shop(
                 "Comfy",
                 ShopKey.Comfy,
                 "comfy.ua",
-                "comfy.png",
-                true),
+                "#43b02a",
+                "#ffffff"),
             
             new Shop(
                 "Telemart",
                 ShopKey.Telemart,
                 "telemart.ua",
-                "telemart.png",
-                false),
+                "#484f54",
+                "#ffffff"),
             
             new Shop(
                 "Алло",
                 ShopKey.Allo,
                 "allo.ua",
-                "allo.png",
-                false)
+                "#ef363f",
+                "#ffffff")
 		};
 
 		var electronicsShopCategory = new ShopCategory(ResourceKey.ShopCategory_Electronics, "📱", electronicsShops);

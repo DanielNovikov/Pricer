@@ -14,22 +14,22 @@ public class DifferentSeeder
 				"Pandora",
 				ShopKey.Pandora,
 				"e-pandora.ua",
-				"pandora.svg",
-				true),
+				"#ff9aaa",
+				"#ffffff"),
 			
 			new Shop(
 				"JYSK",
 				ShopKey.Jysk,
 				"jysk.ua",
-				"jysk.jpg",
-				false),
+				"#004495",
+				"#ffffff"),
 			
 			new Shop(
 				"Епіцентр",
 				ShopKey.Epicentr,
 				"epicentrk.ua",
-				"epicentr.png",
-				false)
+				"#254185",
+				"#ffffff")
 		};
 
 		var differentShopCategory = new ShopCategory(ResourceKey.ShopCategory_Different, "🛒", differentShops);

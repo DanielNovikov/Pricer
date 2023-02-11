@@ -1,4 +1,4 @@
-{
+﻿{
   "profiles": {
     "App.Development": {
       "commandName": "Project",
@@ -10,8 +10,6 @@
     "App.Production": {
       "commandName": "Project",
       "applicationUrl": "http://localhost:5000",
-      "dotnetRunMessages": true,
-      "launchBrowser": true,
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Production"
       }

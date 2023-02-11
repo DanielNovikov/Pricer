@@ -30,4 +30,14 @@ public class ResourceService : IResourceService
 
         return string.Format(resourceValue.Text, parameters);
     }
+
+    public string GetDefault(ResourceKey key, params object[] parameters)
+    {
+        const LanguageKey defaultLanguage = LanguageKey.Ukranian;
+        
+        var resource = _resourceRepository.GetByKey(key);
+        var resourceValue = resource.Values.Single(x => x.LanguageKey == defaultLanguage);
+
+        return string.Format(resourceValue.Text, parameters);
+    }
 }

@@ -1,14 +1,8 @@
-﻿@page
-
-@using Pricer.Web.App
-
+﻿@page "/"
 @namespace Pricer.Pages
-
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @{
     Layout = "_Layout";
 }
 
-<component type="typeof(App)" render-mode="WebAssemblyPrerendered"/>
-
-<component type="typeof(PrerenderCacheStore)" render-mode="Static"/>
+<component type="typeof(App)" render-mode="ServerPrerendered"/>

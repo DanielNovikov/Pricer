@@ -14,22 +14,22 @@ public class MarketPlacesSeeder
 				"Prom",
 				ShopKey.Prom,
 				"prom.ua",
-				"prom.png",
-				false),
+				"#8106ea",
+				"#ffffff"),
 			
 			new Shop(
 				"Shafa",
 				ShopKey.Shafa,
 				"shafa.ua",
-				"shafa.png",
-				false),
+				"#414141",
+				"#ffffff"),
 			
 			new Shop(
 				"OLX",
 				ShopKey.Olx,
 				"www.olx.ua",
-				"olx.png",
-				false)
+				"#23e5db",
+				"#002f34")
 		};
 
 		var marketPlacesCategory = new ShopCategory(ResourceKey.ShopCategory_MarketPlaces, "🛍", marketPlaces);

@@ -14,66 +14,58 @@ public class FoodSeeder
                 "МегаМаркет", 
                 ShopKey.MegaMarket,
                 "megamarket.zakaz.ua",
-                "megamarket.webp",
-                true),
+                "#ffef11",
+                "#ffffff"),
             
             new Shop(
                 "ЕКО Маркет", 
                 ShopKey.EkoMarket,
                 "eko.zakaz.ua",
-                "ecomarket.jpg",
-                true),
+                "#c20003",
+                "#ffffff"),
             
             new Shop(
                 "Varus", 
                 ShopKey.Varus,
                 "varus.zakaz.ua",
-                "varus.png",
-                true),
+                "#ee7c00",
+                "#ffffff"),
             
             new Shop(
                 "Ашан", 
                 ShopKey.Auchan,
                 "auchan.zakaz.ua",
-                "auchan.png",
-                true),
+                "#e10013",
+                "#ffffff"),
             
             new Shop(
                 "Столичний Ринок", 
                 ShopKey.StolychnyiRynok,
                 "stolychnyi.zakaz.ua",
-                "stolychnyi.png",
-                true),
+                "#c50b1b",
+                "#ffffff"),
             
             new Shop(
-                "Новус", 
+                "Novus", 
                 ShopKey.Novus,
                 "novus.zakaz.ua",
-                "novus.jpg",
-                true),
+                "#51af30",
+                "#fcfdfc"),
             
             new Shop(
                 "UltraMarket", 
                 ShopKey.UltraMarket,
                 "ultramarket.zakaz.ua",
-                "ultramarket.png",
-                true),
+                "#ffffff",
+                "#faac01"),
             
             new Shop(
                 "MauDau", 
                 ShopKey.MauDau,
                 "maudau.com.ua",
-                "maudau.png",
-                false)
+                "#371f5e",
+                "#a4ffb8")
 		};
-
-        // new Shop(
-        //     "JYSK",
-        //     ShopKey.Jysk,
-        //     "jysk.ua",
-        //     "jysk.jpg",
-        //     false,
-        //     currencies.First(x => x.Key == CurrencyKey.UAH)),
         
 		var foodShopCategory = new ShopCategory(ResourceKey.ShopCategory_Food, "🍽", foodShops);
         

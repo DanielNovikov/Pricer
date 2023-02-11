@@ -7,7 +7,7 @@ public record Shop(
     string Name,
     ShopKey Key,
     string Host,
-    string Logo,
-    bool SameFormatImages,
+    string BackgroundColor,
+    string FontColor,
     string[] SubHosts = null)
     : IReadonlyEntity<ShopKey>;
