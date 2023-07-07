@@ -11,8 +11,8 @@ public class EvaContentValidator : IContentValidator
 
 	public bool HasItemInfo(IHtmlDocument document)
 	{
-		const string selector = "meta[itemprop='price']";
+		const string selector = "div.sf-price > span";
 
-		return document.QuerySelector<IHtmlMetaElement>(selector) is not null;
+		return document.QuerySelector<IHtmlSpanElement>(selector) is not null;
 	}
 }

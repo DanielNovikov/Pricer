@@ -1,0 +1,16 @@
+﻿<div id="container">
+    <div id="header-container">
+        <p id="title">@Shop.Name</p>
+        
+        <a href="@Shop.Url" target="_blank" id="link-button">
+            <img src="images/client/link-icon-primary.svg"/>
+        </a>
+    </div>
+
+    <div id="items-container">
+        @foreach (var item in Shop.Items)
+        {
+            <ClientItem Item="item" OnDeleted="OnItemDeleted"></ClientItem>
+        }
+    </div>
+</div>

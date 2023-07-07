@@ -1,0 +1,46 @@
+﻿@using Pricer.Parser.Abstract
+@using Pricer.Dialog.Services.Abstract
+@using Pricer.Common.Services.Abstract
+@using Pricer.Data.InMemory.Models.Enums
+@using Pricer.Data.Service.Abstract
+@using Pricer.Dialog.Models
+
+@inherits ClientComponentBase
+
+<div class="container">
+    <div class="content">
+        <p class="title">Наразі у вас ще не має жодних товарів</p>
+        <div>
+            <button @onclick="AddExample">Додати приклад</button>
+        </div>
+    </div>
+</div>
+
+@code {
+    [Inject] IUserItemParser UserItemParser { get; set; } = default!;
+    [Inject] IUserLanguage UserLanguage { get; set; } = default!;
+    [Inject] IExampleItemService ExampleItemService { get; set; } = default!;
+    
+    private bool _isAdding;
+    
+    private async Task AddExample()
+    {
+        if (!_isAdding)
+        {
+            _isAdding = true;
+            
+            var url = await ExampleItemService.Get();
+            if (!url.IsSuccess) return;
+    
+            UserLanguage.Set(LanguageKey.Ukranian);
+            
+            var user = await GetUser();
+            var result = await UserItemParser.Parse(user, url.Result);
+            if (result is ReplyResourceResult { Resource: ResourceKey.Dialog_ItemAdded })
+                NavigationManager.NavigateTo(NavigationManager.Uri, true);
+    
+            _isAdding = false;
+        }
+    }
+
+}

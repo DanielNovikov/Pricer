@@ -10,8 +10,10 @@ public static class DependencyInjection
     public static IServiceCollection AddBackgroundJobs(this IServiceCollection services)
     {
         return services
+            .AddHostedService<SeedJob>()
             .AddHostedService<ItemsObserver>()
             .AddHostedService<TelegramMessageReceiver>()
+            .AddHostedService<ViberWebhookJob>()
             
             .AddTransient<IBotService, BotService>()
             .AddTransient<IItemsObserverService, ItemsObserverService>()

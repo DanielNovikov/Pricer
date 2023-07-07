@@ -1,0 +1,29 @@
+#container {
+  width: 100%;
+  height: calc(100% - 1px);
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  border-top: 1px solid #EAEAEA;
+  align-content: center;
+  box-shadow: 0 -1px 10px rgba(0, 0, 0, 0.03);
+}
+#container div {
+  text-align: center;
+}
+#container div img {
+  height: 31px;
+}
+#container div #new-item-container {
+  position: relative;
+}
+#container div #new-item-container #new-item {
+  background: #6270EF;
+  padding: 10px;
+  position: absolute;
+  top: -38px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 1000px;
+}
+
+/*# sourceMappingURL=ClientMobileNavbar.razor.css.map */

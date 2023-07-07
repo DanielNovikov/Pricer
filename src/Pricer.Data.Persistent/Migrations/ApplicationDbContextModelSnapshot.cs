@@ -22,28 +22,6 @@ namespace Pricer.Data.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("Pricer.Data.Persistent.Models.AppNotification", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("Content")
-                        .HasColumnType("integer");
-
-                    b.Property<bool>("Executed")
-                        .HasColumnType("boolean");
-
-                    b.Property<string>("VideoUrl")
-                        .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("AppNotifications");
-                });
-
             modelBuilder.Entity("Pricer.Data.Persistent.Models.Item", b =>
                 {
                     b.Property<int>("Id")

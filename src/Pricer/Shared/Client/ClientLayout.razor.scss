@@ -1,0 +1,45 @@
+﻿@import '../../wwwroot/css/mixins';
+
+$pc-navbar-width: 70px;
+$mobile-navbar-height: 60px;
+
+#container {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  
+  @include _600 {
+    flex-direction: column;
+  }
+}
+
+
+#pc-navbar {
+  width: $pc-navbar-width;
+
+  @include _600 {
+    display: none;
+  }
+}
+
+
+#content {
+  width: calc(100% - $pc-navbar-width);
+  height: 100%;
+  overflow-y: auto;
+
+  @include _600 {
+    width: 100%;
+    height: calc(100% - $mobile-navbar-height)
+  }
+}
+
+
+#mobile-navbar {
+  display: none;
+  height: $mobile-navbar-height;
+
+  @include _600 {
+    display: block;
+  }
+}

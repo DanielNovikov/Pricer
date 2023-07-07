@@ -1,0 +1,103 @@
+﻿@using Pricer.Dialog.Services.Abstract
+@using Pricer.Data.Service.Abstract
+@using Pricer.Dialog.Models
+@using Pricer.Data.InMemory.Models.Enums
+@using Pricer.Data.Persistent.Models
+@using Pricer.Common.Services.Abstract
+
+@inherits ClientDialogBase
+
+<ClientDialog @ref="DialogRef">
+    <Content>
+        <EditForm EditContext="EditContext" OnValidSubmit="OnAddNewItemClicked">
+            <div id="container">
+                <p id="header">Посилання на товар</p>
+
+                <div>
+                    <input @bind-value="_model.Url" placeholder="Посилання..." id="url-input"/>
+                    
+                    <ValidationMessage For="() => _model.Url" />
+                    
+                    @if (!string.IsNullOrEmpty(_validationError))
+                    {
+                        <p class="validation-message">@_validationError</p>
+                    }
+                </div>
+                
+                <div>
+                    <button type="submit">Додати</button>
+                </div>
+            </div>
+        </EditForm>
+    </Content>
+</ClientDialog>
+
+@code {
+    
+    private EditContext? EditContext { get; set; }
+    private ValidationMessageStore? ValidationMessageStore { get; set; }
+
+    private NewItemDto _model = new ();
+    private string? _validationError;
+    private bool _isButtonDisabled;
+
+    [Inject] IUserItemParser UserItemParser { get; set; } = default!;
+    [Inject] IResourceService ResourceService { get; set; } = default!;
+    [Inject] IUserLanguage UserLanguage { get; set; } = default!;
+
+    [Parameter] public EventCallback OnAdded { get; set; }
+    
+    protected override void OnInitialized()
+    {
+        EditContext = new EditContext(_model);
+        EditContext.OnValidationRequested += OnValidationRequested;
+        ValidationMessageStore = new ValidationMessageStore(EditContext);
+    }
+
+    public override void OpenDialog()
+    {
+        _model = new();
+        ValidationMessageStore?.Clear();
+        _validationError = null;
+        _isButtonDisabled = false;
+        base.OpenDialog();
+    }
+
+    private async Task OnAddNewItemClicked()
+    {
+        _isButtonDisabled = true;
+        UserLanguage.Set(LanguageKey.Ukranian);
+        
+        var user = await GetUser();
+        var url = new Uri(_model.Url!);
+        UserLanguage.Set(LanguageKey.Ukranian);
+        var result = (await UserItemParser.Parse(user, url)) as ReplyResourceResult;
+    
+        if (result!.Resource == ResourceKey.Dialog_ItemAdded)
+        {
+            CloseDialog();
+            await OnAdded.InvokeAsync();
+            return;
+        }
+    
+        _validationError = ResourceService.GetDefault(result.Resource, result.Parameters);
+        _isButtonDisabled = false;
+    }
+    
+    private void OnValidationRequested(object? sender, ValidationRequestedEventArgs args)
+    {
+        ValidationMessageStore?.Clear();
+    
+        if (string.IsNullOrWhiteSpace(_model.Url))
+        {
+            ValidationMessageStore?.Add(() => _model.Url, "Посилання обов'язкове");
+            return;
+        }
+    
+        if (!Uri.TryCreate(_model.Url, UriKind.Absolute, out _))
+        {
+            ValidationMessageStore?.Add(() => _model.Url, "Формат посилання не вірний");
+            return;
+        }
+    }
+}

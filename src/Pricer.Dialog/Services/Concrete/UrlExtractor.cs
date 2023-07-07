@@ -18,7 +18,7 @@ public class UrlExtractor : IUrlExtractor
         if (!match.Success)
             return UrlExtractionResult.Fail(ResourceKey.Dialog_MessageDoesNotContainLink);
 
-        var url = match.Groups[0].Value;
+        var url = match.Groups[0].Value.Replace("https://www.", "https://");
 
         return Uri.TryCreate(url, UriKind.Absolute, out var uri)
             ? UrlExtractionResult.Success(uri)

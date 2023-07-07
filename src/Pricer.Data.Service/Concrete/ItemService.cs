@@ -62,6 +62,12 @@ public class ItemService : IItemService
         return item;
     }
 
+    public async Task Delete(int id)
+    {
+        var item = await _repository.GetById(id);
+        await Delete(item);
+    }
+
     public async Task Delete(Item item)
     {
         item.IsDeleted = true;

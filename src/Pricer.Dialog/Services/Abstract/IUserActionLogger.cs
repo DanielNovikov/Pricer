@@ -52,4 +52,6 @@ public interface IUserActionLogger
     void LogCalledChangingMinimumDiscountThreshold(User user);
     
     void LogChangedMinimumDiscountThreshold(User user, int discountThreshold);
+
+    void LogExampleClicked(User user);
 }

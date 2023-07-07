@@ -5,4 +5,6 @@ namespace Pricer.Data.Service.Abstract;
 public interface ICurrencyService
 {
 	string GetTitle(CurrencyKey key);
+
+	string GetSign(CurrencyKey key);
 }

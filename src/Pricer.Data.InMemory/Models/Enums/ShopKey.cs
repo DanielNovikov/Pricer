@@ -36,5 +36,8 @@ public enum ShopKey
     Prostor = 32,
     Olx = 33,
     Notino = 34,
-    IHerb = 35
+    IHerb = 35,
+    Miraton = 36,
+    DeeZee = 37,
+    AutoRia = 40,
 }

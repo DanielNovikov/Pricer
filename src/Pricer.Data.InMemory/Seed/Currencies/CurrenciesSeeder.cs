@@ -11,20 +11,9 @@ public class CurrenciesSeeder
 	{
 		var currencies =  new List<Currency>
 		{
-			new Currency(
-				CurrencyKey.UAH,
-				ResourceKey.Currency_UAH_Title,
-				ResourceKey.Currency_UAH_Sign),
-            
-			new Currency(
-				CurrencyKey.EUR,
-				ResourceKey.Currency_EUR_Title,
-				ResourceKey.Currency_EUR_Sign),
-            
-			new Currency(
-				CurrencyKey.USD,
-				ResourceKey.Currency_USD_Title,
-				ResourceKey.Currency_USD_Sign)
+			new Currency(CurrencyKey.UAH, " грн.", "₴"),
+			new Currency(CurrencyKey.EUR, "€", "€"),
+			new Currency(CurrencyKey.USD, "$", "$")
 		};
 
 		cache.Set(CacheKey.Currencies, currencies);

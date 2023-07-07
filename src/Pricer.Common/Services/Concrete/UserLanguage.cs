@@ -14,7 +14,7 @@ public class UserLanguage : IUserLanguage
         _userRepository = userRepository;
     }
 
-    public async Task SetForUser(int userId)
+    public async Task Set(int userId)
     {
         var user = await _userRepository.GetById(userId);
         LanguageKey = user.SelectedLanguageKey;

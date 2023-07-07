@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Pricer.Data.InMemory.Models.Enums;
 using Pricer.Data.InMemory.Repositories.Abstract;
 using Pricer.Data.Persistent.Models;
+using Pricer.Data.Persistent.Repositories.Abstract;
 using Pricer.Data.Service.Abstract;
 using Pricer.Dialog.Models;
 using Pricer.Dialog.Models.Abstract;
@@ -17,21 +18,37 @@ public class UserItemParser : IUserItemParser
     private readonly IParser _parser;
     private readonly IItemService _itemService;
     private readonly IShopRepository _shopRepository;
+    private readonly IItemRepository _itemRepository;
     
     public UserItemParser(
         IUserActionLogger userActionLogger,
-        IParser parser,  
+        IParser parser,
         IItemService itemService,
-        IShopRepository shopRepository)
+        IShopRepository shopRepository, 
+        IItemRepository itemRepository)
     {
         _userActionLogger = userActionLogger;
         _parser = parser;
         _itemService = itemService;
         _shopRepository = shopRepository;
+        _itemRepository = itemRepository;
     }
 
     public async ValueTask<IReplyResult> Parse(User user, Uri url)
     {   
+        var item = await _itemRepository.GetByUserIdAndUrl(user.Id, url);
+        if (item is not null)
+        {
+            if (!item.IsDeleted)
+            {
+                _userActionLogger.LogDuplicateItem(user, url);
+                return new ReplyResourceResult(ResourceKey.Dialog_DuplicateItem);
+            }
+
+            await _itemService.Restore(item);
+            return new ReplyResourceResult(ResourceKey.Dialog_ItemAdded);
+        }
+        
         var shop = _shopRepository.GetByHost(url.Host);
         if (shop is null)
         {
@@ -48,7 +65,7 @@ public class UserItemParser : IUserItemParser
 
         var parsedItem = parseResult.Result;
 
-        var item = await _itemService.Create(
+        item = await _itemService.Create(
             parsedItem.Price, parsedItem.Title, url, parsedItem.ImageUrl,
             user.Id, shop.Key, parsedItem.IsAvailable, parsedItem.CurrencyKey);
         

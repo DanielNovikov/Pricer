@@ -20,7 +20,7 @@ public class CosmeticsSeeder
             new Shop(
                 "Watsons",
                 ShopKey.Watsons,
-                "www.watsons.ua",
+                "watsons.ua",
                 "#00a0a0",
                 "#fffffe"),
             
@@ -41,13 +41,13 @@ public class CosmeticsSeeder
             new Shop(
                 "Notino",
                 ShopKey.Notino,
-                "www.notino.ua",
+                "notino.ua",
                 "#000000",
                 "#ffffff"),
 
             new Shop(
                 "iHerb",
-                ShopKey.Notino,
+                ShopKey.IHerb,
                 "ua.iherb.com",
                 "#468500",
                 "#fffffc")

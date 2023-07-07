@@ -1,0 +1,23 @@
+﻿@inherits ClientDialogBase
+
+<ClientDialog @ref="DialogRef">
+    <Content>
+        <div id="container">
+            <p>Видалити товар?</p>
+            
+            <div id="delete-button-container">
+                <button @onclick="OnDeleteClicked"><img src="images/client/delete-icon-primary.svg"/></button>
+            </div>
+        </div>
+    </Content>
+</ClientDialog>
+
+@code {
+    [Parameter] public EventCallback<ItemDto> OnDeleted { get; set; }
+
+    private void OnDeleteClicked()
+    {
+        CloseDialog();
+        OnDeleted.InvokeAsync();
+    }
+}

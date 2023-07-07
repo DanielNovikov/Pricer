@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 using System.Threading.Tasks;
 using AngleSharp.Html.Parser;
 using Microsoft.Extensions.Logging;
@@ -44,8 +45,19 @@ public class HtmlLoader : IHtmlLoader
                 return HtmlLoadResult.Fail(ResourceKey.Parser_PageNotFound);
         }
             
+        
+        #if DEBUG
+
+        var html = await response.Content.ReadAsByteArrayAsync();
+        var htmlString = Encoding.UTF8.GetString(html);
+        var htmlDocument = await _htmlParser.ParseDocumentAsync(htmlString);
+        
+        #else
+        
         var html = await response.Content.ReadAsStreamAsync();
         var htmlDocument = await _htmlParser.ParseDocumentAsync(html);
+        
+        #endif
 
         return HtmlLoadResult.Success(htmlDocument);
     }

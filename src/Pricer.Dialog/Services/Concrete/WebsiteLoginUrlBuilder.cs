@@ -11,7 +11,7 @@ public class WebsiteLoginUrlBuilder : IWebsiteLoginUrlBuilder
     private readonly IUserTokenService _userTokenService;
     private readonly WebsiteOptions _websiteOptions;
 
-    private const string LoginEndpoint = "{0}/login/{1}";
+    private const string LoginEndpoint = "{0}/client/login/{1}";
 
     public WebsiteLoginUrlBuilder(
         IUserTokenService userTokenService, 

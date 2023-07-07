@@ -1,16 +1,4 @@
-using System.IO;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Caching.Memory;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Pricer.Bot.Viber.Services.Abstract;
-using Pricer.Common.Extensions;
-using Pricer.Data.InMemory.Seed;
-using Pricer.Data.Persistent;
-using Pricer.Data.Persistent.Seed;
 using Serilog;
 using TelegramSink;
 
@@ -20,13 +8,21 @@ public class Program
 {
     public static void Main(string[] args)
     {
-        var host = CreateHostBuilder(args).Build();
+        try
+        {
+            var host = CreateHostBuilder(args).Build();
+
+            InitializeLogger();
+
+            host.Run();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("Failed to start application");
             
-        SeedData(host);
-        InitializeLogger();
-        SetViberWebhook(host);
-            
-        host.Run();
+            Console.WriteLine(ex.Message);
+            Console.WriteLine(ex.InnerException);
+        }
     }
 
     private static IWebHostBuilder CreateHostBuilder(string[] args) =>
@@ -40,31 +36,6 @@ public class Program
             .UseSerilog()
             .UseUrls("http://*:5000")
             .UseStartup<Startup>();
-
-    private static void SetViberWebhook(IWebHost host)
-    {
-        using var scope = host.Services.CreateScope();
-            
-        var viberBotService = scope.GetService<IViberBotService>();
-
-        Task.Run(async () =>
-        {
-            await Task.Delay(2000);
-            await viberBotService.SetWebhook();
-        });
-    }
-    
-    private static void SeedData(IWebHost host)
-    {
-        using var scope = host.Services.CreateScope();
-            
-        var context = scope.GetService<ApplicationDbContext>();
-        context!.Database.Migrate();
-        DbSeeder.Seed(context);
-
-        var cache = scope.GetService<IMemoryCache>();
-        InMemorySeeder.Seed(cache);
-    }
         
     private static void InitializeLogger()
     {

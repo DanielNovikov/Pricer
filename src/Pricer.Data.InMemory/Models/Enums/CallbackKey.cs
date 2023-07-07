@@ -6,5 +6,6 @@ public enum CallbackKey
 	RestoreItem = 1,
 	ChangeLanguage = 2,
 	TogglePriceGrowingNotifications = 3,
-	ChangeMinimumDiscountThreshold = 4
+	ChangeMinimumDiscountThreshold = 4,
+	AddExample = 5
 }

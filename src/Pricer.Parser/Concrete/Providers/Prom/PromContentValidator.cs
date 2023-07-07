@@ -11,7 +11,7 @@ public class PromContentValidator : IContentValidator
 
 	public bool HasItemInfo(IHtmlDocument document)
 	{
-		const string selector = "span[data-qaid='product_price']";
+		const string selector = "div[data-qaid='product_price'] > span";
 
 		return document.QuerySelector<IHtmlSpanElement>(selector) is not null;
 	}

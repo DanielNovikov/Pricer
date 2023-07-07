@@ -1,0 +1,78 @@
+﻿@using Pricer.Dialog.Services.Abstract
+@using Pricer.Common.Services.Abstract
+@using Pricer.Data.InMemory.Models.Enums
+@inherits ClientDialogBase
+
+<ClientDialog @ref="DialogRef">
+    <Content>
+        <EditForm EditContext="EditContext" OnValidSubmit="OnWroteToSupport">
+            <div id="container">
+                <p id="header">Ваше питання, побажання чи обурення</p>
+
+                <div>
+                    <textarea @bind="_model.Text" @oninput="(e) => OnTextChanged(e.Value?.ToString())" placeholder="Текст..." id="text-input"></textarea>
+                    <ValidationMessage For="() => _model.Text" />
+                </div>
+                
+                <div>
+                    <button type="submit">Надіслати</button>
+                </div>
+            </div>
+        </EditForm>
+    </Content>
+</ClientDialog>
+
+@code {
+
+    private EditContext? EditContext { get; set; }
+    private ValidationMessageStore? ValidationMessageStore { get; set; }
+    
+    private WriteToSupportDto _model = new ();
+
+    [Inject] IUserLanguage UserLanguage { get; set; } = default!;
+    [Inject] IUserActionLogger UserActionLogger { get; set; } = default!;
+    
+    [Parameter] public EventCallback OnSent { get; set; }
+
+    protected override void OnInitialized()
+    {
+        EditContext = new EditContext(_model);
+        EditContext.OnValidationRequested += OnValidationRequested;
+        ValidationMessageStore = new ValidationMessageStore(EditContext);
+    }
+    
+    private async Task OnWroteToSupport()
+    {
+        UserLanguage.Set(LanguageKey.Ukranian);
+
+        var user = await GetUser();
+        UserActionLogger.LogWriteToSupport(user, _model.Text);
+
+        await OnSent.InvokeAsync();
+        CloseDialog();
+    }
+
+    public override void OpenDialog()
+    {
+        base.OpenDialog();
+
+        _model = new();
+        ValidationMessageStore?.Clear();
+    }
+
+    private void OnTextChanged(string? text)
+    {
+        _model.Text = text;
+    }
+    
+    private void OnValidationRequested(object? sender, ValidationRequestedEventArgs args)
+    {
+        ValidationMessageStore?.Clear();
+    
+        if (string.IsNullOrWhiteSpace(_model.Text))
+        {
+            ValidationMessageStore?.Add(() => _model.Text, "Текст обов'язковий");
+            return;
+        }
+    }
+}

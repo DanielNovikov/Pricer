@@ -1,0 +1,149 @@
+﻿@import '../../wwwroot/css/variables';
+@import '../../wwwroot/css/mixins';
+
+#container {
+  background: white;
+  padding: 15px;
+  border-radius: 15px;
+  display: grid;
+  grid-template-columns: 80px auto 40px 40px;
+  grid-template-rows: 40px 40px;
+  grid-gap: 10px;
+  grid-template-areas: 
+    "image title title title"
+    "image price url delete";
+  
+  @include _768 {
+    grid-template-columns: 60px auto 35px 35px;
+    grid-template-rows: 35px 35px;
+    grid-gap: 8px;
+    padding: 12px;
+  }
+
+  @include _480 {
+    grid-template-areas: 
+      "image title title title title"
+      "image price . url delete";
+    grid-template-columns: 70px auto auto 40px 40px;
+    grid-template-rows: 45px 40px;
+    grid-gap: 10px;
+    padding: 14px;
+  }
+
+  @include _400 {
+    grid-template-columns: 70px auto auto 35px 35px;
+    grid-template-rows: 35px 35px;
+    grid-gap: 8px;
+    padding: 12px;
+  }
+}
+
+#image-container {
+  grid-area: image;
+  background-size: auto 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  border-radius: 15px;
+  width: calc(100% - 7px);
+}
+
+#preview-image {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+#title-container {
+  grid-area: title;
+  position: relative;
+}
+
+#title {
+  position: absolute;
+  margin: 0;
+  font-weight: 400;
+  font-size: 15px;
+  font-family: $primary-font-family;
+  color: #404040;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  
+  @include _768 {
+    font-size: 14px;
+  }
+  
+  @include _480 {
+    font-size: 15px;
+  }
+
+  @include _400 {
+    font-size: 14px;
+  }
+}
+
+#price-button {
+  grid-area: price;
+  width: auto;
+  color: white;
+  border-radius: 30px;
+  font-weight: 500;
+  font-family: $primary-font-family;
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  padding: 0 8px 0 15px;
+  background: $primary-color;
+  border: 0;
+  letter-spacing: 0.02em;
+
+  @include _768 {
+    gap: 7px;
+    padding: 0 0 0 10px;
+  }
+
+  @include _480 {
+    font-size: 13px;
+  }
+}
+
+#price-changes-button {
+  display: flex;
+  gap: 5px;
+  background: #B0B7F7;
+  border-radius: 15px;
+  padding: 0 10px;
+  height: 30px;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  
+  @include button-animation();
+  @include _768 {
+    padding: 0 8px;
+    height: 28px;
+  }
+}
+
+#url-button {
+  grid-area: url;
+}
+
+#delete-button {
+  grid-area: delete;
+}
+
+#url-button, #delete-button {
+  border-radius: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: $primary-color;
+  border: 0;
+  cursor: pointer;
+  
+  @include button-animation();
+}

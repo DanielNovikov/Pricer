@@ -1,0 +1,23 @@
+﻿<div id="container">
+    <a href="@Item.Url" target="_blank" id="image-container" style="background-image: url(@Item.ImageUrl)"></a>
+
+    <div id="title-container">
+        <a href="@Item.Url" target="_blank">
+            <p id="title">@Item.Title</p>
+        </a>
+    </div>
+
+    <button id="price-button" @onclick="OnGraphicsClicked">
+        <span>@Item.Price<strong>@Item.CurrencySign</strong></span>
+
+        <div id="price-changes-button">
+            <img src="images/client/graphic.svg"/>
+        </div>
+    </button>
+
+    <button @onclick="() => NavigateTo(Item.Url)" id="url-button"><img src="images/client/link-icon-white.svg"/></button>
+    <button id="delete-button" @onclick="OnOpenDeleteDialogClicked"><img src="images/client/delete-icon-white.svg"/></button>
+</div>
+
+<ClientDeleteItemDialog OnDeleted="OnDeleteClicked" @ref="_deleteItemDialog"></ClientDeleteItemDialog>
+<ClientItemPriceChangesDialog PriceChanges="_priceChanges" @ref="_itemPriceChangesDialog"></ClientItemPriceChangesDialog>

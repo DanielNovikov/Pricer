@@ -21,7 +21,8 @@ public class PartnerUrlBuilder : IPartnerUrlBuilder
 #if DEBUG
 		return url.ToString();
 #else
-        return string.Format(PartnerUrlTemplate, _options.Url, url);
+        //return string.Format(PartnerUrlTemplate, _options.Url, url);
+		return url.ToString();
 #endif
 	}
 }

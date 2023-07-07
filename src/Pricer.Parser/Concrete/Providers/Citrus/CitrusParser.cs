@@ -25,7 +25,7 @@ public class CitrusParser : IParserProvider
 
     public string GetTitle(IHtmlDocument document)
     {
-        const string selector = "h1.title-0-2-122";
+        const string selector = "h1[class^='Description_title']";
 
         var titleElement = document.QuerySelector<IHtmlHeadingElement>(selector) ??
             throw new ArgumentNullException($"{nameof(CitrusParser)}:{nameof(GetTitle)}:Element");

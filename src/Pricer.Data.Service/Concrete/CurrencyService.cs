@@ -20,7 +20,12 @@ public class CurrencyService : ICurrencyService
 	public string GetTitle(CurrencyKey key)
 	{
 		var currency = _currencyRepository.GetByKey(key);
-		
-		return _resourceService.Get(currency.Title);
+		return currency.Title;
+	}
+
+	public string GetSign(CurrencyKey key)
+	{
+		var currency = _currencyRepository.GetByKey(key);
+		return currency.Sign;
 	}
 }

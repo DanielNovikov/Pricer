@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using AngleSharp.Dom;
 using AngleSharp.Html.Dom;
 using Pricer.Data.InMemory.Models.Enums;
@@ -12,15 +13,17 @@ public class EvaParser : IParserProvider
 
 	public int GetPrice(IHtmlDocument document)
 	{
-		const string selector = "meta[itemprop='price']";
+		const string selector = "div.sf-price > span";
 		
-		var priceElement = document.QuerySelector<IHtmlMetaElement>(selector) ??
+		var priceElement = document.QuerySelector<IHtmlSpanElement>(selector) ??
 			throw new ArgumentNullException($"{nameof(EvaParser)}:{nameof(GetPrice)}:Element");
 
-		var price = priceElement.Content ?? 
-		    throw new ArgumentNullException($"{nameof(EvaParser)}:{nameof(GetPrice)}:Element:Content");
-        
-		return (int)double.Parse(price);
+		var price = priceElement.TextContent;
+		var formattedPrice = price
+			.Substring(0, price.IndexOf("грн", StringComparison.Ordinal))
+			.Replace(" ", string.Empty);
+
+		return (int)double.Parse(formattedPrice);
 	}
 
 	public string GetTitle(IHtmlDocument document)
@@ -35,14 +38,14 @@ public class EvaParser : IParserProvider
 
 	public Uri GetImageUrl(IHtmlDocument document)
 	{
-		const string selector = "li.glide__slide:first-child > div noscript";
+		const string selector = ".glide__slides .a-image-zoom img";
 		
-		var noScriptElement = document.QuerySelector<IHtmlElement>(selector) ??
-			throw new ArgumentNullException($"{nameof(EvaParser)}:{nameof(GetImageUrl)}:Element");
+		var imageElement = document.QuerySelector<IHtmlImageElement>(selector) ??
+		    throw new ArgumentNullException($"{nameof(EvaParser)}:{nameof(GetImageUrl)}:Element");
 
-		var noScriptContent = noScriptElement.InnerHtml;
-		var	imageSource = noScriptContent.Split('"')[1];
-		
+		var imageSource = imageElement.Source ??
+		    throw new ArgumentNullException($"{nameof(EvaParser)}:{nameof(GetImageUrl)}:Element:Content");
+
 		return new Uri(imageSource);
 	}
 

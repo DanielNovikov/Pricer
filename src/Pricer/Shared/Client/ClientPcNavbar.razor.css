@@ -1,0 +1,25 @@
+#container {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 3fr 1fr;
+  align-items: center;
+  width: auto;
+  height: 100%;
+  background-color: #6270EF;
+  padding: 0 10px;
+}
+#container img {
+  width: 100%;
+  cursor: pointer;
+}
+#container #logout {
+  padding: 11px;
+}
+#container #links {
+  padding: 13px;
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+
+/*# sourceMappingURL=ClientPcNavbar.razor.css.map */

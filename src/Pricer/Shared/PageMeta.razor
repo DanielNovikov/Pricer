@@ -1,0 +1,18 @@
+﻿@{
+    SetPageMeta();
+}
+
+@code {
+    [Parameter] public string? Description { get; set; }
+    [Parameter] public string? Keywords { get; set; }
+
+    [Inject] IJSRuntime JsRuntime { get; set; } = default!;
+    
+    private async void SetPageMeta()
+    {
+        if (!string.IsNullOrEmpty(Description) && !string.IsNullOrEmpty(Keywords))
+        {
+            await JsRuntime.InvokeVoidAsync("setPageMeta", Description, Keywords);
+        }
+    }
+}

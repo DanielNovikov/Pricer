@@ -137,6 +137,11 @@ public class UserActionLogger : IUserActionLogger
         LogInformation(user, ResourceKey.UserAction_ChangedMinimumDiscountThreshold, discountThreshold);
     }
 
+    public void LogExampleClicked(User user)
+    {
+        LogInformation(user, ResourceKey.UserAction_ExampleClicked);
+    }
+
     private void LogInformation(User user, ResourceKey message, params object[] parameters)
     {
         Log(user, LogLevel.Information, message, parameters);

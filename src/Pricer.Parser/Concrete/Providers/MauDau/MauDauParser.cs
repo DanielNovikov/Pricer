@@ -12,7 +12,7 @@ public class MauDauParser : IParserProvider
 
 	public int GetPrice(IHtmlDocument document)
 	{
-		const string selector = "div.product-side-info span.price_final";
+		const string selector = "div.product-block--actions span.price_final";
 		
 		var priceElement = document.QuerySelector<IHtmlSpanElement>(selector) ?? 
 		    throw new ArgumentNullException($"{nameof(MauDauParser)}:{nameof(GetPrice)}:Element");
@@ -36,7 +36,7 @@ public class MauDauParser : IParserProvider
 
 	public Uri GetImageUrl(IHtmlDocument document)
 	{
-		const string selector = "div.slider-item.active > img";
+		const string selector = "div.main-gallery div.slider-item > div > img.product-image__thumb";
 		
 		var imageElement = document.QuerySelector<IHtmlImageElement>(selector) ?? 
 		    throw new ArgumentNullException($"{nameof(MauDauParser)}:{nameof(GetImageUrl)}:Element");

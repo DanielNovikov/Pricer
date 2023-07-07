@@ -1,0 +1,1 @@
+{"version":3,"sourceRoot":"","sources":["ClientLayout.razor.scss","../../wwwroot/css/_mixins.scss"],"names":[],"mappings":"AAKA;EACE;EACA;EACA;;ACWA;EDdF;IAMI;;;;AAKJ;EACE,OAfgB;;ACiBhB;EDHF;IAII;;;;AAKJ;EACE;EACA;EACA;;ACTA;EDMF;IAMI;IACA;;;;AAKJ;EACE;EACA,QApCqB;;ACgBrB;EDkBF;IAKI","file":"ClientLayout.razor.css"}

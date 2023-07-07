@@ -13,7 +13,7 @@ public class ParserTests : TestBase
         "https://www.adidas.ua/bryuki-yuventus-performance-gr2931",
         ShopKey.Adidas,
         "Штани Ювентус",
-        "https://assetmanagerpim-res.cloudinary.com/images/w_600/q_90/875968816fb7461d9d46acf5010f343a_9366/GR2931_21_model.WebP")]
+        "https://assetmanagerpim-res.cloudinary.com")]
     [InlineData(
         "https://allo.ua/ru/products/mobile/xiaomi-redmi-note-11-4-128-gr-gray-2201117ty.html",
         ShopKey.Allo,
@@ -30,20 +30,30 @@ public class ParserTests : TestBase
         "Кросівки чоловічі Nike Tanjun",
         "https://static.athletics.kiev.ua/static/i/2000_2000/products/236580/XS0VZRg5.jpeg")]
     [InlineData(
-        "https://answear.ua/p/kofta-drykorn-bradley-cholovicha-kolir-zelenyj-gladka-560980",
+        "https://answear.ua/p/zamshevi-shlopantsi-birkenstock-1025788-cholovichi-kolir-zelenyj-boston-983379",
         ShopKey.Answear,
-        "Кофта Drykorn Bradley чоловіча колір зелений гладка",
-        "https://img..ans-media.com/i/540x813/SS22-BLM06T_77X_F1.jpg@jpg?v=1638960396")]
+        "Замшеві шльопанці Birkenstock 1025788",
+        "https://img2.ans-media")]
     [InlineData(
         "https://www.ctrs.com.ua/electroscooters/detskiy-elektrosamokat-likebike-twist-blue-661359.html",
         ShopKey.Citrus,
         "Like.Bike Twist (Black) 250 Wh$",
         "https://i.citrus.world/imgcache/size_180/uploads/shop/d/8/d843364b222194297412ea6d55a9a4ef.png")]
     [InlineData(
+        "https://auto.ria.com/uk/auto_porsche_911_31782126.html",
+        ShopKey.AutoRia,
+        "Porsche 911 2007",
+        "https://cdn4.riastatic.com/photosnew/auto/photo/porsche_911__448779459f.jpg")]
+    [InlineData(
         "https://comfy.ua/ua/stiral-naja-mashina-whirlpool-wrbsb-6228-b-ua.html",
         ShopKey.Comfy,
-        "Пральна машина Whirlpool WRBSS 6215 W UA",
+        "Пральна машина Whirlpool WRBSB 6228 B UA",
         "https://cdn.comfy.ua/media/catalog/product/w/r/wrbsb_6228_b_ua_5_.jpg")]
+    [InlineData(
+        "https://deezee.eu/uk/vechirni-sumki/sribna-vechirnya-sumka-florance-deezee-ccc",
+        ShopKey.DeeZee,
+        "Срібна вечірня сумка Florance DeeZee&CCC",
+        "https://deezee.eu/img/imagecache/32001-33000/157b8e3ff0b91b0414c18557651f35e8622a4a81.webp")]
     [InlineData(
         "https://eko.zakaz.ua/uk/products/04820212490279/khlib-kiyivkhlib-350g/",
         ShopKey.EkoMarket,
@@ -60,10 +70,10 @@ public class ParserTests : TestBase
         "Apple WATCH Series 7 45mm Midnight Aluminum Case With Midnight Sport Band (MKN53)",
         "https://estore.ua/media/catalog/product/cache/8/image/265x/9df78eab33525d08d6e5fb8d27136e95/a/p/apple-watch-series-7_5__1_1.jpg")]
     [InlineData(
-        "https://eva.ua/ua/pr300615/",
+        "https://eva.ua/ua/pr534627/",
         ShopKey.Eva,
-        "Ультрам'який відновлювальний очищувальний засіб для обличчя Numee Glow Up Start Fresh Probiotics + Electrolytes, 150 мл",
-        "https://pwa-api.eva.ua/img/512/512/resize/6/6/668643_1_1635369532.jpg")]
+        "Лосьйон для тіла Biolaven Body Lotion Виноград та лаванда",
+        "https://pwa-api.eva.ua")]
     // [InlineData(
     //     "https://www.farfetch.com/ua/shopping/men/moschino-iphone-12-item-17412779.aspx?rtype=portal_pdp_outofstock_b&rpos=5&rid=aaf3572d-fa18-4021-a13e-5cb95783f88d",
     //     ShopKey.Farfetch,
@@ -73,37 +83,42 @@ public class ParserTests : TestBase
         "https://ua.iherb.com/pr/megafood-zinc-60-tablets/4074",
         ShopKey.IHerb,
         "MegaFood, цинк, 60 таблеток",
-        "https://cloudinary.images-iherb.com/image/upload/f_auto,q_auto:eco/images/mgf/mgf10188/v/33.jpg")]
+        "https://cloudinary.images-iherb.com/image/upload/f_auto,q_auto:eco/images/mgf/mgf10188/v/49.jpg")]
     [InlineData(
         "https://intertop.ua/ua/product/sweaters-and-sweaters-adidas-5701343",
         ShopKey.Intertop,
         "Кофта спортивна Adidas ZNE WV COLDFZ",
         "https://intertop.ua/load/CN1097/MAIN.jpg")]
     [InlineData(
-        "https://jysk.ua/zberigannya/komodi/basic/komod-odby-3shukh-bilyy/siryy",
+        "https://jysk.ua/zberigannya/komodi/komod-tapdrup-5shukh-vuzkyy-dub",
         ShopKey.Jysk,
-        "Комод ODBY 3шух білий/сірий",
-        "https://cdn4.jysk.com/getimage/wd2.medium/86137")]
+        "Комод TAPDRUP 5шух",
+        @"https:\/\/cdn..jysk.com.+")]
     [InlineData(
-        "https://makeup.com.ua/product/909452/",
+        "https://makeup.com.ua/ua/product/994/",
         ShopKey.Makeup,
-        "Сыворотка для лица увлажняющая с гиалуроновой кислотой и ниацинамидом - Relance Hyaluronic Acid + Niacinamide Face Serum",
-        "https://u.makeup.com.ua/g/ga/garz1eytjlmi.jpg")]
+        "Calvin Klein Eternity For Men",
+        "https://u.makeup.com.ua")]
     [InlineData(
         "https://maudau.com.ua/ru/pyvo-leffe-brune-temne-63-zhb-05-l-478576-md-421156.html",
         ShopKey.MauDau,
-        "Пиво Leffe Brune темное, 6,3%, ж/б, 0,5 л (478576)",
-        "https://sf-api.maudau.com.ua/img/600/744/resize/catalog/product/R/H/RHsslBsz_1.jpg")]
+        "Пиво Leffe Brune, темное, 6,5%, ж/б, 0,5 л (478576)",
+        "https://sf-api.maudau.com.ua")]
     [InlineData(
-        "https://md-fashion.com.ua/store/bezevaa-kurtka-tommy-hilfiger-x-timberland-tommy-hilfiger-mw0mw20906-bezevyj",
+        "https://md-fashion.com.ua/store/zenskie-bosonozki-golden-webbing-wedge-tommy-hilfiger-fw0fw07089-raznocvetnyj",
         ShopKey.MdFashion,
-        "Бежевая куртка Tommy Hilfiger x Timberland Tommy Hilfiger MW0MW20906",
-        "https://media.md-fashion.com.ua/images/04/d1/90e13182331c92acc50d2cba50c4.jpg")]
+        "Женские босоножки GOLDEN WEBBING WEDGE",
+        "https://media.md-fashion.com.ua")]
     [InlineData(
         "https://megamarket.zakaz.ua/uk/products/08421384127534/khamon/",
         ShopKey.MegaMarket,
         "Хамон Loriente Серрано нарізка 100г",
         "https://img..zakaz.ua/ultra.1642181619.ad72436478c_2022-01-16_Julia/ultra.1642181619.SNCPSG10.obj.0.1.jpg.oe.jpg.pf.jpg.350nowm.jpg.350x.jpg")]
+    [InlineData(
+        "https://www.miraton.ua/catalog/outlet/outlet_men/botinki_helly_hansen_000164245/",
+        ShopKey.Miraton,
+        "Helly Hansen - Чоловічі зелені черевики із нубуку",
+        "https://www.miraton.ua")]
     [InlineData(
         "https://modivo.ua/p/michael-kors-godinnik-pyper-mk4340-zolotii",
         ShopKey.Modivo,
@@ -118,32 +133,32 @@ public class ParserTests : TestBase
         "https://www.notino.ua/prada/les-infusions-infusion-mimosa-parfumovana-voda-uniseks/",
         ShopKey.Notino,
         "Prada Prada Les Infusions: Infusion Mimosa, Парфумовані води 100 мл",
-        "https://cdn.notinoimg.com/detail_thumb/prada/8435137753307_01x-o/prada-les-infusions-infusion-mimosa_.jpg")]
+        "https://cdn.notinoimg.com")]
     [InlineData(
         "https://novus.zakaz.ua/uk/products/04820185100304/file-somga-norven-180g/",
         ShopKey.Novus,
         "Сьомга Norven слабосолена філе-шматок 180г",
         "https://img..zakaz.ua/src.*SNCPSG10.obj.0.1.jpg.oe.jpg.pf.jpg.350nowm.jpg.350x.jpg")]
     [InlineData(
-        "https://www.olx.ua/d/obyavlenie/hp-victus-15-i5-12450h-rtx-3050-ram-8gb-ssd-512gb-144hz-IDQvdxB.html",
+        "https://www.olx.ua/d/uk/obyavlenie/kofemashina-necta-krea-IDGu7tz.html?isPreviewActive=0&sliderIndex=4",
         ShopKey.Olx,
-        "Hp Victus 15/i5 12450H/RTX 3050/RAM 8GB/SSD 512GB/144Hz",
-        "https://ireland.apollo.olxcdn.com/v1/files/h79utzoohbq71-UA/image;s=540x540")]
+        "Кофемашина Necta Krea",
+        "https://ireland.apollo.olxcdn.com/v1")]
     [InlineData(
-        "https://e-pandora.ua/product/kabluchka_potriyna_spiral",
+        "https://e-pandora.ua/product/792015c00_e043",
         ShopKey.Pandora,
-        "Каблучка \"Потрійна спіраль\"",
-        "https://static.e-pandora.ua/19271/PNGTRPNT_180051C01_RGB.png")]
+        "Намистина «Любов до України»",
+        "https://static.e-pandora.ua")]
     [InlineData(
         "https://prom.ua/ua/p1298951388-gibkij-neon-12volt.html",
         ShopKey.Prom,
-        "Гнучкий неон 12Вольт Блакитна \"SunLight\"",
-        "https://images.prom.ua/4154349117_w2048_h2048_2400_2.png?fresh=1")]
+        "Гнучкий неон 12",
+        "https://images.prom.ua/")]
     [InlineData(
-        "https://prostor.ua/ru/product/lorena-beauty-gubnaya-pomada-uvlazhnyaushchaya-cl04/",
+        "https://prostor.ua/ru/product/maxi-color-pomada-color-show-06-terakot-42g/?sc_content=12822_1",
         ShopKey.Prostor,
-        "LORENA beauty губна помада зволожувальна №CL04",
-        "https://prostor.ua/content/images/41/283x1000l80mc0/lorenabeautygubnapomadazvolozhuvalnacl04-49896498245517.webp")]
+        "Помада для губ MAXI color COLOR SHOW №06 Терракот",
+        "https://prostor.ua")]
     [InlineData(
         "https://rozetka.com.ua/ua/xiaomi_roborock_s6_maxv/p249086106/",
         ShopKey.Rozetka,
@@ -155,20 +170,20 @@ public class ParserTests : TestBase
         "Ботинки от ego",
         "https://image-thumbs.shafastatic.net/681691841_310_430")]
     [InlineData(
-        "https://stolychnyi.zakaz.ua/uk/products/iogurt-danon-260g-ukrayina--04820226162995/",
+        "https://stolychnyi.zakaz.ua/uk/products/iogurt-mlekovita-350g--05900512990095/",
         ShopKey.StolychnyiRynok,
-        "Йогурт Danone персик-папайя 2,5% 260г",
-        "https://img..zakaz.ua/22092022.1663866936.ad72436478c_2022-09-22_Tatyana_L/22092022.1663866936.SNCPSG10.obj.0.1.jpg.oe.jpg.pf.jpg.350nowm.jpg.350x.jpg")]
+        "Йогурт Mlekovita Персик та Маракуйя 2,5% 350г",
+        "https://img..zakaz.ua")]
     [InlineData(
         "https://stylus.ua/google-pixel-7-8128gb-snow-p982694c11256.html?sc_content=22390_r963v1317",
         ShopKey.Stylus,
         "Смартфон Google Pixel 7 8/128GB Snow",
         "https://stylus.ua//thumbs/568x568/d9/37/2545091.jpeg")]
     [InlineData(
-        "https://telemart.ua/ua/products/asus-27-tuf-gaming-vg27aq-black/",
+        "https://telemart.ua/ua/products/arctic-z1-basic-aemnt00039a/",
         ShopKey.Telemart,
-        "Mонітор Asus 27\" TUF Gaming VG27AQ Black",
-        "https://img.telemart.ua/185613-488316-product_popup/asus-27-tuf-gaming-vg27aq-black.png")]
+        "Arctic Z1 Basic (AEMNT00039A)",
+        "https://img.telemart.ua/")]
     [InlineData(
         "https://ultramarket.zakaz.ua/uk/products/04820245520530/sir-premialle-230g/",
         ShopKey.UltraMarket,
@@ -204,6 +219,7 @@ public class ParserTests : TestBase
     
     [Theory]
     [InlineData("https://allo.ua/ru/televizory/50-xiaomi-mi-tv-uhd-4s-50-international-silver-u1_2.html", ShopKey.Allo)]
+    [InlineData("https://answear.ua/p/kofta-drykorn-bradley-cholovicha-kolir-zelenyj-gladka-560980", ShopKey.Answear)]
     [InlineData("https://auchan.zakaz.ua/uk/products/04823061323897/iogurt-chudo-270g-ukrayina/", ShopKey.Auchan)]
     [InlineData("https://comfy.ua/televizor-lg-43un81006lb.html", ShopKey.Comfy)]
     [InlineData("https://eko.zakaz.ua/uk/products/04820045704536/sir-molokiia-350g-ukrayina/", ShopKey.EkoMarket)]
@@ -218,6 +234,7 @@ public class ParserTests : TestBase
     [InlineData("https://megamarket.zakaz.ua/uk/products/04820178810401/vershki-organik-milk-180g/", ShopKey.MegaMarket)]
     [InlineData("https://www.moyo.ua/televizor-lg-75sm9000pla/448309.html", ShopKey.Moyo)]
     [InlineData("https://novus.zakaz.ua/uk/products/novus02885537000000/sukhofrukti/", ShopKey.Novus)]
+    [InlineData("https://e-pandora.ua/product/kabluchka_potriyna_spiral", ShopKey.Pandora)]
     [InlineData("https://prostor.ua/ru/product/maxi-color-pomada-hydra-shine-4.2g/", ShopKey.Prostor)]
     [InlineData("https://rozetka.com.ua/ua/smart-chasy-xiaomi-watch-s1/g44662672/", ShopKey.Rozetka)]
     [InlineData("https://stylus.ua/xiaomi-yi-sport-white-basic-edition-p227758c997.html", ShopKey.Stylus)]

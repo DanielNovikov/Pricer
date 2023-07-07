@@ -7,6 +7,6 @@ public class HomeMenuInitializer
 {
     public static Menu Initialize()
     {
-        return new Menu(MenuKey.Home, ResourceKey.Menu_Home, true, false, null);
+        return new Menu(MenuKey.Home, ResourceKey.Menu_Home, true, true, null);
     }
 }

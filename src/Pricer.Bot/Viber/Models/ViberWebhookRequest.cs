@@ -2,6 +2,7 @@
 using Newtonsoft.Json.Linq;
 using Pricer.Bot.Viber.Models.Enums;
 using Pricer.Bot.Viber.Models.Message;
+using Pricer.Data.Persistent.Models.Enums;
 using Pricer.Dialog.Models;
 
 namespace Pricer.Bot.Viber.Models;
@@ -83,7 +84,8 @@ public class ViberWebhookRequest
         return new UserModel(
             Sender.Id,
             Sender.Name,
-            default);
+            default,
+            BotKey.Viber);
     }
 }
 

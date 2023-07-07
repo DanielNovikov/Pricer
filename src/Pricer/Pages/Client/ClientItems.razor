@@ -1,0 +1,21 @@
+﻿@page "/client/items"
+
+@inherits ClientComponentBase
+
+<PageTitle>Мої товари | Pricer</PageTitle>
+
+@if (_shops != null && _shops.Any())
+{
+    <div id="container">
+        <div id="shops-container">
+            @foreach (var shop in _shops)
+            {
+                <ClientShop Shop="shop" OnDeleted="OnShopDeleted"></ClientShop>
+            }
+        </div>
+    </div>
+}
+else
+{
+    <ClientNoItems></ClientNoItems>
+}

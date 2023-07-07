@@ -1,0 +1,10 @@
+﻿<div 
+    id="background"
+    @onclick="CloseDialog"
+    class="@(_isDialogVisible ? "background-visible" : default)"></div>
+
+<div id="container" class="@(_isDialogVisible ? "container-visible" : default)">
+    <img id="close" @onclick="CloseDialog" src="images/client/cross.svg"/>
+    
+    @Content
+</div>

@@ -34,8 +34,14 @@ public class RequestHeadersBuilder : IRequestHeadersBuilder
                 headers.Add(AcceptEncodingKey, AcceptEncodingValue);
                 headers.Add(AcceptLanguageKey, AcceptLanguageValue);
                 break;
+            case ShopKey.Rozetka:
             case ShopKey.Stylus:
                 headers.Add(UserAgentKey, UserAgentValue);
+                break;
+            case ShopKey.Comfy:
+                headers.Add(AcceptKey, AcceptValue);
+                headers.Add(AcceptEncodingKey, AcceptEncodingValue);
+                headers.Add(AcceptLanguageKey, AcceptLanguageValue);
                 break;
             case ShopKey.Watsons:
                 headers.Add(AcceptKey, AcceptValue);

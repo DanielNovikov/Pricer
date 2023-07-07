@@ -1,0 +1,68 @@
+﻿@import '../../../wwwroot/css/variables';
+@import '../../../wwwroot/css/mixins';
+
+#container {
+  display: flex;
+  flex-direction: column;
+  gap: 17px;
+  text-align: center;
+
+  @include _480 {
+    gap: 14px;
+  }
+}
+
+#header {
+  font-size: 16px;
+  letter-spacing: 0.015em;
+  font-weight: 500;
+  font-family: $primary-font-family;
+  color: #404040;
+  margin: 0;
+  margin-bottom: 2px;
+  text-align: center;
+}
+
+#text-input {
+  background-color: #F5F5F5;
+  font-family: $primary-font-family;
+  padding: 8px 15px;
+  outline: none;
+  color: #404040;
+  border: 0;
+  min-width: 220px;
+  width: calc(100% - 30px);
+  max-width: 100%;
+  height: 75px;
+  max-height: 100px;
+  min-height: 50px;
+}
+
+button {
+  background-color: transparent;
+  border-radius: 50px;
+  border: 2px solid $primary-color;
+  font-family: $primary-font-family;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 30px;
+  letter-spacing: 0.04em;
+  color: $primary-color;
+  cursor: pointer;
+  padding: 4px 20px;
+  font-size: 14px;
+  transition: 0.2s all;
+}
+
+button:hover {
+  background-color: $primary-color;
+  color: white;
+}
+
+::deep .validation-message {
+  color: #db382c;
+  margin: 6px 0 0;
+  font-size: 14px;
+  font-weight: 500;
+  font-family: $primary-font-family;
+}

@@ -1,0 +1,93 @@
+@import '../../../wwwroot/css/variables';
+@import '../../../wwwroot/css/mixins';
+
+#container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+
+  @include _480 {
+    gap: 27px;
+  }
+}
+
+.no-changes {
+  font-size: 17px;
+  color: #3D447E;
+  font-family: $primary-font-family;
+  font-weight: 500;
+  text-align: center;
+  
+  @include _768 {
+    font-size: 16px;
+  }
+}
+
+.price-change-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-column-gap: 18px;
+  align-items: center;
+  gap: 10px;
+
+  @include _768 {
+    grid-column-gap: 17px;
+  }
+  
+  @include _480 {
+    grid-column-gap: 17px;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+    text-align: center;
+  }
+}
+
+.created {
+  font-size: 13px;
+  color: #3D447E;
+  font-family: $primary-font-family;
+  font-weight: 500;
+  min-width: 120px;
+
+  @include _480 {
+    margin: 0;
+  }
+}
+
+.price-info {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+
+  @include _480 {
+    justify-content: center;
+  }
+}
+
+.price {
+  font-size: 17px;
+  font-weight: 600;
+  font-family: $primary-font-family;
+  letter-spacing: 0.015em;
+  margin: 0;
+
+  @include _768 {
+    font-size: 16px;
+  }
+}
+
+.price-down {
+  color: #6270EF;
+}
+
+.price-up {
+  color: #FA3333;
+}
+
+.graphic-arrow {
+  height: 30px;
+
+  @include _768 {
+    height: 27px;
+  }
+}

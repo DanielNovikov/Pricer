@@ -5,7 +5,7 @@ namespace Pricer.Common.Services.Abstract;
 
 public interface IUserLanguage
 {
-    Task SetForUser(int userId);
+    Task Set(int userId);
     
     void Set(LanguageKey languageKey);
     

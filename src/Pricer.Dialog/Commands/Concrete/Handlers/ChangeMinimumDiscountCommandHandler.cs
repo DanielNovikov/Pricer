@@ -14,9 +14,9 @@ public class ChangeMinimumDiscountCommandHandler : ICommandHandler
     private readonly int[] _discountThresholds =
     {
         5,
-        15,
-        30,
-        50
+        10,
+        20,
+        30
     };
     
     private readonly ICallbackDataBuilder _callbackDataBuilder;

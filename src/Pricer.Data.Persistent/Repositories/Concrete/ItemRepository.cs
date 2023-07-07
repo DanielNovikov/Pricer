@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using Pricer.Data.InMemory.Models;
+using Pricer.Data.InMemory.Models.Enums;
 using Pricer.Data.Persistent.Models;
 using Pricer.Data.Persistent.Repositories.Abstract;
 
@@ -52,12 +54,17 @@ public class ItemRepository : RepositoryBase<Item>, IItemRepository
             .FirstOrDefaultAsync(x => x.UserId == userId && x.Url == url);
     }
 
-    public async Task<IList<Item>> GetAllIncludingUser()
+    public async Task<CurrencyKey> GetCurrency(int id)
+    {
+        return (await GetById(id)).CurrencyKey;
+    }
+
+    public async Task<bool> Any(int userId)
     {
         return await Context
             .Items
             .AsNoTracking()
-            .Include(x => x.User)
-            .ToListAsync();
+            .Where(x => !x.IsDeleted)
+            .AnyAsync(x => x.UserId == userId);
     }
 }

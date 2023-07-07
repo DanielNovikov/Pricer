@@ -1,11 +1,13 @@
 ﻿using Pricer.Data.Persistent.Models;
+using Pricer.Data.Persistent.Models.Enums;
 
 namespace Pricer.Dialog.Models;
 
 public record UserModel(
 	string ExternalId,
 	string FullName,
-	string? Username)
+	string? Username,
+	BotKey BotKey)
 {
 	public User ToUser()
 	{
@@ -13,7 +15,8 @@ public record UserModel(
 		{
 			ExternalId = ExternalId,
 			FullName = FullName,
-			Username = Username
+			Username = Username,
+			BotKey = BotKey
 		};
 	}
 };

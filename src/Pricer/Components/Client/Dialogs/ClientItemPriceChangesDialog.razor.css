@@ -1,0 +1,100 @@
+#container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+@media (max-width: 480px) {
+  #container {
+    gap: 27px;
+  }
+}
+
+.no-changes {
+  font-size: 17px;
+  color: #3D447E;
+  font-family: "Inter", serif;
+  font-weight: 500;
+  text-align: center;
+}
+@media (max-width: 768px) {
+  .no-changes {
+    font-size: 16px;
+  }
+}
+
+.price-change-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-column-gap: 18px;
+  align-items: center;
+  gap: 10px;
+}
+@media (max-width: 768px) {
+  .price-change-row {
+    grid-column-gap: 17px;
+  }
+}
+@media (max-width: 480px) {
+  .price-change-row {
+    grid-column-gap: 17px;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+    text-align: center;
+  }
+}
+
+.created {
+  font-size: 13px;
+  color: #3D447E;
+  font-family: "Inter", serif;
+  font-weight: 500;
+  min-width: 120px;
+}
+@media (max-width: 480px) {
+  .created {
+    margin: 0;
+  }
+}
+
+.price-info {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+@media (max-width: 480px) {
+  .price-info {
+    justify-content: center;
+  }
+}
+
+.price {
+  font-size: 17px;
+  font-weight: 600;
+  font-family: "Inter", serif;
+  letter-spacing: 0.015em;
+  margin: 0;
+}
+@media (max-width: 768px) {
+  .price {
+    font-size: 16px;
+  }
+}
+
+.price-down {
+  color: #6270EF;
+}
+
+.price-up {
+  color: #FA3333;
+}
+
+.graphic-arrow {
+  height: 30px;
+}
+@media (max-width: 768px) {
+  .graphic-arrow {
+    height: 27px;
+  }
+}
+
+/*# sourceMappingURL=ClientItemPriceChangesDialog.razor.css.map */

@@ -12,7 +12,7 @@ public class BackgroundSeeder
             ResourceKey.Background_ItemDeleted,
             @"❗️Товар <a href='{0}'>{1}</a> більше недоступний
 ℹ {2}",
-            @"❗️Товар <a href='{0}'>{1}</a> больше недоступний
+            @"❗️Товар <a href='{0}'>{1}</a> больше недоступный
 ℹ {2}");
 
         resources.AddResource(

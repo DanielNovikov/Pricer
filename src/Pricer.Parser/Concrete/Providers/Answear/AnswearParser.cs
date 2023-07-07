@@ -13,8 +13,8 @@ public class AnswearParser : IParserProvider
 
     public int GetPrice(IHtmlDocument document)
     {
-        const string discountPriceSelector = "div[class^=ProductCard] div[class^=Price__salePrice]";
-        const string fullPriceSelector = "div[class^=ProductCard] div[class^=Price__price]";
+        const string discountPriceSelector = "div[class^=ProductCard] div[class^=ProductCard__priceSale]";
+        const string fullPriceSelector = "div[class^=ProductCard] div[class^=ProductCard__priceRegular]";
 
         var priceElement = 
             document.QuerySelector<IHtmlDivElement>(discountPriceSelector) ??
@@ -55,7 +55,9 @@ public class AnswearParser : IParserProvider
 
     public bool IsAvailable(IHtmlDocument document)
     {
-        return true;
+        const string selector = "p[class^='ProductUnavailableForBuy__unavailableProductHeader']";
+
+        return document.QuerySelector<IHtmlParagraphElement>(selector) == null;
     }
 
     public CurrencyKey GetCurrency(IHtmlDocument document)

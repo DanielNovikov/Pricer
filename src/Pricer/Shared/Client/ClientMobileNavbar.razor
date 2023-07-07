@@ -1,0 +1,32 @@
+﻿<div id="container">
+    <div>
+        <img src="images/client/mobile/navbar-home.svg"/>
+    </div>
+    <div>
+        <img @onclick="() => OnWriteToSupportClicked.InvokeAsync()" src="images/client/mobile/navbar-help.svg"/>
+    </div>
+
+    <div>
+        <div id="new-item-container">
+            <img @onclick="OpenNewItemDialog" id="new-item" src="images/client/mobile/navbar-new-item.svg"/>
+        </div>
+    </div>
+
+    <div>
+        <a href="/"><img src="images/client/mobile/navbar-functions.svg"/></a>
+    </div>
+    <div>
+        <img @onclick="() => OnLogoutClicked.InvokeAsync()" src="images/client/mobile/navbar-logout.svg"/>
+    </div>
+</div>
+
+@code {
+    [Parameter] public EventCallback OnLogoutClicked { get; set; }
+    [Parameter] public EventCallback OnNewItemClicked { get; set; }
+    [Parameter] public EventCallback OnWriteToSupportClicked { get; set; }
+    
+    private async Task OpenNewItemDialog()
+    {
+        await OnNewItemClicked.InvokeAsync();
+    }
+}

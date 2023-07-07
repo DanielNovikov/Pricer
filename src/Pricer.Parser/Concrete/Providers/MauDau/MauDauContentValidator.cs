@@ -11,7 +11,7 @@ public class MauDauContentValidator : IContentValidator
 
 	public bool HasItemInfo(IHtmlDocument document)
 	{
-		const string selector = "div.product-side-info span.price_final";
+		const string selector = "div.product-block--actions span.price_final";
 
 		return document.QuerySelector<IHtmlSpanElement>(selector) is not null;
 	}

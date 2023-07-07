@@ -64,7 +64,7 @@ public class AllItemsCommandHandler : ICommandHandler
                     Title = i.Title,
                     Url = i.Url,
                     Price = i.Price,
-                    CurrencyTitle = _resourceService.Get(c.Title)
+                    CurrencyTitle = c.Title
                 });
         
         var message = itemsInfo

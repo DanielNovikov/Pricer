@@ -27,7 +27,7 @@ public class MarketPlacesSeeder
 			new Shop(
 				"OLX",
 				ShopKey.Olx,
-				"www.olx.ua",
+				"olx.ua",
 				"#23e5db",
 				"#002f34")
 		};

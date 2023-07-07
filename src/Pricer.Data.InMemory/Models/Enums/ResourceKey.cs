@@ -34,7 +34,9 @@ public enum ResourceKey
     Dialog_ChangeMinimumDiscountThreshold = 29,
     Dialog_MinimumDiscountThresholdChanged = 30,
     Dialog_GoToWebsite = 31,
-    
+    Dialog_AddExample = 32,
+    Dialog_ExampleAdded = 33,
+
     UserAction_GotAddedProducts = 100,
     UserAction_ParsingError = 101,
     UserAction_GotWebsiteLink = 102,
@@ -60,10 +62,11 @@ public enum ResourceKey
     UserAction_CalledChangingLanguageMenu = 123,
     UserAction_CalledChangingMinimumDiscountThreshold = 124,
     UserAction_ChangedMinimumDiscountThreshold = 125,
+    UserAction_ExampleClicked = 126,
 
     Parser_PageNotFound = 200,
     Parser_NoItemInfoOnPage = 202,
-        
+
     Background_ItemDeleted = 300,
     Background_ItemPriceWentDown = 301,
     Background_LogItemPriceChanged = 302,
@@ -72,13 +75,13 @@ public enum ResourceKey
     Background_ItemIsOutOfStock = 305,
     Background_DeleteItem = 306,
     Background_GoByItemUrl = 307,
-        
+
     Menu_Home = 400,
     Menu_Support = 401,
     Menu_SelectLanguage = 402,
     Menu_Settings = 403,
     Menu_TogglePriceGrowing = 404,
-        
+
     Command_Back = 500,
     Command_Add = 501,
     Command_AllItems = 502,
@@ -92,25 +95,16 @@ public enum ResourceKey
     Command_SelectUkrainianLanguage = 510,
     Command_SelectRussianLanguage = 511,
     Command_ChangeMinimumDiscount = 512,
-    
-    Currency_UAH_Title = 600,
-    Currency_UAH_Sign = 601,
-    Currency_EUR_Title = 602,
-    Currency_EUR_Sign = 603,
-    Currency_USD_Title = 604,
-    Currency_USD_Sign = 605,
-    
+
     Api_NoHistory = 700,
     Api_GrewUpSign = 701,
     Api_WentDownSign = 702,
     Api_UrlTemplate = 703,
-    
+
     ShopCategory_Clothes = 800,
     ShopCategory_Electronics = 801,
     ShopCategory_Food = 802,
     ShopCategory_Cosmetics = 803,
     ShopCategory_MarketPlaces = 804,
-    ShopCategory_Different = 805,
-    
-    AppNotification_HowToAddItem = 900
+    ShopCategory_Different = 806,
 }

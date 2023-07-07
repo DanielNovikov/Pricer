@@ -1,4 +1,5 @@
-﻿using Pricer.Dialog.Models;
+﻿using Pricer.Data.Persistent.Models.Enums;
+using Pricer.Dialog.Models;
 using Telegram.Bot.Types;
 
 namespace Pricer.Bot.Telegram.Extensions;
@@ -19,6 +20,7 @@ public static class ChatExtensions
 		return new UserModel(
 			chat.Id.ToString(),
 			fullName!,
-			chat.Username);
+			chat.Username,
+			BotKey.Telegram);
 	}
 }

@@ -34,14 +34,14 @@ public class ClothesSeeder
             new Shop(
                 "FARFETCH",
                 ShopKey.Farfetch,
-                "www.farfetch.com",
+                "farfetch.com",
                 "#ffffff",
                 "#000000"),
 
             new Shop(
                 "Adidas",
                 ShopKey.Adidas,
-                "www.adidas.ua",
+                "adidas.ua",
                 "#000000",
                 "#ffffff"),
 
@@ -57,7 +57,21 @@ public class ClothesSeeder
                 ShopKey.Athletics,
                 "athletics.kiev.ua",
                 "#545454",
-                "#ffffff")
+                "#ffffff"),
+            
+            new Shop(
+                "Miraton",
+                ShopKey.Miraton,
+                "miraton.ua",
+                "#ffffff",
+                "#000000"),
+            
+            new Shop(
+                "DeeZee",
+                ShopKey.DeeZee,
+                "deezee.eu",
+                "#ffffff",
+                "#000000")
         };
 
         var clothesShopCategory = new ShopCategory(ResourceKey.ShopCategory_Clothes, "🥻", clothesShops);

@@ -1,0 +1,43 @@
+﻿@inherits LayoutComponentBase
+
+<div id="container">
+    <div id="pc-navbar">
+        <ClientPcNavbar 
+            OnLogoutClicked="Logout"
+            OnNewItemClicked="() => _clientNewItemDialog.OpenDialog()"
+            OnWriteToSupportClicked="() => _clientWriteToSupportDialog.OpenDialog()"></ClientPcNavbar>
+    </div>
+        
+    <div id="content">
+        @Body
+    </div>
+    
+    <div id="mobile-navbar">
+        <ClientMobileNavbar 
+            OnLogoutClicked="Logout"
+            OnNewItemClicked="() => _clientNewItemDialog.OpenDialog()"
+            OnWriteToSupportClicked="() => _clientWriteToSupportDialog.OpenDialog()"></ClientMobileNavbar>
+    </div>
+</div>
+
+<ClientNewItemDialog @ref="_clientNewItemDialog" OnAdded="OnRefresh"></ClientNewItemDialog>
+<ClientWriteToSupportDialog @ref="_clientWriteToSupportDialog" OnSent="OnRefresh"></ClientWriteToSupportDialog>
+
+@code {
+    private ClientNewItemDialog _clientNewItemDialog = default!;
+    private ClientWriteToSupportDialog _clientWriteToSupportDialog = default!;
+    
+    [Inject] public IAuthenticationService AuthenticationService { get; set; } = default!;
+    [Inject] public NavigationManager NavigationManager { get; set; } = default!;
+
+    private async Task Logout()
+    {
+        await AuthenticationService.Logout();
+        NavigationManager.NavigateTo("/", true);
+    }
+
+    private void OnRefresh()
+    {
+        NavigationManager.NavigateTo(NavigationManager.Uri, true);
+    }
+}

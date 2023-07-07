@@ -1,0 +1,31 @@
+@import '../../wwwroot/css/mixins';
+
+#container {
+  padding: 70px;
+
+  @include _768 {
+    padding: 40px;
+  }
+  
+  @include _480 {
+    padding: 35px;
+  }
+
+  @include _400 {
+    padding: 30px;
+  }
+}
+
+#shops-container {
+  display: flex;
+  flex-direction: column;
+  gap: 80px;
+  
+  @include _768 {
+    gap: 60px;
+  }
+
+  @include _400 {
+    gap: 50px;
+  }
+}

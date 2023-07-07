@@ -45,18 +45,6 @@ public class HomeMenuInputHandler : IMenuInputHandler
             return _wrongCommandHandler.Handle(message);
 
         var url = urlExtractionResult.Result;
-        var item = await _itemRepository.GetByUserIdAndUrl(user.Id, url);
-        if (item is not null)
-        {
-            if (!item.IsDeleted)
-            {
-                _userActionLogger.LogDuplicateItem(user, url);
-                return new ReplyResourceResult(ResourceKey.Dialog_DuplicateItem);
-            }
-
-            await _itemService.Restore(item);
-            return new ReplyResourceResult(ResourceKey.Dialog_ItemAdded);
-        }
         
         return await _userItemParser.Parse(user, url);
     }

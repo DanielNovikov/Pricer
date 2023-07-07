@@ -12,7 +12,7 @@ public class RozetkaParser : IParserProvider
     
     public int GetPrice(IHtmlDocument document)
     {
-        const string selector = ".product-about__block .product-prices__big";
+        const string selector = ".product-about__block .product-price__big";
         
         var priceElement = document.QuerySelector<IHtmlParagraphElement>(selector) ?? 
             throw new ArgumentNullException($"{nameof(RozetkaParser)}:{nameof(GetPrice)}:Element");

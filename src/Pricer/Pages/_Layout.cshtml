@@ -7,14 +7,24 @@
 <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="description"/>
+    <meta name="keywords"/>
     <base href="~/"/>
     <link href="css/site.css" rel="stylesheet"/>
     <link href="Pricer.styles.css" rel="stylesheet"/>
+    
+    <meta property="og:title" content="Pricer - Відстежуйте знижки на товари з чат-ботом Pricer!">
+    <meta property="og:description" content="Pricer - безкоштовний чат-бот, який повідомляє вам про зниження цін на обрані товари, допомагає слідкувати за наявністю товарів та показує історію цін. Підключайтеся через Telegram або Viber та отримуйте сповіщення про знижки першими!">
+    <meta property="og:image" content="@($"{Context.Request.Scheme}://{Context.Request.Host}/images/advertisement/og-logo.jpg")">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="@($"{Context.Request.Scheme}://{Context.Request.Host}")">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Righteous:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
     
     <component type="typeof(HeadOutlet)" render-mode="ServerPrerendered"/>
 </head>
@@ -24,5 +34,32 @@
 
 <script src="js/site.js"></script>
 <script src="_framework/blazor.server.js"></script>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MNT2PPCHVD"></script>
+
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-MNT2PPCHVD');
+</script>
+
+<script>
+    window.setPageMeta = (description, keywords) => {
+        document.querySelector("meta[name='description']").content = description;
+        document.querySelector("meta[name='keywords']").content = keywords;
+    };
+</script>
+
+<script>
+    window.logAction = (name, category, label) => {
+        gtag('event', name, {
+            'event_category': category,
+            'event_label': label
+        });
+    };
+</script>
+
 </body>
 </html>

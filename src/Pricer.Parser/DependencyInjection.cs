@@ -45,6 +45,7 @@ public static class DependencyInjection
             .AddTransient<IHtmlLoader, HtmlLoader>()
             .AddScoped<IHtmlParser, HtmlParser>()
             .AddScoped<IRequestHeadersBuilder, RequestHeadersBuilder>()
+            .AddTransient<IExampleItemService, ExampleItemService>()
             
             .AddScoped<IParser, Concrete.Parser>()
             .AddScoped<IContentValidatorService, ContentValidatorService>()

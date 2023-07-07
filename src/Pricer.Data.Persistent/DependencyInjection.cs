@@ -16,7 +16,6 @@ public static class DependencyInjection
             .AddScoped<IItemPriceChangeRepository, ItemPriceChangeRepository>()
             .AddScoped<IUserRepository, UserRepository>()
             .AddScoped<IUserTokenRepository, UserTokenRepository>()
-            .AddScoped<IAppNotificationRepository, AppNotificationRepository>()
             .AddScoped<IItemParseResultRepository, ItemParseResultRepository>();
     }
 

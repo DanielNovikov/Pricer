@@ -21,7 +21,7 @@ public class ElectronicsSeeder
             new Shop(
                 "Citrus",
                 ShopKey.Citrus,
-                "www.ctrs.com.ua",
+                "ctrs.com.ua",
                 "#f6731c",
                 "#fefefe"),
             
@@ -42,7 +42,7 @@ public class ElectronicsSeeder
             new Shop(
                 "MOYO",
                 ShopKey.Moyo,
-                "www.moyo.ua",
+                "moyo.ua",
                 "#00acdc",
                 "#ffffff"),
             

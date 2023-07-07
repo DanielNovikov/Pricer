@@ -1,4 +1,6 @@
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Components.Authorization;
+using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.Extensions.Configuration;
@@ -12,6 +14,8 @@ using Pricer.Data.Persistent;
 using Pricer.Data.Service;
 using Pricer.Dialog;
 using Pricer.Parser;
+using Pricer.Services.Abstract;
+using Pricer.Services.Concrete;
 
 namespace Pricer;
 
@@ -29,6 +33,10 @@ public class Startup
         services
             .AddRazorPages().Services
             .AddServerSideBlazor().AddCircuitOptions(options => options.DetailedErrors = true);
+
+        services
+            .AddDataProtection()
+            .PersistKeysToFileSystem(new DirectoryInfo("/app/keys"));
         
         services
             .AddCommonServices()
@@ -44,6 +52,9 @@ public class Startup
             .AddMemoryCache()
             .AddDataServices();
 
+        services.AddScoped<IAuthenticationService, AuthenticationService>();
+        services.AddScoped<IUserItemsService, UserItemsService>();
+        
         services.AddControllers().AddNewtonsoftJson();
         services.AddCors();
     }
@@ -60,9 +71,6 @@ public class Startup
         app.UseStaticFiles();
         
         app.UseRouting();
-
-        app.UseAuthentication();
-        app.UseAuthorization();
             
         app.UseCors(builder => builder
             .AllowAnyHeader()

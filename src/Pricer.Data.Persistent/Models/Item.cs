@@ -26,9 +26,9 @@ public class Item : IAggregateRoot
     public bool IsDeleted { get; set; }
     
     public int UserId { get; set; }
-    public User User { get; set; }
-        
-    public IList<ItemPriceChange> PriceChanges { get; set; }
+    public User User { get; set; } = default!;
+
+    public IList<ItemPriceChange> PriceChanges { get; set; } = default!;
     
-    public IList<ItemParseResult> ParseErrors { get; set; } 
+    public IList<ItemParseResult> ParseErrors { get; set; } = default!;
 }

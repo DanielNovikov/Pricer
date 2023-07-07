@@ -172,5 +172,10 @@ public class UserActionSeeder
             ResourceKey.UserAction_ChangedMinimumDiscountThreshold,
             "🏷 Змінив мінімальну знижку на {0}%",
             "🏷 Изменил минимальную скидку на {0}%");
+        
+        resources.AddResource(
+            ResourceKey.UserAction_ExampleClicked,
+            "🤑 Натиснув на приклад",
+            "🤑 Нажал на пример");
     }
 }

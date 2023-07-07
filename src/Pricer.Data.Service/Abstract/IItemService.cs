@@ -14,6 +14,8 @@ public interface IItemService
     Task<Item> Create(
         int price, string title, Uri url, Uri imageUrl, int userId, ShopKey shopKey, bool isAvailable, CurrencyKey currencyKey);
 
+    Task Delete(int id);
+    
     Task Delete(Item item);
     
     Task Restore(Item item);

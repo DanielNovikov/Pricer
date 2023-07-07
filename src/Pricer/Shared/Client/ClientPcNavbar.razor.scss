@@ -1,0 +1,28 @@
+﻿@import '../../wwwroot/css/variables';
+
+#container {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 3fr 1fr;
+  align-items: center;
+  width: auto;
+  height: 100%;
+  background-color: $primary-color;
+  padding: 0 10px;
+  
+  img {
+    width: 100%;
+    cursor: pointer;
+  }
+  
+  #logout {
+    padding: 11px;
+  }
+  
+  #links {
+    padding: 13px;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+  }
+}

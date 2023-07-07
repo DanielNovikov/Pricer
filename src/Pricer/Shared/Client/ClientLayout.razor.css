@@ -1,0 +1,43 @@
+#container {
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+@media (max-width: 600px) {
+  #container {
+    flex-direction: column;
+  }
+}
+
+#pc-navbar {
+  width: 70px;
+}
+@media (max-width: 600px) {
+  #pc-navbar {
+    display: none;
+  }
+}
+
+#content {
+  width: calc(100% - 70px);
+  height: 100%;
+  overflow-y: auto;
+}
+@media (max-width: 600px) {
+  #content {
+    width: 100%;
+    height: calc(100% - 60px);
+  }
+}
+
+#mobile-navbar {
+  display: none;
+  height: 60px;
+}
+@media (max-width: 600px) {
+  #mobile-navbar {
+    display: block;
+  }
+}
+
+/*# sourceMappingURL=ClientLayout.razor.css.map */

@@ -12,9 +12,9 @@ public class PromParser : IParserProvider
 
 	public int GetPrice(IHtmlDocument document)
 	{
-		const string selector = "span[data-qaid='product_price']";
+		const string selector = "div[data-qaid='product_price']";
 
-		var priceElement = document.QuerySelector<IHtmlSpanElement>(selector) ??
+		var priceElement = document.QuerySelector<IHtmlDivElement>(selector) ??
 		    throw new ArgumentNullException($"{nameof(PromParser)}:{nameof(GetPrice)}:Element");;
 
 		var priceAttribute = priceElement.Attributes["data-qaprice"] ??

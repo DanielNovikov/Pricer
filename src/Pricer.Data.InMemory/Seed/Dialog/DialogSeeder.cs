@@ -4,8 +4,6 @@ using Pricer.Data.InMemory.Models;
 using Pricer.Data.InMemory.Seed.Dialog.Initializers.Common;
 using Pricer.Data.InMemory.Seed.Dialog.Initializers.HomeMenu;
 using Pricer.Data.InMemory.Seed.Dialog.Initializers.HomeMenu.Commands;
-using Pricer.Data.InMemory.Seed.Dialog.Initializers.SelectLanguageMenu;
-using Pricer.Data.InMemory.Seed.Dialog.Initializers.SelectLanguageMenu.Commands;
 using Pricer.Data.InMemory.Seed.Dialog.Initializers.SettingsMenu;
 using Pricer.Data.InMemory.Seed.Dialog.Initializers.SettingsMenu.Commands;
 using Pricer.Data.InMemory.Seed.Dialog.Initializers.SupportMenu;
@@ -16,7 +14,6 @@ public class DialogSeeder
 {
 	public static void Seed(IMemoryCache cache)
 	{
-		var selectLanguageMenu = SelectLanguageMenuInitializer.Initialize();
 		var homeMenu = HomeMenuInitializer.Initialize();
 		var supportMenu = SupportMenuInitializer.Initialize(homeMenu);
 		var settingsMenu = SettingsMenuInitializer.Initialize(homeMenu);
@@ -25,7 +22,6 @@ public class DialogSeeder
 		{
 			homeMenu,
 			supportMenu,
-			selectLanguageMenu,
 			settingsMenu
 		};
 
@@ -38,9 +34,6 @@ public class DialogSeeder
 		var websiteCommand = WebsiteCommandInitializer.Initialize(homeMenu);
 		var writeToSupportCommand = WriteToSupportCommandInitializer.Initialize(homeMenu, supportMenu);
 		var settingsCommand = SettingsCommandInitializer.Initialize(homeMenu, settingsMenu);
-
-		var selectUkrainianLanguageCommand = SelectUkrainianLanguageCommandInitializer.Initialize(selectLanguageMenu);
-		var selectRussianLanguageCommand = SelectRussianLanguageCommandInitializer.Initialize(selectLanguageMenu);
 
 		var selectLanguageCommand = SelectLanguageCommandInitializer.Initialize(settingsMenu);
 		var togglePriceGrowingCommand = TogglePriceGrowingCommandInitializer.Initialize(settingsMenu);
@@ -59,8 +52,6 @@ public class DialogSeeder
 			settingsCommand,
 			selectLanguageCommand,
 			togglePriceGrowingCommand,
-			selectUkrainianLanguageCommand,
-			selectRussianLanguageCommand,
 			backCommand,
 			changeMinimumDiscountCommand
 		};

@@ -1,0 +1,33 @@
+﻿@import '../../wwwroot/css/variables';
+
+#container {
+  width: 100%;
+  height: calc(100% - 1px);
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  border-top: 1px solid $line-color;
+  align-content: center;
+  box-shadow: 0 -1px 10px rgb(0 0 0 / 3%);
+
+  div {
+    text-align: center;
+
+    img {
+      height: 31px;
+    }
+    
+    #new-item-container {
+      position: relative;
+      
+      #new-item {
+        background: $primary-color;
+        padding: 10px;
+        position: absolute;
+        top: -38px;
+        left: 50%;
+        transform: translateX(-50%);
+        border-radius: $max-border-radius;
+      }
+    }
+  }
+}

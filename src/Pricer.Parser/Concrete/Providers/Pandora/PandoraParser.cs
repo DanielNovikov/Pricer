@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using AngleSharp.Dom;
 using AngleSharp.Html.Dom;
 using Pricer.Data.InMemory.Models.Enums;
@@ -52,7 +53,9 @@ public class PandoraParser : IParserProvider
 
 	public bool IsAvailable(IHtmlDocument document)
 	{
-		return true;
+		const string selector = ".product__buttons .btn--disabled";
+
+		return !document.QuerySelectorAll<IHtmlButtonElement>(selector).Any();
 	}
 
 	public CurrencyKey GetCurrency(IHtmlDocument document)

@@ -1,0 +1,36 @@
+﻿@inherits ClientDialogBase
+
+<ClientDialog @ref="DialogRef">
+    <Content>
+        <div id="container">
+            @if (PriceChanges != null)
+            {
+                if (!PriceChanges.Any())
+                {
+                    <p class="no-changes">Поки що ціна на товар не змінювалася</p>
+                }
+                else
+                {
+                    foreach (var priceChange in PriceChanges)
+                    {
+                        var isPriceWentDown = priceChange.NewPrice < priceChange.OldPrice;
+
+                        <div class="price-change-row">
+                            <p class="created">@priceChange.RelativeCreated</p>
+                            <div class="price-info">
+                                <p class="price @(isPriceWentDown ? "price-down" : "price-up")">@priceChange.OldPrice<strong>@priceChange.CurrencySign</strong></p>
+                                <img src="images/client/graphic-arrow-@(isPriceWentDown ? "down" : "up").svg" class="graphic-arrow"/>
+                                <p class="price @(isPriceWentDown ? "price-down" : "price-up")">@priceChange.NewPrice<strong>@priceChange.CurrencySign</strong></p>
+                            </div>
+                        </div>
+                    }
+                }
+            }
+        </div>
+    </Content>
+</ClientDialog>
+
+@code {
+
+    [Parameter] public List<ItemPriceChangeDto>? PriceChanges { get; set; }
+}

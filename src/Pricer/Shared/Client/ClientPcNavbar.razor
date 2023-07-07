@@ -1,0 +1,20 @@
+﻿<div id="container">
+    <img src="images/client/pc/navbar-logo.png"/>
+    
+    <div id="links">
+        <img src="images/client/pc/navbar-home.svg"/>
+        <img @onclick="() => OnWriteToSupportClicked.InvokeAsync()" src="images/client/pc/navbar-help.svg"/>
+        <img @onclick="() => OnNewItemClicked.InvokeAsync()" src="images/client/pc/navbar-new-item.png"/>
+        <a href="/"><img src="images/client/pc/navbar-functions.png"/></a>
+    </div>
+    
+    <div id="logout">
+        <img @onclick="() => OnLogoutClicked.InvokeAsync()" src="images/client/pc/navbar-logout.png"/>
+    </div>
+</div>
+
+@code {
+    [Parameter] public EventCallback OnLogoutClicked { get; set; }
+    [Parameter] public EventCallback OnNewItemClicked { get; set; }
+    [Parameter] public EventCallback OnWriteToSupportClicked { get; set; }
+}

@@ -16,8 +16,6 @@ public sealed class ApplicationDbContext : DbContext
 
     public DbSet<UserToken> UserTokens { get; set; }
 
-    public DbSet<AppNotification> AppNotifications { get; set; }
-
     public ApplicationDbContext()
     {
     }
@@ -32,10 +30,10 @@ public sealed class ApplicationDbContext : DbContext
     }
 
     // used to generate migrations
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    {
-       optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Database=PricerDB;Username=postgres;Password=postgres");
-    }
+    // protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    // {
+    //    optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Database=PricerDB;Username=postgres;Password=postgres");
+    // }
 
     public void DetachEntity<T>(T entity)
     {

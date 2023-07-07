@@ -29,7 +29,14 @@ public class DifferentSeeder
 				ShopKey.Epicentr,
 				"epicentrk.ua",
 				"#254185",
-				"#ffffff")
+				"#ffffff"),
+			
+			new Shop(
+				"AUTO.RIA",
+				ShopKey.AutoRia,
+				"auto.ria.com",
+				"#db5c4c",
+				"#ffffff"),
 		};
 
 		var differentShopCategory = new ShopCategory(ResourceKey.ShopCategory_Different, "🛒", differentShops);

@@ -11,8 +11,8 @@ public class AnswearContentValidator : IContentValidator
 
     public bool HasItemInfo(IHtmlDocument document)
     {
-        const string discountPriceSelector = "div[class^=ProductCard] div[class^=Price__salePrice]";
-        const string fullPriceSelector = "div[class^=ProductCard] div[class^=Price__price]";
+        const string discountPriceSelector = "div[class^=ProductCard] div[class^=ProductCard__priceSale]";
+        const string fullPriceSelector = "div[class^=ProductCard] div[class^=ProductCard__priceRegular]";
 
         return 
             document.QuerySelector<IHtmlDivElement>(discountPriceSelector) is not null ||

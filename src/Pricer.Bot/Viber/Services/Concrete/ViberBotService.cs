@@ -41,7 +41,7 @@ public class ViberBotService : IViberBotService
 #if DEBUG
         var body = new Dictionary<string, object>
         {
-            { "url", "https://848f-95-158-53-56.eu.ngrok.io/api/viber/webhook" }
+            { "url", "https://4324-95-158-53-53.eu.ngrok.io/api/viber/webhook" }
         };
 #else
         var body = new Dictionary<string, object>
@@ -137,7 +137,7 @@ public class ViberBotService : IViberBotService
             var responseBody = await response.Content.ReadAsStringAsync();
             var responseModel = JsonConvert.DeserializeObject<ViberResponse>(responseBody);
             
-            if (responseModel!.Status == ViberResponseCode.Ok)
+            if (responseModel!.Status != ViberResponseCode.Ok)
             {
                 _logger.LogWarning("Request couldn't be handled by Viber.\nMethod: {0}\nUserId: {1}\nStatus: {2}\nStatus message: {3}\nResponse: {4}",
                     method, userId, responseModel.Status, responseModel.StatusMessage, responseBody);

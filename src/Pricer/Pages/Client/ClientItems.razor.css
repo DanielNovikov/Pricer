@@ -1,0 +1,36 @@
+#container {
+  padding: 70px;
+}
+@media (max-width: 768px) {
+  #container {
+    padding: 40px;
+  }
+}
+@media (max-width: 480px) {
+  #container {
+    padding: 35px;
+  }
+}
+@media (max-width: 400px) {
+  #container {
+    padding: 30px;
+  }
+}
+
+#shops-container {
+  display: flex;
+  flex-direction: column;
+  gap: 80px;
+}
+@media (max-width: 768px) {
+  #shops-container {
+    gap: 60px;
+  }
+}
+@media (max-width: 400px) {
+  #shops-container {
+    gap: 50px;
+  }
+}
+
+/*# sourceMappingURL=ClientItems.razor.css.map */
